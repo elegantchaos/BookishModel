@@ -66,13 +66,6 @@
 			remoteGlobalIDString = "Actions::Actions::Product";
 			remoteInfo = Actions;
 		};
-		22F1181921A5C13700AE3FBB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishModelDependenciesMobile.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "Actions::ActionsKit::Product";
-			remoteInfo = ActionsKit;
-		};
 		22F1181B21A5C13700AE3FBB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishModelDependenciesMobile.xcodeproj */;
@@ -93,13 +86,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = "Actions::Actions::Product";
 			remoteInfo = Actions;
-		};
-		22F1182E21A5C15D00AE3FBB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishModelDependenciesMac.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "Actions::ActionsKit::Product";
-			remoteInfo = ActionsKit;
 		};
 		22F1183021A5C15D00AE3FBB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -157,6 +143,7 @@
 		224293EE212AFAFB00E70510 /* CollectionContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionContainer.swift; sourceTree = "<group>"; };
 		2296036A214187570020B3EB /* Update.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = Update.sh; sourceTree = "<group>"; };
 		22A1A8BF21A5C24800F2332B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		22A1A8D621A5C4E300F2332B /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = SOURCE_ROOT; };
 		22DAF394217B34FC003CE28B /* DetailDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDataSource.swift; sourceTree = "<group>"; };
 		22DD424E2126D6DA0070C85A /* Document.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Document.xcdatamodel; sourceTree = "<group>"; };
 		22DD42792126DDA80070C85A /* BookishModel.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = BookishModel.xcconfig; sourceTree = "<group>"; };
@@ -262,6 +249,7 @@
 		22DD423B2126D6DA0070C85A = {
 			isa = PBXGroup;
 			children = (
+				22A1A8D621A5C4E300F2332B /* .travis.yml */,
 				22A1A8BF21A5C24800F2332B /* README.md */,
 				22F1182221A5C15D00AE3FBB /* BookishModelDependenciesMac.xcodeproj */,
 				22F1180D21A5C13700AE3FBB /* BookishModelDependenciesMobile.xcodeproj */,
@@ -324,7 +312,6 @@
 			isa = PBXGroup;
 			children = (
 				22F1181821A5C13700AE3FBB /* Actions.framework */,
-				22F1181A21A5C13700AE3FBB /* ActionsKit.framework */,
 				22F1181C21A5C13700AE3FBB /* BookishModelDependencies */,
 				22F1181E21A5C13700AE3FBB /* Logger.framework */,
 			);
@@ -335,7 +322,6 @@
 			isa = PBXGroup;
 			children = (
 				22F1182D21A5C15D00AE3FBB /* Actions.framework */,
-				22F1182F21A5C15D00AE3FBB /* ActionsKit.framework */,
 				22F1183121A5C15D00AE3FBB /* BookishModelDependencies */,
 				22F1183321A5C15D00AE3FBB /* Logger.framework */,
 			);
@@ -504,13 +490,6 @@
 			remoteRef = 22F1181721A5C13700AE3FBB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		22F1181A21A5C13700AE3FBB /* ActionsKit.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ActionsKit.framework;
-			remoteRef = 22F1181921A5C13700AE3FBB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		22F1181C21A5C13700AE3FBB /* BookishModelDependencies */ = {
 			isa = PBXReferenceProxy;
 			fileType = text;
@@ -532,16 +511,9 @@
 			remoteRef = 22F1182C21A5C15D00AE3FBB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		22F1182F21A5C15D00AE3FBB /* ActionsKit.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ActionsKit.framework;
-			remoteRef = 22F1182E21A5C15D00AE3FBB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		22F1183121A5C15D00AE3FBB /* BookishModelDependencies */ = {
 			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
+			fileType = text;
 			path = BookishModelDependencies;
 			remoteRef = 22F1183021A5C15D00AE3FBB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
