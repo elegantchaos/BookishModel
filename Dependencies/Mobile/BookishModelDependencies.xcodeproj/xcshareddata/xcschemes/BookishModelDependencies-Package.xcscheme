@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1010"
+   LastUpgradeVersion = "9999"
    version = "1.3">
    <BuildAction
-      parallelizeBuildables = "NO"
-      buildImplicitDependencies = "NO">
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "224293B2212AE16200E70510"
-               BuildableName = "BookishModel.framework"
-               BlueprintName = "BookishModelMobile"
-               ReferencedContainer = "container:BookishModel.xcodeproj">
+               BlueprintIdentifier = "BookishModelDependencies::BookishModelDependencies"
+               BuildableName = "BookishModelDependencies"
+               BlueprintName = "BookishModelDependencies"
+               ReferencedContainer = "container:Dependencies/Mobile/BookishModelDependencies.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,26 +28,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "224293BA212AE16300E70510"
-               BuildableName = "BookishModelTestsMobile.xctest"
-               BlueprintName = "BookishModelTestsMobile"
-               ReferencedContainer = "container:BookishModel.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "224293B2212AE16200E70510"
-            BuildableName = "BookishModel.framework"
-            BlueprintName = "BookishModelMobile"
-            ReferencedContainer = "container:BookishModel.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -61,15 +42,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "224293B2212AE16200E70510"
-            BuildableName = "BookishModel.framework"
-            BlueprintName = "BookishModelMobile"
-            ReferencedContainer = "container:BookishModel.xcodeproj">
+            BlueprintIdentifier = "BookishModelDependencies::BookishModelDependencies"
+            BuildableName = "BookishModelDependencies"
+            BlueprintName = "BookishModelDependencies"
+            ReferencedContainer = "container:Dependencies/Mobile/BookishModelDependencies.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -79,15 +61,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "224293B2212AE16200E70510"
-            BuildableName = "BookishModel.framework"
-            BlueprintName = "BookishModelMobile"
-            ReferencedContainer = "container:BookishModel.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

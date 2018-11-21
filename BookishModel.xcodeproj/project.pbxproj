@@ -59,13 +59,83 @@
 			remoteGlobalIDString = 224293B2212AE16200E70510;
 			remoteInfo = BookishModelMobile;
 		};
+		22F1181721A5C13700AE3FBB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishModelDependenciesMobile.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "Actions::Actions::Product";
+			remoteInfo = Actions;
+		};
+		22F1181921A5C13700AE3FBB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishModelDependenciesMobile.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "Actions::ActionsKit::Product";
+			remoteInfo = ActionsKit;
+		};
+		22F1181B21A5C13700AE3FBB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishModelDependenciesMobile.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "BookishModelDependencies::BookishModelDependencies::Product";
+			remoteInfo = BookishModelDependencies;
+		};
+		22F1181D21A5C13700AE3FBB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishModelDependenciesMobile.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "Logger::Logger::Product";
+			remoteInfo = Logger;
+		};
+		22F1182C21A5C15D00AE3FBB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishModelDependenciesMac.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "Actions::Actions::Product";
+			remoteInfo = Actions;
+		};
+		22F1182E21A5C15D00AE3FBB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishModelDependenciesMac.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "Actions::ActionsKit::Product";
+			remoteInfo = ActionsKit;
+		};
+		22F1183021A5C15D00AE3FBB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishModelDependenciesMac.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "BookishModelDependencies::BookishModelDependencies::Product";
+			remoteInfo = BookishModelDependencies;
+		};
+		22F1183221A5C15D00AE3FBB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishModelDependenciesMac.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "Logger::Logger::Product";
+			remoteInfo = Logger;
+		};
+		22F1183421A5C16700AE3FBB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishModelDependenciesMac.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "Actions::Actions";
+			remoteInfo = Actions;
+		};
+		22F1183621A5C17200AE3FBB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishModelDependenciesMobile.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = "Actions::Actions";
+			remoteInfo = Actions;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		221C4B23216BA50C0086D56F /* BookActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookActions.swift; sourceTree = "<group>"; };
 		221C4B2C216BA8220086D56F /* PersonActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonActions.swift; sourceTree = "<group>"; };
-		221ED4E9216785BB00594714 /* BookishMac.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = BookishMac.xcconfig; sourceTree = "<group>"; };
-		221ED4EA216785BB00594714 /* BookishMobile.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = BookishMobile.xcconfig; sourceTree = "<group>"; };
+		221ED4E9216785BB00594714 /* BookishModelMac.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = BookishModelMac.xcconfig; sourceTree = "<group>"; };
+		221ED4EA216785BB00594714 /* BookishModelMobile.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = BookishModelMobile.xcconfig; sourceTree = "<group>"; };
 		221ED50B216B79F100594714 /* DetailSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSpec.swift; sourceTree = "<group>"; };
 		221ED50E216B87D900594714 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		221F271E21306C1300DC2DC7 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
@@ -85,18 +155,16 @@
 		224293E8212AF0D300E70510 /* Role.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
 		224293EB212AF0E300E70510 /* Series.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Series.swift; sourceTree = "<group>"; };
 		224293EE212AFAFB00E70510 /* CollectionContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionContainer.swift; sourceTree = "<group>"; };
-		2296036A214187570020B3EB /* Update.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = Update.sh; path = ../Dependencies/Update.sh; sourceTree = "<group>"; };
-		22ACEDDC21A5A1D500648DB1 /* BookishModelDependenciesMac.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BookishModelDependenciesMac.xcodeproj; path = ../Dependencies/.build/xcode/mac/BookishModelDependenciesMac.xcodeproj; sourceTree = "<group>"; };
-		22ACEDFF21A5A1F000648DB1 /* BookishModelDependenciesMobile.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BookishModelDependenciesMobile.xcodeproj; path = ../Dependencies/.build/xcode/mobile/BookishModelDependenciesMobile.xcodeproj; sourceTree = "<group>"; };
-		22D42FFD21A59215004E37FE /* BookishModelDependencies.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = BookishModelDependencies.xcconfig; sourceTree = "<group>"; };
+		2296036A214187570020B3EB /* Update.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = Update.sh; sourceTree = "<group>"; };
+		22A1A8BF21A5C24800F2332B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		22DAF394217B34FC003CE28B /* DetailDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDataSource.swift; sourceTree = "<group>"; };
 		22DD424E2126D6DA0070C85A /* Document.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Document.xcdatamodel; sourceTree = "<group>"; };
-		22DD42792126DDA80070C85A /* Bookish.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Bookish.xcconfig; sourceTree = "<group>"; };
-		22F1179721A5A4C900AE3FBB /* BookishCoreMac.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = BookishCoreMac.xcconfig; sourceTree = "<group>"; };
-		22F1179821A5A4C900AE3FBB /* BookishCoreMobile.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = BookishCoreMobile.xcconfig; sourceTree = "<group>"; };
-		22F1179A21A5A4C900AE3FBB /* Package.resolved */ = {isa = PBXFileReference; lastKnownFileType = text; name = Package.resolved; path = Dependencies/Package.resolved; sourceTree = SOURCE_ROOT; };
+		22DD42792126DDA80070C85A /* BookishModel.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = BookishModel.xcconfig; sourceTree = "<group>"; };
+		22F1179A21A5A4C900AE3FBB /* Package.resolved */ = {isa = PBXFileReference; lastKnownFileType = text; path = Package.resolved; sourceTree = SOURCE_ROOT; };
 		22F1179D21A5A4C900AE3FBB /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		22F1179E21A5A4C900AE3FBB /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = Dependencies/Package.swift; sourceTree = SOURCE_ROOT; };
+		22F1179E21A5A4C900AE3FBB /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = SOURCE_ROOT; };
+		22F1180D21A5C13700AE3FBB /* BookishModelDependenciesMobile.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BookishModelDependenciesMobile.xcodeproj; path = Dependencies/Mobile/BookishModelDependenciesMobile.xcodeproj; sourceTree = "<group>"; };
+		22F1182221A5C15D00AE3FBB /* BookishModelDependenciesMac.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BookishModelDependenciesMac.xcodeproj; path = Dependencies/Mac/BookishModelDependenciesMac.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,10 +213,9 @@
 		221ED4EE21678BF200594714 /* Configs */ = {
 			isa = PBXGroup;
 			children = (
-				22DD42792126DDA80070C85A /* Bookish.xcconfig */,
-				221ED4E9216785BB00594714 /* BookishMac.xcconfig */,
-				221ED4EA216785BB00594714 /* BookishMobile.xcconfig */,
-				22D42FFD21A59215004E37FE /* BookishModelDependencies.xcconfig */,
+				22DD42792126DDA80070C85A /* BookishModel.xcconfig */,
+				221ED4E9216785BB00594714 /* BookishModelMac.xcconfig */,
+				221ED4EA216785BB00594714 /* BookishModelMobile.xcconfig */,
 			);
 			path = Configs;
 			sourceTree = "<group>";
@@ -195,6 +262,11 @@
 		22DD423B2126D6DA0070C85A = {
 			isa = PBXGroup;
 			children = (
+				22A1A8BF21A5C24800F2332B /* README.md */,
+				22F1182221A5C15D00AE3FBB /* BookishModelDependenciesMac.xcodeproj */,
+				22F1180D21A5C13700AE3FBB /* BookishModelDependenciesMobile.xcodeproj */,
+				22F1179A21A5A4C900AE3FBB /* Package.resolved */,
+				22F1179E21A5A4C900AE3FBB /* Package.swift */,
 				22F1179521A5A4B000AE3FBB /* Dependencies */,
 				221ED4EE21678BF200594714 /* Configs */,
 				22DD42462126D6DA0070C85A /* Sources */,
@@ -218,6 +290,7 @@
 		22DD42462126D6DA0070C85A /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				22F1179C21A5A4C900AE3FBB /* BookishModelDependencies */,
 				224293B4212AE16200E70510 /* BookishModel */,
 			);
 			path = Sources;
@@ -234,45 +307,10 @@
 		22F1179521A5A4B000AE3FBB /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				22ACEDFF21A5A1F000648DB1 /* BookishModelDependenciesMobile.xcodeproj */,
-				22ACEDDC21A5A1D500648DB1 /* BookishModelDependenciesMac.xcodeproj */,
 				2296036A214187570020B3EB /* Update.sh */,
-				22F1179621A5A4C900AE3FBB /* Configs */,
-				22F1179A21A5A4C900AE3FBB /* Package.resolved */,
-				22F1179E21A5A4C900AE3FBB /* Package.swift */,
-				22F1179B21A5A4C900AE3FBB /* Sources */,
-				22F1179921A5A4C900AE3FBB /* Tests */,
 			);
-			name = Dependencies;
-			path = "New Group";
+			path = Dependencies;
 			sourceTree = "<group>";
-		};
-		22F1179621A5A4C900AE3FBB /* Configs */ = {
-			isa = PBXGroup;
-			children = (
-				22F1179721A5A4C900AE3FBB /* BookishCoreMac.xcconfig */,
-				22F1179821A5A4C900AE3FBB /* BookishCoreMobile.xcconfig */,
-			);
-			name = Configs;
-			path = Dependencies/Configs;
-			sourceTree = SOURCE_ROOT;
-		};
-		22F1179921A5A4C900AE3FBB /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Tests;
-			path = Dependencies/Tests;
-			sourceTree = SOURCE_ROOT;
-		};
-		22F1179B21A5A4C900AE3FBB /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				22F1179C21A5A4C900AE3FBB /* BookishModelDependencies */,
-			);
-			name = Sources;
-			path = Dependencies/Sources;
-			sourceTree = SOURCE_ROOT;
 		};
 		22F1179C21A5A4C900AE3FBB /* BookishModelDependencies */ = {
 			isa = PBXGroup;
@@ -280,6 +318,28 @@
 				22F1179D21A5A4C900AE3FBB /* main.swift */,
 			);
 			path = BookishModelDependencies;
+			sourceTree = "<group>";
+		};
+		22F1180E21A5C13700AE3FBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				22F1181821A5C13700AE3FBB /* Actions.framework */,
+				22F1181A21A5C13700AE3FBB /* ActionsKit.framework */,
+				22F1181C21A5C13700AE3FBB /* BookishModelDependencies */,
+				22F1181E21A5C13700AE3FBB /* Logger.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		22F1182321A5C15D00AE3FBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				22F1182D21A5C15D00AE3FBB /* Actions.framework */,
+				22F1182F21A5C15D00AE3FBB /* ActionsKit.framework */,
+				22F1183121A5C15D00AE3FBB /* BookishModelDependencies */,
+				22F1183321A5C15D00AE3FBB /* Logger.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,6 +375,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				22F1183521A5C16700AE3FBB /* PBXTargetDependency */,
 			);
 			name = BookishModelMac;
 			productName = BookishModelMac;
@@ -351,6 +412,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				22F1183721A5C17200AE3FBB /* PBXTargetDependency */,
 			);
 			name = BookishModelMobile;
 			productName = BookishModelMobile;
@@ -414,6 +476,16 @@
 			mainGroup = 22DD423B2126D6DA0070C85A;
 			productRefGroup = 22DD42452126D6DA0070C85A /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 22F1182321A5C15D00AE3FBB /* Products */;
+					ProjectRef = 22F1182221A5C15D00AE3FBB /* BookishModelDependenciesMac.xcodeproj */;
+				},
+				{
+					ProductGroup = 22F1180E21A5C13700AE3FBB /* Products */;
+					ProjectRef = 22F1180D21A5C13700AE3FBB /* BookishModelDependenciesMobile.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				22429390212AE0F300E70510 /* BookishModelMac */,
@@ -423,6 +495,65 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		22F1181821A5C13700AE3FBB /* Actions.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Actions.framework;
+			remoteRef = 22F1181721A5C13700AE3FBB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		22F1181A21A5C13700AE3FBB /* ActionsKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ActionsKit.framework;
+			remoteRef = 22F1181921A5C13700AE3FBB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		22F1181C21A5C13700AE3FBB /* BookishModelDependencies */ = {
+			isa = PBXReferenceProxy;
+			fileType = text;
+			path = BookishModelDependencies;
+			remoteRef = 22F1181B21A5C13700AE3FBB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		22F1181E21A5C13700AE3FBB /* Logger.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Logger.framework;
+			remoteRef = 22F1181D21A5C13700AE3FBB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		22F1182D21A5C15D00AE3FBB /* Actions.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Actions.framework;
+			remoteRef = 22F1182C21A5C15D00AE3FBB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		22F1182F21A5C15D00AE3FBB /* ActionsKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ActionsKit.framework;
+			remoteRef = 22F1182E21A5C15D00AE3FBB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		22F1183121A5C15D00AE3FBB /* BookishModelDependencies */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = BookishModelDependencies;
+			remoteRef = 22F1183021A5C15D00AE3FBB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		22F1183321A5C15D00AE3FBB /* Logger.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Logger.framework;
+			remoteRef = 22F1183221A5C15D00AE3FBB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		2242938F212AE0F300E70510 /* Resources */ = {
@@ -529,12 +660,22 @@
 			target = 224293B2212AE16200E70510 /* BookishModelMobile */;
 			targetProxy = 224293BD212AE16300E70510 /* PBXContainerItemProxy */;
 		};
+		22F1183521A5C16700AE3FBB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Actions;
+			targetProxy = 22F1183421A5C16700AE3FBB /* PBXContainerItemProxy */;
+		};
+		22F1183721A5C17200AE3FBB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Actions;
+			targetProxy = 22F1183621A5C17200AE3FBB /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		224293A9212AE0F400E70510 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 221ED4E9216785BB00594714 /* BookishMac.xcconfig */;
+			baseConfigurationReference = 221ED4E9216785BB00594714 /* BookishModelMac.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -567,7 +708,7 @@
 		};
 		224293AA212AE0F400E70510 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 221ED4E9216785BB00594714 /* BookishMac.xcconfig */;
+			baseConfigurationReference = 221ED4E9216785BB00594714 /* BookishModelMac.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -599,7 +740,7 @@
 		};
 		224293AC212AE0F400E70510 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 221ED4E9216785BB00594714 /* BookishMac.xcconfig */;
+			baseConfigurationReference = 221ED4E9216785BB00594714 /* BookishModelMac.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -619,7 +760,7 @@
 		};
 		224293AD212AE0F400E70510 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 221ED4E9216785BB00594714 /* BookishMac.xcconfig */;
+			baseConfigurationReference = 221ED4E9216785BB00594714 /* BookishModelMac.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -639,7 +780,7 @@
 		};
 		224293CB212AE16300E70510 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 221ED4EA216785BB00594714 /* BookishMobile.xcconfig */;
+			baseConfigurationReference = 221ED4EA216785BB00594714 /* BookishModelMobile.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -672,7 +813,7 @@
 		};
 		224293CC212AE16300E70510 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 221ED4EA216785BB00594714 /* BookishMobile.xcconfig */;
+			baseConfigurationReference = 221ED4EA216785BB00594714 /* BookishModelMobile.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -705,7 +846,7 @@
 		};
 		224293CF212AE16300E70510 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 221ED4EA216785BB00594714 /* BookishMobile.xcconfig */;
+			baseConfigurationReference = 221ED4EA216785BB00594714 /* BookishModelMobile.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -728,7 +869,7 @@
 		};
 		224293D0212AE16300E70510 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 221ED4EA216785BB00594714 /* BookishMobile.xcconfig */;
+			baseConfigurationReference = 221ED4EA216785BB00594714 /* BookishModelMobile.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
