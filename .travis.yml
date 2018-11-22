@@ -2,11 +2,12 @@ os: osx
 osx_image: xcode10.1
 language: swift
 install:
+- sudo gem install xcpretty-travis-formatter
 script:
 - Dependencies/Update.sh
 - swift build # not strictly necessary, but catches errors in the dependencies
-- xcodebuild -workspace BookishModel.xcworkspace -scheme BookishModelMac clean test
-- xcodebuild -workspace BookishModel.xcworkspace -scheme BookishModelMobile clean test
+- xcodebuild -workspace BookishModel.xcworkspace -scheme BookishModelMac clean test  | xcpretty -f `xcpretty-travis-formatter` && exit ${PIPESTATUS[0]}
+- xcodebuild -workspace BookishModel.xcworkspace -scheme BookishModelMobile -destination "name=iPhone 6" clean test | xcpretty -f `xcpretty-travis-formatter` && exit ${PIPESTATUS[0]}
 notifications:
   email: false
   slack:
