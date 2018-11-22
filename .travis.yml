@@ -6,8 +6,8 @@ install:
 script:
 - Dependencies/Update.sh
 - swift build # not strictly necessary, but catches errors in the dependencies
-- xcodebuild -workspace BookishModel.xcworkspace -scheme BookishModelMac clean test  | xcpretty -f `xcpretty-travis-formatter` && exit ${PIPESTATUS[0]}
-- xcodebuild -workspace BookishModel.xcworkspace -scheme BookishModelMobile -destination "name=iPhone 6" clean test | xcpretty -f `xcpretty-travis-formatter` && exit ${PIPESTATUS[0]}
+- set -o pipefail && xcodebuild -workspace BookishModel.xcworkspace -scheme BookishModelMac clean test  | xcpretty -f `xcpretty-travis-formatter`
+- set -o pipefail && xcodebuild -workspace BookishModel.xcworkspace -scheme BookishModelMobile -destination "name=iPhone 6" clean test | xcpretty -f `xcpretty-travis-formatter`
 notifications:
   email: false
   slack:
