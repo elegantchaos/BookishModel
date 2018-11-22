@@ -1,997 +1,762 @@
 // !$*UTF8*$!
 {
-   archiveVersion = "1";
-   objectVersion = "46";
-   objects = {
-      "Actions::Actions" = {
-         isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_43";
-         buildPhases = (
-            "OBJ_46",
-            "OBJ_52"
-         );
-         dependencies = (
-            "OBJ_54"
-         );
-         name = "Actions";
-         productName = "Actions";
-         productReference = "Actions::Actions::Product";
-         productType = "com.apple.product-type.framework";
-      };
-      "Actions::Actions::Product" = {
-         isa = "PBXFileReference";
-         path = "Actions.framework";
-         sourceTree = "BUILT_PRODUCTS_DIR";
-      };
-      "Actions::SwiftPMPackageDescription" = {
-         isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_57";
-         buildPhases = (
-            "OBJ_60"
-         );
-         dependencies = (
-         );
-         name = "ActionsPackageDescription";
-         productName = "ActionsPackageDescription";
-         productType = "com.apple.product-type.framework";
-      };
-      "BookishModelDependencies::BookishModelDependencies" = {
-         isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_63";
-         buildPhases = (
-            "OBJ_66",
-            "OBJ_68"
-         );
-         dependencies = (
-            "OBJ_71",
-            "OBJ_72"
-         );
-         name = "BookishModelDependencies";
-         productName = "BookishModelDependencies";
-         productReference = "BookishModelDependencies::BookishModelDependencies::Product";
-         productType = "com.apple.product-type.tool";
-      };
-      "BookishModelDependencies::BookishModelDependencies::Product" = {
-         isa = "PBXFileReference";
-         path = "BookishModelDependencies";
-         sourceTree = "BUILT_PRODUCTS_DIR";
-      };
-      "BookishModelDependencies::SwiftPMPackageDescription" = {
-         isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_74";
-         buildPhases = (
-            "OBJ_77"
-         );
-         dependencies = (
-         );
-         name = "BookishModelDependenciesPackageDescription";
-         productName = "BookishModelDependenciesPackageDescription";
-         productType = "com.apple.product-type.framework";
-      };
-      "Logger::Logger" = {
-         isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_79";
-         buildPhases = (
-            "OBJ_82",
-            "OBJ_90"
-         );
-         dependencies = (
-         );
-         name = "Logger";
-         productName = "Logger";
-         productReference = "Logger::Logger::Product";
-         productType = "com.apple.product-type.framework";
-      };
-      "Logger::Logger::Product" = {
-         isa = "PBXFileReference";
-         path = "Logger.framework";
-         sourceTree = "BUILT_PRODUCTS_DIR";
-      };
-      "Logger::SwiftPMPackageDescription" = {
-         isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_92";
-         buildPhases = (
-            "OBJ_95"
-         );
-         dependencies = (
-         );
-         name = "LoggerPackageDescription";
-         productName = "LoggerPackageDescription";
-         productType = "com.apple.product-type.framework";
-      };
-      "OBJ_1" = {
-         isa = "PBXProject";
-         attributes = {
-            LastSwiftMigration = "9999";
-            LastUpgradeCheck = "9999";
-         };
-         buildConfigurationList = "OBJ_2";
-         compatibilityVersion = "Xcode 3.2";
-         developmentRegion = "English";
-         hasScannedForEncodings = "0";
-         knownRegions = (
-            "en"
-         );
-         mainGroup = "OBJ_5";
-         productRefGroup = "OBJ_34";
-         projectDirPath = "../..";
-         targets = (
-            "Actions::Actions",
-            "Actions::SwiftPMPackageDescription",
-            "BookishModelDependencies::BookishModelDependencies",
-            "BookishModelDependencies::SwiftPMPackageDescription",
-            "Logger::Logger",
-            "Logger::SwiftPMPackageDescription"
-         );
-      };
-      "OBJ_10" = {
-         isa = "PBXGroup";
-         children = (
-            "OBJ_11"
-         );
-         name = "BookishModelDependencies";
-         path = "Sources/BookishModelDependencies";
-         sourceTree = "SOURCE_ROOT";
-      };
-      "OBJ_11" = {
-         isa = "PBXFileReference";
-         path = "main.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_12" = {
-         isa = "PBXGroup";
-         children = (
-         );
-         name = "Tests";
-         path = "";
-         sourceTree = "SOURCE_ROOT";
-      };
-      "OBJ_13" = {
-         isa = "PBXGroup";
-         children = (
-            "OBJ_14",
-            "OBJ_23"
-         );
-         name = "Dependencies";
-         path = "";
-         sourceTree = "<group>";
-      };
-      "OBJ_14" = {
-         isa = "PBXGroup";
-         children = (
-            "OBJ_15",
-            "OBJ_21",
-            "OBJ_22"
-         );
-         name = "Actions 1.0.7";
-         path = "";
-         sourceTree = "SOURCE_ROOT";
-      };
-      "OBJ_15" = {
-         isa = "PBXGroup";
-         children = (
-            "OBJ_16",
-            "OBJ_17",
-            "OBJ_18",
-            "OBJ_19",
-            "OBJ_20"
-         );
-         name = "Actions";
-         path = ".build/checkouts/Actions-29b7412b/Sources/Actions";
-         sourceTree = "SOURCE_ROOT";
-      };
-      "OBJ_16" = {
-         isa = "PBXFileReference";
-         path = "Action.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_17" = {
-         isa = "PBXFileReference";
-         path = "ActionContext.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_18" = {
-         isa = "PBXFileReference";
-         path = "ActionIdentification.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_19" = {
-         isa = "PBXFileReference";
-         path = "ActionManager.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_2" = {
-         isa = "XCConfigurationList";
-         buildConfigurations = (
-            "OBJ_3",
-            "OBJ_4"
-         );
-         defaultConfigurationIsVisible = "0";
-         defaultConfigurationName = "Release";
-      };
-      "OBJ_20" = {
-         isa = "PBXFileReference";
-         path = "DelegatedAction.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_21" = {
-         isa = "PBXGroup";
-         children = (
-         );
-         name = "ActionsKit";
-         path = ".build/checkouts/Actions-29b7412b/Sources/ActionsKit";
-         sourceTree = "SOURCE_ROOT";
-      };
-      "OBJ_22" = {
-         isa = "PBXFileReference";
-         explicitFileType = "sourcecode.swift";
-         name = "Package.swift";
-         path = "/Users/sam/Projects/BookishModel/.build/checkouts/Actions-29b7412b/Package.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_23" = {
-         isa = "PBXGroup";
-         children = (
-            "OBJ_24",
-            "OBJ_25",
-            "OBJ_33"
-         );
-         name = "Logger 1.0.11";
-         path = "";
-         sourceTree = "SOURCE_ROOT";
-      };
-      "OBJ_24" = {
-         isa = "PBXGroup";
-         children = (
-         );
-         name = "Example";
-         path = ".build/checkouts/Logger-163420cc/Sources/Example";
-         sourceTree = "SOURCE_ROOT";
-      };
-      "OBJ_25" = {
-         isa = "PBXGroup";
-         children = (
-            "OBJ_26",
-            "OBJ_27",
-            "OBJ_28",
-            "OBJ_29",
-            "OBJ_30",
-            "OBJ_31",
-            "OBJ_32"
-         );
-         name = "Logger";
-         path = ".build/checkouts/Logger-163420cc/Sources/Logger";
-         sourceTree = "SOURCE_ROOT";
-      };
-      "OBJ_26" = {
-         isa = "PBXFileReference";
-         path = "Context.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_27" = {
-         isa = "PBXFileReference";
-         path = "Handler.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_28" = {
-         isa = "PBXFileReference";
-         path = "Logger.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_29" = {
-         isa = "PBXFileReference";
-         path = "Manager.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_3" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            CLANG_ENABLE_OBJC_ARC = "YES";
-            COMBINE_HIDPI_IMAGES = "YES";
-            COPY_PHASE_STRIP = "NO";
-            DEBUG_INFORMATION_FORMAT = "dwarf";
-            DYLIB_INSTALL_NAME_BASE = "@rpath";
-            ENABLE_NS_ASSERTIONS = "YES";
-            GCC_OPTIMIZATION_LEVEL = "0";
-            GCC_PREPROCESSOR_DEFINITIONS = (
-               "DEBUG=1",
-               "$(inherited)"
-            );
-            MACOSX_DEPLOYMENT_TARGET = "10.10";
-            ONLY_ACTIVE_ARCH = "YES";
-            OTHER_SWIFT_FLAGS = (
-               "-DXcode"
-            );
-            PRODUCT_NAME = "$(TARGET_NAME)";
-            SDKROOT = "macosx";
-            SUPPORTED_PLATFORMS = (
-               "macosx",
-               "iphoneos",
-               "iphonesimulator",
-               "appletvos",
-               "appletvsimulator",
-               "watchos",
-               "watchsimulator"
-            );
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "SWIFT_PACKAGE",
-               "DEBUG"
-            );
-            SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-            USE_HEADERMAP = "NO";
-         };
-         name = "Debug";
-      };
-      "OBJ_30" = {
-         isa = "PBXFileReference";
-         path = "NSLogHandler.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_31" = {
-         isa = "PBXFileReference";
-         path = "OSLogHandler.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_32" = {
-         isa = "PBXFileReference";
-         path = "PrintHandler.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_33" = {
-         isa = "PBXFileReference";
-         explicitFileType = "sourcecode.swift";
-         name = "Package.swift";
-         path = "/Users/sam/Projects/BookishModel/.build/checkouts/Logger-163420cc/Package.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_34" = {
-         isa = "PBXGroup";
-         children = (
-            "Actions::Actions::Product",
-            "BookishModelDependencies::BookishModelDependencies::Product",
-            "Logger::Logger::Product"
-         );
-         name = "Products";
-         path = "";
-         sourceTree = "BUILT_PRODUCTS_DIR";
-      };
-      "OBJ_38" = {
-         isa = "PBXFileReference";
-         path = "Dependencies";
-         sourceTree = "SOURCE_ROOT";
-      };
-      "OBJ_39" = {
-         isa = "PBXFileReference";
-         path = "Configs";
-         sourceTree = "SOURCE_ROOT";
-      };
-      "OBJ_4" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            CLANG_ENABLE_OBJC_ARC = "YES";
-            COMBINE_HIDPI_IMAGES = "YES";
-            COPY_PHASE_STRIP = "YES";
-            DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-            DYLIB_INSTALL_NAME_BASE = "@rpath";
-            GCC_OPTIMIZATION_LEVEL = "s";
-            MACOSX_DEPLOYMENT_TARGET = "10.10";
-            OTHER_SWIFT_FLAGS = (
-               "-DXcode"
-            );
-            PRODUCT_NAME = "$(TARGET_NAME)";
-            SDKROOT = "macosx";
-            SUPPORTED_PLATFORMS = (
-               "macosx",
-               "iphoneos",
-               "iphonesimulator",
-               "appletvos",
-               "appletvsimulator",
-               "watchos",
-               "watchsimulator"
-            );
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "SWIFT_PACKAGE"
-            );
-            SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-            USE_HEADERMAP = "NO";
-         };
-         name = "Release";
-      };
-      "OBJ_40" = {
-         isa = "PBXFileReference";
-         path = "BookishModel.xcworkspace";
-         sourceTree = "SOURCE_ROOT";
-      };
-      "OBJ_41" = {
-         isa = "PBXFileReference";
-         path = "README.md";
-         sourceTree = "<group>";
-      };
-      "OBJ_43" = {
-         isa = "XCConfigurationList";
-         buildConfigurations = (
-            "OBJ_44",
-            "OBJ_45"
-         );
-         defaultConfigurationIsVisible = "0";
-         defaultConfigurationName = "Release";
-      };
-      "OBJ_44" = {
-         isa = "XCBuildConfiguration";
-         baseConfigurationReference = "OBJ_8";
-         buildSettings = {
-            ENABLE_TESTABILITY = "YES";
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)"
-            );
-            INFOPLIST_FILE = "Dependencies/Mobile/BookishModelDependencies.xcodeproj/Actions_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
-            );
-            OTHER_CFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_SWIFT_FLAGS = (
-               "$(inherited)"
-            );
-            PRODUCT_BUNDLE_IDENTIFIER = "Actions";
-            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-            SKIP_INSTALL = "YES";
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "$(inherited)"
-            );
-            SWIFT_VERSION = "4.2";
-            TARGET_NAME = "Actions";
-         };
-         name = "Debug";
-      };
-      "OBJ_45" = {
-         isa = "XCBuildConfiguration";
-         baseConfigurationReference = "OBJ_8";
-         buildSettings = {
-            ENABLE_TESTABILITY = "YES";
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)"
-            );
-            INFOPLIST_FILE = "Dependencies/Mobile/BookishModelDependencies.xcodeproj/Actions_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
-            );
-            OTHER_CFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_SWIFT_FLAGS = (
-               "$(inherited)"
-            );
-            PRODUCT_BUNDLE_IDENTIFIER = "Actions";
-            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-            SKIP_INSTALL = "YES";
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "$(inherited)"
-            );
-            SWIFT_VERSION = "4.2";
-            TARGET_NAME = "Actions";
-         };
-         name = "Release";
-      };
-      "OBJ_46" = {
-         isa = "PBXSourcesBuildPhase";
-         files = (
-            "OBJ_47",
-            "OBJ_48",
-            "OBJ_49",
-            "OBJ_50",
-            "OBJ_51"
-         );
-      };
-      "OBJ_47" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_16";
-      };
-      "OBJ_48" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_17";
-      };
-      "OBJ_49" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_18";
-      };
-      "OBJ_5" = {
-         isa = "PBXGroup";
-         children = (
-            "OBJ_6",
-            "OBJ_7",
-            "OBJ_9",
-            "OBJ_12",
-            "OBJ_13",
-            "OBJ_34",
-            "OBJ_38",
-            "OBJ_39",
-            "OBJ_40",
-            "OBJ_41"
-         );
-         path = "";
-         sourceTree = "<group>";
-      };
-      "OBJ_50" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_19";
-      };
-      "OBJ_51" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_20";
-      };
-      "OBJ_52" = {
-         isa = "PBXFrameworksBuildPhase";
-         files = (
-            "OBJ_53"
-         );
-      };
-      "OBJ_53" = {
-         isa = "PBXBuildFile";
-         fileRef = "Logger::Logger::Product";
-      };
-      "OBJ_54" = {
-         isa = "PBXTargetDependency";
-         target = "Logger::Logger";
-      };
-      "OBJ_57" = {
-         isa = "XCConfigurationList";
-         buildConfigurations = (
-            "OBJ_58",
-            "OBJ_59"
-         );
-         defaultConfigurationIsVisible = "0";
-         defaultConfigurationName = "Release";
-      };
-      "OBJ_58" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            LD = "/usr/bin/true";
-            OTHER_SWIFT_FLAGS = (
-               "-swift-version",
-               "4.2",
-               "-I",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
-               "-target",
-               "x86_64-apple-macosx10.10",
-               "-sdk",
-               "/Applications/Xcode10.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
-            );
-            SWIFT_VERSION = "4.2";
-         };
-         name = "Debug";
-      };
-      "OBJ_59" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            LD = "/usr/bin/true";
-            OTHER_SWIFT_FLAGS = (
-               "-swift-version",
-               "4.2",
-               "-I",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
-               "-target",
-               "x86_64-apple-macosx10.10",
-               "-sdk",
-               "/Applications/Xcode10.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
-            );
-            SWIFT_VERSION = "4.2";
-         };
-         name = "Release";
-      };
-      "OBJ_6" = {
-         isa = "PBXFileReference";
-         explicitFileType = "sourcecode.swift";
-         path = "Package.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_60" = {
-         isa = "PBXSourcesBuildPhase";
-         files = (
-            "OBJ_61"
-         );
-      };
-      "OBJ_61" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_22";
-      };
-      "OBJ_63" = {
-         isa = "XCConfigurationList";
-         buildConfigurations = (
-            "OBJ_64",
-            "OBJ_65"
-         );
-         defaultConfigurationIsVisible = "0";
-         defaultConfigurationName = "Release";
-      };
-      "OBJ_64" = {
-         isa = "XCBuildConfiguration";
-         baseConfigurationReference = "OBJ_8";
-         buildSettings = {
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)"
-            );
-            INFOPLIST_FILE = "Dependencies/Mobile/BookishModelDependencies.xcodeproj/BookishModelDependencies_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx",
-               "@executable_path"
-            );
-            OTHER_CFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_SWIFT_FLAGS = (
-               "$(inherited)"
-            );
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "$(inherited)"
-            );
-            SWIFT_FORCE_DYNAMIC_LINK_STDLIB = "YES";
-            SWIFT_FORCE_STATIC_LINK_STDLIB = "NO";
-            SWIFT_VERSION = "4.2";
-            TARGET_NAME = "BookishModelDependencies";
-         };
-         name = "Debug";
-      };
-      "OBJ_65" = {
-         isa = "XCBuildConfiguration";
-         baseConfigurationReference = "OBJ_8";
-         buildSettings = {
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)"
-            );
-            INFOPLIST_FILE = "Dependencies/Mobile/BookishModelDependencies.xcodeproj/BookishModelDependencies_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx",
-               "@executable_path"
-            );
-            OTHER_CFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_SWIFT_FLAGS = (
-               "$(inherited)"
-            );
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "$(inherited)"
-            );
-            SWIFT_FORCE_DYNAMIC_LINK_STDLIB = "YES";
-            SWIFT_FORCE_STATIC_LINK_STDLIB = "NO";
-            SWIFT_VERSION = "4.2";
-            TARGET_NAME = "BookishModelDependencies";
-         };
-         name = "Release";
-      };
-      "OBJ_66" = {
-         isa = "PBXSourcesBuildPhase";
-         files = (
-            "OBJ_67"
-         );
-      };
-      "OBJ_67" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_11";
-      };
-      "OBJ_68" = {
-         isa = "PBXFrameworksBuildPhase";
-         files = (
-            "OBJ_69",
-            "OBJ_70"
-         );
-      };
-      "OBJ_69" = {
-         isa = "PBXBuildFile";
-         fileRef = "Actions::Actions::Product";
-      };
-      "OBJ_7" = {
-         isa = "PBXGroup";
-         children = (
-            "OBJ_8"
-         );
-         name = "Configs";
-         path = "";
-         sourceTree = "<group>";
-      };
-      "OBJ_70" = {
-         isa = "PBXBuildFile";
-         fileRef = "Logger::Logger::Product";
-      };
-      "OBJ_71" = {
-         isa = "PBXTargetDependency";
-         target = "Actions::Actions";
-      };
-      "OBJ_72" = {
-         isa = "PBXTargetDependency";
-         target = "Logger::Logger";
-      };
-      "OBJ_74" = {
-         isa = "XCConfigurationList";
-         buildConfigurations = (
-            "OBJ_75",
-            "OBJ_76"
-         );
-         defaultConfigurationIsVisible = "0";
-         defaultConfigurationName = "Release";
-      };
-      "OBJ_75" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            LD = "/usr/bin/true";
-            OTHER_SWIFT_FLAGS = (
-               "-swift-version",
-               "4.2",
-               "-I",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
-               "-target",
-               "x86_64-apple-macosx10.10",
-               "-sdk",
-               "/Applications/Xcode10.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
-            );
-            SWIFT_VERSION = "4.2";
-         };
-         name = "Debug";
-      };
-      "OBJ_76" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            LD = "/usr/bin/true";
-            OTHER_SWIFT_FLAGS = (
-               "-swift-version",
-               "4.2",
-               "-I",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
-               "-target",
-               "x86_64-apple-macosx10.10",
-               "-sdk",
-               "/Applications/Xcode10.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
-            );
-            SWIFT_VERSION = "4.2";
-         };
-         name = "Release";
-      };
-      "OBJ_77" = {
-         isa = "PBXSourcesBuildPhase";
-         files = (
-            "OBJ_78"
-         );
-      };
-      "OBJ_78" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_6";
-      };
-      "OBJ_79" = {
-         isa = "XCConfigurationList";
-         buildConfigurations = (
-            "OBJ_80",
-            "OBJ_81"
-         );
-         defaultConfigurationIsVisible = "0";
-         defaultConfigurationName = "Release";
-      };
-      "OBJ_8" = {
-         isa = "PBXFileReference";
-         name = "BookishModelMobile.xcconfig";
-         path = "Configs/BookishModelMobile.xcconfig";
-         sourceTree = "<group>";
-      };
-      "OBJ_80" = {
-         isa = "XCBuildConfiguration";
-         baseConfigurationReference = "OBJ_8";
-         buildSettings = {
-            ENABLE_TESTABILITY = "YES";
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)"
-            );
-            INFOPLIST_FILE = "Dependencies/Mobile/BookishModelDependencies.xcodeproj/Logger_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
-            );
-            OTHER_CFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_SWIFT_FLAGS = (
-               "$(inherited)"
-            );
-            PRODUCT_BUNDLE_IDENTIFIER = "Logger";
-            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-            SKIP_INSTALL = "YES";
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "$(inherited)"
-            );
-            SWIFT_VERSION = "4.2";
-            TARGET_NAME = "Logger";
-         };
-         name = "Debug";
-      };
-      "OBJ_81" = {
-         isa = "XCBuildConfiguration";
-         baseConfigurationReference = "OBJ_8";
-         buildSettings = {
-            ENABLE_TESTABILITY = "YES";
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)"
-            );
-            INFOPLIST_FILE = "Dependencies/Mobile/BookishModelDependencies.xcodeproj/Logger_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
-            );
-            OTHER_CFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_SWIFT_FLAGS = (
-               "$(inherited)"
-            );
-            PRODUCT_BUNDLE_IDENTIFIER = "Logger";
-            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-            SKIP_INSTALL = "YES";
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "$(inherited)"
-            );
-            SWIFT_VERSION = "4.2";
-            TARGET_NAME = "Logger";
-         };
-         name = "Release";
-      };
-      "OBJ_82" = {
-         isa = "PBXSourcesBuildPhase";
-         files = (
-            "OBJ_83",
-            "OBJ_84",
-            "OBJ_85",
-            "OBJ_86",
-            "OBJ_87",
-            "OBJ_88",
-            "OBJ_89"
-         );
-      };
-      "OBJ_83" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_26";
-      };
-      "OBJ_84" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_27";
-      };
-      "OBJ_85" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_28";
-      };
-      "OBJ_86" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_29";
-      };
-      "OBJ_87" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_30";
-      };
-      "OBJ_88" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_31";
-      };
-      "OBJ_89" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_32";
-      };
-      "OBJ_9" = {
-         isa = "PBXGroup";
-         children = (
-            "OBJ_10"
-         );
-         name = "Sources";
-         path = "";
-         sourceTree = "SOURCE_ROOT";
-      };
-      "OBJ_90" = {
-         isa = "PBXFrameworksBuildPhase";
-         files = (
-         );
-      };
-      "OBJ_92" = {
-         isa = "XCConfigurationList";
-         buildConfigurations = (
-            "OBJ_93",
-            "OBJ_94"
-         );
-         defaultConfigurationIsVisible = "0";
-         defaultConfigurationName = "Release";
-      };
-      "OBJ_93" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            LD = "/usr/bin/true";
-            OTHER_SWIFT_FLAGS = (
-               "-swift-version",
-               "4.2",
-               "-I",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
-               "-target",
-               "x86_64-apple-macosx10.10",
-               "-sdk",
-               "/Applications/Xcode10.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
-            );
-            SWIFT_VERSION = "4.2";
-         };
-         name = "Debug";
-      };
-      "OBJ_94" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            LD = "/usr/bin/true";
-            OTHER_SWIFT_FLAGS = (
-               "-swift-version",
-               "4.2",
-               "-I",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
-               "-target",
-               "x86_64-apple-macosx10.10",
-               "-sdk",
-               "/Applications/Xcode10.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
-            );
-            SWIFT_VERSION = "4.2";
-         };
-         name = "Release";
-      };
-      "OBJ_95" = {
-         isa = "PBXSourcesBuildPhase";
-         files = (
-            "OBJ_96"
-         );
-      };
-      "OBJ_96" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_33";
-      };
-   };
-   rootObject = "OBJ_1";
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		OBJ_47 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* Action.swift */; };
+		OBJ_48 /* ActionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* ActionContext.swift */; };
+		OBJ_49 /* ActionIdentification.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* ActionIdentification.swift */; };
+		OBJ_50 /* ActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* ActionManager.swift */; };
+		OBJ_51 /* DelegatedAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* DelegatedAction.swift */; };
+		OBJ_53 /* Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::Logger::Product" /* Logger.framework */; };
+		OBJ_61 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* Package.swift */; };
+		OBJ_67 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* main.swift */; };
+		OBJ_69 /* Actions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Actions::Actions::Product" /* Actions.framework */; };
+		OBJ_70 /* Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::Logger::Product" /* Logger.framework */; };
+		OBJ_78 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
+		OBJ_83 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* Context.swift */; };
+		OBJ_84 /* Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* Handler.swift */; };
+		OBJ_85 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_28 /* Logger.swift */; };
+		OBJ_86 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* Manager.swift */; };
+		OBJ_87 /* NSLogHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* NSLogHandler.swift */; };
+		OBJ_88 /* OSLogHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_31 /* OSLogHandler.swift */; };
+		OBJ_89 /* PrintHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_32 /* PrintHandler.swift */; };
+		OBJ_96 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_33 /* Package.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		22EEF6EB21A6D4D5007FAD10 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Actions::Actions";
+			remoteInfo = Actions;
+		};
+		22EEF6EC21A6D4D5007FAD10 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Logger::Logger";
+			remoteInfo = Logger;
+		};
+		22EEF6ED21A6D4D5007FAD10 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Logger::Logger";
+			remoteInfo = Logger;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		"Actions::Actions::Product" /* Actions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Actions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"BookishModelDependencies::BookishModelDependencies::Product" /* BookishModelDependencies */ = {isa = PBXFileReference; lastKnownFileType = text; path = BookishModelDependencies; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Logger::Logger::Product" /* Logger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Logger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_11 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		OBJ_16 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		OBJ_17 /* ActionContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionContext.swift; sourceTree = "<group>"; };
+		OBJ_18 /* ActionIdentification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionIdentification.swift; sourceTree = "<group>"; };
+		OBJ_19 /* ActionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionManager.swift; sourceTree = "<group>"; };
+		OBJ_20 /* DelegatedAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegatedAction.swift; sourceTree = "<group>"; };
+		OBJ_22 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = "/Users/sam/Projects/BookishModel/.build/checkouts/Actions-29b7412b/Package.swift"; sourceTree = "<group>"; };
+		OBJ_26 /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
+		OBJ_27 /* Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Handler.swift; sourceTree = "<group>"; };
+		OBJ_28 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		OBJ_29 /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
+		OBJ_30 /* NSLogHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLogHandler.swift; sourceTree = "<group>"; };
+		OBJ_31 /* OSLogHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSLogHandler.swift; sourceTree = "<group>"; };
+		OBJ_32 /* PrintHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintHandler.swift; sourceTree = "<group>"; };
+		OBJ_33 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = "/Users/sam/Projects/BookishModel/.build/checkouts/Logger-163420cc/Package.swift"; sourceTree = "<group>"; };
+		OBJ_38 /* Dependencies */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Dependencies; sourceTree = SOURCE_ROOT; };
+		OBJ_39 /* Configs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Configs; sourceTree = SOURCE_ROOT; };
+		OBJ_40 /* BookishModel.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = BookishModel.xcworkspace; sourceTree = SOURCE_ROOT; };
+		OBJ_41 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		OBJ_8 /* BookishModelMobile.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = BookishModelMobile.xcconfig; path = Configs/BookishModelMobile.xcconfig; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		OBJ_52 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_53 /* Logger.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_68 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_69 /* Actions.framework in Frameworks */,
+				OBJ_70 /* Logger.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_90 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		OBJ_10 /* BookishModelDependencies */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_11 /* main.swift */,
+			);
+			name = BookishModelDependencies;
+			path = Sources/BookishModelDependencies;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_12 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Tests;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_13 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_14 /* Actions 1.0.7 */,
+				OBJ_23 /* Logger 1.0.11 */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		OBJ_14 /* Actions 1.0.7 */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_15 /* Actions */,
+				OBJ_21 /* ActionsKit */,
+				OBJ_22 /* Package.swift */,
+			);
+			name = "Actions 1.0.7";
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_15 /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_16 /* Action.swift */,
+				OBJ_17 /* ActionContext.swift */,
+				OBJ_18 /* ActionIdentification.swift */,
+				OBJ_19 /* ActionManager.swift */,
+				OBJ_20 /* DelegatedAction.swift */,
+			);
+			name = Actions;
+			path = ".build/checkouts/Actions-29b7412b/Sources/Actions";
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_21 /* ActionsKit */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ActionsKit;
+			path = ".build/checkouts/Actions-29b7412b/Sources/ActionsKit";
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_23 /* Logger 1.0.11 */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_24 /* Example */,
+				OBJ_25 /* Logger */,
+				OBJ_33 /* Package.swift */,
+			);
+			name = "Logger 1.0.11";
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_24 /* Example */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Example;
+			path = ".build/checkouts/Logger-163420cc/Sources/Example";
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_25 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_26 /* Context.swift */,
+				OBJ_27 /* Handler.swift */,
+				OBJ_28 /* Logger.swift */,
+				OBJ_29 /* Manager.swift */,
+				OBJ_30 /* NSLogHandler.swift */,
+				OBJ_31 /* OSLogHandler.swift */,
+				OBJ_32 /* PrintHandler.swift */,
+			);
+			name = Logger;
+			path = ".build/checkouts/Logger-163420cc/Sources/Logger";
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_34 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				"Actions::Actions::Product" /* Actions.framework */,
+				"BookishModelDependencies::BookishModelDependencies::Product" /* BookishModelDependencies */,
+				"Logger::Logger::Product" /* Logger.framework */,
+			);
+			name = Products;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		OBJ_5 /*  */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_6 /* Package.swift */,
+				OBJ_7 /* Configs */,
+				OBJ_9 /* Sources */,
+				OBJ_12 /* Tests */,
+				OBJ_13 /* Dependencies */,
+				OBJ_34 /* Products */,
+				OBJ_38 /* Dependencies */,
+				OBJ_39 /* Configs */,
+				OBJ_40 /* BookishModel.xcworkspace */,
+				OBJ_41 /* README.md */,
+			);
+			name = "";
+			sourceTree = "<group>";
+		};
+		OBJ_7 /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_8 /* BookishModelMobile.xcconfig */,
+			);
+			name = Configs;
+			sourceTree = "<group>";
+		};
+		OBJ_9 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_10 /* BookishModelDependencies */,
+			);
+			name = Sources;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		"Actions::Actions" /* Actions */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_43 /* Build configuration list for PBXNativeTarget "Actions" */;
+			buildPhases = (
+				OBJ_46 /* Sources */,
+				OBJ_52 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_54 /* PBXTargetDependency */,
+			);
+			name = Actions;
+			productName = Actions;
+			productReference = "Actions::Actions::Product" /* Actions.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"Actions::SwiftPMPackageDescription" /* ActionsPackageDescription */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_57 /* Build configuration list for PBXNativeTarget "ActionsPackageDescription" */;
+			buildPhases = (
+				OBJ_60 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ActionsPackageDescription;
+			productName = ActionsPackageDescription;
+			productType = "com.apple.product-type.framework";
+		};
+		"BookishModelDependencies::BookishModelDependencies" /* BookishModelDependencies */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_63 /* Build configuration list for PBXNativeTarget "BookishModelDependencies" */;
+			buildPhases = (
+				OBJ_66 /* Sources */,
+				OBJ_68 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_71 /* PBXTargetDependency */,
+				OBJ_72 /* PBXTargetDependency */,
+			);
+			name = BookishModelDependencies;
+			productName = BookishModelDependencies;
+			productReference = "BookishModelDependencies::BookishModelDependencies::Product" /* BookishModelDependencies */;
+			productType = "com.apple.product-type.tool";
+		};
+		"BookishModelDependencies::SwiftPMPackageDescription" /* BookishModelDependenciesPackageDescription */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_74 /* Build configuration list for PBXNativeTarget "BookishModelDependenciesPackageDescription" */;
+			buildPhases = (
+				OBJ_77 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BookishModelDependenciesPackageDescription;
+			productName = BookishModelDependenciesPackageDescription;
+			productType = "com.apple.product-type.framework";
+		};
+		"Logger::Logger" /* Logger */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_79 /* Build configuration list for PBXNativeTarget "Logger" */;
+			buildPhases = (
+				OBJ_82 /* Sources */,
+				OBJ_90 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Logger;
+			productName = Logger;
+			productReference = "Logger::Logger::Product" /* Logger.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"Logger::SwiftPMPackageDescription" /* LoggerPackageDescription */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_92 /* Build configuration list for PBXNativeTarget "LoggerPackageDescription" */;
+			buildPhases = (
+				OBJ_95 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LoggerPackageDescription;
+			productName = LoggerPackageDescription;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		OBJ_1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftMigration = 9999;
+				LastUpgradeCheck = 9999;
+			};
+			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "BookishModelDependencies" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = OBJ_5 /*  */;
+			productRefGroup = OBJ_34 /* Products */;
+			projectDirPath = ../..;
+			projectRoot = "";
+			targets = (
+				"Actions::Actions" /* Actions */,
+				"Actions::SwiftPMPackageDescription" /* ActionsPackageDescription */,
+				"BookishModelDependencies::BookishModelDependencies" /* BookishModelDependencies */,
+				"BookishModelDependencies::SwiftPMPackageDescription" /* BookishModelDependenciesPackageDescription */,
+				"Logger::Logger" /* Logger */,
+				"Logger::SwiftPMPackageDescription" /* LoggerPackageDescription */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		OBJ_46 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_47 /* Action.swift in Sources */,
+				OBJ_48 /* ActionContext.swift in Sources */,
+				OBJ_49 /* ActionIdentification.swift in Sources */,
+				OBJ_50 /* ActionManager.swift in Sources */,
+				OBJ_51 /* DelegatedAction.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_60 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_61 /* Package.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_66 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_67 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_77 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_78 /* Package.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_82 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_83 /* Context.swift in Sources */,
+				OBJ_84 /* Handler.swift in Sources */,
+				OBJ_85 /* Logger.swift in Sources */,
+				OBJ_86 /* Manager.swift in Sources */,
+				OBJ_87 /* NSLogHandler.swift in Sources */,
+				OBJ_88 /* OSLogHandler.swift in Sources */,
+				OBJ_89 /* PrintHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_95 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_96 /* Package.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		OBJ_54 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Logger::Logger" /* Logger */;
+			targetProxy = 22EEF6EC21A6D4D5007FAD10 /* PBXContainerItemProxy */;
+		};
+		OBJ_71 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Actions::Actions" /* Actions */;
+			targetProxy = 22EEF6EB21A6D4D5007FAD10 /* PBXContainerItemProxy */;
+		};
+		OBJ_72 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Logger::Logger" /* Logger */;
+			targetProxy = 22EEF6ED21A6D4D5007FAD10 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		OBJ_3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "SWIFT_PACKAGE DEBUG";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				USE_HEADERMAP = NO;
+			};
+			name = Debug;
+		};
+		OBJ_4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_OPTIMIZATION_LEVEL = s;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SWIFT_PACKAGE;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				USE_HEADERMAP = NO;
+			};
+			name = Release;
+		};
+		OBJ_44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = OBJ_8 /* BookishModelMobile.xcconfig */;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Dependencies/Mobile/BookishModelDependencies.xcodeproj/Actions_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Actions;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = Actions;
+			};
+			name = Debug;
+		};
+		OBJ_45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = OBJ_8 /* BookishModelMobile.xcconfig */;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Dependencies/Mobile/BookishModelDependencies.xcodeproj/Actions_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Actions;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = Actions;
+			};
+			name = Release;
+		};
+		OBJ_58 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4.2 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode10.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		OBJ_59 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4.2 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode10.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+		OBJ_64 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = OBJ_8 /* BookishModelMobile.xcconfig */;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Dependencies/Mobile/BookishModelDependencies.xcodeproj/BookishModelDependencies_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
+				SWIFT_FORCE_STATIC_LINK_STDLIB = NO;
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = BookishModelDependencies;
+			};
+			name = Debug;
+		};
+		OBJ_65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = OBJ_8 /* BookishModelMobile.xcconfig */;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Dependencies/Mobile/BookishModelDependencies.xcodeproj/BookishModelDependencies_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
+				SWIFT_FORCE_STATIC_LINK_STDLIB = NO;
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = BookishModelDependencies;
+			};
+			name = Release;
+		};
+		OBJ_75 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4.2 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode10.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		OBJ_76 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4.2 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode10.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+		OBJ_80 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = OBJ_8 /* BookishModelMobile.xcconfig */;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Dependencies/Mobile/BookishModelDependencies.xcodeproj/Logger_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Logger;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = Logger;
+			};
+			name = Debug;
+		};
+		OBJ_81 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = OBJ_8 /* BookishModelMobile.xcconfig */;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = Dependencies/Mobile/BookishModelDependencies.xcodeproj/Logger_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Logger;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = Logger;
+			};
+			name = Release;
+		};
+		OBJ_93 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4.2 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode10.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		OBJ_94 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4.2 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode10.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		OBJ_2 /* Build configuration list for PBXProject "BookishModelDependencies" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_3 /* Debug */,
+				OBJ_4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_43 /* Build configuration list for PBXNativeTarget "Actions" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_44 /* Debug */,
+				OBJ_45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_57 /* Build configuration list for PBXNativeTarget "ActionsPackageDescription" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_58 /* Debug */,
+				OBJ_59 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_63 /* Build configuration list for PBXNativeTarget "BookishModelDependencies" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_64 /* Debug */,
+				OBJ_65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_74 /* Build configuration list for PBXNativeTarget "BookishModelDependenciesPackageDescription" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_75 /* Debug */,
+				OBJ_76 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_79 /* Build configuration list for PBXNativeTarget "Logger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_80 /* Debug */,
+				OBJ_81 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_92 /* Build configuration list for PBXNativeTarget "LoggerPackageDescription" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_93 /* Debug */,
+				OBJ_94 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = OBJ_1 /* Project object */;
 }
