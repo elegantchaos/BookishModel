@@ -48,13 +48,13 @@ open class BookAction: Action {
 
 public class NewBookAction: BookAction {
     public override func validate(context: ActionContext) -> Bool {
-        return (context.info[ActionContext.modelKey] as? NSManagedObjectContext) != nil
+        return (context[ActionContext.modelKey] as? NSManagedObjectContext) != nil
     }
     
     public override func perform(context: ActionContext) {
-        if let model = context.info[ActionContext.modelKey] as? NSManagedObjectContext {
+        if let model = context[ActionContext.modelKey] as? NSManagedObjectContext {
             let book = Book(context: model)
-            context.forObservers { (observer: BookChangeObserver) in
+            context.info.forObservers { (observer: BookChangeObserver) in
                 observer.added(books: [book])
             }
         }
@@ -67,7 +67,7 @@ public class NewBookAction: BookAction {
 
 public class DeleteBookAction: BookAction {
     public override func validate(context: ActionContext) -> Bool {
-        guard let selection = context.info[ActionContext.selectionKey] as? [Book] else {
+        guard let selection = context[ActionContext.selectionKey] as? [Book] else {
             return false
         }
         
@@ -75,11 +75,11 @@ public class DeleteBookAction: BookAction {
     }
     
     public override func perform(context: ActionContext) {
-        if let selection = context.info[ActionContext.selectionKey] as? [Book] {
+        if let selection = context[ActionContext.selectionKey] as? [Book] {
             for book in selection {
                 book.managedObjectContext?.delete(book)
             }
-            context.forObservers { (observer: BookChangeObserver) in
+            context.info.forObservers { (observer: BookChangeObserver) in
                 observer.removed(books: selection)
             }
         }
@@ -93,13 +93,13 @@ public class DeleteBookAction: BookAction {
 
 class RevealBookAction: BookAction {
     override func validate(context: ActionContext) -> Bool {
-        let book = context.info[BookAction.bookKey] as? Book
+        let book = context[BookAction.bookKey] as? Book
         return (book != nil) && super.validate(context: context)
     }
     
     override func perform(context: ActionContext) {
-        if let book = context.info[BookAction.bookKey] as? Book,
-            let viewer = context.info[ActionContext.rootKey] as? BookViewer {
+        if let book = context[BookAction.bookKey] as? Book,
+            let viewer = context[ActionContext.rootKey] as? BookViewer {
             viewer.reveal(book: book)
         }
     }
