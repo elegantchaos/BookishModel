@@ -6,8 +6,8 @@ import PackageDescription
 let package = Package(
     name: "BookishModelDependencies",
     dependencies: [
-        .package(url: "git@github.com:elegantchaos/Logger", from: "1.0.11"),
-        .package(url: "git@github.com:elegantchaos/Actions", from: "1.0.7"),
+        .package(url: "https://github.com/elegantchaos/Logger", from: "1.0.11"),
+        .package(url: "https://github.com/elegantchaos/Actions", from: "1.0.7"),
     ],
     targets: [
         .target(

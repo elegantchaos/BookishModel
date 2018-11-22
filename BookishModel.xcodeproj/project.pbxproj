@@ -42,6 +42,12 @@
 		22DAF396217B34FC003CE28B /* DetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DAF394217B34FC003CE28B /* DetailDataSource.swift */; };
 		22E47CC6216E31B700E43DBF /* BookActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C4B23216BA50C0086D56F /* BookActions.swift */; };
 		22E47CC7216E31BA00E43DBF /* BookActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C4B23216BA50C0086D56F /* BookActions.swift */; };
+		22EEF69B21A5C8B1007FAD10 /* BookishModelActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EEF69A21A5C8B1007FAD10 /* BookishModelActionTests.swift */; };
+		22EEF69C21A5C8B1007FAD10 /* BookishModelActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EEF69A21A5C8B1007FAD10 /* BookishModelActionTests.swift */; };
+		22EEF6BE21A6B761007FAD10 /* ModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EEF6BD21A6B761007FAD10 /* ModelTestCase.swift */; };
+		22EEF6BF21A6B761007FAD10 /* ModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EEF6BD21A6B761007FAD10 /* ModelTestCase.swift */; };
+		22EEF6C021A6C7DA007FAD10 /* Actions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22EEF6A621A5C9AA007FAD10 /* Actions.framework */; };
+		22EEF6C121A6C7DA007FAD10 /* Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22EEF6AA21A5C9AA007FAD10 /* Logger.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,56 +65,56 @@
 			remoteGlobalIDString = 224293B2212AE16200E70510;
 			remoteInfo = BookishModelMobile;
 		};
-		22F1181721A5C13700AE3FBB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishModelDependenciesMobile.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "Actions::Actions::Product";
-			remoteInfo = Actions;
-		};
-		22F1181B21A5C13700AE3FBB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishModelDependenciesMobile.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "BookishModelDependencies::BookishModelDependencies::Product";
-			remoteInfo = BookishModelDependencies;
-		};
-		22F1181D21A5C13700AE3FBB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishModelDependenciesMobile.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "Logger::Logger::Product";
-			remoteInfo = Logger;
-		};
-		22F1182C21A5C15D00AE3FBB /* PBXContainerItemProxy */ = {
+		22EEF6A521A5C9AA007FAD10 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishModelDependenciesMac.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = "Actions::Actions::Product";
 			remoteInfo = Actions;
 		};
-		22F1183021A5C15D00AE3FBB /* PBXContainerItemProxy */ = {
+		22EEF6A721A5C9AA007FAD10 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishModelDependenciesMac.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = "BookishModelDependencies::BookishModelDependencies::Product";
 			remoteInfo = BookishModelDependencies;
 		};
-		22F1183221A5C15D00AE3FBB /* PBXContainerItemProxy */ = {
+		22EEF6A921A5C9AA007FAD10 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishModelDependenciesMac.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = "Logger::Logger::Product";
 			remoteInfo = Logger;
 		};
-		22F1183421A5C16700AE3FBB /* PBXContainerItemProxy */ = {
+		22EEF6B321A5C9AA007FAD10 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishModelDependenciesMobile.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "Actions::Actions::Product";
+			remoteInfo = Actions;
+		};
+		22EEF6B521A5C9AA007FAD10 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishModelDependenciesMobile.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "BookishModelDependencies::BookishModelDependencies::Product";
+			remoteInfo = BookishModelDependencies;
+		};
+		22EEF6B721A5C9AA007FAD10 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishModelDependenciesMobile.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "Logger::Logger::Product";
+			remoteInfo = Logger;
+		};
+		22EEF6B921A5C9C7007FAD10 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishModelDependenciesMac.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = "Actions::Actions";
 			remoteInfo = Actions;
 		};
-		22F1183621A5C17200AE3FBB /* PBXContainerItemProxy */ = {
+		22EEF6BB21A5C9DB007FAD10 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishModelDependenciesMobile.xcodeproj */;
 			proxyType = 1;
@@ -147,11 +153,13 @@
 		22DAF394217B34FC003CE28B /* DetailDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDataSource.swift; sourceTree = "<group>"; };
 		22DD424E2126D6DA0070C85A /* Document.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Document.xcdatamodel; sourceTree = "<group>"; };
 		22DD42792126DDA80070C85A /* BookishModel.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = BookishModel.xcconfig; sourceTree = "<group>"; };
+		22EEF69A21A5C8B1007FAD10 /* BookishModelActionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookishModelActionTests.swift; sourceTree = "<group>"; };
+		22EEF6BD21A6B761007FAD10 /* ModelTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTestCase.swift; sourceTree = "<group>"; };
 		22F1179A21A5A4C900AE3FBB /* Package.resolved */ = {isa = PBXFileReference; lastKnownFileType = text; path = Package.resolved; sourceTree = SOURCE_ROOT; };
 		22F1179D21A5A4C900AE3FBB /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		22F1179E21A5A4C900AE3FBB /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = SOURCE_ROOT; };
-		22F1180D21A5C13700AE3FBB /* BookishModelDependenciesMobile.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BookishModelDependenciesMobile.xcodeproj; path = Dependencies/Mobile/BookishModelDependenciesMobile.xcodeproj; sourceTree = "<group>"; };
-		22F1182221A5C15D00AE3FBB /* BookishModelDependenciesMac.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BookishModelDependenciesMac.xcodeproj; path = Dependencies/Mac/BookishModelDependenciesMac.xcodeproj; sourceTree = "<group>"; };
+		22F1180D21A5C13700AE3FBB /* BookishModelDependenciesMobile.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BookishModelDependenciesMobile.xcodeproj; path = Dependencies/Mobile/BookishModelDependenciesMobile.xcodeproj; sourceTree = SOURCE_ROOT; };
+		22F1182221A5C15D00AE3FBB /* BookishModelDependenciesMac.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BookishModelDependenciesMac.xcodeproj; path = Dependencies/Mac/BookishModelDependenciesMac.xcodeproj; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +167,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22EEF6C021A6C7DA007FAD10 /* Actions.framework in Frameworks */,
+				22EEF6C121A6C7DA007FAD10 /* Logger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,6 +244,8 @@
 			isa = PBXGroup;
 			children = (
 				224293C2212AE16300E70510 /* BookishModelTests.swift */,
+				22EEF6BD21A6B761007FAD10 /* ModelTestCase.swift */,
+				22EEF69A21A5C8B1007FAD10 /* BookishModelActionTests.swift */,
 				224293C4212AE16300E70510 /* Info.plist */,
 			);
 			path = BookishModelTests;
@@ -251,8 +263,6 @@
 			children = (
 				22A1A8D621A5C4E300F2332B /* .travis.yml */,
 				22A1A8BF21A5C24800F2332B /* README.md */,
-				22F1182221A5C15D00AE3FBB /* BookishModelDependenciesMac.xcodeproj */,
-				22F1180D21A5C13700AE3FBB /* BookishModelDependenciesMobile.xcodeproj */,
 				22F1179A21A5A4C900AE3FBB /* Package.resolved */,
 				22F1179E21A5A4C900AE3FBB /* Package.swift */,
 				22F1179521A5A4B000AE3FBB /* Dependencies */,
@@ -292,9 +302,31 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
+		22EEF69D21A5C9AA007FAD10 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				22EEF6A621A5C9AA007FAD10 /* Actions.framework */,
+				22EEF6A821A5C9AA007FAD10 /* BookishModelDependencies */,
+				22EEF6AA21A5C9AA007FAD10 /* Logger.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		22EEF6AB21A5C9AA007FAD10 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				22EEF6B421A5C9AA007FAD10 /* Actions.framework */,
+				22EEF6B621A5C9AA007FAD10 /* BookishModelDependencies */,
+				22EEF6B821A5C9AA007FAD10 /* Logger.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		22F1179521A5A4B000AE3FBB /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				22F1182221A5C15D00AE3FBB /* BookishModelDependenciesMac.xcodeproj */,
+				22F1180D21A5C13700AE3FBB /* BookishModelDependenciesMobile.xcodeproj */,
 				2296036A214187570020B3EB /* Update.sh */,
 			);
 			path = Dependencies;
@@ -306,26 +338,6 @@
 				22F1179D21A5A4C900AE3FBB /* main.swift */,
 			);
 			path = BookishModelDependencies;
-			sourceTree = "<group>";
-		};
-		22F1180E21A5C13700AE3FBB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				22F1181821A5C13700AE3FBB /* Actions.framework */,
-				22F1181C21A5C13700AE3FBB /* BookishModelDependencies */,
-				22F1181E21A5C13700AE3FBB /* Logger.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		22F1182321A5C15D00AE3FBB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				22F1182D21A5C15D00AE3FBB /* Actions.framework */,
-				22F1183121A5C15D00AE3FBB /* BookishModelDependencies */,
-				22F1183321A5C15D00AE3FBB /* Logger.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,7 +373,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				22F1183521A5C16700AE3FBB /* PBXTargetDependency */,
+				22EEF6BA21A5C9C7007FAD10 /* PBXTargetDependency */,
 			);
 			name = BookishModelMac;
 			productName = BookishModelMac;
@@ -398,7 +410,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				22F1183721A5C17200AE3FBB /* PBXTargetDependency */,
+				22EEF6BC21A5C9DB007FAD10 /* PBXTargetDependency */,
 			);
 			name = BookishModelMobile;
 			productName = BookishModelMobile;
@@ -464,11 +476,11 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 22F1182321A5C15D00AE3FBB /* Products */;
+					ProductGroup = 22EEF69D21A5C9AA007FAD10 /* Products */;
 					ProjectRef = 22F1182221A5C15D00AE3FBB /* BookishModelDependenciesMac.xcodeproj */;
 				},
 				{
-					ProductGroup = 22F1180E21A5C13700AE3FBB /* Products */;
+					ProductGroup = 22EEF6AB21A5C9AA007FAD10 /* Products */;
 					ProjectRef = 22F1180D21A5C13700AE3FBB /* BookishModelDependenciesMobile.xcodeproj */;
 				},
 			);
@@ -483,46 +495,46 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		22F1181821A5C13700AE3FBB /* Actions.framework */ = {
+		22EEF6A621A5C9AA007FAD10 /* Actions.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Actions.framework;
-			remoteRef = 22F1181721A5C13700AE3FBB /* PBXContainerItemProxy */;
+			remoteRef = 22EEF6A521A5C9AA007FAD10 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		22F1181C21A5C13700AE3FBB /* BookishModelDependencies */ = {
+		22EEF6A821A5C9AA007FAD10 /* BookishModelDependencies */ = {
 			isa = PBXReferenceProxy;
 			fileType = text;
 			path = BookishModelDependencies;
-			remoteRef = 22F1181B21A5C13700AE3FBB /* PBXContainerItemProxy */;
+			remoteRef = 22EEF6A721A5C9AA007FAD10 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		22F1181E21A5C13700AE3FBB /* Logger.framework */ = {
+		22EEF6AA21A5C9AA007FAD10 /* Logger.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Logger.framework;
-			remoteRef = 22F1181D21A5C13700AE3FBB /* PBXContainerItemProxy */;
+			remoteRef = 22EEF6A921A5C9AA007FAD10 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		22F1182D21A5C15D00AE3FBB /* Actions.framework */ = {
+		22EEF6B421A5C9AA007FAD10 /* Actions.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Actions.framework;
-			remoteRef = 22F1182C21A5C15D00AE3FBB /* PBXContainerItemProxy */;
+			remoteRef = 22EEF6B321A5C9AA007FAD10 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		22F1183121A5C15D00AE3FBB /* BookishModelDependencies */ = {
+		22EEF6B621A5C9AA007FAD10 /* BookishModelDependencies */ = {
 			isa = PBXReferenceProxy;
 			fileType = text;
 			path = BookishModelDependencies;
-			remoteRef = 22F1183021A5C15D00AE3FBB /* PBXContainerItemProxy */;
+			remoteRef = 22EEF6B521A5C9AA007FAD10 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		22F1183321A5C15D00AE3FBB /* Logger.framework */ = {
+		22EEF6B821A5C9AA007FAD10 /* Logger.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Logger.framework;
-			remoteRef = 22F1183221A5C15D00AE3FBB /* PBXContainerItemProxy */;
+			remoteRef = 22EEF6B721A5C9AA007FAD10 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -586,6 +598,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				224293D4212AE83C00E70510 /* BookishModelTests.swift in Sources */,
+				22EEF69B21A5C8B1007FAD10 /* BookishModelActionTests.swift in Sources */,
+				22EEF6BE21A6B761007FAD10 /* ModelTestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -616,6 +630,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				224293C3212AE16300E70510 /* BookishModelTests.swift in Sources */,
+				22EEF69C21A5C8B1007FAD10 /* BookishModelActionTests.swift in Sources */,
+				22EEF6BF21A6B761007FAD10 /* ModelTestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -632,15 +648,15 @@
 			target = 224293B2212AE16200E70510 /* BookishModelMobile */;
 			targetProxy = 224293BD212AE16300E70510 /* PBXContainerItemProxy */;
 		};
-		22F1183521A5C16700AE3FBB /* PBXTargetDependency */ = {
+		22EEF6BA21A5C9C7007FAD10 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Actions;
-			targetProxy = 22F1183421A5C16700AE3FBB /* PBXContainerItemProxy */;
+			targetProxy = 22EEF6B921A5C9C7007FAD10 /* PBXContainerItemProxy */;
 		};
-		22F1183721A5C17200AE3FBB /* PBXTargetDependency */ = {
+		22EEF6BC21A5C9DB007FAD10 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Actions;
-			targetProxy = 22F1183621A5C17200AE3FBB /* PBXContainerItemProxy */;
+			targetProxy = 22EEF6BB21A5C9DB007FAD10 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -650,12 +666,9 @@
 			baseConfigurationReference = 221ED4E9216785BB00594714 /* BookishModelMac.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 2H48644JM2;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -670,7 +683,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.elegantchaos.BookishModelMac;
 				PRODUCT_NAME = "${BOOKISH_MODEL_NAME}";
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = "$(CONFIGURATION_BUILD_DIR) .build/$(CONFIGURATION)/";
+				SWIFT_INCLUDE_PATHS = "$(CONFIGURATION_BUILD_DIR)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -683,12 +696,9 @@
 			baseConfigurationReference = 221ED4E9216785BB00594714 /* BookishModelMac.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 2H48644JM2;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -703,7 +713,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.elegantchaos.BookishModelMac;
 				PRODUCT_NAME = "${BOOKISH_MODEL_NAME}";
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = "$(CONFIGURATION_BUILD_DIR) .build/$(CONFIGURATION)/";
+				SWIFT_INCLUDE_PATHS = "$(CONFIGURATION_BUILD_DIR)";
 				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -715,9 +725,7 @@
 			baseConfigurationReference = 221ED4E9216785BB00594714 /* BookishModelMac.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 2H48644JM2;
 				INFOPLIST_FILE = "${BOOKISH_MODEL_TEST_INFO_PATH}";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -735,9 +743,7 @@
 			baseConfigurationReference = 221ED4E9216785BB00594714 /* BookishModelMac.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 2H48644JM2;
 				INFOPLIST_FILE = "${BOOKISH_MODEL_TEST_INFO_PATH}";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -755,11 +761,8 @@
 			baseConfigurationReference = 221ED4EA216785BB00594714 /* BookishModelMobile.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 2H48644JM2;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -788,11 +791,8 @@
 			baseConfigurationReference = 221ED4EA216785BB00594714 /* BookishModelMobile.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 2H48644JM2;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -821,9 +821,6 @@
 			baseConfigurationReference = 221ED4EA216785BB00594714 /* BookishModelMobile.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2H48644JM2;
 				INFOPLIST_FILE = "${BOOKISH_MODEL_TEST_INFO_PATH}";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -844,9 +841,6 @@
 			baseConfigurationReference = 221ED4EA216785BB00594714 /* BookishModelMobile.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2H48644JM2;
 				INFOPLIST_FILE = "${BOOKISH_MODEL_TEST_INFO_PATH}";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -895,7 +889,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -956,7 +949,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;

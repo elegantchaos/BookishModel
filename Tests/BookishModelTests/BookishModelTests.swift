@@ -7,16 +7,8 @@ import XCTest
 import CoreData
 @testable import BookishModel
 
-class BookishModelTests: XCTestCase {
+class BookishModelTests: ModelTestCase {
     
-    func makeTestContainer() -> CollectionContainer {
-        let container = CollectionContainer(name: "Collection")
-        container.persistentStoreDescriptions[0].url = URL(fileURLWithPath: "/dev/null")
-        container.loadPersistentStores { (description, error) in
-            XCTAssertNil(error)
-        }
-        return container
-    }
     
     func testLoadingModel() {
         let model = BookishModel.loadModel()

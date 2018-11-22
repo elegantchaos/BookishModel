@@ -1,9 +1,17 @@
-swift package update
+echo Updating packages
+swift package resolve
+swift package show-dependencies
 
-swift package generate-xcodeproj --skip-extra-files --output "Dependencies/Mac" --xcconfig-overrides "Configs/BookishModelMac.xcconfig"
-swift package generate-xcodeproj --skip-extra-files --output "Dependencies/Mobile" --xcconfig-overrides "Configs/BookishModelMobile.xcconfig"
+echo Generating Xcode Projects
+swift package generate-xcodeproj --output "Dependencies/Mac" --xcconfig-overrides "Configs/BookishModelMac.xcconfig"
+swift package generate-xcodeproj --output "Dependencies/Mobile" --xcconfig-overrides "Configs/BookishModelMobile.xcconfig"
 
+pushd Dependencies/Mac
+ln -sf BookishModelDependencies.xcodeproj BookishModelDependenciesMac.xcodeproj
+popd
 
-ln -sf BookishModelDependencies.xcodeproj Dependencies/Mac/BookishModelDependenciesMac.xcodeproj
-ln -sf BookishModelDependencies.xcodeproj Dependencies/Mobile/BookishModelDependenciesMobile.xcodeproj
+pushd Dependencies/Mobile
+ln -sf BookishModelDependencies.xcodeproj BookishModelDependenciesMobile.xcodeproj
+popd
 
+echo Update Done
