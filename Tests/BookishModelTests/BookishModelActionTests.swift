@@ -46,7 +46,7 @@ class BookishModelActionTests: ModelTestCase {
     }
     
     func testNewPerson() {
-        actionManager.perform(identifier: "NewPerson", sender: self, info: info)
+        actionManager.perform(identifier: "NewPerson", info: info)
         wait(for: [expectation], timeout: 1.0)
         XCTAssertEqual(count(of: "Person"), 1)
     }
@@ -57,7 +57,7 @@ class BookishModelActionTests: ModelTestCase {
 
         info[ActionContext.selectionKey] = [person]
 
-        actionManager.perform(identifier: "DeletePerson", sender: self, info: info)
+        actionManager.perform(identifier: "DeletePerson", info: info)
         wait(for: [expectation], timeout: 1.0)
         XCTAssertEqual(count(of: "Person"), 0)
     }
@@ -67,7 +67,7 @@ class BookishModelActionTests: ModelTestCase {
         XCTAssertEqual(book.roles.count, 0)
         info[ActionContext.selectionKey] = [book]
         info[PersonAction.roleKey] = "author"
-        actionManager.perform(identifier: "AddRelationship", sender: self, info: info)
+        actionManager.perform(identifier: "AddRelationship", info: info)
 
         wait(for: [expectation], timeout: 1.0)
         XCTAssertEqual(book.roles.count, 1)
@@ -83,9 +83,43 @@ class BookishModelActionTests: ModelTestCase {
 
         info[PersonAction.relationshipKey] = relationship
         info[ActionContext.selectionKey] = [book]
-        actionManager.perform(identifier: "RemoveRelationship", sender: self, info: info)
+        actionManager.perform(identifier: "RemoveRelationship", info: info)
         
         wait(for: [expectation], timeout: 1.0)
         XCTAssertEqual(book.roles.count, 0)
+    }
+    
+    func testChangeRelationshipAction() {
+        func check(relationship: Relationship, book: Book, person: Person) {
+            XCTAssertEqual(book.roles.count, 1)
+            XCTAssertEqual(relationship.books?.count, 1)
+            XCTAssertEqual(relationship.books?.allObjects.first as? Book, book)
+            XCTAssertEqual(relationship.person, person)
+        }
+        
+        let book = Book(context: context)
+        let person = Person(context: context)
+        let relationship = person.relationship(as: Role.Default.authorName)
+        book.addToRelationships(relationship)
+        check(relationship: relationship, book: book, person: person)
+
+        let otherPerson = Person(context: context)
+        info[PersonAction.relationshipKey] = relationship
+        info[PersonAction.personKey] = otherPerson
+        info[ActionContext.selectionKey] = [book]
+        actionManager.perform(identifier: "ChangeRelationship", info: info)
+        
+        wait(for: [expectation], timeout: 1.0)
+        
+        XCTAssertEqual(book.roles.count, 1)
+        if let relationship = book.relationships?.allObjects.first as? Relationship {
+            check(relationship: relationship, book: book, person: otherPerson)
+        } else {
+            XCTFail()
+        }
+        
+        XCTAssertEqual(count(of: "Person"), 2)
+        XCTAssertEqual(count(of: "Relationship"), 2)
+        XCTAssertEqual(count(of: "Book"), 1)
     }
 }

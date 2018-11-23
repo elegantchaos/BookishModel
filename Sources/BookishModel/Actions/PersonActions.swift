@@ -65,7 +65,7 @@ open class PersonAction: Action {
             RemoveRelationshipAction(identifier: "RemoveRelationship"),
             DeletePersonAction(identifier: "DeletePerson"),
             RevealPersonAction(identifier: "RevealPerson"),
-            ChangeRolePersonAction(identifier: "ChangeRolePerson")
+            ChangeRelationshipAction(identifier: "ChangeRelationship")
         ]
     }
 }
@@ -198,7 +198,7 @@ class RevealPersonAction: PersonAction {
  it applies to.
  */
 
-class ChangeRolePersonAction: PersonAction {
+class ChangeRelationshipAction: PersonAction {
     override func validate(context: ActionContext) -> Bool {
         return (context[PersonAction.relationshipKey] as? Relationship != nil) && super.validate(context: context)
     }
@@ -207,9 +207,9 @@ class ChangeRolePersonAction: PersonAction {
         
         if
             let selection = context[ActionContext.selectionKey] as? [Book],
-            let role = context[PersonAction.relationshipKey] as? Relationship,
-            let managedObjectContext = role.managedObjectContext,
-            let roleName = role.role?.name {
+            let relationship = context[PersonAction.relationshipKey] as? Relationship,
+            let managedObjectContext = relationship.managedObjectContext,
+            let roleName = relationship.role?.name {
             
             var newPerson = context[PersonAction.personKey] as? Person
             if newPerson == nil, let newPersonName = context[PersonAction.newPersonKey] as? String {
@@ -219,13 +219,13 @@ class ChangeRolePersonAction: PersonAction {
             }
             
             if let newPerson = newPerson {
-                let newRole = newPerson.relationship(as: roleName)
+                let newRelationship = newPerson.relationship(as: roleName)
                 for book in selection {
-                    book.removeFromRelationships(role)
-                    book.addToRelationships(newRole)
+                    book.removeFromRelationships(relationship)
+                    book.addToRelationships(newRelationship)
                 }
                 
-                print("\(roleName) changed from \(role.person!.name!) to \(newPerson.name!)")
+                print("\(roleName) changed from \(relationship.person!.name!) to \(newPerson.name!)")
             }
         }
     }
