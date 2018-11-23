@@ -1,5 +1,9 @@
 # A template for git ignore
 
+# temporary fix for recursive symbolic link issue
+Dependencies/Mac/BookishModelDependencies.xcodeproj/BookishModelDependencies.xcodeproj
+Dependencies/Mobile/BookishModelDependencies.xcodeproj/BookishModelDependencies.xcodeproj
+
 # Mac OS X Finder and whatnot
 .DS_Store
 
