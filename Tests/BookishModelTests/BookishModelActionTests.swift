@@ -66,7 +66,8 @@ class BookishModelActionTests: ModelTestCase {
         let book = Book(context: context)
         XCTAssertEqual(book.roles.count, 0)
         info[ActionContext.selectionKey] = [book]
-        actionManager.perform(identifier: "AddRelationship(\"role\": \"author\")", sender: self, info: info)
+        info[PersonAction.roleKey] = "author"
+        actionManager.perform(identifier: "AddRelationship", sender: self, info: info)
 
         wait(for: [expectation], timeout: 1.0)
         XCTAssertEqual(book.roles.count, 1)
@@ -74,6 +75,17 @@ class BookishModelActionTests: ModelTestCase {
     }
     
     func testRemoveRelationship() {
+        let book = Book(context: context)
+        let person = Person(context: context)
+        let relationship = person.relationship(as: Role.Default.authorName)
+        book.addToRelationships(relationship)
+        XCTAssertEqual(book.roles.count, 1)
+
+        info[PersonAction.relationshipKey] = relationship
+        info[ActionContext.selectionKey] = [book]
+        actionManager.perform(identifier: "RemoveRelationship", sender: self, info: info)
         
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(book.roles.count, 0)
     }
 }
