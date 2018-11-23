@@ -5,17 +5,9 @@
       <BuildActionEntry buildForTesting = "YES" buildForRunning = "YES" buildForProfiling = "YES" buildForArchiving = "YES" buildForAnalyzing = "YES">
         <BuildableReference
           BuildableIdentifier = "primary"
-          BuildableName = "'$(TARGET_NAME)'"
-          BlueprintName = "BookishModelDependencies"
-          ReferencedContainer = "container:Dependencies/Mobile/BookishModelDependencies.xcodeproj">
-        </BuildableReference>
-      </BuildActionEntry>
-      <BuildActionEntry buildForTesting = "YES" buildForRunning = "YES" buildForProfiling = "YES" buildForArchiving = "YES" buildForAnalyzing = "YES">
-        <BuildableReference
-          BuildableIdentifier = "primary"
           BuildableName = "'lib$(TARGET_NAME)'"
           BlueprintName = "BookishCore"
-          ReferencedContainer = "container:Dependencies/Mobile/BookishModelDependencies.xcodeproj">
+          ReferencedContainer = "container:Sources/BookishCore/BookishCore.xcodeproj">
         </BuildableReference>
       </BuildActionEntry>
     </BuildActionEntries>
@@ -27,6 +19,15 @@
     shouldUseLaunchSchemeArgsEnv = "YES"
     codeCoverageEnabled = "NO">
     <Testables>
+        <TestableReference
+          skipped = "NO">
+          <BuildableReference
+            BuildableIdentifier = "primary"
+            BuildableName = "'$(TARGET_NAME)'"
+            BlueprintName = "BookishCoreTests"
+            ReferencedContainer = "container:Sources/BookishCore/BookishCore.xcodeproj">
+          </BuildableReference>
+        </TestableReference>
     </Testables>
   </TestAction>
 </Scheme>

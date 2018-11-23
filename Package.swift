@@ -13,6 +13,9 @@ let package = Package(
         .target(
             name: "BookishModelDependencies",
             dependencies: ["Logger", "Actions"]),
+        .target(
+            name: "BookishCore",
+            dependencies: ["Logger", "Actions", "ActionsKit"]),
         ],
     swiftLanguageVersions: [.v4_2]
 )
