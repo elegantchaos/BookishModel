@@ -173,8 +173,8 @@
          children = (
             "OBJ_11"
          );
-         name = "BookishModelDependencies";
-         path = "Sources/BookishModelDependencies";
+         name = "BookishCore";
+         path = "Sources/BookishCore";
          sourceTree = "SOURCE_ROOT";
       };
       "OBJ_100" = {
@@ -253,7 +253,7 @@
       };
       "OBJ_11" = {
          isa = "PBXFileReference";
-         path = "main.swift";
+         path = "BookishCore.swift";
          sourceTree = "<group>";
       };
       "OBJ_110" = {
@@ -382,8 +382,8 @@
          children = (
             "OBJ_13"
          );
-         name = "BookishCore";
-         path = "Sources/BookishCore";
+         name = "BookishModelDependencies";
+         path = "Sources/BookishModelDependencies";
          sourceTree = "SOURCE_ROOT";
       };
       "OBJ_120" = {
@@ -456,7 +456,7 @@
       };
       "OBJ_13" = {
          isa = "PBXFileReference";
-         path = "BookishCore.swift";
+         path = "main.swift";
          sourceTree = "<group>";
       };
       "OBJ_14" = {
@@ -496,7 +496,7 @@
          isa = "PBXGroup";
          children = (
             "OBJ_20",
-            "OBJ_23",
+            "OBJ_27",
             "OBJ_30"
          );
          name = "Actions";
@@ -516,64 +516,64 @@
          isa = "PBXGroup";
          children = (
             "OBJ_21",
-            "OBJ_22"
-         );
-         name = "ActionsKit";
-         path = "Packages/Actions/Sources/ActionsKit";
-         sourceTree = "SOURCE_ROOT";
-      };
-      "OBJ_21" = {
-         isa = "PBXFileReference";
-         path = "ActionManagerMac.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_22" = {
-         isa = "PBXFileReference";
-         path = "ActionManagerMobile.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_23" = {
-         isa = "PBXGroup";
-         children = (
+            "OBJ_22",
+            "OBJ_23",
             "OBJ_24",
             "OBJ_25",
-            "OBJ_26",
-            "OBJ_27",
-            "OBJ_28",
-            "OBJ_29"
+            "OBJ_26"
          );
          name = "Actions";
          path = "Packages/Actions/Sources/Actions";
          sourceTree = "SOURCE_ROOT";
       };
-      "OBJ_24" = {
+      "OBJ_21" = {
          isa = "PBXFileReference";
          path = "Action.swift";
          sourceTree = "<group>";
       };
-      "OBJ_25" = {
+      "OBJ_22" = {
          isa = "PBXFileReference";
          path = "ActionContext.swift";
          sourceTree = "<group>";
       };
-      "OBJ_26" = {
+      "OBJ_23" = {
          isa = "PBXFileReference";
          path = "ActionIdentification.swift";
          sourceTree = "<group>";
       };
-      "OBJ_27" = {
+      "OBJ_24" = {
          isa = "PBXFileReference";
          path = "ActionInfo.swift";
          sourceTree = "<group>";
       };
-      "OBJ_28" = {
+      "OBJ_25" = {
          isa = "PBXFileReference";
          path = "ActionManager.swift";
          sourceTree = "<group>";
       };
-      "OBJ_29" = {
+      "OBJ_26" = {
          isa = "PBXFileReference";
          path = "DelegatedAction.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_27" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_28",
+            "OBJ_29"
+         );
+         name = "ActionsKit";
+         path = "Packages/Actions/Sources/ActionsKit";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_28" = {
+         isa = "PBXFileReference";
+         path = "ActionManagerMac.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_29" = {
+         isa = "PBXFileReference";
+         path = "ActionManagerMobile.swift";
          sourceTree = "<group>";
       };
       "OBJ_3" = {
@@ -733,10 +733,10 @@
       "OBJ_42" = {
          isa = "PBXGroup";
          children = (
-            "BookishModelDependencies::BookishCore::Product",
             "BookishModelDependencies::BookishModelDependencies::Product",
             "Actions::Actions::Product",
             "Actions::ActionsKit::Product",
+            "BookishModelDependencies::BookishCore::Product",
             "Logger::Logger::Product"
          );
          name = "Products";
@@ -857,27 +857,27 @@
       };
       "OBJ_53" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_24";
+         fileRef = "OBJ_21";
       };
       "OBJ_54" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_25";
+         fileRef = "OBJ_22";
       };
       "OBJ_55" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_26";
+         fileRef = "OBJ_23";
       };
       "OBJ_56" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_27";
+         fileRef = "OBJ_24";
       };
       "OBJ_57" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_28";
+         fileRef = "OBJ_25";
       };
       "OBJ_58" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_29";
+         fileRef = "OBJ_26";
       };
       "OBJ_59" = {
          isa = "PBXFrameworksBuildPhase";
@@ -993,11 +993,11 @@
       };
       "OBJ_68" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_21";
+         fileRef = "OBJ_28";
       };
       "OBJ_69" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_22";
+         fileRef = "OBJ_29";
       };
       "OBJ_7" = {
          isa = "PBXGroup";
@@ -1185,7 +1185,7 @@
       };
       "OBJ_86" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_13";
+         fileRef = "OBJ_11";
       };
       "OBJ_87" = {
          isa = "PBXFrameworksBuildPhase";
@@ -1318,7 +1318,7 @@
       };
       "OBJ_99" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_11";
+         fileRef = "OBJ_13";
       };
    };
    rootObject = "OBJ_1";
