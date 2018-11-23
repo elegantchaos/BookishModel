@@ -30,13 +30,13 @@ public protocol BookChangeObserver: ActionObserver {
  Common functionality for all book-related actions.
  */
 
-open class BookAction: Action {
+open class BookAction: ModelAction {
     public static let bookKey = "book"
 
     open class func standardActions() -> [Action] {
         return [
             NewBookAction(identifier: "NewBook"),
-            DeleteBookAction(identifier: "DeleteBook"),
+            DeleteBooksAction(identifier: "DeleteBooks"),
             RevealBookAction(identifier: "RevealBook")
         ]
     }
@@ -47,16 +47,10 @@ open class BookAction: Action {
  */
 
 public class NewBookAction: BookAction {
-    public override func validate(context: ActionContext) -> Bool {
-        return (context[ActionContext.modelKey] as? NSManagedObjectContext) != nil
-    }
-    
-    public override func perform(context: ActionContext) {
-        if let model = context[ActionContext.modelKey] as? NSManagedObjectContext {
-            let book = Book(context: model)
-            context.info.forObservers { (observer: BookChangeObserver) in
-                observer.added(books: [book])
-            }
+    override public func perform(context: ActionContext, model: NSManagedObjectContext) {
+        let book = Book(context: model)
+        context.info.forObservers { (observer: BookChangeObserver) in
+            observer.added(books: [book])
         }
     }
 }
@@ -65,7 +59,7 @@ public class NewBookAction: BookAction {
  Action that deletes a book.
  */
 
-public class DeleteBookAction: BookAction {
+public class DeleteBooksAction: BookAction {
     public override func validate(context: ActionContext) -> Bool {
         guard let selection = context[ActionContext.selectionKey] as? [Book] else {
             return false
@@ -74,10 +68,10 @@ public class DeleteBookAction: BookAction {
         return selection.count > 0
     }
     
-    public override func perform(context: ActionContext) {
+    public override func perform(context: ActionContext, model: NSManagedObjectContext) {
         if let selection = context[ActionContext.selectionKey] as? [Book] {
             for book in selection {
-                book.managedObjectContext?.delete(book)
+                model.delete(book)
             }
             context.info.forObservers { (observer: BookChangeObserver) in
                 observer.removed(books: selection)
@@ -97,7 +91,7 @@ class RevealBookAction: BookAction {
         return (book != nil) && super.validate(context: context)
     }
     
-    override func perform(context: ActionContext) {
+    public override func perform(context: ActionContext, model: NSManagedObjectContext) {
         if let book = context[BookAction.bookKey] as? Book,
             let viewer = context[ActionContext.rootKey] as? BookViewer {
             viewer.reveal(book: book)

@@ -40,18 +40,18 @@ public protocol PersonConstructionObserver: ActionObserver {
  Common functionality for all person-related actions.
  */
 
-open class PersonAction: Action {
+open class PersonAction: ModelAction {
     public static let newPersonKey = "newPerson"
     public static let personKey = "person"
     public static let relationshipKey = "relationship"
     public static let roleKey = "role"
-
+    
     open override func validate(context: ActionContext) -> Bool {
-        guard let selection = context[ActionContext.selectionKey] as? [Book] else {
+        guard super.validate(context: context) else {
             return false
         }
         
-        guard let _ = context[ActionContext.modelKey] as? NSManagedObjectContext else {
+        guard let selection = context[ActionContext.selectionKey] as? [Book] else {
             return false
         }
         
@@ -63,7 +63,7 @@ open class PersonAction: Action {
             NewPersonAction(identifier: "NewPerson"),
             AddRelationshipAction(identifier: "AddRelationship"),
             RemoveRelationshipAction(identifier: "RemoveRelationship"),
-            DeletePersonAction(identifier: "DeletePerson"),
+            DeletePeopleAction(identifier: "DeletePeople"),
             RevealPersonAction(identifier: "RevealPerson"),
             ChangeRelationshipAction(identifier: "ChangeRelationship")
         ]
@@ -83,22 +83,18 @@ class AddRelationshipAction: PersonAction {
         return super.validate(context: context)
     }
     
-    public override func perform(context: ActionContext, completed: @escaping Completion) {
+    override func perform(context: ActionContext, model: NSManagedObjectContext) {
         if
             let role = context[PersonAction.roleKey] as? String,
-            let selection = context[ActionContext.selectionKey] as? [Book],
-            let moc = context[ActionContext.modelKey] as? NSManagedObjectContext {
-            moc.perform {
-                let person = Person(context: moc)
-                let relationship = person.relationship(as: role)
-                for book in selection {
-                    book.addToRelationships(relationship)
-                }
-                
-                context.info.forObservers { (observer: PersonChangeObserver) in
-                    observer.added(role: relationship)
-                }
-                completed()
+            let selection = context[ActionContext.selectionKey] as? [Book] {
+            let person = Person(context: model)
+            let relationship = person.relationship(as: role)
+            for book in selection {
+                book.addToRelationships(relationship)
+            }
+            
+            context.info.forObservers { (observer: PersonChangeObserver) in
+                observer.added(role: relationship)
             }
         }
     }
@@ -113,7 +109,7 @@ class RemoveRelationshipAction: PersonAction {
         return (context[PersonAction.relationshipKey] as? Relationship != nil) && super.validate(context: context)
     }
     
-    public override func perform(context: ActionContext) {
+    override func perform(context: ActionContext, model: NSManagedObjectContext) {
         if
             let selection = context[ActionContext.selectionKey] as? [Book],
             let relationship = context[PersonAction.relationshipKey] as? Relationship {
@@ -137,18 +133,11 @@ class RemoveRelationshipAction: PersonAction {
  Action that creates a new person.
  */
 
-class NewPersonAction: Action {
-    public override func perform(context: ActionContext, completed: @escaping Completion) {
-        if let moc = context[ActionContext.modelKey] as? NSManagedObjectContext {
-            
-            moc.perform {
-                let person = Person(context: moc)
-                context.info.forObservers { (observer: PersonConstructionObserver) in
-                    observer.created(person: person)
-                }
-                completed()
-            }
-
+class NewPersonAction: ModelAction {
+    override func perform(context: ActionContext, model: NSManagedObjectContext) {
+        let person = Person(context: model)
+        context.info.forObservers { (observer: PersonConstructionObserver) in
+            observer.created(person: person)
         }
     }
 }
@@ -157,27 +146,23 @@ class NewPersonAction: Action {
  Action that deletes a person.
  */
 
-class DeletePersonAction: Action {
-    public override func perform(context: ActionContext, completed: @escaping Completion) {
-        if let selection = context[ActionContext.selectionKey] as? [Person],
-            let moc = context[ActionContext.modelKey] as? NSManagedObjectContext {
-            moc.perform {
-                for person in selection {
-                    context.info.forObservers { (observer: PersonConstructionObserver) in
-                        observer.deleted(person: person)
-                    }
-                    
-                    moc.delete(person)
-                    completed()
+class DeletePeopleAction: ModelAction {
+    override func perform(context: ActionContext, model: NSManagedObjectContext) {
+        if let selection = context[ActionContext.selectionKey] as? [Person] {
+            for person in selection {
+                context.info.forObservers { (observer: PersonConstructionObserver) in
+                    observer.deleted(person: person)
                 }
+                
+                model.delete(person)
             }
-            
         }
     }
 }
 
 /**
  Action that reveals a person in the UI.
+ The person to reveal can either be set as the personKey, or extracted from a relationship set as the relationshipKey
  */
 
 class RevealPersonAction: PersonAction {
@@ -185,10 +170,13 @@ class RevealPersonAction: PersonAction {
         return (context[PersonAction.relationshipKey] as? Relationship != nil) && super.validate(context: context)
     }
     
-    override func perform(context: ActionContext) {
-        if let role = context[PersonAction.relationshipKey] as? Relationship, let person = role.person,
-            let viewer = context[ActionContext.rootKey] as? PersonViewer {
-            viewer.reveal(person: person)
+    public override func perform(context: ActionContext, model: NSManagedObjectContext) {
+        if let viewer = context[ActionContext.rootKey] as? PersonViewer {
+            if let person = context[PersonAction.personKey] as? Person {
+                viewer.reveal(person: person)
+            } else if let role = context[PersonAction.relationshipKey] as? Relationship, let person = role.person {
+                viewer.reveal(person: person)
+            }
         }
     }
 }
@@ -203,18 +191,15 @@ class ChangeRelationshipAction: PersonAction {
         return (context[PersonAction.relationshipKey] as? Relationship != nil) && super.validate(context: context)
     }
     
-    override func perform(context: ActionContext) {
-        
+    override func perform(context: ActionContext, model: NSManagedObjectContext) {
         if
             let selection = context[ActionContext.selectionKey] as? [Book],
             let relationship = context[PersonAction.relationshipKey] as? Relationship,
-            let managedObjectContext = relationship.managedObjectContext,
             let roleName = relationship.role?.name {
-            
             var newPerson = context[PersonAction.personKey] as? Person
             if newPerson == nil, let newPersonName = context[PersonAction.newPersonKey] as? String {
                 print("Made new person \(newPersonName)")
-                newPerson = Person(context: managedObjectContext)
+                newPerson = Person(context: model)
                 newPerson?.name = newPersonName
             }
             

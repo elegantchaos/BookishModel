@@ -8,18 +8,31 @@ import XCTest
 import CoreData
 import Actions
 
-class BookishModelActionTests: ModelTestCase {
+class BookishModelActionTests: ModelTestCase, BookViewer, PersonViewer {
+    
     var context: NSManagedObjectContext!
     var container: NSPersistentContainer!
     var actionManager: ActionManager!
     var info: ActionInfo = ActionInfo()
     var expectation: XCTestExpectation!
+    var bookRevealed: Book?
+    var personRevealed: Person?
+
+    func reveal(book: Book) {
+        bookRevealed = book
+    }
     
+    func reveal(person: Person) {
+        personRevealed = person
+    }
+
     override func setUp() {
         container = makeTestContainer()
         context = container.viewContext
         actionManager = ActionManager()
         actionManager.register(PersonAction.standardActions())
+        actionManager.register(BookAction.standardActions())
+        
         info[ActionContext.modelKey] = context
         info.registerNotification { (stage, context) in
             if stage == .didPerform {
@@ -51,17 +64,36 @@ class BookishModelActionTests: ModelTestCase {
         XCTAssertEqual(count(of: "Person"), 1)
     }
     
-    func testDeletePerson() {
+    func testDeletePeople() {
         let person = Person(context: context)
         XCTAssertEqual(count(of: "Person"), 1)
 
         info[ActionContext.selectionKey] = [person]
 
-        actionManager.perform(identifier: "DeletePerson", info: info)
+        actionManager.perform(identifier: "DeletePeople", info: info)
         wait(for: [expectation], timeout: 1.0)
         XCTAssertEqual(count(of: "Person"), 0)
     }
     
+    func testRevealPerson() {
+        let person = Person(context: context)
+        info[ActionContext.rootKey] = self
+        info[PersonAction.personKey] = person
+        actionManager.perform(identifier: "RevealPerson", info: info)
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(personRevealed, person)
+    }
+
+    func testRevealPersonFromRelationship() {
+        let person = Person(context: context)
+        let relationship = person.relationship(as: "Author")
+        info[ActionContext.rootKey] = self
+        info[PersonAction.relationshipKey] = relationship
+        actionManager.perform(identifier: "RevealPerson", info: info)
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(personRevealed, person)
+    }
+
     func testAddRelationship() {
         let book = Book(context: context)
         XCTAssertEqual(book.roles.count, 0)
@@ -121,5 +153,31 @@ class BookishModelActionTests: ModelTestCase {
         XCTAssertEqual(count(of: "Person"), 2)
         XCTAssertEqual(count(of: "Relationship"), 2)
         XCTAssertEqual(count(of: "Book"), 1)
+    }
+    
+    func testNewBook() {
+        actionManager.perform(identifier: "NewBook", info: info)
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(count(of: "Book"), 1)
+    }
+    
+    func testDeleteBooks() {
+        let book = Book(context: context)
+        XCTAssertEqual(count(of: "Book"), 1)
+        
+        info[ActionContext.selectionKey] = [book]
+        
+        actionManager.perform(identifier: "DeleteBooks", info: info)
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(count(of: "Book"), 0)
+    }
+    
+    func testRevealBook() {
+        let book = Book(context: context)
+        info[ActionContext.rootKey] = self
+        info[BookAction.bookKey] = book
+        actionManager.perform(identifier: "RevealBook", info: info)
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(bookRevealed, book)
     }
 }

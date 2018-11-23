@@ -38,6 +38,8 @@
 		224293ED212AF0E300E70510 /* Series.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224293EB212AF0E300E70510 /* Series.swift */; };
 		224293EF212AFAFB00E70510 /* CollectionContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224293EE212AFAFB00E70510 /* CollectionContainer.swift */; };
 		224293F0212AFAFB00E70510 /* CollectionContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224293EE212AFAFB00E70510 /* CollectionContainer.swift */; };
+		226E8DB121A84031001F191F /* ModelAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226E8DB021A84031001F191F /* ModelAction.swift */; };
+		226E8DB221A84031001F191F /* ModelAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226E8DB021A84031001F191F /* ModelAction.swift */; };
 		22DAF395217B34FC003CE28B /* DetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DAF394217B34FC003CE28B /* DetailDataSource.swift */; };
 		22DAF396217B34FC003CE28B /* DetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DAF394217B34FC003CE28B /* DetailDataSource.swift */; };
 		22E47CC6216E31B700E43DBF /* BookActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C4B23216BA50C0086D56F /* BookActions.swift */; };
@@ -149,6 +151,7 @@
 		224293E8212AF0D300E70510 /* Role.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
 		224293EB212AF0E300E70510 /* Series.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Series.swift; sourceTree = "<group>"; };
 		224293EE212AFAFB00E70510 /* CollectionContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionContainer.swift; sourceTree = "<group>"; };
+		226E8DB021A84031001F191F /* ModelAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelAction.swift; sourceTree = "<group>"; };
 		2296036A214187570020B3EB /* Update.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = Update.sh; sourceTree = "<group>"; };
 		22A1A8BF21A5C24800F2332B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		22A1A8D621A5C4E300F2332B /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = SOURCE_ROOT; };
@@ -206,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				221C4B23216BA50C0086D56F /* BookActions.swift */,
+				226E8DB021A84031001F191F /* ModelAction.swift */,
 				221C4B2C216BA8220086D56F /* PersonActions.swift */,
 			);
 			path = Actions;
@@ -590,6 +594,7 @@
 				224293D2212AE1E700E70510 /* BookishModel.swift in Sources */,
 				221C4B2D216BA8220086D56F /* PersonActions.swift in Sources */,
 				224293E9212AF0D300E70510 /* Role.swift in Sources */,
+				226E8DB121A84031001F191F /* ModelAction.swift in Sources */,
 				221F271F21306C1300DC2DC7 /* Book.swift in Sources */,
 				221F272221359DA200DC2DC7 /* Publisher.swift in Sources */,
 				22E47CC6216E31B700E43DBF /* BookActions.swift in Sources */,
@@ -622,6 +627,7 @@
 				224293E7212AF0B700E70510 /* Relationship.swift in Sources */,
 				221C4B2E216BA8220086D56F /* PersonActions.swift in Sources */,
 				221F272021306C1300DC2DC7 /* Book.swift in Sources */,
+				226E8DB221A84031001F191F /* ModelAction.swift in Sources */,
 				224293D3212AE1E700E70510 /* BookishModel.swift in Sources */,
 				224293EA212AF0D300E70510 /* Role.swift in Sources */,
 				22E47CC7216E31BA00E43DBF /* BookActions.swift in Sources */,
