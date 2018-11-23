@@ -5,7 +5,7 @@
 
 import CoreData
 
-public class PersonRole: NSManagedObject {
+public class Relationship: NSManagedObject {
     override public init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
         super.init(entity: entity, insertInto:context)
     }

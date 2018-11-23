@@ -42,14 +42,14 @@ class BookishModelTests: ModelTestCase {
         XCTAssertTrue(role1 === role2)
     }
     
-    func testUniquePersonRoles() {
+    func testUniqueRelationships() {
         let container = makeTestContainer()
         let context = container.viewContext
         let person = Person(context: context)
-        let entry1 = person.role(as: "editor")
+        let entry1 = person.relationship(as: "editor")
         XCTAssertEqual(entry1.person, person)
         XCTAssertEqual(entry1.role?.name, "editor")
-        let entry2 = person.role(as: "editor")
+        let entry2 = person.relationship(as: "editor")
         XCTAssertTrue(entry1 === entry2)
     }
     
@@ -61,14 +61,14 @@ class BookishModelTests: ModelTestCase {
         let person2 = Person(context: context)
         let person3 = Person(context: context)
         
-        let entry1 = person1.role(as: "editor")
+        let entry1 = person1.relationship(as: "editor")
         entry1.addToBooks(book)
-        let entry2 = person1.role(as: "author")
+        let entry2 = person1.relationship(as: "author")
         entry2.addToBooks(book)
-        let entry3 = person2.role(as: "editor")
+        let entry3 = person2.relationship(as: "editor")
         entry3.addToBooks(book)
 
-        if let people = book.personRoles {
+        if let people = book.relationships {
             XCTAssertTrue(people.contains(entry1))
             XCTAssertTrue(people.contains(entry2))
             XCTAssertTrue(people.contains(entry3))
@@ -76,9 +76,9 @@ class BookishModelTests: ModelTestCase {
             XCTFail("book has no people")
         }
         
-        XCTAssertTrue(person1.personRoles!.contains(entry1))
-        XCTAssertTrue(person1.personRoles!.contains(entry2))
-        XCTAssertTrue(person2.personRoles!.contains(entry3))
+        XCTAssertTrue(person1.relationships!.contains(entry1))
+        XCTAssertTrue(person1.relationships!.contains(entry2))
+        XCTAssertTrue(person2.relationships!.contains(entry3))
         
         let allRoles = book.roles
         let authorRole = Role.role(named: "author", context: context)

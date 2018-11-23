@@ -18,7 +18,7 @@ public class DetailDataSource {
     
 
     public let details = DetailSpec.standardDetails
-    public var people = [PersonRole]()
+    public var people = [Relationship]()
     
     public init() {
         
@@ -48,18 +48,18 @@ public class DetailDataSource {
         return details[row - people.count]
     }
     
-    public func person(for row: Int) -> PersonRole {
+    public func person(for row: Int) -> Relationship {
         return people[row]
     }
 
-    public func insert(personRole: PersonRole) -> Int {
+    public func insert(relationship: Relationship) -> Int {
         let index = people.count
-        people.append(personRole)
+        people.append(relationship)
         return index
     }
     
-    public func remove(personRole: PersonRole) -> Int? {
-        guard let row = people.firstIndex(of: personRole) else { return nil }
+    public func remove(relationship: Relationship) -> Int? {
+        guard let row = people.firstIndex(of: relationship) else { return nil }
         people.remove(at: row)
         return row
     }

@@ -20,7 +20,7 @@ public class Book: NSManagedObject {
     
     public var roles: Set<Role> {
         var result = Set<Role>()
-        if let people = self.personRoles as? Set<PersonRole> {
+        if let people = self.relationships as? Set<Relationship> {
             for entry in people {
                 if let role = entry.role {
                     result.insert(role)
@@ -33,7 +33,7 @@ public class Book: NSManagedObject {
 
     public var people: Set<Person> {
         var result = Set<Person>()
-        if let people = self.personRoles as? Set<PersonRole> {
+        if let people = self.relationships as? Set<Relationship> {
             for entry in people {
                 if let person = entry.person {
                     result.insert(person)
