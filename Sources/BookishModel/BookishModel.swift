@@ -11,16 +11,22 @@ let modelChannel = Logger("Model")
 public class BookishModel {
     static let version = "1.0.0"
     
+    static var cachedModel: NSManagedObjectModel!
+    
     public class func loadModel() -> NSManagedObjectModel {
-        guard let url = Bundle(for: self).url(forResource: "Collection", withExtension: "momd") else {
-            fatalError("couldn't find model")
+        if cachedModel == nil {
+            guard let url = Bundle(for: self).url(forResource: "Collection", withExtension: "momd") else {
+                fatalError("couldn't find model")
+            }
+            
+            guard let model = NSManagedObjectModel(contentsOf: url) else {
+                fatalError("couldn't load model")
+            }
+            
+            modelChannel.debug("loaded collection model")
+            cachedModel = model
         }
         
-        guard let model = NSManagedObjectModel(contentsOf: url) else {
-            fatalError("couldn't load model")
-        }
-
-        modelChannel.debug("loaded collection model")
-        return model
+        return cachedModel
     }
 }
