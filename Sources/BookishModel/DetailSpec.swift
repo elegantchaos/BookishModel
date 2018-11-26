@@ -13,6 +13,7 @@ public final class DetailSpec {
         case person
         case editableDate
         case editablePerson
+        case editableDimensions
     }
 
     public let binding: String
@@ -20,7 +21,7 @@ public final class DetailSpec {
     public let kind: Kind
     public let editableKind: Kind
     
-    public init(binding: String, label: String? = nil, viewAs: Kind = .text, editAs: Kind? = .text) {
+    public init(binding: String, label: String? = nil, viewAs: Kind = .text, editAs: Kind? = nil) {
         self.binding = binding
         self.label = label ?? binding.capitalized
         self.kind = viewAs
@@ -40,9 +41,7 @@ public final class DetailSpec {
             DetailSpec(binding: "added", viewAs: .date),
             DetailSpec(binding: "modified", viewAs: .date),
             DetailSpec(binding: "importDate", label:  "Imported", viewAs: .date),
-            DetailSpec(binding: "width", label: "size (w)"),
-            DetailSpec(binding: "length", label: "size (l)"),
-            DetailSpec(binding: "height", label: "size (h)"),
+            DetailSpec(binding: "dimensions", label: "size", viewAs: .text, editAs: .editableDimensions),
             DetailSpec(binding: "pages"),
             DetailSpec(binding: "importRaw", label: "Raw (Debug)"),
         ]

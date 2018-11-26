@@ -44,4 +44,7 @@ public class Book: NSManagedObject {
         return result
     }
 
+    @objc public var dimensions: String {
+        return "\(width) x \(height) x \(length)"
+    }
 }
