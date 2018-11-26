@@ -50,22 +50,45 @@ public class DetailDataSource {
         return details[row - people.count]
     }
     
-    public func filterDetail(for selection: [NSObject]) {
-        var details = [DetailSpec]()
-        for detail in template {
-            var includeDetail = false
-            for item in selection {
-                if item.value(forKey: detail.binding) != nil {
-                    includeDetail = true
-                    break
+    public func filter(for selection: [Book], editing: Bool) {
+        let (_, common) = people(in: selection)
+        people = common.sorted(by: { ($0.person?.name ?? "") < ($1.person?.name ?? "") })
+        if editing {
+            details = template
+        } else {
+            var details = [DetailSpec]()
+            for detail in template {
+                var includeDetail = false
+                for item in selection {
+                    if item.value(forKey: detail.binding) != nil {
+                        includeDetail = true
+                        break
+                    }
+                }
+                if includeDetail {
+                    details.append(detail)
                 }
             }
-            if includeDetail {
-                details.append(detail)
+            self.details = details
+        }
+    }
+    
+    public func people(in selection: [Book]) -> (Set<Relationship>, Set<Relationship>) {
+        var all = Set<Relationship>()
+        var common = Set<Relationship>()
+        for book in selection {
+            if let people = book.relationships as? Set<Relationship> {
+                if all.count == 0 {
+                    common.formUnion(people)
+                } else {
+                    common.formIntersection(people)
+                }
+                all.formUnion(people)
             }
         }
-        self.details = details
+        return (all, common)
     }
+    
     
     public func person(for row: Int) -> Relationship {
         return people[row]
