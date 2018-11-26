@@ -7,6 +7,14 @@ import CoreData
 import Actions
 
 open class ModelAction: Action {
+    open class func standardActions() -> [Action] {
+        var actions = [Action]()
+        actions.append(contentsOf: PersonAction.standardActions())
+        actions.append(contentsOf: BookAction.standardActions())
+        actions.append(ChangeValueAction(identifier: "ChangeValue"))
+        return actions
+    }
+    
     open override func validate(context: ActionContext) -> Bool {
         return (context[ActionContext.modelKey] as? NSManagedObjectContext) != nil
     }

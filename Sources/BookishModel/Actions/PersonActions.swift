@@ -58,7 +58,7 @@ open class PersonAction: ModelAction {
         return selection.count > 0
     }
     
-    open class func standardActions() -> [Action] {
+    open class override func standardActions() -> [Action] {
         return [
             NewPersonAction(identifier: "NewPerson"),
             AddRelationshipAction(identifier: "AddRelationship"),

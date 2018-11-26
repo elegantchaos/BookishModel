@@ -33,7 +33,7 @@ public protocol BookChangeObserver: ActionObserver {
 open class BookAction: ModelAction {
     public static let bookKey = "book"
 
-    open class func standardActions() -> [Action] {
+    open class override func standardActions() -> [Action] {
         return [
             NewBookAction(identifier: "NewBook"),
             DeleteBooksAction(identifier: "DeleteBooks"),
