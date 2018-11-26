@@ -12,15 +12,14 @@ public class DetailDataSource {
     static let dateColumnID = "date"
 
     public struct RowInfo {
-        public let identifier: String
+        public let kind: DetailSpec.Kind
         public let isPerson: Bool
     }
     
 
-    public var details: [DetailSpec] = []
-    public let template = DetailSpec.standardDetails
-    
-    public var people = [Relationship]()
+    private var details: [DetailSpec] = []
+    private let template = DetailSpec.standardDetails
+    private var people = [Relationship]()
     
     public init() {
         
@@ -30,20 +29,17 @@ public class DetailDataSource {
         return details.count + people.count
     }
     
-    public func info(for row: Int) -> RowInfo {
+    public func info(for row: Int, editing: Bool) -> (DetailSpec.Kind, Bool) {
         let peopleCount = people.count
         let isPerson = row < peopleCount
-        let viewID: String
+        var kind: DetailSpec.Kind
         if isPerson {
-            viewID = DetailDataSource.personColumnID
+            kind = editing ? .editablePerson : .person
         } else {
-            if details[row - peopleCount].kind == .date  {
-                viewID = DetailDataSource.dateColumnID
-            } else {
-                viewID = DetailDataSource.detailColumnID
-            }
+            let spec = details[row - peopleCount]
+            kind = editing ? spec.editableKind : spec.kind
         }
-        return RowInfo(identifier: viewID, isPerson: isPerson)
+        return (kind, isPerson)
     }
     
     public func details(for row: Int) -> DetailSpec {

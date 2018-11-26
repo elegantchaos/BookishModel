@@ -6,40 +6,44 @@
 import Foundation
 
 public final class DetailSpec {
-    public enum Kind {
+    public enum Kind: String {
+        case heading
         case text
         case date
+        case person
+        case editableDate
+        case editablePerson
     }
 
     public let binding: String
     public let label: String
     public let kind: Kind
-    public let editable: Bool
+    public let editableKind: Kind
     
-    public init(binding: String, label: String? = nil, kind: Kind = .text, editable: Bool = true) {
+    public init(binding: String, label: String? = nil, viewAs: Kind = .text, editAs: Kind? = .text) {
         self.binding = binding
-        self.label = label ?? binding
-        self.kind = kind
-        self.editable = editable
+        self.label = label ?? binding.capitalized
+        self.kind = viewAs
+        self.editableKind = editAs ?? viewAs
     }
     
     public class var standardDetails: [DetailSpec] {
         return [
-            DetailSpec(binding: "notes", label: "Notes"),
-            DetailSpec(binding: "format", label: "Format"),
+            DetailSpec(binding: "notes"),
+            DetailSpec(binding: "format"),
             DetailSpec(binding: "isbn10", label: "ISBN"),
             DetailSpec(binding: "isbn13", label: "ISBN"),
             DetailSpec(binding: "asin", label: "ASIN"),
             DetailSpec(binding: "ean", label: "EAN"),
-            DetailSpec(binding: "dewey", label: "Dewey"),
-            DetailSpec(binding: "published", label:  "Published", kind: .date),
-            DetailSpec(binding: "added", label: "Added", kind: .date, editable: false),
-            DetailSpec(binding: "modified", label: "Modified", kind: .date, editable: false),
-            DetailSpec(binding: "importDate", label:  "Imported", kind: .date),
+            DetailSpec(binding: "dewey"),
+            DetailSpec(binding: "published", viewAs: .date, editAs: .editableDate),
+            DetailSpec(binding: "added", viewAs: .date),
+            DetailSpec(binding: "modified", viewAs: .date),
+            DetailSpec(binding: "importDate", label:  "Imported", viewAs: .date),
             DetailSpec(binding: "width", label: "size (w)"),
             DetailSpec(binding: "length", label: "size (l)"),
             DetailSpec(binding: "height", label: "size (h)"),
-            DetailSpec(binding: "pages", label: "Pages"),
+            DetailSpec(binding: "pages"),
             DetailSpec(binding: "importRaw", label: "Raw (Debug)"),
         ]
     }
