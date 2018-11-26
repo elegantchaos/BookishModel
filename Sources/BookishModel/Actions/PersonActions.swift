@@ -76,7 +76,7 @@ open class PersonAction: ModelAction {
 
 class AddRelationshipAction: PersonAction {
     public override func validate(context: ActionContext) -> Bool {
-        guard let _ = context[PersonAction.relationshipKey] as? String else {
+        guard let _ = context[PersonAction.roleKey] as? String else {
             return false
         }
         
