@@ -17,7 +17,9 @@ public class DetailDataSource {
     }
     
 
-    public let details = DetailSpec.standardDetails
+    public var details: [DetailSpec] = []
+    public let template = DetailSpec.standardDetails
+    
     public var people = [Relationship]()
     
     public init() {
@@ -46,6 +48,23 @@ public class DetailDataSource {
     
     public func details(for row: Int) -> DetailSpec {
         return details[row - people.count]
+    }
+    
+    public func filterDetail(for selection: [NSObject]) {
+        var details = [DetailSpec]()
+        for detail in template {
+            var includeDetail = false
+            for item in selection {
+                if item.value(forKey: detail.binding) != nil {
+                    includeDetail = true
+                    break
+                }
+            }
+            if includeDetail {
+                details.append(detail)
+            }
+        }
+        self.details = details
     }
     
     public func person(for row: Int) -> Relationship {
