@@ -2,12 +2,12 @@
   "object": {
     "pins": [
       {
-        "package": "Actions",
-        "repositoryURL": "https://github.com/elegantchaos/Actions",
+        "package": "JSONDump",
+        "repositoryURL": "https://github.com/elegantchaos/JSONDump",
         "state": {
           "branch": null,
-          "revision": "8051b1b4622e51c5e3bbe36683b41d3e2d0fc272",
-          "version": "1.1.0"
+          "revision": "e508b81b9cd29daf90f0799a4e4263902dd98b2e",
+          "version": "1.0.2"
         }
       },
       {

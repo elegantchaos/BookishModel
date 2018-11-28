@@ -8,6 +8,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/elegantchaos/Logger", from: "1.0.11"),
         .package(url: "https://github.com/elegantchaos/Actions", from: "1.1.0"),
+        .package(url: "https://github.com/elegantchaos/JSONDump", from: "1.0.2"),
     ],
     targets: [
         .target(
@@ -15,7 +16,7 @@ let package = Package(
             dependencies: ["Logger", "Actions"]),
         .target(
             name: "BookishCore",
-            dependencies: ["Logger", "Actions", "ActionsKit"]),
+            dependencies: ["Logger", "Actions", "ActionsKit", "JSONDump"]),
         ],
     swiftLanguageVersions: [.v4_2]
 )
