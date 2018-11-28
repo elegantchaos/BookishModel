@@ -49,24 +49,24 @@ public class DetailDataSource {
     public func filter(for selection: [Book], editing: Bool) {
         let (_, common) = people(in: selection)
         people = common.sorted(by: { ($0.person?.name ?? "") < ($1.person?.name ?? "") })
-        if editing {
-            details = template
-        } else {
-            var details = [DetailSpec]()
-            for detail in template {
-                var includeDetail = false
+        var details = [DetailSpec]()
+        for detail in template {
+            var includeDetail = false
+            let kind = editing ? detail.editableKind : detail.kind
+            if kind != .hidden {
                 for item in selection {
-                    if item.value(forKey: detail.binding) != nil {
-                        includeDetail = true
+                    if let value = item.value(forKey: detail.binding) as? String {
+                        includeDetail = !value.isEmpty
                         break
                     }
                 }
-                if includeDetail {
-                    details.append(detail)
-                }
             }
-            self.details = details
+
+            if includeDetail {
+                details.append(detail)
+            }
         }
+        self.details = details
     }
     
     public func people(in selection: [Book]) -> (Set<Relationship>, Set<Relationship>) {

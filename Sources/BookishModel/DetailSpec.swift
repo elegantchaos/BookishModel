@@ -7,6 +7,7 @@ import Foundation
 
 public final class DetailSpec {
     public enum Kind: String {
+        case hidden
         case heading
         case text
         case date
@@ -32,18 +33,18 @@ public final class DetailSpec {
         return [
             DetailSpec(binding: "notes"),
             DetailSpec(binding: "format"),
-            DetailSpec(binding: "isbn10", label: "ISBN"),
-            DetailSpec(binding: "isbn13", label: "ISBN"),
-            DetailSpec(binding: "asin", label: "ASIN"),
-            DetailSpec(binding: "ean", label: "EAN"),
-            DetailSpec(binding: "dewey"),
+            DetailSpec(binding: "identifier", viewAs: .text, editAs: .hidden),
+            DetailSpec(binding: "isbn", label: "ISBN", viewAs: .hidden, editAs: .text),
+            DetailSpec(binding: "asin", label: "ASIN", viewAs: .hidden, editAs: .text),
+            DetailSpec(binding: "ean", label: "EAN", viewAs: .hidden, editAs: .text),
+            DetailSpec(binding: "classification"),
             DetailSpec(binding: "published", viewAs: .date, editAs: .editableDate),
             DetailSpec(binding: "added", viewAs: .date),
             DetailSpec(binding: "modified", viewAs: .date),
-            DetailSpec(binding: "importDate", label:  "Imported", viewAs: .date),
-            DetailSpec(binding: "dimensions", label: "size", viewAs: .text, editAs: .editableDimensions),
+            DetailSpec(binding: "importDate", label:  "Imported", viewAs: .date, editAs: .hidden),
+            DetailSpec(binding: "dimensions", viewAs: .text, editAs: .editableDimensions),
             DetailSpec(binding: "pages"),
-            DetailSpec(binding: "importRaw", label: "Raw (Debug)"),
+            DetailSpec(binding: "importRaw", label: "Raw (Debug)", viewAs: .hidden, editAs: .text),
         ]
     }
 }

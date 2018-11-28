@@ -44,7 +44,39 @@ public class Book: NSManagedObject {
         return result
     }
 
-    @objc public var dimensions: String {
+    @objc public var dimensions: String? {
+        guard width > 0 || height > 0 || length > 0 else {
+            return nil
+        }
+        
         return "\(width) x \(height) x \(length)"
+    }
+    
+    @objc public var identifier: String? {
+        var result = [String]()
+        var separateASIN = false
+        
+        if let isbn = isbn {
+            let tag: String
+            if let asin = asin, isbn == asin {
+                separateASIN = false
+                tag = "isbn/asin"
+            } else {
+                tag = "isbn"
+            }
+            if !isbn.isEmpty {
+                result.append("\(isbn) (\(tag))")
+            }
+        }
+        
+        if let ean = ean, !ean.isEmpty {
+            result.append("\(ean) (ean)")
+        }
+
+        if separateASIN, let asin = asin, !asin.isEmpty {
+            result.append("\(asin) (asin)")
+        }
+
+        return result.joined(separator: "\n")
     }
 }
