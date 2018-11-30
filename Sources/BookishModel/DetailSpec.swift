@@ -6,12 +6,14 @@
 import Foundation
 
 public final class DetailSpec {
+    
     public enum Kind: String {
         case hidden
         case heading
         case text
         case date
         case person
+        case publisher
         case editableDate
         case editablePerson
         case editableDimensions

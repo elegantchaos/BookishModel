@@ -6,49 +6,66 @@
 import Foundation
 
 public class DetailDataSource {
-    static let headingColumnID = "heading"
-    static let detailColumnID = "detail"
-    static let personColumnID = "person"
-    static let dateColumnID = "date"
+    public enum Category {
+        case detail
+        case person
+        case publisher
+    }
 
     public struct RowInfo {
         public let kind: DetailSpec.Kind
-        public let isPerson: Bool
+        public let category: Category
+        public let absolute: Int
+        public let index: Int
     }
     
 
     private var details: [DetailSpec] = []
     private let template = DetailSpec.standardDetails
     private var people = [Relationship]()
+    private var publishers = [Publisher]()
     
     public init() {
         
     }
     
     public var rows: Int {
-        return details.count + people.count
+        return details.count + people.count + publishers.count
     }
     
-    public func info(for row: Int, editing: Bool) -> (DetailSpec.Kind, Bool) {
+    public func info(for row: Int, editing: Bool) -> RowInfo {
+        let category: Category
+        let index: Int
         let peopleCount = people.count
-        let isPerson = row < peopleCount
         var kind: DetailSpec.Kind
-        if isPerson {
+        
+        if row < peopleCount {
+            category = .person
             kind = editing ? .editablePerson : .person
+            index = row
         } else {
-            let spec = details[row - peopleCount]
-            kind = editing ? spec.editableKind : spec.kind
+            let adjustedRow = row - peopleCount
+            let publisherCount = publishers.count
+            let isPublisher = adjustedRow < publisherCount
+            if isPublisher {
+                category = .publisher
+                kind = .publisher
+                index = adjustedRow
+            } else {
+                index = adjustedRow - publisherCount
+                let spec = details[index]
+                kind = editing ? spec.editableKind : spec.kind
+                category = .detail
+            }
         }
-        return (kind, isPerson)
-    }
-    
-    public func details(for row: Int) -> DetailSpec {
-        return details[row - people.count]
+        
+        return RowInfo(kind: kind, category: category, absolute: row, index: index)
     }
     
     public func filter(for selection: [Book], editing: Bool) {
         let (_, common) = people(in: selection)
         people = common.sorted(by: { ($0.person?.name ?? "") < ($1.person?.name ?? "") })
+        publishers = publishers(in: selection).sorted(by: { ($0.name ?? "") < ($1.name ?? "") })
         var details = [DetailSpec]()
         for detail in template {
             var includeDetail = false
@@ -84,12 +101,43 @@ public class DetailDataSource {
         }
         return (all, common)
     }
-    
-    
-    public func person(for row: Int) -> Relationship {
-        return people[row]
+
+    public func publishers(in selection: [Book]) -> Set<Publisher> {
+        var all = Set<Publisher>()
+        for book in selection {
+            if let publisher = book.publisher {
+                all.insert(publisher)
+            }
+        }
+        return all
     }
 
+    public func heading(for row: RowInfo) -> String {
+        switch row.category {
+        case .detail:
+            return details(for: row).label
+        case .person:
+            return person(for: row).role?.name ?? "<unknown role>"
+        case .publisher:
+            return "Publisher"
+        }
+    }
+    
+    public func person(for row: RowInfo) -> Relationship {
+        assert(row.category == .person)
+        return people[row.index]
+    }
+
+    public func publisher(for row: RowInfo) -> Publisher {
+        assert(row.category == .publisher)
+        return publishers[row.index]
+    }
+
+    public func details(for row: RowInfo) -> DetailSpec {
+        assert(row.category == .detail)
+        return details[row.index]
+    }
+    
     public func insert(relationship: Relationship) -> Int {
         let index = people.count
         people.append(relationship)

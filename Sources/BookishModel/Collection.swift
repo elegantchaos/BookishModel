@@ -39,6 +39,11 @@ public class Collection {
             illustrator.notes = "Another example person."
             let entry2 = illustrator.relationship(as: Role.Default.illustratorName)
             entry2.addToBooks(book)
+            
+            let publisher = Publisher(context: context)
+            publisher.name = "Publisher \(n)"
+            publisher.notes = "Some notes about the publisher"
+            publisher.addToBooks(book)
         }
     }
 }
