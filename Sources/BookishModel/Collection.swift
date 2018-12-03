@@ -23,9 +23,20 @@ public class Collection {
         book.name = "A Book"
         book.notes = "Some\nmulti\nline\nnotes."
         entry.addToBooks(book)
-        
+
+        let publisher = Publisher(context: context)
+        publisher.notes = "Some notes about the publisher"
+        publisher.addToBooks(book)
+
         sharedEditor.relationship(as: Role.Default.authorName).addToBooks(book)
         sharedEditor.relationship(as: Role.Default.illustratorName).addToBooks(book)
+
+        let sharedPublisher = Publisher(context: context)
+        sharedPublisher.name = "Publisher 2"
+        sharedPublisher.notes = "Some notes about the publisher"
+
+        let series = Series(context: context)
+        series.name = "Example Series"
         
         for n in 1...3 {
             let book = Book(context: context)
@@ -40,10 +51,8 @@ public class Collection {
             let entry2 = illustrator.relationship(as: Role.Default.illustratorName)
             entry2.addToBooks(book)
             
-            let publisher = Publisher(context: context)
-            publisher.name = "Publisher \(n)"
-            publisher.notes = "Some notes about the publisher"
-            publisher.addToBooks(book)
+            sharedPublisher.addToBooks(book)
+            series.addToBooks(book)
         }
     }
 }
