@@ -23,7 +23,12 @@
         <attribute name="width" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="publisher" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Publisher" inverseName="books" inverseEntity="Publisher" syncable="YES"/>
         <relationship name="relationships" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Relationship" inverseName="books" inverseEntity="Relationship" syncable="YES"/>
-        <relationship name="series" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Series" inverseName="books" inverseEntity="Series" syncable="YES"/>
+        <relationship name="series" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Entry" inverseName="book" inverseEntity="Entry" syncable="YES"/>
+    </entity>
+    <entity name="Entry" representedClassName=".Entry" syncable="YES" codeGenerationType="category">
+        <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="book" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="series" inverseEntity="Book" syncable="YES"/>
+        <relationship name="series" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Series" inverseName="entries" inverseEntity="Series" syncable="YES"/>
     </entity>
     <entity name="Group" representedClassName=".Group" parentEntity="Person" syncable="YES" codeGenerationType="category">
         <relationship name="members" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Person" inverseName="groups" inverseEntity="Person" syncable="YES"/>
@@ -52,7 +57,7 @@
     </entity>
     <entity name="Series" representedClassName=".Series" syncable="YES" codeGenerationType="category">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="books" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Book" inverseName="series" inverseEntity="Book" syncable="YES"/>
+        <relationship name="entries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Entry" inverseName="series" inverseEntity="Entry" syncable="YES"/>
     </entity>
     <elements>
         <element name="Book" positionX="-889.52734375" positionY="79.94140625" width="128" height="390"/>
@@ -62,5 +67,6 @@
         <element name="Relationship" positionX="-657" positionY="261" width="128" height="90"/>
         <element name="Role" positionX="-666" positionY="252" width="128" height="75"/>
         <element name="Series" positionX="-645.55859375" positionY="438.640625" width="128" height="75"/>
+        <element name="Entry" positionX="-684" positionY="234" width="128" height="90"/>
     </elements>
 </model>

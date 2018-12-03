@@ -52,7 +52,11 @@ public class Collection {
             entry2.addToBooks(book)
             
             sharedPublisher.addToBooks(book)
-            series.addToBooks(book)
+            
+            let entry = Entry(context: context)
+            entry.book = book
+            entry.index = Int16(n)
+            series.addToEntries(entry)
         }
     }
 }

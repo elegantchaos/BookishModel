@@ -9,9 +9,10 @@ import Actions
 open class ModelAction: Action {
     open class func standardActions() -> [Action] {
         var actions = [Action]()
+        actions.append(contentsOf: BookAction.standardActions())
         actions.append(contentsOf: PersonAction.standardActions())
         actions.append(contentsOf: PublisherAction.standardActions())
-        actions.append(contentsOf: BookAction.standardActions())
+        actions.append(contentsOf: SeriesAction.standardActions())
         actions.append(ChangeValueAction(identifier: "ChangeValue"))
         return actions
     }
