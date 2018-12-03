@@ -39,6 +39,7 @@
 		224293EF212AFAFB00E70510 /* CollectionContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224293EE212AFAFB00E70510 /* CollectionContainer.swift */; };
 		224293F0212AFAFB00E70510 /* CollectionContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224293EE212AFAFB00E70510 /* CollectionContainer.swift */; };
 		2250C6E321B1B14200E899E2 /* PublisherAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C6E221B1B14200E899E2 /* PublisherAction.swift */; };
+		2250C6FA21B5398D00E899E2 /* PublisherAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C6E221B1B14200E899E2 /* PublisherAction.swift */; };
 		226E8DB121A84031001F191F /* ModelAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226E8DB021A84031001F191F /* ModelAction.swift */; };
 		226E8DB221A84031001F191F /* ModelAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226E8DB021A84031001F191F /* ModelAction.swift */; };
 		226E8E7321AC50A6001F191F /* ChangeValueAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226E8E7221AC50A6001F191F /* ChangeValueAction.swift */; };
@@ -729,6 +730,7 @@
 				226E8E7421AC50A6001F191F /* ChangeValueAction.swift in Sources */,
 				226E8DB221A84031001F191F /* ModelAction.swift in Sources */,
 				224293D3212AE1E700E70510 /* BookishModel.swift in Sources */,
+				2250C6FA21B5398D00E899E2 /* PublisherAction.swift in Sources */,
 				224293EA212AF0D300E70510 /* Role.swift in Sources */,
 				22E47CC7216E31BA00E43DBF /* BookAction.swift in Sources */,
 				224293E4212AF09E00E70510 /* Person.swift in Sources */,
