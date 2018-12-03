@@ -10,6 +10,7 @@ public class DetailDataSource {
         case detail
         case person
         case publisher
+        case series
     }
 
     public struct RowInfo {
@@ -24,13 +25,14 @@ public class DetailDataSource {
     private let template = DetailSpec.standardDetails
     private var people = [Relationship]()
     private var publishers = [Publisher]()
-    
+    private var series = [Entry]()
+
     public init() {
         
     }
     
     public var rows: Int {
-        return details.count + people.count + publishers.count
+        return details.count + people.count + publishers.count + series.count
     }
     
     public func info(for row: Int, editing: Bool) -> RowInfo {
@@ -44,18 +46,27 @@ public class DetailDataSource {
             kind = editing ? .editablePerson : .person
             index = row
         } else {
-            let adjustedRow = row - peopleCount
+            let publisherRow = row - peopleCount
             let publisherCount = publishers.count
-            let isPublisher = adjustedRow < publisherCount
+            let isPublisher = publisherRow < publisherCount
             if isPublisher {
                 category = .publisher
                 kind = .publisher
-                index = adjustedRow
+                index = publisherRow
             } else {
-                index = adjustedRow - publisherCount
-                let spec = details[index]
-                kind = editing ? spec.editableKind : spec.kind
-                category = .detail
+                let seriesRow = publisherRow - publisherCount
+                let seriesCount = series.count
+                let isSeries = seriesRow < seriesCount
+                if isSeries {
+                    category = .series
+                    kind = .series
+                    index = seriesRow
+                } else {
+                    index = seriesRow - seriesCount
+                    let spec = details[index]
+                    kind = editing ? spec.editableKind : spec.kind
+                    category = .detail
+                }
             }
         }
         
@@ -66,6 +77,8 @@ public class DetailDataSource {
         let (_, common) = people(in: selection)
         people = common.sorted(by: { ($0.person?.name ?? "") < ($1.person?.name ?? "") })
         publishers = publishers(in: selection).sorted(by: { ($0.name ?? "") < ($1.name ?? "") })
+        series = series(in: selection).sorted(by: {($0.series?.name ?? "") < ($1.series?.name ?? "")})
+        
         var details = [DetailSpec]()
         for detail in template {
             var includeDetail = false
@@ -112,6 +125,16 @@ public class DetailDataSource {
         return all
     }
 
+    public func series(in selection: [Book]) -> Set<Entry> {
+        var all = Set<Entry>()
+        for book in selection {
+            if let entry = book.series {
+                all.insert(entry)
+            }
+        }
+        return all
+    }
+    
     public func heading(for row: RowInfo) -> String {
         switch row.category {
         case .detail:
@@ -120,6 +143,8 @@ public class DetailDataSource {
             return person(for: row).role?.name ?? "<unknown role>"
         case .publisher:
             return "Publisher"
+        case .series:
+            return "Series"
         }
     }
     
@@ -131,6 +156,11 @@ public class DetailDataSource {
     public func publisher(for row: RowInfo) -> Publisher {
         assert(row.category == .publisher)
         return publishers[row.index]
+    }
+
+    public func series(for row: RowInfo) -> Entry {
+        assert(row.category == .series)
+        return series[row.index]
     }
 
     public func details(for row: RowInfo) -> DetailSpec {
