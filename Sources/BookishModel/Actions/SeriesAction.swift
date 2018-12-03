@@ -177,20 +177,20 @@ class ChangeSeriesAction: SeriesAction {
     }
     
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
-        if let selection = context[ActionContext.selectionKey] as? [Book] {
-            var newSeries = context[SeriesAction.seriesKey] as? Series
-            if newSeries == nil, let newSeriesName = context[SeriesAction.newSeriesKey] as? String {
-                print("Made new Series \(newSeriesName)")
-                newSeries = Series(context: model)
-                newSeries?.name = newSeriesName
-            }
-            
-            if let newSeries = newSeries {
-                for book in selection {
-//                    newSeries.addToBooks(book)
-//                    print("series changed from \(book.series!.name!) to \(newSeries.name!)")
-                }
-            }
-        }
+//        if let selection = context[ActionContext.selectionKey] as? [Book] {
+//            var newSeries = context[SeriesAction.seriesKey] as? Series
+//            if newSeries == nil, let newSeriesName = context[SeriesAction.newSeriesKey] as? String {
+//                print("Made new Series \(newSeriesName)")
+//                newSeries = Series(context: model)
+//                newSeries?.name = newSeriesName
+//            }
+//
+////            if let newSeries = newSeries {
+////                for book in selection {
+//////                    newSeries.addToBooks(book)
+//////                    print("series changed from \(book.series!.name!) to \(newSeries.name!)")
+////                }
+////            }
+//        }
     }
 }
