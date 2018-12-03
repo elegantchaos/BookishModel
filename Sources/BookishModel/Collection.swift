@@ -37,6 +37,8 @@ public class Collection {
 
         let series = Series(context: context)
         series.name = "Example Series"
+        series.notes = "Some notes about the series"
+
         
         for n in 1...3 {
             let book = Book(context: context)

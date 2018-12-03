@@ -42,6 +42,8 @@
         <relationship name="relationships" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Relationship" inverseName="person" inverseEntity="Relationship" syncable="YES"/>
     </entity>
     <entity name="Publisher" representedClassName=".Publisher" syncable="YES" codeGenerationType="category">
+        <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="URI" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" defaultValueString="Untitled Publisher" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="books" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Book" inverseName="publisher" inverseEntity="Book" syncable="YES"/>
@@ -56,17 +58,20 @@
         <relationship name="relationships" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Relationship" inverseName="role" inverseEntity="Relationship" syncable="YES"/>
     </entity>
     <entity name="Series" representedClassName=".Series" syncable="YES" codeGenerationType="category">
+        <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="URI" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="entries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Entry" inverseName="series" inverseEntity="Entry" syncable="YES"/>
     </entity>
     <elements>
         <element name="Book" positionX="-889.52734375" positionY="79.94140625" width="128" height="390"/>
         <element name="Group" positionX="-334.8046875" positionY="457.80859375" width="128" height="60"/>
         <element name="Person" positionX="-341.4375" positionY="286.09375" width="128" height="135"/>
-        <element name="Publisher" positionX="-675" positionY="243" width="128" height="90"/>
+        <element name="Publisher" positionX="-675" positionY="243" width="128" height="120"/>
         <element name="Relationship" positionX="-657" positionY="261" width="128" height="90"/>
         <element name="Role" positionX="-666" positionY="252" width="128" height="75"/>
-        <element name="Series" positionX="-645.55859375" positionY="438.640625" width="128" height="75"/>
+        <element name="Series" positionX="-645.55859375" positionY="438.640625" width="128" height="120"/>
         <element name="Entry" positionX="-684" positionY="234" width="128" height="90"/>
     </elements>
 </model>
