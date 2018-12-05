@@ -30,7 +30,7 @@ open class ModelAction: Action {
         }
     }
     
-    public func perform(context: ActionContext, model: NSManagedObjectContext) {
+    open func perform(context: ActionContext, model: NSManagedObjectContext) {
         
     }
 }
