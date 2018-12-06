@@ -207,8 +207,8 @@
          children = (
             "OBJ_11"
          );
-         name = "BookishModelDependencies";
-         path = "Sources/BookishModelDependencies";
+         name = "BookishCore";
+         path = "Sources/BookishCore";
          sourceTree = "SOURCE_ROOT";
       };
       "OBJ_100" = {
@@ -308,7 +308,7 @@
       };
       "OBJ_107" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_11";
+         fileRef = "OBJ_13";
       };
       "OBJ_108" = {
          isa = "PBXFrameworksBuildPhase";
@@ -323,7 +323,7 @@
       };
       "OBJ_11" = {
          isa = "PBXFileReference";
-         path = "main.swift";
+         path = "BookishCore.swift";
          sourceTree = "<group>";
       };
       "OBJ_110" = {
@@ -407,8 +407,8 @@
          children = (
             "OBJ_13"
          );
-         name = "BookishCore";
-         path = "Sources/BookishCore";
+         name = "BookishModelDependencies";
+         path = "Sources/BookishModelDependencies";
          sourceTree = "SOURCE_ROOT";
       };
       "OBJ_120" = {
@@ -555,7 +555,7 @@
       };
       "OBJ_13" = {
          isa = "PBXFileReference";
-         path = "BookishCore.swift";
+         path = "main.swift";
          sourceTree = "<group>";
       };
       "OBJ_130" = {
@@ -1053,12 +1053,12 @@
       "OBJ_46" = {
          isa = "PBXGroup";
          children = (
-            "JSONDump::JSONDump::Product",
-            "Logger::Logger::Product",
-            "BookishModelDependencies::BookishModelDependencies::Product",
-            "Actions::Actions::Product",
             "Actions::ActionsKit::Product",
-            "BookishModelDependencies::BookishCore::Product"
+            "JSONDump::JSONDump::Product",
+            "BookishModelDependencies::BookishModelDependencies::Product",
+            "BookishModelDependencies::BookishCore::Product",
+            "Actions::Actions::Product",
+            "Logger::Logger::Product"
          );
          name = "Products";
          path = "";
@@ -1516,7 +1516,7 @@
       };
       "OBJ_91" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_13";
+         fileRef = "OBJ_11";
       };
       "OBJ_92" = {
          isa = "PBXFrameworksBuildPhase";

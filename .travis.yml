@@ -6,8 +6,13 @@ install:
 script:
 - Dependencies/Update.sh
 - swift build # not strictly necessary, but catches errors in the dependencies
-- set -o pipefail && xcodebuild -workspace BookishModel.xcworkspace -scheme BookishModelMac clean test  | xcpretty -f `xcpretty-travis-formatter`
-- set -o pipefail && xcodebuild -workspace BookishModel.xcworkspace -scheme BookishModelMobile -destination "name=iPhone 6" clean test | xcpretty -f `xcpretty-travis-formatter`
+- set -o pipefail && xcodebuild test -workspace BookishModel.xcworkspace -scheme BookishModelMac -enableCodeCoverage YES -resultBundlePath Mac.xcresult | xcpretty -f `xcpretty-travis-formatter`
+- echo "Mac coverage:"
+- swift run coverage Mac.xcresult BookishModel --showFiles
+- set -o pipefail && xcodebuild test -workspace BookishModel.xcworkspace -scheme BookishModelMobile -destination "name=iPhone 6" -enableCodeCoverage YES -resultBundlePath Mobile.xcresult | xcpretty -f `xcpretty-travis-formatter`
+- echo "Mobile coverage:"
+- swift run coverage Mobile.xcresult BookishModel --showFiles
+
 notifications:
   email: false
   slack:
