@@ -11,7 +11,7 @@ public class CollectionContainer: NSPersistentContainer {
         return super.defaultDirectoryURL().appendingPathComponent("BookishModel")
     }
     
-    public override init(name: String, managedObjectModel model: NSManagedObjectModel) {
-        super.init(name: name, managedObjectModel: model)
+    public init(name: String) {
+        super.init(name: name, managedObjectModel: BookishModel.loadModel())
     }
 }

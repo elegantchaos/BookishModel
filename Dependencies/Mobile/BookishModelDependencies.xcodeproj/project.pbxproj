@@ -1053,12 +1053,12 @@
       "OBJ_46" = {
          isa = "PBXGroup";
          children = (
+            "Actions::ActionsKit::Product",
             "JSONDump::JSONDump::Product",
             "Logger::Logger::Product",
-            "BookishModelDependencies::BookishModelDependencies::Product",
             "BookishModelDependencies::BookishCore::Product",
-            "Actions::Actions::Product",
-            "Actions::ActionsKit::Product"
+            "BookishModelDependencies::BookishModelDependencies::Product",
+            "Actions::Actions::Product"
          );
          name = "Products";
          path = "";
