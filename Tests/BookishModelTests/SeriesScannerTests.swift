@@ -38,4 +38,32 @@ class SeriesScannerTests: ModelTestCase {
         XCTAssertEqual(book.series?.index, 0)
 
     }
+
+    func test3() {
+        let book = scanBook(title: "Effendi: The Second Arabesk (Arabesk S.)")
+        XCTAssertEqual(book.name, "Effendi: The Second Arabesk")
+        XCTAssertEqual(book.series?.series?.name, "Arabesk")
+        XCTAssertEqual(book.series?.index, 0)
+        
+    }
+
+    func test4() {
+        let book = scanBook(title: "The Darkest Road (The Fionavar Tapestry)", subtitle: "Fionavar Tapestry")
+        XCTAssertEqual(book.name, "The Darkest Road")
+        XCTAssertEqual(book.series?.series?.name, "Fionavar Tapestry")
+        XCTAssertEqual(book.series?.index, 0)
+        
+    }
+
+    func test5() {
+        let book = scanBook(title: "Ancillary Justice", subtitle: "(Imperial Radch Book 1)")
+        XCTAssertEqual(book.name, "Ancillary Justice")
+        XCTAssertEqual(book.series?.series?.name, "Imperial Radch")
+        XCTAssertEqual(book.series?.index, 1)
+        
+    }
+    
+    
 }
+
+
