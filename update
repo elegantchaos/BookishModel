@@ -2,8 +2,8 @@ echo Updating packages
 xcrun swift package resolve
 
 echo Generating Xcode Projects
-xcrun swift package generate-xcodeproj --output "Dependencies/Mac" --enable-code-coverage --xcconfig-overrides "Configs/BookishModelMac.xcconfig"
-xcrun swift package generate-xcodeproj --output "Dependencies/Mobile" --enable-code-coverage --xcconfig-overrides "Configs/BookishModelMobile.xcconfig"
+xcrun swift package generate-xcodeproj --output "Dependencies/Mac" --xcconfig-overrides "Configs/BookishModelMac.xcconfig"
+xcrun swift package generate-xcodeproj --output "Dependencies/Mobile" --xcconfig-overrides "Configs/BookishModelMobile.xcconfig"
 
 pushd Dependencies/Mac
 ln -sf BookishModelDependencies.xcodeproj BookishModelDependenciesMac.xcodeproj
