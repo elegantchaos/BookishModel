@@ -4,7 +4,7 @@ language: swift
 install:
 - sudo gem install xcpretty-travis-formatter
 script:
-- Dependencies/Update.sh
+- .bin/update
 - swift build # not strictly necessary, but catches errors in the dependencies
 - set -o pipefail && xcodebuild test -workspace BookishModel.xcworkspace -scheme BookishModelMac -enableCodeCoverage YES -resultBundlePath Mac.xcresult | xcpretty -f `xcpretty-travis-formatter`
 - echo "Mac coverage:"
