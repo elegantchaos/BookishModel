@@ -218,7 +218,7 @@
 		2250C75F21B94E0C00E899E2 /* SeriesScannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesScannerTests.swift; sourceTree = "<group>"; };
 		226E8DB021A84031001F191F /* ModelAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelAction.swift; sourceTree = "<group>"; };
 		226E8E7221AC50A6001F191F /* ChangeValueAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeValueAction.swift; sourceTree = "<group>"; };
-		2296036A214187570020B3EB /* Update.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = Update.sh; sourceTree = "<group>"; };
+		2296036A214187570020B3EB /* update */ = {isa = PBXFileReference; lastKnownFileType = text; path = update; sourceTree = "<group>"; };
 		22A1A8BF21A5C24800F2332B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		22A1A8D621A5C4E300F2332B /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = SOURCE_ROOT; };
 		22DAF394217B34FC003CE28B /* DetailDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDataSource.swift; sourceTree = "<group>"; };
@@ -352,6 +352,7 @@
 			isa = PBXGroup;
 			children = (
 				22A1A8D621A5C4E300F2332B /* .travis.yml */,
+				2296036A214187570020B3EB /* update */,
 				22A1A8BF21A5C24800F2332B /* README.md */,
 				22F1179A21A5A4C900AE3FBB /* Package.resolved */,
 				22F1179E21A5A4C900AE3FBB /* Package.swift */,
@@ -423,7 +424,6 @@
 			children = (
 				22F1182221A5C15D00AE3FBB /* BookishModelDependenciesMac.xcodeproj */,
 				22F1180D21A5C13700AE3FBB /* BookishModelDependenciesMobile.xcodeproj */,
-				2296036A214187570020B3EB /* Update.sh */,
 			);
 			path = Dependencies;
 			sourceTree = "<group>";

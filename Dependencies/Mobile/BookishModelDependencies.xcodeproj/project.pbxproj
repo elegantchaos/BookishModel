@@ -661,23 +661,23 @@
       };
       "OBJ_135" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_38";
+         fileRef = "OBJ_37";
       };
       "OBJ_136" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_39";
+         fileRef = "OBJ_38";
       };
       "OBJ_137" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_40";
+         fileRef = "OBJ_39";
       };
       "OBJ_138" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_41";
+         fileRef = "OBJ_40";
       };
       "OBJ_139" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_42";
+         fileRef = "OBJ_41";
       };
       "OBJ_14" = {
          isa = "PBXGroup";
@@ -689,11 +689,11 @@
       };
       "OBJ_140" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_43";
+         fileRef = "OBJ_42";
       };
       "OBJ_141" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_44";
+         fileRef = "OBJ_43";
       };
       "OBJ_142" = {
          isa = "PBXFrameworksBuildPhase";
@@ -946,7 +946,7 @@
          isa = "PBXGroup";
          children = (
             "OBJ_36",
-            "OBJ_37",
+            "OBJ_44",
             "OBJ_45"
          );
          name = "Logger 1.0.11";
@@ -956,34 +956,31 @@
       "OBJ_36" = {
          isa = "PBXGroup";
          children = (
-         );
-         name = "Example";
-         path = ".build/checkouts/Logger-163420cc/Sources/Example";
-         sourceTree = "SOURCE_ROOT";
-      };
-      "OBJ_37" = {
-         isa = "PBXGroup";
-         children = (
+            "OBJ_37",
             "OBJ_38",
             "OBJ_39",
             "OBJ_40",
             "OBJ_41",
             "OBJ_42",
-            "OBJ_43",
-            "OBJ_44"
+            "OBJ_43"
          );
          name = "Logger";
          path = ".build/checkouts/Logger-163420cc/Sources/Logger";
          sourceTree = "SOURCE_ROOT";
       };
-      "OBJ_38" = {
+      "OBJ_37" = {
          isa = "PBXFileReference";
          path = "Context.swift";
          sourceTree = "<group>";
       };
-      "OBJ_39" = {
+      "OBJ_38" = {
          isa = "PBXFileReference";
          path = "Handler.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_39" = {
+         isa = "PBXFileReference";
+         path = "Logger.swift";
          sourceTree = "<group>";
       };
       "OBJ_4" = {
@@ -1020,28 +1017,31 @@
       };
       "OBJ_40" = {
          isa = "PBXFileReference";
-         path = "Logger.swift";
+         path = "Manager.swift";
          sourceTree = "<group>";
       };
       "OBJ_41" = {
          isa = "PBXFileReference";
-         path = "Manager.swift";
+         path = "NSLogHandler.swift";
          sourceTree = "<group>";
       };
       "OBJ_42" = {
          isa = "PBXFileReference";
-         path = "NSLogHandler.swift";
+         path = "OSLogHandler.swift";
          sourceTree = "<group>";
       };
       "OBJ_43" = {
          isa = "PBXFileReference";
-         path = "OSLogHandler.swift";
+         path = "PrintHandler.swift";
          sourceTree = "<group>";
       };
       "OBJ_44" = {
-         isa = "PBXFileReference";
-         path = "PrintHandler.swift";
-         sourceTree = "<group>";
+         isa = "PBXGroup";
+         children = (
+         );
+         name = "Example";
+         path = ".build/checkouts/Logger-163420cc/Sources/Example";
+         sourceTree = "SOURCE_ROOT";
       };
       "OBJ_45" = {
          isa = "PBXFileReference";
@@ -1053,12 +1053,12 @@
       "OBJ_46" = {
          isa = "PBXGroup";
          children = (
+            "Actions::ActionsKit::Product",
+            "BookishModelDependencies::BookishCore::Product",
+            "Actions::Actions::Product",
             "Logger::Logger::Product",
             "JSONDump::JSONDump::Product",
-            "BookishModelDependencies::BookishCore::Product",
-            "BookishModelDependencies::BookishModelDependencies::Product",
-            "Actions::Actions::Product",
-            "Actions::ActionsKit::Product"
+            "BookishModelDependencies::BookishModelDependencies::Product"
          );
          name = "Products";
          path = "";
