@@ -82,7 +82,14 @@ class SeriesScannerTests: ModelTestCase {
         XCTAssertEqual(book.name, "Beneath the Tree of Heaven")
         XCTAssertEqual(book.series?.series?.name, "Chung Kuo")
         XCTAssertEqual(book.series?.index, 5)
-        
+    }
+
+    func test8() {
+        // name and book, series in brackets with "S." at the end
+        let book = scanBook(title: "Name Book 2 (Series S.)")
+        XCTAssertEqual(book.name, "Name")
+        XCTAssertEqual(book.series?.series?.name, "Series")
+        XCTAssertEqual(book.series?.index, 2)
     }
 }
 
