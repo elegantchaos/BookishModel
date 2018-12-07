@@ -28,10 +28,7 @@ public class Person: NSManagedObject {
         */
     
     public func relationship(as roleName: String) -> Relationship {
-        guard let context = self.managedObjectContext else {
-            fatalError("context not set")
-        }
-        
+        let context = self.managedObjectContext!
         let role = Role.role(named: roleName, context: context)
         
         let request: NSFetchRequest<Relationship> = Relationship.fetchRequest()

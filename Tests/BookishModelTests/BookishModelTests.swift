@@ -32,7 +32,24 @@ class BookishModelTests: ModelTestCase {
             fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
         }
     }
+    
+    func testPersonNamedExists() {
+        let container = makeTestContainer()
+        let context = container.viewContext
+        let person = Person(context: context)
+        person.name = "Test"
         
+        let person2 = Person.person(named: "Test", context: context)
+        XCTAssertTrue(person === person2)
+    }
+
+    func testPersonNamedDoesntExist() {
+        let container = makeTestContainer()
+        let context = container.viewContext
+        let person = Person.person(named: "Test", context: context)
+        XCTAssertNil(person)
+    }
+
     func testUniqueRelationships() {
         let container = makeTestContainer()
         let context = container.viewContext
