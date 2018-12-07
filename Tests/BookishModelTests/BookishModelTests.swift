@@ -32,16 +32,7 @@ class BookishModelTests: ModelTestCase {
             fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
         }
     }
-    
-    func testUniqueRoles() {
-        let container = makeTestContainer()
-        let context = container.viewContext
-        let role1 = Role.role(named: "author", context: context)
-        XCTAssertEqual(role1.name, "author")
-        let role2 = Role.role(named: "author", context: context)
-        XCTAssertTrue(role1 === role2)
-    }
-    
+        
     func testUniqueRelationships() {
         let container = makeTestContainer()
         let context = container.viewContext
