@@ -61,7 +61,7 @@ open class SeriesAction: ModelAction {
             NewSeriesAction(identifier: "NewSeries"),
             AddSeriesAction(identifier: "AddSeries"),
             RemoveSeriesAction(identifier: "RemoveSeries"),
-            DeletePeopleAction(identifier: "DeleteSeries"),
+            DeleteSeriesAction(identifier: "DeleteSeries"),
             RevealSeriesAction(identifier: "RevealSeries"),
             ChangeSeriesAction(identifier: "ChangeSeries")
         ]

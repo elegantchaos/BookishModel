@@ -61,7 +61,7 @@ open class PublisherAction: ModelAction {
             NewPublisherAction(identifier: "NewPublisher"),
             AddPublisherAction(identifier: "AddPublisher"),
             RemovePublisherAction(identifier: "RemovePublisher"),
-            DeletePeopleAction(identifier: "DeletePublisher"),
+            DeletePublisherAction(identifier: "DeletePublisher"),
             RevealPublisherAction(identifier: "RevealPublisher"),
             ChangePublisherAction(identifier: "ChangePublisher")
         ]
