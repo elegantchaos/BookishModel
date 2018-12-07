@@ -24,6 +24,35 @@ class SeriesScannerTests: ModelTestCase {
         return book
     }
     
+    func testCoverage() {
+        let _ = SeriesDetector().detect(name: "", subtitle: "")
+    }
+    
+    func testNoMatch() {
+        // name, series and book all in the title
+        let book = scanBook(title: "Nothing To Match Here (Oh No)")
+        XCTAssertEqual(book.name, "Nothing To Match Here (Oh No)")
+        XCTAssertNil(book.subtitle)
+        XCTAssertNil(book.series)
+    }
+
+    func testExistingSeries() {
+        // name, series and book all in the title
+        let container = makeTestContainer()
+        let context = container.viewContext
+
+        let series = Series(context: context)
+        series.name = "Test Series"
+        let book = Book(context: context)
+        book.name = "Test Series: Test Book No. 2"
+        
+        let scanner = SeriesScanner(context: context)
+        scanner.run()
+        XCTAssertEqual(book.name, "Test Book")
+        XCTAssertEqual(book.series?.series, series)
+        XCTAssertEqual(book.series?.index, 2)
+    }
+
     func test1() {
         // name, series and book all in the title
         let book = scanBook(title: "The Amtrak Wars: Cloud Warrior Bk. 1")
@@ -56,7 +85,11 @@ class SeriesScannerTests: ModelTestCase {
         XCTAssertEqual(book.name, "The Darkest Road")
         XCTAssertEqual(book.series?.series?.name, "Fionavar Tapestry")
         XCTAssertEqual(book.series?.index, 0)
-        
+
+        let book2 = scanBook(title: "The Darkest Road (Fionavar Tapestry)", subtitle: "The Fionavar Tapestry")
+        XCTAssertEqual(book2.name, "The Darkest Road")
+        XCTAssertEqual(book2.series?.series?.name, "Fionavar Tapestry")
+        XCTAssertEqual(book2.series?.index, 0)
     }
 
     func test5() {
@@ -74,6 +107,11 @@ class SeriesScannerTests: ModelTestCase {
         XCTAssertEqual(book.name, "The Colour of Magic")
         XCTAssertEqual(book.series?.series?.name, "Discworld Novel")
         XCTAssertEqual(book.series?.index, 0)
+
+        let book2 = scanBook(title: "The Colour of Magic (Discworld Novel)", subtitle: "A Discworld Novel")
+        XCTAssertEqual(book2.name, "The Colour of Magic")
+        XCTAssertEqual(book2.series?.series?.name, "Discworld Novel")
+        XCTAssertEqual(book2.series?.index, 0)
     }
 
     func test7() {
@@ -91,6 +129,17 @@ class SeriesScannerTests: ModelTestCase {
         XCTAssertEqual(book.series?.series?.name, "Series")
         XCTAssertEqual(book.series?.index, 2)
     }
+
+    func test9() {
+        // series in brackets with "S." at the end, also set as the subtitle
+        let book = scanBook(title: "Effendi: The Second Arabesk (Arabesk S.)", subtitle: "Arabesk")
+        XCTAssertEqual(book.name, "Effendi: The Second Arabesk")
+        XCTAssertEqual(book.subtitle, "")
+        XCTAssertEqual(book.series?.series?.name, "Arabesk")
+        XCTAssertEqual(book.series?.index, 0)
+        
+    }
+
 }
 
 

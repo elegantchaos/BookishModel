@@ -8,7 +8,7 @@ import XCTest
 
 class RegularExpressionTests: XCTestCase {
     
-    func testExpression() {
+    func testReturnedResults() {
         struct Result: RegularExpressionResult {
             var first = ""
             var last = ""
@@ -24,7 +24,7 @@ class RegularExpressionTests: XCTestCase {
         }
     }
 
-    func testExpression2() {
+    func testPassedInResults() {
         class Result {
             var first = ""
             var last = ""
@@ -38,5 +38,17 @@ class RegularExpressionTests: XCTestCase {
             XCTAssertEqual(result.last, "Deane")
             XCTAssertEqual(result.number, 123)
         }
+    }
+
+    func testPassedInResultsNoMatch() {
+        class Result {
+            var first = ""
+            var last = ""
+            var number = 0
+        }
+        
+        let pattern = try! NSRegularExpression(pattern: "(\\w+) (.*) (\\w+)", options: [])
+        var result = Result()
+        XCTAssertFalse(pattern.firstMatch(of: "Wrong", capturing: [\Result.first: 1, \Result.last: 3, \Result.number: 2], into: &result))
     }
 }

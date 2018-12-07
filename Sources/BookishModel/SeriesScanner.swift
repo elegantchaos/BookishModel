@@ -64,7 +64,7 @@ class SeriesDetector {
 }
 
 class SeriesBracketsSBookDetector: SeriesDetector {
-    let pattern = try! NSRegularExpression(pattern: "(.*) \\((.*)S[.]{0,1}\\)")
+    let pattern = try! NSRegularExpression(pattern: "(.*) \\((.*) S[.]{0,1}\\)")
     
     override func detect(name: String, subtitle: String) -> Result? {
         if let match = pattern.firstMatch(of: name, capturing: [\Captured.name: 1, \Captured.series: 2]) {
@@ -145,9 +145,6 @@ class SeriesScanner {
     typealias Record = [String:Any]
     typealias RecordList = [Record]
     
-    
-    var cachedPeople: [String:Person] = [:]
-    var cachedPublishers: [String:Publisher] = [:]
     var cachedSeries: [String:Series] = [:]
     
     let context: NSManagedObjectContext
@@ -170,13 +167,6 @@ class SeriesScanner {
         for series in everySeries {
             if let name = series.name {
                 cachedSeries[name] = series
-            }
-        }
-        
-        let everyPublisher: [Publisher] = context.everyEntity()
-        for publisher in everyPublisher {
-            if let name = publisher.name {
-                cachedPublishers[name] = publisher
             }
         }
     }
