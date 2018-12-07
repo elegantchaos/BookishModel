@@ -17,10 +17,10 @@ class RegularExpressionTests: XCTestCase {
         
         let pattern = try! NSRegularExpression(pattern: "(\\w+) (.*) (\\w+)", options: [])
         
-        let mapping = [\Result.first: 1, \Result.last: 3, \Result.number: 2]
-        if let match: Result = pattern.firstMatch2(of: "Sam 123 Deane", mappings: mapping) {
+        if let match: Result = pattern.firstMatch(of: "Sam 123 Deane", capturing: [\Result.first: 1, \Result.last: 3, \Result.number: 2]) {
             XCTAssertEqual(match.first, "Sam")
             XCTAssertEqual(match.last, "Deane")
+            XCTAssertEqual(match.number, 123)
         }
     }
 
@@ -33,8 +33,7 @@ class RegularExpressionTests: XCTestCase {
         
         let pattern = try! NSRegularExpression(pattern: "(\\w+) (.*) (\\w+)", options: [])
         var result = Result()
-        let mapping = [\Result.first: 1, \Result.last: 3, \Result.number: 2]
-        if pattern.firstMatch2(of: "Sam 123 Deane", mappings: mapping, capture: &result) {
+        if pattern.firstMatch(of: "Sam 123 Deane", capturing: [\Result.first: 1, \Result.last: 3, \Result.number: 2], into: &result) {
             XCTAssertEqual(result.first, "Sam")
             XCTAssertEqual(result.last, "Deane")
             XCTAssertEqual(result.number, 123)
