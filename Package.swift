@@ -9,7 +9,7 @@ let package = Package(
         .package(url: "https://github.com/elegantchaos/Logger", from: "1.0.11"),
         .package(url: "https://github.com/elegantchaos/Actions", from: "1.1.0"),
         .package(url: "https://github.com/elegantchaos/JSONDump", from: "1.0.2"),
-        .package(url: "https://github.com/elegantchaos/Coverage", from: "1.0.0"),
+        .package(url: "https://github.com/elegantchaos/Coverage", from: "1.0.1"),
     ],
     targets: [
         .target(
