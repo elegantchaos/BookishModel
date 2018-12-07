@@ -5,8 +5,7 @@
 
 import Foundation
 
-protocol ResultStructure {
-    static func make() -> ResultStructure
+protocol RegularExpressionResult: ExpressibleByNilLiteral {
 }
 
 extension NSRegularExpression {
@@ -25,10 +24,10 @@ extension NSRegularExpression {
         return nil
     }
 
-    func firstMatchX<T: ResultStructure>(of string: String, mappings: [ReferenceWritableKeyPath<T,String>:Int]) -> T? {
+    func firstMatch<T: RegularExpressionResult>(of string: String, mappings: [WritableKeyPath<T,String>:Int]) -> T? {
         let range = NSRange(location: 0, length: string.count)
         if let match = firstMatch(in: string, options: [], range: range) {
-            let extracted = T.make() as! T
+            var extracted : T = nil
             for mapping in mappings {
                 if let range = Range(match.range(at: mapping.value), in: string) {
                     extracted[keyPath: mapping.key] = String(string[range])
@@ -38,6 +37,20 @@ extension NSRegularExpression {
         }
         
         return nil
+    }
+
+    func firstMatch2<T>(of string: String, mappings: [ReferenceWritableKeyPath<T,String>:Int], capture: inout T) -> Bool {
+        let range = NSRange(location: 0, length: string.count)
+        if let match = firstMatch(in: string, options: [], range: range) {
+            for mapping in mappings {
+                if let range = Range(match.range(at: mapping.value), in: string) {
+                    capture[keyPath: mapping.key] = String(string[range])
+                }
+            }
+            return true
+        }
+        
+        return false
     }
 
 }
