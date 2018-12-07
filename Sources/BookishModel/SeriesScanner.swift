@@ -17,20 +17,20 @@ class SeriesDetector {
         let subtitle: String
         let series: String
         let index: Int
+        
     }
+
+    internal struct Captured: RegularExpressionResult {
+        var name = ""
+        var subtitle = ""
+        var series = ""
+        var rest = ""
+        var index = 0
+    }
+    
     
     func detect(name: String, subtitle: String) -> Result? {
         return nil
-    }
-    
-    func extract(_ from: NSTextCheckingResult, string: String, matches: [String:Int]) -> [String:String] {
-        var extracted: [String:String] = [:]
-        for match in matches {
-            if let range = Range(from.range(at: match.value), in: string) {
-                extracted[match.key] = String(string[range])
-            }
-        }
-        return extracted
     }
     
     func matchWithArticles(_ s1: String, _ s2: String) -> String? {
@@ -67,10 +67,10 @@ class SeriesBracketsSBookDetector: SeriesDetector {
     let pattern = try! NSRegularExpression(pattern: "(.*) \\((.*)S[.]{0,1}\\)")
     
     override func detect(name: String, subtitle: String) -> Result? {
-        if let extracted = pattern.firstMatch(of: name, mappings: ["name": 1, "series": 2]) {
-            if let matchedSeries = extracted["series"], let matchedName = extracted["name"], !matchedSeries.isEmpty && !name.isEmpty {
-                let matchedSubtitle = subtitle.contains(matchedSeries) ? "" : subtitle
-                return Result(name: matchedName, subtitle: matchedSubtitle, series: matchedSeries, index: 0)
+        if let match = pattern.firstMatch(of: name, capturing: [\Captured.name: 1, \Captured.series: 2]) {
+            if !match.series.isEmpty && !name.isEmpty {
+                let matchedSubtitle = subtitle.contains(match.series) ? "" : subtitle
+                return Result(name: match.name, subtitle: matchedSubtitle, series: match.series, index: 0)
             }
         }
         
@@ -82,11 +82,9 @@ class SeriesBracketsBookDetector: SeriesDetector {
     let pattern = try! NSRegularExpression(pattern: "(.*) \\((.*)\\)$")
     
     override func detect(name: String, subtitle: String) -> Result? {
-        if let extracted = pattern.firstMatch(of: name, mappings: ["name": 1, "series": 2]) {
-            if let matchedSeries = extracted["series"], let matchedName = extracted["name"] {
-                if let series = matchWithArticles(subtitle, matchedSeries) {
-                    return Result(name: matchedName, subtitle: "", series: series, index: 0)
-                }
+        if let match = pattern.firstMatch(of: name, capturing: [\Captured.name: 1, \Captured.series: 2]) {
+            if let series = matchWithArticles(subtitle, match.series) {
+                return Result(name: match.name, subtitle: "", series: series, index: 0)
             }
         }
         return nil
@@ -97,13 +95,10 @@ class SeriesNameBookDetector: SeriesDetector {
     let pattern = try! NSRegularExpression(pattern: "(.*?)\\:+ (.*?)\\:{0,1} \(SeriesDetector.bookPattern)(\\d+)(.*)")
     
     override func detect(name: String, subtitle: String) -> Result? {
-        if let extracted = pattern.firstMatch(of: name, mappings: ["series": 1, "name": 2, "index": 4, "remainder": 5]) {
-            if let matchedSeries = extracted["series"], let matchedName = extracted["name"], let matchedIndex = extracted["index"], let remainder = extracted["remainder"] {
-                if !matchedSeries.isEmpty && !name.isEmpty {
-                    let matchedSubtitle = subtitle.contains(matchedSeries) ? "" : subtitle
-                    let index = (matchedIndex as NSString).integerValue
-                    return Result(name: matchedName + remainder, subtitle: matchedSubtitle, series: matchedSeries, index: index)
-                }
+        if let match = pattern.firstMatch(of: name, capturing: [\Captured.series: 1, \Captured.name: 2, \Captured.index: 4, \Captured.rest: 5]) {
+            if !match.series.isEmpty && !name.isEmpty {
+                let matchedSubtitle = subtitle.contains(match.series) ? "" : subtitle
+                return Result(name: match.name + match.rest, subtitle: matchedSubtitle, series: match.series, index: match.index)
             }
         }
         
@@ -115,13 +110,10 @@ class NameBookSeriesBracketsSDetector: SeriesDetector {
     let pattern = try! NSRegularExpression(pattern: "(.*?)\\:{0,1} \(SeriesDetector.bookPattern)(\\d+) \\((.*) S.\\)")
     
     override func detect(name: String, subtitle: String) -> Result? {
-        if let extracted = pattern.firstMatch(of: name, mappings: ["series": 4, "name": 1, "index": 3]) {
-            if let matchedSeries = extracted["series"], let matchedName = extracted["name"], let matchedIndex = extracted["index"] {
-                if !matchedSeries.isEmpty && !name.isEmpty {
-                    let matchedSubtitle = subtitle.contains(matchedSeries) ? "" : subtitle
-                    let index = (matchedIndex as NSString).integerValue
-                    return Result(name: matchedName, subtitle: matchedSubtitle, series: matchedSeries, index: index)
-                }
+        if let match = pattern.firstMatch(of: name, capturing: [\Captured.series: 4, \Captured.name: 1, \Captured.index: 3]) {
+            if !match.series.isEmpty && !name.isEmpty {
+                let matchedSubtitle = subtitle.contains(match.series) ? "" : subtitle
+                return Result(name: match.name, subtitle: matchedSubtitle, series: match.series, index: match.index)
             }
         }
         
@@ -131,15 +123,13 @@ class NameBookSeriesBracketsSDetector: SeriesDetector {
 
 class SubtitleBookDetector: SeriesDetector {
     var pattern: NSRegularExpression { return try! NSRegularExpression(pattern: "(.*?)[:, ]+\(SeriesDetector.bookPattern)(\\d+)(.*)") }
-    
+
     override func detect(name: String, subtitle: String) -> Result? {
-        if let extracted = pattern.firstMatch(of: subtitle, mappings: ["series": 1, "index": 3, "remainder": 4]) {
-            if let matchedSeries = extracted["series"], let remainder = extracted["remainder"], let matchedIndex = extracted["index"] {
-                if !matchedSeries.isEmpty {
-                    let series = matchedSeries + remainder
-                    let index = (matchedIndex as NSString).integerValue
-                    return Result(name: name, subtitle: "", series: series, index: index)
-                }
+        let mapping = [\Captured.series: 1, \Captured.index: 3, \Captured.rest: 4]
+        if let match = pattern.firstMatch(of: subtitle, capturing: mapping) {
+            if !match.series.isEmpty {
+                let series = match.series + match.rest
+                return Result(name: name, subtitle: "", series: series, index: match.index)
             }
         }
         
@@ -233,46 +223,5 @@ class SeriesScanner {
             }
         }
     }
-    
-    private func extractIndex(from series: String, book: Book) -> (String, Int) {
-        if let (extractedSeries, index) = extractIndex(from: series) {
-            seriesDetectorChannel.log("extracted index \(index) from series \(series) leaving \(extractedSeries)")
-            return (extractedSeries, index)
-        }
-        
-        if let name = book.name {
-            if let (extractedName, index) = extractIndex(from: name) {
-                book.name = extractedName
-                seriesDetectorChannel.log("extracted index \(index) from name \(name) leaving \(extractedName)")
-                return (extractedName, index)
-            }
-        }
-        
-        if let subtitle = book.subtitle {
-            if let (extractedSubtitle, index) = extractIndex(from: subtitle) {
-                book.subtitle = extractedSubtitle
-                seriesDetectorChannel.log("extracted index \(index) from subtitle \(subtitle) leaving \(extractedSubtitle)")
-                return (extractedSubtitle, index)
-            }
-        }
-        
-        return (series, 0)
-    }
-    
-    private func extractIndex(from string: String) -> (String, Int)? {
-        for pattern in bookIndexPatterns {
-            for match in pattern.matches(in: string, options: [], range: NSRange(location: 0, length: string.count)) {
-                if let seriesRange = Range(match.range(at: 1), in: string), let indexRange = Range(match.range(at: 2), in: string) {
-                    let adjustedSeries = String(string[seriesRange])
-                    let index = (String(string[indexRange]) as NSString).integerValue
-                    return (adjustedSeries, index)
-                }
-            }
-        }
-        
-        return nil
-    }
-    
-    
 }
 
