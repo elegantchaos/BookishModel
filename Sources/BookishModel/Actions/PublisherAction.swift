@@ -31,7 +31,7 @@ public protocol PublisherChangeObserver: ActionObserver {
  of people should implement this protocol.
  */
 
-public protocol PublisherConstructionObserver: ActionObserver {
+public protocol PublisherLifecycleObserver: ActionObserver {
     func created(publisher: Publisher)
     func deleted(publisher: Publisher)
 }
@@ -49,7 +49,7 @@ open class PublisherAction: ModelAction {
             return false
         }
         
-        guard let selection = context[ActionContext.selectionKey] as? [Book] else {
+        guard let selection = context[ActionContext.selectionKey] as? [Publisher] else {
             return false
         }
         
@@ -59,8 +59,6 @@ open class PublisherAction: ModelAction {
     open class override func standardActions() -> [Action] {
         return [
             NewPublisherAction(identifier: "NewPublisher"),
-            AddPublisherAction(identifier: "AddPublisher"),
-            RemovePublisherAction(identifier: "RemovePublisher"),
             DeletePublisherAction(identifier: "DeletePublisher"),
             RevealPublisherAction(identifier: "RevealPublisher"),
             ChangePublisherAction(identifier: "ChangePublisher")
@@ -68,59 +66,20 @@ open class PublisherAction: ModelAction {
     }
 }
 
-/**
- Action that adds a relationship between a book and a newly created Publisher.
- */
 
-class AddPublisherAction: PublisherAction {
-    override func perform(context: ActionContext, model: NSManagedObjectContext) {
-        if
-            let selection = context[ActionContext.selectionKey] as? [Book] {
-            let publisher = Publisher(context: model)
-            for book in selection {
-                publisher.addToBooks(book)
-            }
-            
-            context.info.forObservers { (observer: PublisherChangeObserver) in
-                observer.added(publisher: publisher)
-            }
-        }
-    }
-}
-
-/**
- Action that removes a relationship from a book.
- */
-
-class RemovePublisherAction: PublisherAction {
-    public override func validate(context: ActionContext) -> Bool {
-        return (context[PublisherAction.publisherKey] as? Publisher != nil) && super.validate(context: context)
-    }
-    
-    override func perform(context: ActionContext, model: NSManagedObjectContext) {
-        if
-            let selection = context[ActionContext.selectionKey] as? [Book],
-            let publisher = context[PublisherAction.publisherKey] as? Publisher {
-            for book in selection {
-                publisher.removeFromBooks(book)
-            }
-            
-            context.info.forObservers { (observer: PublisherChangeObserver) in
-                observer.removed(publisher: publisher)
-            }
-        }
-        
-    }
-}
 
 /**
  Action that creates a new Publisher.
  */
 
-class NewPublisherAction: ModelAction {
+class NewPublisherAction: PublisherAction {
+    override func validate(context: ActionContext) -> Bool {
+        return modelValidate(context:context)
+    }
+    
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
         let publisher = Publisher(context: model)
-        context.info.forObservers { (observer: PublisherConstructionObserver) in
+        context.info.forObservers { (observer: PublisherLifecycleObserver) in
             observer.created(publisher: publisher)
         }
     }
@@ -130,11 +89,11 @@ class NewPublisherAction: ModelAction {
  Action that deletes a Publisher.
  */
 
-class DeletePublisherAction: ModelAction {
+class DeletePublisherAction: PublisherAction {
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
         if let selection = context[ActionContext.selectionKey] as? [Publisher] {
             for publisher in selection {
-                context.info.forObservers { (observer: PublisherConstructionObserver) in
+                context.info.forObservers { (observer: PublisherLifecycleObserver) in
                     observer.deleted(publisher: publisher)
                 }
                 
@@ -150,7 +109,7 @@ class DeletePublisherAction: ModelAction {
 
 class RevealPublisherAction: PublisherAction {
     override func validate(context: ActionContext) -> Bool {
-        return (context[PublisherAction.publisherKey] as? Publisher != nil) && super.validate(context: context)
+        return (context[PublisherAction.publisherKey] as? Publisher != nil) && modelValidate(context: context)
     }
     
     public override func perform(context: ActionContext, model: NSManagedObjectContext) {

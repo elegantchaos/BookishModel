@@ -46,6 +46,8 @@ open class BookAction: ModelAction {
         return [
             NewBookAction(identifier: "NewBook"),
             DeleteBooksAction(identifier: "DeleteBooks"),
+            AddPublisherAction(identifier: "AddPublisher"),
+            RemovePublisherAction(identifier: "RemovePublisher"),
             AddRelationshipAction(identifier: "AddRelationship"),
             RemoveRelationshipAction(identifier: "RemoveRelationship"),
             ChangeRelationshipAction(identifier: "ChangeRelationship"),
@@ -158,7 +160,50 @@ class RemoveRelationshipAction: BookAction {
     }
 }
 
+/**
+ Action that adds a relationship between a book and a newly created Publisher.
+ */
 
+class AddPublisherAction: BookAction {
+    override func perform(context: ActionContext, model: NSManagedObjectContext) {
+        if
+            let selection = context[ActionContext.selectionKey] as? [Book] {
+            let publisher = Publisher(context: model)
+            for book in selection {
+                publisher.addToBooks(book)
+            }
+            
+            context.info.forObservers { (observer: PublisherChangeObserver) in
+                observer.added(publisher: publisher)
+            }
+        }
+    }
+}
+
+/**
+ Action that removes a relationship from a book.
+ */
+
+class RemovePublisherAction: BookAction {
+    public override func validate(context: ActionContext) -> Bool {
+        return (context[PublisherAction.publisherKey] as? Publisher != nil) && super.validate(context: context)
+    }
+    
+    override func perform(context: ActionContext, model: NSManagedObjectContext) {
+        if
+            let selection = context[ActionContext.selectionKey] as? [Book],
+            let publisher = context[PublisherAction.publisherKey] as? Publisher {
+            for book in selection {
+                publisher.removeFromBooks(book)
+            }
+            
+            context.info.forObservers { (observer: PublisherChangeObserver) in
+                observer.removed(publisher: publisher)
+            }
+        }
+        
+    }
+}
 /**
  Action that updates an existing role by changing the person that
  it applies to.
