@@ -9,41 +9,65 @@ import CoreData
 import Actions
 
 
-class PersonActionTests: ModelActionTestCase, PersonViewer {
-    var personRevealed: Person?
-
+class PersonActionTests: ModelActionTestCase, PersonViewer, PersonLifecycleObserver {
+    var personObserved: Person?
     func reveal(person: Person) {
-        personRevealed = person
+        personObserved = person
     }
     
     func created(person: Person) {
-        expectation.fulfill()
+        personObserved = person
     }
 
+    func deleted(person: Person) {
+        personObserved = person
+    }
+    
+    
     func testNewPerson() {
+        XCTAssertTrue(actionManager.validate(identifier: "NewPerson", info: info).enabled)
+        info.addObserver(self)
         actionManager.perform(identifier: "NewPerson", info: info)
         wait(for: [expectation], timeout: 1.0)
         XCTAssertEqual(count(of: "Person"), 1)
+        XCTAssertNotNil(personObserved)
     }
     
     func testDeletePeople() {
         let person = Person(context: context)
         XCTAssertEqual(count(of: "Person"), 1)
         
+        info.addObserver(self)
         info[ActionContext.selectionKey] = [person]
-        
+
+        XCTAssertTrue(actionManager.validate(identifier: "DeletePeople", info: info).enabled)
+
         actionManager.perform(identifier: "DeletePeople", info: info)
         wait(for: [expectation], timeout: 1.0)
         XCTAssertEqual(count(of: "Person"), 0)
+        XCTAssertEqual(personObserved, person)
+
+        // empty selection should disable
+        info[ActionContext.selectionKey] = []
+        XCTAssertFalse(actionManager.validate(identifier: "DeletePeople", info: info).enabled)
+
+        // selection of wrong type should disable
+        info[ActionContext.selectionKey] = [Book(context: context)]
+        XCTAssertFalse(actionManager.validate(identifier: "DeletePeople", info: info).enabled)
+
+        // no context should disable
+        XCTAssertFalse(actionManager.validate(identifier: "DeletePeople", info: ActionInfo()).enabled)
     }
     
     func testRevealPerson() {
         let person = Person(context: context)
         info[ActionContext.rootKey] = self
         info[PersonAction.personKey] = person
+
+        XCTAssertTrue(actionManager.validate(identifier: "RevealPerson", info: info).enabled)
         actionManager.perform(identifier: "RevealPerson", info: info)
         wait(for: [expectation], timeout: 1.0)
-        XCTAssertEqual(personRevealed, person)
+        XCTAssertEqual(personObserved, person)
     }
     
     func testRevealPersonFromRelationship() {
@@ -53,70 +77,9 @@ class PersonActionTests: ModelActionTestCase, PersonViewer {
         info[PersonAction.relationshipKey] = relationship
         actionManager.perform(identifier: "RevealPerson", info: info)
         wait(for: [expectation], timeout: 1.0)
-        XCTAssertEqual(personRevealed, person)
+        XCTAssertEqual(personObserved, person)
     }
-    
-    func testAddRelationship() {
-        let book = Book(context: context)
-        XCTAssertEqual(book.roles.count, 0)
-        info[ActionContext.selectionKey] = [book]
-        info[PersonAction.roleKey] = "author"
-        actionManager.perform(identifier: "AddRelationship", info: info)
-        
-        wait(for: [expectation], timeout: 1.0)
-        XCTAssertEqual(book.roles.count, 1)
-        XCTAssertEqual(book.roles.first?.name, "author")
-    }
-    
-    func testRemoveRelationship() {
-        let book = Book(context: context)
-        let person = Person(context: context)
-        let relationship = person.relationship(as: Role.Default.authorName)
-        book.addToRelationships(relationship)
-        XCTAssertEqual(book.roles.count, 1)
-        
-        info[PersonAction.relationshipKey] = relationship
-        info[ActionContext.selectionKey] = [book]
-        actionManager.perform(identifier: "RemoveRelationship", info: info)
-        
-        wait(for: [expectation], timeout: 1.0)
-        XCTAssertEqual(book.roles.count, 0)
-    }
-    
-    func testChangeRelationshipAction() {
-        func check(relationship: Relationship, book: Book, person: Person) {
-            XCTAssertEqual(book.roles.count, 1)
-            XCTAssertEqual(relationship.books?.count, 1)
-            XCTAssertEqual(relationship.books?.allObjects.first as? Book, book)
-            XCTAssertEqual(relationship.person, person)
-        }
-        
-        let book = Book(context: context)
-        let person = Person(context: context)
-        let relationship = person.relationship(as: Role.Default.authorName)
-        book.addToRelationships(relationship)
-        check(relationship: relationship, book: book, person: person)
-        
-        let otherPerson = Person(context: context)
-        info[PersonAction.relationshipKey] = relationship
-        info[PersonAction.personKey] = otherPerson
-        info[ActionContext.selectionKey] = [book]
-        actionManager.perform(identifier: "ChangeRelationship", info: info)
-        
-        wait(for: [expectation], timeout: 1.0)
-        
-        XCTAssertEqual(book.roles.count, 1)
-        if let relationship = book.relationships?.allObjects.first as? Relationship {
-            check(relationship: relationship, book: book, person: otherPerson)
-        } else {
-            XCTFail()
-        }
-        
-        XCTAssertEqual(count(of: "Person"), 2)
-        XCTAssertEqual(count(of: "Relationship"), 2)
-        XCTAssertEqual(count(of: "Book"), 1)
-    }
-
+ 
     
 }
 

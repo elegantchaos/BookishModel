@@ -17,8 +17,12 @@ open class ModelAction: Action {
         return actions
     }
     
-    open override func validate(context: ActionContext) -> Bool {
+    public func modelValidate(context: ActionContext) -> Bool {
         return (context[ActionContext.modelKey] as? NSManagedObjectContext) != nil
+    }
+
+    open override func validate(context: ActionContext) -> Bool {
+        return modelValidate(context:context)
     }
     
     open override func perform(context: ActionContext, completed: @escaping Completion) {
@@ -33,4 +37,5 @@ open class ModelAction: Action {
     open func perform(context: ActionContext, model: NSManagedObjectContext) {
         
     }
+    
 }

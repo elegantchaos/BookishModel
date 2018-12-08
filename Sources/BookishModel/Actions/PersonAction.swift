@@ -16,22 +16,13 @@ public protocol PersonViewer {
     func reveal(person: Person)
 }
 
-/**
- Objects that want to observe changes to people
- should implement this protocol.
- */
-
-public protocol PersonChangeObserver: ActionObserver {
-    func added(role: Relationship)
-    func removed(role: Relationship)
-}
 
 /**
  Objects that want to observe construction/destruction
  of people should implement this protocol.
  */
 
-public protocol PersonConstructionObserver: ActionObserver {
+public protocol PersonLifecycleObserver: ActionObserver {
     func created(person: Person)
     func deleted(person: Person)
 }
@@ -51,7 +42,7 @@ open class PersonAction: ModelAction {
             return false
         }
         
-        guard let selection = context[ActionContext.selectionKey] as? [Book] else {
+        guard let selection = context[ActionContext.selectionKey] as? [Person] else {
             return false
         }
         
@@ -61,71 +52,9 @@ open class PersonAction: ModelAction {
     open class override func standardActions() -> [Action] {
         return [
             NewPersonAction(identifier: "NewPerson"),
-            AddRelationshipAction(identifier: "AddRelationship"),
-            RemoveRelationshipAction(identifier: "RemoveRelationship"),
             DeletePeopleAction(identifier: "DeletePeople"),
             RevealPersonAction(identifier: "RevealPerson"),
-            ChangeRelationshipAction(identifier: "ChangeRelationship")
         ]
-    }
-}
-
-/**
- Action that adds a relationship between a book and a newly created person.
- */
-
-class AddRelationshipAction: PersonAction {
-    public override func validate(context: ActionContext) -> Bool {
-        guard let _ = context[PersonAction.roleKey] as? String else {
-            return false
-        }
-        
-        return super.validate(context: context)
-    }
-    
-    override func perform(context: ActionContext, model: NSManagedObjectContext) {
-        if
-            let role = context[PersonAction.roleKey] as? String,
-            let selection = context[ActionContext.selectionKey] as? [Book] {
-            let person = Person(context: model)
-            let relationship = person.relationship(as: role)
-            for book in selection {
-                book.addToRelationships(relationship)
-            }
-            
-            context.info.forObservers { (observer: PersonChangeObserver) in
-                observer.added(role: relationship)
-            }
-        }
-    }
-}
-
-/**
- Action that removes a relationship from a book.
- */
-
-class RemoveRelationshipAction: PersonAction {
-    public override func validate(context: ActionContext) -> Bool {
-        return (context[PersonAction.relationshipKey] as? Relationship != nil) && super.validate(context: context)
-    }
-    
-    override func perform(context: ActionContext, model: NSManagedObjectContext) {
-        if
-            let selection = context[ActionContext.selectionKey] as? [Book],
-            let relationship = context[PersonAction.relationshipKey] as? Relationship {
-            for book in selection {
-                book.removeFromRelationships(relationship)
-            }
-            
-            context.info.forObservers { (observer: PersonChangeObserver) in
-                observer.removed(role: relationship)
-            }
-            
-            if (relationship.books?.count ?? 0) == 0 {
-                relationship.managedObjectContext?.delete(relationship)
-            }
-        }
-        
     }
 }
 
@@ -133,10 +62,14 @@ class RemoveRelationshipAction: PersonAction {
  Action that creates a new person.
  */
 
-class NewPersonAction: ModelAction {
+class NewPersonAction: PersonAction {
+    public override func validate(context: ActionContext) -> Bool {
+        return modelValidate(context:context) // we don't need a selection, so we skip to ModelAction's validation
+    }
+
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
         let person = Person(context: model)
-        context.info.forObservers { (observer: PersonConstructionObserver) in
+        context.info.forObservers { (observer: PersonLifecycleObserver) in
             observer.created(person: person)
         }
     }
@@ -146,11 +79,11 @@ class NewPersonAction: ModelAction {
  Action that deletes a person.
  */
 
-class DeletePeopleAction: ModelAction {
+class DeletePeopleAction: PersonAction {
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
         if let selection = context[ActionContext.selectionKey] as? [Person] {
             for person in selection {
-                context.info.forObservers { (observer: PersonConstructionObserver) in
+                context.info.forObservers { (observer: PersonLifecycleObserver) in
                     observer.deleted(person: person)
                 }
                 
@@ -167,7 +100,10 @@ class DeletePeopleAction: ModelAction {
 
 class RevealPersonAction: PersonAction {
     override func validate(context: ActionContext) -> Bool {
-        return (context[PersonAction.relationshipKey] as? Relationship != nil) && super.validate(context: context)
+        var ok = (context[PersonAction.relationshipKey] as? Relationship != nil)
+        ok = ok || (context[PersonAction.personKey] as? Person != nil)
+        ok = ok && (context[ActionContext.rootKey] as? PersonViewer != nil) && super.modelValidate(context: context)
+        return ok
     }
     
     public override func perform(context: ActionContext, model: NSManagedObjectContext) {
@@ -176,41 +112,6 @@ class RevealPersonAction: PersonAction {
                 viewer.reveal(person: person)
             } else if let role = context[PersonAction.relationshipKey] as? Relationship, let person = role.person {
                 viewer.reveal(person: person)
-            }
-        }
-    }
-}
-
-/**
- Action that updates an existing role by changing the person that
- it applies to.
- */
-
-class ChangeRelationshipAction: PersonAction {
-    override func validate(context: ActionContext) -> Bool {
-        return (context[PersonAction.relationshipKey] as? Relationship != nil) && super.validate(context: context)
-    }
-    
-    override func perform(context: ActionContext, model: NSManagedObjectContext) {
-        if
-            let selection = context[ActionContext.selectionKey] as? [Book],
-            let relationship = context[PersonAction.relationshipKey] as? Relationship,
-            let roleName = relationship.role?.name {
-            var newPerson = context[PersonAction.personKey] as? Person
-            if newPerson == nil, let newPersonName = context[PersonAction.newPersonKey] as? String {
-                print("Made new person \(newPersonName)")
-                newPerson = Person(context: model)
-                newPerson?.name = newPersonName
-            }
-            
-            if let newPerson = newPerson {
-                let newRelationship = newPerson.relationship(as: roleName)
-                for book in selection {
-                    book.removeFromRelationships(relationship)
-                    book.addToRelationships(newRelationship)
-                }
-                
-                print("\(roleName) changed from \(relationship.person!.name!) to \(newPerson.name!)")
             }
         }
     }

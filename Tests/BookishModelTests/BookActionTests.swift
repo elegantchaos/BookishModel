@@ -9,23 +9,33 @@ import CoreData
 import Actions
 
 
-class BookActionTests: ModelActionTestCase, BookViewer, BookChangeObserver {
+class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, BookChangeObserver {
     var bookObserved: Book?
+    var relationshipObserved: Relationship?
+    
+    func removed(relationship: Relationship) {
+        relationshipObserved = relationship
+    }
+    
+    func added(relationship: Relationship) {
+        relationshipObserved = relationship
+    }
 
     func reveal(book: Book) {
         bookObserved = book
     }
     
-    func added(books: [Book]) {
+    func created(books: [Book]) {
         bookObserved = books.first
     }
 
-    func removed(books: [Book]) {
+    func deleted(books: [Book]) {
         bookObserved = books.first
     }
     
     func testNewBook() {
         info.addObserver(self)
+        XCTAssertTrue(actionManager.validate(identifier: "NewBook", info: info).enabled)
         actionManager.perform(identifier: "NewBook", info: info)
         wait(for: [expectation], timeout: 1.0)
         XCTAssertEqual(count(of: "Book"), 1)
@@ -53,6 +63,122 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookChangeObserver {
     }
     
     
+    func testAddRelationship() {
+        let book = Book(context: context)
+        XCTAssertEqual(book.roles.count, 0)
+
+        XCTAssertFalse(actionManager.validate(identifier: "AddRelationship", info: info).enabled)
+
+        info.addObserver(self)
+        info[ActionContext.selectionKey] = [book]
+        info[PersonAction.roleKey] = "author"
+
+        XCTAssertTrue(actionManager.validate(identifier: "AddRelationship", info: info).enabled)
+        actionManager.perform(identifier: "AddRelationship", info: info)
+        
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(book.roles.count, 1)
+        XCTAssertEqual(book.roles.first?.name, "author")
+
+        XCTAssertNotNil(relationshipObserved)
+    }
+    
+    func testRemoveRelationship() {
+        let book = Book(context: context)
+        let person = Person(context: context)
+        let relationship = person.relationship(as: Role.Default.authorName)
+        book.addToRelationships(relationship)
+        XCTAssertEqual(book.roles.count, 1)
+        
+        XCTAssertFalse(actionManager.validate(identifier: "RemoveRelationship", info: info).enabled)
+
+        info.addObserver(self)
+        info[PersonAction.relationshipKey] = relationship
+        info[ActionContext.selectionKey] = [book]
+
+        XCTAssertNotNil(relationship.managedObjectContext)
+
+        XCTAssertTrue(actionManager.validate(identifier: "RemoveRelationship", info: info).enabled)
+        actionManager.perform(identifier: "RemoveRelationship", info: info)
+        
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(book.roles.count, 0)
+        
+        XCTAssertNil(relationship.managedObjectContext)
+    }
+
+    func check(relationship: Relationship, book: Book, person: Person) {
+        XCTAssertEqual(book.roles.count, 1)
+        XCTAssertEqual(relationship.books?.count, 1)
+        XCTAssertEqual(relationship.books?.allObjects.first as? Book, book)
+        XCTAssertEqual(relationship.person, person)
+    }
+
+    func testChangeRelationshipAction() {
+        let book = Book(context: context)
+        let person = Person(context: context)
+        let relationship = person.relationship(as: Role.Default.authorName)
+        book.addToRelationships(relationship)
+        check(relationship: relationship, book: book, person: person)
+        
+        let otherPerson = Person(context: context)
+        info[PersonAction.relationshipKey] = relationship
+        info[PersonAction.personKey] = otherPerson
+        info[ActionContext.selectionKey] = [book]
+        
+        XCTAssertTrue(actionManager.validate(identifier: "ChangeRelationship", info: info).enabled)
+        actionManager.perform(identifier: "ChangeRelationship", info: info)
+        
+        wait(for: [expectation], timeout: 1.0)
+        
+        XCTAssertEqual(book.roles.count, 1)
+        if let relationship = book.relationships?.allObjects.first as? Relationship {
+            check(relationship: relationship, book: book, person: otherPerson)
+        } else {
+            XCTFail()
+        }
+        
+        XCTAssertEqual(count(of: "Person"), 2)
+        XCTAssertEqual(count(of: "Relationship"), 2)
+        XCTAssertEqual(count(of: "Book"), 1)
+    }
+
+    func testChangeRelationshipActionNewPerson() {
+        func check(relationship: Relationship, book: Book, person: Person) {
+            XCTAssertEqual(book.roles.count, 1)
+            XCTAssertEqual(relationship.books?.count, 1)
+            XCTAssertEqual(relationship.books?.allObjects.first as? Book, book)
+            XCTAssertEqual(relationship.person, person)
+        }
+        
+        let book = Book(context: context)
+        let person = Person(context: context)
+        let relationship = person.relationship(as: Role.Default.authorName)
+        book.addToRelationships(relationship)
+        check(relationship: relationship, book: book, person: person)
+        
+        info[PersonAction.relationshipKey] = relationship
+        info[PersonAction.newPersonKey] = "New Person"
+        info[ActionContext.selectionKey] = [book]
+        
+        XCTAssertTrue(actionManager.validate(identifier: "ChangeRelationship", info: info).enabled)
+        actionManager.perform(identifier: "ChangeRelationship", info: info)
+        
+        wait(for: [expectation], timeout: 1.0)
+        
+        XCTAssertEqual(book.roles.count, 1)
+        if let relationship = book.relationships?.allObjects.first as? Relationship {
+            XCTAssertEqual(relationship.person?.name, "New Person")
+            check(relationship: relationship, book: book, person: relationship.person!)
+        } else {
+            XCTFail()
+        }
+        
+        XCTAssertEqual(count(of: "Person"), 2)
+        XCTAssertEqual(count(of: "Relationship"), 2)
+        XCTAssertEqual(count(of: "Book"), 1)
+    }
+
     func testRevealBook() {
         let book = Book(context: context)
         info[ActionContext.rootKey] = self
