@@ -9,18 +9,27 @@ import CoreData
 import Actions
 
 
-class BookActionTests: ModelActionTestCase, BookViewer {
-    var bookRevealed: Book?
+class BookActionTests: ModelActionTestCase, BookViewer, BookChangeObserver {
+    var bookObserved: Book?
 
     func reveal(book: Book) {
-        bookRevealed = book
+        bookObserved = book
     }
     
+    func added(books: [Book]) {
+        bookObserved = books.first
+    }
 
+    func removed(books: [Book]) {
+        bookObserved = books.first
+    }
+    
     func testNewBook() {
+        info.addObserver(self)
         actionManager.perform(identifier: "NewBook", info: info)
         wait(for: [expectation], timeout: 1.0)
         XCTAssertEqual(count(of: "Book"), 1)
+        XCTAssertNotNil(bookObserved)
     }
     
     func testDeleteBooks() {
@@ -28,19 +37,30 @@ class BookActionTests: ModelActionTestCase, BookViewer {
         XCTAssertEqual(count(of: "Book"), 1)
         
         info[ActionContext.selectionKey] = [book]
-        
+        info.addObserver(self)
+
+        XCTAssertTrue(actionManager.validate(identifier: "DeleteBooks", info: info).enabled)
+
         actionManager.perform(identifier: "DeleteBooks", info: info)
         wait(for: [expectation], timeout: 1.0)
         XCTAssertEqual(count(of: "Book"), 0)
+        XCTAssertEqual(bookObserved, book)
+
+        info[ActionContext.selectionKey] = []
+        XCTAssertFalse(actionManager.validate(identifier: "DeleteBooks", info: info).enabled)
+        
+        XCTAssertFalse(actionManager.validate(identifier: "DeleteBooks", info: ActionInfo()).enabled)
     }
+    
     
     func testRevealBook() {
         let book = Book(context: context)
         info[ActionContext.rootKey] = self
         info[BookAction.bookKey] = book
+        XCTAssertTrue(actionManager.validate(identifier: "RevealBook", info: info).enabled)
+
         actionManager.perform(identifier: "RevealBook", info: info)
         wait(for: [expectation], timeout: 1.0)
-        XCTAssertEqual(bookRevealed, book)
+        XCTAssertEqual(bookObserved, book)
     }
-    
 }
