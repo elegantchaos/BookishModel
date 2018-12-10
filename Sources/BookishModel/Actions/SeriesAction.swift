@@ -17,21 +17,11 @@ public protocol SeriesViewer {
 }
 
 /**
- Objects that want to observe changes to seriess
- should implement this protocol.
- */
-
-public protocol SeriesChangeObserver: ActionObserver {
-    func added(series: Series)
-    func removed(series: Series)
-}
-
-/**
  Objects that want to observe construction/destruction
  of people should implement this protocol.
  */
 
-public protocol SeriesConstructionObserver: ActionObserver {
+public protocol SeriesLifecycleObserver: ActionObserver {
     func created(series: Series)
     func deleted(series: Series)
 }
@@ -49,7 +39,7 @@ open class SeriesAction: ModelAction {
             return false
         }
         
-        guard let selection = context[ActionContext.selectionKey] as? [Book] else {
+        guard let selection = context[ActionContext.selectionKey] as? [Series] else {
             return false
         }
         
@@ -59,8 +49,6 @@ open class SeriesAction: ModelAction {
     open class override func standardActions() -> [Action] {
         return [
             NewSeriesAction(identifier: "NewSeries"),
-            AddSeriesAction(identifier: "AddSeries"),
-            RemoveSeriesAction(identifier: "RemoveSeries"),
             DeleteSeriesAction(identifier: "DeleteSeries"),
             RevealSeriesAction(identifier: "RevealSeries"),
             ChangeSeriesAction(identifier: "ChangeSeries")
@@ -69,62 +57,17 @@ open class SeriesAction: ModelAction {
 }
 
 /**
- Action that adds a relationship between a book and a newly created Series.
- */
-
-class AddSeriesAction: SeriesAction {
-    override func perform(context: ActionContext, model: NSManagedObjectContext) {
-        if
-            let selection = context[ActionContext.selectionKey] as? [Book],
-            let series = context[SeriesAction.seriesKey] as? Series {
-            for book in selection {
-                let entry = Entry(context: model)
-                entry.book = book
-                series.addToEntries(entry)
-            }
-            
-            context.info.forObservers { (observer: SeriesChangeObserver) in
-                observer.added(series: series)
-            }
-        }
-    }
-}
-
-/**
- Action that removes a relationship from a book.
- */
-
-class RemoveSeriesAction: SeriesAction {
-    public override func validate(context: ActionContext) -> Bool {
-        return (context[SeriesAction.seriesKey] as? Series != nil) && super.validate(context: context)
-    }
-    
-    override func perform(context: ActionContext, model: NSManagedObjectContext) {
-        if
-            let selection = context[ActionContext.selectionKey] as? [Book],
-            let series = context[SeriesAction.seriesKey] as? Series {
-            for book in selection {
-                if book.series?.series == series {
-                    book.series = nil
-                }
-            }
-            
-            context.info.forObservers { (observer: SeriesChangeObserver) in
-                observer.removed(series: series)
-            }
-        }
-        
-    }
-}
-
-/**
  Action that creates a new Series.
  */
 
-class NewSeriesAction: ModelAction {
+class NewSeriesAction: SeriesAction {
+    override func validate(context: ActionContext) -> Bool {
+        return modelValidate(context:context)
+    }
+    
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
         let series = Series(context: model)
-        context.info.forObservers { (observer: SeriesConstructionObserver) in
+        context.info.forObservers { (observer: SeriesLifecycleObserver) in
             observer.created(series: series)
         }
     }
@@ -134,11 +77,11 @@ class NewSeriesAction: ModelAction {
  Action that deletes a Series.
  */
 
-class DeleteSeriesAction: ModelAction {
+class DeleteSeriesAction: SeriesAction {
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
         if let selection = context[ActionContext.selectionKey] as? [Series] {
             for series in selection {
-                context.info.forObservers { (observer: SeriesConstructionObserver) in
+                context.info.forObservers { (observer: SeriesLifecycleObserver) in
                     observer.deleted(series: series)
                 }
                 
@@ -154,7 +97,7 @@ class DeleteSeriesAction: ModelAction {
 
 class RevealSeriesAction: SeriesAction {
     override func validate(context: ActionContext) -> Bool {
-        return (context[SeriesAction.seriesKey] as? Series != nil) && super.validate(context: context)
+        return (context[SeriesAction.seriesKey] as? Series != nil) && modelValidate(context: context)
     }
     
     public override func perform(context: ActionContext, model: NSManagedObjectContext) {
@@ -163,34 +106,5 @@ class RevealSeriesAction: SeriesAction {
                 viewer.reveal(series: series)
             }
         }
-    }
-}
-
-/**
- Action that updates an existing role by changing the Series that
- it applies to.
- */
-
-class ChangeSeriesAction: SeriesAction {
-    override func validate(context: ActionContext) -> Bool {
-        return (context[SeriesAction.seriesKey] as? Relationship != nil) && super.validate(context: context)
-    }
-    
-    override func perform(context: ActionContext, model: NSManagedObjectContext) {
-//        if let selection = context[ActionContext.selectionKey] as? [Book] {
-//            var newSeries = context[SeriesAction.seriesKey] as? Series
-//            if newSeries == nil, let newSeriesName = context[SeriesAction.newSeriesKey] as? String {
-//                print("Made new Series \(newSeriesName)")
-//                newSeries = Series(context: model)
-//                newSeries?.name = newSeriesName
-//            }
-//
-////            if let newSeries = newSeries {
-////                for book in selection {
-//////                    newSeries.addToBooks(book)
-//////                    print("series changed from \(book.series!.name!) to \(newSeries.name!)")
-////                }
-////            }
-//        }
     }
 }

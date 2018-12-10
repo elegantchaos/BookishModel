@@ -17,14 +17,20 @@ public protocol BookViewer {
 }
 
 /**
- Objects that want to observe changes to people
- should implement this protocol.
+ Objects that want to observe changes to the
+ book should implement this protocol.
  */
 
 public protocol BookChangeObserver: ActionObserver {
     func added(relationship: Relationship)
     func removed(relationship: Relationship)
+    func added(series: Series)
+    func removed(series: Series)
+    func added(publisher: Publisher)
+    func removed(publisher: Publisher)
 }
+
+
 /**
  Objects that want to observe changes to books should
  implement this protocol.
@@ -48,10 +54,12 @@ open class BookAction: ModelAction {
             DeleteBooksAction(identifier: "DeleteBooks"),
             AddPublisherAction(identifier: "AddPublisher"),
             RemovePublisherAction(identifier: "RemovePublisher"),
+            ChangePublisherAction(identifier: "ChangePublisher"),
             AddRelationshipAction(identifier: "AddRelationship"),
             RemoveRelationshipAction(identifier: "RemoveRelationship"),
             ChangeRelationshipAction(identifier: "ChangeRelationship"),
-            ChangePublisherAction(identifier: "ChangePublisher"),
+            AddSeriesAction(identifier: "AddSeries"),
+            RemoveSeriesAction(identifier: "RemoveSeries"),
             RevealBookAction(identifier: "RevealBook")
         ]
     }
@@ -174,7 +182,7 @@ class AddPublisherAction: BookAction {
                 publisher.addToBooks(book)
             }
             
-            context.info.forObservers { (observer: PublisherChangeObserver) in
+            context.info.forObservers { (observer: BookChangeObserver) in
                 observer.added(publisher: publisher)
             }
         }
@@ -198,7 +206,7 @@ class RemovePublisherAction: BookAction {
                 publisher.removeFromBooks(book)
             }
             
-            context.info.forObservers { (observer: PublisherChangeObserver) in
+            context.info.forObservers { (observer: BookChangeObserver) in
                 observer.removed(publisher: publisher)
             }
         }
@@ -267,6 +275,89 @@ class ChangePublisherAction: BookAction {
                 }
             }
         }
+    }
+}
+
+/**
+ Action that adds a relationship between a book and a newly created Series.
+ */
+
+class AddSeriesAction: BookAction {
+    override func perform(context: ActionContext, model: NSManagedObjectContext) {
+        if let selection = context[ActionContext.selectionKey] as? [Book] {
+            let series = Series(context: model)
+            series.name = "New Series"
+            for book in selection {
+                let entry = Entry(context: model)
+                entry.book = book
+                entry.series = series
+                entry.index = 1
+            }
+            
+            context.info.forObservers { (observer: BookChangeObserver) in
+                observer.added(series: series)
+            }
+        }
+    }
+}
+
+/**
+ Action that removes a relationship from a book.
+ */
+
+class RemoveSeriesAction: BookAction {
+    public override func validate(context: ActionContext) -> Bool {
+        return (context[SeriesAction.seriesKey] as? Series != nil) && super.validate(context: context)
+    }
+    
+    override func perform(context: ActionContext, model: NSManagedObjectContext) {
+        if
+            let selection = context[ActionContext.selectionKey] as? [Book],
+            let series = context[SeriesAction.seriesKey] as? Series {
+            for book in selection {
+                if book.series?.series == series {
+                    book.series = nil
+                }
+            }
+            
+            context.info.forObservers { (observer: BookChangeObserver) in
+                observer.removed(series: series)
+            }
+        }
+        
+    }
+}
+
+/**
+ Action that updates an existing role by changing the Series that
+ it applies to.
+ */
+
+class ChangeSeriesAction: BookAction {
+    override func validate(context: ActionContext) -> Bool {
+        let gotSeries = (context[SeriesAction.seriesKey] as? Series != nil) || (context[SeriesAction.newSeriesKey] as? String != nil)
+        return gotSeries && super.validate(context: context)
+    }
+    
+    override func perform(context: ActionContext, model: NSManagedObjectContext) {
+                if let selection = context[ActionContext.selectionKey] as? [Book] {
+                    var newSeries = context[SeriesAction.seriesKey] as? Series
+                    if newSeries == nil, let newSeriesName = context[SeriesAction.newSeriesKey] as? String {
+                        print("Made new Series \(newSeriesName)")
+                        newSeries = Series(context: model)
+                        newSeries?.name = newSeriesName
+                    }
+        
+                    if let newSeries = newSeries {
+                        for book in selection {
+                            let entry = Entry(context: model)
+                            entry.series = newSeries
+                            entry.index = book.series?.index ?? 0
+                            print("series changed from \(book.series!.series!.name!) to \(newSeries.name!)")
+                            book.series = entry
+                        }
+                    }
+                }
     }
 }
 

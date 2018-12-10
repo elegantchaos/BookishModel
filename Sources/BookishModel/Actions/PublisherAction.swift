@@ -16,15 +16,6 @@ public protocol PublisherViewer {
     func reveal(publisher: Publisher)
 }
 
-/**
- Objects that want to observe changes to publishers
- should implement this protocol.
- */
-
-public protocol PublisherChangeObserver: ActionObserver {
-    func added(publisher: Publisher)
-    func removed(publisher: Publisher)
-}
 
 /**
  Objects that want to observe construction/destruction

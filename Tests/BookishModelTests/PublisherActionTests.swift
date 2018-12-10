@@ -8,7 +8,7 @@ import CoreData
 @testable import BookishModel
 import Actions
 
-class PublisherActionTests: ModelActionTestCase, PublisherViewer, PublisherLifecycleObserver, PublisherChangeObserver {
+class PublisherActionTests: ModelActionTestCase, PublisherViewer, PublisherLifecycleObserver {
     var publisherObserved: Publisher?
     
     func created(publisher: Publisher) {
@@ -16,14 +16,6 @@ class PublisherActionTests: ModelActionTestCase, PublisherViewer, PublisherLifec
     }
     
     func deleted(publisher: Publisher) {
-        publisherObserved = publisher
-    }
-    
-    func added(publisher: Publisher) {
-        publisherObserved = publisher
-    }
-    
-    func removed(publisher: Publisher) {
         publisherObserved = publisher
     }
     

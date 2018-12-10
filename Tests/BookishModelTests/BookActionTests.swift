@@ -9,10 +9,19 @@ import CoreData
 import Actions
 
 
-class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, BookChangeObserver, PublisherChangeObserver {
+class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, BookChangeObserver {
     var bookObserved: Book?
     var relationshipObserved: Relationship?
     var publisherObserved: Publisher?
+    var seriesObserved: Series?
+
+    func added(series: Series) {
+        seriesObserved = series
+    }
+    
+    func removed(series: Series) {
+        seriesObserved = series
+    }
     
     func added(publisher: Publisher) {
         publisherObserved = publisher
@@ -236,7 +245,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
         XCTAssertEqual(book.publisher, otherPublisher)
     }
     
-    func testChangePublisherActionNewPerson() {
+    func testChangePublisherActionNewPublisher() {
         let book = Book(context: context)
         let publisher = Publisher(context: context)
         book.publisher = publisher
@@ -254,7 +263,95 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
         XCTAssertEqual(count(of: "Book"), 1)
     }
 
+    func testAddSeries() {
+        let book = Book(context: context)
+        XCTAssertNil(book.series)
+        
+        XCTAssertFalse(actionManager.validate(identifier: "AddSeries", info: info).enabled)
+        
+        info.addObserver(self)
+        info[ActionContext.selectionKey] = [book]
+        
+        XCTAssertTrue(actionManager.validate(identifier: "AddSeries", info: info).enabled)
+        actionManager.perform(identifier: "AddSeries", info: info)
+        
+        wait(for: [expectation], timeout: 1.0)
+        
+        XCTAssertNotNil(book.series)
+        XCTAssertNotNil(book.series?.series)
+        XCTAssertEqual(book.series?.index, 1)
+        XCTAssertNotNil(seriesObserved)
+    }
     
+    func testRemoveSeries() {
+        let book = Book(context: context)
+        let series = Series(context: context)
+        let entry = Entry(context: context)
+        book.series = entry
+        entry.series = series
+        entry.index = 1
+        
+        XCTAssertFalse(actionManager.validate(identifier: "RemoveSeries", info: info).enabled)
+        
+        info.addObserver(self)
+        info[SeriesAction.seriesKey] = series
+        info[ActionContext.selectionKey] = [book]
+        
+        XCTAssertTrue(actionManager.validate(identifier: "RemoveSeries", info: info).enabled)
+        actionManager.perform(identifier: "RemoveSeries", info: info)
+        
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertNotNil(seriesObserved)
+        XCTAssertNil(book.series)
+    }
+    
+    func testChangeSeriesAction() {
+        let book = Book(context: context)
+        let series = Series(context: context)
+        series.name = "Series"
+        let entry = Entry(context: context)
+        book.series = entry
+        entry.series = series
+        entry.index = 2
+
+        let otherSeries = Series(context: context)
+        otherSeries.name = "Other Series"
+        
+        info[SeriesAction.seriesKey] = otherSeries
+        info[ActionContext.selectionKey] = [book]
+        
+        XCTAssertTrue(actionManager.validate(identifier: "ChangeSeries", info: info).enabled)
+        actionManager.perform(identifier: "ChangeSeries", info: info)
+        
+        wait(for: [expectation], timeout: 1.0)
+        
+        XCTAssertEqual(book.series?.series, otherSeries)
+        XCTAssertEqual(book.series?.index, entry.index)
+    }
+    
+    func testChangeSeriesActionNewSeries() {
+        let book = Book(context: context)
+        let series = Series(context: context)
+        series.name = "Series"
+        let entry = Entry(context: context)
+        book.series = entry
+        entry.series = series
+        entry.index = 1
+
+        info[SeriesAction.newSeriesKey] = "New Series"
+        info[ActionContext.selectionKey] = [book]
+        
+        XCTAssertTrue(actionManager.validate(identifier: "ChangeSeries", info: info).enabled)
+        actionManager.perform(identifier: "ChangeSeries", info: info)
+        
+        wait(for: [expectation], timeout: 1.0)
+        
+        XCTAssertEqual(book.series?.series?.name, "New Series")
+        XCTAssertEqual(book.series?.index, 1)
+        XCTAssertEqual(count(of: "Series"), 2)
+        XCTAssertEqual(count(of: "Book"), 1)
+    }
+
     func testRevealBook() {
         let book = Book(context: context)
         info[ActionContext.rootKey] = self
