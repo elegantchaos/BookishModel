@@ -13,9 +13,9 @@ public class BookishModel {
     
     static var cachedModel: NSManagedObjectModel!
     
-    public class func loadModel() -> NSManagedObjectModel {
+    public class func loadModel(bundle: Bundle = Bundle(for: BookishModel.self)) -> NSManagedObjectModel {
         if cachedModel == nil {
-            guard let url = Bundle(for: self).url(forResource: "Collection", withExtension: "momd") else {
+            guard let url = bundle.url(forResource: "Collection", withExtension: "momd") else {
                 fatalError("couldn't find model")
             }
             

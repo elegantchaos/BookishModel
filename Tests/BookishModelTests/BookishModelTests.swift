@@ -15,6 +15,11 @@ class BookishModelTests: ModelTestCase {
         XCTAssertNotNil(model)
     }
     
+    func testLoadingMissingModel() {
+        let model = BookishModel.loadModel(bundle: Bundle.main)
+        XCTAssertNotNil(model)
+    }
+    
     func testContainer() {
         let container = makeTestContainer()
         let context = container.viewContext
