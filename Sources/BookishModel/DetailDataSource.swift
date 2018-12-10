@@ -6,6 +6,9 @@
 import Foundation
 
 public class DetailDataSource {
+    static let seriesHeading = "Series"
+    static let publisherHeading = "Publisher"
+
     public enum Category {
         case detail
         case person
@@ -36,6 +39,7 @@ public class DetailDataSource {
     }
     
     public func info(for row: Int, editing: Bool) -> RowInfo {
+        
         let category: Category
         let index: Int
         let peopleCount = people.count
@@ -142,9 +146,9 @@ public class DetailDataSource {
         case .person:
             return person(for: row).role?.name ?? "<unknown role>"
         case .publisher:
-            return "Publisher"
+            return DetailDataSource.publisherHeading
         case .series:
-            return "Series"
+            return DetailDataSource.seriesHeading
         }
     }
     

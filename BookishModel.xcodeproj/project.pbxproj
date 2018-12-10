@@ -64,6 +64,16 @@
 		2250C7F821BAF85900E899E2 /* SeriesActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C7F621BAF85900E899E2 /* SeriesActionTests.swift */; };
 		2250C7FA21BAF86200E899E2 /* PublisherActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C7F921BAF86200E899E2 /* PublisherActionTests.swift */; };
 		2250C7FB21BAF86200E899E2 /* PublisherActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C7F921BAF86200E899E2 /* PublisherActionTests.swift */; };
+		2250C7FD21BE85CD00E899E2 /* BookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C7FC21BE85CD00E899E2 /* BookTests.swift */; };
+		2250C7FE21BE85CD00E899E2 /* BookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C7FC21BE85CD00E899E2 /* BookTests.swift */; };
+		2250C80021BE861A00E899E2 /* PersonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C7FF21BE861A00E899E2 /* PersonTests.swift */; };
+		2250C80121BE861A00E899E2 /* PersonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C7FF21BE861A00E899E2 /* PersonTests.swift */; };
+		2250C80521BE877E00E899E2 /* PublisherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C80421BE877E00E899E2 /* PublisherTests.swift */; };
+		2250C80621BE877E00E899E2 /* PublisherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C80421BE877E00E899E2 /* PublisherTests.swift */; };
+		2250C80821BE881D00E899E2 /* SeriesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C80721BE881D00E899E2 /* SeriesTests.swift */; };
+		2250C80921BE881D00E899E2 /* SeriesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C80721BE881D00E899E2 /* SeriesTests.swift */; };
+		2250C80B21BE891D00E899E2 /* DetailDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C80A21BE891D00E899E2 /* DetailDataSourceTests.swift */; };
+		2250C80C21BE891D00E899E2 /* DetailDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C80A21BE891D00E899E2 /* DetailDataSourceTests.swift */; };
 		226E8DB121A84031001F191F /* ModelAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226E8DB021A84031001F191F /* ModelAction.swift */; };
 		226E8DB221A84031001F191F /* ModelAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226E8DB021A84031001F191F /* ModelAction.swift */; };
 		226E8E7321AC50A6001F191F /* ChangeValueAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226E8E7221AC50A6001F191F /* ChangeValueAction.swift */; };
@@ -234,6 +244,11 @@
 		2250C7F321BAF7AD00E899E2 /* ModelActionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelActionTests.swift; sourceTree = "<group>"; };
 		2250C7F621BAF85900E899E2 /* SeriesActionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesActionTests.swift; sourceTree = "<group>"; };
 		2250C7F921BAF86200E899E2 /* PublisherActionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherActionTests.swift; sourceTree = "<group>"; };
+		2250C7FC21BE85CD00E899E2 /* BookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTests.swift; sourceTree = "<group>"; };
+		2250C7FF21BE861A00E899E2 /* PersonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTests.swift; sourceTree = "<group>"; };
+		2250C80421BE877E00E899E2 /* PublisherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherTests.swift; sourceTree = "<group>"; };
+		2250C80721BE881D00E899E2 /* SeriesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesTests.swift; sourceTree = "<group>"; };
+		2250C80A21BE891D00E899E2 /* DetailDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDataSourceTests.swift; sourceTree = "<group>"; };
 		226E8DB021A84031001F191F /* ModelAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelAction.swift; sourceTree = "<group>"; };
 		226E8E7221AC50A6001F191F /* ChangeValueAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeValueAction.swift; sourceTree = "<group>"; };
 		2296036A214187570020B3EB /* update */ = {isa = PBXFileReference; lastKnownFileType = text; name = update; path = .bin/update; sourceTree = "<group>"; };
@@ -341,6 +356,11 @@
 			isa = PBXGroup;
 			children = (
 				224293C2212AE16300E70510 /* BookishModelTests.swift */,
+				2250C7FF21BE861A00E899E2 /* PersonTests.swift */,
+				2250C80421BE877E00E899E2 /* PublisherTests.swift */,
+				2250C7FC21BE85CD00E899E2 /* BookTests.swift */,
+				2250C80721BE881D00E899E2 /* SeriesTests.swift */,
+				2250C80A21BE891D00E899E2 /* DetailDataSourceTests.swift */,
 				2250C7ED21BAF6B000E899E2 /* BookActionTests.swift */,
 				2250C7F621BAF85900E899E2 /* SeriesActionTests.swift */,
 				2250C7F921BAF86200E899E2 /* PublisherActionTests.swift */,
@@ -769,11 +789,16 @@
 				2250C76221B94E0F00E899E2 /* SeriesScannerTests.swift in Sources */,
 				224293D4212AE83C00E70510 /* BookishModelTests.swift in Sources */,
 				2250C7FA21BAF86200E899E2 /* PublisherActionTests.swift in Sources */,
+				2250C80821BE881D00E899E2 /* SeriesTests.swift in Sources */,
+				2250C80021BE861A00E899E2 /* PersonTests.swift in Sources */,
+				2250C80521BE877E00E899E2 /* PublisherTests.swift in Sources */,
 				2250C7F121BAF6B800E899E2 /* PersonActionTests.swift in Sources */,
+				2250C80B21BE891D00E899E2 /* DetailDataSourceTests.swift in Sources */,
 				2250C7EB21BAB7D400E899E2 /* RegularExpressionTests.swift in Sources */,
 				22EEF69B21A5C8B1007FAD10 /* BookishModelActionTests.swift in Sources */,
 				2250C7CF21BAA2F600E899E2 /* RoleTests.swift in Sources */,
 				22EEF6BE21A6B761007FAD10 /* ModelTestCase.swift in Sources */,
+				2250C7FD21BE85CD00E899E2 /* BookTests.swift in Sources */,
 				2250C7EE21BAF6B000E899E2 /* BookActionTests.swift in Sources */,
 				2250C7F721BAF85900E899E2 /* SeriesActionTests.swift in Sources */,
 				2250C7F421BAF7AD00E899E2 /* ModelActionTests.swift in Sources */,
@@ -816,11 +841,16 @@
 				2250C76321B94E1000E899E2 /* SeriesScannerTests.swift in Sources */,
 				224293C3212AE16300E70510 /* BookishModelTests.swift in Sources */,
 				2250C7FB21BAF86200E899E2 /* PublisherActionTests.swift in Sources */,
+				2250C80921BE881D00E899E2 /* SeriesTests.swift in Sources */,
+				2250C80121BE861A00E899E2 /* PersonTests.swift in Sources */,
+				2250C80621BE877E00E899E2 /* PublisherTests.swift in Sources */,
 				2250C7F221BAF6B800E899E2 /* PersonActionTests.swift in Sources */,
+				2250C80C21BE891D00E899E2 /* DetailDataSourceTests.swift in Sources */,
 				2250C7EC21BAB7D400E899E2 /* RegularExpressionTests.swift in Sources */,
 				22EEF69C21A5C8B1007FAD10 /* BookishModelActionTests.swift in Sources */,
 				2250C7D021BAA2F600E899E2 /* RoleTests.swift in Sources */,
 				22EEF6BF21A6B761007FAD10 /* ModelTestCase.swift in Sources */,
+				2250C7FE21BE85CD00E899E2 /* BookTests.swift in Sources */,
 				2250C7EF21BAF6B000E899E2 /* BookActionTests.swift in Sources */,
 				2250C7F821BAF85900E899E2 /* SeriesActionTests.swift in Sources */,
 				2250C7F521BAF7AD00E899E2 /* ModelActionTests.swift in Sources */,
