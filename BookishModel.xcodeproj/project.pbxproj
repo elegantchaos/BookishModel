@@ -26,8 +26,6 @@
 		224293D4212AE83C00E70510 /* BookishModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224293C2212AE16300E70510 /* BookishModelTests.swift */; };
 		224293DC212AF00400E70510 /* Collection.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 22DD424D2126D6DA0070C85A /* Collection.xcdatamodeld */; };
 		224293DD212AF00500E70510 /* Collection.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 22DD424D2126D6DA0070C85A /* Collection.xcdatamodeld */; };
-		224293E1212AF07C00E70510 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224293E0212AF07C00E70510 /* Group.swift */; };
-		224293E2212AF07C00E70510 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224293E0212AF07C00E70510 /* Group.swift */; };
 		224293E3212AF09D00E70510 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224293DE212AF05800E70510 /* Person.swift */; };
 		224293E4212AF09E00E70510 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224293DE212AF05800E70510 /* Person.swift */; };
 		224293E6212AF0B700E70510 /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224293E5212AF0B700E70510 /* Relationship.swift */; };
@@ -218,7 +216,6 @@
 		224293C4212AE16300E70510 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		224293D1212AE1E700E70510 /* BookishModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookishModel.swift; sourceTree = "<group>"; };
 		224293DE212AF05800E70510 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
-		224293E0212AF07C00E70510 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		224293E5212AF0B700E70510 /* Relationship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
 		224293E8212AF0D300E70510 /* Role.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
 		224293EB212AF0E300E70510 /* Series.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Series.swift; sourceTree = "<group>"; };
@@ -329,7 +326,6 @@
 				22DAF394217B34FC003CE28B /* DetailDataSource.swift */,
 				221ED50B216B79F100594714 /* DetailSpec.swift */,
 				2250C70121B556FC00E899E2 /* Entry.swift */,
-				224293E0212AF07C00E70510 /* Group.swift */,
 				224293B6212AE16200E70510 /* Info.plist */,
 				224293DE212AF05800E70510 /* Person.swift */,
 				221F272121359DA200DC2DC7 /* Publisher.swift */,
@@ -744,7 +740,6 @@
 				224293EF212AFAFB00E70510 /* CollectionContainer.swift in Sources */,
 				221ED50C216B79F100594714 /* DetailSpec.swift in Sources */,
 				2250C70521B557A400E899E2 /* SeriesAction.swift in Sources */,
-				224293E1212AF07C00E70510 /* Group.swift in Sources */,
 				2250C70221B556FC00E899E2 /* Entry.swift in Sources */,
 				22DAF395217B34FC003CE28B /* DetailDataSource.swift in Sources */,
 				221ED50F216B87D900594714 /* Collection.swift in Sources */,
@@ -792,7 +787,6 @@
 				224293F0212AFAFB00E70510 /* CollectionContainer.swift in Sources */,
 				221ED50D216B79F100594714 /* DetailSpec.swift in Sources */,
 				2250C70621B557A400E899E2 /* SeriesAction.swift in Sources */,
-				224293E2212AF07C00E70510 /* Group.swift in Sources */,
 				2250C70321B556FC00E899E2 /* Entry.swift in Sources */,
 				22DAF396217B34FC003CE28B /* DetailDataSource.swift in Sources */,
 				221ED510216B87D900594714 /* Collection.swift in Sources */,
