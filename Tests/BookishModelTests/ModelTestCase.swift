@@ -7,6 +7,11 @@ import XCTest
 @testable import BookishModel
 
 class ModelTestCase: XCTestCase {
+    override func setUp() {
+        super.setUp()
+        modelChannel.enabled = true
+    }
+    
     func makeTestContainer() -> CollectionContainer {
         let container = CollectionContainer(name: "Collection")
         container.persistentStoreDescriptions[0].url = URL(fileURLWithPath: "/dev/null")

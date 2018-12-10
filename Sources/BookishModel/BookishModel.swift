@@ -8,19 +8,24 @@ import Logger
 
 let modelChannel = Logger("Model")
 
+enum BookishModelError: Error {
+    case locatingModel
+    case loadingModel
+}
+
 public class BookishModel {
     static let version = "1.0.0"
     
     static var cachedModel: NSManagedObjectModel!
     
-    public class func loadModel(bundle: Bundle = Bundle(for: BookishModel.self)) -> NSManagedObjectModel {
-        if cachedModel == nil {
+    public class func loadModel(bundle: Bundle = Bundle(for: BookishModel.self), forceLoad: Bool = false) throws -> NSManagedObjectModel {
+        if (cachedModel == nil) || forceLoad {
             guard let url = bundle.url(forResource: "Collection", withExtension: "momd") else {
-                fatalError("couldn't find model")
+                throw BookishModelError.locatingModel
             }
             
             guard let model = NSManagedObjectModel(contentsOf: url) else {
-                fatalError("couldn't load model")
+                throw BookishModelError.loadingModel
             }
             
             modelChannel.debug("loaded collection model")

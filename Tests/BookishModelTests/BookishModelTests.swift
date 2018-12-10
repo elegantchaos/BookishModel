@@ -5,21 +5,32 @@
 
 import XCTest
 import CoreData
+import Logger
 @testable import BookishModel
 
 class BookishModelTests: ModelTestCase {
     
     
     func testLoadingModel() {
-        let model = BookishModel.loadModel()
+        let model = try? BookishModel.loadModel()
         XCTAssertNotNil(model)
     }
     
     func testLoadingMissingModel() {
-        let model = BookishModel.loadModel(bundle: Bundle.main)
-        XCTAssertNotNil(model)
+        if let url = Bundle(for: BookishModelTests.self).url(forResource: "MissingModel", withExtension: "bundle") {
+            if let bundle = Bundle(url: url) {
+                XCTAssertThrowsError(try BookishModel.loadModel(bundle: bundle, forceLoad: true))
+            }
+        }
     }
-    
+
+    func testLoadingCorruptModel() {
+        if let url = Bundle(for: BookishModelTests.self).url(forResource: "CorruptModel", withExtension: "bundle") {
+            if let bundle = Bundle(url: url) {
+                XCTAssertThrowsError(try BookishModel.loadModel(bundle: bundle, forceLoad: true))
+            }
+        }
+    }
     func testContainer() {
         let container = makeTestContainer()
         let context = container.viewContext
