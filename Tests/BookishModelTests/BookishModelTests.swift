@@ -86,4 +86,15 @@ class BookishModelTests: ModelTestCase {
         XCTAssertFalse(allPeople.contains(person3))
 
     }
+    
+    func testCoverage() {
+        let _ : NSFetchRequest<Book> = Book.fetchRequest()
+        let _ : NSFetchRequest<Entry> = Entry.fetchRequest()
+        let _ : NSFetchRequest<Publisher> = Publisher.fetchRequest()
+        let _ : NSFetchRequest<Series> = Series.fetchRequest()
+        
+        let container = makeTestContainer()
+        Collection.setupTestDocument(context: container.viewContext)
+        
+    }
 }
