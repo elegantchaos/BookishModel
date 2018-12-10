@@ -8,12 +8,4 @@ sed s/BookishModelDependencies/BookishModelDependenciesMobile/ Package.swift.ori
 xcrun swift package generate-xcodeproj --output "Dependencies" --enable-code-coverage --xcconfig-overrides "Configs/BookishModelMobile.xcconfig"
 mv -f Package.swift.original Package.swift
 
-#pushd Dependencies/Mac
-#ln -sf BookishModelDependencies.xcodeproj BookishModelDependenciesMac.xcodeproj
-#popd
-
-#pushd Dependencies/Mobile
-#ln -sf BookishModelDependencies.xcodeproj BookishModelDependenciesMobile.xcodeproj
-#popd
-
 echo Update Done
