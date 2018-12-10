@@ -11,15 +11,6 @@
         }
       },
       {
-        "package": "Coverage",
-        "repositoryURL": "https://github.com/elegantchaos/Coverage",
-        "state": {
-          "branch": null,
-          "revision": "c44268e90f7aac4625f588e18242abb65111d5e2",
-          "version": "1.0.0"
-        }
-      },
-      {
         "package": "Docopt",
         "repositoryURL": "https://github.com/elegantchaos/docopt.swift",
         "state": {
@@ -33,8 +24,8 @@
         "repositoryURL": "https://github.com/elegantchaos/JSONDump",
         "state": {
           "branch": null,
-          "revision": "e508b81b9cd29daf90f0799a4e4263902dd98b2e",
-          "version": "1.0.2"
+          "revision": "4882206c9937592c06e3731638b0b30a255a1863",
+          "version": "1.0.3"
         }
       },
       {

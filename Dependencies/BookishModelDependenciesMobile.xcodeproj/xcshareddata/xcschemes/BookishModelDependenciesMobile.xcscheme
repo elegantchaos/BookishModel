@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1010"
+   LastUpgradeVersion = "9999"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Actions::SwiftPMPackageDescription"
-               BuildableName = "ActionsPackageDescription"
-               BlueprintName = "ActionsPackageDescription"
-               ReferencedContainer = "container:Dependencies/Mac/BookishModelDependenciesMac.xcodeproj">
+               BlueprintIdentifier = "BookishModelDependenciesMobile::BookishModelDependenciesMobile"
+               BuildableName = "BookishModelDependenciesMobile"
+               BlueprintName = "BookishModelDependenciesMobile"
+               ReferencedContainer = "container:Dependencies/BookishModelDependenciesMobile.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -26,6 +26,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      codeCoverageEnabled = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
@@ -42,15 +43,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "Actions::SwiftPMPackageDescription"
-            BuildableName = "ActionsPackageDescription"
-            BlueprintName = "ActionsPackageDescription"
-            ReferencedContainer = "container:Dependencies/Mac/BookishModelDependenciesMac.xcodeproj">
+            BlueprintIdentifier = "BookishModelDependenciesMobile::BookishModelDependenciesMobile"
+            BuildableName = "BookishModelDependenciesMobile"
+            BlueprintName = "BookishModelDependenciesMobile"
+            ReferencedContainer = "container:Dependencies/BookishModelDependenciesMobile.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -60,15 +62,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "Actions::SwiftPMPackageDescription"
-            BuildableName = "ActionsPackageDescription"
-            BlueprintName = "ActionsPackageDescription"
-            ReferencedContainer = "container:Dependencies/Mac/BookishModelDependenciesMac.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

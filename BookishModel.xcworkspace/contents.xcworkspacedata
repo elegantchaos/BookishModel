@@ -2,15 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:PersonTests.swift">
-   </FileRef>
-   <FileRef
-      location = "group:SeriesTests.swift">
-   </FileRef>
-   <FileRef
-      location = "group:RoleTests.swift">
-   </FileRef>
-   <FileRef
       location = "group:BookishModel.xcodeproj">
    </FileRef>
 </Workspace>

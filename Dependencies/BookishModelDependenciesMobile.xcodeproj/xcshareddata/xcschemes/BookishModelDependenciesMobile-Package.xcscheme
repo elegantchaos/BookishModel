@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1010"
+   LastUpgradeVersion = "9999"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Logger::SwiftPMPackageDescription"
-               BuildableName = "LoggerPackageDescription"
-               BlueprintName = "LoggerPackageDescription"
-               ReferencedContainer = "container:Dependencies/Mac/BookishModelDependenciesMac.xcodeproj">
+               BlueprintIdentifier = "BookishModelDependenciesMobile::BookishCore"
+               BuildableName = "BookishCore.framework"
+               BlueprintName = "BookishCore"
+               ReferencedContainer = "container:Dependencies/BookishModelDependenciesMobile.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BookishModelDependenciesMobile::BookishModelDependenciesMobile"
+               BuildableName = "BookishModelDependenciesMobile"
+               BlueprintName = "BookishModelDependenciesMobile"
+               ReferencedContainer = "container:Dependencies/BookishModelDependenciesMobile.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -26,6 +40,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      codeCoverageEnabled = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
@@ -45,10 +60,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "Logger::SwiftPMPackageDescription"
-            BuildableName = "LoggerPackageDescription"
-            BlueprintName = "LoggerPackageDescription"
-            ReferencedContainer = "container:Dependencies/Mac/BookishModelDependenciesMac.xcodeproj">
+            BlueprintIdentifier = "BookishModelDependenciesMobile::BookishCore"
+            BuildableName = "BookishCore.framework"
+            BlueprintName = "BookishCore"
+            ReferencedContainer = "container:Dependencies/BookishModelDependenciesMobile.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -60,15 +75,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "Logger::SwiftPMPackageDescription"
-            BuildableName = "LoggerPackageDescription"
-            BlueprintName = "LoggerPackageDescription"
-            ReferencedContainer = "container:Dependencies/Mac/BookishModelDependenciesMac.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
