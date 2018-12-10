@@ -9,9 +9,18 @@ import CoreData
 import Actions
 
 
-class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, BookChangeObserver {
+class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, BookChangeObserver, PublisherChangeObserver {
     var bookObserved: Book?
     var relationshipObserved: Relationship?
+    var publisherObserved: Publisher?
+    
+    func added(publisher: Publisher) {
+        publisherObserved = publisher
+    }
+    
+    func removed(publisher: Publisher) {
+        publisherObserved = publisher
+    }
     
     func removed(relationship: Relationship) {
         relationshipObserved = relationship
@@ -144,13 +153,6 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
     }
 
     func testChangeRelationshipActionNewPerson() {
-        func check(relationship: Relationship, book: Book, person: Person) {
-            XCTAssertEqual(book.roles.count, 1)
-            XCTAssertEqual(relationship.books?.count, 1)
-            XCTAssertEqual(relationship.books?.allObjects.first as? Book, book)
-            XCTAssertEqual(relationship.person, person)
-        }
-        
         let book = Book(context: context)
         let person = Person(context: context)
         let relationship = person.relationship(as: Role.Default.authorName)
@@ -179,6 +181,80 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
         XCTAssertEqual(count(of: "Book"), 1)
     }
 
+    func testAddPublisher() {
+        let book = Book(context: context)
+        XCTAssertNil(book.publisher)
+
+        XCTAssertFalse(actionManager.validate(identifier: "AddPublisher", info: info).enabled)
+        
+        info.addObserver(self)
+        info[ActionContext.selectionKey] = [book]
+        
+        XCTAssertTrue(actionManager.validate(identifier: "AddPublisher", info: info).enabled)
+        actionManager.perform(identifier: "AddPublisher", info: info)
+        
+        wait(for: [expectation], timeout: 1.0)
+
+        XCTAssertNotNil(book.publisher)
+        XCTAssertNotNil(publisherObserved)
+    }
+    
+    func testRemovePublisher() {
+        let book = Book(context: context)
+        let publisher = Publisher(context: context)
+        book.publisher = publisher
+        
+        XCTAssertFalse(actionManager.validate(identifier: "RemovePublisher", info: info).enabled)
+        
+        info.addObserver(self)
+        info[PublisherAction.publisherKey] = publisher
+        info[ActionContext.selectionKey] = [book]
+        
+        XCTAssertTrue(actionManager.validate(identifier: "RemovePublisher", info: info).enabled)
+        actionManager.perform(identifier: "RemovePublisher", info: info)
+        
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertNotNil(publisherObserved)
+        XCTAssertNil(book.publisher)
+//        XCTAssertNil(publisher.managedObjectContext)
+    }
+
+    func testChangePublisherAction() {
+        let book = Book(context: context)
+        let publisher = Publisher(context: context)
+        book.publisher = publisher
+        
+        let otherPublisher = Publisher(context: context)
+        info[PublisherAction.publisherKey] = otherPublisher
+        info[ActionContext.selectionKey] = [book]
+        
+        XCTAssertTrue(actionManager.validate(identifier: "ChangePublisher", info: info).enabled)
+        actionManager.perform(identifier: "ChangePublisher", info: info)
+        
+        wait(for: [expectation], timeout: 1.0)
+        
+        XCTAssertEqual(book.publisher, otherPublisher)
+    }
+    
+    func testChangePublisherActionNewPerson() {
+        let book = Book(context: context)
+        let publisher = Publisher(context: context)
+        book.publisher = publisher
+
+        info[PublisherAction.newPublisherKey] = "New Publisher"
+        info[ActionContext.selectionKey] = [book]
+        
+        XCTAssertTrue(actionManager.validate(identifier: "ChangePublisher", info: info).enabled)
+        actionManager.perform(identifier: "ChangePublisher", info: info)
+        
+        wait(for: [expectation], timeout: 1.0)
+        
+        XCTAssertEqual(book.publisher?.name, "New Publisher")
+        XCTAssertEqual(count(of: "Publisher"), 2)
+        XCTAssertEqual(count(of: "Book"), 1)
+    }
+
+    
     func testRevealBook() {
         let book = Book(context: context)
         info[ActionContext.rootKey] = self

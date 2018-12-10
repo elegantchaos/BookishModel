@@ -61,7 +61,6 @@ open class PublisherAction: ModelAction {
             NewPublisherAction(identifier: "NewPublisher"),
             DeletePublisherAction(identifier: "DeletePublisher"),
             RevealPublisherAction(identifier: "RevealPublisher"),
-            ChangePublisherAction(identifier: "ChangePublisher")
         ]
     }
 }
@@ -116,35 +115,6 @@ class RevealPublisherAction: PublisherAction {
         if let viewer = context[ActionContext.rootKey] as? PublisherViewer {
             if let publisher = context[PublisherAction.publisherKey] as? Publisher {
                 viewer.reveal(publisher: publisher)
-            }
-        }
-    }
-}
-
-/**
- Action that updates an existing role by changing the Publisher that
- it applies to.
- */
-
-class ChangePublisherAction: PublisherAction {
-    override func validate(context: ActionContext) -> Bool {
-        return (context[PublisherAction.publisherKey] as? Relationship != nil) && super.validate(context: context)
-    }
-    
-    override func perform(context: ActionContext, model: NSManagedObjectContext) {
-        if let selection = context[ActionContext.selectionKey] as? [Book] {
-            var newPublisher = context[PublisherAction.publisherKey] as? Publisher
-            if newPublisher == nil, let newPublisherName = context[PublisherAction.newPublisherKey] as? String {
-                print("Made new Publisher \(newPublisherName)")
-                newPublisher = Publisher(context: model)
-                newPublisher?.name = newPublisherName
-            }
-            
-            if let newPublisher = newPublisher {
-                for book in selection {
-                    newPublisher.addToBooks(book)
-                    print("publisher changed from \(book.publisher!.name!) to \(newPublisher.name!)")
-                }
             }
         }
     }
