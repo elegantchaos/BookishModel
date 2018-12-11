@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BookishModelDependencies::BookishCore"
-               BuildableName = "BookishCore.framework"
-               BlueprintName = "BookishCore"
+               BlueprintIdentifier = "BookishModelDependencies::BookishModelDependencies"
+               BuildableName = "BookishModelDependencies"
+               BlueprintName = "BookishModelDependencies"
                ReferencedContainer = "container:Dependencies/BookishModelDependencies.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,9 +28,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BookishModelDependencies::BookishModelDependencies"
-               BuildableName = "BookishModelDependencies"
-               BlueprintName = "BookishModelDependencies"
+               BlueprintIdentifier = "BookishModelDependencies::BookishCore"
+               BuildableName = "BookishCore.framework"
+               BlueprintName = "BookishCore"
                ReferencedContainer = "container:Dependencies/BookishModelDependencies.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -60,9 +60,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BookishModelDependencies::BookishCore"
-            BuildableName = "BookishCore.framework"
-            BlueprintName = "BookishCore"
+            BlueprintIdentifier = "BookishModelDependencies::BookishModelDependencies"
+            BuildableName = "BookishModelDependencies"
+            BlueprintName = "BookishModelDependencies"
             ReferencedContainer = "container:Dependencies/BookishModelDependencies.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

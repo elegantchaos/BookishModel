@@ -30,7 +30,7 @@ extension NSManagedObjectContext {
     */
     
     public func fetchAssertNoThrow<T>(_ request: NSFetchRequest<T>) -> [T] where T : NSFetchRequestResult {
-        #if debug
+        #if DEBUG
             return try! fetch(request)
         #else
         if let results = try? fetch(request) {

@@ -6,31 +6,37 @@
 import XCTest
 import CoreData
 import Logger
+import LoggerTestSupport
+
 @testable import BookishModel
 
-class BookishModelTests: ModelTestCase {
-    
+class MiscModelTests: ModelTestCase {
     
     func testLoadingModel() {
-        let model = try? BookishModel.loadModel()
+        let model = BookishModel.loadModel()
         XCTAssertNotNil(model)
     }
     
     func testLoadingMissingModel() {
-        if let url = Bundle(for: BookishModelTests.self).url(forResource: "MissingModel", withExtension: "bundle") {
-            if let bundle = Bundle(url: url) {
-                XCTAssertThrowsError(try BookishModel.loadModel(bundle: bundle, forceLoad: true))
+        XCTAssertFatalError(equals: BookishModel.Error.locatingModel) {
+            if let url = Bundle(for: MiscModelTests.self).url(forResource: "MissingModel", withExtension: "bundle") {
+                if let bundle = Bundle(url: url) {
+                    let _ = BookishModel.loadModel(bundle: bundle, forceLoad: true)
+                }
             }
         }
     }
 
     func testLoadingCorruptModel() {
-        if let url = Bundle(for: BookishModelTests.self).url(forResource: "CorruptModel", withExtension: "bundle") {
-            if let bundle = Bundle(url: url) {
-                XCTAssertThrowsError(try BookishModel.loadModel(bundle: bundle, forceLoad: true))
+        XCTAssertFatalError(equals: BookishModel.Error.loadingModel) {
+            if let url = Bundle(for: MiscModelTests.self).url(forResource: "CorruptModel", withExtension: "bundle") {
+                if let bundle = Bundle(url: url) {
+                    let _ = BookishModel.loadModel(bundle: bundle, forceLoad: true)
+                }
             }
         }
     }
+    
     func testContainer() {
         let container = makeTestContainer()
         let context = container.viewContext

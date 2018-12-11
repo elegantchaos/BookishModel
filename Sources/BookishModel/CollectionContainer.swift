@@ -12,6 +12,6 @@ public class CollectionContainer: NSPersistentContainer {
     }
     
     public init(name: String) {
-        super.init(name: name, managedObjectModel: try! BookishModel.loadModel())
+        super.init(name: name, managedObjectModel: BookishModel.loadModel())
     }
 }
