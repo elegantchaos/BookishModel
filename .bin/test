@@ -1,0 +1,20 @@
+.bin/update
+
+echo
+echo "Testing Mac"
+rm -rf Mac.xcresult Mac.log
+set -o pipefail && xcodebuild clean test -workspace BookishModel.xcworkspace -scheme BookishModelMac -enableCodeCoverage YES -resultBundlePath Mac.xcresult | tee Mac.log | xcpretty -f `xcpretty-travis-formatter`
+
+echo
+echo Testing Mobile
+
+rm -rf Mobile.xcresult Mobile.log
+set -o pipefail && xcodebuild clean test -workspace BookishModel.xcworkspace -scheme BookishModelMobile -destination "name=iPhone 6" -enableCodeCoverage YES -resultBundlePath Mobile.xcresult | tee Mobile.log | xcpretty -f `xcpretty-travis-formatter`
+
+echo
+echo Coverage
+
+.bin/coverage
+
+echo
+echo Done

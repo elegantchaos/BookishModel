@@ -1,0 +1,5 @@
+xcrun swift build --product coverage
+coverage=.build/debug/coverage
+
+echo Mac: $($coverage Mac.xcresult BookishModel --threshold=0.9)
+echo Mobile: $($coverage Mobile.xcresult BookishModel --threshold=0.9)
