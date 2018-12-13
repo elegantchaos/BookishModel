@@ -56,7 +56,7 @@
     <entity name="Series" representedClassName=".Series" syncable="YES" codeGenerationType="category">
         <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="imageURL" optional="YES" attributeType="URI" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" defaultValueString="Untitled Series" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="entries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Entry" inverseName="series" inverseEntity="Entry" syncable="YES"/>
     </entity>

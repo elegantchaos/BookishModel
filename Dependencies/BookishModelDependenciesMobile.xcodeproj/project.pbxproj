@@ -707,31 +707,31 @@
       };
       "OBJ_141" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_40";
+         fileRef = "OBJ_38";
       };
       "OBJ_142" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_41";
+         fileRef = "OBJ_39";
       };
       "OBJ_143" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_42";
+         fileRef = "OBJ_40";
       };
       "OBJ_144" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_43";
+         fileRef = "OBJ_41";
       };
       "OBJ_145" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_44";
+         fileRef = "OBJ_42";
       };
       "OBJ_146" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_45";
+         fileRef = "OBJ_43";
       };
       "OBJ_147" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_46";
+         fileRef = "OBJ_44";
       };
       "OBJ_148" = {
          isa = "PBXFrameworksBuildPhase";
@@ -891,7 +891,7 @@
       };
       "OBJ_159" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_38";
+         fileRef = "OBJ_46";
       };
       "OBJ_16" = {
          isa = "PBXFileReference";
@@ -975,7 +975,7 @@
             "OBJ_27",
             "OBJ_34"
          );
-         name = "Actions 1.2.0";
+         name = "Actions";
          path = "";
          sourceTree = "SOURCE_ROOT";
       };
@@ -986,7 +986,7 @@
             "OBJ_26"
          );
          name = "ActionsKit";
-         path = ".build/checkouts/Actions-2155746284089340034/Sources/ActionsKit";
+         path = "Packages/Actions/Sources/ActionsKit";
          sourceTree = "SOURCE_ROOT";
       };
       "OBJ_25" = {
@@ -1010,7 +1010,7 @@
             "OBJ_33"
          );
          name = "Actions";
-         path = ".build/checkouts/Actions-2155746284089340034/Sources/Actions";
+         path = "Packages/Actions/Sources/Actions";
          sourceTree = "SOURCE_ROOT";
       };
       "OBJ_28" = {
@@ -1086,7 +1086,7 @@
          isa = "PBXFileReference";
          explicitFileType = "sourcecode.swift";
          name = "Package.swift";
-         path = "/Users/sam/Projects/Bookish/Dependencies/BookishModel/.build/checkouts/Actions-2155746284089340034/Package.swift";
+         path = "/Users/sam/Projects/Bookish/Dependencies/BookishModel/Packages/Actions/Package.swift";
          sourceTree = "<group>";
       };
       "OBJ_35" = {
@@ -1094,10 +1094,10 @@
          children = (
             "OBJ_36",
             "OBJ_37",
-            "OBJ_39",
+            "OBJ_45",
             "OBJ_47"
          );
-         name = "Logger 1.1.1";
+         name = "Logger";
          path = "";
          sourceTree = "SOURCE_ROOT";
       };
@@ -1106,37 +1106,33 @@
          children = (
          );
          name = "Example";
-         path = ".build/checkouts/Logger-2489750325379397997/Sources/Example";
+         path = "Packages/Logger/Sources/Example";
          sourceTree = "SOURCE_ROOT";
       };
       "OBJ_37" = {
          isa = "PBXGroup";
          children = (
-            "OBJ_38"
-         );
-         name = "LoggerTestSupport";
-         path = ".build/checkouts/Logger-2489750325379397997/Sources/LoggerTestSupport";
-         sourceTree = "SOURCE_ROOT";
-      };
-      "OBJ_38" = {
-         isa = "PBXFileReference";
-         path = "XCTest+Logger.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_39" = {
-         isa = "PBXGroup";
-         children = (
+            "OBJ_38",
+            "OBJ_39",
             "OBJ_40",
             "OBJ_41",
             "OBJ_42",
             "OBJ_43",
-            "OBJ_44",
-            "OBJ_45",
-            "OBJ_46"
+            "OBJ_44"
          );
          name = "Logger";
-         path = ".build/checkouts/Logger-2489750325379397997/Sources/Logger";
+         path = "Packages/Logger/Sources/Logger";
          sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_38" = {
+         isa = "PBXFileReference";
+         path = "Context.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_39" = {
+         isa = "PBXFileReference";
+         path = "Handler.swift";
+         sourceTree = "<group>";
       };
       "OBJ_4" = {
          isa = "XCBuildConfiguration";
@@ -1172,55 +1168,59 @@
       };
       "OBJ_40" = {
          isa = "PBXFileReference";
-         path = "Context.swift";
+         path = "Logger.swift";
          sourceTree = "<group>";
       };
       "OBJ_41" = {
          isa = "PBXFileReference";
-         path = "Handler.swift";
+         path = "Manager.swift";
          sourceTree = "<group>";
       };
       "OBJ_42" = {
          isa = "PBXFileReference";
-         path = "Logger.swift";
+         path = "NSLogHandler.swift";
          sourceTree = "<group>";
       };
       "OBJ_43" = {
          isa = "PBXFileReference";
-         path = "Manager.swift";
+         path = "OSLogHandler.swift";
          sourceTree = "<group>";
       };
       "OBJ_44" = {
          isa = "PBXFileReference";
-         path = "NSLogHandler.swift";
+         path = "PrintHandler.swift";
          sourceTree = "<group>";
       };
       "OBJ_45" = {
-         isa = "PBXFileReference";
-         path = "OSLogHandler.swift";
-         sourceTree = "<group>";
+         isa = "PBXGroup";
+         children = (
+            "OBJ_46"
+         );
+         name = "LoggerTestSupport";
+         path = "Packages/Logger/Sources/LoggerTestSupport";
+         sourceTree = "SOURCE_ROOT";
       };
       "OBJ_46" = {
          isa = "PBXFileReference";
-         path = "PrintHandler.swift";
+         path = "XCTest+Logger.swift";
          sourceTree = "<group>";
       };
       "OBJ_47" = {
          isa = "PBXFileReference";
          explicitFileType = "sourcecode.swift";
          name = "Package.swift";
-         path = "/Users/sam/Projects/Bookish/Dependencies/BookishModel/.build/checkouts/Logger-2489750325379397997/Package.swift";
+         path = "/Users/sam/Projects/Bookish/Dependencies/BookishModel/Packages/Logger/Package.swift";
          sourceTree = "<group>";
       };
       "OBJ_48" = {
          isa = "PBXGroup";
          children = (
             "BookishModelDependenciesMobile::BookishModelDependenciesMobile::Product",
-            "Logger::LoggerTestSupport::Product",
+            "Actions::ActionsKit::Product",
             "Actions::Actions::Product",
+            "Logger::LoggerTestSupport::Product",
             "BookishModelDependenciesMobile::BookishCore::Product",
             "Logger::Logger::Product",
-            "Actions::ActionsKit::Product",
             "JSONDump::JSONDump::Product"
          );
          name = "Products";

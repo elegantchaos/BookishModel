@@ -26,7 +26,6 @@ public class BookishModel {
         guard let url = bundle.url(forResource: "Collection", withExtension: "momd") else {
             modelChannel.fatal(Error.locatingModel)
         }
-        print(url)
         
         guard let model = NSManagedObjectModel(contentsOf: url) else {
             modelChannel.fatal(Error.loadingModel)

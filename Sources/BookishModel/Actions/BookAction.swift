@@ -51,7 +51,7 @@ open class BookAction: ModelAction {
     open class override func standardActions() -> [Action] {
         return [
             NewBookAction(identifier: "NewBook"),
-            DeleteBooksAction(identifier: "DeleteBooks"),
+            DeleteBookAction(identifier: "DeleteBook"),
             AddPublisherAction(identifier: "AddPublisher"),
             RemovePublisherAction(identifier: "RemovePublisher"),
             ChangePublisherAction(identifier: "ChangePublisher"),
@@ -94,7 +94,7 @@ public class NewBookAction: BookAction {
  Action that deletes a book.
  */
 
-public class DeleteBooksAction: BookAction {
+public class DeleteBookAction: BookAction {
     
     public override func perform(context: ActionContext, model: NSManagedObjectContext) {
         if let selection = context[ActionContext.selectionKey] as? [Book] {

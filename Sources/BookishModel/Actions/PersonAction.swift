@@ -52,7 +52,7 @@ open class PersonAction: ModelAction {
     open class override func standardActions() -> [Action] {
         return [
             NewPersonAction(identifier: "NewPerson"),
-            DeletePeopleAction(identifier: "DeletePeople"),
+            DeletePersonAction(identifier: "DeletePerson"),
             RevealPersonAction(identifier: "RevealPerson"),
         ]
     }
@@ -79,7 +79,7 @@ class NewPersonAction: PersonAction {
  Action that deletes a person.
  */
 
-class DeletePeopleAction: PersonAction {
+class DeletePersonAction: PersonAction {
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
         if let selection = context[ActionContext.selectionKey] as? [Person] {
             for person in selection {

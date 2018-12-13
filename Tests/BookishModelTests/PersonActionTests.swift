@@ -33,30 +33,30 @@ class PersonActionTests: ModelActionTestCase, PersonViewer, PersonLifecycleObser
         XCTAssertNotNil(personObserved)
     }
     
-    func testDeletePeople() {
+    func testDeletePerson() {
         let person = Person(context: context)
         XCTAssertEqual(count(of: "Person"), 1)
         
         info.addObserver(self)
         info[ActionContext.selectionKey] = [person]
 
-        XCTAssertTrue(actionManager.validate(identifier: "DeletePeople", info: info).enabled)
+        XCTAssertTrue(actionManager.validate(identifier: "DeletePerson", info: info).enabled)
 
-        actionManager.perform(identifier: "DeletePeople", info: info)
+        actionManager.perform(identifier: "DeletePerson", info: info)
         wait(for: [expectation], timeout: 1.0)
         XCTAssertEqual(count(of: "Person"), 0)
         XCTAssertEqual(personObserved, person)
 
         // empty selection should disable
         info[ActionContext.selectionKey] = []
-        XCTAssertFalse(actionManager.validate(identifier: "DeletePeople", info: info).enabled)
+        XCTAssertFalse(actionManager.validate(identifier: "DeletePerson", info: info).enabled)
 
         // selection of wrong type should disable
         info[ActionContext.selectionKey] = [Book(context: context)]
-        XCTAssertFalse(actionManager.validate(identifier: "DeletePeople", info: info).enabled)
+        XCTAssertFalse(actionManager.validate(identifier: "DeletePerson", info: info).enabled)
 
         // no context should disable
-        XCTAssertFalse(actionManager.validate(identifier: "DeletePeople", info: ActionInfo()).enabled)
+        XCTAssertFalse(actionManager.validate(identifier: "DeletePerson", info: ActionInfo()).enabled)
     }
     
     func testRevealPerson() {

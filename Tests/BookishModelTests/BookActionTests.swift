@@ -60,14 +60,14 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
         XCTAssertNotNil(bookObserved)
     }
     
-    func testDeleteBooks() {
+    func testDeleteBook() {
         let book = Book(context: context)
         XCTAssertEqual(count(of: "Book"), 1)
         
         info[ActionContext.selectionKey] = [book]
         info.addObserver(self)
 
-        XCTAssertTrue(actionManager.validate(identifier: "DeleteBooks", info: info).enabled)
+        XCTAssertTrue(actionManager.validate(identifier: "DeleteBook", info: info).enabled)
 
         actionManager.perform(identifier: "DeleteBooks", info: info)
         wait(for: [expectation], timeout: 1.0)
@@ -75,9 +75,9 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
         XCTAssertEqual(bookObserved, book)
 
         info[ActionContext.selectionKey] = []
-        XCTAssertFalse(actionManager.validate(identifier: "DeleteBooks", info: info).enabled)
+        XCTAssertFalse(actionManager.validate(identifier: "DeleteBook", info: info).enabled)
         
-        XCTAssertFalse(actionManager.validate(identifier: "DeleteBooks", info: ActionInfo()).enabled)
+        XCTAssertFalse(actionManager.validate(identifier: "DeleteBook", info: ActionInfo()).enabled)
     }
     
     
