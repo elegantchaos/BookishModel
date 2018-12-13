@@ -23,17 +23,12 @@ public class BookishModel {
             return cachedModel
         }
         
-        print(bundle)
-        let contents = try! FileManager.default.contentsOfDirectory(at: bundle.bundleURL, includingPropertiesForKeys: nil, options: [])
-        print(contents)
         guard let url = bundle.url(forResource: "Collection", withExtension: "momd") else {
-            print("locating failed")
             modelChannel.fatal(Error.locatingModel)
         }
         print(url)
         
         guard let model = NSManagedObjectModel(contentsOf: url) else {
-            print("loading failed")
             modelChannel.fatal(Error.loadingModel)
         }
         
