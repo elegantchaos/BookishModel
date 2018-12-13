@@ -30,9 +30,7 @@ class MiscModelTests: ModelTestCase {
     func testLoadingCorruptModel() {
         XCTAssertFatalError(equals: BookishModel.Error.loadingModel) {
             if let url = Bundle(for: MiscModelTests.self).url(forResource: "CorruptModel", withExtension: "bundle") {
-                print(url)
                 if let bundle = Bundle(url: url) {
-                    print(bundle)
                     let _ = BookishModel.loadModel(bundle: bundle, forceLoad: true)
                 }
             }
