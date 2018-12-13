@@ -24,6 +24,8 @@ public class BookishModel {
         }
         
         print(bundle)
+        let contents = try! FileManager.default.contentsOfDirectory(at: bundle.bundleURL, includingPropertiesForKeys: nil, options: [])
+        print(contents)
         guard let url = bundle.url(forResource: "Collection", withExtension: "momd") else {
             print("locating failed")
             modelChannel.fatal(Error.locatingModel)
