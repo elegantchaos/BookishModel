@@ -4,12 +4,14 @@ echo
 echo "Testing Mac"
 rm -rf .build/Mac.xcresult .build/Mac.log
 set -o pipefail && xcodebuild clean test -workspace BookishModel.xcworkspace -scheme BookishModelMac -enableCodeCoverage YES -resultBundlePath .build/Mac.xcresult | tee .build/Mac.log | xcpretty -f `xcpretty-travis-formatter`
+MAC_RESULT=$?
 
 echo
 echo Testing Mobile
 
 rm -rf .build/Mobile.xcresult .build/Mobile.log
 set -o pipefail && xcodebuild clean test -workspace BookishModel.xcworkspace -scheme BookishModelMobile -destination "name=iPhone 6" -enableCodeCoverage YES -resultBundlePath .build/Mobile.xcresult | tee .build/Mobile.log | xcpretty -f `xcpretty-travis-formatter`
+MOBILE_RESULT=$?
 
 echo
 echo Coverage
@@ -18,3 +20,7 @@ echo Coverage
 
 echo
 echo Done
+
+cat .build/Mac.log
+
+exit $MAC_RESULT || $MOBILE_RESULT
