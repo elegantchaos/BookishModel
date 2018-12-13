@@ -8,10 +8,13 @@ import CoreData
 public class Role: NSManagedObject {
     public struct Default {
         public static let authorName = "Author"
+        public static let contributorName = "Contributor"
         public static let editorName = "Editor"
+        public static let forwordName = "Foreword"
         public static let illustratorName = "Illustrator"
-        
-        public static var names: [String] { get { return [authorName, editorName, illustratorName] } }
+        public static let translatorName = "Translator"
+
+        public static var names: [String] { get { return [authorName, contributorName, editorName, forwordName, illustratorName, translatorName] } }
     }
     
     public class func role(named: String, context: NSManagedObjectContext) -> Role {
