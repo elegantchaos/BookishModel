@@ -21,7 +21,7 @@ class MiscModelTests: ModelTestCase {
         XCTAssertFatalError(equals: BookishModel.Error.locatingModel) {
             if let url = Bundle(for: MiscModelTests.self).url(forResource: "MissingModel", withExtension: "bundle") {
                 if let bundle = Bundle(url: url) {
-                    let _ = BookishModel.loadModel(bundle: bundle, forceLoad: true)
+                    let _ = BookishModel.loadModel(bundle: bundle, cached: false)
                 }
             }
         }
@@ -31,7 +31,7 @@ class MiscModelTests: ModelTestCase {
         XCTAssertFatalError(equals: BookishModel.Error.loadingModel) {
             if let url = Bundle(for: MiscModelTests.self).url(forResource: "CorruptModel", withExtension: "bundle") {
                 if let bundle = Bundle(url: url) {
-                    let _ = BookishModel.loadModel(bundle: bundle, forceLoad: true)
+                    let _ = BookishModel.loadModel(bundle: bundle, cached: false)
                 }
             }
         }
