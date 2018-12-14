@@ -69,7 +69,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
 
         XCTAssertTrue(actionManager.validate(identifier: "DeleteBook", info: info).enabled)
 
-        actionManager.perform(identifier: "DeleteBooks", info: info)
+        actionManager.perform(identifier: "DeleteBook", info: info)
         wait(for: [expectation], timeout: 1.0)
         XCTAssertEqual(count(of: "Book"), 0)
         XCTAssertEqual(bookObserved, book)
