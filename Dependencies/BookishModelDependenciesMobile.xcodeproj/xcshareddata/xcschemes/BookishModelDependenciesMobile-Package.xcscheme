@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BookishModelDependenciesMobile::BookishCore"
-               BuildableName = "BookishCore.framework"
-               BlueprintName = "BookishCore"
+               BlueprintIdentifier = "BookishModelDependenciesMobile::BookishModelDependenciesMobile"
+               BuildableName = "BookishModelDependenciesMobile"
+               BlueprintName = "BookishModelDependenciesMobile"
                ReferencedContainer = "container:Dependencies/BookishModelDependenciesMobile.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,9 +28,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BookishModelDependenciesMobile::BookishModelDependenciesMobile"
-               BuildableName = "BookishModelDependenciesMobile"
-               BlueprintName = "BookishModelDependenciesMobile"
+               BlueprintIdentifier = "BookishModelDependenciesMobile::BookishCore"
+               BuildableName = "BookishCore.framework"
+               BlueprintName = "BookishCore"
                ReferencedContainer = "container:Dependencies/BookishModelDependenciesMobile.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -60,9 +60,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BookishModelDependenciesMobile::BookishCore"
-            BuildableName = "BookishCore.framework"
-            BlueprintName = "BookishCore"
+            BlueprintIdentifier = "BookishModelDependenciesMobile::BookishModelDependenciesMobile"
+            BuildableName = "BookishModelDependenciesMobile"
+            BlueprintName = "BookishModelDependenciesMobile"
             ReferencedContainer = "container:Dependencies/BookishModelDependenciesMobile.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

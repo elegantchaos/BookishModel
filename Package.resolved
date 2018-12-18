@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "Actions",
+        "repositoryURL": "https://github.com/elegantchaos/Actions",
+        "state": {
+          "branch": null,
+          "revision": "9f22be81d5fd0143569e435ee73ba81e84cc629d",
+          "version": "1.2.1"
+        }
+      },
+      {
         "package": "Arguments",
         "repositoryURL": "https://github.com/elegantchaos/Arguments.git",
         "state": {
@@ -42,8 +51,8 @@
         "repositoryURL": "https://github.com/elegantchaos/Logger",
         "state": {
           "branch": null,
-          "revision": "c2ae3e6d20c9c71f970684c3209ba5c48bbce248",
-          "version": "1.2.0"
+          "revision": "26e6fed883c376d2ece6f929d1ca81fc3ffc97c1",
+          "version": "1.2.1"
         }
       },
       {
