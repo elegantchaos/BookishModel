@@ -1,0 +1,2 @@
+xcrun swift package unedit $1
+.bin/update

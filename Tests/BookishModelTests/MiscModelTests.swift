@@ -10,6 +10,7 @@ import LoggerTestSupport
 
 @testable import BookishModel
 
+
 class MiscModelTests: ModelTestCase {
     
     func testLoadingModel() {
@@ -18,6 +19,7 @@ class MiscModelTests: ModelTestCase {
     }
     
     func testLoadingMissingModel() {
+        #if !os(iOS) || targetEnvironment(simulator)
         XCTAssertFatalError(equals: BookishModel.Error.locatingModel) {
             if let url = Bundle(for: MiscModelTests.self).url(forResource: "MissingModel", withExtension: "bundle") {
                 if let bundle = Bundle(url: url) {
@@ -25,9 +27,11 @@ class MiscModelTests: ModelTestCase {
                 }
             }
         }
+        #endif
     }
 
     func testLoadingCorruptModel() {
+        #if !os(iOS) || targetEnvironment(simulator)
         XCTAssertFatalError(equals: BookishModel.Error.loadingModel) {
             if let url = Bundle(for: MiscModelTests.self).url(forResource: "CorruptModel", withExtension: "bundle") {
                 if let bundle = Bundle(url: url) {
@@ -35,6 +39,7 @@ class MiscModelTests: ModelTestCase {
                 }
             }
         }
+        #endif
     }
     
     func testContainer() {
