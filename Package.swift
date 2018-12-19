@@ -17,7 +17,7 @@ let package = Package(
             dependencies: ["Logger", "Actions"]),
         .target(
             name: "BookishCore",
-            dependencies: ["Logger", "LoggerKit", "Actions", "ActionsKit", "JSONDump", "LoggerTestSupport"]),
+            dependencies: ["Logger", "LoggerKit", "Actions", "ActionsKit", "JSONDump"]),
         ],
     swiftLanguageVersions: [.v4_2]
 )

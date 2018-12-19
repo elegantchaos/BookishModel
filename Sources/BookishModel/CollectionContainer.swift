@@ -43,7 +43,16 @@ public class CollectionContainer: NSPersistentContainer {
                 }
             }
             
-            if !fm.fileExists(atPath: url.path) || madeNewCollection {
+            let container = url.deletingLastPathComponent()
+            if !fm.fileExists(at: container) {
+                do {
+                    try fm.createDirectory(at: container, withIntermediateDirectories: true)
+                } catch {
+                    print("failed to create containing directory")
+                }
+            }
+            
+            if !fm.fileExists(at: url) || madeNewCollection {
                 madeNewCollection = true
                 if usingSample, let sample = Bundle.main.url(forResource: "Sample", withExtension: "sqlite") {
                     do {
@@ -83,9 +92,10 @@ public class CollectionContainer: NSPersistentContainer {
         viewContext.reset()
         viewContext.processPendingChanges()
         if let description = persistentStoreDescriptions.first, let url = description.url {
-            let fm = FileManager.default
-            if fm.fileExists(atPath: url.path) {
-                try? fm.removeItem(at: url)
+            do {
+                try persistentStoreCoordinator.destroyPersistentStore(at: url, ofType: description.type, options: nil)
+            } catch {
+                print("failed to delete previous database")
             }
         }
     }
@@ -93,7 +103,7 @@ public class CollectionContainer: NSPersistentContainer {
     public func reset() {
         if let description = persistentStoreDescriptions.first, let url = description.url {
             let fm = FileManager.default
-            if fm.fileExists(atPath: url.path) {
+            if fm.fileExists(at: url) {
                 try? fm.removeItem(at: url)
             }
 

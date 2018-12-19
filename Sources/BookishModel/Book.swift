@@ -5,6 +5,7 @@
 
 import CoreData
 
+
 public class Book: NSManagedObject {
     
     static var untitledCount = 0
@@ -17,7 +18,7 @@ public class Book: NSManagedObject {
         added = Date()
         modified = Date()
     }
-    
+
     public var roles: Set<Role> {
         var result = Set<Role>()
         if let people = self.relationships as? Set<Relationship> {
@@ -79,4 +80,16 @@ public class Book: NSManagedObject {
 
         return result.joined(separator: "\n")
     }
+    
+    public override func didChangeValue(forKey key: String) { // TODO: not sure that this is the best approach...
+        if key == "name" {
+            sortName = Indexing.titleSort(for: name)
+        }
+        super.didChangeValue(forKey: key)
+    }
+    
+    @objc dynamic var sectionName: String? {
+        return Indexing.sectionName(for: sortName)
+    }
+
 }

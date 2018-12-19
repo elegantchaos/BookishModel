@@ -86,14 +86,16 @@
 		22D4A3D021BEDDA100427E35 /* CorruptModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */; };
 		22D4A3D121BEDDA100427E35 /* MissingModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3CE21BEDDA100427E35 /* MissingModel.bundle */; };
 		22D4A3D221BEDDA100427E35 /* MissingModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3CE21BEDDA100427E35 /* MissingModel.bundle */; };
-		22D4A44321BFF88000427E35 /* LoggerTestSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D4A44221BFF88000427E35 /* LoggerTestSupport.framework */; };
-		22D4A44721BFF8A100427E35 /* LoggerTestSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D4A44621BFF88100427E35 /* LoggerTestSupport.framework */; };
 		22DAF395217B34FC003CE28B /* DetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DAF394217B34FC003CE28B /* DetailDataSource.swift */; };
 		22DAF396217B34FC003CE28B /* DetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DAF394217B34FC003CE28B /* DetailDataSource.swift */; };
 		22E47CC6216E31B700E43DBF /* BookAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C4B23216BA50C0086D56F /* BookAction.swift */; };
 		22E47CC7216E31BA00E43DBF /* BookAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C4B23216BA50C0086D56F /* BookAction.swift */; };
 		22EEF6BE21A6B761007FAD10 /* ModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EEF6BD21A6B761007FAD10 /* ModelTestCase.swift */; };
 		22EEF6BF21A6B761007FAD10 /* ModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EEF6BD21A6B761007FAD10 /* ModelTestCase.swift */; };
+		22F180C421CA662D00220D20 /* FileManagerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F180C321CA662D00220D20 /* FileManagerExtensions.swift */; };
+		22F180C521CA662D00220D20 /* FileManagerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F180C321CA662D00220D20 /* FileManagerExtensions.swift */; };
+		22F180E321CA8FD600220D20 /* Indexing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F180E221CA8FD600220D20 /* Indexing.swift */; };
+		22F180E421CA8FD600220D20 /* Indexing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F180E221CA8FD600220D20 /* Indexing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -209,19 +211,19 @@
 			remoteGlobalIDString = "BookishModelDependencies::BookishCore";
 			remoteInfo = BookishCore;
 		};
-		22D4A44121BFF88000427E35 /* PBXContainerItemProxy */ = {
+		22F180D021CA662E00220D20 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishModelDependencies.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = "Logger::LoggerTestSupport::Product";
-			remoteInfo = LoggerTestSupport;
+			remoteGlobalIDString = "Logger::LoggerKit::Product";
+			remoteInfo = LoggerKit;
 		};
-		22D4A44521BFF88100427E35 /* PBXContainerItemProxy */ = {
+		22F180DC21CA662E00220D20 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishModelDependenciesMobile.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = "Logger::LoggerTestSupport::Product";
-			remoteInfo = LoggerTestSupport;
+			remoteGlobalIDString = "Logger::LoggerKit::Product";
+			remoteInfo = LoggerKit;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -284,6 +286,8 @@
 		22F1179E21A5A4C900AE3FBB /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = SOURCE_ROOT; };
 		22F1180D21A5C13700AE3FBB /* BookishModelDependenciesMobile.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BookishModelDependenciesMobile.xcodeproj; path = Dependencies/BookishModelDependenciesMobile.xcodeproj; sourceTree = SOURCE_ROOT; };
 		22F1182221A5C15D00AE3FBB /* BookishModelDependencies.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BookishModelDependencies.xcodeproj; path = Dependencies/BookishModelDependencies.xcodeproj; sourceTree = SOURCE_ROOT; };
+		22F180C321CA662D00220D20 /* FileManagerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerExtensions.swift; sourceTree = "<group>"; };
+		22F180E221CA8FD600220D20 /* Indexing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indexing.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,7 +302,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22D4A44321BFF88000427E35 /* LoggerTestSupport.framework in Frameworks */,
 				2242939A212AE0F400E70510 /* BookishModel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -316,7 +319,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22D4A44721BFF8A100427E35 /* LoggerTestSupport.framework in Frameworks */,
 				224293BC212AE16300E70510 /* BookishModel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -352,6 +354,7 @@
 			children = (
 				221C4B36216BABE40086D56F /* Actions */,
 				221F271E21306C1300DC2DC7 /* Book.swift */,
+				22F180E221CA8FD600220D20 /* Indexing.swift */,
 				224293B5212AE16200E70510 /* BookishModel.h */,
 				224293D1212AE1E700E70510 /* BookishModel.swift */,
 				221ED50E216B87D900594714 /* Collection.swift */,
@@ -408,6 +411,7 @@
 			children = (
 				2250C75C21B94D9700E899E2 /* RegularExpressionExtensions.swift */,
 				2250C71721B7E15700E899E2 /* ContextExtensions.swift */,
+				22F180C321CA662D00220D20 /* FileManagerExtensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -421,7 +425,7 @@
 				2250C82E21BEA35A00E899E2 /* BookishModelDependencies */,
 				2250C83021BEA35A00E899E2 /* JSONDump.framework */,
 				2250C83221BEA35A00E899E2 /* Logger.framework */,
-				22D4A44221BFF88000427E35 /* LoggerTestSupport.framework */,
+				22F180D121CA662E00220D20 /* LoggerKit.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -435,7 +439,7 @@
 				2250C84F21BEA36200E899E2 /* BookishModelDependenciesMobile */,
 				2250C85121BEA36200E899E2 /* JSONDump.framework */,
 				2250C85321BEA36200E899E2 /* Logger.framework */,
-				22D4A44621BFF88100427E35 /* LoggerTestSupport.framework */,
+				22F180DD21CA662E00220D20 /* LoggerKit.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -751,18 +755,18 @@
 			remoteRef = 2250C85221BEA36200E899E2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		22D4A44221BFF88000427E35 /* LoggerTestSupport.framework */ = {
+		22F180D121CA662E00220D20 /* LoggerKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = LoggerTestSupport.framework;
-			remoteRef = 22D4A44121BFF88000427E35 /* PBXContainerItemProxy */;
+			path = LoggerKit.framework;
+			remoteRef = 22F180D021CA662E00220D20 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		22D4A44621BFF88100427E35 /* LoggerTestSupport.framework */ = {
+		22F180DD21CA662E00220D20 /* LoggerKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = LoggerTestSupport.framework;
-			remoteRef = 22D4A44521BFF88100427E35 /* PBXContainerItemProxy */;
+			path = LoggerKit.framework;
+			remoteRef = 22F180DC21CA662E00220D20 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -807,6 +811,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22F180C421CA662D00220D20 /* FileManagerExtensions.swift in Sources */,
 				224293EF212AFAFB00E70510 /* CollectionContainer.swift in Sources */,
 				221ED50C216B79F100594714 /* DetailSpec.swift in Sources */,
 				2250C70521B557A400E899E2 /* SeriesAction.swift in Sources */,
@@ -829,6 +834,7 @@
 				22E47CC6216E31B700E43DBF /* BookAction.swift in Sources */,
 				224293E3212AF09D00E70510 /* Person.swift in Sources */,
 				2250C71F21B94CD800E899E2 /* SeriesScanner.swift in Sources */,
+				22F180E321CA8FD600220D20 /* Indexing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -859,6 +865,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22F180C521CA662D00220D20 /* FileManagerExtensions.swift in Sources */,
 				224293F0212AFAFB00E70510 /* CollectionContainer.swift in Sources */,
 				221ED50D216B79F100594714 /* DetailSpec.swift in Sources */,
 				2250C70621B557A400E899E2 /* SeriesAction.swift in Sources */,
@@ -881,6 +888,7 @@
 				22E47CC7216E31BA00E43DBF /* BookAction.swift in Sources */,
 				224293E4212AF09E00E70510 /* Person.swift in Sources */,
 				2250C72021B94CD800E899E2 /* SeriesScanner.swift in Sources */,
+				22F180E421CA8FD600220D20 /* Indexing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

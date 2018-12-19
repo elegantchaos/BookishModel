@@ -45,4 +45,16 @@ public class Person: NSManagedObject {
         
         return entry
     }
+
+    public override func didChangeValue(forKey key: String) { // TODO: not sure that this is the best approach...
+        if key == "name" {
+            sortName = Indexing.nameSort(for: name)
+        }
+        super.didChangeValue(forKey: key)
+    }
+    
+    @objc dynamic var sectionName: String? {
+        return Indexing.sectionName(for: sortName)
+    }
+
 }
