@@ -5,6 +5,12 @@ import PackageDescription
 
 let package = Package(
     name: "BookishModelDependencies",
+    products: [
+        // Products define the executables and libraries produced by a package, and make them visible to other packages.
+        .library(
+            name: "BookishCore",
+            targets: ["BookishCore"]),
+    ],
     dependencies: [
         .package(url: "https://github.com/elegantchaos/Logger", from: "1.2.2"),
         .package(url: "https://github.com/elegantchaos/Actions", from: "1.2.1"),
@@ -13,11 +19,11 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "BookishModelDependencies",
-            dependencies: ["Logger", "Actions"]),
-        .target(
             name: "BookishCore",
-            dependencies: ["Logger", "LoggerKit", "LoggerTestSupport", "Actions", "ActionsKit", "JSONDump"]),
-        ],
+            dependencies: ["Logger", "LoggerKit", "Actions", "ActionsKit", "JSONDump"]),
+        .testTarget(
+            name: "BookishCoreTests",
+            dependencies: ["BookishCore", "LoggerTestSupport"])
+    ],
     swiftLanguageVersions: [.v4_2]
 )

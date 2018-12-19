@@ -134,13 +134,6 @@
 			remoteGlobalIDString = "BookishModelDependencies::BookishCore::Product";
 			remoteInfo = BookishCore;
 		};
-		2250C82D21BEA35A00E899E2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishModelDependencies.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "BookishModelDependencies::BookishModelDependencies::Product";
-			remoteInfo = BookishModelDependencies;
-		};
 		2250C82F21BEA35A00E899E2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishModelDependencies.xcodeproj */;
@@ -175,13 +168,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = "BookishModelDependenciesMobile::BookishCore::Product";
 			remoteInfo = BookishCore;
-		};
-		2250C84E21BEA36200E899E2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishModelDependenciesMobile.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "BookishModelDependenciesMobile::BookishModelDependenciesMobile::Product";
-			remoteInfo = BookishModelDependenciesMobile;
 		};
 		2250C85021BEA36200E899E2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -224,6 +210,34 @@
 			proxyType = 2;
 			remoteGlobalIDString = "Logger::LoggerKit::Product";
 			remoteInfo = LoggerKit;
+		};
+		22F1815B21CAABE800220D20 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishModelDependencies.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "Logger::LoggerTestSupport::Product";
+			remoteInfo = LoggerTestSupport;
+		};
+		22F1816821CAABE800220D20 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishModelDependenciesMobile.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "Logger::LoggerTestSupport::Product";
+			remoteInfo = LoggerTestSupport;
+		};
+		22F181BC21CAB7A400220D20 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishModelDependencies.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "BookishModelDependencies::BookishCoreTests::Product";
+			remoteInfo = BookishCoreTests;
+		};
+		22F181CA21CAB7A400220D20 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishModelDependenciesMobile.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "BookishModelDependenciesMobile::BookishCoreTests::Product";
+			remoteInfo = BookishCoreTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -422,10 +436,11 @@
 				2250C82821BEA35A00E899E2 /* Actions.framework */,
 				2250C82A21BEA35A00E899E2 /* ActionsKit.framework */,
 				2250C82C21BEA35A00E899E2 /* BookishCore.framework */,
-				2250C82E21BEA35A00E899E2 /* BookishModelDependencies */,
+				22F181BD21CAB7A400220D20 /* BookishCoreTests.xctest */,
 				2250C83021BEA35A00E899E2 /* JSONDump.framework */,
 				2250C83221BEA35A00E899E2 /* Logger.framework */,
 				22F180D121CA662E00220D20 /* LoggerKit.framework */,
+				22F1815C21CAABE800220D20 /* LoggerTestSupport.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -436,10 +451,11 @@
 				2250C84921BEA36200E899E2 /* Actions.framework */,
 				2250C84B21BEA36200E899E2 /* ActionsKit.framework */,
 				2250C84D21BEA36200E899E2 /* BookishCore.framework */,
-				2250C84F21BEA36200E899E2 /* BookishModelDependenciesMobile */,
+				22F181CB21CAB7A400220D20 /* BookishCoreTests.xctest */,
 				2250C85121BEA36200E899E2 /* JSONDump.framework */,
 				2250C85321BEA36200E899E2 /* Logger.framework */,
 				22F180DD21CA662E00220D20 /* LoggerKit.framework */,
+				22F1816921CAABE800220D20 /* LoggerTestSupport.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -692,13 +708,6 @@
 			remoteRef = 2250C82B21BEA35A00E899E2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		2250C82E21BEA35A00E899E2 /* BookishModelDependencies */ = {
-			isa = PBXReferenceProxy;
-			fileType = text;
-			path = BookishModelDependencies;
-			remoteRef = 2250C82D21BEA35A00E899E2 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		2250C83021BEA35A00E899E2 /* JSONDump.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -734,13 +743,6 @@
 			remoteRef = 2250C84C21BEA36200E899E2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		2250C84F21BEA36200E899E2 /* BookishModelDependenciesMobile */ = {
-			isa = PBXReferenceProxy;
-			fileType = text;
-			path = BookishModelDependenciesMobile;
-			remoteRef = 2250C84E21BEA36200E899E2 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		2250C85121BEA36200E899E2 /* JSONDump.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -767,6 +769,34 @@
 			fileType = wrapper.framework;
 			path = LoggerKit.framework;
 			remoteRef = 22F180DC21CA662E00220D20 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		22F1815C21CAABE800220D20 /* LoggerTestSupport.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = LoggerTestSupport.framework;
+			remoteRef = 22F1815B21CAABE800220D20 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		22F1816921CAABE800220D20 /* LoggerTestSupport.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = LoggerTestSupport.framework;
+			remoteRef = 22F1816821CAABE800220D20 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		22F181BD21CAB7A400220D20 /* BookishCoreTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = file;
+			path = BookishCoreTests.xctest;
+			remoteRef = 22F181BC21CAB7A400220D20 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		22F181CB21CAB7A400220D20 /* BookishCoreTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = file;
+			path = BookishCoreTests.xctest;
+			remoteRef = 22F181CA21CAB7A400220D20 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
