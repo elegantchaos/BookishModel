@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Actions::ActionsKit"
-               BuildableName = "ActionsKit.framework"
-               BlueprintName = "ActionsKit"
-               ReferencedContainer = "container:Dependencies/BookishModelDependenciesMobile.xcodeproj">
+               BlueprintIdentifier = "Actions::SwiftPMPackageDescription"
+               BuildableName = "ActionsPackageDescription"
+               BlueprintName = "ActionsPackageDescription"
+               ReferencedContainer = "container:Dependencies/BookishCoreMobile.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,10 +45,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "Actions::ActionsKit"
-            BuildableName = "ActionsKit.framework"
-            BlueprintName = "ActionsKit"
-            ReferencedContainer = "container:Dependencies/BookishModelDependenciesMobile.xcodeproj">
+            BlueprintIdentifier = "Actions::SwiftPMPackageDescription"
+            BuildableName = "ActionsPackageDescription"
+            BlueprintName = "ActionsPackageDescription"
+            ReferencedContainer = "container:Dependencies/BookishCoreMobile.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -63,10 +63,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "Actions::ActionsKit"
-            BuildableName = "ActionsKit.framework"
-            BlueprintName = "ActionsKit"
-            ReferencedContainer = "container:Dependencies/BookishModelDependenciesMobile.xcodeproj">
+            BlueprintIdentifier = "Actions::SwiftPMPackageDescription"
+            BuildableName = "ActionsPackageDescription"
+            BlueprintName = "ActionsPackageDescription"
+            ReferencedContainer = "container:Dependencies/BookishCoreMobile.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
