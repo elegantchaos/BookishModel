@@ -3,23 +3,23 @@
 //  All code (c) 2018 - present day, Elegant Chaos Limited.
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-#if os(macOS)
-import AppKit
-#endif
+public protocol ImageFactory {
+    associatedtype ImageClass
+    static func image(from data: Data) -> ImageClass?
+}
 
-#if os(iOS)
-import UIKit
-#endif
-
-public class ImageCache<ImageClass> {
+public class ImageCache<Factory: ImageFactory> {
     let queue = DispatchQueue(label: "image-cache")
-    public typealias ImageCallback = (ImageClass) -> Void
+    public typealias ImageCallback = (Factory.ImageClass) -> Void
     
+    public init() {
+    }
+
     public func image(for url: URL, callback: @escaping ImageCallback) {
         queue.async {
             do {
                 let data = try Data(contentsOf: url)
-                if let image: ImageClass = self.image(from: data) {
+                if let image = Factory.image(from: data) {
                     DispatchQueue.main.async {
                         callback(image)
                     }
@@ -29,34 +29,35 @@ public class ImageCache<ImageClass> {
             }
         }
     }
-    
-    func image(from data: Data) -> ImageClass? {
-        return nil
-    }
 }
 
 #if os(iOS)
 
-public class UIImageCache: ImageCache<UIImage> {
-    override public init() {
-    }
+import UIKit
+
+extension UIImage: ImageFactory {
+    public typealias ImageClass = UIImage
     
-    override func image(from data: Data) -> UIImage? {
+    public static func image(from data: Data) -> UIImage? {
         return UIImage(data: data)
     }
 }
+
+public typealias UIImageCache = ImageCache<UIImage>
 
 #endif
 
 #if os(macOS)
 
-public class NSImageCache: ImageCache<NSImage> {
-    override public init() {
-    }
+import AppKit
+
+extension NSImage: ImageFactory {
+    public typealias ImageClass = NSImage
     
-    override func image(from data: Data) -> NSImage? {
+    public static func image(from data: Data) -> NSImage? {
         return NSImage(data: data)
     }
 }
 
+public typealias NSImageCache = ImageCache<NSImage>
 #endif
