@@ -14,10 +14,38 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BookishModelDependenciesMobile::BookishCore"
+               BlueprintIdentifier = "BookishCoreMac::BookishCoreMobile"
+               BuildableName = "BookishCoreMobile"
+               BlueprintName = "BookishCoreMobile"
+               ReferencedContainer = "container:Dependencies/BookishCoreMac.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BookishCoreMac::BookishCore"
                BuildableName = "BookishCore.framework"
                BlueprintName = "BookishCore"
-               ReferencedContainer = "container:Dependencies/BookishModelDependenciesMobile.xcodeproj">
+               ReferencedContainer = "container:Dependencies/BookishCoreMac.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BookishCoreMac::BookishCoreMac"
+               BuildableName = "BookishCoreMac"
+               BlueprintName = "BookishCoreMac"
+               ReferencedContainer = "container:Dependencies/BookishCoreMac.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,10 +61,10 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BookishModelDependenciesMobile::BookishCoreTests"
+               BlueprintIdentifier = "BookishCoreMac::BookishCoreTests"
                BuildableName = "BookishCoreTests.xctest"
                BlueprintName = "BookishCoreTests"
-               ReferencedContainer = "container:Dependencies/BookishModelDependenciesMobile.xcodeproj">
+               ReferencedContainer = "container:Dependencies/BookishCoreMac.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -56,10 +84,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BookishModelDependenciesMobile::BookishCore"
-            BuildableName = "BookishCore.framework"
-            BlueprintName = "BookishCore"
-            ReferencedContainer = "container:Dependencies/BookishModelDependenciesMobile.xcodeproj">
+            BlueprintIdentifier = "BookishCoreMac::BookishCoreMobile"
+            BuildableName = "BookishCoreMobile"
+            BlueprintName = "BookishCoreMobile"
+            ReferencedContainer = "container:Dependencies/BookishCoreMac.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>

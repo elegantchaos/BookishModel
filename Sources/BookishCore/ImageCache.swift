@@ -3,60 +3,59 @@
 //  All code (c) 2018 - present day, Elegant Chaos Limited.
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-//class ImageFactory<ImageClass> {
-//    class func image(from data: Data) -> ImageClass? {
-//        return nil
-//    }
-//}
+public protocol ImageFactory {
+    associatedtype ImageClass
+    static func image(from data: Data) -> ImageClass?
+}
 
-#if os(macOS)
+public class ImageCache<Factory: ImageFactory> {
+    let queue = DispatchQueue(label: "image-cache")
+    public typealias ImageCallback = (Factory.ImageClass) -> Void
+    
+    public init() {
+    }
 
-import AppKit
-
-#endif
+    public func image(for url: URL, callback: @escaping ImageCallback) {
+        queue.async {
+            do {
+                let data = try Data(contentsOf: url)
+                if let image = Factory.image(from: data) {
+                    DispatchQueue.main.async {
+                        callback(image)
+                    }
+                }
+            } catch {
+                print("failed to load image \(url)")
+            }
+        }
+    }
+}
 
 #if os(iOS)
 
 import UIKit
 
-//extension ImageFactory where ImageClass == UIImage {
-//    class func image(from data: Data) -> ImageClass? {
-//         return UIImage(data: data)
-//    }
-//}
-
-#endif
-
-public class ImageCache<ImageClass> {
-    let queue = DispatchQueue(label: "image-cache")
-    public typealias ImageCallback = (ImageClass) -> Void
-    
-    public init() {
-    }
-    
-    public func image(for url: URL, callback: @escaping ImageCallback) {
-        queue.async {
-            if let data = try? Data(contentsOf: url) {
-                if let image: ImageClass = ImageCache.image(from: data) {
-                    DispatchQueue.main.async {
-                        callback(image)
-                    }
-                }
-            }
-        }
-    }
-    
-    class func image(from data: Data) -> ImageClass? {
-        return nil
-    }
-}
-
-#if os(iOS)
-
-extension ImageCache where ImageClass == UIImage {
-    class func image(from data: Data) -> ImageClass? {
+public class UIImageFactory: ImageFactory {
+    public typealias ImageClass = UIImage
+    public static func image(from data: Data) -> UIImage? {
         return UIImage(data: data)
     }
 }
 
+public typealias UIImageCache = ImageCache<UIImageFactory>
+
+#endif
+
+#if os(macOS)
+
+import AppKit
+
+public class NSImageFactory: ImageFactory {
+    public typealias ImageClass = NSImage
+    public static func image(from data: Data) -> NSImage? {
+        return NSImage(data: data)
+    }
+}
+
+public typealias NSImageCache = ImageCache<NSImageFactory>
 #endif

@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "JSONDump::JSONDump"
-               BuildableName = "JSONDump.framework"
-               BlueprintName = "JSONDump"
-               ReferencedContainer = "container:Dependencies/BookishModelDependenciesMobile.xcodeproj">
+               BlueprintIdentifier = "Logger::Logger"
+               BuildableName = "Logger.framework"
+               BlueprintName = "Logger"
+               ReferencedContainer = "container:Dependencies/BookishCoreMobile.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,10 +45,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "JSONDump::JSONDump"
-            BuildableName = "JSONDump.framework"
-            BlueprintName = "JSONDump"
-            ReferencedContainer = "container:Dependencies/BookishModelDependenciesMobile.xcodeproj">
+            BlueprintIdentifier = "Logger::Logger"
+            BuildableName = "Logger.framework"
+            BlueprintName = "Logger"
+            ReferencedContainer = "container:Dependencies/BookishCoreMobile.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -63,10 +63,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "JSONDump::JSONDump"
-            BuildableName = "JSONDump.framework"
-            BlueprintName = "JSONDump"
-            ReferencedContainer = "container:Dependencies/BookishModelDependenciesMobile.xcodeproj">
+            BlueprintIdentifier = "Logger::Logger"
+            BuildableName = "Logger.framework"
+            BlueprintName = "Logger"
+            ReferencedContainer = "container:Dependencies/BookishCoreMobile.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
