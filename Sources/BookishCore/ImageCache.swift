@@ -35,15 +35,14 @@ public class ImageCache<Factory: ImageFactory> {
 
 import UIKit
 
-extension UIImage: ImageFactory {
+public class UIImageFactory: ImageFactory {
     public typealias ImageClass = UIImage
-    
     public static func image(from data: Data) -> UIImage? {
         return UIImage(data: data)
     }
 }
 
-public typealias UIImageCache = ImageCache<UIImage>
+public typealias UIImageCache = ImageCache<UIImageFactory>
 
 #endif
 
@@ -51,13 +50,12 @@ public typealias UIImageCache = ImageCache<UIImage>
 
 import AppKit
 
-extension NSImage: ImageFactory {
+public class NSImageFactory: ImageFactory {
     public typealias ImageClass = NSImage
-    
     public static func image(from data: Data) -> NSImage? {
         return NSImage(data: data)
     }
 }
 
-public typealias NSImageCache = ImageCache<NSImage>
+public typealias NSImageCache = ImageCache<NSImageFactory>
 #endif
