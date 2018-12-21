@@ -88,10 +88,14 @@ public class DetailDataSource {
             var includeDetail = false
             let kind = editing ? detail.editableKind : detail.kind
             if kind != .hidden {
-                for item in selection {
-                    if let value = item.value(forKey: detail.binding) as? String {
-                        includeDetail = !value.isEmpty
-                        break
+                if editing {
+                    includeDetail = true
+                } else {
+                    for item in selection {
+                        if let value = item.value(forKey: detail.binding) as? String {
+                            includeDetail = !value.isEmpty
+                            break
+                        }
                     }
                 }
             }
