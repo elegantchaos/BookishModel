@@ -55,7 +55,7 @@ public class Book: NSManagedObject {
     
     @objc public var identifier: String? {
         var result = [String]()
-        var separateASIN = false
+        var separateASIN = true
         
         if let isbn = isbn {
             let tag: String

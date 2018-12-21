@@ -221,13 +221,26 @@ class DetailDataSourceTests: ModelTestCase {
         let book = Book(context: context)
         book.asin = "blah"
         
+        source.filter(for: [book], editing: false)
+        let row = source.info(for: 0, editing: false)
+        let detail = source.details(for: row)
+        XCTAssertEqual(detail.binding, "identifier")
+        XCTAssertEqual(source.heading(for: row), "Identifier")
+    }
+
+    func testDetailAccessEditing() {
+        let container = makeTestContainer()
+        let context = container.viewContext
+        let source = DetailDataSource()
+        let book = Book(context: context)
+        
         source.filter(for: [book], editing: true)
         let row = source.info(for: 0, editing: true)
         let detail = source.details(for: row)
-        XCTAssertEqual(detail.binding, "asin")
-        XCTAssertEqual(source.heading(for: row), "ASIN")
+        XCTAssertEqual(detail.binding, "notes")
+        XCTAssertEqual(source.heading(for: row), "Notes")
     }
-    
+
     func testInsertRelationship()
     {
         let container = makeTestContainer()
