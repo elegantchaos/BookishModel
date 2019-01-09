@@ -5,7 +5,7 @@
 
 import CoreData
 
-public class Series: ModelObject, UniqueModelObject {
+public class Series: ModelObject {
     
     public override func didChangeValue(forKey key: String) { // TODO: not sure that this is the best approach...
         if key == "name" {
@@ -16,10 +16,6 @@ public class Series: ModelObject, UniqueModelObject {
     
     @objc dynamic var sectionName: String? {
         return Indexing.sectionName(for: sortName)
-    }
-
-    public var uniqueIdentifier: NSObject {
-        return self.uuid! as NSUUID
     }
 
 }

@@ -6,13 +6,9 @@
 import CoreData
 
 
-public class Book: ModelObject, UniqueModelObject {
+public class Book: ModelObject {
     
     static var untitledCount = 0
-
-    public var uniqueIdentifier: NSObject {
-        return self.uuid! as NSUUID
-    }
 
     public override func awakeFromInsert() {
         super.awakeFromInsert()

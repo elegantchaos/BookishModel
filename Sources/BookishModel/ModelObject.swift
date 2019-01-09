@@ -5,9 +5,16 @@
 
 import CoreData
 
-public protocol UniqueModelObject {
-    var uniqueIdentifier: NSObject { get }
-}
-
 public class ModelObject: NSManagedObject {
+    static let missingUUID = UUID() as NSUUID
+    
+    public var uniqueIdentifier: NSObject {
+        get {
+            if let uuid = self.value(forKey: "uuid") as? NSUUID {
+                return uuid
+            } else {
+                return ModelObject.missingUUID
+            }
+        }
+    }
 }

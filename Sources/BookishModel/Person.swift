@@ -5,11 +5,7 @@
 
 import CoreData
 
-public class Person: ModelObject, UniqueModelObject {
-
-    public var uniqueIdentifier: NSObject {
-        return self.uuid! as NSUUID
-    }
+public class Person: ModelObject {
 
     public override func awakeFromInsert() {
         super.awakeFromInsert()

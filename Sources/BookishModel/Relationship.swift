@@ -5,11 +5,7 @@
 
 import CoreData
 
-public class Relationship: ModelObject, UniqueModelObject {
-    public var uniqueIdentifier: NSObject {
-        return self.uuid! as NSUUID
-    }
-
+public class Relationship: ModelObject {
     override public init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
         super.init(entity: entity, insertInto:context)
     }

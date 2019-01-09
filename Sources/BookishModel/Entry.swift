@@ -7,9 +7,5 @@ import Foundation
 
 import CoreData
 
-public class Entry: ModelObject, UniqueModelObject {
-    public var uniqueIdentifier: NSObject {
-        return self.uuid! as NSUUID
-    }
-
+public class Entry: ModelObject {
 }
