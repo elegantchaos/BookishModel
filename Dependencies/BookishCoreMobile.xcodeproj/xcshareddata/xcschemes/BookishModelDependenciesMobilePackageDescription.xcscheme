@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BookishModelDependenciesMobile::SwiftPMPackageDescription"
+               BlueprintIdentifier = "BookishCoreMobile::SwiftPMPackageDescription"
                BuildableName = "BookishCoreMobilePackageDescription"
                BlueprintName = "BookishCoreMobilePackageDescription"
                ReferencedContainer = "container:Dependencies/BookishCoreMobile.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BookishModelDependenciesMobile::SwiftPMPackageDescription"
+            BlueprintIdentifier = "BookishCoreMobile::SwiftPMPackageDescription"
             BuildableName = "BookishCoreMobilePackageDescription"
             BlueprintName = "BookishCoreMobilePackageDescription"
             ReferencedContainer = "container:Dependencies/BookishCoreMobile.xcodeproj">
@@ -63,7 +63,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BookishModelDependenciesMobile::SwiftPMPackageDescription"
+            BlueprintIdentifier = "BookishCoreMobile::SwiftPMPackageDescription"
             BuildableName = "BookishCoreMobilePackageDescription"
             BlueprintName = "BookishCoreMobilePackageDescription"
             ReferencedContainer = "container:Dependencies/BookishCoreMobile.xcodeproj">

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "9999"
+   LastUpgradeVersion = "1010"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BookishModelDependenciesMobile::BookishCore"
+               BlueprintIdentifier = "BookishCoreMobile::BookishCore"
                BuildableName = "BookishCore.framework"
                BlueprintName = "BookishCore"
                ReferencedContainer = "container:Dependencies/BookishCoreMobile.xcodeproj">
@@ -33,7 +33,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BookishModelDependenciesMobile::BookishCoreTests"
+               BlueprintIdentifier = "BookishCoreMobile::BookishCoreTests"
                BuildableName = "BookishCoreTests.xctest"
                BlueprintName = "BookishCoreTests"
                ReferencedContainer = "container:Dependencies/BookishCoreMobile.xcodeproj">
@@ -56,7 +56,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BookishModelDependenciesMobile::BookishCore"
+            BlueprintIdentifier = "BookishCoreMobile::BookishCore"
             BuildableName = "BookishCore.framework"
             BlueprintName = "BookishCore"
             ReferencedContainer = "container:Dependencies/BookishCoreMobile.xcodeproj">
