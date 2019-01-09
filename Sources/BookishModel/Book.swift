@@ -6,10 +6,14 @@
 import CoreData
 
 
-public class Book: NSManagedObject {
+public class Book: ModelObject, UniqueModelObject {
     
     static var untitledCount = 0
-    
+
+    public var uniqueIdentifier: NSObject {
+        return self.uuid! as NSUUID
+    }
+
     public override func awakeFromInsert() {
         super.awakeFromInsert()
         name = "Untitled \(Book.untitledCount)"

@@ -18,15 +18,20 @@ public class BookishModel {
 
     static var cachedModel: NSManagedObjectModel!
     
+    public class func modelURL(bundle: Bundle = Bundle(for: BookishModel.self)) -> URL {
+        guard let url = bundle.url(forResource: "Collection", withExtension: "momd") else {
+            modelChannel.fatal(Error.locatingModel)
+        }
+        
+        return url
+    }
+    
     public class func loadModel(bundle: Bundle = Bundle(for: BookishModel.self), cached: Bool = true) -> NSManagedObjectModel {
         if cached && (cachedModel != nil) {
             return cachedModel
         }
         
-        guard let url = bundle.url(forResource: "Collection", withExtension: "momd") else {
-            modelChannel.fatal(Error.locatingModel)
-        }
-        
+        let url = BookishModel.modelURL(bundle: bundle)
         guard let model = NSManagedObjectModel(contentsOf: url) else {
             modelChannel.fatal(Error.loadingModel)
         }

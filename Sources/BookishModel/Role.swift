@@ -5,7 +5,7 @@
 
 import CoreData
 
-public class Role: NSManagedObject {
+public class Role: ModelObject, UniqueModelObject {
     public struct Default {
         public static let authorName = "Author"
         public static let contributorName = "Contributor"
@@ -37,4 +37,9 @@ public class Role: NSManagedObject {
         let result: [Role] = context.everyEntity(sorting: [NSSortDescriptor(key: "name", ascending: true)])
         return result
     }
+
+    public var uniqueIdentifier: NSObject {
+        return self.uuid! as NSUUID
+    }
+
 }

@@ -5,7 +5,10 @@
 
 import CoreData
 
-public class Publisher: NSManagedObject {
+public class Publisher: ModelObject, UniqueModelObject {
+    public var uniqueIdentifier: NSObject {
+        return self.uuid! as NSUUID
+    }
     
     public override func didChangeValue(forKey key: String) { // TODO: not sure that this is the best approach...
         if key == "name" {

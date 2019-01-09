@@ -84,6 +84,14 @@
 		22D4A3D021BEDDA100427E35 /* CorruptModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */; };
 		22D4A3D121BEDDA100427E35 /* MissingModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3CE21BEDDA100427E35 /* MissingModel.bundle */; };
 		22D4A3D221BEDDA100427E35 /* MissingModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3CE21BEDDA100427E35 /* MissingModel.bundle */; };
+		22DA6A0021E3CB3700ECF09A /* CDECloudKitFileSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 22DA69FE21E3CB3700ECF09A /* CDECloudKitFileSystem.m */; };
+		22DA6A0121E3CB3700ECF09A /* CDECloudKitFileSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 22DA69FE21E3CB3700ECF09A /* CDECloudKitFileSystem.m */; };
+		22DA6A0221E3CB3700ECF09A /* CDECloudKitFileSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 22DA69FF21E3CB3700ECF09A /* CDECloudKitFileSystem.h */; };
+		22DA6A0321E3CB3700ECF09A /* CDECloudKitFileSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 22DA69FF21E3CB3700ECF09A /* CDECloudKitFileSystem.h */; };
+		22DA6A1921E6158D00ECF09A /* BookishModelBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 22DA6A1821E6158D00ECF09A /* BookishModelBridge.h */; };
+		22DA6A1A21E6158D00ECF09A /* BookishModelBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 22DA6A1821E6158D00ECF09A /* BookishModelBridge.h */; };
+		22DA6A1C21E61BC600ECF09A /* ModelObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DA6A1B21E61BC600ECF09A /* ModelObject.swift */; };
+		22DA6A1D21E61BC600ECF09A /* ModelObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DA6A1B21E61BC600ECF09A /* ModelObject.swift */; };
 		22DAF395217B34FC003CE28B /* DetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DAF394217B34FC003CE28B /* DetailDataSource.swift */; };
 		22DAF396217B34FC003CE28B /* DetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DAF394217B34FC003CE28B /* DetailDataSource.swift */; };
 		22E47CC6216E31B700E43DBF /* BookAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C4B23216BA50C0086D56F /* BookAction.swift */; };
@@ -112,6 +120,90 @@
 			proxyType = 1;
 			remoteGlobalIDString = 224293B2212AE16200E70510;
 			remoteInfo = BookishModelMobile;
+		};
+		22DA69F021E3CAAB00ECF09A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22DA69C821E3CAAB00ECF09A /* Ensembles iOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07BF374517F184DD00C56F64;
+			remoteInfo = "Ensembles iOS";
+		};
+		22DA69F221E3CAAB00ECF09A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22DA69C821E3CAAB00ECF09A /* Ensembles iOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07571F0F1910EC02008479A9;
+			remoteInfo = "Ensembles Resources";
+		};
+		22DA69F421E3CAAB00ECF09A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22DA69C821E3CAAB00ECF09A /* Ensembles iOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 070D336118018A960054BA23;
+			remoteInfo = "Tests iOS";
+		};
+		22DA69F621E3CAAB00ECF09A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22DA69C821E3CAAB00ECF09A /* Ensembles iOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E9D6301A1BFEB26300B60D60;
+			remoteInfo = "Ensembles iOS Module";
+		};
+		22DA69F821E3CAAB00ECF09A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22DA69C821E3CAAB00ECF09A /* Ensembles iOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07AC052D1D6D8D0E00AF2337;
+			remoteInfo = "Ensembles tvOS";
+		};
+		22DA69FA21E3CAAB00ECF09A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22DA69C821E3CAAB00ECF09A /* Ensembles iOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 072039861E23CE140050041F;
+			remoteInfo = "Ensembles watchOS";
+		};
+		22DA69FC21E3CACF00ECF09A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22DA69C821E3CAAB00ECF09A /* Ensembles iOS.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E9D630191BFEB26300B60D60;
+			remoteInfo = "Ensembles iOS Module";
+		};
+		22DA6A0B21E3CCFB00ECF09A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22DA6A0421E3CCFB00ECF09A /* Ensembles Mac.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6DAD10F918CA067900237084;
+			remoteInfo = Ensembles;
+		};
+		22DA6A0D21E3CCFB00ECF09A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22DA6A0421E3CCFB00ECF09A /* Ensembles Mac.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07592CA6177F2D1000816034;
+			remoteInfo = "Tests Mac";
+		};
+		22DA6A0F21E3CCFB00ECF09A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22DA6A0421E3CCFB00ECF09A /* Ensembles Mac.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07C07B74191CE9FC00A9D7E6;
+			remoteInfo = Profiling;
+		};
+		22DA6A1121E3CCFB00ECF09A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22DA6A0421E3CCFB00ECF09A /* Ensembles Mac.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07C07BA6191CEAF500A9D7E6;
+			remoteInfo = "Ensembles Resources";
+		};
+		22DA6A1521E3CD4200ECF09A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22DA6A0421E3CCFB00ECF09A /* Ensembles Mac.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 6DAD10F818CA067900237084;
+			remoteInfo = Ensembles;
 		};
 		22F1827121CABCAC00220D20 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -333,6 +425,12 @@
 		22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CorruptModel.bundle; sourceTree = "<group>"; };
 		22D4A3CE21BEDDA100427E35 /* MissingModel.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MissingModel.bundle; sourceTree = "<group>"; };
 		22D4A51221C1215900427E35 /* .bin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = .bin; sourceTree = "<group>"; };
+		22DA69C821E3CAAB00ECF09A /* Ensembles iOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Ensembles iOS.xcodeproj"; path = "../../Ensembles/Source Code/Ensembles/Framework/Ensembles iOS.xcodeproj"; sourceTree = "<group>"; };
+		22DA69FE21E3CB3700ECF09A /* CDECloudKitFileSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDECloudKitFileSystem.m; path = "../../../Ensembles/Source Code/Ensembles/Framework/Extensions/CDECloudKitFileSystem.m"; sourceTree = "<group>"; };
+		22DA69FF21E3CB3700ECF09A /* CDECloudKitFileSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDECloudKitFileSystem.h; path = "../../../Ensembles/Source Code/Ensembles/Framework/Extensions/CDECloudKitFileSystem.h"; sourceTree = "<group>"; };
+		22DA6A0421E3CCFB00ECF09A /* Ensembles Mac.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Ensembles Mac.xcodeproj"; path = "../../Ensembles/Source Code/Ensembles/Framework/Ensembles Mac.xcodeproj"; sourceTree = "<group>"; };
+		22DA6A1821E6158D00ECF09A /* BookishModelBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookishModelBridge.h; sourceTree = "<group>"; };
+		22DA6A1B21E61BC600ECF09A /* ModelObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelObject.swift; sourceTree = "<group>"; };
 		22DAF394217B34FC003CE28B /* DetailDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDataSource.swift; sourceTree = "<group>"; };
 		22DD424E2126D6DA0070C85A /* Document.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Document.xcdatamodel; sourceTree = "<group>"; };
 		22DD42792126DDA80070C85A /* BookishModel.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = BookishModel.xcconfig; sourceTree = "<group>"; };
@@ -410,10 +508,13 @@
 		224293B4212AE16200E70510 /* BookishModel */ = {
 			isa = PBXGroup;
 			children = (
+				22DA69FF21E3CB3700ECF09A /* CDECloudKitFileSystem.h */,
+				22DA69FE21E3CB3700ECF09A /* CDECloudKitFileSystem.m */,
 				221C4B36216BABE40086D56F /* Actions */,
 				221F271E21306C1300DC2DC7 /* Book.swift */,
 				22F180E221CA8FD600220D20 /* Indexing.swift */,
 				224293B5212AE16200E70510 /* BookishModel.h */,
+				22DA6A1821E6158D00ECF09A /* BookishModelBridge.h */,
 				224293D1212AE1E700E70510 /* BookishModel.swift */,
 				221ED50E216B87D900594714 /* Collection.swift */,
 				22DD424D2126D6DA0070C85A /* Collection.xcdatamodeld */,
@@ -424,6 +525,7 @@
 				2250C70121B556FC00E899E2 /* Entry.swift */,
 				224293B6212AE16200E70510 /* Info.plist */,
 				224293DE212AF05800E70510 /* Person.swift */,
+				22DA6A1B21E61BC600ECF09A /* ModelObject.swift */,
 				221F272121359DA200DC2DC7 /* Publisher.swift */,
 				224293E5212AF0B700E70510 /* Relationship.swift */,
 				224293E8212AF0D300E70510 /* Role.swift */,
@@ -484,6 +586,30 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		22DA69C921E3CAAB00ECF09A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				22DA69F121E3CAAB00ECF09A /* libensembles.a */,
+				22DA69F321E3CAAB00ECF09A /* Ensembles.bundle */,
+				22DA69F521E3CAAB00ECF09A /* Tests iOS.xctest */,
+				22DA69F721E3CAAB00ECF09A /* Ensembles.framework */,
+				22DA69F921E3CAAB00ECF09A /* Ensembles.framework */,
+				22DA69FB21E3CAAB00ECF09A /* Ensembles.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		22DA6A0521E3CCFB00ECF09A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				22DA6A0C21E3CCFB00ECF09A /* Ensembles.framework */,
+				22DA6A0E21E3CCFB00ECF09A /* Tests Mac.xctest */,
+				22DA6A1021E3CCFB00ECF09A /* Profiling.app */,
+				22DA6A1221E3CCFB00ECF09A /* Ensembles.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		22DD423B2126D6DA0070C85A = {
 			isa = PBXGroup;
 			children = (
@@ -534,7 +660,9 @@
 		22F1179521A5A4B000AE3FBB /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				22DA69C821E3CAAB00ECF09A /* Ensembles iOS.xcodeproj */,
 				22F1182221A5C15D00AE3FBB /* BookishCoreMac.xcodeproj */,
+				22DA6A0421E3CCFB00ECF09A /* Ensembles Mac.xcodeproj */,
 				22F1180D21A5C13700AE3FBB /* BookishCoreMobile.xcodeproj */,
 			);
 			path = Dependencies;
@@ -607,6 +735,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22DA6A0221E3CB3700ECF09A /* CDECloudKitFileSystem.h in Headers */,
+				22DA6A1921E6158D00ECF09A /* BookishModelBridge.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,7 +744,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22DA6A1A21E6158D00ECF09A /* BookishModelBridge.h in Headers */,
 				224293C5212AE16300E70510 /* BookishModel.h in Headers */,
+				22DA6A0321E3CB3700ECF09A /* CDECloudKitFileSystem.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -633,6 +765,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				22DA6A1621E3CD4200ECF09A /* PBXTargetDependency */,
 				22F182EB21CABD3000220D20 /* PBXTargetDependency */,
 			);
 			name = BookishModelMac;
@@ -671,6 +804,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				22DA69FD21E3CACF00ECF09A /* PBXTargetDependency */,
 				22F182E921CABD2000220D20 /* PBXTargetDependency */,
 			);
 			name = BookishModelMobile;
@@ -709,7 +843,7 @@
 				TargetAttributes = {
 					22429390212AE0F300E70510 = {
 						CreatedOnToolsVersion = 10.0;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1010;
 					};
 					22429398212AE0F400E70510 = {
 						CreatedOnToolsVersion = 10.0;
@@ -717,7 +851,7 @@
 					};
 					224293B2212AE16200E70510 = {
 						CreatedOnToolsVersion = 10.0;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1010;
 					};
 					224293BA212AE16300E70510 = {
 						CreatedOnToolsVersion = 10.0;
@@ -745,6 +879,14 @@
 					ProductGroup = 22F1825E21CABCAC00220D20 /* Products */;
 					ProjectRef = 22F1180D21A5C13700AE3FBB /* BookishCoreMobile.xcodeproj */;
 				},
+				{
+					ProductGroup = 22DA69C921E3CAAB00ECF09A /* Products */;
+					ProjectRef = 22DA69C821E3CAAB00ECF09A /* Ensembles iOS.xcodeproj */;
+				},
+				{
+					ProductGroup = 22DA6A0521E3CCFB00ECF09A /* Products */;
+					ProjectRef = 22DA6A0421E3CCFB00ECF09A /* Ensembles Mac.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -757,6 +899,76 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		22DA69F121E3CAAB00ECF09A /* libensembles.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libensembles.a;
+			remoteRef = 22DA69F021E3CAAB00ECF09A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		22DA69F321E3CAAB00ECF09A /* Ensembles.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Ensembles.bundle;
+			remoteRef = 22DA69F221E3CAAB00ECF09A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		22DA69F521E3CAAB00ECF09A /* Tests iOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Tests iOS.xctest";
+			remoteRef = 22DA69F421E3CAAB00ECF09A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		22DA69F721E3CAAB00ECF09A /* Ensembles.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Ensembles.framework;
+			remoteRef = 22DA69F621E3CAAB00ECF09A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		22DA69F921E3CAAB00ECF09A /* Ensembles.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Ensembles.framework;
+			remoteRef = 22DA69F821E3CAAB00ECF09A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		22DA69FB21E3CAAB00ECF09A /* Ensembles.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Ensembles.framework;
+			remoteRef = 22DA69FA21E3CAAB00ECF09A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		22DA6A0C21E3CCFB00ECF09A /* Ensembles.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Ensembles.framework;
+			remoteRef = 22DA6A0B21E3CCFB00ECF09A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		22DA6A0E21E3CCFB00ECF09A /* Tests Mac.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Tests Mac.xctest";
+			remoteRef = 22DA6A0D21E3CCFB00ECF09A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		22DA6A1021E3CCFB00ECF09A /* Profiling.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Profiling.app;
+			remoteRef = 22DA6A0F21E3CCFB00ECF09A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		22DA6A1221E3CCFB00ECF09A /* Ensembles.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Ensembles.bundle;
+			remoteRef = 22DA6A1121E3CCFB00ECF09A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		22F1827221CABCAC00220D20 /* Actions.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -949,8 +1161,10 @@
 				2250C75D21B94D9700E899E2 /* RegularExpressionExtensions.swift in Sources */,
 				224293DC212AF00400E70510 /* Collection.xcdatamodeld in Sources */,
 				224293EC212AF0E300E70510 /* Series.swift in Sources */,
+				22DA6A0021E3CB3700ECF09A /* CDECloudKitFileSystem.m in Sources */,
 				224293E6212AF0B700E70510 /* Relationship.swift in Sources */,
 				2250C6E321B1B14200E899E2 /* PublisherAction.swift in Sources */,
+				22DA6A1C21E61BC600ECF09A /* ModelObject.swift in Sources */,
 				224293D2212AE1E700E70510 /* BookishModel.swift in Sources */,
 				221C4B2D216BA8220086D56F /* PersonAction.swift in Sources */,
 				2250C71821B7E15700E899E2 /* ContextExtensions.swift in Sources */,
@@ -1004,8 +1218,10 @@
 				2250C75E21B94D9700E899E2 /* RegularExpressionExtensions.swift in Sources */,
 				224293DD212AF00500E70510 /* Collection.xcdatamodeld in Sources */,
 				224293ED212AF0E300E70510 /* Series.swift in Sources */,
+				22DA6A0121E3CB3700ECF09A /* CDECloudKitFileSystem.m in Sources */,
 				221F272321359DA200DC2DC7 /* Publisher.swift in Sources */,
 				224293E7212AF0B700E70510 /* Relationship.swift in Sources */,
+				22DA6A1D21E61BC600ECF09A /* ModelObject.swift in Sources */,
 				221C4B2E216BA8220086D56F /* PersonAction.swift in Sources */,
 				221F272021306C1300DC2DC7 /* Book.swift in Sources */,
 				2250C71921B7E15700E899E2 /* ContextExtensions.swift in Sources */,
@@ -1058,6 +1274,16 @@
 			target = 224293B2212AE16200E70510 /* BookishModelMobile */;
 			targetProxy = 224293BD212AE16300E70510 /* PBXContainerItemProxy */;
 		};
+		22DA69FD21E3CACF00ECF09A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Ensembles iOS Module";
+			targetProxy = 22DA69FC21E3CACF00ECF09A /* PBXContainerItemProxy */;
+		};
+		22DA6A1621E3CD4200ECF09A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Ensembles;
+			targetProxy = 22DA6A1521E3CD4200ECF09A /* PBXContainerItemProxy */;
+		};
 		22F182E921CABD2000220D20 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BookishCore;
@@ -1104,6 +1330,7 @@
 				PRODUCT_NAME = "${BOOKISH_MODEL_NAME}";
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "$(CONFIGURATION_BUILD_DIR)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(BOOKISH_MODEL_BRIDGING_HEADER)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1134,6 +1361,7 @@
 				PRODUCT_NAME = "${BOOKISH_MODEL_NAME}";
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "$(CONFIGURATION_BUILD_DIR)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(BOOKISH_MODEL_BRIDGING_HEADER)";
 				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1198,6 +1426,7 @@
 				PRODUCT_NAME = "${BOOKISH_MODEL_NAME}";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(BOOKISH_MODEL_BRIDGING_HEADER)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1228,6 +1457,7 @@
 				PRODUCT_NAME = "${BOOKISH_MODEL_NAME}";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(BOOKISH_MODEL_BRIDGING_HEADER)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

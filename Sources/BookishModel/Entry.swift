@@ -7,6 +7,9 @@ import Foundation
 
 import CoreData
 
-public class Entry: NSManagedObject {
-    
+public class Entry: ModelObject, UniqueModelObject {
+    public var uniqueIdentifier: NSObject {
+        return self.uuid! as NSUUID
+    }
+
 }
