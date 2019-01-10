@@ -8,17 +8,28 @@ import CoreData
 public class ModelObject: NSManagedObject {
     static let missingUUID = UUID() as NSUUID
     
-    convenience init(in context: NSManagedObjectContext) {
-//        let entityName = "\(type(of: self))" // TODO: there must be a cleaner way...
-//        let description = context.persistentStoreCoordinator?.managedObjectModel.entitiesByName[entityName]!
-        let description = ModelObject.desc(for: type(of: self), context: context)
+    public convenience init(context: NSManagedObjectContext) {
+        let description = ModelObject.entityDescription(for: type(of: self), in: context)
         self.init(entity: description, insertInto: context)
     }
     
-    public class func desc<T>(for type: T, context: NSManagedObjectContext) -> NSEntityDescription {
-        let name = "\(type)"
-        let description = context.persistentStoreCoordinator?.managedObjectModel.entitiesByName[name]!
-        return description!
+    public class func fetcher<T>(in context: NSManagedObjectContext) -> NSFetchRequest<T> where T: ModelObject {
+        let request = NSFetchRequest<T>()
+        request.entity = T.entityDescription(for: T.self, in: context)
+        return request
+    }
+
+    public class func entityDescription<T>(for type: T, in context: NSManagedObjectContext) -> NSEntityDescription {
+        let name = String(describing: type)
+        guard let coordinator = context.persistentStoreCoordinator else {
+            fatalError("missing coordinator")
+        }
+        
+        guard let description = coordinator.managedObjectModel.entitiesByName[name] else {
+            fatalError("no entity named \(name)")
+        }
+        
+        return description
     }
     
     public var uniqueIdentifier: NSObject {
@@ -31,12 +42,11 @@ public class ModelObject: NSManagedObject {
         }
     }
     
-    public class func fetcher<T>(in context: NSManagedObjectContext) -> NSFetchRequest<T> where T: ModelObject {
-        let description = T.desc(for: T.self, context: context)
-//        let entityName = "\(T.self)" // TODO: there must be a cleaner way...
-//        let description = context.persistentStoreCoordinator?.managedObjectModel.entitiesByName[entityName]!
-        let request = NSFetchRequest<T>()
-        request.entity = description
-        return request
+    public func entityDescription() -> NSEntityDescription {
+        guard let context = managedObjectContext else {
+            fatalError("no context")
+        }
+        
+        return ModelObject.entityDescription(for: type(of: self), in: context)
     }
 }
