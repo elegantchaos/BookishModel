@@ -5,7 +5,18 @@
 
 import CoreData
 
-public class Collection {
+@objc open class BookishCollection: NSObject {
+    public let managedObjectContext: NSManagedObjectContext
+    
+    public init(context: NSManagedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)) {
+        managedObjectContext = context
+        super.init()
+    }
+    
+    func setupTestDocument() {
+        BookishCollection.setupTestDocument(context: managedObjectContext)
+    }
+    
     /**
      Populate the document with some test data.
      */
@@ -14,6 +25,8 @@ public class Collection {
         let formatter = DateFormatter()
         formatter.setLocalizedDateFormatFromTemplate("dd/MM/yy")
         
+//        let desc = context.persistentStoreCoordinator?.managedObjectModel.entitiesByName["Person"]!
+//        let sharedEditor = NSManagedObject(entity: desc!, insertInto: context) as! Person
         let sharedEditor = Person(context: context)
         sharedEditor.name = "Ms Editor"
         sharedEditor.notes = "This person is the editor of a number of books."

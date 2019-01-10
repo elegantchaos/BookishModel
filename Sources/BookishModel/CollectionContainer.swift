@@ -82,7 +82,7 @@ public class CollectionContainer: NSPersistentContainer {
         })
         
         if madeNewCollection && !usingSample {
-            Collection.setupTestDocument(context: viewContext)
+            BookishCollection.setupTestDocument(context: viewContext)
             save()
         }
         
@@ -114,7 +114,7 @@ public class CollectionContainer: NSPersistentContainer {
                 }
             })
 
-            Collection.setupTestDocument(context: viewContext)
+            BookishCollection.setupTestDocument(context: viewContext)
         }
     }
         
