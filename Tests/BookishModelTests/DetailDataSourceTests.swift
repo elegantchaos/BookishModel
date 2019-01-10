@@ -41,7 +41,7 @@ class DetailDataSourceTests: ModelTestCase {
     
     func testRowCount() {
         let container = makeTestContainer()
-        let context = container.viewContext
+        let context = container.managedObjectContext
         let source = DetailDataSource()
 
         source.filter(for: [], editing: false)
@@ -86,7 +86,7 @@ class DetailDataSourceTests: ModelTestCase {
     
     func testRowInfo() {
         let container = makeTestContainer()
-        let context = container.viewContext
+        let context = container.managedObjectContext
         let source = DetailDataSource()
         let book = Book(context: context)
         book.isbn = "12343"
@@ -132,7 +132,7 @@ class DetailDataSourceTests: ModelTestCase {
     
     func testCommonPerson() {
         let container = makeTestContainer()
-        let context = container.viewContext
+        let context = container.managedObjectContext
         let source = DetailDataSource()
         let book1 = Book(context: context)
         let book2 = Book(context: context)
@@ -152,7 +152,7 @@ class DetailDataSourceTests: ModelTestCase {
     
     func testPersonSorting() {
         let container = makeTestContainer()
-        let context = container.viewContext
+        let context = container.managedObjectContext
         let source = DetailDataSource()
         let book = Book(context: context)
         let person1 = Person(context: context)
@@ -176,7 +176,7 @@ class DetailDataSourceTests: ModelTestCase {
     
     func testPublisherSorting() {
         let container = makeTestContainer()
-        let context = container.viewContext
+        let context = container.managedObjectContext
         let source = DetailDataSource()
         let book1 = Book(context: context)
         let book2 = Book(context: context)
@@ -199,7 +199,7 @@ class DetailDataSourceTests: ModelTestCase {
     
     func testSeriesAccess() {
         let container = makeTestContainer()
-        let context = container.viewContext
+        let context = container.managedObjectContext
         let source = DetailDataSource()
         let book = Book(context: context)
         let series = Series(context: context)
@@ -216,7 +216,7 @@ class DetailDataSourceTests: ModelTestCase {
     
     func testDetailAccess() {
         let container = makeTestContainer()
-        let context = container.viewContext
+        let context = container.managedObjectContext
         let source = DetailDataSource()
         let book = Book(context: context)
         book.asin = "blah"
@@ -230,7 +230,7 @@ class DetailDataSourceTests: ModelTestCase {
 
     func testDetailAccessEditing() {
         let container = makeTestContainer()
-        let context = container.viewContext
+        let context = container.managedObjectContext
         let source = DetailDataSource()
         let book = Book(context: context)
         
@@ -244,7 +244,7 @@ class DetailDataSourceTests: ModelTestCase {
     func testInsertRelationship()
     {
         let container = makeTestContainer()
-        let context = container.viewContext
+        let context = container.managedObjectContext
         let source = DetailDataSource()
         let relationship = Relationship(context: context)
         XCTAssertEqual(source.insert(relationship: relationship), 0)

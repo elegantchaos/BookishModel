@@ -12,7 +12,7 @@ class SeriesScannerTests: ModelTestCase {
 
     func scanBook(title: String, subtitle: String? = nil) -> Book {
         let container = makeTestContainer()
-        let context = container.viewContext
+        let context = container.managedObjectContext
         
         let book = Book(context: context)
         book.name = title
@@ -39,7 +39,7 @@ class SeriesScannerTests: ModelTestCase {
     func testExistingSeries() {
         // name, series and book all in the title
         let container = makeTestContainer()
-        let context = container.viewContext
+        let context = container.managedObjectContext
 
         let series = Series(context: context)
         series.name = "Test Series"

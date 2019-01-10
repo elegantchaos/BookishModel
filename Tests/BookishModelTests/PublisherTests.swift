@@ -11,7 +11,7 @@ class PublisherTests: ModelTestCase {
     
     func testAllPublishers() {
         let container = makeTestContainer()
-        let context = container.viewContext
+        let context = container.managedObjectContext
         let p1 = Publisher(context: context)
         let p2 = Publisher(context: context)
         let allPublishers: [Publisher] = context.everyEntity()

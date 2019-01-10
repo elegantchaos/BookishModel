@@ -10,7 +10,7 @@ import CoreData
 class BookTests: ModelTestCase {
     func testAllBooks() {
     let container = makeTestContainer()
-    let context = container.viewContext
+    let context = container.managedObjectContext
     let b1 = Book(context: context)
     let b2 = Book(context: context)
     let allBooks: [Book] = context.everyEntity()

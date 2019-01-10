@@ -13,6 +13,14 @@ import CoreData
         super.init()
     }
     
+    public func configure(for url: URL) {
+        let coordinator = NSPersistentStoreCoordinator(managedObjectModel: BookishModel.model())
+        let options = [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true]
+        try! coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: options)
+        managedObjectContext.persistentStoreCoordinator = coordinator
+        managedObjectContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+    }
+    
     func setupTestDocument() {
         BookishCollection.setupTestDocument(context: managedObjectContext)
     }

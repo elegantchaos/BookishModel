@@ -14,7 +14,7 @@ import LoggerTestSupport
 class MiscModelTests: ModelTestCase {
     
     func testLoadingModel() {
-        let model = BookishModel.loadModel()
+        let model = BookishModel.model()
         XCTAssertNotNil(model)
     }
     
@@ -23,7 +23,7 @@ class MiscModelTests: ModelTestCase {
         XCTAssertFatalError(equals: BookishModel.Error.locatingModel) {
             if let url = Bundle(for: MiscModelTests.self).url(forResource: "MissingModel", withExtension: "bundle") {
                 if let bundle = Bundle(url: url) {
-                    let _ = BookishModel.loadModel(bundle: bundle, cached: false)
+                    let _ = BookishModel.model(bundle: bundle, cached: false)
                 }
             }
         }
@@ -35,7 +35,7 @@ class MiscModelTests: ModelTestCase {
         XCTAssertFatalError(equals: BookishModel.Error.loadingModel) {
             if let url = Bundle(for: MiscModelTests.self).url(forResource: "CorruptModel", withExtension: "bundle") {
                 if let bundle = Bundle(url: url) {
-                    let _ = BookishModel.loadModel(bundle: bundle, cached: false)
+                    let _ = BookishModel.model(bundle: bundle, cached: false)
                 }
             }
         }
@@ -44,7 +44,7 @@ class MiscModelTests: ModelTestCase {
     
     func testContainer() {
         let container = makeTestContainer()
-        let context = container.viewContext
+        let context = container.managedObjectContext
         let book = Book(context: context)
         book.name = "Test"
         book.notes = "Test"
@@ -62,7 +62,7 @@ class MiscModelTests: ModelTestCase {
  
     func testUniqueRelationships() {
         let container = makeTestContainer()
-        let context = container.viewContext
+        let context = container.managedObjectContext
         let person = Person(context: context)
         let entry1 = person.relationship(as: "editor")
         XCTAssertEqual(entry1.person, person)
@@ -73,7 +73,7 @@ class MiscModelTests: ModelTestCase {
     
     func testBookPersonLinkages() {
         let container = makeTestContainer()
-        let context = container.viewContext
+        let context = container.managedObjectContext
         let book = Book(context: context)
         let person1 = Person(context: context)
         let person2 = Person(context: context)
@@ -121,7 +121,7 @@ class MiscModelTests: ModelTestCase {
         let _ : NSFetchRequest<Series> = Series.fetchRequest()
         
         let container = makeTestContainer()
-        Collection.setupTestDocument(context: container.viewContext)
+        BookishCollection.setupTestDocument(context: container.managedObjectContext)
         
     }
 }

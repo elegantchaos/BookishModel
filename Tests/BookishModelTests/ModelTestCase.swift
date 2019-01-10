@@ -12,13 +12,11 @@ class ModelTestCase: XCTestCase {
         modelChannel.enabled = true
     }
     
-    func makeTestContainer() -> CollectionContainer {
-        let container = CollectionContainer(name: "Collection")
-        container.persistentStoreDescriptions[0].url = URL(fileURLWithPath: "/dev/null")
-        container.loadPersistentStores { (description, error) in
-            XCTAssertNil(error)
-        }
-        return container
+    func makeTestContainer() -> BookishCollection {
+        let url = URL(fileURLWithPath: "/dev/null")
+        let collection = BookishCollection()
+        collection.configure(for: url)
+        return collection
     }
 
 }

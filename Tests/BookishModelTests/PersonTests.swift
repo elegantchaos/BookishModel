@@ -11,7 +11,7 @@ class PersonTests:ModelTestCase {
     
     func testPersonNamedExists() {
         let container = makeTestContainer()
-        let context = container.viewContext
+        let context = container.managedObjectContext
         let person = Person(context: context)
         person.name = "Test"
         
@@ -21,14 +21,14 @@ class PersonTests:ModelTestCase {
     
     func testPersonNamedDoesntExist() {
         let container = makeTestContainer()
-        let context = container.viewContext
+        let context = container.managedObjectContext
         let person = Person.person(named: "Test", context: context)
         XCTAssertNil(person)
     }
 
     func testAllPeople() {
         let container = makeTestContainer()
-        let context = container.viewContext
+        let context = container.managedObjectContext
         let person1 = Person(context: context)
         let person2 = Person(context: context)
         let allPeople: [Person] = context.everyEntity()

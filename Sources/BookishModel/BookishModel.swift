@@ -26,7 +26,7 @@ public class BookishModel {
         return url
     }
     
-    public class func loadModel(bundle: Bundle = Bundle(for: BookishModel.self), cached: Bool = true) -> NSManagedObjectModel {
+    public class func model(bundle: Bundle = Bundle(for: BookishModel.self), cached: Bool = true) -> NSManagedObjectModel {
         if cached && (cachedModel != nil) {
             return cachedModel
         }

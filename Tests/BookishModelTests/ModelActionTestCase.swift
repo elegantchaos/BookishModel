@@ -10,14 +10,14 @@ import Actions
 
 class ModelActionTestCase: ModelTestCase {
     var context: NSManagedObjectContext!
-    var container: NSPersistentContainer!
+    var container: BookishCollection!
     var actionManager: ActionManager!
     var info: ActionInfo = ActionInfo()
     var expectation: XCTestExpectation!
     
     override func setUp() {
         container = makeTestContainer()
-        context = container.viewContext
+        context = container.managedObjectContext
         actionManager = ActionManager()
         actionManager.register(ModelAction.standardActions())
         actionManager.register([ModelAction(identifier: "ModelAction")]) // base class, registered for testing only

@@ -11,7 +11,7 @@ class RoleTests: ModelTestCase {
 
     func testUniqueRoles() {
         let container = makeTestContainer()
-        let context = container.viewContext
+        let context = container.managedObjectContext
         let role1 = Role.role(named: "author", context: context)
         XCTAssertEqual(role1.name, "author")
         let role2 = Role.role(named: "author", context: context)
@@ -20,7 +20,7 @@ class RoleTests: ModelTestCase {
     
     func testAllRoles() {
         let container = makeTestContainer()
-        let context = container.viewContext
+        let context = container.managedObjectContext
         let role1 = Role.role(named: "author1", context: context)
         let role2 = Role.role(named: "author2", context: context)
         let roles = Role.allRoles(context: context)
@@ -30,7 +30,7 @@ class RoleTests: ModelTestCase {
     
     func testAllRolesEmpty() {
         let container = makeTestContainer()
-        let context = container.viewContext
+        let context = container.managedObjectContext
         let roles = Role.allRoles(context: context)
         XCTAssertEqual(roles.count, 0)
     }

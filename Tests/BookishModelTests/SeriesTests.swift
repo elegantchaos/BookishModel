@@ -10,7 +10,7 @@ import CoreData
 class SeriesTests: ModelTestCase {
     func testAllSeries() {
         let container = makeTestContainer()
-        let context = container.viewContext
+        let context = container.managedObjectContext
         let b = Book(context: context)
         let s1 = Series(context: context)
         let e1 = Entry(context: context)
@@ -25,7 +25,7 @@ class SeriesTests: ModelTestCase {
 
     func testAllEntries() {
         let container = makeTestContainer()
-        let context = container.viewContext
+        let context = container.managedObjectContext
         let e1 = Entry(context: context)
         let e2 = Entry(context: context)
         let allEntries: [Entry] = context.everyEntity()
