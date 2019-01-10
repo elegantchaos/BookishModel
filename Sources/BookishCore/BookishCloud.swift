@@ -9,15 +9,21 @@ import Logger
 let cloudChannel = Logger("BookishCloud")
 
 public class BookishCloud {
-    let container: CKContainer
+    public let collectionIdentifier = "iCloud.com.elegantchaos.Bookish"
+    let collectionContainer: CKContainer
+
+    public let settingsIdentifier = "iCloud.com.elegantchaos.Bookish.settings"
+    let settingsContainer: CKContainer
+
     static let sharesID = CKRecord.ID(recordName: "shares")
 
     public init() {
-        self.container = CKContainer(identifier: "iCloud.com.elegantchaos.Bookish.settings")
+        collectionContainer = CKContainer(identifier: collectionIdentifier)
+        settingsContainer = CKContainer(identifier: settingsIdentifier)
     }
     
     public func setup(name: String) {
-        container.accountStatus { (status, error) in
+        settingsContainer.accountStatus { (status, error) in
             if let error = error {
                 cloudChannel.log(error)
             } else {
@@ -30,7 +36,7 @@ public class BookishCloud {
     }
     
     private func setupShareList(name: String) {
-        let database = container.privateCloudDatabase
+        let database = settingsContainer.privateCloudDatabase
         database.fetch(withRecordID: BookishCloud.sharesID) { (record, error) in
             if let error = error {
                 cloudChannel.log(error)
@@ -50,7 +56,7 @@ public class BookishCloud {
     }
     
     private func createShareList(name: String) {
-        let database = container.privateCloudDatabase
+        let database = settingsContainer.privateCloudDatabase
         let record = CKRecord(recordType: "ShareList", recordID: BookishCloud.sharesID)
         record.setValue([name], forKey: "shares")
         database.save(record, completionHandler: { (record, error) in
@@ -63,7 +69,7 @@ public class BookishCloud {
     }
 
     private func save(record: CKRecord, action: String) {
-        let database = container.privateCloudDatabase
+        let database = settingsContainer.privateCloudDatabase
         database.save(record, completionHandler: { (record, error) in
             if let error = error {
                 cloudChannel.log(error)
