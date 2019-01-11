@@ -6,9 +6,15 @@
 import CoreData
 
 @objc open class CollectionContainer: NSPersistentContainer {
+    public enum PopulateMode {
+        case empty
+        case testData
+        case sampleData
+    }
+    
     public typealias LoadedCallback = (CollectionContainer, Error?) -> Void
     
-    public init(url: URL? = nil, usingSample: Bool = false, addTestData: Bool = false, callback: LoadedCallback? = nil) {
+    public init(url: URL? = nil, mode: PopulateMode = .empty, callback: LoadedCallback? = nil) {
         let fm = FileManager.default
         let model = BookishModel.model()
         super.init(name: "Default", managedObjectModel: model)
@@ -21,7 +27,7 @@ import CoreData
         }
 
         if let url = description.url {
-            if !fm.fileExists(atPath: url.path) && usingSample {
+            if !fm.fileExists(atPath: url.path) && mode == .sampleData {
                 if let sample = Bundle.main.url(forResource: "Sample", withExtension: "sqlite") {
                     do {
                         try fm.copyItem(at: sample, to: url)
@@ -37,7 +43,7 @@ import CoreData
                 let context = self.viewContext
                 context.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
                 
-                if addTestData {
+                if mode == .testData {
                     let request: NSFetchRequest<Book> = Book.fetcher(in: context)
                     if let results = try? context.fetch(request) {
                         if results.count == 0 {
@@ -52,6 +58,17 @@ import CoreData
     }
     
     public var managedObjectContext: NSManagedObjectContext { return viewContext }
+    
+    /**
+     A few roles should always be present.
+     */
+    
+    func makeDefaultRoles(context: NSManagedObjectContext) {
+        for role in Role.Default.names {
+            _ = Role.role(named: role, context: context)
+        }
+    }
+
     
     /**
      Populate the document with some test data.
