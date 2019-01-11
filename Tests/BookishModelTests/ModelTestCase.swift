@@ -14,8 +14,8 @@ class ModelTestCase: XCTestCase {
     
     func makeTestContainer() -> BookishCollection {
         let url = URL(fileURLWithPath: "/dev/null")
-        let collection = BookishCollection()
-        collection.configure(for: url)
+        let collection = BookishCollection(url: url)
+//        collection.configure(for: url)
         return collection
     }
 

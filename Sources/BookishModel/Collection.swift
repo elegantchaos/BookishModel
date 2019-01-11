@@ -5,21 +5,51 @@
 
 import CoreData
 
-@objc open class BookishCollection: NSObject {
-    public let managedObjectContext: NSManagedObjectContext
-    
-    public init(context: NSManagedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)) {
-        managedObjectContext = context
-        super.init()
+@objc open class BookishCollection: NSPersistentContainer {
+    public typealias LoadedCallback = (BookishCollection, Error?) -> Void
+    public init(url: URL? = nil, usingSample: Bool = false, callback: LoadedCallback? = nil) {
+        let model = BookishModel.model()
+        super.init(name: "Default", managedObjectModel: model)
+        let description = persistentStoreDescriptions[0]
+        description.setOption(true as NSValue, forKey: NSMigratePersistentStoresAutomaticallyOption)
+        description.setOption(true as NSValue, forKey: NSInferMappingModelAutomaticallyOption)
+
+        if let explicitURL = url {
+            description.url = explicitURL
+        }
+
+        loadPersistentStores { (description, error) in
+            if error == nil {
+                let context = self.viewContext
+                context.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
+                
+                if usingSample {
+                    let request: NSFetchRequest<Book> = Book.fetcher(in: context)
+                    if let results = try? context.fetch(request) {
+                        if results.count == 0 {
+                            BookishCollection.setupTestDocument(context: context)
+                        }
+                    }
+                }
+                
+            callback?(self, error)
+            }
+        }
+//        let url = persistentStoreDescriptions[0].url
+//        let description = NSPersistentStoreDescription(url: url!)
+//        description.options = [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true]
+//        .options[NSMigratePersistentStoresAutomaticallyOption] = true
     }
     
-    public func configure(for url: URL) {
-        let coordinator = NSPersistentStoreCoordinator(managedObjectModel: BookishModel.model())
-        let options = [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true]
-        try! coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: options)
-        managedObjectContext.persistentStoreCoordinator = coordinator
-        managedObjectContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-    }
+    public var managedObjectContext: NSManagedObjectContext { return viewContext }
+    
+//    public func configure(for url: URL) {
+//        let coordinator = NSPersistentStoreCoordinator(managedObjectModel: BookishModel.model())
+//        let options =
+//        try! coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: options)
+//        managedObjectContext.persistentStoreCoordinator = coordinator
+//        managedObjectContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+//    }
     
     func setupTestDocument() {
         BookishCollection.setupTestDocument(context: managedObjectContext)
