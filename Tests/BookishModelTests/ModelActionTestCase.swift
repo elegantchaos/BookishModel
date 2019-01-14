@@ -10,7 +10,7 @@ import Actions
 
 class ModelActionTestCase: ModelTestCase {
     var context: NSManagedObjectContext!
-    var container: BookishCollection!
+    var container: CollectionContainer!
     var actionManager: ActionManager!
     var info: ActionInfo = ActionInfo()
     var expectation: XCTestExpectation!

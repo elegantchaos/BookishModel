@@ -33,10 +33,9 @@ public final class DetailSpec {
     }
     
     public class var standardDetails: [DetailSpec] {
-        return [
+        var details = [
             DetailSpec(binding: "notes"),
             DetailSpec(binding: "format"),
-            DetailSpec(binding: "uuid", viewAs: .text),
             DetailSpec(binding: "identifier", viewAs: .text, editAs: .hidden),
             DetailSpec(binding: "isbn", label: "ISBN", viewAs: .hidden, editAs: .text),
             DetailSpec(binding: "asin", label: "ASIN", viewAs: .hidden, editAs: .text),
@@ -47,8 +46,16 @@ public final class DetailSpec {
             DetailSpec(binding: "modified", viewAs: .date),
             DetailSpec(binding: "importDate", label:  "Imported", viewAs: .date, editAs: .hidden),
             DetailSpec(binding: "dimensions", viewAs: .text, editAs: .editableDimensions),
-            DetailSpec(binding: "pages"),
-            DetailSpec(binding: "importRaw", label: "Raw (Debug)", viewAs: .hidden, editAs: .text),
+            DetailSpec(binding: "pages")
         ]
+        
+        #if DEBUG
+        details.append(contentsOf: [
+            DetailSpec(binding: "uuid", viewAs: .text),
+            DetailSpec(binding: "importRaw", label: "Raw (Debug)", viewAs: .hidden, editAs: .text),
+        ])
+        #endif
+        
+        return details
     }
 }

@@ -12,9 +12,9 @@ class ModelTestCase: XCTestCase {
         modelChannel.enabled = true
     }
     
-    func makeTestContainer() -> BookishCollection {
+    func makeTestContainer() -> CollectionContainer {
         let url = URL(fileURLWithPath: "/dev/null")
-        let collection = BookishCollection(url: url)
+        let collection = CollectionContainer(name: "Test", url: url, mode: .empty)
 //        collection.configure(for: url)
         return collection
     }

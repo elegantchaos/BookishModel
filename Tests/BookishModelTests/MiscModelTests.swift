@@ -121,7 +121,7 @@ class MiscModelTests: ModelTestCase {
         let _ : NSFetchRequest<Series> = Series.fetchRequest()
         
         let container = makeTestContainer()
-        BookishCollection.setupTestDocument(context: container.managedObjectContext)
+        container.setupTestData()
         
     }
 }

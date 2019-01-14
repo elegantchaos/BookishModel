@@ -54,24 +54,24 @@ class DetailDataSourceTests: ModelTestCase {
         book.isbn = "12343"
         book.asin = "blah"
         source.filter(for: [book], editing: false)
-        XCTAssertEqual(source.rows, 1)
+        XCTAssertEqual(source.rows, 2)
         
         let person = Person(context: context)
         let relationship = person.relationship(as: "author")
         relationship.addToBooks(book)
 
         source.filter(for: [book], editing: false)
-        XCTAssertEqual(source.rows, 2)
+        XCTAssertEqual(source.rows, 3)
 
         let relationship2 = person.relationship(as: "editor")
         relationship2.addToBooks(book)
 
         source.filter(for: [book], editing: false)
-        XCTAssertEqual(source.rows, 3)
+        XCTAssertEqual(source.rows, 4)
 
         book.publisher = Publisher(context: context)
         source.filter(for: [book], editing: false)
-        XCTAssertEqual(source.rows, 4)
+        XCTAssertEqual(source.rows, 5)
         
         let series = Series(context: context)
         let entry = Entry(context: context)
@@ -80,7 +80,7 @@ class DetailDataSourceTests: ModelTestCase {
         book.series = entry
 
         source.filter(for: [book], editing: false)
-        XCTAssertEqual(source.rows, 5)
+        XCTAssertEqual(source.rows, 6)
 
     }
     

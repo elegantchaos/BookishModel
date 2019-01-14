@@ -7,16 +7,17 @@ import CoreData
 
 @objc open class CollectionContainer: NSPersistentContainer {
     public enum PopulateMode {
-        case empty
-        case testData
-        case sampleData
-        case replaceWithTestData
-        case replaceWithSampleData
+        case empty                  /// don't populate with anything
+        case defaultRoles           /// add default roles only
+        case testData               /// add default roles and test data if empty
+        case sampleData             /// add previously saved sample data if empty
+        case replaceWithTestData    /// wipe existing data and add test data
+        case replaceWithSampleData  /// wipe existing data and add sample data
     }
     
     public typealias LoadedCallback = (CollectionContainer, Error?) -> Void
     
-    public init(name: String, url: URL? = nil, mode: PopulateMode = .empty, callback: LoadedCallback? = nil) {
+    public init(name: String, url: URL? = nil, mode: PopulateMode = .defaultRoles, callback: LoadedCallback? = nil) {
         let fm = FileManager.default
         let model = BookishModel.model()
         super.init(name: name, managedObjectModel: model)
@@ -68,18 +69,18 @@ import CoreData
                 let context = self.viewContext
                 context.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
 
-                let request: NSFetchRequest<Role> = Role.fetcher(in: context)
-                if let results = try? context.fetch(request) {
-                    if results.count == 0 {
-                        self.makeDefaultRoles(context: context)
-                    }
-                }
-                        
                 if (mode == .testData) || (mode == .replaceWithTestData) {
                     let request: NSFetchRequest<Book> = Book.fetcher(in: context)
                     if let results = try? context.fetch(request) {
                         if results.count == 0 {
                             self.setupTestData()
+                        }
+                    }
+                } else if (mode == .defaultRoles) {
+                    let request: NSFetchRequest<Role> = Role.fetcher(in: context)
+                    if let results = try? context.fetch(request) {
+                        if results.count == 0 {
+                            self.makeDefaultRoles(context: context)
                         }
                     }
                 }
@@ -140,6 +141,8 @@ import CoreData
 
     func setupTestData() {
         let context = viewContext
+        
+        makeDefaultRoles(context: context)
         
         let formatter = DateFormatter()
         formatter.setLocalizedDateFormatFromTemplate("dd/MM/yy")
