@@ -11,7 +11,6 @@
         <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="importDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="importRaw" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="importUUID" optional="YES" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="isbn" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="length" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="modified" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -21,7 +20,7 @@
         <attribute name="published" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="sortName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="subtitle" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="width" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="publisher" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Publisher" inverseName="books" inverseEntity="Publisher" syncable="YES"/>
         <relationship name="relationships" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Relationship" inverseName="books" inverseEntity="Relationship" syncable="YES"/>
@@ -29,7 +28,7 @@
     </entity>
     <entity name="Entry" representedClassName=".Entry" syncable="YES" codeGenerationType="category">
         <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="book" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="series" inverseEntity="Book" syncable="YES"/>
         <relationship name="series" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Series" inverseName="entries" inverseEntity="Series" syncable="YES"/>
     </entity>
@@ -39,7 +38,7 @@
         <attribute name="name" attributeType="String" defaultValueString="Untitled Person" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sortName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="relationships" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Relationship" inverseName="person" inverseEntity="Relationship" syncable="YES"/>
     </entity>
     <entity name="Publisher" representedClassName=".Publisher" syncable="YES" codeGenerationType="category">
@@ -48,18 +47,18 @@
         <attribute name="name" optional="YES" attributeType="String" defaultValueString="Untitled Publisher" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sortName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="books" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Book" inverseName="publisher" inverseEntity="Book" syncable="YES"/>
     </entity>
     <entity name="Relationship" representedClassName=".Relationship" syncable="YES" codeGenerationType="category">
-        <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="books" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="relationships" inverseEntity="Book" syncable="YES"/>
         <relationship name="person" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="relationships" inverseEntity="Person" syncable="YES"/>
         <relationship name="role" maxCount="1" deletionRule="Nullify" destinationEntity="Role" inverseName="relationships" inverseEntity="Role" syncable="YES"/>
     </entity>
     <entity name="Role" representedClassName=".Role" syncable="YES" codeGenerationType="category">
         <attribute name="name" attributeType="String" defaultValueString="Untitled Role" syncable="YES"/>
-        <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="relationships" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Relationship" inverseName="role" inverseEntity="Relationship" syncable="YES"/>
     </entity>
     <entity name="Series" representedClassName=".Series" syncable="YES" codeGenerationType="category">
@@ -68,11 +67,11 @@
         <attribute name="name" optional="YES" attributeType="String" defaultValueString="Untitled Series" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sortName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="entries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Entry" inverseName="series" inverseEntity="Entry" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Book" positionX="-889.52734375" positionY="79.94140625" width="128" height="420"/>
+        <element name="Book" positionX="-889.52734375" positionY="79.94140625" width="128" height="405"/>
         <element name="Entry" positionX="-684" positionY="234" width="128" height="105"/>
         <element name="Person" positionX="-341.4375" positionY="286.09375" width="128" height="150"/>
         <element name="Publisher" positionX="-675" positionY="243" width="128" height="150"/>

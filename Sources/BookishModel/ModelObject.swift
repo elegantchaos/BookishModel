@@ -6,11 +6,11 @@
 import CoreData
 
 public class ModelObject: NSManagedObject {
-    static let missingUUID = UUID() as NSUUID
+    static let missingUUID = "missing-identifier" as NSString
 
     public var uniqueIdentifier: NSObject {
         get {
-            if let uuid = self.value(forKey: "uuid") as? NSUUID {
+            if let uuid = self.value(forKey: "uuid") as? NSString {
                 return uuid
             } else {
                 return ModelObject.missingUUID
@@ -18,7 +18,14 @@ public class ModelObject: NSManagedObject {
         }
     }
     
+    public override func awakeFromInsert() {
+        assignInitialUUID()
+    }
 
+    func assignInitialUUID() {
+        setValue(UUID().uuidString, forKey: "uuid")
+    }
+    
     /**
         Make a new instance in the given context.
  
