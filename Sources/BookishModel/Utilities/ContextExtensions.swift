@@ -7,12 +7,46 @@ import CoreData
 
 extension NSManagedObjectContext {
     
+    
+    /**
+     Return an NSFetchRequest for a given model object class.
+     
+     Xcode generates a `fetchRequest` method which does pretty much the same thing,
+     but it uses +entity to find the entity description.
+     
+     This version takes in the context and uses that to look up the description in the model.
+     */
+    
+    public func fetcher<T>() -> NSFetchRequest<T> where T: NSManagedObject {
+        let request = NSFetchRequest<T>()
+        request.entity = entityDescription(for: T.self)
+        return request
+    }
+    
+    /**
+     Return the entity description for a given model class, using the mode from the supplied context to find it.
+     */
+    
+    public func entityDescription<T>(for type: T) -> NSEntityDescription {
+        let name = String(describing: type)
+        guard let coordinator = persistentStoreCoordinator else {
+            fatalError("missing coordinator")
+        }
+        
+        guard let description = coordinator.managedObjectModel.entitiesByName[name] else {
+            fatalError("no entity named \(name)")
+        }
+        
+        return description
+    }
+    
+
     /**
      Return every instance of a given entity type.
     */
     
     public func everyEntity<Entity: NSManagedObject>(sorting: [NSSortDescriptor]? = nil) -> [Entity] {
-        let request: NSFetchRequest<Entity> = Entity.fetchRequest() as! NSFetchRequest<Entity>
+        let request: NSFetchRequest<Entity> = fetcher()
         request.sortDescriptors = sorting
         return fetchAssertNoThrow(request)
     }
