@@ -67,7 +67,14 @@ import CoreData
             if error == nil {
                 let context = self.viewContext
                 context.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
-                
+
+                let request: NSFetchRequest<Role> = Role.fetcher(in: context)
+                if let results = try? context.fetch(request) {
+                    if results.count == 0 {
+                        self.makeDefaultRoles(context: context)
+                    }
+                }
+                        
                 if (mode == .testData) || (mode == .replaceWithTestData) {
                     let request: NSFetchRequest<Book> = Book.fetcher(in: context)
                     if let results = try? context.fetch(request) {
