@@ -5,6 +5,9 @@
 
 import CoreData
 import Actions
+import Logger
+
+let modelActionChannel = Logger("ModelAction")
 
 open class ModelAction: Action {
     open class func standardActions() -> [Action] {
@@ -27,10 +30,21 @@ open class ModelAction: Action {
     
     open override func perform(context: ActionContext, completed: @escaping Completion) {
         if let model = context[ActionContext.modelKey] as? NSManagedObjectContext {
+            modelActionChannel.debug("performing \(context.identifier)")
             model.perform {
                 self.perform(context: context, model: model)
+                
+                do {
+                    try model.save()
+                } catch {
+                    let nserror = error as NSError
+                    modelActionChannel.log("failed to save \(nserror)\n\(nserror.userInfo)")
+                }
+                
                 completed()
             }
+        } else {
+            modelActionChannel.debug("missing model for action")
         }
     }
     
