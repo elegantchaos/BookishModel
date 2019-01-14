@@ -6,9 +6,9 @@
 import CloudKit
 import Logger
 
-let cloudChannel = Logger("BookishCloud")
+let cloudChannel = Logger("CloudManager")
 
-public class BookishCloud {
+public class CloudManager {
     public let collectionIdentifier = "iCloud.com.elegantchaos.Bookish"
     let collectionContainer: CKContainer
 
@@ -37,10 +37,10 @@ public class BookishCloud {
     
     private func setupShareList(name: String) {
         let database = settingsContainer.privateCloudDatabase
-        database.fetch(withRecordID: BookishCloud.sharesID) { (record, error) in
+        database.fetch(withRecordID: CloudManager.sharesID) { (record, error) in
             if let error = error {
                 cloudChannel.log(error)
-                let record = CKRecord(recordType: "ShareList", recordID: BookishCloud.sharesID)
+                let record = CKRecord(recordType: "ShareList", recordID: CloudManager.sharesID)
                 record.setValue([name], forKey: "shares")
                 self.save(record: record, action: "created")
             } else if let record = record, let shares = record.value(forKey: "shares") as? [String] {
@@ -57,7 +57,7 @@ public class BookishCloud {
     
     private func createShareList(name: String) {
         let database = settingsContainer.privateCloudDatabase
-        let record = CKRecord(recordType: "ShareList", recordID: BookishCloud.sharesID)
+        let record = CKRecord(recordType: "ShareList", recordID: CloudManager.sharesID)
         record.setValue([name], forKey: "shares")
         database.save(record, completionHandler: { (record, error) in
             if let error = error {

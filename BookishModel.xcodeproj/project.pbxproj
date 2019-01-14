@@ -95,8 +95,8 @@
 		22F180C521CA662D00220D20 /* FileManagerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F180C321CA662D00220D20 /* FileManagerExtensions.swift */; };
 		22F180E321CA8FD600220D20 /* Indexing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F180E221CA8FD600220D20 /* Indexing.swift */; };
 		22F180E421CA8FD600220D20 /* Indexing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F180E221CA8FD600220D20 /* Indexing.swift */; };
-		22F1845C21E3AD2E00220D20 /* BookishCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F1845B21E3AD2E00220D20 /* BookishCloud.swift */; };
-		22F1845D21E3AD2E00220D20 /* BookishCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F1845B21E3AD2E00220D20 /* BookishCloud.swift */; };
+		22F1845C21E3AD2E00220D20 /* CloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F1845B21E3AD2E00220D20 /* CloudManager.swift */; };
+		22F1845D21E3AD2E00220D20 /* CloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F1845B21E3AD2E00220D20 /* CloudManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -348,7 +348,7 @@
 		22F1834B21CABE4B00220D20 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		22F1834C21CABE4B00220D20 /* BookishCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookishCore.swift; sourceTree = "<group>"; };
 		22F1834E21CABE4B00220D20 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		22F1845B21E3AD2E00220D20 /* BookishCloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookishCloud.swift; sourceTree = "<group>"; };
+		22F1845B21E3AD2E00220D20 /* CloudManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -588,7 +588,7 @@
 			children = (
 				22F1834B21CABE4B00220D20 /* ImageCache.swift */,
 				22F1834C21CABE4B00220D20 /* BookishCore.swift */,
-				22F1845B21E3AD2E00220D20 /* BookishCloud.swift */,
+				22F1845B21E3AD2E00220D20 /* CloudManager.swift */,
 			);
 			path = BookishCore;
 			sourceTree = "<group>";
@@ -962,7 +962,7 @@
 				221F271F21306C1300DC2DC7 /* Book.swift in Sources */,
 				221F272221359DA200DC2DC7 /* Publisher.swift in Sources */,
 				22E47CC6216E31B700E43DBF /* BookAction.swift in Sources */,
-				22F1845C21E3AD2E00220D20 /* BookishCloud.swift in Sources */,
+				22F1845C21E3AD2E00220D20 /* CloudManager.swift in Sources */,
 				224293E3212AF09D00E70510 /* Person.swift in Sources */,
 				2250C71F21B94CD800E899E2 /* SeriesScanner.swift in Sources */,
 				22F180E321CA8FD600220D20 /* Indexing.swift in Sources */,
@@ -1017,7 +1017,7 @@
 				2250C6FA21B5398D00E899E2 /* PublisherAction.swift in Sources */,
 				224293EA212AF0D300E70510 /* Role.swift in Sources */,
 				22E47CC7216E31BA00E43DBF /* BookAction.swift in Sources */,
-				22F1845D21E3AD2E00220D20 /* BookishCloud.swift in Sources */,
+				22F1845D21E3AD2E00220D20 /* CloudManager.swift in Sources */,
 				224293E4212AF09E00E70510 /* Person.swift in Sources */,
 				2250C72021B94CD800E899E2 /* SeriesScanner.swift in Sources */,
 				22F180E421CA8FD600220D20 /* Indexing.swift in Sources */,
