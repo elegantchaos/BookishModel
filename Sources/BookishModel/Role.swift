@@ -27,6 +27,7 @@ public class Role: ModelObject {
         } else {
             let newRole = Role(context: context)
             newRole.name = named
+            newRole.uuid = named
             role = newRole
         }
         
