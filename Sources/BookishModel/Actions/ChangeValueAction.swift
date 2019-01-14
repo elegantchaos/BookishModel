@@ -28,5 +28,7 @@ public class ChangeValueAction: ModelAction {
                 item.setValue(value, forKey: key)
             }
         }
+        
+        try! model.save()
     }
 }
