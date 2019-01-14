@@ -10,14 +10,16 @@ import CoreData
         case empty
         case testData
         case sampleData
+        case replaceWithTestData
+        case replaceWithSampleData
     }
     
     public typealias LoadedCallback = (CollectionContainer, Error?) -> Void
     
-    public init(url: URL? = nil, mode: PopulateMode = .empty, callback: LoadedCallback? = nil) {
+    public init(name: String, url: URL? = nil, mode: PopulateMode = .empty, callback: LoadedCallback? = nil) {
         let fm = FileManager.default
         let model = BookishModel.model()
-        super.init(name: "Default", managedObjectModel: model)
+        super.init(name: name, managedObjectModel: model)
         let description = persistentStoreDescriptions[0]
         description.setOption(true as NSValue, forKey: NSMigratePersistentStoresAutomaticallyOption)
         description.setOption(true as NSValue, forKey: NSInferMappingModelAutomaticallyOption)
@@ -27,7 +29,12 @@ import CoreData
         }
 
         if let url = description.url {
-            if !fm.fileExists(atPath: url.path) && mode == .sampleData {
+            
+            if fm.fileExists(at: url) && ((mode == .replaceWithTestData) || (mode == .replaceWithSampleData)) {
+                deleteStores()
+            }
+            
+            if !fm.fileExists(atPath: url.path) && ((mode == .sampleData) || (mode == .replaceWithSampleData)) {
                 if let sample = Bundle.main.url(forResource: "Sample", withExtension: "sqlite") {
                     do {
                         try fm.copyItem(at: sample, to: url)
@@ -38,12 +45,30 @@ import CoreData
             }
         }
         
+        load(mode: mode, callback: callback)
+    }
+    
+    
+    open func reset(callback: LoadedCallback? = nil) {
+        managedObjectContext.reset()
+        managedObjectContext.processPendingChanges()
+        deleteStores(remove: false)
+        load(mode: .empty, callback: callback)
+    }
+
+    open func delete(remove: Bool = false) {
+        managedObjectContext.reset()
+        managedObjectContext.processPendingChanges()
+        deleteStores(remove: remove)
+    }
+
+    func load(mode: PopulateMode = .empty, callback: LoadedCallback? = nil) {
         loadPersistentStores { (description, error) in
             if error == nil {
                 let context = self.viewContext
                 context.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
                 
-                if mode == .testData {
+                if (mode == .testData) || (mode == .replaceWithTestData) {
                     let request: NSFetchRequest<Book> = Book.fetcher(in: context)
                     if let results = try? context.fetch(request) {
                         if results.count == 0 {
@@ -52,7 +77,39 @@ import CoreData
                     }
                 }
                 
-            callback?(self, error)
+                callback?(self, error)
+            }
+        }
+    }
+    
+    public func save() {
+        let context = managedObjectContext
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
+    }
+    func deleteStores(remove: Bool = false) {
+        let fm = FileManager.default
+        if let coordinator = managedObjectContext.persistentStoreCoordinator {
+            for store in coordinator.persistentStores {
+                if let url: URL = store.url {
+                    do {
+                        try coordinator.destroyPersistentStore(at: url, ofType: store.type, options: nil)
+                        if remove && fm.fileExists(atPath: url.path) {
+                            try? fm.removeItem(at: url)
+                        }
+                    } catch {
+                        print("failed to delete previous database")
+                    }
+                }
+                try? coordinator.remove(store)
             }
         }
     }
@@ -126,6 +183,8 @@ import CoreData
             entry.index = Int16(n)
             series.addToEntries(entry)
         }
+        
+        save()
     }
     
     
