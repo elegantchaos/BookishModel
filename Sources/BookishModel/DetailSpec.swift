@@ -36,6 +36,7 @@ public final class DetailSpec {
         return [
             DetailSpec(binding: "notes"),
             DetailSpec(binding: "format"),
+            DetailSpec(binding: "uuid", viewAs: .text),
             DetailSpec(binding: "identifier", viewAs: .text, editAs: .hidden),
             DetailSpec(binding: "isbn", label: "ISBN", viewAs: .hidden, editAs: .text),
             DetailSpec(binding: "asin", label: "ASIN", viewAs: .hidden, editAs: .text),
