@@ -31,7 +31,7 @@ public class Person: ModelObject {
         let context = self.managedObjectContext!
         let role = Role.role(named: roleName, context: context)
         
-        let request: NSFetchRequest<Relationship> = Relationship.fetchRequest()
+        let request: NSFetchRequest<Relationship> = Relationship.fetcher(in: context)
         request.predicate = NSPredicate(format: "(person = %@) and (role = %@)", self, role)
         
         var entry: Relationship
