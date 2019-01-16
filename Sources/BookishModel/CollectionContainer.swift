@@ -149,16 +149,19 @@ import CoreData
         
         let sharedEditor = Person(context: context)
         sharedEditor.name = "Ms Editor"
+        sharedEditor.uuid = "person-1"
         sharedEditor.notes = "This person is the editor of a number of books."
         let entry = sharedEditor.relationship(as: Role.Default.editorName)
         
         let book = Book(context: context)
         book.name = "A Book"
+        book.uuid = "book-1"
         book.notes = "Some\nmulti\nline\nnotes."
         entry.addToBooks(book)
         
         let publisher = Publisher(context: context)
         publisher.notes = "Some notes about the publisher"
+        publisher.uuid = "publisher-1"
         publisher.addToBooks(book)
         
         sharedEditor.relationship(as: Role.Default.authorName).addToBooks(book)
@@ -170,18 +173,20 @@ import CoreData
         
         let series = Series(context: context)
         series.name = "Example Series"
+        series.uuid = "series-1"
         series.notes = "Some notes about the series"
         
-        
-        for n in 1...3 {
+        for n in 2...4 {
             let book = Book(context: context)
             book.name = "Book \(n)"
+            book.uuid = "book-\(n)"
             book.subtitle = "Slightly longer subtitle \(n)"
             book.notes = "This is an example book."
             book.published = formatter.date(from: "12/11/69")
             entry.addToBooks(book)
             let illustrator = Person(context: context)
             illustrator.name = "Mr Illustrator \(n)"
+            illustrator.uuid = "person-\(n)"
             illustrator.notes = "Another example person."
             let entry2 = illustrator.relationship(as: Role.Default.illustratorName)
             entry2.addToBooks(book)
