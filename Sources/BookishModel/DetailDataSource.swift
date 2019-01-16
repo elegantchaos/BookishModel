@@ -23,7 +23,7 @@ public class DetailDataSource {
         public let index: Int
     }
     
-
+    private var editing: Bool = false
     private var details: [DetailSpec] = []
     private let template = DetailSpec.standardDetails
     private var people = [Relationship]()
@@ -35,49 +35,95 @@ public class DetailDataSource {
     }
     
     public var rows: Int {
-        return details.count + people.count + publishers.count + series.count
-    }
-    
-    public func info(for row: Int, editing: Bool) -> RowInfo {
+        let publisherCount = publishers.count
+        var count = details.count + people.count + publisherCount + series.count
         
-        let category: Category
-        let index: Int
-        let peopleCount = people.count
-        var kind: DetailSpec.Kind
-        
-        if row < peopleCount {
-            category = .person
-            kind = editing ? .editablePerson : .person
-            index = row
-        } else {
-            let publisherRow = row - peopleCount
-            let publisherCount = publishers.count
-            let isPublisher = publisherRow < publisherCount
-            if isPublisher {
-                category = .publisher
-                kind = .publisher
-                index = publisherRow
-            } else {
-                let seriesRow = publisherRow - publisherCount
-                let seriesCount = series.count
-                let isSeries = seriesRow < seriesCount
-                if isSeries {
-                    category = .series
-                    kind = .series
-                    index = seriesRow
-                } else {
-                    index = seriesRow - seriesCount
-                    let spec = details[index]
-                    kind = editing ? spec.editableKind : spec.kind
-                    category = .detail
-                }
+        if editing {
+            count += 2 // extra placeholders for people and series
+            if publisherCount == 0 {
+                count += 1 // extra placeholder for publisher only if we don't already have one
             }
         }
         
-        return RowInfo(kind: kind, category: category, absolute: row, index: index)
+        return count
     }
     
+    public func info(for row: Int) -> RowInfo {
+        var index = row
+        var info = matchPersonRow(row, index: &index)
+        
+        if info == nil {
+            info = matchPublisherRow(row, index: &index)
+        }
+        
+        if info == nil {
+            info = matchSeriesRow(row, index: &index)
+        }
+        
+        if info == nil {
+            let spec = details[index]
+            info = RowInfo(kind: editing ? spec.editableKind : spec.kind, category: .detail, absolute: row, index: index)
+        }
+        
+        return info!
+    }
+    
+    private func matchPersonRow(_ row: Int, index: inout Int) -> RowInfo? {
+        let count = people.count
+        if row < count {
+            return RowInfo(kind: editing ? .editablePerson : .person, category: .person, absolute: row, index: index)
+        }
+        
+        index -= count
+        
+        if editing {
+            if index == count {
+                return RowInfo(kind: .placeholderPerson, category: .person, absolute: row, index: index)
+            }
+            index -= 1
+        }
+        
+        return nil
+    }
+    
+    private func matchPublisherRow(_ row: Int, index: inout Int) -> RowInfo? {
+        let count = publishers.count
+        if index < count {
+            return RowInfo(kind: .publisher, category: .publisher, absolute: row, index: index)
+        }
+        
+        index -= count
+
+        if editing && (count == 0) {
+            if index == 0 {
+                return RowInfo(kind: .placeholderPublisher, category: .publisher, absolute: row, index: index)
+            }
+            index -= 1
+        }
+
+        return nil
+    }
+
+    private func matchSeriesRow(_ row: Int, index: inout Int) -> RowInfo? {
+        let count = series.count
+        if index < count {
+            return RowInfo(kind: .series, category: .series, absolute: row, index: index)
+        }
+
+        index -= count
+
+        if editing {
+            if index == count {
+                return RowInfo(kind: .placeholderSeries, category: .series, absolute: row, index: index)
+            }
+            index -= 1
+        }
+
+        return nil
+    }
+
     public func filter(for selection: [Book], editing: Bool) {
+        self.editing = editing
         let (_, common) = people(in: selection)
         people = common.sorted(by: { ($0.person?.name ?? "") < ($1.person?.name ?? "") })
         publishers = publishers(in: selection).sorted(by: { ($0.name ?? "") < ($1.name ?? "") })
@@ -148,6 +194,7 @@ public class DetailDataSource {
         case .detail:
             return details(for: row).label
         case .person:
+            if row.kind == .placeholderPerson { return "Person" }
             return person(for: row).role?.name ?? "<unknown role>"
         case .publisher:
             return DetailDataSource.publisherHeading

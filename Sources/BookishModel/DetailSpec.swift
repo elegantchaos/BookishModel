@@ -18,6 +18,9 @@ public final class DetailSpec {
         case editableDate
         case editablePerson
         case editableDimensions
+        case placeholderPerson
+        case placeholderPublisher
+        case placeholderSeries
     }
 
     public let binding: String
