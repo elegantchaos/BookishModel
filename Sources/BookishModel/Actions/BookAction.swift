@@ -124,9 +124,7 @@ class AddRelationshipAction: BookAction {
     }
     
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
-        if
-            let role = context[PersonAction.roleKey] as? String,
-            let selection = context[ActionContext.selectionKey] as? [Book] {
+        if let role = context[PersonAction.roleKey] as? String, let selection = context[ActionContext.selectionKey] as? [Book], selection.count > 0 {
             let person = Person(context: model)
             let relationship = person.relationship(as: role)
             for book in selection {
