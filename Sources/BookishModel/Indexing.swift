@@ -8,8 +8,14 @@ import CoreData
 class Indexing {
     
     class func sectionName(for name: String?) -> String? {
-        if let c = name?.first {
-            return String(c)
+        if let c = name?.first, let scalar = c.unicodeScalars.first {
+            if CharacterSet.letters.contains(scalar) {
+                    return String(c)
+            } else if c < Character("A") {
+                return "#"
+            } else {
+                return "•"
+            }
         }
         
         return nil
