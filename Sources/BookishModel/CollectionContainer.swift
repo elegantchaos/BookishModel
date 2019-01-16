@@ -21,6 +21,7 @@ import CoreData
         let fm = FileManager.default
         let model = BookishModel.model()
         super.init(name: name, managedObjectModel: model)
+        viewContext.undoManager = UndoManager()
         let description = persistentStoreDescriptions[0]
         description.setOption(true as NSValue, forKey: NSMigratePersistentStoresAutomaticallyOption)
         description.setOption(true as NSValue, forKey: NSInferMappingModelAutomaticallyOption)
