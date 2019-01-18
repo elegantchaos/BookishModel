@@ -54,6 +54,7 @@ public class Book: ModelObject {
     }
     
     @objc public var identifier: String? {
+        get {
         var result = [String]()
         var separateASIN = true
         
@@ -79,6 +80,11 @@ public class Book: ModelObject {
         }
 
         return result.joined(separator: "\n")
+    }
+        
+        set {
+            
+        }
     }
     
     public override func didChangeValue(forKey key: String) { // TODO: not sure that this is the best approach...
