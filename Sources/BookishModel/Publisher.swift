@@ -6,6 +6,17 @@
 import CoreData
 
 public class Publisher: ModelObject {
+    
+    public class func named(_ named: String, in context: NSManagedObjectContext) -> Publisher? {
+        let request: NSFetchRequest<Publisher> = Publisher.fetcher(in: context)
+        request.predicate = NSPredicate(format: "name = \"\(named)\"")
+        if let results = try? context.fetch(request), results.count > 0 {
+            return results[0]
+        }
+        
+        return nil
+    }
+    
     public override func didChangeValue(forKey key: String) { // TODO: not sure that this is the best approach...
         if key == "name" {
             sortName = Indexing.titleSort(for: name)
