@@ -61,7 +61,7 @@ public class Book: ModelObject {
         if let entries = entries as? Set<SeriesEntry> {
             for entry in entries {
                 if entry.series == series {
-                    removeFromEntries(entry)
+                    managedObjectContext?.delete(entry)
                     assert(entry.isDeleted)
                 }
             }
