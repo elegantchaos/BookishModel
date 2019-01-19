@@ -8,6 +8,7 @@ import Foundation
 public class DetailDataSource {
     static let seriesHeading = "Series"
     static let publisherHeading = "Publisher"
+    static let personHeading = "Person"
     
     static let headingColumnID = "heading"
     static let controlColumnID = "control"
@@ -43,7 +44,7 @@ public class DetailDataSource {
     private let template = DetailSpec.standardDetails
     private var people = [Relationship]()
     private var publishers = [Publisher]()
-    private var series = [Entry]()
+    private var series = [Series]()
     private var items = [RowInfo]()
     
     public init() {
@@ -219,10 +220,11 @@ public class DetailDataSource {
             }
         }
         
-        let (_, common) = people(in: selection)
-        people = common.sorted(by: { ($0.person?.name ?? "") < ($1.person?.name ?? "") })
+        let (_, sharedPeople) = people(in: selection)
+        people = sharedPeople.sorted(by: { ($0.person?.name ?? "") < ($1.person?.name ?? "") })
         publishers = publishers(in: selection).sorted(by: { ($0.name ?? "") < ($1.name ?? "") })
-        series = series(in: selection).sorted(by: {($0.series?.name ?? "") < ($1.series?.name ?? "")})
+        let (_, sharedSeries) = series(in: selection)
+        series = sharedSeries.sorted(by: {($0.name ?? "") < ($1.name ?? "")})
         details = filteredDetails
 
         buildItems()
@@ -254,27 +256,37 @@ public class DetailDataSource {
         return all
     }
 
-    public func series(in selection: [Book]) -> Set<Entry> {
-        var all = Set<Entry>()
+    public func series(in selection: [Book]) -> (Set<Series>,Set<Series>) {
+        var all = Set<Series>()
+        var common = Set<Series>()
         for book in selection {
-            if let entry = book.series {
-                all.insert(entry)
+            if let entries = book.entries as? Set<SeriesEntry> {
+                let series = entries.map { $0.series } as! [Series]
+                if all.count == 0 {
+                    common.formUnion(series)
+                } else {
+                    common.formIntersection(series)
+                }
+                all.formUnion(series)
             }
         }
-        return all
+        return (all, common)
     }
     
     public func heading(for row: RowInfo) -> String {
+        let heading: String
         switch row.category {
         case .detail:
-            return details(for: row).label
+            heading = details(for: row).label
         case .person:
-            return row.placeholder ? "Person" : person(for: row).role?.name ?? "<unknown role>"
+            heading = row.placeholder ? DetailDataSource.personHeading : person(for: row).role?.name ?? "<unknown role>"
         case .publisher:
-            return DetailDataSource.publisherHeading
+            heading = DetailDataSource.publisherHeading
         case .series:
-            return DetailDataSource.seriesHeading
+            heading = DetailDataSource.seriesHeading
         }
+        
+        return heading.lowercased()
     }
     
     public func person(for row: RowInfo) -> Relationship {
@@ -287,7 +299,7 @@ public class DetailDataSource {
         return publishers[row.index]
     }
 
-    public func series(for row: RowInfo) -> Entry {
+    public func series(for row: RowInfo) -> Series {
         assert(row.category == .series)
         return series[row.index]
     }

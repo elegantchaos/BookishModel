@@ -33,7 +33,8 @@ public protocol SeriesLifecycleObserver: ActionObserver {
 open class SeriesAction: ModelAction {
     public static let newSeriesKey = "newSeries"
     public static let seriesKey = "series"
-    
+    public static let positionKey = "position"
+
     open override func validate(context: ActionContext) -> Bool {
         guard super.validate(context: context) else {
             return false

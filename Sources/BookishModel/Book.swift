@@ -53,6 +53,61 @@ public class Book: ModelObject {
         return "\(width) x \(height) x \(length)"
     }
     
+    /**
+      Remove this book from a series.
+    */
+    
+    public func removeFromSeries(_ series: Series) {
+        if let entries = entries as? Set<SeriesEntry> {
+            for entry in entries {
+                if entry.series == series {
+                    removeFromEntries(entry)
+                    assert(entry.isDeleted)
+                }
+            }
+        }
+    }
+    
+    /**
+     Add an entry for this book to a series.
+     A book shouldn't be listed more than once in the same series, so we check first
+     to see if there's already a listing. If there is, we just update the position.
+    */
+    
+    public func addToSeries(_ series: Series, position: Int) {
+        if let entries = entries as? Set<SeriesEntry> {
+            for entry in entries {
+                if entry.series == series {
+                    entry.position = Int16(position)
+                    return
+                }
+            }
+        }
+        
+        let entry = SeriesEntry(context: self.managedObjectContext!)
+        entry.series = series
+        entry.position = Int16(position)
+        addToEntries(entry)
+    }
+    
+    /**
+     Return the position of this book in a given series.
+     Returns 0 if the book isn't in the series (or has an entry but no known position).
+    */
+    
+    public func position(in series: Series) -> Int {
+        if let entries = entries as? Set<SeriesEntry> {
+            for entry in entries {
+                if entry.series == series {
+                    return Int(entry.position)
+                }
+            }
+        }
+        
+        return 0
+    }
+    
+    
     @objc public var identifier: String? {
         get {
         var result = [String]()

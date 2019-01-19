@@ -104,6 +104,8 @@ import CoreData
             }
         }
     }
+    
+    
     func deleteStores(remove: Bool = false) {
         let fm = FileManager.default
         if let coordinator = managedObjectContext.persistentStoreCoordinator {
@@ -194,9 +196,9 @@ import CoreData
             
             sharedPublisher.addToBooks(book)
             
-            let entry = Entry(context: context)
+            let entry = SeriesEntry(context: context)
             entry.book = book
-            entry.index = Int16(n)
+            entry.position = Int16(n)
             series.addToEntries(entry)
         }
         

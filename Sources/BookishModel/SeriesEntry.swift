@@ -7,7 +7,7 @@ import Foundation
 
 import CoreData
 
-public class Entry: ModelObject {
+public class SeriesEntry: ModelObject {
     
     /**
      We should only have one entry for a given book/series pair, so the uuid is derived from their uuids.

@@ -7,6 +7,16 @@ import CoreData
 
 public class Series: ModelObject {
     
+    public class func named(_ named: String, in context: NSManagedObjectContext) -> Series? {
+        let request: NSFetchRequest<Series> = Series.fetcher(in: context)
+        request.predicate = NSPredicate(format: "name = \"\(named)\"")
+        if let results = try? context.fetch(request), results.count > 0 {
+            return results[0]
+        }
+        
+        return nil
+    }
+    
     public override func didChangeValue(forKey key: String) { // TODO: not sure that this is the best approach...
         if key == "name" {
             sortName = Indexing.titleSort(for: name)
