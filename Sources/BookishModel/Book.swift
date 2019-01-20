@@ -89,7 +89,26 @@ public class Book: ModelObject {
         entry.position = Int16(position)
         addToEntries(entry)
     }
+ 
+    /**
+     Add an entry for this book to a series.
+     A book shouldn't be listed more than once in the same series, so we check first
+     to see if there's already a listing. If there is, we just update the position.
+     */
     
+    public func setPosition(in series: Series, to position: Int) {
+        if let entries = entries as? Set<SeriesEntry> {
+            for entry in entries {
+                if entry.series == series {
+                    entry.position = Int16(position)
+                    return
+                }
+            }
+        }
+
+        assertionFailure("book should already be in series")
+    }
+
     /**
      Return the position of this book in a given series.
      Returns 0 if the book isn't in the series (or has an entry but no known position).
