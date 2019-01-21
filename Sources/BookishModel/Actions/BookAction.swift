@@ -316,13 +316,7 @@ class RemoveSeriesAction: BookAction {
             let selection = context[ActionContext.selectionKey] as? [Book],
             let series = context[SeriesAction.seriesKey] as? Series {
             for book in selection {
-                if let entries = book.entries as? Set<SeriesEntry> {
-                    for entry in entries {
-                        if entry.series == series {
-                            book.removeFromEntries(entry)
-                        }
-                    }
-                }
+                book.removeFromSeries(series)
             }
             
             context.info.forObservers { (observer: BookChangeObserver) in

@@ -316,8 +316,20 @@ public class DetailDataSource {
     }
     
     public func remove(relationship: Relationship) -> Int? {
-        guard let row = people.firstIndex(of: relationship) else { return nil }
-        people.remove(at: row)
-        return row
+        guard let index = people.firstIndex(of: relationship), let item = items.first(where:{ $0.kind == .person && $0.index == index }) else { return nil }
+        people.remove(at: index)
+        return item.absolute
+    }
+    
+    public func remove(series seriesToRemove: Series) -> Int? {
+        guard let index = series.firstIndex(of: seriesToRemove), let item = items.first(where:{ $0.kind == .series && $0.index == index }) else { return nil }
+        series.remove(at: index)
+        return item.absolute
+    }
+    
+    public func remove(publisher: Publisher) -> Int? {
+        guard let index = publishers.firstIndex(of: publisher), let item = items.first(where:{ $0.kind == .publisher && $0.index == index }) else { return nil }
+        publishers.remove(at: index)
+        return item.absolute
     }
 }
