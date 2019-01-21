@@ -125,7 +125,7 @@ class DetailDataSourceTests: ModelTestCase {
 
         let editablePersonRow = source.info(for: 1)
         XCTAssertEqual(editablePersonRow.category, .person)
-        XCTAssertEqual(editablePersonRow.kind, .editablePerson)
+        XCTAssertEqual(editablePersonRow.kind, .person)
         XCTAssertTrue(editablePersonRow.placeholder)
         
         let editableSeriesRow = source.info(for: 4)
@@ -251,9 +251,38 @@ class DetailDataSourceTests: ModelTestCase {
         let container = makeTestContainer()
         let context = container.managedObjectContext
         let source = DetailDataSource()
+        let book = Book(context: context)
+        source.filter(for: [book], editing: false)
         let relationship = Relationship(context: context)
         XCTAssertEqual(source.insert(relationship: relationship), 0)
         XCTAssertEqual(source.remove(relationship: relationship), 0)
         XCTAssertNil(source.remove(relationship: relationship))
     }
+    
+    func testInsertPublisher()
+    {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let source = DetailDataSource()
+        let book = Book(context: context)
+        source.filter(for: [book], editing: false)
+        let publisher = Publisher(context: context)
+        XCTAssertEqual(source.insert(publisher: publisher), 0)
+        XCTAssertEqual(source.remove(publisher: publisher), 0)
+        XCTAssertNil(source.remove(publisher: publisher))
+    }
+
+    func testInsertSeries()
+    {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let source = DetailDataSource()
+        let book = Book(context: context)
+        source.filter(for: [book], editing: false)
+        let series = Series(context: context)
+        XCTAssertEqual(source.insert(series: series), 0)
+        XCTAssertEqual(source.remove(series: series), 0)
+        XCTAssertNil(source.remove(series: series))
+    }
+
 }

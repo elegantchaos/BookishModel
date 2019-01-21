@@ -232,7 +232,8 @@ public class DetailDataSource {
     public func insert(relationship: Relationship) -> Int {
         let index = people.count
         people.append(relationship)
-        return index
+        buildItems()
+        return items.first(where:{ $0.kind == .person && $0.index == index })!.absolute
     }
     
     public func remove(relationship: Relationship) -> Int? {
@@ -240,13 +241,26 @@ public class DetailDataSource {
         people.remove(at: index)
         return item.absolute
     }
+
+    public func insert(series seriesToInsert: Series) -> Int {
+        let index = series.count
+        series.append(seriesToInsert)
+        buildItems()
+        return items.last(where:{ $0.kind == .series && $0.index == index })!.absolute
+    }
     
     public func remove(series seriesToRemove: Series) -> Int? {
         guard let index = series.firstIndex(of: seriesToRemove), let item = items.first(where:{ $0.kind == .series && $0.index == index }) else { return nil }
         series.remove(at: index)
         return item.absolute
     }
-    
+
+    public func insert(publisher: Publisher) -> Int {
+        publishers = [publisher]
+        buildItems()
+        return items.first(where:{ $0.kind == .publisher })!.absolute
+    }
+
     public func remove(publisher: Publisher) -> Int? {
         guard let index = publishers.firstIndex(of: publisher), let item = items.first(where:{ $0.kind == .publisher && $0.index == index }) else { return nil }
         publishers.remove(at: index)
