@@ -347,20 +347,23 @@ class ChangeSeriesAction: BookAction {
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
                 if let selection = context[ActionContext.selectionKey] as? [Book] {
                     let existingSeries = context[SeriesAction.seriesKey] as? Series
-                    let position = context[SeriesAction.positionKey] as? Int
+                    var position = context[SeriesAction.positionKey] as? Int
                     var updatedSeries = context[SeriesAction.newSeriesKey] as? Series
                     
                     // if we weren't given a series, but were given a name, make a new series with that name
                     if updatedSeries == nil, let newSeriesName = context[SeriesAction.newSeriesKey] as? String {
-                        bookActionChannel.log("Made new Series \(newSeriesName)")
                         updatedSeries = Series(context: model)
                         updatedSeries?.name = newSeriesName
+                        bookActionChannel.log("Made new Series \(newSeriesName)")
                     }
         
                     if let series = updatedSeries {
                         // we've got a series to change to, so do it
                         for book in selection {
                             if let existingSeries = existingSeries {
+                                if position == nil {
+                                    position = book.position(in: existingSeries)
+                                }
                                 book.removeFromSeries(existingSeries)
                                 bookActionChannel.debug("removed from \(existingSeries.name!)")
                             }

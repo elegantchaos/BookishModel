@@ -19,4 +19,23 @@ class ModelTestCase: XCTestCase {
         return collection
     }
 
+    func check(book: Book, series: Series, position: Int) {
+        let entry = (book.entries as? Set<SeriesEntry>)?.first
+        XCTAssertEqual(entry?.series, series)
+        XCTAssertEqual(entry?.position, Int16(position))
+    }
+    
+    func check(book: Book, seriesName: String, position: Int) {
+        let entry = (book.entries as? Set<SeriesEntry>)?.first
+        XCTAssertEqual(entry?.series?.name, seriesName)
+        XCTAssertEqual(entry?.position, Int16(position))
+    }
+
+    func check(relationship: Relationship, book: Book, person: Person) {
+        XCTAssertEqual(book.roles.count, 1)
+        XCTAssertEqual(relationship.books?.count, 1)
+        XCTAssertEqual(relationship.books?.allObjects.first as? Book, book)
+        XCTAssertEqual(relationship.person, person)
+    }
+    
 }

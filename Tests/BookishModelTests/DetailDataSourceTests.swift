@@ -74,10 +74,10 @@ class DetailDataSourceTests: ModelTestCase {
         XCTAssertEqual(source.rows, 5)
         
         let series = Series(context: context)
-        let entry = Entry(context: context)
+        let entry = SeriesEntry(context: context)
         entry.series = series
-        entry.index = 1
-        book.series = entry
+        entry.position = 1
+        book.addToEntries(entry)
 
         source.filter(for: [book], editing: false)
         XCTAssertEqual(source.rows, 6)
@@ -95,39 +95,43 @@ class DetailDataSourceTests: ModelTestCase {
         relationship.addToBooks(book)
         book.publisher = Publisher(context: context)
         let series = Series(context: context)
-        let entry = Entry(context: context)
+        let entry = SeriesEntry(context: context)
         entry.series = series
-        entry.index = 1
-        book.series = entry
+        entry.position = 1
+        book.addToEntries(entry)
         
         source.filter(for: [book], editing: false)
-        let personRow = source.info(for: 0, editing: false)
+        let personRow = source.info(for: 0)
         XCTAssertEqual(personRow.category, .person)
         XCTAssertEqual(personRow.absolute, 0)
         XCTAssertEqual(personRow.index, 0)
 
-        let editablePersonRow = source.info(for: 0, editing: true)
-        XCTAssertEqual(editablePersonRow.category, .person)
-        XCTAssertEqual(editablePersonRow.kind, .editablePerson)
-
-        let publisherRow = source.info(for: 1, editing: false)
+        let publisherRow = source.info(for: 1)
         XCTAssertEqual(publisherRow.category, .publisher)
         XCTAssertEqual(publisherRow.absolute, 1)
         XCTAssertEqual(publisherRow.index, 0)
 
-        let seriesRow = source.info(for: 2, editing: false)
+        let seriesRow = source.info(for: 2)
         XCTAssertEqual(seriesRow.category, .series)
         XCTAssertEqual(seriesRow.absolute, 2)
         XCTAssertEqual(seriesRow.index, 0)
 
-        let detailRow = source.info(for: 3, editing: false)
+        let detailRow = source.info(for: 3)
         XCTAssertEqual(detailRow.category, .detail)
         XCTAssertEqual(detailRow.absolute, 3)
         XCTAssertEqual(detailRow.index, 0)
 
-        let editableDetailRow = source.info(for: 3, editing: true)
-        XCTAssertEqual(editableDetailRow.category, .detail)
-        XCTAssertEqual(editableDetailRow.kind, .hidden)
+        source.filter(for: [book], editing: true)
+
+        let editablePersonRow = source.info(for: 1)
+        XCTAssertEqual(editablePersonRow.category, .person)
+        XCTAssertEqual(editablePersonRow.kind, .editablePerson)
+        XCTAssertTrue(editablePersonRow.placeholder)
+        
+        let editableSeriesRow = source.info(for: 4)
+        XCTAssertEqual(editableSeriesRow.category, .series)
+        XCTAssertEqual(editableSeriesRow.kind, .series)
+        XCTAssertTrue(editableSeriesRow.placeholder)
     }
     
     func testCommonPerson() {
@@ -143,7 +147,7 @@ class DetailDataSourceTests: ModelTestCase {
         relationship.addToBooks(book2)
 
         source.filter(for: [book1, book2], editing: false)
-        let personRow = source.info(for: 0, editing: false)
+        let personRow = source.info(for: 0)
         XCTAssertEqual(personRow.category, .person)
         
         let rowRelationship = source.person(for: personRow)
@@ -165,9 +169,9 @@ class DetailDataSourceTests: ModelTestCase {
         relationship2.addToBooks(book)
         
         source.filter(for: [book], editing: false)
-        let row1 = source.info(for: 0, editing: false)
+        let row1 = source.info(for: 0)
         XCTAssertEqual(source.person(for: row1), relationship2)
-        let row2 = source.info(for: 1, editing: false)
+        let row2 = source.info(for: 1)
         XCTAssertEqual(source.person(for: row2), relationship1)
         
         XCTAssertEqual(source.heading(for: row1), "author")
@@ -188,13 +192,14 @@ class DetailDataSourceTests: ModelTestCase {
         book2.publisher = publisher2
         
         source.filter(for: [book1, book2], editing: false)
-        let row1 = source.info(for: 0, editing: false)
+        let row1 = source.info(for: 0)
         XCTAssertEqual(source.publisher(for: row1), publisher2)
-        let row2 = source.info(for: 1, editing: false)
+        let row2 = source.info(for: 1)
         XCTAssertEqual(source.publisher(for: row2), publisher1)
 
-        XCTAssertEqual(source.heading(for: row1), DetailDataSource.publisherHeading)
-        XCTAssertEqual(source.heading(for: row2), DetailDataSource.publisherHeading)
+        let heading = DetailDataSource.publisherHeading.lowercased()
+        XCTAssertEqual(source.heading(for: row1), heading)
+        XCTAssertEqual(source.heading(for: row2), heading)
     }
     
     func testSeriesAccess() {
@@ -203,15 +208,15 @@ class DetailDataSourceTests: ModelTestCase {
         let source = DetailDataSource()
         let book = Book(context: context)
         let series = Series(context: context)
-        let entry = Entry(context: context)
+        let entry = SeriesEntry(context: context)
         entry.book = book
         entry.series = series
         
         source.filter(for: [book], editing: false)
-        let row = source.info(for: 0, editing: false)
-        XCTAssertEqual(source.series(for: row), entry)
+        let row = source.info(for: 0)
+        XCTAssertEqual(source.series(for: row), series)
 
-        XCTAssertEqual(source.heading(for: row), DetailDataSource.seriesHeading)
+        XCTAssertEqual(source.heading(for: row), DetailDataSource.seriesHeading.lowercased())
     }
     
     func testDetailAccess() {
@@ -222,10 +227,10 @@ class DetailDataSourceTests: ModelTestCase {
         book.asin = "blah"
         
         source.filter(for: [book], editing: false)
-        let row = source.info(for: 0, editing: false)
+        let row = source.info(for: 0)
         let detail = source.details(for: row)
         XCTAssertEqual(detail.binding, "identifier")
-        XCTAssertEqual(source.heading(for: row), "Identifier")
+        XCTAssertEqual(source.heading(for: row), "identifier")
     }
 
     func testDetailAccessEditing() {
@@ -235,10 +240,10 @@ class DetailDataSourceTests: ModelTestCase {
         let book = Book(context: context)
         
         source.filter(for: [book], editing: true)
-        let row = source.info(for: 0, editing: true)
+        let row = source.info(for: 3)
         let detail = source.details(for: row)
         XCTAssertEqual(detail.binding, "notes")
-        XCTAssertEqual(source.heading(for: row), "Notes")
+        XCTAssertEqual(source.heading(for: row), "notes")
     }
 
     func testInsertRelationship()

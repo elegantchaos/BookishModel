@@ -116,12 +116,18 @@ class MiscModelTests: ModelTestCase {
     
     func testCoverage() {
         let _ : NSFetchRequest<Book> = Book.fetchRequest()
-        let _ : NSFetchRequest<Entry> = Entry.fetchRequest()
+        let _ : NSFetchRequest<SeriesEntry> = SeriesEntry.fetchRequest()
         let _ : NSFetchRequest<Publisher> = Publisher.fetchRequest()
         let _ : NSFetchRequest<Series> = Series.fetchRequest()
         
         let container = makeTestContainer()
         container.setupTestData()
-        
+
+        let context = container.managedObjectContext
+        let _ : NSFetchRequest<Book> = Book.fetcher(in: context)
+        let _ : NSFetchRequest<SeriesEntry> = SeriesEntry.fetcher(in: context)
+        let _ : NSFetchRequest<Publisher> = Publisher.fetcher(in: context)
+        let _ : NSFetchRequest<Series> = Series.fetcher(in: context)
+
     }
 }

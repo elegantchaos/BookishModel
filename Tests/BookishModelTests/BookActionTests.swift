@@ -125,13 +125,6 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
         XCTAssertNil(relationship.managedObjectContext)
     }
 
-    func check(relationship: Relationship, book: Book, person: Person) {
-        XCTAssertEqual(book.roles.count, 1)
-        XCTAssertEqual(relationship.books?.count, 1)
-        XCTAssertEqual(relationship.books?.allObjects.first as? Book, book)
-        XCTAssertEqual(relationship.person, person)
-    }
-
     func testChangeRelationshipAction() {
         let book = Book(context: context)
         let person = Person(context: context)
@@ -265,7 +258,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
 
     func testAddSeries() {
         let book = Book(context: context)
-        XCTAssertNil(book.series)
+        XCTAssertEqual(book.entries?.count ?? 0, 0)
         
         XCTAssertFalse(actionManager.validate(identifier: "AddSeries", info: info).enabled)
         
@@ -277,19 +270,21 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
         
         wait(for: [expectation], timeout: 1.0)
         
-        XCTAssertNotNil(book.series)
-        XCTAssertNotNil(book.series?.series)
-        XCTAssertEqual(book.series?.index, 1)
+        let entries = book.entries as? Set<SeriesEntry>
+        let entry = entries?.first
+        XCTAssertNotNil(entry)
+        XCTAssertNotNil(entry!.series)
+        XCTAssertEqual(entry!.position, 1)
         XCTAssertNotNil(seriesObserved)
     }
     
     func testRemoveSeries() {
         let book = Book(context: context)
         let series = Series(context: context)
-        let entry = Entry(context: context)
-        book.series = entry
+        let entry = SeriesEntry(context: context)
+        book.addToEntries(entry)
         entry.series = series
-        entry.index = 1
+        entry.position = 1
         
         XCTAssertFalse(actionManager.validate(identifier: "RemoveSeries", info: info).enabled)
         
@@ -302,17 +297,17 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
         
         wait(for: [expectation], timeout: 1.0)
         XCTAssertNotNil(seriesObserved)
-        XCTAssertNil(book.series)
+        XCTAssertEqual(book.entries?.count ?? 0, 0)
     }
     
     func testChangeSeriesAction() {
         let book = Book(context: context)
         let series = Series(context: context)
         series.name = "Series"
-        let entry = Entry(context: context)
-        book.series = entry
+        let entry = SeriesEntry(context: context)
+        book.addToEntries(entry)
         entry.series = series
-        entry.index = 2
+        entry.position = 2
 
         let otherSeries = Series(context: context)
         otherSeries.name = "Other Series"
@@ -325,29 +320,28 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
         
         wait(for: [expectation], timeout: 1.0)
         
-        XCTAssertEqual(book.series?.series, otherSeries)
-        XCTAssertEqual(book.series?.index, entry.index)
+        check(book: book, series: series, position: Int(entry.position))
     }
     
     func testChangeSeriesActionNewSeries() {
         let book = Book(context: context)
         let series = Series(context: context)
         series.name = "Series"
-        let entry = Entry(context: context)
-        book.series = entry
+        let entry = SeriesEntry(context: context)
+        book.addToEntries(entry)
         entry.series = series
-        entry.index = 1
+        entry.position = 1
 
         info[SeriesAction.newSeriesKey] = "New Series"
         info[ActionContext.selectionKey] = [book]
+        info[SeriesAction.positionKey] = 2
         
         XCTAssertTrue(actionManager.validate(identifier: "ChangeSeries", info: info).enabled)
         actionManager.perform(identifier: "ChangeSeries", info: info)
         
         wait(for: [expectation], timeout: 1.0)
         
-        XCTAssertEqual(book.series?.series?.name, "New Series")
-        XCTAssertEqual(book.series?.index, 1)
+        check(book: book, seriesName: "New Series", position: 2)
         XCTAssertEqual(count(of: "Series"), 2)
         XCTAssertEqual(count(of: "Book"), 1)
     }
