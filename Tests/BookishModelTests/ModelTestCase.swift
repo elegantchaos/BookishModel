@@ -19,16 +19,40 @@ class ModelTestCase: XCTestCase {
         return collection
     }
 
-    func check(book: Book, series: Series, position: Int) {
-        let entry = (book.entries as? Set<SeriesEntry>)?.first
-        XCTAssertEqual(entry?.series, series)
-        XCTAssertEqual(entry?.position, Int16(position))
+    func check(book: Book, series: Series, position: Int, ignore: SeriesEntry? = nil) -> Bool {
+        guard let entries = book.entries as? Set<SeriesEntry> else {
+            return false
+        }
+
+        for entry in entries {
+            if entry == ignore {
+                continue
+            }
+
+            XCTAssertEqual(entry.series, series)
+            XCTAssertEqual(entry.position, Int16(position))
+            return (entry.series == series) && (entry.position == Int16(position))
+        }
+        
+        return false
     }
     
-    func check(book: Book, seriesName: String, position: Int) {
-        let entry = (book.entries as? Set<SeriesEntry>)?.first
-        XCTAssertEqual(entry?.series?.name, seriesName)
-        XCTAssertEqual(entry?.position, Int16(position))
+    func check(book: Book, seriesName: String, position: Int, ignore: SeriesEntry? = nil) -> Bool {
+        guard let entries = book.entries as? Set<SeriesEntry> else {
+            return false
+        }
+        
+        for entry in entries {
+            if entry == ignore {
+                continue
+            }
+            
+            XCTAssertEqual(entry.series?.name, seriesName)
+            XCTAssertEqual(entry.position, Int16(position))
+            return (entry.series!.name == seriesName) && (entry.position == Int16(position))
+        }
+        
+        return false
     }
 
     func check(relationship: Relationship, book: Book, person: Person) {

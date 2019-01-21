@@ -340,14 +340,17 @@ class RemoveSeriesAction: BookAction {
 
 class ChangeSeriesAction: BookAction {
     override func validate(context: ActionContext) -> Bool {
-        let gotSeries = (context[SeriesAction.seriesKey] as? Series != nil) || (context[SeriesAction.newSeriesKey] as? String != nil)
+        let gotSeries =
+            (context[SeriesAction.seriesKey] as? Series != nil) ||
+            (context[SeriesAction.newSeriesKey] as? Series != nil) ||
+            (context[SeriesAction.newSeriesKey] as? String != nil)
         return gotSeries && super.validate(context: context)
     }
     
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
                 if let selection = context[ActionContext.selectionKey] as? [Book] {
                     let existingSeries = context[SeriesAction.seriesKey] as? Series
-                    var position = context[SeriesAction.positionKey] as? Int
+                    let position = context[SeriesAction.positionKey] as? Int
                     var updatedSeries = context[SeriesAction.newSeriesKey] as? Series
                     
                     // if we weren't given a series, but were given a name, make a new series with that name
@@ -360,15 +363,16 @@ class ChangeSeriesAction: BookAction {
                     if let series = updatedSeries {
                         // we've got a series to change to, so do it
                         for book in selection {
+                            var bookPosition = position
                             if let existingSeries = existingSeries {
-                                if position == nil {
-                                    position = book.position(in: existingSeries)
+                                if bookPosition == nil {
+                                    bookPosition = book.position(in: existingSeries)
                                 }
                                 book.removeFromSeries(existingSeries)
                                 bookActionChannel.debug("removed from \(existingSeries.name!)")
                             }
 
-                            book.addToSeries(series, position: position ?? 0)
+                            book.addToSeries(series, position: bookPosition ?? 0)
                             bookActionChannel.debug("added to \(series.name!)")
                         }
                     } else if let existingSeries = existingSeries, let updatedPosition = position {
