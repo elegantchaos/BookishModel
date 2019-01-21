@@ -12,7 +12,8 @@ public class DetailDataSource {
     
     static let headingColumnID = "heading"
     static let controlColumnID = "control"
-
+    static let roleColumnID = "role"
+    
     public enum Category {
         case detail
         case person
@@ -30,9 +31,11 @@ public class DetailDataSource {
         public func viewID(for column: String) -> String {
             switch column {
                 case headingColumnID:
-                    return kind == .editablePerson ? "role" : headingColumnID
+                    return kind == .person ? roleColumnID : headingColumnID
+                
                 case controlColumnID:
                     return controlColumnID
+                
                 default:
                     return kind.rawValue
             }
@@ -53,107 +56,24 @@ public class DetailDataSource {
     
     public var rows: Int {
         return items.count
-//        let publisherCount = publishers.count
-//        var count = details.count + people.count + publisherCount + series.count
-//
-//        if editing {
-//            count += 2 // extra placeholders for people and series
-//            if publisherCount == 0 {
-//                count += 1 // extra placeholder for publisher only if we don't already have one
-//            }
-//        }
-//
-//        return count
     }
     
     public func info(for row: Int) -> RowInfo {
         return items[row]
-//        var index = row
-//        var info = matchPersonRow(row, index: &index)
-//
-//        if info == nil {
-//            info = matchPublisherRow(row, index: &index)
-//        }
-//
-//        if info == nil {
-//            info = matchSeriesRow(row, index: &index)
-//        }
-//
-//        if info == nil {
-//            let spec = details[index]
-//            info = RowInfo(kind: editing ? spec.editableKind : spec.kind, category: .detail, absolute: row, index: index, placeholder: false)
-//        }
-//
-//        print("\(row) \(info!.kind) \(info!.category) \(info!.index)")
-//        return info!
     }
-    
-//    private func matchPersonRow(_ row: Int, index: inout Int) -> RowInfo? {
-//        let count = people.count
-//        if row < count {
-//            return RowInfo(kind: editing ? .editablePerson : .person, category: .person, absolute: row, index: index, placeholder: false)
-//        }
-//
-//        index -= count
-//
-//        if editing {
-//            if index == count {
-//                return RowInfo(kind: .person, category: .person, absolute: row, index: index, placeholder: true)
-//            }
-//            index -= 1
-//        }
-//
-//        return nil
-//    }
-//
-//    private func matchPublisherRow(_ row: Int, index: inout Int) -> RowInfo? {
-//        let count = publishers.count
-//        if index < count {
-//            return RowInfo(kind: .publisher, category: .publisher, absolute: row, index: index, placeholder: false)
-//        }
-//
-//        index -= count
-//
-//        if editing && (count == 0) {
-//            if index == 0 {
-//                return RowInfo(kind: .publisher, category: .publisher, absolute: row, index: index, placeholder: true)
-//            }
-//            index -= 1
-//        }
-//
-//        return nil
-//    }
-//
-//    private func matchSeriesRow(_ row: Int, index: inout Int) -> RowInfo? {
-//        let count = series.count
-//        if index < count {
-//            return RowInfo(kind: .series, category: .series, absolute: row, index: index, placeholder: false)
-//        }
-//
-//        index -= count
-//
-//        if editing {
-//            if index == count {
-//                return RowInfo(kind: .series, category: .series, absolute: row, index: index, placeholder: true)
-//            }
-//            index -= 1
-//        }
-//
-//        return nil
-//    }
 
     func buildItems() {
         var row = 0
         var items = [RowInfo]()
         let peopleCount = people.count
         for index in 0 ..< peopleCount {
-            let info = RowInfo(kind: editing ? .editablePerson : .person, category: .person, absolute: row, index: index, placeholder: false)
+            let info = RowInfo(kind: .person, category: .person, absolute: row, index: index, placeholder: false)
             items.append(info)
             row += 1
         }
         
         if editing {
-            let info = RowInfo(kind: .editablePerson, category: .person, absolute: row, index: peopleCount, placeholder: true)
+            let info = RowInfo(kind: .person, category: .person, absolute: row, index: peopleCount, placeholder: true)
             items.append(info)
             row += 1
         }

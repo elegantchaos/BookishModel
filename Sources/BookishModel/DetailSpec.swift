@@ -16,7 +16,6 @@ public final class DetailSpec {
         case publisher
         case series
         case editableDate
-        case editablePerson
         case editableDimensions
     }
 
