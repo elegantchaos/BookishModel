@@ -91,6 +91,21 @@ public class Book: ModelObject {
     }
  
     /**
+     Remove this book from a relationship, and delete it.
+     We could just call `delete` on the relationship directly from
+     client code, but this method includes some assertions to check that
+     the relationship is for the right book, and gets deleted.
+    */
+ 
+    public func deleteRelationship(_ relationshipToRemove: Relationship) {
+        if let relationships = self.relationships as? Set<Relationship> {
+            assert(relationships.contains(relationshipToRemove))
+        }
+        managedObjectContext?.delete(relationshipToRemove)
+        assert(relationshipToRemove.isDeleted)
+    }
+    
+    /**
      Add an entry for this book to a series.
      A book shouldn't be listed more than once in the same series, so we check first
      to see if there's already a listing. If there is, we just update the position.

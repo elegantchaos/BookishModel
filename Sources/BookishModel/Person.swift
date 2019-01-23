@@ -12,9 +12,9 @@ public class Person: ModelObject {
         name = "Untitled Person"
     }
     
-    public class func person(named: String, context: NSManagedObjectContext) -> Person? {
-        let request: NSFetchRequest<Person> = Person.fetchRequest()
-        request.predicate = NSPredicate(format: "name = \"\(named)\"")
+    public class func named(_ name: String, in context: NSManagedObjectContext) -> Person? {
+        let request: NSFetchRequest<Person> = Person.fetcher(in: context)
+        request.predicate = NSPredicate(format: "name = \"\(name)\"")
         if let results = try? context.fetch(request), results.count > 0 {
             return results[0]
         }
@@ -23,14 +23,23 @@ public class Person: ModelObject {
     }
     
     /**
-            If there's already an entry for a given role for this person, return it.
-            If not, create it.
-        */
+     If there's already an entry for a given role name for this person, return it.
+     If not, create it.
+     */
     
     public func relationship(as roleName: String) -> Relationship {
         let context = self.managedObjectContext!
         let role = Role.role(named: roleName, context: context)
-        
+        return relationship(as: role)
+    }
+
+    /**
+     If there's already an entry for a given role for this person, return it.
+     If not, create it.
+     */
+    
+    public func relationship(as role: Role) -> Relationship {
+        let context = self.managedObjectContext!
         let request: NSFetchRequest<Relationship> = Relationship.fetcher(in: context)
         request.predicate = NSPredicate(format: "(person = %@) and (role = %@)", self, role)
         

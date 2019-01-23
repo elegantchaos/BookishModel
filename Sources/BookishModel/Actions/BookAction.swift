@@ -225,10 +225,13 @@ class ChangeRelationshipAction: BookAction {
     }
     
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
-        if
-            let selection = context[ActionContext.selectionKey] as? [Book],
-            let existingRelationship = context[PersonAction.relationshipKey] as? Relationship,
-            let roleName = existingRelationship.role?.name {
+        let existingRelationship = context[PersonAction.relationshipKey] as? Relationship
+        var role = context[PersonAction.roleKey] as? Role
+        if role == nil {
+            role = existingRelationship?.role
+        }
+
+        if let selection = context[ActionContext.selectionKey] as? [Book], let roleName = role?.name {
             var newPerson = context[PersonAction.personKey] as? Person
             if newPerson == nil, let newPersonName = context[PersonAction.newPersonKey] as? String {
                 bookActionChannel.debug("Made new person \(newPersonName)")
@@ -237,13 +240,27 @@ class ChangeRelationshipAction: BookAction {
             }
             
             if let newPerson = newPerson {
+                // we're switching people, or adding a new relationship
                 let newRelationship = newPerson.relationship(as: roleName)
                 for book in selection {
-                    book.removeFromRelationships(existingRelationship)
+                    if let existingRelationship = existingRelationship {
+                        book.deleteRelationship(existingRelationship)
+                        bookActionChannel.log("removed \(existingRelationship.person!.name!) as \(roleName)")
+                    }
                     book.addToRelationships(newRelationship)
                 }
+                bookActionChannel.log("added \(newPerson.name!) as \(roleName)")
                 
-                bookActionChannel.log("\(roleName) changed from \(existingRelationship.person!.name!) to \(newPerson.name!)")
+            } else if let relationship = existingRelationship, let person = relationship.person, let fromRole = relationship.role, let toRole = role, fromRole != toRole {
+                // we're switching roles for an existing relationship
+                for book in selection {
+                    book.deleteRelationship(relationship)
+                    bookActionChannel.log("removed \(person.name!) as \(fromRole)")
+                    let newRelationship = person.relationship(as: toRole)
+                    book.addToRelationships(newRelationship)
+                    bookActionChannel.log("added \(person.name!) as \(toRole)")
+                }
+
             }
         }
     }
