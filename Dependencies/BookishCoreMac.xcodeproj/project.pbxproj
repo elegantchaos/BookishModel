@@ -319,8 +319,8 @@
          children = (
             "OBJ_11"
          );
-         name = "BookishCoreMobile";
-         path = "Sources/BookishCoreMobile";
+         name = "BookishCoreMac";
+         path = "Sources/BookishCoreMac";
          sourceTree = "SOURCE_ROOT";
       };
       "OBJ_101" = {
@@ -583,7 +583,7 @@
       };
       "OBJ_126" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_17";
+         fileRef = "OBJ_11";
       };
       "OBJ_127" = {
          isa = "PBXFrameworksBuildPhase";
@@ -828,7 +828,7 @@
       };
       "OBJ_157" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_11";
+         fileRef = "OBJ_17";
       };
       "OBJ_158" = {
          isa = "PBXFrameworksBuildPhase";
@@ -850,8 +850,8 @@
          children = (
             "OBJ_17"
          );
-         name = "BookishCoreMac";
-         path = "Sources/BookishCoreMac";
+         name = "BookishCoreMobile";
+         path = "Sources/BookishCoreMobile";
          sourceTree = "SOURCE_ROOT";
       };
       "OBJ_160" = {
@@ -1348,11 +1348,11 @@
       };
       "OBJ_208" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_44";
+         fileRef = "OBJ_45";
       };
       "OBJ_209" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_45";
+         fileRef = "OBJ_46";
       };
       "OBJ_21" = {
          isa = "PBXFileReference";
@@ -1361,23 +1361,23 @@
       };
       "OBJ_210" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_46";
+         fileRef = "OBJ_47";
       };
       "OBJ_211" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_47";
+         fileRef = "OBJ_48";
       };
       "OBJ_212" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_48";
+         fileRef = "OBJ_49";
       };
       "OBJ_213" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_49";
+         fileRef = "OBJ_50";
       };
       "OBJ_214" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_50";
+         fileRef = "OBJ_51";
       };
       "OBJ_215" = {
          isa = "PBXFrameworksBuildPhase";
@@ -1482,7 +1482,7 @@
       };
       "OBJ_220" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_52";
+         fileRef = "OBJ_43";
       };
       "OBJ_221" = {
          isa = "PBXFrameworksBuildPhase";
@@ -1713,10 +1713,10 @@
          isa = "PBXGroup";
          children = (
             "OBJ_30",
-            "OBJ_37",
+            "OBJ_33",
             "OBJ_40"
          );
-         name = "Actions 1.2.1";
+         name = "Actions 1.2.2";
          path = "";
          sourceTree = "SOURCE_ROOT";
       };
@@ -1763,64 +1763,64 @@
          isa = "PBXGroup";
          children = (
             "OBJ_31",
-            "OBJ_32",
-            "OBJ_33",
-            "OBJ_34",
-            "OBJ_35",
-            "OBJ_36"
+            "OBJ_32"
          );
-         name = "Actions";
-         path = ".build/checkouts/Actions--7125510604317369365/Sources/Actions";
+         name = "ActionsKit";
+         path = ".build/checkouts/Actions-2747487986457444966/Sources/ActionsKit";
          sourceTree = "SOURCE_ROOT";
       };
       "OBJ_31" = {
          isa = "PBXFileReference";
-         path = "Action.swift";
+         path = "ActionManagerMac.swift";
          sourceTree = "<group>";
       };
       "OBJ_32" = {
          isa = "PBXFileReference";
-         path = "ActionContext.swift";
+         path = "ActionManagerMobile.swift";
          sourceTree = "<group>";
       };
       "OBJ_33" = {
-         isa = "PBXFileReference";
-         path = "ActionIdentification.swift";
-         sourceTree = "<group>";
+         isa = "PBXGroup";
+         children = (
+            "OBJ_34",
+            "OBJ_35",
+            "OBJ_36",
+            "OBJ_37",
+            "OBJ_38",
+            "OBJ_39"
+         );
+         name = "Actions";
+         path = ".build/checkouts/Actions-2747487986457444966/Sources/Actions";
+         sourceTree = "SOURCE_ROOT";
       };
       "OBJ_34" = {
          isa = "PBXFileReference";
-         path = "ActionInfo.swift";
+         path = "Action.swift";
          sourceTree = "<group>";
       };
       "OBJ_35" = {
          isa = "PBXFileReference";
-         path = "ActionManager.swift";
+         path = "ActionContext.swift";
          sourceTree = "<group>";
       };
       "OBJ_36" = {
          isa = "PBXFileReference";
-         path = "DelegatedAction.swift";
+         path = "ActionIdentification.swift";
          sourceTree = "<group>";
       };
       "OBJ_37" = {
-         isa = "PBXGroup";
-         children = (
-            "OBJ_38",
-            "OBJ_39"
-         );
-         name = "ActionsKit";
-         path = ".build/checkouts/Actions--7125510604317369365/Sources/ActionsKit";
-         sourceTree = "SOURCE_ROOT";
+         isa = "PBXFileReference";
+         path = "ActionInfo.swift";
+         sourceTree = "<group>";
       };
       "OBJ_38" = {
          isa = "PBXFileReference";
-         path = "ActionManagerMac.swift";
+         path = "ActionManager.swift";
          sourceTree = "<group>";
       };
       "OBJ_39" = {
          isa = "PBXFileReference";
-         path = "ActionManagerMobile.swift";
+         path = "DelegatedAction.swift";
          sourceTree = "<group>";
       };
       "OBJ_4" = {
@@ -1859,15 +1859,15 @@
          isa = "PBXFileReference";
          explicitFileType = "sourcecode.swift";
          name = "Package.swift";
-         path = "/Users/sam/Projects/Bookish/Dependencies/BookishModel/.build/checkouts/Actions--7125510604317369365/Package.swift";
+         path = "/Users/sam/Projects/Bookish/Dependencies/BookishModel/.build/checkouts/Actions-2747487986457444966/Package.swift";
          sourceTree = "<group>";
       };
       "OBJ_41" = {
          isa = "PBXGroup";
          children = (
             "OBJ_42",
-            "OBJ_43",
-            "OBJ_51",
+            "OBJ_44",
+            "OBJ_52",
             "OBJ_53",
             "OBJ_55"
          );
@@ -1878,54 +1878,55 @@
       "OBJ_42" = {
          isa = "PBXGroup";
          children = (
+            "OBJ_43"
          );
-         name = "Example";
-         path = ".build/checkouts/Logger--1615408980774196131/Sources/Example";
+         name = "LoggerKit";
+         path = ".build/checkouts/Logger--1615408980774196131/Sources/LoggerKit";
          sourceTree = "SOURCE_ROOT";
       };
       "OBJ_43" = {
+         isa = "PBXFileReference";
+         path = "LoggerMenu.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_44" = {
          isa = "PBXGroup";
          children = (
-            "OBJ_44",
             "OBJ_45",
             "OBJ_46",
             "OBJ_47",
             "OBJ_48",
             "OBJ_49",
-            "OBJ_50"
+            "OBJ_50",
+            "OBJ_51"
          );
          name = "Logger";
          path = ".build/checkouts/Logger--1615408980774196131/Sources/Logger";
          sourceTree = "SOURCE_ROOT";
       };
-      "OBJ_44" = {
+      "OBJ_45" = {
          isa = "PBXFileReference";
          path = "Context.swift";
          sourceTree = "<group>";
       };
-      "OBJ_45" = {
+      "OBJ_46" = {
          isa = "PBXFileReference";
          path = "Handler.swift";
          sourceTree = "<group>";
       };
-      "OBJ_46" = {
+      "OBJ_47" = {
          isa = "PBXFileReference";
          path = "Logger.swift";
          sourceTree = "<group>";
       };
-      "OBJ_47" = {
+      "OBJ_48" = {
          isa = "PBXFileReference";
          path = "Manager.swift";
          sourceTree = "<group>";
       };
-      "OBJ_48" = {
-         isa = "PBXFileReference";
-         path = "NSLogHandler.swift";
-         sourceTree = "<group>";
-      };
       "OBJ_49" = {
          isa = "PBXFileReference";
-         path = "OSLogHandler.swift";
+         path = "NSLogHandler.swift";
          sourceTree = "<group>";
       };
       "OBJ_5" = {
@@ -1946,22 +1947,21 @@
       };
       "OBJ_50" = {
          isa = "PBXFileReference";
-         path = "PrintHandler.swift";
+         path = "OSLogHandler.swift";
          sourceTree = "<group>";
       };
       "OBJ_51" = {
-         isa = "PBXGroup";
-         children = (
-            "OBJ_52"
-         );
-         name = "LoggerKit";
-         path = ".build/checkouts/Logger--1615408980774196131/Sources/LoggerKit";
-         sourceTree = "SOURCE_ROOT";
+         isa = "PBXFileReference";
+         path = "PrintHandler.swift";
+         sourceTree = "<group>";
       };
       "OBJ_52" = {
-         isa = "PBXFileReference";
-         path = "LoggerMenu.swift";
-         sourceTree = "<group>";
+         isa = "PBXGroup";
+         children = (
+         );
+         name = "Example";
+         path = ".build/checkouts/Logger--1615408980774196131/Sources/Example";
+         sourceTree = "SOURCE_ROOT";
       };
       "OBJ_53" = {
          isa = "PBXGroup";
@@ -1987,15 +1987,15 @@
       "OBJ_56" = {
          isa = "PBXGroup";
          children = (
-            "Actions::ActionsKit::Product",
+            "JSONDump::JSONDump::Product",
+            "BookishCoreMac::BookishCoreMac::Product",
             "BookishCoreMac::BookishCore::Product",
             "Logger::LoggerTestSupport::Product",
-            "BookishCoreMac::BookishCoreMobile::Product",
-            "BookishCoreMac::BookishCoreTests::Product",
-            "BookishCoreMac::BookishCoreMac::Product",
-            "JSONDump::JSONDump::Product",
-            "Actions::Actions::Product",
             "Logger::LoggerKit::Product",
+            "BookishCoreMac::BookishCoreMobile::Product",
+            "Actions::Actions::Product",
+            "BookishCoreMac::BookishCoreTests::Product",
+            "Actions::ActionsKit::Product",
             "Logger::Logger::Product"
          );
          name = "Products";
@@ -2115,27 +2115,27 @@
       };
       "OBJ_72" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_31";
+         fileRef = "OBJ_34";
       };
       "OBJ_73" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_32";
+         fileRef = "OBJ_35";
       };
       "OBJ_74" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_33";
+         fileRef = "OBJ_36";
       };
       "OBJ_75" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_34";
+         fileRef = "OBJ_37";
       };
       "OBJ_76" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_35";
+         fileRef = "OBJ_38";
       };
       "OBJ_77" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_36";
+         fileRef = "OBJ_39";
       };
       "OBJ_78" = {
          isa = "PBXFrameworksBuildPhase";
@@ -2251,11 +2251,11 @@
       };
       "OBJ_87" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_38";
+         fileRef = "OBJ_31";
       };
       "OBJ_88" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_39";
+         fileRef = "OBJ_32";
       };
       "OBJ_89" = {
          isa = "PBXFrameworksBuildPhase";
