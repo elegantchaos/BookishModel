@@ -32,7 +32,6 @@ public protocol PersonLifecycleObserver: ActionObserver {
  */
 
 open class PersonAction: ModelAction {
-    public static let newPersonKey = "newPerson"
     public static let personKey = "person"
     public static let relationshipKey = "relationship"
     public static let roleKey = "role"

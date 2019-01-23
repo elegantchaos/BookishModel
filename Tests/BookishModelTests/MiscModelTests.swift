@@ -99,9 +99,9 @@ class MiscModelTests: ModelTestCase {
         XCTAssertTrue(person2.relationships!.contains(entry3))
         
         let allRoles = book.roles
-        let authorRole = Role.role(named: "author", context: context)
-        let editorRole = Role.role(named: "editor", context: context)
-        let illustratorRole = Role.role(named: "illustrator", context: context)
+        let authorRole = Role.named("author", in: context)
+        let editorRole = Role.named("editor", in: context)
+        let illustratorRole = Role.named("illustrator", in: context)
         XCTAssertTrue(allRoles.contains(authorRole))
         XCTAssertTrue(allRoles.contains(editorRole))
         XCTAssertFalse(allRoles.contains(illustratorRole))

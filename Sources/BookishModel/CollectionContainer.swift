@@ -133,7 +133,7 @@ import CoreData
     
     func makeDefaultRoles(context: NSManagedObjectContext) {
         for role in Role.Default.names {
-            _ = Role.role(named: role, context: context)
+            _ = Role.named(role, in: context)
         }
     }
 

@@ -215,13 +215,22 @@ class RemovePublisherAction: BookAction {
     }
 }
 /**
- Action that updates an existing role by changing the person that
- it applies to.
+ Action the book's relationships.
+ If given an existing relationship, we change either the person it applies to, or the
+ role that it represents.
+ If no existing relationship is given, we make a new one if we have both a person and
+ 
  */
 
 class ChangeRelationshipAction: BookAction {
     override func validate(context: ActionContext) -> Bool {
-        return (context[PersonAction.relationshipKey] as? Relationship != nil) && super.validate(context: context)
+        let gotRelationship = context[PersonAction.relationshipKey] as? Relationship != nil
+        let gotPerson = (context[PersonAction.personKey] as? String) != nil || (context[PersonAction.personKey] as? Person) != nil
+        let gotRole = (context[PersonAction.roleKey] as? Role) != nil
+        return super.validate(context: context) &&
+            ((gotRelationship && gotPerson) ||
+            (gotRelationship && gotRole) ||
+            (!gotRelationship && gotPerson && gotRole))
     }
     
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
@@ -231,34 +240,34 @@ class ChangeRelationshipAction: BookAction {
             role = existingRelationship?.role
         }
 
-        if let selection = context[ActionContext.selectionKey] as? [Book], let roleName = role?.name {
-            var newPerson = context[PersonAction.personKey] as? Person
-            if newPerson == nil, let newPersonName = context[PersonAction.newPersonKey] as? String {
-                bookActionChannel.debug("Made new person \(newPersonName)")
-                newPerson = Person(context: model)
-                newPerson?.name = newPersonName
+        if let selection = context[ActionContext.selectionKey] as? [Book], let role = role {
+            var updatedPerson = context[PersonAction.personKey] as? Person
+            if updatedPerson == nil, let name = context[PersonAction.personKey] as? String {
+                bookActionChannel.debug("using person name \(name)")
+                updatedPerson = Person.named(name, in: model, creating: true)
+                updatedPerson?.name = name
             }
             
-            if let newPerson = newPerson {
+            if let person = updatedPerson {
                 // we're switching people, or adding a new relationship
-                let newRelationship = newPerson.relationship(as: roleName)
+                let newRelationship = person.relationship(as: role)
                 for book in selection {
                     if let existingRelationship = existingRelationship {
                         book.removeRelationship(existingRelationship)
-                        bookActionChannel.log("removed \(existingRelationship.person!.name!) as \(roleName)")
+                        bookActionChannel.log("removed \(existingRelationship.person!.name!) as \(role.name!)")
                     }
                     book.addToRelationships(newRelationship)
                 }
-                bookActionChannel.log("added \(newPerson.name!) as \(roleName)")
+                bookActionChannel.log("added \(person.name!) as \(role.name!)")
                 
-            } else if let relationship = existingRelationship, let person = relationship.person, let fromRole = relationship.role, let toRole = role, fromRole != toRole {
+            } else if let relationship = existingRelationship, let person = relationship.person, let fromRole = relationship.role, fromRole != role {
                 // we're switching roles for an existing relationship
                 for book in selection {
                     book.removeRelationship(relationship)
                     bookActionChannel.log("removed \(person.name!) as \(fromRole)")
-                    let newRelationship = person.relationship(as: toRole)
+                    let newRelationship = person.relationship(as: role)
                     book.addToRelationships(newRelationship)
-                    bookActionChannel.log("added \(person.name!) as \(toRole)")
+                    bookActionChannel.log("added \(person.name!) as \(role)")
                 }
 
             }

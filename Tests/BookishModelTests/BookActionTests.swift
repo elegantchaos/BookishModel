@@ -154,6 +154,32 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
         XCTAssertEqual(count(of: "Book"), 1)
     }
 
+    func testChangeRelationshipActionAdding() {
+        let book = Book(context: context)
+        let person = Person(context: context)
+        let relationship = person.relationship(as: Role.Default.authorName)
+        book.addToRelationships(relationship)
+        check(relationship: relationship, book: book, person: person)
+        
+        let otherPerson = Person(context: context)
+        info[PersonAction.personKey] = otherPerson
+        info[ActionContext.selectionKey] = [book]
+        let newRole = Role.named(Role.Default.editorName, in: context)
+        info[PersonAction.roleKey] = newRole
+
+        XCTAssertTrue(actionManager.validate(identifier: "ChangeRelationship", info: info).enabled)
+        actionManager.perform(identifier: "ChangeRelationship", info: info)
+        
+        wait(for: [expectation], timeout: 1.0)
+        
+        XCTAssertEqual(book.roles.count, 2)
+        XCTAssertTrue(book.roles.contains(Role.named(Role.Default.authorName, in: context)))
+        XCTAssertTrue(book.roles.contains(newRole))
+        XCTAssertEqual(count(of: "Person"), 2)
+        XCTAssertEqual(count(of: "Relationship"), 2)
+        XCTAssertEqual(count(of: "Book"), 1)
+    }
+
     func testChangeRelationshipActionChangingRole() {
         let book = Book(context: context)
         let person = Person(context: context)
@@ -161,7 +187,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
         book.addToRelationships(relationship)
         check(relationship: relationship, book: book, person: person)
         
-        let newRole = Role.role(named: Role.Default.editorName, context: context)
+        let newRole = Role.named(Role.Default.editorName, in: context)
         info[PersonAction.relationshipKey] = relationship
         info[PersonAction.roleKey] = newRole
         info[ActionContext.selectionKey] = [book]
@@ -192,7 +218,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
         check(relationship: relationship, book: book, person: person)
         
         info[PersonAction.relationshipKey] = relationship
-        info[PersonAction.newPersonKey] = "New Person"
+        info[PersonAction.personKey] = "New Person"
         info[ActionContext.selectionKey] = [book]
         
         XCTAssertTrue(actionManager.validate(identifier: "ChangeRelationship", info: info).enabled)

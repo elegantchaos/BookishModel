@@ -17,17 +17,17 @@ public class Role: ModelObject {
         public static var names: [String] { get { return [authorName, contributorName, editorName, forwordName, illustratorName, translatorName] } }
     }
     
-    public class func role(named: String, context: NSManagedObjectContext) -> Role {
+    public class func named(_ name: String, in context: NSManagedObjectContext) -> Role {
         let request: NSFetchRequest<Role> = Role.fetchRequest()
-        request.predicate = NSPredicate(format: "name = \"\(named)\"")
+        request.predicate = NSPredicate(format: "name = \"\(name)\"")
 
         var role: Role
         if let results = try? context.fetch(request), results.count > 0 {
             role = results[0]
         } else {
             let newRole = Role(context: context)
-            newRole.name = named
-            newRole.uuid = named
+            newRole.name = name
+            newRole.uuid = name
             role = newRole
         }
         
