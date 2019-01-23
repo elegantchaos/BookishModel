@@ -244,7 +244,7 @@ class ChangeRelationshipAction: BookAction {
                 let newRelationship = newPerson.relationship(as: roleName)
                 for book in selection {
                     if let existingRelationship = existingRelationship {
-                        book.deleteRelationship(existingRelationship)
+                        book.removeRelationship(existingRelationship)
                         bookActionChannel.log("removed \(existingRelationship.person!.name!) as \(roleName)")
                     }
                     book.addToRelationships(newRelationship)
@@ -254,7 +254,7 @@ class ChangeRelationshipAction: BookAction {
             } else if let relationship = existingRelationship, let person = relationship.person, let fromRole = relationship.role, let toRole = role, fromRole != toRole {
                 // we're switching roles for an existing relationship
                 for book in selection {
-                    book.deleteRelationship(relationship)
+                    book.removeRelationship(relationship)
                     bookActionChannel.log("removed \(person.name!) as \(fromRole)")
                     let newRelationship = person.relationship(as: toRole)
                     book.addToRelationships(newRelationship)

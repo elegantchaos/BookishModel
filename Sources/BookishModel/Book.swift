@@ -91,18 +91,17 @@ public class Book: ModelObject {
     }
  
     /**
-     Remove this book from a relationship, and delete it.
-     We could just call `delete` on the relationship directly from
-     client code, but this method includes some assertions to check that
-     the relationship is for the right book, and gets deleted.
+     Remove this book from a relationship.
+     If this was the last book in the relationship, we also delete it.
     */
  
-    public func deleteRelationship(_ relationshipToRemove: Relationship) {
-        if let relationships = self.relationships as? Set<Relationship> {
-            assert(relationships.contains(relationshipToRemove))
+    public func removeRelationship(_ relationshipToRemove: Relationship) {
+        assert(relationships?.contains(relationshipToRemove) ?? false)
+        relationshipToRemove.removeFromBooks(self)
+        if relationshipToRemove.books?.count == 0 {
+            managedObjectContext?.delete(relationshipToRemove)
+            assert(relationshipToRemove.isDeleted)
         }
-        managedObjectContext?.delete(relationshipToRemove)
-        assert(relationshipToRemove.isDeleted)
     }
     
     /**

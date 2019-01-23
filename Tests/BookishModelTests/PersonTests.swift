@@ -15,14 +15,14 @@ class PersonTests:ModelTestCase {
         let person = Person(context: context)
         person.name = "Test"
         
-        let person2 = Person.named(_ named: "Test", in context: context)
+        let person2 = Person.named("Test", in: context)
         XCTAssertTrue(person === person2)
     }
     
     func testPersonNamedDoesntExist() {
         let container = makeTestContainer()
         let context = container.managedObjectContext
-        let person = Person.named(_ named: "Test", in context: context)
+        let person = Person.named("Test", in: context)
         XCTAssertNil(person)
     }
 

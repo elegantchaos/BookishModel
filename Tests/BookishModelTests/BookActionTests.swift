@@ -150,10 +150,40 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
         }
         
         XCTAssertEqual(count(of: "Person"), 2)
-        XCTAssertEqual(count(of: "Relationship"), 2)
+        XCTAssertEqual(count(of: "Relationship"), 1) // we've made a new relationship, but removed the old one, so the count should be the same
         XCTAssertEqual(count(of: "Book"), 1)
     }
 
+    func testChangeRelationshipActionChangingRole() {
+        let book = Book(context: context)
+        let person = Person(context: context)
+        let relationship = person.relationship(as: Role.Default.authorName)
+        book.addToRelationships(relationship)
+        check(relationship: relationship, book: book, person: person)
+        
+        let newRole = Role.role(named: Role.Default.editorName, context: context)
+        info[PersonAction.relationshipKey] = relationship
+        info[PersonAction.roleKey] = newRole
+        info[ActionContext.selectionKey] = [book]
+        
+        XCTAssertTrue(actionManager.validate(identifier: "ChangeRelationship", info: info).enabled)
+        actionManager.perform(identifier: "ChangeRelationship", info: info)
+        
+        wait(for: [expectation], timeout: 1.0)
+        
+        XCTAssertEqual(book.roles.count, 1)
+        if let relationship = book.relationships?.allObjects.first as? Relationship {
+            check(relationship: relationship, book: book, person: person)
+            XCTAssertEqual(relationship.role, newRole)
+        } else {
+            XCTFail()
+        }
+        
+        XCTAssertEqual(count(of: "Person"), 1) // shouldn't have made a new person
+        XCTAssertEqual(count(of: "Relationship"), 1) // we've made a new relationship, but removed the old one, so the count should be the same
+        XCTAssertEqual(count(of: "Book"), 1)
+    }
+    
     func testChangeRelationshipActionNewPerson() {
         let book = Book(context: context)
         let person = Person(context: context)
@@ -179,7 +209,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
         }
         
         XCTAssertEqual(count(of: "Person"), 2)
-        XCTAssertEqual(count(of: "Relationship"), 2)
+        XCTAssertEqual(count(of: "Relationship"), 1) // we've made a new relationship, but removed the old one, so the count should be the same
         XCTAssertEqual(count(of: "Book"), 1)
     }
 
