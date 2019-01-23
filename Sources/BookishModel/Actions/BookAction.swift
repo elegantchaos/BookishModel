@@ -27,12 +27,35 @@ public protocol BookViewer {
 public protocol BookChangeObserver: ActionObserver {
     func added(relationship: Relationship)
     func removed(relationship: Relationship)
+    func replaced(relationship: Relationship, with: Relationship)
     func added(series: Series)
     func removed(series: Series)
     func added(publisher: Publisher)
     func removed(publisher: Publisher)
 }
 
+public extension BookChangeObserver {
+    func added(relationship: Relationship) {
+    }
+
+    func removed(relationship: Relationship) {
+    }
+    
+    func replaced(relationship: Relationship, with: Relationship) {
+    }
+    
+    func added(series: Series) {
+    }
+    
+    func removed(series: Series) {
+    }
+    
+    func added(publisher: Publisher) {
+    }
+    
+    func removed(publisher: Publisher) {
+    }
+}
 
 /**
  Objects that want to observe changes to books should
@@ -248,28 +271,39 @@ class ChangeRelationshipAction: BookAction {
                 updatedPerson?.name = name
             }
             
-            if let person = updatedPerson {
-                // we're switching people, or adding a new relationship
-                let newRelationship = person.relationship(as: role)
+            if let existingRelationship = existingRelationship, let existingPerson = existingRelationship.person, let updatedPerson = updatedPerson, existingPerson != updatedPerson {
+                // we're switching people
+                let newRelationship = updatedPerson.relationship(as: role)
                 for book in selection {
-                    if let existingRelationship = existingRelationship {
-                        book.removeRelationship(existingRelationship)
-                        bookActionChannel.log("removed \(existingRelationship.person!.name!) as \(role.name!)")
+                    book.removeRelationship(existingRelationship)
+                    book.addToRelationships(newRelationship)
+                    bookActionChannel.log("changed \(role.name!) from \(existingPerson.name!) to \(updatedPerson.name!)")
+                    context.info.forObservers { (observer: BookChangeObserver) in
+                        observer.replaced(relationship: existingRelationship, with: newRelationship)
                     }
-                    book.addToRelationships(newRelationship)
                 }
-                bookActionChannel.log("added \(person.name!) as \(role.name!)")
                 
-            } else if let relationship = existingRelationship, let person = relationship.person, let fromRole = relationship.role, fromRole != role {
-                // we're switching roles for an existing relationship
+            } else if let existingRelationship = existingRelationship, let existingPerson = existingRelationship.person, let existingRole = existingRelationship.role, existingRole != role {
+                // we're switching roles
+                let newRelationship = existingPerson.relationship(as: role)
                 for book in selection {
-                    book.removeRelationship(relationship)
-                    bookActionChannel.log("removed \(person.name!) as \(fromRole)")
-                    let newRelationship = person.relationship(as: role)
+                    book.removeRelationship(existingRelationship)
                     book.addToRelationships(newRelationship)
-                    bookActionChannel.log("added \(person.name!) as \(role)")
+                    bookActionChannel.log("changed \(existingPerson.name!) from \(existingRole.name!) to \(role.name!)")
+                    context.info.forObservers { (observer: BookChangeObserver) in
+                        observer.replaced(relationship: existingRelationship, with: newRelationship)
+                    }
                 }
-
+            } else if existingRelationship == nil, let newPerson = updatedPerson {
+                // we're adding a new relationship
+                let newRelationship = newPerson.relationship(as: role)
+                for book in selection {
+                    bookActionChannel.log("added \(newPerson.name!) as \(role.name!)")
+                    book.addToRelationships(newRelationship)
+                    context.info.forObservers { (observer: BookChangeObserver) in
+                        observer.added(relationship: newRelationship)
+                    }
+                }
             }
         }
     }
