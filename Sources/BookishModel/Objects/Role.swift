@@ -6,15 +6,15 @@
 import CoreData
 
 public class Role: ModelObject {
-    public struct Default {
-        public static let authorName = "Author"
-        public static let contributorName = "Contributor"
-        public static let editorName = "Editor"
-        public static let forwordName = "Foreword"
-        public static let illustratorName = "Illustrator"
-        public static let translatorName = "Translator"
+    public struct StandardNames {
+        public static let author = "Author"
+        public static let contributor = "Contributor"
+        public static let editor = "Editor"
+        public static let foreword = "Foreword"
+        public static let illustrator = "Illustrator"
+        public static let translator = "Translator"
 
-        public static var names: [String] { get { return [authorName, contributorName, editorName, forwordName, illustratorName, translatorName] } }
+        public static var names: [String] { get { return [author, contributor, editor, foreword, illustrator, translator] } }
     }
     
     public class func named(_ name: String, in context: NSManagedObjectContext) -> Role {

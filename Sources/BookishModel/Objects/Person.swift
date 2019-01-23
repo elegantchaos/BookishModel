@@ -6,12 +6,6 @@
 import CoreData
 
 public class Person: ModelObject {
-
-    public override func awakeFromInsert() {
-        super.awakeFromInsert()
-        name = "Untitled Person"
-    }
-    
     public class func named(_ name: String, in context: NSManagedObjectContext, creating: Bool = false) -> Person? {
         let request: NSFetchRequest<Person> = Person.fetcher(in: context)
         request.predicate = NSPredicate(format: "name = \"\(name)\"")

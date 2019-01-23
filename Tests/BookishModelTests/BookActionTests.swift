@@ -104,7 +104,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
     func testRemoveRelationship() {
         let book = Book(context: context)
         let person = Person(context: context)
-        let relationship = person.relationship(as: Role.Default.authorName)
+        let relationship = person.relationship(as: Role.StandardNames.author)
         book.addToRelationships(relationship)
         XCTAssertEqual(book.roles.count, 1)
         
@@ -128,7 +128,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
     func testChangeRelationshipAction() {
         let book = Book(context: context)
         let person = Person(context: context)
-        let relationship = person.relationship(as: Role.Default.authorName)
+        let relationship = person.relationship(as: Role.StandardNames.author)
         book.addToRelationships(relationship)
         check(relationship: relationship, book: book, person: person)
         
@@ -157,14 +157,14 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
     func testChangeRelationshipActionAdding() {
         let book = Book(context: context)
         let person = Person(context: context)
-        let relationship = person.relationship(as: Role.Default.authorName)
+        let relationship = person.relationship(as: Role.StandardNames.author)
         book.addToRelationships(relationship)
         check(relationship: relationship, book: book, person: person)
         
         let otherPerson = Person(context: context)
         info[PersonAction.personKey] = otherPerson
         info[ActionContext.selectionKey] = [book]
-        let newRole = Role.named(Role.Default.editorName, in: context)
+        let newRole = Role.named(Role.StandardNames.editor, in: context)
         info[PersonAction.roleKey] = newRole
 
         XCTAssertTrue(actionManager.validate(identifier: "ChangeRelationship", info: info).enabled)
@@ -173,7 +173,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
         wait(for: [expectation], timeout: 1.0)
         
         XCTAssertEqual(book.roles.count, 2)
-        XCTAssertTrue(book.roles.contains(Role.named(Role.Default.authorName, in: context)))
+        XCTAssertTrue(book.roles.contains(Role.named(Role.StandardNames.author, in: context)))
         XCTAssertTrue(book.roles.contains(newRole))
         XCTAssertEqual(count(of: "Person"), 2)
         XCTAssertEqual(count(of: "Relationship"), 2)
@@ -183,11 +183,11 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
     func testChangeRelationshipActionChangingRole() {
         let book = Book(context: context)
         let person = Person(context: context)
-        let relationship = person.relationship(as: Role.Default.authorName)
+        let relationship = person.relationship(as: Role.StandardNames.author)
         book.addToRelationships(relationship)
         check(relationship: relationship, book: book, person: person)
         
-        let newRole = Role.named(Role.Default.editorName, in: context)
+        let newRole = Role.named(Role.StandardNames.editor, in: context)
         info[PersonAction.relationshipKey] = relationship
         info[PersonAction.roleKey] = newRole
         info[ActionContext.selectionKey] = [book]
@@ -213,7 +213,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
     func testChangeRelationshipActionNewPerson() {
         let book = Book(context: context)
         let person = Person(context: context)
-        let relationship = person.relationship(as: Role.Default.authorName)
+        let relationship = person.relationship(as: Role.StandardNames.author)
         book.addToRelationships(relationship)
         check(relationship: relationship, book: book, person: person)
         

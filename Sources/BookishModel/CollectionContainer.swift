@@ -132,7 +132,7 @@ import CoreData
      */
     
     func makeDefaultRoles(context: NSManagedObjectContext) {
-        for role in Role.Default.names {
+        for role in Role.StandardNames.names {
             _ = Role.named(role, in: context)
         }
     }
@@ -154,7 +154,7 @@ import CoreData
         sharedEditor.name = "Ms Editor"
         sharedEditor.uuid = "person-1"
         sharedEditor.notes = "This person is the editor of a number of books."
-        let entry = sharedEditor.relationship(as: Role.Default.editorName)
+        let entry = sharedEditor.relationship(as: Role.StandardNames.editor)
         
         let book = Book(context: context)
         book.name = "A Book"
@@ -167,8 +167,8 @@ import CoreData
         publisher.uuid = "publisher-1"
         publisher.addToBooks(book)
         
-        sharedEditor.relationship(as: Role.Default.authorName).addToBooks(book)
-        sharedEditor.relationship(as: Role.Default.illustratorName).addToBooks(book)
+        sharedEditor.relationship(as: Role.StandardNames.author).addToBooks(book)
+        sharedEditor.relationship(as: Role.StandardNames.illustrator).addToBooks(book)
         
         let sharedPublisher = Publisher(context: context)
         sharedPublisher.name = "Publisher 2"
@@ -191,7 +191,7 @@ import CoreData
             illustrator.name = "Mr Illustrator \(n)"
             illustrator.uuid = "person-\(n)"
             illustrator.notes = "Another example person."
-            let entry2 = illustrator.relationship(as: Role.Default.illustratorName)
+            let entry2 = illustrator.relationship(as: Role.StandardNames.illustrator)
             entry2.addToBooks(book)
             
             sharedPublisher.addToBooks(book)

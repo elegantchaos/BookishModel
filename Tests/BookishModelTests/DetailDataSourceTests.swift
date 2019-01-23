@@ -150,7 +150,7 @@ class DetailDataSourceTests: ModelTestCase {
         let personRow = source.info(for: 0)
         XCTAssertEqual(personRow.category, .person)
         
-        let rowRelationship = source.person(for: personRow)
+        let rowRelationship = source.relationship(for: personRow)
         XCTAssertEqual(relationship, rowRelationship)
     }
     
@@ -170,9 +170,9 @@ class DetailDataSourceTests: ModelTestCase {
         
         source.filter(for: [book], editing: false)
         let row1 = source.info(for: 0)
-        XCTAssertEqual(source.person(for: row1), relationship2)
+        XCTAssertEqual(source.relationship(for: row1), relationship2)
         let row2 = source.info(for: 1)
-        XCTAssertEqual(source.person(for: row2), relationship1)
+        XCTAssertEqual(source.relationship(for: row2), relationship1)
         
         XCTAssertEqual(source.heading(for: row1), "author")
         XCTAssertEqual(source.heading(for: row2), "author")

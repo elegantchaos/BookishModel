@@ -411,24 +411,17 @@
 			isa = PBXGroup;
 			children = (
 				221C4B36216BABE40086D56F /* Actions */,
-				221F271E21306C1300DC2DC7 /* Book.swift */,
-				22F180E221CA8FD600220D20 /* Indexing.swift */,
-				22DA6A1821E6158D00ECF09A /* BookishModelBridge.h */,
 				224293D1212AE1E700E70510 /* BookishModel.swift */,
-				221ED50E216B87D900594714 /* CollectionContainer.swift */,
+				22DA6A1821E6158D00ECF09A /* BookishModelBridge.h */,
 				22DD424D2126D6DA0070C85A /* Collection.xcdatamodeld */,
-				2250C74921B94D5F00E899E2 /* Utilities */,
+				221ED50E216B87D900594714 /* CollectionContainer.swift */,
 				22DAF394217B34FC003CE28B /* DetailDataSource.swift */,
 				221ED50B216B79F100594714 /* DetailSpec.swift */,
-				2250C70121B556FC00E899E2 /* SeriesEntry.swift */,
+				22F180E221CA8FD600220D20 /* Indexing.swift */,
 				224293B6212AE16200E70510 /* Info.plist */,
-				224293DE212AF05800E70510 /* Person.swift */,
-				22DA6A1B21E61BC600ECF09A /* ModelObject.swift */,
-				221F272121359DA200DC2DC7 /* Publisher.swift */,
-				224293E5212AF0B700E70510 /* Relationship.swift */,
-				224293E8212AF0D300E70510 /* Role.swift */,
-				224293EB212AF0E300E70510 /* Series.swift */,
+				224A5EBB21F8C26000DDB457 /* Objects */,
 				2250C71E21B94CD800E899E2 /* SeriesScanner.swift */,
+				2250C74921B94D5F00E899E2 /* Utilities */,
 			);
 			path = BookishModel;
 			sourceTree = "<group>";
@@ -462,6 +455,21 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		224A5EBB21F8C26000DDB457 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				22DA6A1B21E61BC600ECF09A /* ModelObject.swift */,
+				221F271E21306C1300DC2DC7 /* Book.swift */,
+				2250C70121B556FC00E899E2 /* SeriesEntry.swift */,
+				224293DE212AF05800E70510 /* Person.swift */,
+				221F272121359DA200DC2DC7 /* Publisher.swift */,
+				224293E5212AF0B700E70510 /* Relationship.swift */,
+				224293E8212AF0D300E70510 /* Role.swift */,
+				224293EB212AF0E300E70510 /* Series.swift */,
+			);
+			path = Objects;
 			sourceTree = "<group>";
 		};
 		2250C74921B94D5F00E899E2 /* Utilities */ = {

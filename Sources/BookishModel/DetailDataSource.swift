@@ -45,7 +45,7 @@ public class DetailDataSource {
     private var editing: Bool = false
     private var details: [DetailSpec] = []
     private let template = DetailSpec.standardDetails
-    private var people = [Relationship]()
+    private var relationships = [Relationship]()
     private var publishers = [Publisher]()
     private var series = [Series]()
     private var items = [RowInfo]()
@@ -65,7 +65,7 @@ public class DetailDataSource {
     func buildItems() {
         var row = 0
         var items = [RowInfo]()
-        let peopleCount = people.count
+        let peopleCount = relationships.count
         for index in 0 ..< peopleCount {
             let info = RowInfo(kind: .person, category: .person, absolute: row, index: index, placeholder: false)
             items.append(info)
@@ -141,7 +141,7 @@ public class DetailDataSource {
         }
         
         let (_, sharedPeople) = people(in: selection)
-        people = sharedPeople.sorted(by: { ($0.person?.name ?? "") < ($1.person?.name ?? "") })
+        relationships = sharedPeople.sorted(by: { ($0.person?.name ?? "") < ($1.person?.name ?? "") })
         publishers = publishers(in: selection).sorted(by: { ($0.name ?? "") < ($1.name ?? "") })
         let (_, sharedSeries) = series(in: selection)
         series = sharedSeries.sorted(by: {($0.name ?? "") < ($1.name ?? "")})
@@ -199,7 +199,7 @@ public class DetailDataSource {
         case .detail:
             heading = details(for: row).label
         case .person:
-            heading = row.placeholder ? DetailDataSource.personHeading : person(for: row).role?.name ?? "<unknown role>"
+            heading = row.placeholder ? DetailDataSource.personHeading : relationship(for: row).role?.name ?? "<unknown role>"
         case .publisher:
             heading = DetailDataSource.publisherHeading
         case .series:
@@ -209,9 +209,9 @@ public class DetailDataSource {
         return heading.lowercased()
     }
     
-    public func person(for row: RowInfo) -> Relationship {
+    public func relationship(for row: RowInfo) -> Relationship {
         assert(row.category == .person)
-        return people[row.index]
+        return relationships[row.index]
     }
 
     public func publisher(for row: RowInfo) -> Publisher {
@@ -230,15 +230,15 @@ public class DetailDataSource {
     }
     
     public func insert(relationship: Relationship) -> Int {
-        let index = people.count
-        people.append(relationship)
+        let index = relationships.count
+        relationships.append(relationship)
         buildItems()
         return items.first(where:{ $0.kind == .person && $0.index == index })!.absolute
     }
     
     public func remove(relationship: Relationship) -> Int? {
-        guard let index = people.firstIndex(of: relationship), let item = items.first(where:{ $0.kind == .person && $0.index == index }) else { return nil }
-        people.remove(at: index)
+        guard let index = relationships.firstIndex(of: relationship), let item = items.first(where:{ $0.kind == .person && $0.index == index }) else { return nil }
+        relationships.remove(at: index)
         return item.absolute
     }
 
