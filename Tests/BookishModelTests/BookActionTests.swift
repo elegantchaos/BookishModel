@@ -265,7 +265,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
         XCTAssertFalse(actionManager.validate(identifier: "RemovePublisher", info: info).enabled)
         
         info.addObserver(self)
-        info[PublisherAction.publisherKey] = publisher
+        info[PublisherAction.newPublisherKey] = publisher
         info[ActionContext.selectionKey] = [book]
         
         XCTAssertTrue(actionManager.validate(identifier: "RemovePublisher", info: info).enabled)
@@ -283,7 +283,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
         book.publisher = publisher
         
         let otherPublisher = Publisher(context: context)
-        info[PublisherAction.publisherKey] = otherPublisher
+        info[PublisherAction.newPublisherKey] = otherPublisher
         info[ActionContext.selectionKey] = [book]
         
         XCTAssertTrue(actionManager.validate(identifier: "ChangePublisher", info: info).enabled)

@@ -61,7 +61,7 @@ class PublisherActionTests: ModelActionTestCase, PublisherViewer, PublisherLifec
     func testRevealPublisher() {
         let publisher = Publisher(context: context)
         info[ActionContext.rootKey] = self
-        info[PublisherAction.publisherKey] = publisher
+        info[PublisherAction.newPublisherKey] = publisher
 
         XCTAssertTrue(actionManager.validate(identifier: "RevealPublisher", info: info).enabled)
         actionManager.perform(identifier: "RevealPublisher", info: info)

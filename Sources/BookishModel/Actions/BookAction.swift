@@ -7,7 +7,7 @@ import Actions
 import CoreData
 import Logger
 
-let bookActionChannel = Logger("Book Actions")
+let bookActionChannel = Logger("BookActions")
 
 /**
  Protocol providing user interface actions.
@@ -37,7 +37,7 @@ public protocol BookChangeObserver: ActionObserver {
 public extension BookChangeObserver {
     func added(relationship: Relationship) {
     }
-
+    
     func removed(relationship: Relationship) {
     }
     
@@ -73,7 +73,7 @@ public protocol BookLifecycleObserver: ActionObserver {
 
 open class BookAction: ModelAction {
     public static let bookKey = "book"
-
+    
     open class override func standardActions() -> [Action] {
         return [
             NewBookAction(identifier: "NewBook"),
@@ -89,7 +89,7 @@ open class BookAction: ModelAction {
             RevealBookAction(identifier: "RevealBook")
         ]
     }
-
+    
     open override func validate(context: ActionContext) -> Bool {
         guard let selection = context[ActionContext.selectionKey] as? [Book] else {
             return false
@@ -219,13 +219,13 @@ class AddPublisherAction: BookAction {
 
 class RemovePublisherAction: BookAction {
     public override func validate(context: ActionContext) -> Bool {
-        return (context[PublisherAction.publisherKey] as? Publisher != nil) && super.validate(context: context)
+        return (context[PublisherAction.newPublisherKey] as? Publisher != nil) && super.validate(context: context)
     }
     
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
         if
             let selection = context[ActionContext.selectionKey] as? [Book],
-            let publisher = context[PublisherAction.publisherKey] as? Publisher {
+            let publisher = context[PublisherAction.newPublisherKey] as? Publisher {
             for book in selection {
                 publisher.removeFromBooks(book)
             }
@@ -252,8 +252,8 @@ class ChangeRelationshipAction: BookAction {
         let gotRole = (context[PersonAction.roleKey] as? Role) != nil
         return super.validate(context: context) &&
             ((gotRelationship && gotPerson) ||
-            (gotRelationship && gotRole) ||
-            (!gotRelationship && gotPerson && gotRole))
+                (gotRelationship && gotRole) ||
+                (!gotRelationship && gotPerson && gotRole))
     }
     
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
@@ -262,7 +262,7 @@ class ChangeRelationshipAction: BookAction {
         if role == nil {
             role = existingRelationship?.role
         }
-
+        
         if let selection = context[ActionContext.selectionKey] as? [Book], let role = role {
             var updatedPerson = context[PersonAction.personKey] as? Person
             if updatedPerson == nil, let name = context[PersonAction.personKey] as? String, !name.isEmpty {
@@ -278,9 +278,9 @@ class ChangeRelationshipAction: BookAction {
                     book.removeRelationship(existingRelationship)
                     book.addToRelationships(newRelationship)
                     bookActionChannel.log("changed \(role.name!) from \(existingPerson.name!) to \(updatedPerson.name!)")
-                    context.info.forObservers { (observer: BookChangeObserver) in
-                        observer.replaced(relationship: existingRelationship, with: newRelationship)
-                    }
+                }
+                context.info.forObservers { (observer: BookChangeObserver) in
+                    observer.replaced(relationship: existingRelationship, with: newRelationship)
                 }
                 
             } else if let existingRelationship = existingRelationship, let existingPerson = existingRelationship.person, let existingRole = existingRelationship.role, existingRole != role {
@@ -290,9 +290,9 @@ class ChangeRelationshipAction: BookAction {
                     book.removeRelationship(existingRelationship)
                     book.addToRelationships(newRelationship)
                     bookActionChannel.log("changed \(existingPerson.name!) from \(existingRole.name!) to \(role.name!)")
-                    context.info.forObservers { (observer: BookChangeObserver) in
-                        observer.replaced(relationship: existingRelationship, with: newRelationship)
-                    }
+                }
+                context.info.forObservers { (observer: BookChangeObserver) in
+                    observer.replaced(relationship: existingRelationship, with: newRelationship)
                 }
             } else if existingRelationship == nil, let newPerson = updatedPerson {
                 // we're adding a new relationship
@@ -300,9 +300,9 @@ class ChangeRelationshipAction: BookAction {
                 for book in selection {
                     bookActionChannel.log("added \(newPerson.name!) as \(role.name!)")
                     book.addToRelationships(newRelationship)
-                    context.info.forObservers { (observer: BookChangeObserver) in
-                        observer.added(relationship: newRelationship)
-                    }
+                }
+                context.info.forObservers { (observer: BookChangeObserver) in
+                    observer.added(relationship: newRelationship)
                 }
             } else {
                 // we've been invoked but nothing has changed; just do nothing
@@ -320,23 +320,40 @@ class ChangeRelationshipAction: BookAction {
 
 class ChangePublisherAction: BookAction {
     override func validate(context: ActionContext) -> Bool {
-        let gotPublisher = (context[PublisherAction.publisherKey] as? Publisher != nil) || (context[PublisherAction.newPublisherKey] as? String != nil)
+        let gotPublisher = (context[PublisherAction.newPublisherKey] as? Publisher != nil) || (context[PublisherAction.newPublisherKey] as? String != nil)
         return gotPublisher && super.validate(context: context)
     }
     
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
         if let selection = context[ActionContext.selectionKey] as? [Book] {
-            var newPublisher = context[PublisherAction.publisherKey] as? Publisher
-            if newPublisher == nil, let newPublisherName = context[PublisherAction.newPublisherKey] as? String {
-                bookActionChannel.log("Made new Publisher \(newPublisherName)")
-                newPublisher = Publisher(context: model)
-                newPublisher?.name = newPublisherName
+            var newPublisher = context[PublisherAction.newPublisherKey] as? Publisher
+            if newPublisher == nil, let newPublisherName = context[PublisherAction.newPublisherKey] as? String, !newPublisherName.isEmpty {
+                bookActionChannel.log("using publisher name \(newPublisherName)")
+                newPublisher = Publisher.named(newPublisherName, in: model, creating: true)
             }
             
             if let newPublisher = newPublisher {
                 for book in selection {
-                    newPublisher.addToBooks(book)
-                    bookActionChannel.log("publisher changed from \(book.publisher!.name!) to \(newPublisher.name!)")
+                    if let existingPublisher = book.publisher {
+                        if existingPublisher != newPublisher {
+                            newPublisher.addToBooks(book)
+                            bookActionChannel.log("changed publisher from \(existingPublisher.name!) to \(newPublisher.name!)")
+                        }
+                    } else {
+                            newPublisher.addToBooks(book)
+                            bookActionChannel.log("set publisher to \(newPublisher.name!)")
+                    }
+                }
+                context.info.forObservers { (observer: BookChangeObserver) in
+                    observer.added(publisher: newPublisher)
+                }
+            } else if let existingPublisher = context[PublisherAction.publisherKey] as? Publisher {
+                bookActionChannel.log("cleared publisher \(existingPublisher.name!)")
+                for book in selection {
+                    existingPublisher.removeFromBooks(book)
+                }
+                context.info.forObservers { (observer: BookChangeObserver) in
+                    observer.removed(publisher: existingPublisher)
                 }
             }
         }
@@ -400,47 +417,47 @@ class ChangeSeriesAction: BookAction {
     override func validate(context: ActionContext) -> Bool {
         let gotSeries =
             (context[SeriesAction.seriesKey] as? Series != nil) ||
-            (context[SeriesAction.newSeriesKey] as? Series != nil) ||
-            (context[SeriesAction.newSeriesKey] as? String != nil)
+                (context[SeriesAction.newSeriesKey] as? Series != nil) ||
+                (context[SeriesAction.newSeriesKey] as? String != nil)
         return gotSeries && super.validate(context: context)
     }
     
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
-                if let selection = context[ActionContext.selectionKey] as? [Book] {
-                    let existingSeries = context[SeriesAction.seriesKey] as? Series
-                    let position = context[SeriesAction.positionKey] as? Int
-                    var updatedSeries = context[SeriesAction.newSeriesKey] as? Series
+        if let selection = context[ActionContext.selectionKey] as? [Book] {
+            let existingSeries = context[SeriesAction.seriesKey] as? Series
+            let position = context[SeriesAction.positionKey] as? Int
+            var updatedSeries = context[SeriesAction.newSeriesKey] as? Series
+            
+            // if we weren't given a series, but were given a name, make a new series with that name
+            if updatedSeries == nil, let newSeriesName = context[SeriesAction.newSeriesKey] as? String {
+                updatedSeries = Series(context: model)
+                updatedSeries?.name = newSeriesName
+                bookActionChannel.log("Made new Series \(newSeriesName)")
+            }
+            
+            if let series = updatedSeries {
+                // we've got a series to change to, so do it
+                for book in selection {
+                    var bookPosition = position
+                    if let existingSeries = existingSeries {
+                        if bookPosition == nil {
+                            bookPosition = book.position(in: existingSeries)
+                        }
+                        book.removeFromSeries(existingSeries)
+                        bookActionChannel.debug("removed from \(existingSeries.name!)")
+                    }
                     
-                    // if we weren't given a series, but were given a name, make a new series with that name
-                    if updatedSeries == nil, let newSeriesName = context[SeriesAction.newSeriesKey] as? String {
-                        updatedSeries = Series(context: model)
-                        updatedSeries?.name = newSeriesName
-                        bookActionChannel.log("Made new Series \(newSeriesName)")
-                    }
-        
-                    if let series = updatedSeries {
-                        // we've got a series to change to, so do it
-                        for book in selection {
-                            var bookPosition = position
-                            if let existingSeries = existingSeries {
-                                if bookPosition == nil {
-                                    bookPosition = book.position(in: existingSeries)
-                                }
-                                book.removeFromSeries(existingSeries)
-                                bookActionChannel.debug("removed from \(existingSeries.name!)")
-                            }
-
-                            book.addToSeries(series, position: bookPosition ?? 0)
-                            bookActionChannel.debug("added to \(series.name!)")
-                        }
-                    } else if let existingSeries = existingSeries, let updatedPosition = position {
-                        // we've not got a series to change to, but we might be updating our position
-                        // in an existing series
-                        for book in selection {
-                            book.setPosition(in: existingSeries, to: updatedPosition)
-                        }
-                    }
+                    book.addToSeries(series, position: bookPosition ?? 0)
+                    bookActionChannel.debug("added to \(series.name!)")
                 }
+            } else if let existingSeries = existingSeries, let updatedPosition = position {
+                // we've not got a series to change to, but we might be updating our position
+                // in an existing series
+                for book in selection {
+                    book.setPosition(in: existingSeries, to: updatedPosition)
+                }
+            }
+        }
     }
 }
 
