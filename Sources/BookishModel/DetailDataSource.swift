@@ -114,43 +114,6 @@ public class DetailDataSource {
         
         self.items = items
     }
-    
-    /**
-     Items extracted from a selection of books.
-     We return two sets:
-     - all: the items that were present for any book
-     - common: the items that were present for every book
-     */
-    
- 
-    public struct Items<ItemType> where ItemType: Hashable {
-        let all: Set<ItemType>
-        let common: Set<ItemType>
-    }
-    
-    /**
-     Extract items from a selection of books.
-     We take a function which obtains a set of items to consider for a given book.
-     We get back a struct containing two sets:
-     - all: the items that were present for any book
-     - common: the items that were present for every book
-     */
-
-    public func extract<ItemType>(from selection: [Book], extractor: (Book) -> Set<ItemType>?) -> Items<ItemType> {
-        var all = Set<ItemType>()
-        var common = Set<ItemType>()
-        for book in selection {
-            if let items = extractor(book) {
-                if all.count == 0 {
-                    common.formUnion(items)
-                } else {
-                    common.formIntersection(items)
-                }
-                all.formUnion(items)
-            }
-        }
-        return Items(all: all, common: common)
-    }
 
     public func filter(for selection: [Book], editing: Bool) {
         self.editing = editing

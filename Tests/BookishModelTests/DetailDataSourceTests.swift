@@ -178,7 +178,26 @@ class DetailDataSourceTests: ModelTestCase {
         XCTAssertEqual(source.heading(for: row2), "author")
     }
     
-    func testPublisherSorting() {
+    func testSamePublishers() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let source = DetailDataSource()
+        let book1 = Book(context: context)
+        let book2 = Book(context: context)
+        let publisher1 = Publisher(context: context)
+        publisher1.name = "Z"
+        book1.publisher = publisher1
+        book2.publisher = publisher1
+        
+        source.filter(for: [book1, book2], editing: false)
+        let row = source.info(for: 0)
+        XCTAssertEqual(source.publisher(for: row), publisher1)
+
+        let heading = DetailDataSource.publisherHeading.lowercased()
+        XCTAssertEqual(source.heading(for: row), heading)
+    }
+  
+    func testDifferentPublishers() {
         let container = makeTestContainer()
         let context = container.managedObjectContext
         let source = DetailDataSource()
@@ -190,18 +209,12 @@ class DetailDataSourceTests: ModelTestCase {
         publisher2.name = "A"
         book1.publisher = publisher1
         book2.publisher = publisher2
-        
-        source.filter(for: [book1, book2], editing: false)
-        let row1 = source.info(for: 0)
-        XCTAssertEqual(source.publisher(for: row1), publisher2)
-        let row2 = source.info(for: 1)
-        XCTAssertEqual(source.publisher(for: row2), publisher1)
 
-        let heading = DetailDataSource.publisherHeading.lowercased()
-        XCTAssertEqual(source.heading(for: row1), heading)
-        XCTAssertEqual(source.heading(for: row2), heading)
+        source.filter(for: [book1, book2], editing: false)
+        let row = source.info(for: 0)
+        XCTAssertEqual(row.category, .detail)
     }
-    
+
     func testSeriesAccess() {
         let container = makeTestContainer()
         let context = container.managedObjectContext
