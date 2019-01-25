@@ -7,11 +7,17 @@ import CoreData
 
 public class Publisher: ModelObject {
     
-    public class func named(_ named: String, in context: NSManagedObjectContext) -> Publisher? {
+    public class func named(_ named: String, in context: NSManagedObjectContext, creating: Bool = false) -> Publisher? {
         let request: NSFetchRequest<Publisher> = Publisher.fetcher(in: context)
         request.predicate = NSPredicate(format: "name = \"\(named)\"")
         if let results = try? context.fetch(request), results.count > 0 {
             return results[0]
+        }
+        
+        if creating {
+            let publisher = Publisher(context: context)
+            publisher.name = named
+            return publisher
         }
         
         return nil
