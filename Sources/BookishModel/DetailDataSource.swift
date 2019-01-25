@@ -115,16 +115,32 @@ public class DetailDataSource {
         self.items = items
     }
     
-    public struct Collected<ItemType> where ItemType: Hashable {
+    /**
+     Items extracted from a selection of books.
+     We return two sets:
+     - all: the items that were present for any book
+     - common: the items that were present for every book
+     */
+    
+ 
+    public struct Items<ItemType> where ItemType: Hashable {
         let all: Set<ItemType>
         let common: Set<ItemType>
     }
     
-    public func collected<ItemType>(in selection: [Book], filter: (Book) -> Set<ItemType>?) -> Collected<ItemType> {
+    /**
+     Extract items from a selection of books.
+     We take a function which obtains a set of items to consider for a given book.
+     We get back a struct containing two sets:
+     - all: the items that were present for any book
+     - common: the items that were present for every book
+     */
+
+    public func extract<ItemType>(from selection: [Book], extractor: (Book) -> Set<ItemType>?) -> Items<ItemType> {
         var all = Set<ItemType>()
         var common = Set<ItemType>()
         for book in selection {
-            if let items = filter(book) {
+            if let items = extractor(book) {
                 if all.count == 0 {
                     common.formUnion(items)
                 } else {
@@ -133,7 +149,7 @@ public class DetailDataSource {
                 all.formUnion(items)
             }
         }
-        return Collected(all: all, common: common)
+        return Items(all: all, common: common)
     }
 
     public func filter(for selection: [Book], editing: Bool) {
@@ -161,15 +177,15 @@ public class DetailDataSource {
             }
         }
         
-        let collectedPeople = collected(in: selection) { book -> Set<Relationship>? in
+        let collectedRelationships = MultipleValues.extract(from: selection) { book -> Set<Relationship>? in
             return book.relationships as? Set<Relationship>
         }
         
-        let collectedPublishers = collected(in: selection) { book -> Set<Publisher>? in
+        let collectedPublishers = MultipleValues.extract(from: selection) { book -> Set<Publisher>? in
             return book.publisher == nil ? nil : Set<Publisher>([book.publisher!])
         }
         
-        let collectedSeries = collected(in: selection) { book -> Set<Series>? in
+        let collectedSeries = MultipleValues.extract(from: selection) { book -> Set<Series>? in
             if let entries = book.entries as? Set<SeriesEntry> {
                 let series = entries.map { $0.series } as! [Series]
                 return Set<Series>(series)
@@ -178,7 +194,7 @@ public class DetailDataSource {
             return nil
         }
         
-        relationships = collectedPeople.common.sorted(by: { ($0.person?.name ?? "") < ($1.person?.name ?? "") })
+        relationships = collectedRelationships.common.sorted(by: { ($0.person?.name ?? "") < ($1.person?.name ?? "") })
         publishers = collectedPublishers.common.sorted(by: { ($0.name ?? "") < ($1.name ?? "") })
         series = collectedSeries.common.sorted(by: {($0.name ?? "") < ($1.name ?? "")})
         details = filteredDetails
@@ -187,23 +203,6 @@ public class DetailDataSource {
     }
     
 
-    public func series(in selection: [Book]) -> (Set<Series>,Set<Series>) {
-        var all = Set<Series>()
-        var common = Set<Series>()
-        for book in selection {
-            if let entries = book.entries as? Set<SeriesEntry> {
-                let series = entries.map { $0.series } as! [Series]
-                if all.count == 0 {
-                    common.formUnion(series)
-                } else {
-                    common.formIntersection(series)
-                }
-                all.formUnion(series)
-            }
-        }
-        return (all, common)
-    }
-    
     public func heading(for row: RowInfo) -> String {
         let heading: String
         switch row.category {
