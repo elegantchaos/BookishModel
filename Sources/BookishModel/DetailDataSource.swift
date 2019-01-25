@@ -115,6 +115,27 @@ public class DetailDataSource {
         self.items = items
     }
     
+    public struct Collected<ItemType> where ItemType: Hashable {
+        let all: Set<ItemType>
+        let common: Set<ItemType>
+    }
+    
+    public func collected<ItemType>(in selection: [Book], filter: (Book) -> Set<ItemType>?) -> Collected<ItemType> {
+        var all = Set<ItemType>()
+        var common = Set<ItemType>()
+        for book in selection {
+            if let items = filter(book) {
+                if all.count == 0 {
+                    common.formUnion(items)
+                } else {
+                    common.formIntersection(items)
+                }
+                all.formUnion(items)
+            }
+        }
+        return Collected(all: all, common: common)
+    }
+
     public func filter(for selection: [Book], editing: Bool) {
         self.editing = editing
         
@@ -140,41 +161,31 @@ public class DetailDataSource {
             }
         }
         
-        let (_, sharedPeople) = people(in: selection)
-        relationships = sharedPeople.sorted(by: { ($0.person?.name ?? "") < ($1.person?.name ?? "") })
-        publishers = publishers(in: selection).sorted(by: { ($0.name ?? "") < ($1.name ?? "") })
-        let (_, sharedSeries) = series(in: selection)
-        series = sharedSeries.sorted(by: {($0.name ?? "") < ($1.name ?? "")})
+        let collectedPeople = collected(in: selection) { book -> Set<Relationship>? in
+            return book.relationships as? Set<Relationship>
+        }
+        
+        let collectedPublishers = collected(in: selection) { book -> Set<Publisher>? in
+            return book.publisher == nil ? nil : Set<Publisher>([book.publisher!])
+        }
+        
+        let collectedSeries = collected(in: selection) { book -> Set<Series>? in
+            if let entries = book.entries as? Set<SeriesEntry> {
+                let series = entries.map { $0.series } as! [Series]
+                return Set<Series>(series)
+            }
+            
+            return nil
+        }
+        
+        relationships = collectedPeople.common.sorted(by: { ($0.person?.name ?? "") < ($1.person?.name ?? "") })
+        publishers = collectedPublishers.common.sorted(by: { ($0.name ?? "") < ($1.name ?? "") })
+        series = collectedSeries.common.sorted(by: {($0.name ?? "") < ($1.name ?? "")})
         details = filteredDetails
 
         buildItems()
     }
     
-    public func people(in selection: [Book]) -> (Set<Relationship>, Set<Relationship>) {
-        var all = Set<Relationship>()
-        var common = Set<Relationship>()
-        for book in selection {
-            if let people = book.relationships as? Set<Relationship> {
-                if all.count == 0 {
-                    common.formUnion(people)
-                } else {
-                    common.formIntersection(people)
-                }
-                all.formUnion(people)
-            }
-        }
-        return (all, common)
-    }
-
-    public func publishers(in selection: [Book]) -> Set<Publisher> {
-        var all = Set<Publisher>()
-        for book in selection {
-            if let publisher = book.publisher {
-                all.insert(publisher)
-            }
-        }
-        return all
-    }
 
     public func series(in selection: [Book]) -> (Set<Series>,Set<Series>) {
         var all = Set<Series>()
@@ -262,7 +273,7 @@ public class DetailDataSource {
     }
 
     public func insert(publisher: Publisher) -> Int {
-        publishers = [publisher]
+        publishers = [publisher] // currently we cap the number of publishers at 1
         buildItems()
         return items.first(where:{ $0.kind == .publisher })!.absolute
     }
