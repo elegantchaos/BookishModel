@@ -265,7 +265,7 @@ class ChangeRelationshipAction: BookAction {
 
         if let selection = context[ActionContext.selectionKey] as? [Book], let role = role {
             var updatedPerson = context[PersonAction.personKey] as? Person
-            if updatedPerson == nil, let name = context[PersonAction.personKey] as? String {
+            if updatedPerson == nil, let name = context[PersonAction.personKey] as? String, !name.isEmpty {
                 bookActionChannel.debug("using person name \(name)")
                 updatedPerson = Person.named(name, in: model, creating: true)
                 updatedPerson?.name = name
@@ -304,6 +304,10 @@ class ChangeRelationshipAction: BookAction {
                         observer.added(relationship: newRelationship)
                     }
                 }
+            } else {
+                // we've been invoked but nothing has changed; just do nothing
+                // (this can happen in certain situations where a UI item loses focus)
+                bookActionChannel.log("skipped - no changes")
             }
         }
     }

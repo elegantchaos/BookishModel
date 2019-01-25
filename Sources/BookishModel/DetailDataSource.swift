@@ -242,6 +242,12 @@ public class DetailDataSource {
         return item.absolute
     }
 
+    public func update(relationship: Relationship, with: Relationship) -> Int? {
+        guard let index = relationships.firstIndex(of: relationship), let item = items.first(where:{ $0.kind == .person && $0.index == index }) else { return nil }
+        relationships[index] = with
+        return item.absolute
+    }
+    
     public func insert(series seriesToInsert: Series) -> Int {
         let index = series.count
         series.append(seriesToInsert)
