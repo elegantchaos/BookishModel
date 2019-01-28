@@ -39,5 +39,7 @@ public class Role: ModelObject {
         return result
     }
 
-    @objc var lowercaseName: String? { get { return name?.lowercased() } }
+     @objc public var lowercaseName: String? { return name?.lowercased() }
+    
+    @objc public var label: String? { return lowercaseName }
 }
