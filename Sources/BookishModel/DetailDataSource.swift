@@ -42,7 +42,7 @@ public class DetailDataSource {
         }
     }
     
-    private var editing: Bool = false
+    public private(set) var editing: Bool = false
     private var details: [DetailSpec] = []
     private let template = DetailSpec.standardDetails
     private var relationships = [Relationship]()
