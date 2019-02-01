@@ -1491,7 +1491,7 @@
             "OBJ_23",
             "OBJ_25"
          );
-         name = "JSONDump 1.0.3";
+         name = "JSONDump 1.0.4";
          path = "";
          sourceTree = "SOURCE_ROOT";
       };
@@ -1623,7 +1623,7 @@
             "OBJ_24"
          );
          name = "JSONDump";
-         path = ".build/checkouts/JSONDump-384770676394969443/Sources/JSONDump";
+         path = ".build/checkouts/JSONDump/Sources/JSONDump";
          sourceTree = "SOURCE_ROOT";
       };
       "OBJ_230" = {
@@ -1807,7 +1807,7 @@
          isa = "PBXFileReference";
          explicitFileType = "sourcecode.swift";
          name = "Package.swift";
-         path = "/Users/sam/Projects/Bookish/Dependencies/BookishModel/.build/checkouts/JSONDump-384770676394969443/Package.swift";
+         path = "/Users/sam/Projects/Bookish/Dependencies/BookishModel/.build/checkouts/JSONDump/Package.swift";
          sourceTree = "<group>";
       };
       "OBJ_26" = {
@@ -1941,7 +1941,7 @@
             "OBJ_51",
             "OBJ_53"
          );
-         name = "Logger 1.3.1";
+         name = "Logger";
          path = "";
          sourceTree = "SOURCE_ROOT";
       };
@@ -1950,7 +1950,7 @@
          children = (
          );
          name = "Example";
-         path = ".build/checkouts/Logger/Sources/Example";
+         path = "Packages/Logger/Sources/Example";
          sourceTree = "SOURCE_ROOT";
       };
       "OBJ_4" = {
@@ -2001,7 +2001,7 @@
             "OBJ_47"
          );
          name = "Logger";
-         path = ".build/checkouts/Logger/Sources/Logger";
+         path = "Packages/Logger/Sources/Logger";
          sourceTree = "SOURCE_ROOT";
       };
       "OBJ_41" = {
@@ -2046,7 +2046,7 @@
             "OBJ_50"
          );
          name = "LoggerKit";
-         path = ".build/checkouts/Logger/Sources/LoggerKit";
+         path = "Packages/Logger/Sources/LoggerKit";
          sourceTree = "SOURCE_ROOT";
       };
       "OBJ_49" = {
@@ -2084,7 +2084,7 @@
             "OBJ_52"
          );
          name = "LoggerTestSupport";
-         path = ".build/checkouts/Logger/Sources/LoggerTestSupport";
+         path = "Packages/Logger/Sources/LoggerTestSupport";
          sourceTree = "SOURCE_ROOT";
       };
       "OBJ_52" = {
@@ -2096,22 +2096,22 @@
          isa = "PBXFileReference";
          explicitFileType = "sourcecode.swift";
          name = "Package.swift";
-         path = "/Users/sam/Projects/Bookish/Dependencies/BookishModel/.build/checkouts/Logger/Package.swift";
+         path = "/Users/sam/Projects/Bookish/Dependencies/BookishModel/Packages/Logger/Package.swift";
          sourceTree = "<group>";
       };
       "OBJ_54" = {
          isa = "PBXGroup";
          children = (
-            "BookishCoreMobile::BookishCore::Product",
-            "BookishCoreMobile::BookishCoreMac::Product",
-            "Logger::Logger::Product",
-            "JSONDump::JSONDump::Product",
-            "Logger::LoggerTestSupport::Product",
-            "BookishCoreMobile::BookishCoreTests::Product",
-            "BookishCoreMobile::BookishCoreMobile::Product",
             "Actions::Actions::Product",
+            "BookishCoreMobile::BookishCore::Product",
+            "BookishCoreMobile::BookishCoreTests::Product",
+            "Actions::ActionsKit::Product",
             "Logger::LoggerKit::Product",
-            "Actions::ActionsKit::Product"
+            "BookishCoreMobile::BookishCoreMobile::Product",
+            "JSONDump::JSONDump::Product",
+            "Logger::Logger::Product",
+            "Logger::LoggerTestSupport::Product",
+            "BookishCoreMobile::BookishCoreMac::Product"
          );
          name = "Products";
          path = "";
