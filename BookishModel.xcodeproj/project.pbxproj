@@ -25,6 +25,10 @@
 		223879B4220B1D9A0019F9EA /* DetailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223879B2220B1D9A0019F9EA /* DetailProvider.swift */; };
 		223879B6220B1F550019F9EA /* DetailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223879B5220B1F550019F9EA /* DetailItem.swift */; };
 		223879B7220B1F550019F9EA /* DetailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223879B5220B1F550019F9EA /* DetailItem.swift */; };
+		223879B9220B3FF10019F9EA /* SeriesDetailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223879B8220B3FF10019F9EA /* SeriesDetailProvider.swift */; };
+		223879BA220B3FF10019F9EA /* SeriesDetailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223879B8220B3FF10019F9EA /* SeriesDetailProvider.swift */; };
+		223879BC220B3FFC0019F9EA /* PublisherDetailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223879BB220B3FFC0019F9EA /* PublisherDetailProvider.swift */; };
+		223879BD220B3FFC0019F9EA /* PublisherDetailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223879BB220B3FFC0019F9EA /* PublisherDetailProvider.swift */; };
 		2242939A212AE0F400E70510 /* BookishModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22429391212AE0F300E70510 /* BookishModel.framework */; };
 		224293BC212AE16300E70510 /* BookishModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 224293B3212AE16200E70510 /* BookishModel.framework */; };
 		224293C3212AE16300E70510 /* MiscModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224293C2212AE16300E70510 /* MiscModelTests.swift */; };
@@ -303,6 +307,8 @@
 		223879AF220B1D910019F9EA /* PersonDetailProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailProvider.swift; sourceTree = "<group>"; };
 		223879B2220B1D9A0019F9EA /* DetailProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProvider.swift; sourceTree = "<group>"; };
 		223879B5220B1F550019F9EA /* DetailItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailItem.swift; sourceTree = "<group>"; };
+		223879B8220B3FF10019F9EA /* SeriesDetailProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesDetailProvider.swift; sourceTree = "<group>"; };
+		223879BB220B3FFC0019F9EA /* PublisherDetailProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherDetailProvider.swift; sourceTree = "<group>"; };
 		22429391212AE0F300E70510 /* BookishModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BookishModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22429399212AE0F400E70510 /* BookishModelTestsMac.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookishModelTestsMac.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		224293B3212AE16200E70510 /* BookishModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BookishModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -429,6 +435,8 @@
 				221ED50E216B87D900594714 /* CollectionContainer.swift */,
 				22387992220B1D860019F9EA /* BookDetailProvider.swift */,
 				223879AF220B1D910019F9EA /* PersonDetailProvider.swift */,
+				223879B8220B3FF10019F9EA /* SeriesDetailProvider.swift */,
+				223879BB220B3FFC0019F9EA /* PublisherDetailProvider.swift */,
 				223879B2220B1D9A0019F9EA /* DetailProvider.swift */,
 				223879B5220B1F550019F9EA /* DetailItem.swift */,
 				221ED50B216B79F100594714 /* DetailSpec.swift */,
@@ -986,10 +994,12 @@
 				226E8DB121A84031001F191F /* ModelAction.swift in Sources */,
 				221F271F21306C1300DC2DC7 /* Book.swift in Sources */,
 				221F272221359DA200DC2DC7 /* Publisher.swift in Sources */,
+				223879BC220B3FFC0019F9EA /* PublisherDetailProvider.swift in Sources */,
 				22E47CC6216E31B700E43DBF /* BookAction.swift in Sources */,
 				224293E3212AF09D00E70510 /* Person.swift in Sources */,
 				2250C71F21B94CD800E899E2 /* SeriesScanner.swift in Sources */,
 				22387993220B1D860019F9EA /* BookDetailProvider.swift in Sources */,
+				223879B9220B3FF10019F9EA /* SeriesDetailProvider.swift in Sources */,
 				22F180E321CA8FD600220D20 /* Indexing.swift in Sources */,
 				223879B0220B1D910019F9EA /* PersonDetailProvider.swift in Sources */,
 			);
@@ -1044,10 +1054,12 @@
 				224293D3212AE1E700E70510 /* BookishModel.swift in Sources */,
 				2250C6FA21B5398D00E899E2 /* PublisherAction.swift in Sources */,
 				224293EA212AF0D300E70510 /* Role.swift in Sources */,
+				223879BD220B3FFC0019F9EA /* PublisherDetailProvider.swift in Sources */,
 				22E47CC7216E31BA00E43DBF /* BookAction.swift in Sources */,
 				224293E4212AF09E00E70510 /* Person.swift in Sources */,
 				2250C72021B94CD800E899E2 /* SeriesScanner.swift in Sources */,
 				22387994220B1D860019F9EA /* BookDetailProvider.swift in Sources */,
+				223879BA220B3FF10019F9EA /* SeriesDetailProvider.swift in Sources */,
 				22F180E421CA8FD600220D20 /* Indexing.swift in Sources */,
 				223879B1220B1D910019F9EA /* PersonDetailProvider.swift in Sources */,
 			);

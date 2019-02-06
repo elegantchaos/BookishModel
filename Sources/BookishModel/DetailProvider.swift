@@ -8,6 +8,7 @@ import CoreData
 public protocol DetailContext {
     var relationshipSorting: [NSSortDescriptor] { get }
     var bookIndexSorting: [NSSortDescriptor] { get }
+    var entrySorting: [NSSortDescriptor] { get }
 }
 
 public protocol DetailOwner {
