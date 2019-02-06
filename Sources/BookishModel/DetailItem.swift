@@ -10,7 +10,7 @@ let controlColumnID = "control"
 let roleColumnID = "role"
 
 public class DetailItem {
-    public let kind: DetailSpec.Kind
+    public let kind: String
     public let absolute: Int
     public let index: Int
     public let placeholder: Bool
@@ -20,7 +20,7 @@ public class DetailItem {
         return "<unknown>"
     }
     
-    public init(kind: DetailSpec.Kind, absolute: Int, index: Int, placeholder: Bool, source: BookDetailProvider? = nil) {
+    public init(kind: String, absolute: Int, index: Int, placeholder: Bool, source: BookDetailProvider? = nil) {
         self.kind = kind
         self.absolute = absolute
         self.index = index
@@ -31,13 +31,13 @@ public class DetailItem {
     public func viewID(for column: String) -> String { // TODO: move out of model?
         switch column {
         case headingColumnID:
-            return kind == .person ? roleColumnID : headingColumnID
+            return headingColumnID
             
         case controlColumnID:
             return controlColumnID
             
         default:
-            return kind.rawValue
+            return kind
         }
     }
 }

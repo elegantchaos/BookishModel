@@ -13,7 +13,7 @@ extension Book: DetailOwner {
 
 public class PublisherDetailItem: DetailItem {
     public init(absolute: Int, index: Int, placeholder: Bool, source: BookDetailProvider? = nil) {
-        super.init(kind: .publisher, absolute: absolute, index: index, placeholder: placeholder, source: source)
+        super.init(kind: "publisher", absolute: absolute, index: index, placeholder: placeholder, source: source)
     }
     
     public override var heading: String {
@@ -23,7 +23,7 @@ public class PublisherDetailItem: DetailItem {
 
 public class SeriesDetailItem: DetailItem {
     public init(absolute: Int, index: Int, placeholder: Bool, source: BookDetailProvider? = nil) {
-        super.init(kind: .series, absolute: absolute, index: index, placeholder: placeholder, source: source)
+        super.init(kind: "series", absolute: absolute, index: index, placeholder: placeholder, source: source)
     }
 
     public override var heading: String {
@@ -33,12 +33,23 @@ public class SeriesDetailItem: DetailItem {
 
 public class PersonDetailItem: DetailItem {
     public init(absolute: Int, index: Int, placeholder: Bool, source: BookDetailProvider? = nil) {
-        super.init(kind: .person, absolute: absolute, index: index, placeholder: placeholder, source: source)
+        super.init(kind: "person", absolute: absolute, index: index, placeholder: placeholder, source: source)
     }
 
     public override var heading: String {
         return placeholder ? "Person" : source?.relationship(for: self).role?.name ?? super.heading
     }
+    
+    override public func viewID(for column: String) -> String { // TODO: move out of model?
+        switch column {
+        case headingColumnID:
+            return roleColumnID
+            
+        default:
+            return super.viewID(for: column)
+        }
+    }
+
 }
 
 public class BookDetailProvider {
@@ -122,7 +133,7 @@ public class BookDetailProvider {
         for detail in template {
             var includeDetail = false
             let kind = editing ? detail.editableKind : detail.kind
-            if kind != .hidden {
+            if kind != DetailSpec.hiddenKind {
                 if editing {
                     includeDetail = true
                 } else {
@@ -205,17 +216,17 @@ public class BookDetailProvider {
         let index = relationships.count
         relationships.append(relationship)
         buildItems()
-        return items.first(where:{ $0.kind == .person && $0.index == index })!.absolute
+        return items.first(where:{ $0 is PersonDetailItem && $0.index == index })!.absolute
     }
     
     public func remove(relationship: Relationship) -> Int? {
-        guard let index = relationships.firstIndex(of: relationship), let item = items.first(where:{ $0.kind == .person && $0.index == index }) else { return nil }
+        guard let index = relationships.firstIndex(of: relationship), let item = items.first(where:{ $0 is PersonDetailItem && $0.index == index }) else { return nil }
         relationships.remove(at: index)
         return item.absolute
     }
     
     public func update(relationship: Relationship, with: Relationship) -> Int? {
-        guard let index = relationships.firstIndex(of: relationship), let item = items.first(where:{ $0.kind == .person && $0.index == index }) else { return nil }
+        guard let index = relationships.firstIndex(of: relationship), let item = items.first(where:{ $0 is PersonDetailItem && $0.index == index }) else { return nil }
         relationships[index] = with
         return item.absolute
     }
@@ -224,11 +235,11 @@ public class BookDetailProvider {
         let index = series.count
         series.append(seriesToInsert)
         buildItems()
-        return items.last(where:{ $0.kind == .series && $0.index == index })!.absolute
+        return items.last(where:{ $0 is SeriesDetailItem && $0.index == index })!.absolute
     }
     
     public func remove(series seriesToRemove: Series) -> Int? {
-        guard let index = series.firstIndex(of: seriesToRemove), let item = items.first(where:{ $0.kind == .series && $0.index == index }) else { return nil }
+        guard let index = series.firstIndex(of: seriesToRemove), let item = items.first(where:{ $0 is SeriesDetailItem && $0.index == index }) else { return nil }
         series.remove(at: index)
         return item.absolute
     }
@@ -236,11 +247,11 @@ public class BookDetailProvider {
     public func insert(publisher: Publisher) -> Int {
         publishers = [publisher] // currently we cap the number of publishers at 1
         buildItems()
-        return items.first(where:{ $0.kind == .publisher })!.absolute
+        return items.first(where:{ $0 is PublisherDetailItem })!.absolute
     }
     
     public func remove(publisher: Publisher) -> Int? {
-        guard let index = publishers.firstIndex(of: publisher), let item = items.first(where:{ $0.kind == .publisher && $0.index == index }) else { return nil }
+        guard let index = publishers.firstIndex(of: publisher), let item = items.first(where:{ $0 is PublisherDetailItem && $0.index == index }) else { return nil }
         publishers.remove(at: index)
         return item.absolute
     }
