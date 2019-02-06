@@ -42,7 +42,7 @@ class DetailDataSourceTests: ModelTestCase {
     func testRowCount() {
         let container = makeTestContainer()
         let context = container.managedObjectContext
-        let source = DetailDataSource()
+        let source = BookDetailProvider()
 
         source.filter(for: [], editing: false)
         XCTAssertEqual(source.rows, 0)
@@ -87,7 +87,7 @@ class DetailDataSourceTests: ModelTestCase {
     func testRowInfo() {
         let container = makeTestContainer()
         let context = container.managedObjectContext
-        let source = DetailDataSource()
+        let source = BookDetailProvider()
         let book = Book(context: context)
         book.isbn = "12343"
         let person = Person(context: context)
@@ -137,7 +137,7 @@ class DetailDataSourceTests: ModelTestCase {
     func testCommonPerson() {
         let container = makeTestContainer()
         let context = container.managedObjectContext
-        let source = DetailDataSource()
+        let source = BookDetailProvider()
         let book1 = Book(context: context)
         let book2 = Book(context: context)
         let person = Person(context: context)
@@ -157,7 +157,7 @@ class DetailDataSourceTests: ModelTestCase {
     func testPersonSorting() {
         let container = makeTestContainer()
         let context = container.managedObjectContext
-        let source = DetailDataSource()
+        let source = BookDetailProvider()
         let book = Book(context: context)
         let person1 = Person(context: context)
         person1.name = "Z"
@@ -181,7 +181,7 @@ class DetailDataSourceTests: ModelTestCase {
     func testSamePublishers() {
         let container = makeTestContainer()
         let context = container.managedObjectContext
-        let source = DetailDataSource()
+        let source = BookDetailProvider()
         let book1 = Book(context: context)
         let book2 = Book(context: context)
         let publisher1 = Publisher(context: context)
@@ -193,14 +193,14 @@ class DetailDataSourceTests: ModelTestCase {
         let row = source.info(for: 0)
         XCTAssertEqual(source.publisher(for: row), publisher1)
 
-        let heading = DetailDataSource.publisherHeading.lowercased()
+        let heading = BookDetailProvider.publisherHeading.lowercased()
         XCTAssertEqual(source.heading(for: row), heading)
     }
   
     func testDifferentPublishers() {
         let container = makeTestContainer()
         let context = container.managedObjectContext
-        let source = DetailDataSource()
+        let source = BookDetailProvider()
         let book1 = Book(context: context)
         let book2 = Book(context: context)
         let publisher1 = Publisher(context: context)
@@ -218,7 +218,7 @@ class DetailDataSourceTests: ModelTestCase {
     func testSeriesAccess() {
         let container = makeTestContainer()
         let context = container.managedObjectContext
-        let source = DetailDataSource()
+        let source = BookDetailProvider()
         let book = Book(context: context)
         let series = Series(context: context)
         let entry = SeriesEntry(context: context)
@@ -229,13 +229,13 @@ class DetailDataSourceTests: ModelTestCase {
         let row = source.info(for: 0)
         XCTAssertEqual(source.series(for: row), series)
 
-        XCTAssertEqual(source.heading(for: row), DetailDataSource.seriesHeading.lowercased())
+        XCTAssertEqual(source.heading(for: row), BookDetailProvider.seriesHeading.lowercased())
     }
     
     func testDetailAccess() {
         let container = makeTestContainer()
         let context = container.managedObjectContext
-        let source = DetailDataSource()
+        let source = BookDetailProvider()
         let book = Book(context: context)
         book.asin = "blah"
         
@@ -249,7 +249,7 @@ class DetailDataSourceTests: ModelTestCase {
     func testDetailAccessEditing() {
         let container = makeTestContainer()
         let context = container.managedObjectContext
-        let source = DetailDataSource()
+        let source = BookDetailProvider()
         let book = Book(context: context)
         
         source.filter(for: [book], editing: true)
@@ -263,7 +263,7 @@ class DetailDataSourceTests: ModelTestCase {
     {
         let container = makeTestContainer()
         let context = container.managedObjectContext
-        let source = DetailDataSource()
+        let source = BookDetailProvider()
         let book = Book(context: context)
         source.filter(for: [book], editing: false)
         let relationship = Relationship(context: context)
@@ -276,7 +276,7 @@ class DetailDataSourceTests: ModelTestCase {
     {
         let container = makeTestContainer()
         let context = container.managedObjectContext
-        let source = DetailDataSource()
+        let source = BookDetailProvider()
         let book = Book(context: context)
         source.filter(for: [book], editing: false)
         let publisher = Publisher(context: context)
@@ -289,7 +289,7 @@ class DetailDataSourceTests: ModelTestCase {
     {
         let container = makeTestContainer()
         let context = container.managedObjectContext
-        let source = DetailDataSource()
+        let source = BookDetailProvider()
         let book = Book(context: context)
         source.filter(for: [book], editing: false)
         let series = Series(context: context)
