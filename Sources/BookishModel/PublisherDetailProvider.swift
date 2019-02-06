@@ -11,7 +11,7 @@ extension Publisher: DetailOwner {
     }
 }
 
-class PublisherDetailProvider: DetailProvider {
+class PublisherDetailProvider: BasicDetailProvider, DetailProvider {
     var sortedBooks = [Book]()
     
     var titleProperty: String? {
@@ -36,7 +36,7 @@ class PublisherDetailProvider: DetailProvider {
     
     func info(section: Int, row: Int) -> DetailItem {
         let book = sortedBooks[row]
-        let info = PersonBookDetailItem(book: book, absolute: row, index: row, source: nil)
+        let info = PersonBookDetailItem(book: book, absolute: row, index: row, source: self)
         return info
     }
     

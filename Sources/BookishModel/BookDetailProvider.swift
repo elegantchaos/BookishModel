@@ -11,76 +11,13 @@ extension Book: DetailOwner {
     }
 }
 
-public class PublisherDetailItem: DetailItem {
-    public let publisher: Publisher?
-    
-    public init(publisher: Publisher? = nil, absolute: Int, index: Int, source: BookDetailProvider? = nil) {
-        self.publisher = publisher
-        super.init(kind: "publisher", absolute: absolute, index: index, placeholder: publisher == nil, source: source)
-    }
-    
-    public override var heading: String {
-        return "Publisher"
-    }
-}
-
-public class SeriesDetailItem: DetailItem {
-    public let series: Series?
-    
-    public init(series: Series? = nil, absolute: Int, index: Int, source: BookDetailProvider? = nil) {
-        self.series = series
-        super.init(kind: "series", absolute: absolute, index: index, placeholder: series == nil, source: source)
-    }
-
-    public override var heading: String {
-        return "Series"
-    }
-}
-
-public class PersonDetailItem: DetailItem {
-    public let relationship: Relationship?
-    
-    public init(relationship: Relationship? = nil, absolute: Int, index: Int, source: BookDetailProvider? = nil) {
-        self.relationship = relationship
-        super.init(kind: "person", absolute: absolute, index: index, placeholder: relationship == nil, source: source)
-    }
-
-    public override var heading: String {
-        return placeholder ? "Person" : relationship?.role?.name ?? super.heading
-    }
-    
-    override public func viewID(for column: String) -> String { // TODO: move out of model?
-        switch column {
-        case headingColumnID:
-            return roleColumnID
-            
-        default:
-            return super.viewID(for: column)
-        }
-    }
-
-}
-
-public class BookDetailProvider {
-    public private(set) var editing: Bool = false
+public class BookDetailProvider: BasicDetailProvider {
     private var details: [DetailSpec] = []
     private let template = DetailSpec.standardDetails
     private var relationships = [Relationship]()
     private var publishers = [Publisher]()
     private var series = [Series]()
     private var items = [DetailItem]()
-    
-    public init() {
-        
-    }
-    
-    public var rows: Int {
-        return items.count
-    }
-    
-    public func info(for row: Int) -> DetailItem {
-        return items[row]
-    }
     
     func buildItems() {
         var row = 0
@@ -92,7 +29,7 @@ public class BookDetailProvider {
             row += 1
         }
         
-        if editing {
+        if isEditing {
             let info = PersonDetailItem(absolute: row, index: peopleCount, source: self)
             items.append(info)
             row += 1
@@ -105,7 +42,7 @@ public class BookDetailProvider {
             row += 1
         }
         
-        if editing && publisherCount == 0 {
+        if isEditing && publisherCount == 0 {
             let info = PublisherDetailItem(absolute: row, index: 0, source: self)
             items.append(info)
             row += 1
@@ -118,7 +55,7 @@ public class BookDetailProvider {
             row += 1
         }
         
-        if editing {
+        if isEditing {
             let info = SeriesDetailItem(absolute: row, index: seriesCount, source: self)
             items.append(info)
             row += 1
@@ -127,88 +64,12 @@ public class BookDetailProvider {
         let detailCount = details.count
         for index in 0 ..< detailCount {
             let spec = details[index]
-            let info = SimpleDetailItem(kind: editing ? spec.editableKind : spec.kind, absolute: row, index: index, placeholder: false, source: self)
+            let info = SimpleDetailItem(spec: spec, absolute: row, index: index, source: self)
             items.append(info)
             row += 1
         }
         
         self.items = items
-    }
-    
-    public func filter(for selection: [Book], editing: Bool) {
-        self.editing = editing
-        
-        var filteredDetails = [DetailSpec]()
-        for detail in template {
-            var includeDetail = false
-            let kind = editing ? detail.editableKind : detail.kind
-            if kind != DetailSpec.hiddenKind {
-                if editing {
-                    includeDetail = true
-                } else {
-                    for item in selection {
-                        if let value = item.value(forKey: detail.binding) as? String {
-                            includeDetail = !value.isEmpty
-                            break
-                        }
-                    }
-                }
-            }
-            
-            if includeDetail {
-                filteredDetails.append(detail)
-            }
-        }
-        
-        let collectedRelationships = MultipleValues.extract(from: selection) { book -> Set<Relationship>? in
-            return book.relationships as? Set<Relationship>
-        }
-        
-        let collectedPublishers = MultipleValues.extract(from: selection) { book -> Set<Publisher>? in
-            return book.publisher == nil ? nil : Set<Publisher>([book.publisher!])
-        }
-        
-        let collectedSeries = MultipleValues.extract(from: selection) { book -> Set<Series>? in
-            if let entries = book.entries as? Set<SeriesEntry> {
-                let series = entries.map { $0.series } as! [Series]
-                return Set<Series>(series)
-            }
-            
-            return nil
-        }
-        
-        relationships = collectedRelationships.common.sorted(by: { ($0.person?.name ?? "") < ($1.person?.name ?? "") })
-        publishers = collectedPublishers.common.sorted(by: { ($0.name ?? "") < ($1.name ?? "") })
-        series = collectedSeries.common.sorted(by: {($0.name ?? "") < ($1.name ?? "")})
-        details = filteredDetails
-        
-        buildItems()
-    }
-    
-    
-//    public func heading(for row: DetailItem) -> String {
-//        let heading: String
-//        switch row.category {
-//        case .detail:
-//            heading = details(for: row).label
-//        case .person:
-//            heading = row.placeholder ? BookDetailProvider.personHeading : relationship(for: row).role?.name ?? "<unknown role>"
-//        case .publisher:
-//            heading =
-//        case .series:
-//            heading = BookDetailProvider.seriesHeading
-//        }
-//
-//        return heading.lowercased()
-//    }
-    
-//    public func relationship(for row: DetailItem) -> Relationship {
-//        assert(row is PersonDetailItem)
-//        return relationships[row.index]
-//    }
-    
-    public func details(for row: DetailItem) -> DetailSpec {
-        return details[row.index]
     }
     
     public func insert(relationship: Relationship) -> Int {
@@ -255,3 +116,83 @@ public class BookDetailProvider {
         return item.absolute
     }
 }
+
+
+extension BookDetailProvider: DetailProvider {
+    public func info(section: Int, row: Int) -> DetailItem {
+        return items[row]
+    }
+    
+    public func filter(for selection: [ModelObject], editing: Bool, context: DetailContext) {
+        if let books = selection as? [Book] {
+            self.isEditing = editing
+            
+            var filteredDetails = [DetailSpec]()
+            for detail in template {
+                var includeDetail = false
+                let kind = editing ? detail.editableKind : detail.kind
+                if kind != DetailSpec.hiddenKind {
+                    if editing {
+                        includeDetail = true
+                    } else {
+                        for item in books {
+                            if let value = item.value(forKey: detail.binding) as? String {
+                                includeDetail = !value.isEmpty
+                                break
+                            }
+                        }
+                    }
+                }
+                
+                if includeDetail {
+                    filteredDetails.append(detail)
+                }
+            }
+            
+            let collectedRelationships = MultipleValues.extract(from: books) { book -> Set<Relationship>? in
+                return book.relationships as? Set<Relationship>
+            }
+            
+            let collectedPublishers = MultipleValues.extract(from: books) { book -> Set<Publisher>? in
+                return book.publisher == nil ? nil : Set<Publisher>([book.publisher!])
+            }
+            
+            let collectedSeries = MultipleValues.extract(from: books) { book -> Set<Series>? in
+                if let entries = book.entries as? Set<SeriesEntry> {
+                    let series = entries.map { $0.series } as! [Series]
+                    return Set<Series>(series)
+                }
+                
+                return nil
+            }
+            
+            relationships = collectedRelationships.common.sorted(by: { ($0.person?.name ?? "") < ($1.person?.name ?? "") })
+            publishers = collectedPublishers.common.sorted(by: { ($0.name ?? "") < ($1.name ?? "") })
+            series = collectedSeries.common.sorted(by: {($0.name ?? "") < ($1.name ?? "")})
+            details = filteredDetails
+            
+            buildItems()
+        }
+    }
+    
+    public var sectionCount: Int {
+        return 1
+    }
+    
+    public func sectionTitle(for section: Int) -> String {
+        return ""
+    }
+    
+    public func itemCount(for section: Int) -> Int {
+        return items.count
+    }
+    
+    public var titleProperty: String? {
+        return "name"
+    }
+    
+    public var subtitleProperty: String? {
+        return "subtitle"
+    }
+}
+

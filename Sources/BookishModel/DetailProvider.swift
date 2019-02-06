@@ -16,6 +16,7 @@ public protocol DetailOwner {
 }
 
 public protocol DetailProvider {
+    var isEditing: Bool { get }
     var titleProperty: String? { get }
     var subtitleProperty: String? { get }
     var sectionCount: Int { get }
@@ -25,35 +26,9 @@ public protocol DetailProvider {
     func filter(for selection: [ModelObject], editing: Bool, context: DetailContext)
 }
 
-extension BookDetailProvider: DetailProvider {
-    public func info(section: Int, row: Int) -> DetailItem {
-        return info(for: row)
-    }
+public class BasicDetailProvider {
+    public internal(set) var isEditing: Bool = false
     
-    public func filter(for selection: [ModelObject], editing: Bool, context: DetailContext) {
-        if let books = selection as? [Book] {
-            filter(for: books, editing: editing)
-        }
-    }
-    
-    public var sectionCount: Int {
-        return 1
-    }
-    
-    public func sectionTitle(for section: Int) -> String {
-        return ""
-    }
-    
-    public func itemCount(for section: Int) -> Int {
-        return rows
-    }
-    
-    public var titleProperty: String? {
-        return "name"
-    }
-    
-    public var subtitleProperty: String? {
-        return "subtitle"
+    public init() {
     }
 }
-

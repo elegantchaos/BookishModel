@@ -14,13 +14,14 @@ extension Person: DetailOwner {
 public class PersonBookDetailItem: DetailItem {
     public let book: Book?
     
-    public init(book: Book?, absolute: Int, index: Int, source: BookDetailProvider? = nil) {
+    public init(book: Book?, absolute: Int, index: Int, source: DetailProvider) {
         self.book = book
         super.init(kind: "book", absolute: absolute, index: index, placeholder: book == nil, source: source)
     }
 }
 
-class PersonDetailProvider: DetailProvider {
+class PersonDetailProvider: BasicDetailProvider, DetailProvider {
+    
     struct SortedRole {
         let role: Role
         let books: [Book]
@@ -50,7 +51,7 @@ class PersonDetailProvider: DetailProvider {
     
     func info(section: Int, row: Int) -> DetailItem {
         let books = sortedRoles[section].books
-        let info = PersonBookDetailItem(book: books[row], absolute: row, index: row, source: nil)
+        let info = PersonBookDetailItem(book: books[row], absolute: row, index: row, source: self)
         return info
     }
     

@@ -14,13 +14,13 @@ public class DetailItem {
     public let absolute: Int
     public let index: Int
     public let placeholder: Bool
-    public weak var source: BookDetailProvider?
+    public let source: DetailProvider
     
     public var heading: String {
         return "<unknown>"
     }
     
-    public init(kind: String, absolute: Int, index: Int, placeholder: Bool, source: BookDetailProvider? = nil) {
+    public init(kind: String, absolute: Int, index: Int, placeholder: Bool, source: DetailProvider) {
         self.kind = kind
         self.absolute = absolute
         self.index = index
@@ -39,11 +39,5 @@ public class DetailItem {
         default:
             return kind
         }
-    }
-}
-
-public class SimpleDetailItem: DetailItem {
-    override public var heading: String {
-        return source?.details(for: self).label ?? super.heading
     }
 }
