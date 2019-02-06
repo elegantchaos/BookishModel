@@ -27,8 +27,18 @@ public class DetailDataSource {
         public let absolute: Int
         public let index: Int
         public let placeholder: Bool
-        public let source: DetailDataSource // TODO: should be weak?
+        public weak var source: DetailDataSource?
+
+        public init(kind: DetailSpec.Kind, category: Category, absolute: Int, index: Int, placeholder: Bool, source: DetailDataSource? = nil) {
+            self.kind = kind
+            self.category = category
+            self.absolute = absolute
+            self.index = index
+            self.placeholder = placeholder
+            self.source = source
+        }
         
+
         public func viewID(for column: String) -> String {
             switch column {
                 case headingColumnID:
