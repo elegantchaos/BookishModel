@@ -3,6 +3,13 @@
 //  All code (c) 2019 - present day, Elegant Chaos Limited.
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
+import CoreData
+
+public protocol DetailContext {
+    var relationshipSorting: [NSSortDescriptor] { get }
+    var bookIndexSorting: [NSSortDescriptor] { get }
+}
+
 public protocol DetailOwner {
     func getProvider() -> DetailProvider
 }
@@ -14,7 +21,7 @@ public protocol DetailProvider {
     func sectionTitle(for section: Int) -> String
     func itemCount(for section: Int) -> Int
     func info(section: Int, row: Int) -> DetailItem // TODO: just take IndexPath?
-    func filter(for selection: [ModelObject], editing: Bool)
+    func filter(for selection: [ModelObject], editing: Bool, context: DetailContext)
 }
 
 extension BookDetailProvider: DetailProvider {
@@ -22,7 +29,7 @@ extension BookDetailProvider: DetailProvider {
         return info(for: row)
     }
     
-    public func filter(for selection: [ModelObject], editing: Bool) {
+    public func filter(for selection: [ModelObject], editing: Bool, context: DetailContext) {
         if let books = selection as? [Book] {
             filter(for: books, editing: editing)
         }
