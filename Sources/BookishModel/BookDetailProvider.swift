@@ -12,8 +12,11 @@ extension Book: DetailOwner {
 }
 
 public class PublisherDetailItem: DetailItem {
-    public init(absolute: Int, index: Int, placeholder: Bool, source: BookDetailProvider? = nil) {
-        super.init(kind: "publisher", absolute: absolute, index: index, placeholder: placeholder, source: source)
+    public let publisher: Publisher?
+    
+    public init(publisher: Publisher? = nil, absolute: Int, index: Int, source: BookDetailProvider? = nil) {
+        self.publisher = publisher
+        super.init(kind: "publisher", absolute: absolute, index: index, placeholder: publisher == nil, source: source)
     }
     
     public override var heading: String {
@@ -22,8 +25,11 @@ public class PublisherDetailItem: DetailItem {
 }
 
 public class SeriesDetailItem: DetailItem {
-    public init(absolute: Int, index: Int, placeholder: Bool, source: BookDetailProvider? = nil) {
-        super.init(kind: "series", absolute: absolute, index: index, placeholder: placeholder, source: source)
+    public let series: Series?
+    
+    public init(series: Series? = nil, absolute: Int, index: Int, source: BookDetailProvider? = nil) {
+        self.series = series
+        super.init(kind: "series", absolute: absolute, index: index, placeholder: series == nil, source: source)
     }
 
     public override var heading: String {
@@ -32,12 +38,15 @@ public class SeriesDetailItem: DetailItem {
 }
 
 public class PersonDetailItem: DetailItem {
-    public init(absolute: Int, index: Int, placeholder: Bool, source: BookDetailProvider? = nil) {
-        super.init(kind: "person", absolute: absolute, index: index, placeholder: placeholder, source: source)
+    public let relationship: Relationship?
+    
+    public init(relationship: Relationship? = nil, absolute: Int, index: Int, source: BookDetailProvider? = nil) {
+        self.relationship = relationship
+        super.init(kind: "person", absolute: absolute, index: index, placeholder: relationship == nil, source: source)
     }
 
     public override var heading: String {
-        return placeholder ? "Person" : source?.relationship(for: self).role?.name ?? super.heading
+        return placeholder ? "Person" : relationship?.role?.name ?? super.heading
     }
     
     override public func viewID(for column: String) -> String { // TODO: move out of model?
@@ -78,39 +87,39 @@ public class BookDetailProvider {
         var items = [DetailItem]()
         let peopleCount = relationships.count
         for index in 0 ..< peopleCount {
-            let info = PersonDetailItem(absolute: row, index: index, placeholder: false, source: self)
+            let info = PersonDetailItem(relationship: relationships[index], absolute: row, index: index, source: self)
             items.append(info)
             row += 1
         }
         
         if editing {
-            let info = PersonDetailItem(absolute: row, index: peopleCount, placeholder: true, source: self)
+            let info = PersonDetailItem(absolute: row, index: peopleCount, source: self)
             items.append(info)
             row += 1
         }
         
         let publisherCount = publishers.count
         for index in 0 ..< publisherCount {
-            let info = PublisherDetailItem(absolute: row, index: index, placeholder: false, source: self)
+            let info = PublisherDetailItem(publisher: publishers[index], absolute: row, index: index, source: self)
             items.append(info)
             row += 1
         }
         
         if editing && publisherCount == 0 {
-            let info = PublisherDetailItem(absolute: row, index: 0, placeholder: true, source: self)
+            let info = PublisherDetailItem(absolute: row, index: 0, source: self)
             items.append(info)
             row += 1
         }
         
         let seriesCount = series.count
         for index in 0 ..< seriesCount {
-            let info = SeriesDetailItem(absolute: row, index: index, placeholder: false, source: self)
+            let info = SeriesDetailItem(series: series[index], absolute: row, index: index, source: self)
             items.append(info)
             row += 1
         }
         
         if editing {
-            let info = SeriesDetailItem(absolute: row, index: seriesCount, placeholder: true, source: self)
+            let info = SeriesDetailItem(absolute: row, index: seriesCount, source: self)
             items.append(info)
             row += 1
         }
@@ -193,20 +202,10 @@ public class BookDetailProvider {
 //        return heading.lowercased()
 //    }
     
-    public func relationship(for row: DetailItem) -> Relationship {
-        assert(row is PersonDetailItem)
-        return relationships[row.index]
-    }
-    
-    public func publisher(for row: DetailItem) -> Publisher {
-        assert(row is PublisherDetailItem)
-        return publishers[row.index]
-    }
-    
-    public func series(for row: DetailItem) -> Series {
-        assert(row is SeriesDetailItem)
-        return series[row.index]
-    }
+//    public func relationship(for row: DetailItem) -> Relationship {
+//        assert(row is PersonDetailItem)
+//        return relationships[row.index]
+//    }
     
     public func details(for row: DetailItem) -> DetailSpec {
         return details[row.index]
