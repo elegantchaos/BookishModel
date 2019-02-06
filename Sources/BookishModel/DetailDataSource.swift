@@ -27,6 +27,7 @@ public class DetailDataSource {
         public let absolute: Int
         public let index: Int
         public let placeholder: Bool
+        public let source: DetailDataSource // TODO: should be weak?
         
         public func viewID(for column: String) -> String {
             switch column {
@@ -67,39 +68,39 @@ public class DetailDataSource {
         var items = [RowInfo]()
         let peopleCount = relationships.count
         for index in 0 ..< peopleCount {
-            let info = RowInfo(kind: .person, category: .person, absolute: row, index: index, placeholder: false)
+            let info = RowInfo(kind: .person, category: .person, absolute: row, index: index, placeholder: false, source: self)
             items.append(info)
             row += 1
         }
         
         if editing {
-            let info = RowInfo(kind: .person, category: .person, absolute: row, index: peopleCount, placeholder: true)
+            let info = RowInfo(kind: .person, category: .person, absolute: row, index: peopleCount, placeholder: true, source: self)
             items.append(info)
             row += 1
         }
         
         let publisherCount = publishers.count
         for index in 0 ..< publisherCount {
-            let info = RowInfo(kind: .publisher, category: .publisher, absolute: row, index: index, placeholder: false)
+            let info = RowInfo(kind: .publisher, category: .publisher, absolute: row, index: index, placeholder: false, source: self)
             items.append(info)
             row += 1
         }
         
         if editing && publisherCount == 0 {
-            let info = RowInfo(kind: .publisher, category: .publisher, absolute: row, index: 0, placeholder: true)
+            let info = RowInfo(kind: .publisher, category: .publisher, absolute: row, index: 0, placeholder: true, source: self)
             items.append(info)
             row += 1
         }
         
         let seriesCount = series.count
         for index in 0 ..< seriesCount {
-            let info = RowInfo(kind: .series, category: .series, absolute: row, index: index, placeholder: false)
+            let info = RowInfo(kind: .series, category: .series, absolute: row, index: index, placeholder: false, source: self)
             items.append(info)
             row += 1
         }
         
         if editing {
-            let info = RowInfo(kind: .series, category: .series, absolute: row, index: seriesCount, placeholder: true)
+            let info = RowInfo(kind: .series, category: .series, absolute: row, index: seriesCount, placeholder: true, source: self)
             items.append(info)
             row += 1
         }
@@ -107,7 +108,7 @@ public class DetailDataSource {
         let detailCount = details.count
         for index in 0 ..< detailCount {
             let spec = details[index]
-            let info = RowInfo(kind: editing ? spec.editableKind : spec.kind, category: .detail, absolute: row, index: index, placeholder: false)
+            let info = RowInfo(kind: editing ? spec.editableKind : spec.kind, category: .detail, absolute: row, index: index, placeholder: false, source: self)
             items.append(info)
             row += 1
         }
