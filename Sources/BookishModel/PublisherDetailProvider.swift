@@ -11,40 +11,26 @@ extension Publisher: DetailOwner {
     }
 }
 
-class PublisherDetailProvider: BasicDetailProvider, DetailProvider {
+class PublisherDetailProvider: DetailProvider {
     var sortedBooks = [Book]()
-    
-    var titleProperty: String? {
-        return "name"
+
+    override func buildItems() {
+        var row = items.count
+        for index in 0 ..< sortedBooks.count {
+            let book = sortedBooks[index]
+            let info = PersonBookDetailItem(book: book, absolute: row, index: index, source: self)
+            items.append(info)
+            row += 1
+        }
     }
     
-    var subtitleProperty: String? {
-        return nil
-    }
-    
-    var sectionCount: Int {
-        return 1
-    }
-    
-    func sectionTitle(for section: Int) -> String {
-        return ""
-    }
-    
-    func itemCount(for section: Int) -> Int {
-        return sortedBooks.count
-    }
-    
-    func info(section: Int, row: Int) -> DetailItem {
-        let book = sortedBooks[row]
-        let info = PersonBookDetailItem(book: book, absolute: row, index: row, source: self)
-        return info
-    }
-    
-    func filter(for selection: [ModelObject], editing: Bool, context: DetailContext) {
+    override func filter(for selection: [ModelObject], editing: Bool, context: DetailContext) {
         if let series = selection.first as? Publisher, let books = series.books?.sortedArray(using: context.bookIndexSorting) as? [Book] {
             sortedBooks.removeAll()
             sortedBooks.append(contentsOf: books)
         }
+
+        super.filter(for: selection, editing: editing, context: context)
     }
 }
 

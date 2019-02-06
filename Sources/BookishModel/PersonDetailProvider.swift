@@ -20,7 +20,7 @@ public class PersonBookDetailItem: DetailItem {
     }
 }
 
-class PersonDetailProvider: BasicDetailProvider, DetailProvider {
+class PersonDetailProvider: DetailProvider {
     
     struct SortedRole {
         let role: Role
@@ -29,33 +29,38 @@ class PersonDetailProvider: BasicDetailProvider, DetailProvider {
     
     var sortedRoles = [SortedRole]()
     
-    var titleProperty: String? {
-        return "name"
+    override var sectionCount: Int {
+        return sortedRoles.count + super.sectionCount
     }
     
-    var subtitleProperty: String? {
-        return nil
+    override func sectionTitle(for section: Int) -> String {
+        if section == 0 {
+            return super.sectionTitle(for: section)
+        } else {
+            return sortedRoles[section - 1].role.name ?? ""
+        }
     }
     
-    var sectionCount: Int {
-        return sortedRoles.count
+    override func itemCount(for section: Int) -> Int {
+        if section == 0 {
+            return super.itemCount(for: section)
+        } else {
+            return sortedRoles[section - 1].books.count
+        }
     }
     
-    func sectionTitle(for section: Int) -> String {
-        return sortedRoles[section].role.name ?? ""
+    override func info(section: Int, row: Int) -> DetailItem {
+        if section == 0 {
+            return super.info(section: section, row: row)
+        } else {
+            let books = sortedRoles[section - 1].books
+            let info = PersonBookDetailItem(book: books[row], absolute: row, index: row, source: self)
+            return info
+        }
     }
     
-    func itemCount(for section: Int) -> Int {
-        return sortedRoles[section].books.count
-    }
-    
-    func info(section: Int, row: Int) -> DetailItem {
-        let books = sortedRoles[section].books
-        let info = PersonBookDetailItem(book: books[row], absolute: row, index: row, source: self)
-        return info
-    }
-    
-    func filter(for selection: [ModelObject], editing: Bool, context: DetailContext) {
+    override func filter(for selection: [ModelObject], editing: Bool, context: DetailContext) {
+        super.filter(for: selection, editing: editing, context: context)
         if let person = selection.first as? Person, let relationships = person.relationships?.sortedArray(using: context.relationshipSorting) as? [Relationship] {
             sortedRoles.removeAll()
             for relationship in relationships {
@@ -66,16 +71,4 @@ class PersonDetailProvider: BasicDetailProvider, DetailProvider {
             }
         }
     }
-    
-    
 }
-
-//
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let role = sortedRoles[indexPath.section]
-//        let book = role.books[indexPath.row]
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "book") as! PersonBookRow // if we fail here, it's a coding error as all possible view types should have been registered
-//        cell.setup(row: indexPath.row, book: book, role:role.role)
-//        return cell
-//    }
-//

@@ -11,17 +11,48 @@ extension Book: DetailOwner {
     }
 }
 
-public class BookDetailProvider: BasicDetailProvider {
-    private var details: [DetailSpec] = []
-    private let template = DetailSpec.standardDetails
+public class BookDetailProvider: DetailProvider {
     private var relationships = [Relationship]()
     private var publishers = [Publisher]()
     private var series = [Series]()
-    private var items = [DetailItem]()
     
-    func buildItems() {
-        var row = 0
-        var items = [DetailItem]()
+    init() {
+        super.init(template: DetailSpec.standardDetails)
+    }
+    
+    override public func filter(for selection: [ModelObject], editing: Bool, context: DetailContext) {
+        if let books = selection as? [Book] {
+            let collectedRelationships = MultipleValues.extract(from: books) { book -> Set<Relationship>? in
+                return book.relationships as? Set<Relationship>
+            }
+            
+            let collectedPublishers = MultipleValues.extract(from: books) { book -> Set<Publisher>? in
+                return book.publisher == nil ? nil : Set<Publisher>([book.publisher!])
+            }
+            
+            let collectedSeries = MultipleValues.extract(from: books) { book -> Set<Series>? in
+                if let entries = book.entries as? Set<SeriesEntry> {
+                    let series = entries.map { $0.series } as! [Series]
+                    return Set<Series>(series)
+                }
+                
+                return nil
+            }
+            
+            relationships = collectedRelationships.common.sorted(by: { ($0.person?.name ?? "") < ($1.person?.name ?? "") })
+            publishers = collectedPublishers.common.sorted(by: { ($0.name ?? "") < ($1.name ?? "") })
+            series = collectedSeries.common.sorted(by: {($0.name ?? "") < ($1.name ?? "")})
+        }
+
+        super.filter(for: selection, editing: editing, context: context)
+    }
+    
+    override public var subtitleProperty: String? {
+        return "subtitle"
+    }
+
+    override func buildItems() {
+        var row = items.count
         let peopleCount = relationships.count
         for index in 0 ..< peopleCount {
             let info = PersonDetailItem(relationship: relationships[index], absolute: row, index: index, source: self)
@@ -61,15 +92,7 @@ public class BookDetailProvider: BasicDetailProvider {
             row += 1
         }
         
-        let detailCount = details.count
-        for index in 0 ..< detailCount {
-            let spec = details[index]
-            let info = SimpleDetailItem(spec: spec, absolute: row, index: index, source: self)
-            items.append(info)
-            row += 1
-        }
-        
-        self.items = items
+        super.buildItems()
     }
     
     public func insert(relationship: Relationship) -> Int {
@@ -117,82 +140,4 @@ public class BookDetailProvider: BasicDetailProvider {
     }
 }
 
-
-extension BookDetailProvider: DetailProvider {
-    public func info(section: Int, row: Int) -> DetailItem {
-        return items[row]
-    }
-    
-    public func filter(for selection: [ModelObject], editing: Bool, context: DetailContext) {
-        if let books = selection as? [Book] {
-            self.isEditing = editing
-            
-            var filteredDetails = [DetailSpec]()
-            for detail in template {
-                var includeDetail = false
-                let kind = editing ? detail.editableKind : detail.kind
-                if kind != DetailSpec.hiddenKind {
-                    if editing {
-                        includeDetail = true
-                    } else {
-                        for item in books {
-                            if let value = item.value(forKey: detail.binding) as? String {
-                                includeDetail = !value.isEmpty
-                                break
-                            }
-                        }
-                    }
-                }
-                
-                if includeDetail {
-                    filteredDetails.append(detail)
-                }
-            }
-            
-            let collectedRelationships = MultipleValues.extract(from: books) { book -> Set<Relationship>? in
-                return book.relationships as? Set<Relationship>
-            }
-            
-            let collectedPublishers = MultipleValues.extract(from: books) { book -> Set<Publisher>? in
-                return book.publisher == nil ? nil : Set<Publisher>([book.publisher!])
-            }
-            
-            let collectedSeries = MultipleValues.extract(from: books) { book -> Set<Series>? in
-                if let entries = book.entries as? Set<SeriesEntry> {
-                    let series = entries.map { $0.series } as! [Series]
-                    return Set<Series>(series)
-                }
-                
-                return nil
-            }
-            
-            relationships = collectedRelationships.common.sorted(by: { ($0.person?.name ?? "") < ($1.person?.name ?? "") })
-            publishers = collectedPublishers.common.sorted(by: { ($0.name ?? "") < ($1.name ?? "") })
-            series = collectedSeries.common.sorted(by: {($0.name ?? "") < ($1.name ?? "")})
-            details = filteredDetails
-            
-            buildItems()
-        }
-    }
-    
-    public var sectionCount: Int {
-        return 1
-    }
-    
-    public func sectionTitle(for section: Int) -> String {
-        return ""
-    }
-    
-    public func itemCount(for section: Int) -> Int {
-        return items.count
-    }
-    
-    public var titleProperty: String? {
-        return "name"
-    }
-    
-    public var subtitleProperty: String? {
-        return "subtitle"
-    }
-}
 

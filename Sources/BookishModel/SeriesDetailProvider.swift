@@ -11,40 +11,28 @@ extension Series: DetailOwner {
     }
 }
 
-class SeriesDetailProvider: BasicDetailProvider, DetailProvider {
+class SeriesDetailProvider: DetailProvider {
     var sortedEntries = [SeriesEntry]()
     
-    var titleProperty: String? {
-        return "name"
+    override func buildItems() {
+        super.buildItems()
+
+        var row = items.count
+        for index in 0 ..< sortedEntries.count {
+            let book = sortedEntries[index].book
+            let info = PersonBookDetailItem(book: book, absolute: row, index: index, source: self)
+            items.append(info)
+            row += 1
+        }
     }
     
-    var subtitleProperty: String? {
-        return nil
-    }
-    
-    var sectionCount: Int {
-        return 1
-    }
-    
-    func sectionTitle(for section: Int) -> String {
-        return ""
-    }
-    
-    func itemCount(for section: Int) -> Int {
-        return sortedEntries.count
-    }
-    
-    func info(section: Int, row: Int) -> DetailItem {
-        let book = sortedEntries[row].book
-        let info = PersonBookDetailItem(book: book, absolute: row, index: row, source: self)
-        return info
-    }
-    
-    func filter(for selection: [ModelObject], editing: Bool, context: DetailContext) {
+    override func filter(for selection: [ModelObject], editing: Bool, context: DetailContext) {
         if let series = selection.first as? Series, let entries = series.entries?.sortedArray(using: context.entrySorting) as? [SeriesEntry] {
             sortedEntries.removeAll()
             sortedEntries.append(contentsOf: entries)
         }
+
+        super.filter(for: selection, editing: editing, context: context)
     }
 }
 
