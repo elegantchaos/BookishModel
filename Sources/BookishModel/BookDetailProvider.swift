@@ -11,13 +11,37 @@ extension Book: DetailOwner {
     }
 }
 
+public class PublisherDetailItem: DetailItem {
+    public init(absolute: Int, index: Int, placeholder: Bool, source: BookDetailProvider? = nil) {
+        super.init(kind: .publisher, absolute: absolute, index: index, placeholder: placeholder, source: source)
+    }
+    
+    public override var heading: String {
+        return "Publisher"
+    }
+}
+
+public class SeriesDetailItem: DetailItem {
+    public init(absolute: Int, index: Int, placeholder: Bool, source: BookDetailProvider? = nil) {
+        super.init(kind: .series, absolute: absolute, index: index, placeholder: placeholder, source: source)
+    }
+
+    public override var heading: String {
+        return "Series"
+    }
+}
+
+public class PersonDetailItem: DetailItem {
+    public init(absolute: Int, index: Int, placeholder: Bool, source: BookDetailProvider? = nil) {
+        super.init(kind: .person, absolute: absolute, index: index, placeholder: placeholder, source: source)
+    }
+
+    public override var heading: String {
+        return placeholder ? "Person" : source?.relationship(for: self).role?.name ?? super.heading
+    }
+}
 
 public class BookDetailProvider {
-    static let seriesHeading = "Series"
-    static let publisherHeading = "Publisher"
-    static let personHeading = "Person"
-
-    
     public private(set) var editing: Bool = false
     private var details: [DetailSpec] = []
     private let template = DetailSpec.standardDetails
@@ -43,39 +67,39 @@ public class BookDetailProvider {
         var items = [DetailItem]()
         let peopleCount = relationships.count
         for index in 0 ..< peopleCount {
-            let info = DetailItem(kind: .person, category: .person, absolute: row, index: index, placeholder: false, source: self)
+            let info = PersonDetailItem(absolute: row, index: index, placeholder: false, source: self)
             items.append(info)
             row += 1
         }
         
         if editing {
-            let info = DetailItem(kind: .person, category: .person, absolute: row, index: peopleCount, placeholder: true, source: self)
+            let info = PersonDetailItem(absolute: row, index: peopleCount, placeholder: true, source: self)
             items.append(info)
             row += 1
         }
         
         let publisherCount = publishers.count
         for index in 0 ..< publisherCount {
-            let info = DetailItem(kind: .publisher, category: .publisher, absolute: row, index: index, placeholder: false, source: self)
+            let info = PublisherDetailItem(absolute: row, index: index, placeholder: false, source: self)
             items.append(info)
             row += 1
         }
         
         if editing && publisherCount == 0 {
-            let info = DetailItem(kind: .publisher, category: .publisher, absolute: row, index: 0, placeholder: true, source: self)
+            let info = PublisherDetailItem(absolute: row, index: 0, placeholder: true, source: self)
             items.append(info)
             row += 1
         }
         
         let seriesCount = series.count
         for index in 0 ..< seriesCount {
-            let info = DetailItem(kind: .series, category: .series, absolute: row, index: index, placeholder: false, source: self)
+            let info = SeriesDetailItem(absolute: row, index: index, placeholder: false, source: self)
             items.append(info)
             row += 1
         }
         
         if editing {
-            let info = DetailItem(kind: .series, category: .series, absolute: row, index: seriesCount, placeholder: true, source: self)
+            let info = SeriesDetailItem(absolute: row, index: seriesCount, placeholder: true, source: self)
             items.append(info)
             row += 1
         }
@@ -83,7 +107,7 @@ public class BookDetailProvider {
         let detailCount = details.count
         for index in 0 ..< detailCount {
             let spec = details[index]
-            let info = DetailItem(kind: editing ? spec.editableKind : spec.kind, category: .detail, absolute: row, index: index, placeholder: false, source: self)
+            let info = SimpleDetailItem(kind: editing ? spec.editableKind : spec.kind, absolute: row, index: index, placeholder: false, source: self)
             items.append(info)
             row += 1
         }
@@ -142,39 +166,38 @@ public class BookDetailProvider {
     }
     
     
-    public func heading(for row: DetailItem) -> String {
-        let heading: String
-        switch row.category {
-        case .detail:
-            heading = details(for: row).label
-        case .person:
-            heading = row.placeholder ? BookDetailProvider.personHeading : relationship(for: row).role?.name ?? "<unknown role>"
-        case .publisher:
-            heading = BookDetailProvider.publisherHeading
-        case .series:
-            heading = BookDetailProvider.seriesHeading
-        }
-        
-        return heading.lowercased()
-    }
+//    public func heading(for row: DetailItem) -> String {
+//        let heading: String
+//        switch row.category {
+//        case .detail:
+//            heading = details(for: row).label
+//        case .person:
+//            heading = row.placeholder ? BookDetailProvider.personHeading : relationship(for: row).role?.name ?? "<unknown role>"
+//        case .publisher:
+//            heading =
+//        case .series:
+//            heading = BookDetailProvider.seriesHeading
+//        }
+//
+//        return heading.lowercased()
+//    }
     
     public func relationship(for row: DetailItem) -> Relationship {
-        assert(row.category == .person)
+        assert(row is PersonDetailItem)
         return relationships[row.index]
     }
     
     public func publisher(for row: DetailItem) -> Publisher {
-        assert(row.category == .publisher)
+        assert(row is PublisherDetailItem)
         return publishers[row.index]
     }
     
     public func series(for row: DetailItem) -> Series {
-        assert(row.category == .series)
+        assert(row is SeriesDetailItem)
         return series[row.index]
     }
     
     public func details(for row: DetailItem) -> DetailSpec {
-        assert(row.category == .detail)
         return details[row.index]
     }
     

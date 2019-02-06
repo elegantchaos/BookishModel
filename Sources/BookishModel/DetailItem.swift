@@ -9,30 +9,24 @@ let headingColumnID = "heading"
 let controlColumnID = "control"
 let roleColumnID = "role"
 
-public struct DetailItem {
+public class DetailItem {
     public let kind: DetailSpec.Kind
-    public let category: Category
     public let absolute: Int
     public let index: Int
     public let placeholder: Bool
     public weak var source: BookDetailProvider?
     
-        public enum Category {
-            case detail
-            case person
-            case publisher
-            case series
-        }
+    public var heading: String {
+        return "<unknown>"
+    }
     
-    public init(kind: DetailSpec.Kind, category: Category, absolute: Int, index: Int, placeholder: Bool, source: BookDetailProvider? = nil) {
+    public init(kind: DetailSpec.Kind, absolute: Int, index: Int, placeholder: Bool, source: BookDetailProvider? = nil) {
         self.kind = kind
-        self.category = category
         self.absolute = absolute
         self.index = index
         self.placeholder = placeholder
         self.source = source
     }
-    
     
     public func viewID(for column: String) -> String { // TODO: move out of model?
         switch column {
@@ -45,5 +39,11 @@ public struct DetailItem {
         default:
             return kind.rawValue
         }
+    }
+}
+
+public class SimpleDetailItem: DetailItem {
+    override public var heading: String {
+        return source?.details(for: self).label ?? super.heading
     }
 }
