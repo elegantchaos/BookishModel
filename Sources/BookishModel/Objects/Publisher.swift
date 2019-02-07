@@ -7,6 +7,8 @@ import CoreData
 
 public class Publisher: ModelObject {
     
+    public override class var categoryLabel: String { return "Publishers" }
+
     public class func named(_ named: String, in context: NSManagedObjectContext, creating: Bool = false) -> Publisher? {
         let request: NSFetchRequest<Publisher> = Publisher.fetcher(in: context)
         request.predicate = NSPredicate(format: "name = \"\(named)\"")

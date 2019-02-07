@@ -19,6 +19,8 @@ public class Book: ModelObject {
         modified = Date()
     }
 
+    public override class var categoryLabel: String { return "Books" }
+
     public var roles: Set<Role> {
         var result = Set<Role>()
         if let people = self.relationships as? Set<Relationship> {
@@ -186,4 +188,5 @@ public class Book: ModelObject {
         return Indexing.sectionName(for: sortName)
     }
 
+    
 }

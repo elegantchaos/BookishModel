@@ -7,6 +7,8 @@ import CoreData
 
 public class Series: ModelObject {
     
+    public override class var categoryLabel: String { return "Series" }
+
     public class func named(_ named: String, in context: NSManagedObjectContext) -> Series? {
         let request: NSFetchRequest<Series> = Series.fetcher(in: context)
         request.predicate = NSPredicate(format: "name = \"\(named)\"")

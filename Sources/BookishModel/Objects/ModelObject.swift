@@ -84,4 +84,17 @@ public class ModelObject: NSManagedObject {
         
         return ModelObject.entityDescription(for: type(of: self), in: context)
     }
+    
+    /**
+     Label describing the category for the entity.
+     */
+    
+    public class var categoryLabel: String { return "unknown" }
+    
+    /**
+     Placeholder image name.
+     */
+    
+    public class var categoryPlaceholderName: String { return "\(self)Placeholder" }
+    
 }
