@@ -14,6 +14,14 @@ class TestContext: DetailContext {
 }
 
 class BookDetailProviderTests: ModelTestCase {
+    func testProvider() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let book = Book(context: context)
+        let provider = book.getProvider()
+        XCTAssertTrue(provider is BookDetailProvider)
+    }
+    
     func testDetailSpecDefaults() {
         let spec = DetailSpec(binding: "test")
         XCTAssertEqual(spec.binding, "test")
@@ -268,9 +276,11 @@ class BookDetailProviderTests: ModelTestCase {
         let book = Book(context: context)
         source.filter(for: [book], editing: false, context: TestContext())
         let relationship = Relationship(context: context)
+        let relationship2 = Relationship(context: context)
         XCTAssertEqual(source.insert(relationship: relationship), 0)
-        XCTAssertEqual(source.remove(relationship: relationship), 0)
-        XCTAssertNil(source.remove(relationship: relationship))
+        XCTAssertEqual(source.update(relationship: relationship, with: relationship2), 0)
+        XCTAssertEqual(source.remove(relationship: relationship2), 0)
+        XCTAssertNil(source.remove(relationship: relationship2))
     }
     
     func testInsertPublisher()
