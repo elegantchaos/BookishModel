@@ -98,44 +98,48 @@ public class BookDetailProvider: DetailProvider {
     public func insert(relationship: Relationship) -> Int {
         let index = relationships.count
         relationships.append(relationship)
-        buildItems()
+        rebuildItems()
         return items.first(where:{ $0 is PersonDetailItem && $0.index == index })!.absolute
     }
     
     public func remove(relationship: Relationship) -> Int? {
         guard let index = relationships.firstIndex(of: relationship), let item = items.first(where:{ $0 is PersonDetailItem && $0.index == index }) else { return nil }
         relationships.remove(at: index)
+        rebuildItems()
         return item.absolute
     }
     
     public func update(relationship: Relationship, with: Relationship) -> Int? {
         guard let index = relationships.firstIndex(of: relationship), let item = items.first(where:{ $0 is PersonDetailItem && $0.index == index }) else { return nil }
         relationships[index] = with
+        rebuildItems()
         return item.absolute
     }
     
     public func insert(series seriesToInsert: Series) -> Int {
         let index = series.count
         series.append(seriesToInsert)
-        buildItems()
+        rebuildItems()
         return items.last(where:{ $0 is SeriesDetailItem && $0.index == index })!.absolute
     }
     
     public func remove(series seriesToRemove: Series) -> Int? {
         guard let index = series.firstIndex(of: seriesToRemove), let item = items.first(where:{ $0 is SeriesDetailItem && $0.index == index }) else { return nil }
         series.remove(at: index)
+        rebuildItems()
         return item.absolute
     }
     
     public func insert(publisher: Publisher) -> Int {
         publishers = [publisher] // currently we cap the number of publishers at 1
-        buildItems()
+        rebuildItems()
         return items.first(where:{ $0 is PublisherDetailItem })!.absolute
     }
     
     public func remove(publisher: Publisher) -> Int? {
         guard let index = publishers.firstIndex(of: publisher), let item = items.first(where:{ $0 is PublisherDetailItem && $0.index == index }) else { return nil }
         publishers.remove(at: index)
+        rebuildItems()
         return item.absolute
     }
 }

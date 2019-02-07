@@ -76,11 +76,15 @@ public class DetailProvider {
         
         details = filteredDetails
         isEditing = editing
+        
+        rebuildItems()
+    }
 
+    func rebuildItems() {
         items.removeAll()
         buildItems()
     }
-
+    
     func buildItems() {
         var row = items.count
         let detailCount = details.count
