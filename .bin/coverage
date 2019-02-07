@@ -11,5 +11,6 @@ echo Mobile: $mobileOutput
 
 if [[ ($macStatus != 0) || ($mobileStatus != 0) ]]
 then
+    echo "Coverage Failed."
     exit 1
 fi
