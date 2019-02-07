@@ -87,6 +87,7 @@ public class ModelObject: NSManagedObject {
     
     /**
      Label describing the category for the entity.
+     Subclasses should override.
      */
     
     public class var categoryLabel: String { return "unknown" }
