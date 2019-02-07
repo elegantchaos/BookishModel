@@ -17,10 +17,9 @@ echo
 echo Coverage
 
 .bin/coverage
+COVERAGE_RESULT=$?
 
 echo
 echo Done
 
-cat .build/Mac.log
-
-exit $MAC_RESULT || $MOBILE_RESULT
+exit $MAC_RESULT || $MOBILE_RESULT || $COVERAGE_RESULT
