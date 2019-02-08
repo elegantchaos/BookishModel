@@ -109,6 +109,8 @@
 		22A49899220DF33A006A2137 /* DetailItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A49895220DF035006A2137 /* DetailItemTests.swift */; };
 		22A4989B220DF3A2006A2137 /* PersonDetailItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A4989A220DF3A2006A2137 /* PersonDetailItemTests.swift */; };
 		22A4989C220DF3A2006A2137 /* PersonDetailItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A4989A220DF3A2006A2137 /* PersonDetailItemTests.swift */; };
+		22A4989E220DF5CD006A2137 /* IndexingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A4989D220DF5CD006A2137 /* IndexingTests.swift */; };
+		22A4989F220DF5CD006A2137 /* IndexingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A4989D220DF5CD006A2137 /* IndexingTests.swift */; };
 		22D4A3CF21BEDDA100427E35 /* CorruptModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */; };
 		22D4A3D021BEDDA100427E35 /* CorruptModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */; };
 		22D4A3D121BEDDA100427E35 /* MissingModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3CE21BEDDA100427E35 /* MissingModel.bundle */; };
@@ -374,6 +376,7 @@
 		22A3E2EA21FB80B900BA4F17 /* MultipleValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleValues.swift; sourceTree = "<group>"; };
 		22A49895220DF035006A2137 /* DetailItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailItemTests.swift; sourceTree = "<group>"; };
 		22A4989A220DF3A2006A2137 /* PersonDetailItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailItemTests.swift; sourceTree = "<group>"; };
+		22A4989D220DF5CD006A2137 /* IndexingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexingTests.swift; sourceTree = "<group>"; };
 		22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CorruptModel.bundle; sourceTree = "<group>"; };
 		22D4A3CE21BEDDA100427E35 /* MissingModel.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MissingModel.bundle; sourceTree = "<group>"; };
 		22D4A51221C1215900427E35 /* .bin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = .bin; sourceTree = "<group>"; };
@@ -490,6 +493,7 @@
 				2250C80D21BE96F000E899E2 /* ChangeValueActionTests.swift */,
 				2250C80A21BE891D00E899E2 /* BookDetailProviderTests.swift */,
 				22123768220CA3EA006D4AA5 /* PersonDetailProviderTests.swift */,
+				22A4989D220DF5CD006A2137 /* IndexingTests.swift */,
 				2212376A220CA3F4006D4AA5 /* PublisherDetailProviderTests.swift */,
 				2212376C220CA401006D4AA5 /* SeriesDetailProviderTests.swift */,
 				224293C2212AE16300E70510 /* MiscModelTests.swift */,
@@ -1056,6 +1060,7 @@
 				2250C7FA21BAF86200E899E2 /* PublisherActionTests.swift in Sources */,
 				2250C80821BE881D00E899E2 /* SeriesTests.swift in Sources */,
 				2212376F220CA405006D4AA5 /* PublisherDetailProviderTests.swift in Sources */,
+				22A4989E220DF5CD006A2137 /* IndexingTests.swift in Sources */,
 				2250C80021BE861A00E899E2 /* PersonTests.swift in Sources */,
 				2250C80521BE877E00E899E2 /* PublisherTests.swift in Sources */,
 				2212376E220CA405006D4AA5 /* PersonDetailProviderTests.swift in Sources */,
@@ -1125,6 +1130,7 @@
 				2250C7FB21BAF86200E899E2 /* PublisherActionTests.swift in Sources */,
 				2250C80921BE881D00E899E2 /* SeriesTests.swift in Sources */,
 				22123772220CA406006D4AA5 /* PublisherDetailProviderTests.swift in Sources */,
+				22A4989F220DF5CD006A2137 /* IndexingTests.swift in Sources */,
 				2250C80121BE861A00E899E2 /* PersonTests.swift in Sources */,
 				2250C80621BE877E00E899E2 /* PublisherTests.swift in Sources */,
 				22123771220CA406006D4AA5 /* PersonDetailProviderTests.swift in Sources */,
