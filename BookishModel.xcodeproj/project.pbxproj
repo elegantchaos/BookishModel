@@ -106,6 +106,9 @@
 		22A3E2EB21FB80B900BA4F17 /* MultipleValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A3E2EA21FB80B900BA4F17 /* MultipleValues.swift */; };
 		22A3E2EC21FB80B900BA4F17 /* MultipleValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A3E2EA21FB80B900BA4F17 /* MultipleValues.swift */; };
 		22A49896220DF035006A2137 /* DetailItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A49895220DF035006A2137 /* DetailItemTests.swift */; };
+		22A49899220DF33A006A2137 /* DetailItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A49895220DF035006A2137 /* DetailItemTests.swift */; };
+		22A4989B220DF3A2006A2137 /* PersonDetailItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A4989A220DF3A2006A2137 /* PersonDetailItemTests.swift */; };
+		22A4989C220DF3A2006A2137 /* PersonDetailItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A4989A220DF3A2006A2137 /* PersonDetailItemTests.swift */; };
 		22D4A3CF21BEDDA100427E35 /* CorruptModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */; };
 		22D4A3D021BEDDA100427E35 /* CorruptModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */; };
 		22D4A3D121BEDDA100427E35 /* MissingModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3CE21BEDDA100427E35 /* MissingModel.bundle */; };
@@ -370,6 +373,7 @@
 		22A1A8D621A5C4E300F2332B /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = SOURCE_ROOT; };
 		22A3E2EA21FB80B900BA4F17 /* MultipleValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleValues.swift; sourceTree = "<group>"; };
 		22A49895220DF035006A2137 /* DetailItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailItemTests.swift; sourceTree = "<group>"; };
+		22A4989A220DF3A2006A2137 /* PersonDetailItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailItemTests.swift; sourceTree = "<group>"; };
 		22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CorruptModel.bundle; sourceTree = "<group>"; };
 		22D4A3CE21BEDDA100427E35 /* MissingModel.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MissingModel.bundle; sourceTree = "<group>"; };
 		22D4A51221C1215900427E35 /* .bin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = .bin; sourceTree = "<group>"; };
@@ -493,6 +497,7 @@
 				22EEF6BD21A6B761007FAD10 /* ModelTestCase.swift */,
 				2250C7F021BAF6B800E899E2 /* PersonActionTests.swift */,
 				2250C7FF21BE861A00E899E2 /* PersonTests.swift */,
+				22A4989A220DF3A2006A2137 /* PersonDetailItemTests.swift */,
 				2250C7F921BAF86200E899E2 /* PublisherActionTests.swift */,
 				2250C80421BE877E00E899E2 /* PublisherTests.swift */,
 				2250C7EA21BAB7D400E899E2 /* RegularExpressionTests.swift */,
@@ -1064,6 +1069,7 @@
 				2250C7EE21BAF6B000E899E2 /* BookActionTests.swift in Sources */,
 				2250C7F721BAF85900E899E2 /* SeriesActionTests.swift in Sources */,
 				2250C7F421BAF7AD00E899E2 /* ModelActionTestCase.swift in Sources */,
+				22A4989B220DF3A2006A2137 /* PersonDetailItemTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1113,6 +1119,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2250C76321B94E1000E899E2 /* SeriesScannerTests.swift in Sources */,
+				22A49899220DF33A006A2137 /* DetailItemTests.swift in Sources */,
 				22123773220CA406006D4AA5 /* SeriesDetailProviderTests.swift in Sources */,
 				224293C3212AE16300E70510 /* MiscModelTests.swift in Sources */,
 				2250C7FB21BAF86200E899E2 /* PublisherActionTests.swift in Sources */,
@@ -1131,6 +1138,7 @@
 				2250C7EF21BAF6B000E899E2 /* BookActionTests.swift in Sources */,
 				2250C7F821BAF85900E899E2 /* SeriesActionTests.swift in Sources */,
 				2250C7F521BAF7AD00E899E2 /* ModelActionTestCase.swift in Sources */,
+				22A4989C220DF3A2006A2137 /* PersonDetailItemTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
