@@ -5,11 +5,11 @@
 
 import Foundation
 
-let headingColumnID = "heading"
-let controlColumnID = "control"
-let roleColumnID = "role"
-
 public class DetailItem {
+    static let headingColumnID = "heading"
+    static let controlColumnID = "control"
+    static let unknownHeadingID = "<unknown>"
+
     public let kind: String
     public let absolute: Int
     public let index: Int
@@ -17,7 +17,7 @@ public class DetailItem {
     public let source: DetailProvider
     
     public var heading: String {
-        return "<unknown>"
+        return DetailItem.unknownHeadingID
     }
     
     public init(kind: String, absolute: Int, index: Int, placeholder: Bool, source: DetailProvider) {
@@ -30,11 +30,11 @@ public class DetailItem {
     
     public func viewID(for column: String) -> String { // TODO: move out of model?
         switch column {
-        case headingColumnID:
-            return headingColumnID
+        case DetailItem.headingColumnID:
+            return DetailItem.headingColumnID
             
-        case controlColumnID:
-            return controlColumnID
+        case DetailItem.controlColumnID:
+            return DetailItem.controlColumnID
             
         default:
             return kind

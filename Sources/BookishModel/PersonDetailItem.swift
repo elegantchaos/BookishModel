@@ -6,6 +6,8 @@
 import Foundation
 
 public class PersonDetailItem: DetailItem {
+    static let roleColumnID = "role"
+
     public let relationship: Relationship?
     
     public init(relationship: Relationship? = nil, absolute: Int, index: Int, source: DetailProvider) {
@@ -19,8 +21,8 @@ public class PersonDetailItem: DetailItem {
     
     override public func viewID(for column: String) -> String { // TODO: move out of model?
         switch column {
-        case headingColumnID:
-            return roleColumnID
+        case DetailItem.headingColumnID:
+            return PersonDetailItem.roleColumnID
             
         default:
             return super.viewID(for: column)
