@@ -4,6 +4,9 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import CoreData
+import Logger
+
+let modelObjectChannel = Logger("com.elegantchaos.bookish.ModelObject")
 
 public class ModelObject: NSManagedObject {
     static let missingUUID = "missing-identifier" as NSString
@@ -63,11 +66,11 @@ public class ModelObject: NSManagedObject {
     public class func entityDescription<T>(for type: T, in context: NSManagedObjectContext) -> NSEntityDescription {
         let name = String(describing: type)
         guard let coordinator = context.persistentStoreCoordinator else {
-            fatalError("missing coordinator")
+            modelObjectChannel.fatal("missing coordinator")
         }
         
         guard let description = coordinator.managedObjectModel.entitiesByName[name] else {
-            fatalError("no entity named \(name)")
+            modelObjectChannel.fatal("no entity named \(name)")
         }
         
         return description

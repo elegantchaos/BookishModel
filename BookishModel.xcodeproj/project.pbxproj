@@ -111,6 +111,8 @@
 		22A4989C220DF3A2006A2137 /* PersonDetailItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A4989A220DF3A2006A2137 /* PersonDetailItemTests.swift */; };
 		22A4989E220DF5CD006A2137 /* IndexingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A4989D220DF5CD006A2137 /* IndexingTests.swift */; };
 		22A4989F220DF5CD006A2137 /* IndexingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A4989D220DF5CD006A2137 /* IndexingTests.swift */; };
+		22A498A1220DF877006A2137 /* ModelObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A498A0220DF877006A2137 /* ModelObjectTests.swift */; };
+		22A498A2220DF877006A2137 /* ModelObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A498A0220DF877006A2137 /* ModelObjectTests.swift */; };
 		22D4A3CF21BEDDA100427E35 /* CorruptModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */; };
 		22D4A3D021BEDDA100427E35 /* CorruptModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */; };
 		22D4A3D121BEDDA100427E35 /* MissingModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3CE21BEDDA100427E35 /* MissingModel.bundle */; };
@@ -377,6 +379,7 @@
 		22A49895220DF035006A2137 /* DetailItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailItemTests.swift; sourceTree = "<group>"; };
 		22A4989A220DF3A2006A2137 /* PersonDetailItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailItemTests.swift; sourceTree = "<group>"; };
 		22A4989D220DF5CD006A2137 /* IndexingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexingTests.swift; sourceTree = "<group>"; };
+		22A498A0220DF877006A2137 /* ModelObjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelObjectTests.swift; sourceTree = "<group>"; };
 		22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CorruptModel.bundle; sourceTree = "<group>"; };
 		22D4A3CE21BEDDA100427E35 /* MissingModel.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MissingModel.bundle; sourceTree = "<group>"; };
 		22D4A51221C1215900427E35 /* .bin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = .bin; sourceTree = "<group>"; };
@@ -497,6 +500,7 @@
 				2212376A220CA3F4006D4AA5 /* PublisherDetailProviderTests.swift */,
 				2212376C220CA401006D4AA5 /* SeriesDetailProviderTests.swift */,
 				224293C2212AE16300E70510 /* MiscModelTests.swift */,
+				22A498A0220DF877006A2137 /* ModelObjectTests.swift */,
 				2250C7F321BAF7AD00E899E2 /* ModelActionTestCase.swift */,
 				22EEF6BD21A6B761007FAD10 /* ModelTestCase.swift */,
 				2250C7F021BAF6B800E899E2 /* PersonActionTests.swift */,
@@ -1057,6 +1061,7 @@
 				22A49896220DF035006A2137 /* DetailItemTests.swift in Sources */,
 				22123770220CA405006D4AA5 /* SeriesDetailProviderTests.swift in Sources */,
 				224293D4212AE83C00E70510 /* MiscModelTests.swift in Sources */,
+				22A498A1220DF877006A2137 /* ModelObjectTests.swift in Sources */,
 				2250C7FA21BAF86200E899E2 /* PublisherActionTests.swift in Sources */,
 				2250C80821BE881D00E899E2 /* SeriesTests.swift in Sources */,
 				2212376F220CA405006D4AA5 /* PublisherDetailProviderTests.swift in Sources */,
@@ -1127,6 +1132,7 @@
 				22A49899220DF33A006A2137 /* DetailItemTests.swift in Sources */,
 				22123773220CA406006D4AA5 /* SeriesDetailProviderTests.swift in Sources */,
 				224293C3212AE16300E70510 /* MiscModelTests.swift in Sources */,
+				22A498A2220DF877006A2137 /* ModelObjectTests.swift in Sources */,
 				2250C7FB21BAF86200E899E2 /* PublisherActionTests.swift in Sources */,
 				2250C80921BE881D00E899E2 /* SeriesTests.swift in Sources */,
 				22123772220CA406006D4AA5 /* PublisherDetailProviderTests.swift in Sources */,
