@@ -33,4 +33,26 @@ class SeriesTests: ModelTestCase {
         XCTAssertTrue(allEntries.contains(e1))
         XCTAssertTrue(allEntries.contains(e2))
     }
+    
+    func testSeriesEntryIdentifier() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let book = Book(context: context)
+        let series = Series(context: context)
+        let entry = book.addToSeries(series, position: 1)
+        book.uuid = "book"
+        series.uuid = "series"
+        XCTAssertEqual(entry.uniqueIdentifier, "book-series" as NSString)
+    }
+    
+    func testSeriesEntryMissingIdentifier() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let book = Book(context: context)
+        let series = Series(context: context)
+        let entry = book.addToSeries(series, position: 1)
+        book.uuid = nil
+        series.uuid = nil
+        XCTAssertEqual(entry.uniqueIdentifier, ModelObject.missingUUID)
+    }
 }

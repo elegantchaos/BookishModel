@@ -76,12 +76,12 @@ public class Book: ModelObject {
      to see if there's already a listing. If there is, we just update the position.
     */
     
-    public func addToSeries(_ series: Series, position: Int) {
+    @discardableResult public func addToSeries(_ series: Series, position: Int) -> SeriesEntry {
         if let entries = entries as? Set<SeriesEntry> {
             for entry in entries {
                 if entry.series == series {
                     entry.position = Int16(position)
-                    return
+                    return entry
                 }
             }
         }
@@ -90,6 +90,7 @@ public class Book: ModelObject {
         entry.series = series
         entry.position = Int16(position)
         addToEntries(entry)
+        return entry
     }
  
     /**
