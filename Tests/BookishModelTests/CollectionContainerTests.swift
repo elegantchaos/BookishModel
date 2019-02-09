@@ -19,14 +19,13 @@ class CollectionContainerTests: ModelTestCase {
         return container
     }
     
-    func makeSampleData() {
-        let url = temporaryFile(named: "empty")
+    func makeSampleData(in url: URL) {
         let expectation = self.expectation(description: "import done")
         let bundle = Bundle(for: type(of: self))
         let xmlURL = bundle.url(forResource: "Sample", withExtension: "xml")!
         let manager = ImportManager()
         let importer = DeliciousLibraryImporter(manager: manager)
-        let container = makeTestContainer(name: "test", url: url, mode: .empty)
+        let container = makeTestContainer(name: "empty", url: url, mode: .empty)
         importer.run(importing: xmlURL, into: container.managedObjectContext) {
             expectation.fulfill()
         }
@@ -61,12 +60,13 @@ class CollectionContainerTests: ModelTestCase {
     }
 
     func testCreateSampleData() {
+        let url = temporaryFile()
+
         // run the tests with `-makeSampleData YES` to re-import the sample database
         if UserDefaults.standard.bool(forKey: "makeSampleData") {
-            makeSampleData()
+            makeSampleData(in: url)
         }
 
-        let url = temporaryFile()
         let container = makeTestContainer(name: "test", url: url, mode: .sampleData)
         XCTAssertEqual(container.managedObjectContext.countEntities(type: Book.self), 1364)
     }

@@ -40,6 +40,7 @@ import CoreData
                 let bundle = Bundle.init(for: type(of: self))
                 if let sample = bundle.url(forResource: "Sample", withExtension: "bookish") {
                     do {
+                        try? fm.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
                         try fm.copyItem(at: sample, to: url)
                     } catch {
                         print("failed to copy sample database")
