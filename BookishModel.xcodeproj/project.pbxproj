@@ -133,6 +133,10 @@
 		22A498C1220F3555006A2137 /* ImportSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A498B7220F3554006A2137 /* ImportSession.swift */; };
 		22A498CA220F3DD0006A2137 /* Sample.bookish in Resources */ = {isa = PBXBuildFile; fileRef = 22A498C9220F3DD0006A2137 /* Sample.bookish */; };
 		22A498CB220F3DD0006A2137 /* Sample.bookish in Resources */ = {isa = PBXBuildFile; fileRef = 22A498C9220F3DD0006A2137 /* Sample.bookish */; };
+		22A498CD220F475C006A2137 /* ImporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A498CC220F475C006A2137 /* ImporterTests.swift */; };
+		22A498CE220F475C006A2137 /* ImporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A498CC220F475C006A2137 /* ImporterTests.swift */; };
+		22A498D0220F480A006A2137 /* Simple.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22A498CF220F480A006A2137 /* Simple.plist */; };
+		22A498D1220F480A006A2137 /* Simple.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22A498CF220F480A006A2137 /* Simple.plist */; };
 		22D4A3CF21BEDDA100427E35 /* CorruptModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */; };
 		22D4A3D021BEDDA100427E35 /* CorruptModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */; };
 		22D4A3D121BEDDA100427E35 /* MissingModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3CE21BEDDA100427E35 /* MissingModel.bundle */; };
@@ -410,6 +414,8 @@
 		22A498B6220F3554006A2137 /* ImportManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportManager.swift; sourceTree = "<group>"; };
 		22A498B7220F3554006A2137 /* ImportSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportSession.swift; sourceTree = "<group>"; };
 		22A498C9220F3DD0006A2137 /* Sample.bookish */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sample.bookish; sourceTree = "<group>"; };
+		22A498CC220F475C006A2137 /* ImporterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImporterTests.swift; sourceTree = "<group>"; };
+		22A498CF220F480A006A2137 /* Simple.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Simple.plist; sourceTree = "<group>"; };
 		22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CorruptModel.bundle; sourceTree = "<group>"; };
 		22D4A3CE21BEDDA100427E35 /* MissingModel.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MissingModel.bundle; sourceTree = "<group>"; };
 		22D4A51221C1215900427E35 /* .bin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = .bin; sourceTree = "<group>"; };
@@ -491,29 +497,29 @@
 		224293B4212AE16200E70510 /* BookishModel */ = {
 			isa = PBXGroup;
 			children = (
-				22A498C8220F3DD0006A2137 /* Resources */,
 				221C4B36216BABE40086D56F /* Actions */,
+				22387992220B1D860019F9EA /* BookDetailProvider.swift */,
 				224293D1212AE1E700E70510 /* BookishModel.swift */,
 				22DA6A1821E6158D00ECF09A /* BookishModelBridge.h */,
 				22DD424D2126D6DA0070C85A /* Collection.xcdatamodeld */,
 				221ED50E216B87D900594714 /* CollectionContainer.swift */,
-				22387992220B1D860019F9EA /* BookDetailProvider.swift */,
-				223879AF220B1D910019F9EA /* PersonDetailProvider.swift */,
-				223879B8220B3FF10019F9EA /* SeriesDetailProvider.swift */,
-				223879BB220B3FFC0019F9EA /* PublisherDetailProvider.swift */,
-				223879B2220B1D9A0019F9EA /* DetailProvider.swift */,
 				223879B5220B1F550019F9EA /* DetailItem.swift */,
-				223879C8220B4A2F0019F9EA /* SimpleDetailItem.swift */,
-				223879BF220B48740019F9EA /* PersonDetailItem.swift */,
-				223879C2220B490B0019F9EA /* SeriesDetailItem.swift */,
-				223879C5220B49230019F9EA /* PublisherDetailItem.swift */,
+				223879B2220B1D9A0019F9EA /* DetailProvider.swift */,
 				221ED50B216B79F100594714 /* DetailSpec.swift */,
-				22F180E221CA8FD600220D20 /* Indexing.swift */,
-				22A3E2EA21FB80B900BA4F17 /* MultipleValues.swift */,
-				224293B6212AE16200E70510 /* Info.plist */,
-				224A5EBB21F8C26000DDB457 /* Objects */,
-				2250C71E21B94CD800E899E2 /* SeriesScanner.swift */,
 				22A498B2220F3554006A2137 /* Importers */,
+				22F180E221CA8FD600220D20 /* Indexing.swift */,
+				224293B6212AE16200E70510 /* Info.plist */,
+				22A3E2EA21FB80B900BA4F17 /* MultipleValues.swift */,
+				224A5EBB21F8C26000DDB457 /* Objects */,
+				223879BF220B48740019F9EA /* PersonDetailItem.swift */,
+				223879AF220B1D910019F9EA /* PersonDetailProvider.swift */,
+				223879C5220B49230019F9EA /* PublisherDetailItem.swift */,
+				223879BB220B3FFC0019F9EA /* PublisherDetailProvider.swift */,
+				22A498C8220F3DD0006A2137 /* Resources */,
+				223879C2220B490B0019F9EA /* SeriesDetailItem.swift */,
+				223879B8220B3FF10019F9EA /* SeriesDetailProvider.swift */,
+				2250C71E21B94CD800E899E2 /* SeriesScanner.swift */,
+				223879C8220B4A2F0019F9EA /* SimpleDetailItem.swift */,
 				2250C74921B94D5F00E899E2 /* Utilities */,
 			);
 			path = BookishModel;
@@ -531,6 +537,7 @@
 				2250C80A21BE891D00E899E2 /* BookDetailProviderTests.swift */,
 				22123768220CA3EA006D4AA5 /* PersonDetailProviderTests.swift */,
 				22A4989D220DF5CD006A2137 /* IndexingTests.swift */,
+				22A498CC220F475C006A2137 /* ImporterTests.swift */,
 				2212376A220CA3F4006D4AA5 /* PublisherDetailProviderTests.swift */,
 				2212376C220CA401006D4AA5 /* SeriesDetailProviderTests.swift */,
 				224293C2212AE16300E70510 /* MiscModelTests.swift */,
@@ -608,6 +615,7 @@
 		22D4A41E21BFF5B100427E35 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				22A498CF220F480A006A2137 /* Simple.plist */,
 				22A498AF220F34AB006A2137 /* Sample.xml */,
 				22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */,
 				224293C4212AE16300E70510 /* Info.plist */,
@@ -1045,6 +1053,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22A498D0220F480A006A2137 /* Simple.plist in Resources */,
 				22D4A3D121BEDDA100427E35 /* MissingModel.bundle in Resources */,
 				22A498B0220F34AB006A2137 /* Sample.xml in Resources */,
 				22D4A3CF21BEDDA100427E35 /* CorruptModel.bundle in Resources */,
@@ -1063,6 +1072,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22A498D1220F480A006A2137 /* Simple.plist in Resources */,
 				22D4A3D221BEDDA100427E35 /* MissingModel.bundle in Resources */,
 				22A498B1220F34AB006A2137 /* Sample.xml in Resources */,
 				22D4A3D021BEDDA100427E35 /* CorruptModel.bundle in Resources */,
@@ -1124,6 +1134,7 @@
 			files = (
 				2250C76221B94E0F00E899E2 /* SeriesScannerTests.swift in Sources */,
 				22A49896220DF035006A2137 /* DetailItemTests.swift in Sources */,
+				22A498CD220F475C006A2137 /* ImporterTests.swift in Sources */,
 				22123770220CA405006D4AA5 /* SeriesDetailProviderTests.swift in Sources */,
 				224293D4212AE83C00E70510 /* MiscModelTests.swift in Sources */,
 				22A498A1220DF877006A2137 /* ModelObjectTests.swift in Sources */,
@@ -1203,6 +1214,7 @@
 			files = (
 				2250C76321B94E1000E899E2 /* SeriesScannerTests.swift in Sources */,
 				22A49899220DF33A006A2137 /* DetailItemTests.swift in Sources */,
+				22A498CE220F475C006A2137 /* ImporterTests.swift in Sources */,
 				22123773220CA406006D4AA5 /* SeriesDetailProviderTests.swift in Sources */,
 				224293C3212AE16300E70510 /* MiscModelTests.swift in Sources */,
 				22A498A2220DF877006A2137 /* ModelObjectTests.swift in Sources */,
