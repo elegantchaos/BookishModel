@@ -37,7 +37,8 @@ import CoreData
             }
             
             if !fm.fileExists(atPath: url.path) && ((mode == .sampleData) || (mode == .replaceWithSampleData)) {
-                if let sample = Bundle.main.url(forResource: "Sample", withExtension: "sqlite") {
+                let bundle = Bundle.init(for: type(of: self))
+                if let sample = bundle.url(forResource: "Sample", withExtension: "bookish") {
                     do {
                         try fm.copyItem(at: sample, to: url)
                     } catch {

@@ -19,6 +19,26 @@ class CollectionContainerTests: ModelTestCase {
         return container
     }
     
+    func makeSampleData() {
+        let url = temporaryFile(named: "empty")
+        let expectation = self.expectation(description: "import done")
+        let bundle = Bundle(for: type(of: self))
+        let xmlURL = bundle.url(forResource: "Sample", withExtension: "xml")!
+        let manager = ImportManager()
+        let importer = DeliciousLibraryImporter(manager: manager)
+        let container = makeTestContainer(name: "test", url: url, mode: .empty)
+        importer.run(importing: xmlURL, into: container.managedObjectContext) {
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 10.0)
+        
+        container.save()
+        let sourceURL = URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("Sample.bookish")
+        try! FileManager.default.copyItem(at: url, to: sourceURL)
+        let bookCount = container.managedObjectContext.countEntities(type: Book.self)
+        print("Saved sample data to \(madeURL) with \(bookCount) books.")
+    }
+    
     func testCreateEmpty() {
         let url = temporaryFile()
         let container = makeTestContainer(name: "test", url: url, mode: .empty)
@@ -30,5 +50,28 @@ class CollectionContainerTests: ModelTestCase {
         let container = makeTestContainer(name: "test", url: url, mode: .defaultRoles)
         XCTAssertEqual(container.managedObjectContext.countEntities(type: Role.self), Role.StandardName.allCases.count)
     }
-    
+
+    func testCreateTestData() {
+        let url = temporaryFile()
+        let container = makeTestContainer(name: "test", url: url, mode: .testData)
+        XCTAssertEqual(container.managedObjectContext.countEntities(type: Book.self), 4)
+    }
+
+    func testCreateSampleData() {
+        // uncomment makeSampleData() to recreate sample database from sample.xml
+        // and copy it to the desktop
+        makeSampleData()
+
+        let url = temporaryFile()
+        let container = makeTestContainer(name: "test", url: url, mode: .sampleData)
+        XCTAssertEqual(container.managedObjectContext.countEntities(type: Book.self), 1364)
+    }
+
+    func testReset() {
+        let url = temporaryFile()
+        let container = makeTestContainer(name: "test", url: url, mode: .testData)
+        XCTAssertEqual(container.managedObjectContext.countEntities(type: Book.self), 4)
+        container.reset()
+        XCTAssertEqual(container.managedObjectContext.countEntities(type: Book.self), 0)
+    }
 }
