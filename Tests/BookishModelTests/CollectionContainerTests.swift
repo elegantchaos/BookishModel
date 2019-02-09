@@ -33,8 +33,10 @@ class CollectionContainerTests: ModelTestCase {
         wait(for: [expectation], timeout: 10.0)
         
         container.save()
-        let sourceURL = URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("Resources").appendingPathComponent("Sample.bookish")
+        let baseURL = URL(fileURLWithPath: #file).deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+        let sourceURL = baseURL.appendingPathComponent("Sources").appendingPathComponent("BookishModel").appendingPathComponent("Resources").appendingPathComponent("Sample.bookish")
         try? FileManager.default.removeItem(at: sourceURL)
+        try? FileManager.default.createDirectory(at: sourceURL.deletingLastPathComponent(), withIntermediateDirectories: true)
         try! FileManager.default.copyItem(at: url, to: sourceURL)
         let bookCount = container.managedObjectContext.countEntities(type: Book.self)
         print("Saved sample data to \(sourceURL) with \(bookCount) books.")
