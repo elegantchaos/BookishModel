@@ -33,10 +33,11 @@ class CollectionContainerTests: ModelTestCase {
         wait(for: [expectation], timeout: 10.0)
         
         container.save()
-        let sourceURL = URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("Sample.bookish")
+        let sourceURL = URL(fileURLWithPath: #file).deletingLastPathComponent().appendingPathComponent("Resources").appendingPathComponent("Sample.bookish")
+        try? FileManager.default.removeItem(at: sourceURL)
         try! FileManager.default.copyItem(at: url, to: sourceURL)
         let bookCount = container.managedObjectContext.countEntities(type: Book.self)
-        print("Saved sample data to \(madeURL) with \(bookCount) books.")
+        print("Saved sample data to \(sourceURL) with \(bookCount) books.")
     }
     
     func testCreateEmpty() {
@@ -58,9 +59,10 @@ class CollectionContainerTests: ModelTestCase {
     }
 
     func testCreateSampleData() {
-        // uncomment makeSampleData() to recreate sample database from sample.xml
-        // and copy it to the desktop
-        makeSampleData()
+        // run the tests with `-makeSampleData YES` to re-import the sample database
+        if UserDefaults.standard.bool(forKey: "makeSampleData") {
+            makeSampleData()
+        }
 
         let url = temporaryFile()
         let container = makeTestContainer(name: "test", url: url, mode: .sampleData)
