@@ -33,6 +33,34 @@ class SeriesTests: ModelTestCase {
         XCTAssertTrue(allEntries.contains(e1))
         XCTAssertTrue(allEntries.contains(e2))
     }
+
+    func testNamedExists() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let series = Series(context: context)
+        series.name = "test"
+        
+        let found = Series.named("test", in: context)
+        XCTAssertEqual(found.name, "test")
+    }
+
+    func testNamedMissing() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let series = Series.named("test", in: context, createIfMissing: false)
+        XCTAssertNil(series)
+    }
+
+    func testNamedCreate() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let series = Series.named("test", in: context, createIfMissing: true)
+        XCTAssertEqual(series?.name, "test")
+    }
+
+    func testCategoryLabel() {
+        XCTAssertEqual(Series.categoryLabel, "Series")
+    }
     
     func testSeriesEntryIdentifier() {
         let container = makeTestContainer()

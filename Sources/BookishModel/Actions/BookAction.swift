@@ -329,7 +329,7 @@ class ChangePublisherAction: BookAction {
             var newPublisher = context[PublisherAction.newPublisherKey] as? Publisher
             if newPublisher == nil, let newPublisherName = context[PublisherAction.newPublisherKey] as? String, !newPublisherName.isEmpty {
                 bookActionChannel.log("using publisher name \(newPublisherName)")
-                newPublisher = Publisher.named(newPublisherName, in: model, creating: true)
+                newPublisher = Publisher.named(newPublisherName, in: model, createIfMissing: true)
             }
             
             if let newPublisher = newPublisher {

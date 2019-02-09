@@ -9,14 +9,14 @@ public class Publisher: ModelObject {
     
     public override class var categoryLabel: String { return "Publishers" }
 
-    public class func named(_ named: String, in context: NSManagedObjectContext, creating: Bool = false) -> Publisher? {
+    public class func named(_ named: String, in context: NSManagedObjectContext, createIfMissing: Bool = false) -> Publisher? {
         let request: NSFetchRequest<Publisher> = Publisher.fetcher(in: context)
         request.predicate = NSPredicate(format: "name = \"\(named)\"")
         if let results = try? context.fetch(request), results.count > 0 {
             return results[0]
         }
         
-        if creating {
+        if createIfMissing {
             let publisher = Publisher(context: context)
             publisher.name = named
             return publisher
