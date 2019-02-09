@@ -6,11 +6,20 @@
 import CoreData
 import Logger
 
-let modelObjectChannel = Logger("com.elegantchaos.bookish.ModelObject")
+let modelObjectChannel = Logger("com.elegantchaos.bookish.model.ModelObject")
 
 public class ModelObject: NSManagedObject {
     static let missingUUID = "missing-identifier" as NSString
 
+    /**
+     Return a unique identifier as an NSObject
+     (handy for Ensembles, which wants one in this format).
+     
+     We return the uuid property for those entities that have one,
+     or a default id otherwise. Some model subclasses override to
+     do their own thing.
+    */
+    
     public var uniqueIdentifier: NSObject {
         get {
             if let uuid = self.value(forKey: "uuid") as? NSString {
@@ -21,14 +30,25 @@ public class ModelObject: NSManagedObject {
         }
     }
     
+    /**
+     Automitically assign a uuid on insertion.
+    */
+    
     public override func awakeFromInsert() {
         assignInitialUUID()
     }
 
+    /**
+     Assign a random uuid.
+     */
+    
     func assignInitialUUID() {
         setValue(UUID().uuidString, forKey: "uuid")
     }
     
+    /**
+     Override the default initialiser with one that safely looks up the entity in the context.
+    */
     
     public convenience init(context: NSManagedObjectContext) {
         self.init(in: context)
