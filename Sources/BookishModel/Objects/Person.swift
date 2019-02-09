@@ -9,20 +9,20 @@ public class Person: ModelObject {
     
     public override class var categoryLabel: String { return "People" }
 
-    public class func named(_ name: String, in context: NSManagedObjectContext, creating: Bool = false) -> Person? {
-        let request: NSFetchRequest<Person> = Person.fetcher(in: context)
-        request.predicate = NSPredicate(format: "name = \"\(name)\"")
-        if let results = try? context.fetch(request), results.count > 0 {
-            return results[0]
-        }
-        
-        if creating {
-            let person = Person(context: context)
-            person.name = name
-            return person
-        }
-        return nil
-    }
+//    public class func named(_ name: String, in context: NSManagedObjectContext, creating: Bool = false) -> Person? {
+//        let request: NSFetchRequest<Person> = Person.fetcher(in: context)
+//        request.predicate = NSPredicate(format: "name = \"\(name)\"")
+//        if let results = try? context.fetch(request), results.count > 0 {
+//            return results[0]
+//        }
+//        
+//        if creating {
+//            let person = Person(context: context)
+//            person.name = name
+//            return person
+//        }
+//        return nil
+//    }
     
     /**
      If there's already an entry for a given role name for this person, return it.
@@ -31,7 +31,7 @@ public class Person: ModelObject {
     
     public func relationship(as roleName: String) -> Relationship {
         let context = self.managedObjectContext!
-        let role = Role.named(roleName, in: context)
+        let role: Role = Role.named(roleName, in: context)
         return relationship(as: role)
     }
 

@@ -65,8 +65,8 @@
 		2250C70321B556FC00E899E2 /* SeriesEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C70121B556FC00E899E2 /* SeriesEntry.swift */; };
 		2250C70521B557A400E899E2 /* SeriesAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C70421B557A400E899E2 /* SeriesAction.swift */; };
 		2250C70621B557A400E899E2 /* SeriesAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C70421B557A400E899E2 /* SeriesAction.swift */; };
-		2250C71821B7E15700E899E2 /* ContextExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C71721B7E15700E899E2 /* ContextExtensions.swift */; };
-		2250C71921B7E15700E899E2 /* ContextExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C71721B7E15700E899E2 /* ContextExtensions.swift */; };
+		2250C71821B7E15700E899E2 /* NSManagedObjectContextExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C71721B7E15700E899E2 /* NSManagedObjectContextExtensions.swift */; };
+		2250C71921B7E15700E899E2 /* NSManagedObjectContextExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C71721B7E15700E899E2 /* NSManagedObjectContextExtensions.swift */; };
 		2250C71F21B94CD800E899E2 /* SeriesScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C71E21B94CD800E899E2 /* SeriesScanner.swift */; };
 		2250C72021B94CD800E899E2 /* SeriesScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C71E21B94CD800E899E2 /* SeriesScanner.swift */; };
 		2250C75D21B94D9700E899E2 /* RegularExpressionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C75C21B94D9700E899E2 /* RegularExpressionExtensions.swift */; };
@@ -113,6 +113,8 @@
 		22A4989F220DF5CD006A2137 /* IndexingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A4989D220DF5CD006A2137 /* IndexingTests.swift */; };
 		22A498A1220DF877006A2137 /* ModelObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A498A0220DF877006A2137 /* ModelObjectTests.swift */; };
 		22A498A2220DF877006A2137 /* ModelObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A498A0220DF877006A2137 /* ModelObjectTests.swift */; };
+		22A498A4220F1A02006A2137 /* NSManagedObjectExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A498A3220F1A02006A2137 /* NSManagedObjectExtensions.swift */; };
+		22A498A5220F1A02006A2137 /* NSManagedObjectExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A498A3220F1A02006A2137 /* NSManagedObjectExtensions.swift */; };
 		22D4A3CF21BEDDA100427E35 /* CorruptModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */; };
 		22D4A3D021BEDDA100427E35 /* CorruptModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */; };
 		22D4A3D121BEDDA100427E35 /* MissingModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3CE21BEDDA100427E35 /* MissingModel.bundle */; };
@@ -353,7 +355,7 @@
 		2250C6E221B1B14200E899E2 /* PublisherAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherAction.swift; sourceTree = "<group>"; };
 		2250C70121B556FC00E899E2 /* SeriesEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesEntry.swift; sourceTree = "<group>"; };
 		2250C70421B557A400E899E2 /* SeriesAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesAction.swift; sourceTree = "<group>"; };
-		2250C71721B7E15700E899E2 /* ContextExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextExtensions.swift; sourceTree = "<group>"; };
+		2250C71721B7E15700E899E2 /* NSManagedObjectContextExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObjectContextExtensions.swift; sourceTree = "<group>"; };
 		2250C71E21B94CD800E899E2 /* SeriesScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeriesScanner.swift; sourceTree = "<group>"; };
 		2250C75C21B94D9700E899E2 /* RegularExpressionExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegularExpressionExtensions.swift; sourceTree = "<group>"; };
 		2250C75F21B94E0C00E899E2 /* SeriesScannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesScannerTests.swift; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 		22A4989A220DF3A2006A2137 /* PersonDetailItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailItemTests.swift; sourceTree = "<group>"; };
 		22A4989D220DF5CD006A2137 /* IndexingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexingTests.swift; sourceTree = "<group>"; };
 		22A498A0220DF877006A2137 /* ModelObjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelObjectTests.swift; sourceTree = "<group>"; };
+		22A498A3220F1A02006A2137 /* NSManagedObjectExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObjectExtensions.swift; sourceTree = "<group>"; };
 		22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CorruptModel.bundle; sourceTree = "<group>"; };
 		22D4A3CE21BEDDA100427E35 /* MissingModel.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MissingModel.bundle; sourceTree = "<group>"; };
 		22D4A51221C1215900427E35 /* .bin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = .bin; sourceTree = "<group>"; };
@@ -544,7 +547,8 @@
 			isa = PBXGroup;
 			children = (
 				2250C75C21B94D9700E899E2 /* RegularExpressionExtensions.swift */,
-				2250C71721B7E15700E899E2 /* ContextExtensions.swift */,
+				2250C71721B7E15700E899E2 /* NSManagedObjectContextExtensions.swift */,
+				22A498A3220F1A02006A2137 /* NSManagedObjectExtensions.swift */,
 				22F180C321CA662D00220D20 /* FileManagerExtensions.swift */,
 			);
 			path = Utilities;
@@ -1034,7 +1038,7 @@
 				22DA6A1C21E61BC600ECF09A /* ModelObject.swift in Sources */,
 				224293D2212AE1E700E70510 /* BookishModel.swift in Sources */,
 				221C4B2D216BA8220086D56F /* PersonAction.swift in Sources */,
-				2250C71821B7E15700E899E2 /* ContextExtensions.swift in Sources */,
+				2250C71821B7E15700E899E2 /* NSManagedObjectContextExtensions.swift in Sources */,
 				224293E9212AF0D300E70510 /* Role.swift in Sources */,
 				226E8E7321AC50A6001F191F /* ChangeValueAction.swift in Sources */,
 				223879C6220B49230019F9EA /* PublisherDetailItem.swift in Sources */,
@@ -1045,6 +1049,7 @@
 				22E47CC6216E31B700E43DBF /* BookAction.swift in Sources */,
 				224293E3212AF09D00E70510 /* Person.swift in Sources */,
 				2250C71F21B94CD800E899E2 /* SeriesScanner.swift in Sources */,
+				22A498A4220F1A02006A2137 /* NSManagedObjectExtensions.swift in Sources */,
 				22387993220B1D860019F9EA /* BookDetailProvider.swift in Sources */,
 				223879B9220B3FF10019F9EA /* SeriesDetailProvider.swift in Sources */,
 				22F180E321CA8FD600220D20 /* Indexing.swift in Sources */,
@@ -1105,7 +1110,7 @@
 				22DA6A1D21E61BC600ECF09A /* ModelObject.swift in Sources */,
 				221C4B2E216BA8220086D56F /* PersonAction.swift in Sources */,
 				221F272021306C1300DC2DC7 /* Book.swift in Sources */,
-				2250C71921B7E15700E899E2 /* ContextExtensions.swift in Sources */,
+				2250C71921B7E15700E899E2 /* NSManagedObjectContextExtensions.swift in Sources */,
 				226E8E7421AC50A6001F191F /* ChangeValueAction.swift in Sources */,
 				226E8DB221A84031001F191F /* ModelAction.swift in Sources */,
 				223879C7220B49230019F9EA /* PublisherDetailItem.swift in Sources */,
@@ -1116,6 +1121,7 @@
 				22E47CC7216E31BA00E43DBF /* BookAction.swift in Sources */,
 				224293E4212AF09E00E70510 /* Person.swift in Sources */,
 				2250C72021B94CD800E899E2 /* SeriesScanner.swift in Sources */,
+				22A498A5220F1A02006A2137 /* NSManagedObjectExtensions.swift in Sources */,
 				22387994220B1D860019F9EA /* BookDetailProvider.swift in Sources */,
 				223879BA220B3FF10019F9EA /* SeriesDetailProvider.swift in Sources */,
 				22F180E421CA8FD600220D20 /* Indexing.swift in Sources */,

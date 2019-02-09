@@ -23,6 +23,13 @@ class PersonTests:ModelTestCase {
         let container = makeTestContainer()
         let context = container.managedObjectContext
         let person = Person.named("Test", in: context)
+        XCTAssertEqual(person.name, "Test")
+    }
+
+    func testPersonNamedDoesntExistDontCreate() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let person = Person.named("Test", in: context, createIfMissing: false)
         XCTAssertNil(person)
     }
 

@@ -17,41 +17,41 @@ public class Role: ModelObject {
         public static var names: [String] { get { return [author, contributor, editor, foreword, illustrator, translator] } }
     }
     
-    public class func named(_ name: String, in context: NSManagedObjectContext) -> Role {
-        let request: NSFetchRequest<Role> = Role.fetchRequest()
-        request.predicate = NSPredicate(format: "name = \"\(name)\"")
-
-        let role: Role
-        if let results = try? context.fetch(request), results.count > 0 {
-            role = results[0]
-        } else {
-            let newRole = Role(context: context)
-            newRole.name = name
-            newRole.uuid = name
-            role = newRole
-        }
-        
-        return role
-    }
-    
-    public class func named(_ name: String, in context: NSManagedObjectContext, createIfMissing: Bool = false) -> Role? {
-        let request: NSFetchRequest<Role> = Role.fetchRequest()
-        request.predicate = NSPredicate(format: "name = \"\(name)\"")
-        
-        if let results = try? context.fetch(request), results.count > 0 {
-            return results[0]
-        }
-        
-        if createIfMissing {
-            let newRole = Role(context: context)
-            newRole.name = name
-            newRole.uuid = name
-            return newRole
-        }
-        
-        return nil
-    }
-    
+//    public class func named(_ name: String, in context: NSManagedObjectContext) -> Role {
+//        let request: NSFetchRequest<Role> = Role.fetchRequest()
+//        request.predicate = NSPredicate(format: "name = \"\(name)\"")
+//
+//        let role: Role
+//        if let results = try? context.fetch(request), results.count > 0 {
+//            role = results[0]
+//        } else {
+//            let newRole = Role(context: context)
+//            newRole.name = name
+//            newRole.uuid = name
+//            role = newRole
+//        }
+//        
+//        return role
+//    }
+//    
+//    public class func named(_ name: String, in context: NSManagedObjectContext, createIfMissing: Bool = false) -> Role? {
+//        let request: NSFetchRequest<Role> = Role.fetchRequest()
+//        request.predicate = NSPredicate(format: "name = \"\(name)\"")
+//        
+//        if let results = try? context.fetch(request), results.count > 0 {
+//            return results[0]
+//        }
+//        
+//        if createIfMissing {
+//            let newRole = Role(context: context)
+//            newRole.name = name
+//            newRole.uuid = name
+//            return newRole
+//        }
+//        
+//        return nil
+//    }
+//    
     public class func allRoles(context: NSManagedObjectContext) -> [Role] {
         let result: [Role] = context.everyEntity(sorting: [NSSortDescriptor(key: "name", ascending: true)])
         return result

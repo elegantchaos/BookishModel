@@ -267,7 +267,7 @@ class ChangeRelationshipAction: BookAction {
             var updatedPerson = context[PersonAction.personKey] as? Person
             if updatedPerson == nil, let name = context[PersonAction.personKey] as? String, !name.isEmpty {
                 bookActionChannel.debug("using person name \(name)")
-                updatedPerson = Person.named(name, in: model, creating: true)
+                updatedPerson = Person.named(name, in: model, createIfMissing: true)
                 updatedPerson?.name = name
             }
             
