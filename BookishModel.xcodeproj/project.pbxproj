@@ -117,6 +117,10 @@
 		22A498A5220F1A02006A2137 /* NSManagedObjectExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A498A3220F1A02006A2137 /* NSManagedObjectExtensions.swift */; };
 		22A498A7220F2321006A2137 /* RelationshipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A498A6220F2321006A2137 /* RelationshipTests.swift */; };
 		22A498A8220F2321006A2137 /* RelationshipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A498A6220F2321006A2137 /* RelationshipTests.swift */; };
+		22A498AA220F28F2006A2137 /* CollectionContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A498A9220F28F2006A2137 /* CollectionContainerTests.swift */; };
+		22A498AB220F28F2006A2137 /* CollectionContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A498A9220F28F2006A2137 /* CollectionContainerTests.swift */; };
+		22A498AD220F2F9C006A2137 /* XCTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A498AC220F2F9C006A2137 /* XCTestTests.swift */; };
+		22A498AE220F2F9C006A2137 /* XCTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A498AC220F2F9C006A2137 /* XCTestTests.swift */; };
 		22D4A3CF21BEDDA100427E35 /* CorruptModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */; };
 		22D4A3D021BEDDA100427E35 /* CorruptModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */; };
 		22D4A3D121BEDDA100427E35 /* MissingModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3CE21BEDDA100427E35 /* MissingModel.bundle */; };
@@ -386,6 +390,8 @@
 		22A498A0220DF877006A2137 /* ModelObjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelObjectTests.swift; sourceTree = "<group>"; };
 		22A498A3220F1A02006A2137 /* NSManagedObjectExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObjectExtensions.swift; sourceTree = "<group>"; };
 		22A498A6220F2321006A2137 /* RelationshipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelationshipTests.swift; sourceTree = "<group>"; };
+		22A498A9220F28F2006A2137 /* CollectionContainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionContainerTests.swift; sourceTree = "<group>"; };
+		22A498AC220F2F9C006A2137 /* XCTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestTests.swift; sourceTree = "<group>"; };
 		22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CorruptModel.bundle; sourceTree = "<group>"; };
 		22D4A3CE21BEDDA100427E35 /* MissingModel.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MissingModel.bundle; sourceTree = "<group>"; };
 		22D4A51221C1215900427E35 /* .bin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = .bin; sourceTree = "<group>"; };
@@ -497,7 +503,9 @@
 			isa = PBXGroup;
 			children = (
 				2250C7ED21BAF6B000E899E2 /* BookActionTests.swift */,
+				22A498AC220F2F9C006A2137 /* XCTestTests.swift */,
 				2250C7FC21BE85CD00E899E2 /* BookTests.swift */,
+				22A498A9220F28F2006A2137 /* CollectionContainerTests.swift */,
 				22A49895220DF035006A2137 /* DetailItemTests.swift */,
 				2250C80D21BE96F000E899E2 /* ChangeValueActionTests.swift */,
 				2250C80A21BE891D00E899E2 /* BookDetailProviderTests.swift */,
@@ -1084,9 +1092,11 @@
 				2250C7CF21BAA2F600E899E2 /* RoleTests.swift in Sources */,
 				22EEF6BE21A6B761007FAD10 /* ModelTestCase.swift in Sources */,
 				2250C80E21BE96F000E899E2 /* ChangeValueActionTests.swift in Sources */,
+				22A498AA220F28F2006A2137 /* CollectionContainerTests.swift in Sources */,
 				2250C7FD21BE85CD00E899E2 /* BookTests.swift in Sources */,
 				2250C7EE21BAF6B000E899E2 /* BookActionTests.swift in Sources */,
 				2250C7F721BAF85900E899E2 /* SeriesActionTests.swift in Sources */,
+				22A498AD220F2F9C006A2137 /* XCTestTests.swift in Sources */,
 				2250C7F421BAF7AD00E899E2 /* ModelActionTestCase.swift in Sources */,
 				22A4989B220DF3A2006A2137 /* PersonDetailItemTests.swift in Sources */,
 				22A498A7220F2321006A2137 /* RelationshipTests.swift in Sources */,
@@ -1157,9 +1167,11 @@
 				2250C7D021BAA2F600E899E2 /* RoleTests.swift in Sources */,
 				22EEF6BF21A6B761007FAD10 /* ModelTestCase.swift in Sources */,
 				2250C80F21BE96F000E899E2 /* ChangeValueActionTests.swift in Sources */,
+				22A498AB220F28F2006A2137 /* CollectionContainerTests.swift in Sources */,
 				2250C7FE21BE85CD00E899E2 /* BookTests.swift in Sources */,
 				2250C7EF21BAF6B000E899E2 /* BookActionTests.swift in Sources */,
 				2250C7F821BAF85900E899E2 /* SeriesActionTests.swift in Sources */,
+				22A498AE220F2F9C006A2137 /* XCTestTests.swift in Sources */,
 				2250C7F521BAF7AD00E899E2 /* ModelActionTestCase.swift in Sources */,
 				22A4989C220DF3A2006A2137 /* PersonDetailItemTests.swift in Sources */,
 				22A498A8220F2321006A2137 /* RelationshipTests.swift in Sources */,

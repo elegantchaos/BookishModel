@@ -40,7 +40,17 @@ extension NSManagedObjectContext {
         return description
     }
     
+    /**
+     Return count of instances of a given entity type.
+     */
+    
+    public func countEntities<Entity: NSManagedObject>(type: Entity.Type, sorting: [NSSortDescriptor]? = nil) -> Int {
+        let request: NSFetchRequest<Entity> = fetcher()
+        request.sortDescriptors = sorting
+        return countAssertNoThrow(request)
+    }
 
+    
     /**
      Return every instance of a given entity type.
     */
@@ -72,6 +82,30 @@ extension NSManagedObjectContext {
         }
         
         return []
+        #endif
+    }
+
+    /**
+     Count, assuming that we won't throw.
+     
+     In debug, we use try! to deliberately crash if there was a throw.
+     In release, we check the result and return 0 if there was a throw.
+     
+     It's arguable whether this approach is the right way round, since it might mask a problem in release.
+     
+     However, there's an ulterior motive: it also avoids code coverage problems in tests. As long as
+     the tests are built for debug, this code won't have an un-tested paths.
+     */
+    
+    public func countAssertNoThrow<T>(_ request: NSFetchRequest<T>) -> Int where T : NSFetchRequestResult {
+        #if DEBUG
+        return try! count(for: request)
+        #else
+        if let count = try? count(for: request) {
+            return count
+        }
+        
+        return 0
         #endif
     }
 

@@ -8,38 +8,69 @@ import CoreData
 @testable import BookishModel
 
 class PersonDetailProviderTests: ModelTestCase {
-    func testProvider() {
-        let container = makeTestContainer()
-        let context = container.managedObjectContext
-        let person = Person(context: context)
+    var container: CollectionContainer!
+    var context: NSManagedObjectContext!
+    var person: Person!
+    
+    func makeTestProvider() -> DetailProvider {
+        container = makeTestContainer()
+        context = container.managedObjectContext
+        person = Person(context: context)
         let provider = person.getProvider()
+        return provider
+    }
+    
+    func testProvider() {
+        let provider = makeTestProvider()
         XCTAssertTrue(provider is PersonDetailProvider)
     }
 
     func testRowCount() {
-        let container = makeTestContainer()
-        let context = container.managedObjectContext
-        let source = PersonDetailProvider()
+        let provider = makeTestProvider()
+        provider.filter(for: [], editing: false, context: TestContext())
+        XCTAssertEqual(provider.itemCount(for: 0), 0)
+        XCTAssertEqual(provider.sectionCount, 1)
         
-        source.filter(for: [], editing: false, context: TestContext())
-        XCTAssertEqual(source.itemCount(for: 0), 0)
-        XCTAssertEqual(source.sectionCount, 1)
-        
-        let person = Person(context: context)
         person.name = "Test"
         person.notes = "Some notes"
         
-        source.filter(for: [person], editing: false, context: TestContext())
-        XCTAssertEqual(source.itemCount(for: 0), 0)
-        XCTAssertEqual(source.sectionCount, 1)
+        provider.filter(for: [person], editing: false, context: TestContext())
+        XCTAssertEqual(provider.itemCount(for: 0), 0)
+        XCTAssertEqual(provider.sectionCount, 1)
 
         let book = Book(context: context)
         let relationship = person.relationship(as: "author")
         relationship.addToBooks(book)
         
-        source.filter(for: [person], editing: false, context: TestContext())
-        XCTAssertEqual(source.sectionCount, 2)
-        XCTAssertEqual(source.itemCount(for: 1), 1)
+        provider.filter(for: [person], editing: false, context: TestContext())
+        XCTAssertEqual(provider.sectionCount, 2)
+        XCTAssertEqual(provider.itemCount(for: 1), 1)
     }
 
+    func testSectionTitle() {
+        let provider = makeTestProvider()
+        
+        let book = Book(context: context)
+        let relationship = person.relationship(as: "author")
+        relationship.addToBooks(book)
+        
+        provider.filter(for: [person], editing: false, context: TestContext())
+        XCTAssertEqual(provider.sectionTitle(for: 0), "")
+        XCTAssertEqual(provider.sectionTitle(for: 1), "author")
+    }
+    
+    func testInfo() {
+        let provider = makeTestProvider()
+        
+        let book = Book(context: context)
+        let relationship = person.relationship(as: "author")
+        relationship.addToBooks(book)
+        
+        provider.filter(for: [person], editing: false, context: TestContext())
+//        let info1 = provider.info(section: 0, row: 0)
+//        XCTAssertTrue(info1 is SimpleDetailItem)
+
+        let info2 = provider.info(section: 1, row: 0)
+        XCTAssertTrue(info2 is PersonBookDetailItem)
+    }
 }

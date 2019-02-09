@@ -36,7 +36,7 @@ class RoleTests: ModelTestCase {
     }
     
     func testDefaultRoleNames() {
-        let names = Role.StandardNames.names
+        let names = Role.StandardName.allNames
         XCTAssertTrue(names.count > 0)
     }
 

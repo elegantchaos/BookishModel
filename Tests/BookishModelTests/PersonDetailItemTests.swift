@@ -33,4 +33,5 @@ class PersonDetailItemTests: ModelTestCase {
         let item = PersonDetailItem(absolute: 0, index: 1, source: DetailProvider(template: []))
         XCTAssertEqual(item.heading, "Person")
     }
+    
 }

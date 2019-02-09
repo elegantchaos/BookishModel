@@ -8,22 +8,16 @@ import CoreData
 public class Person: ModelObject {
     
     public override class var categoryLabel: String { return "People" }
-
-//    public class func named(_ name: String, in context: NSManagedObjectContext, creating: Bool = false) -> Person? {
-//        let request: NSFetchRequest<Person> = Person.fetcher(in: context)
-//        request.predicate = NSPredicate(format: "name = \"\(name)\"")
-//        if let results = try? context.fetch(request), results.count > 0 {
-//            return results[0]
-//        }
-//        
-//        if creating {
-//            let person = Person(context: context)
-//            person.name = name
-//            return person
-//        }
-//        return nil
-//    }
     
+    /**
+     If there's already an entry for a given role name for this person, return it.
+     If not, create it.
+     */
+
+    public func relationship(as roleName: Role.StandardName) -> Relationship {
+        return relationship(as: roleName.rawValue)
+    }
+
     /**
      If there's already an entry for a given role name for this person, return it.
      If not, create it.
