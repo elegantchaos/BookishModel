@@ -10,6 +10,8 @@ let controlColumnID = "control"
 let roleColumnID = "role"
 
 public class DetailItem {
+    public typealias ActionSpec = (String, String, Any)
+    
     public let kind: String
     public let absolute: Int
     public let index: Int
@@ -18,6 +20,10 @@ public class DetailItem {
     
     public var heading: String {
         return "<unknown>"
+    }
+    
+    public var removeAction: ActionSpec? {
+        return nil
     }
     
     public init(kind: String, absolute: Int, index: Int, placeholder: Bool, source: DetailProvider) {

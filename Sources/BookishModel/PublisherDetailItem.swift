@@ -16,4 +16,13 @@ public class PublisherDetailItem: DetailItem {
     public override var heading: String {
         return "Publisher"
     }
+    
+    public override var removeAction: DetailItem.ActionSpec? {
+        if let publisher = publisher {
+            return ( PublisherAction.publisherKey, "button.RemovePublisher", publisher )
+        } else {
+            return super.removeAction
+        }
+    }
+    
 }

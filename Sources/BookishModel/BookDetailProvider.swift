@@ -16,7 +16,7 @@ public class BookDetailProvider: DetailProvider {
     private var publishers = [Publisher]()
     private var series = [Series]()
     
-    init() {
+    public init() {
         super.init(template: DetailSpec.standardDetails)
     }
     

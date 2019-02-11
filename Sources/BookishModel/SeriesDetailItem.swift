@@ -16,4 +16,13 @@ public class SeriesDetailItem: DetailItem {
     public override var heading: String {
         return "Series"
     }
+    
+    public override var removeAction: DetailItem.ActionSpec? {
+        if let series = series {
+            return ( SeriesAction.seriesKey, "button.RemoveSeries", series )
+        } else {
+            return super.removeAction
+        }
+        
+    }
 }
