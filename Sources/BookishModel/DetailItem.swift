@@ -6,9 +6,12 @@
 import Foundation
 
 public class DetailItem {
+    public typealias ActionSpec = (String, String, Any)
+
     static let headingColumnID = "heading"
     static let controlColumnID = "control"
     static let unknownHeadingID = "<unknown>"
+    
 
     public let kind: String
     public let absolute: Int
@@ -18,6 +21,10 @@ public class DetailItem {
     
     public var heading: String {
         return DetailItem.unknownHeadingID
+    }
+    
+    public var removeAction: ActionSpec? {
+        return nil
     }
     
     public init(kind: String, absolute: Int, index: Int, placeholder: Bool, source: DetailProvider) {

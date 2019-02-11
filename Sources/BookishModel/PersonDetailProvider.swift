@@ -65,7 +65,7 @@ class PersonDetailProvider: DetailProvider {
             sortedRoles.removeAll()
             for relationship in relationships {
                 if let role = relationship.role,
-                    let books = relationship.books?.sortedArray(using: context.bookIndexSorting) as? [Book] {
+                    let books = relationship.books?.sortedArray(using: context.bookSorting) as? [Book] {
                     sortedRoles.append(SortedRole(role: role, books: books))
                 }
             }

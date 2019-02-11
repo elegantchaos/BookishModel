@@ -25,7 +25,7 @@ class PublisherDetailProvider: DetailProvider {
     }
     
     override func filter(for selection: [ModelObject], editing: Bool, context: DetailContext) {
-        if let series = selection.first as? Publisher, let books = series.books?.sortedArray(using: context.bookIndexSorting) as? [Book] {
+        if let series = selection.first as? Publisher, let books = series.books?.sortedArray(using: context.bookSorting) as? [Book] {
             sortedBooks.removeAll()
             sortedBooks.append(contentsOf: books)
         }

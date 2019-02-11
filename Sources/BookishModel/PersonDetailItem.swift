@@ -29,4 +29,13 @@ public class PersonDetailItem: DetailItem {
         }
     }
     
+    public override var removeAction: DetailItem.ActionSpec? {
+        if let relationship = relationship {
+            return ( PersonAction.relationshipKey, "button.RemoveRelationship", relationship )
+        } else {
+            return super.removeAction
+        }
+    }
+
+    
 }
