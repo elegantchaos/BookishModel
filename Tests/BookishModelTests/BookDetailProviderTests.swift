@@ -8,8 +8,8 @@ import CoreData
 @testable import BookishModel
 
 class TestContext: DetailContext {
+    var bookSorting: [NSSortDescriptor] = []
     var relationshipSorting: [NSSortDescriptor] = []
-    var bookIndexSorting: [NSSortDescriptor] = []
     var entrySorting: [NSSortDescriptor] = []
 }
 
@@ -60,9 +60,6 @@ class BookDetailProviderTests: ModelTestCase {
 
         source.filter(for: [], editing: false, context: TestContext())
         XCTAssertEqual(source.itemCount(for: 0), 0)
-
-//        source.filter(for: [], editing: true)
-//        XCTAssertEqual(source.rows, DetailSpec.standardDetails.count)
 
         let book = Book(context: context)
         book.isbn = "12343"
