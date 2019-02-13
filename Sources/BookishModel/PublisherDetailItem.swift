@@ -6,11 +6,10 @@
 import Foundation
 
 public class PublisherDetailItem: DetailItem {
-    public let publisher: Publisher?
+    public var publisher: Publisher? { return object as? Publisher }
     
     public init(publisher: Publisher? = nil, absolute: Int, index: Int, source: DetailProvider) {
-        self.publisher = publisher
-        super.init(kind: "publisher", absolute: absolute, index: index, placeholder: publisher == nil, source: source)
+        super.init(kind: "publisher", absolute: absolute, index: index, placeholder: publisher == nil, source: source, object: publisher)
     }
     
     public override var heading: String {

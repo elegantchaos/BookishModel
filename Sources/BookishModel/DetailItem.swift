@@ -18,6 +18,7 @@ public class DetailItem {
     public let index: Int
     public let placeholder: Bool
     public let source: DetailProvider
+    public let object: ModelObject?
     
     public var heading: String {
         return DetailItem.unknownHeadingID
@@ -27,12 +28,13 @@ public class DetailItem {
         return nil
     }
     
-    public init(kind: String, absolute: Int, index: Int, placeholder: Bool, source: DetailProvider) {
+    public init(kind: String, absolute: Int, index: Int, placeholder: Bool, source: DetailProvider, object: ModelObject? = nil) {
         self.kind = kind
         self.absolute = absolute
         self.index = index
         self.placeholder = placeholder
         self.source = source
+        self.object = object
     }
     
     public func viewID(for column: String) -> String { // TODO: move out of model?

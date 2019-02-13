@@ -6,11 +6,10 @@
 import Foundation
 
 public class SeriesDetailItem: DetailItem {
-    public let series: Series?
+    public var series: Series? { return object as? Series }
     
     public init(series: Series? = nil, absolute: Int, index: Int, source: DetailProvider) {
-        self.series = series
-        super.init(kind: "series", absolute: absolute, index: index, placeholder: series == nil, source: source)
+        super.init(kind: "series", absolute: absolute, index: index, placeholder: series == nil, source: source, object: series)
     }
     
     public override var heading: String {

@@ -8,11 +8,10 @@ import Foundation
 public class PersonDetailItem: DetailItem {
     static let roleColumnID = "role"
 
-    public let relationship: Relationship?
+    public var relationship: Relationship? { return object as? Relationship }
     
     public init(relationship: Relationship? = nil, absolute: Int, index: Int, source: DetailProvider) {
-        self.relationship = relationship
-        super.init(kind: "person", absolute: absolute, index: index, placeholder: relationship == nil, source: source)
+        super.init(kind: "person", absolute: absolute, index: index, placeholder: relationship == nil, source: source, object: relationship)
     }
     
     public override var heading: String {
