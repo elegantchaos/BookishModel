@@ -37,7 +37,7 @@ import CoreData
             }
             
             if !fm.fileExists(atPath: url.path) && ((mode == .sampleData) || (mode == .replaceWithSampleData)) {
-                let bundle = Bundle.init(for: type(of: self))
+                let bundle = Bundle.init(for: CollectionContainer.self)
                 if let sample = bundle.url(forResource: "Sample", withExtension: "bookish") {
                     do {
                         try? fm.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
