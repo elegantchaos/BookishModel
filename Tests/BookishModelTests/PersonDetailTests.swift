@@ -73,4 +73,24 @@ class PersonDetailProviderTests: ModelTestCase {
         let info2 = provider.info(section: 1, row: 0)
         XCTAssertTrue(info2 is PersonBookDetailItem)
     }
+    
+    func testRemoveAction() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let relationship = Relationship(context: context)
+        let item = PersonDetailItem(relationship: relationship, absolute: 0, index: 0, source: BookDetailProvider())
+        if let (key, action, object) = item.removeAction {
+            XCTAssertEqual(key, PersonAction.relationshipKey)
+            XCTAssertEqual(action, "button.RemoveRelationship")
+            XCTAssertEqual(object as? Relationship, relationship)
+        } else {
+            XCTFail()
+        }
+    }
+
+    func testRemoveActionNil() {
+        let item = PersonDetailItem(relationship: nil, absolute: 0, index: 0, source: BookDetailProvider())
+        XCTAssertNil(item.removeAction)
+    }
+
 }

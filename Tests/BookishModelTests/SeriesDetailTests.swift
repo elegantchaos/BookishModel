@@ -41,4 +41,22 @@ class SeriesDetailProviderTests: ModelTestCase {
         XCTAssertEqual(source.sectionCount, 1)
     }
 
+    func testRemoveAction() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let series = Series(context: context)
+        let item = SeriesDetailItem(series: series, absolute: 0, index: 0, source: BookDetailProvider())
+        if let (key, action, object) = item.removeAction {
+            XCTAssertEqual(key, SeriesAction.seriesKey)
+            XCTAssertEqual(action, "button.RemoveSeries")
+            XCTAssertEqual(object as? Series, series)
+        } else {
+            XCTFail()
+        }
+    }
+    
+    func testRemoveActionNil() {
+        let item = SeriesDetailItem(series: nil, absolute: 0, index: 0, source: BookDetailProvider())
+        XCTAssertNil(item.removeAction)
+    }
 }

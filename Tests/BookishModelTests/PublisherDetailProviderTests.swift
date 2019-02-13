@@ -40,4 +40,25 @@ class PublisherDetailProviderTests: ModelTestCase {
         XCTAssertEqual(source.itemCount(for: 0), 1)
         XCTAssertEqual(source.sectionCount, 1)
     }
+    
+    func testRemoveAction() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let publisher = Publisher(context: context)
+        let item = PublisherDetailItem(publisher: publisher, absolute: 0, index: 0, source: BookDetailProvider())
+        if let (key, action, object) = item.removeAction {
+            XCTAssertEqual(key, PublisherAction.publisherKey)
+            XCTAssertEqual(action, "button.RemovePublisher")
+            XCTAssertEqual(object as? Publisher, publisher)
+        } else {
+            XCTFail()
+        }
+    }
+    
+    func testRemoveActionNil() {
+        let item = PublisherDetailItem(publisher: nil, absolute: 0, index: 0, source: BookDetailProvider())
+        XCTAssertNil(item.removeAction)
+    }
+
+    
    }

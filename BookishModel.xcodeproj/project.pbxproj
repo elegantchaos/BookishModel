@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2212376E220CA405006D4AA5 /* PersonDetailProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22123768220CA3EA006D4AA5 /* PersonDetailProviderTests.swift */; };
+		2212376E220CA405006D4AA5 /* PersonDetailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22123768220CA3EA006D4AA5 /* PersonDetailTests.swift */; };
 		2212376F220CA405006D4AA5 /* PublisherDetailProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2212376A220CA3F4006D4AA5 /* PublisherDetailProviderTests.swift */; };
-		22123770220CA405006D4AA5 /* SeriesDetailProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2212376C220CA401006D4AA5 /* SeriesDetailProviderTests.swift */; };
-		22123771220CA406006D4AA5 /* PersonDetailProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22123768220CA3EA006D4AA5 /* PersonDetailProviderTests.swift */; };
+		22123770220CA405006D4AA5 /* SeriesDetailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2212376C220CA401006D4AA5 /* SeriesDetailTests.swift */; };
+		22123771220CA406006D4AA5 /* PersonDetailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22123768220CA3EA006D4AA5 /* PersonDetailTests.swift */; };
 		22123772220CA406006D4AA5 /* PublisherDetailProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2212376A220CA3F4006D4AA5 /* PublisherDetailProviderTests.swift */; };
-		22123773220CA406006D4AA5 /* SeriesDetailProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2212376C220CA401006D4AA5 /* SeriesDetailProviderTests.swift */; };
+		22123773220CA406006D4AA5 /* SeriesDetailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2212376C220CA401006D4AA5 /* SeriesDetailTests.swift */; };
 		221C4B2D216BA8220086D56F /* PersonAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C4B2C216BA8220086D56F /* PersonAction.swift */; };
 		221C4B2E216BA8220086D56F /* PersonAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C4B2C216BA8220086D56F /* PersonAction.swift */; };
 		221ED50C216B79F100594714 /* DetailSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221ED50B216B79F100594714 /* DetailSpec.swift */; };
@@ -341,9 +341,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		22123768220CA3EA006D4AA5 /* PersonDetailProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailProviderTests.swift; sourceTree = "<group>"; };
+		22123768220CA3EA006D4AA5 /* PersonDetailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailTests.swift; sourceTree = "<group>"; };
 		2212376A220CA3F4006D4AA5 /* PublisherDetailProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherDetailProviderTests.swift; sourceTree = "<group>"; };
-		2212376C220CA401006D4AA5 /* SeriesDetailProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesDetailProviderTests.swift; sourceTree = "<group>"; };
+		2212376C220CA401006D4AA5 /* SeriesDetailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesDetailTests.swift; sourceTree = "<group>"; };
 		221C4B23216BA50C0086D56F /* BookAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookAction.swift; sourceTree = "<group>"; };
 		221C4B2C216BA8220086D56F /* PersonAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonAction.swift; sourceTree = "<group>"; };
 		221ED4E9216785BB00594714 /* BookishModelMac.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = BookishModelMac.xcconfig; sourceTree = "<group>"; };
@@ -529,33 +529,33 @@
 			isa = PBXGroup;
 			children = (
 				2250C7ED21BAF6B000E899E2 /* BookActionTests.swift */,
-				22A498AC220F2F9C006A2137 /* XCTestExtensions.swift */,
+				2250C80A21BE891D00E899E2 /* BookDetailProviderTests.swift */,
 				2250C7FC21BE85CD00E899E2 /* BookTests.swift */,
+				2250C80D21BE96F000E899E2 /* ChangeValueActionTests.swift */,
 				22A498A9220F28F2006A2137 /* CollectionContainerTests.swift */,
 				22A49895220DF035006A2137 /* DetailItemTests.swift */,
-				2250C80D21BE96F000E899E2 /* ChangeValueActionTests.swift */,
-				2250C80A21BE891D00E899E2 /* BookDetailProviderTests.swift */,
-				22123768220CA3EA006D4AA5 /* PersonDetailProviderTests.swift */,
-				22A4989D220DF5CD006A2137 /* IndexingTests.swift */,
 				22A498CC220F475C006A2137 /* ImporterTests.swift */,
-				2212376A220CA3F4006D4AA5 /* PublisherDetailProviderTests.swift */,
-				2212376C220CA401006D4AA5 /* SeriesDetailProviderTests.swift */,
+				22A4989D220DF5CD006A2137 /* IndexingTests.swift */,
 				224293C2212AE16300E70510 /* MiscModelTests.swift */,
-				22A498A0220DF877006A2137 /* ModelObjectTests.swift */,
 				2250C7F321BAF7AD00E899E2 /* ModelActionTestCase.swift */,
+				22A498A0220DF877006A2137 /* ModelObjectTests.swift */,
 				22EEF6BD21A6B761007FAD10 /* ModelTestCase.swift */,
 				2250C7F021BAF6B800E899E2 /* PersonActionTests.swift */,
-				2250C7FF21BE861A00E899E2 /* PersonTests.swift */,
 				22A4989A220DF3A2006A2137 /* PersonDetailItemTests.swift */,
-				22A498A6220F2321006A2137 /* RelationshipTests.swift */,
+				22123768220CA3EA006D4AA5 /* PersonDetailTests.swift */,
+				2250C7FF21BE861A00E899E2 /* PersonTests.swift */,
 				2250C7F921BAF86200E899E2 /* PublisherActionTests.swift */,
+				2212376A220CA3F4006D4AA5 /* PublisherDetailProviderTests.swift */,
 				2250C80421BE877E00E899E2 /* PublisherTests.swift */,
 				2250C7EA21BAB7D400E899E2 /* RegularExpressionTests.swift */,
+				22A498A6220F2321006A2137 /* RelationshipTests.swift */,
+				22D4A41E21BFF5B100427E35 /* Resources */,
 				2250C7CE21BAA2F600E899E2 /* RoleTests.swift */,
 				2250C7F621BAF85900E899E2 /* SeriesActionTests.swift */,
+				2212376C220CA401006D4AA5 /* SeriesDetailTests.swift */,
 				2250C75F21B94E0C00E899E2 /* SeriesScannerTests.swift */,
 				2250C80721BE881D00E899E2 /* SeriesTests.swift */,
-				22D4A41E21BFF5B100427E35 /* Resources */,
+				22A498AC220F2F9C006A2137 /* XCTestExtensions.swift */,
 			);
 			path = BookishModelTests;
 			sourceTree = "<group>";
@@ -1135,7 +1135,7 @@
 				2250C76221B94E0F00E899E2 /* SeriesScannerTests.swift in Sources */,
 				22A49896220DF035006A2137 /* DetailItemTests.swift in Sources */,
 				22A498CD220F475C006A2137 /* ImporterTests.swift in Sources */,
-				22123770220CA405006D4AA5 /* SeriesDetailProviderTests.swift in Sources */,
+				22123770220CA405006D4AA5 /* SeriesDetailTests.swift in Sources */,
 				224293D4212AE83C00E70510 /* MiscModelTests.swift in Sources */,
 				22A498A1220DF877006A2137 /* ModelObjectTests.swift in Sources */,
 				2250C7FA21BAF86200E899E2 /* PublisherActionTests.swift in Sources */,
@@ -1144,7 +1144,7 @@
 				22A4989E220DF5CD006A2137 /* IndexingTests.swift in Sources */,
 				2250C80021BE861A00E899E2 /* PersonTests.swift in Sources */,
 				2250C80521BE877E00E899E2 /* PublisherTests.swift in Sources */,
-				2212376E220CA405006D4AA5 /* PersonDetailProviderTests.swift in Sources */,
+				2212376E220CA405006D4AA5 /* PersonDetailTests.swift in Sources */,
 				2250C7F121BAF6B800E899E2 /* PersonActionTests.swift in Sources */,
 				2250C80B21BE891D00E899E2 /* BookDetailProviderTests.swift in Sources */,
 				2250C7EB21BAB7D400E899E2 /* RegularExpressionTests.swift in Sources */,
@@ -1215,7 +1215,7 @@
 				2250C76321B94E1000E899E2 /* SeriesScannerTests.swift in Sources */,
 				22A49899220DF33A006A2137 /* DetailItemTests.swift in Sources */,
 				22A498CE220F475C006A2137 /* ImporterTests.swift in Sources */,
-				22123773220CA406006D4AA5 /* SeriesDetailProviderTests.swift in Sources */,
+				22123773220CA406006D4AA5 /* SeriesDetailTests.swift in Sources */,
 				224293C3212AE16300E70510 /* MiscModelTests.swift in Sources */,
 				22A498A2220DF877006A2137 /* ModelObjectTests.swift in Sources */,
 				2250C7FB21BAF86200E899E2 /* PublisherActionTests.swift in Sources */,
@@ -1224,7 +1224,7 @@
 				22A4989F220DF5CD006A2137 /* IndexingTests.swift in Sources */,
 				2250C80121BE861A00E899E2 /* PersonTests.swift in Sources */,
 				2250C80621BE877E00E899E2 /* PublisherTests.swift in Sources */,
-				22123771220CA406006D4AA5 /* PersonDetailProviderTests.swift in Sources */,
+				22123771220CA406006D4AA5 /* PersonDetailTests.swift in Sources */,
 				2250C7F221BAF6B800E899E2 /* PersonActionTests.swift in Sources */,
 				2250C80C21BE891D00E899E2 /* BookDetailProviderTests.swift in Sources */,
 				2250C7EC21BAB7D400E899E2 /* RegularExpressionTests.swift in Sources */,
