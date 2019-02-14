@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2211A96F2215A7B0004B7589 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2211A9542215A7B0004B7589 /* StringExtensions.swift */; };
+		2211A9702215A7B0004B7589 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2211A9542215A7B0004B7589 /* StringExtensions.swift */; };
 		2212376E220CA405006D4AA5 /* PersonDetailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22123768220CA3EA006D4AA5 /* PersonDetailTests.swift */; };
 		2212376F220CA405006D4AA5 /* PublisherDetailProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2212376A220CA3F4006D4AA5 /* PublisherDetailProviderTests.swift */; };
 		22123770220CA405006D4AA5 /* SeriesDetailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2212376C220CA401006D4AA5 /* SeriesDetailTests.swift */; };
@@ -341,6 +343,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2211A9542215A7B0004B7589 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		22123768220CA3EA006D4AA5 /* PersonDetailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailTests.swift; sourceTree = "<group>"; };
 		2212376A220CA3F4006D4AA5 /* PublisherDetailProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherDetailProviderTests.swift; sourceTree = "<group>"; };
 		2212376C220CA401006D4AA5 /* SeriesDetailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesDetailTests.swift; sourceTree = "<group>"; };
@@ -585,6 +588,7 @@
 		2250C74921B94D5F00E899E2 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				2211A9542215A7B0004B7589 /* StringExtensions.swift */,
 				2250C75C21B94D9700E899E2 /* RegularExpressionExtensions.swift */,
 				2250C71721B7E15700E899E2 /* NSManagedObjectContextExtensions.swift */,
 				22A498A3220F1A02006A2137 /* NSManagedObjectExtensions.swift */,
@@ -1118,6 +1122,7 @@
 				223879BC220B3FFC0019F9EA /* PublisherDetailProvider.swift in Sources */,
 				22E47CC6216E31B700E43DBF /* BookAction.swift in Sources */,
 				224293E3212AF09D00E70510 /* Person.swift in Sources */,
+				2211A96F2215A7B0004B7589 /* StringExtensions.swift in Sources */,
 				2250C71F21B94CD800E899E2 /* SeriesScanner.swift in Sources */,
 				22A498A4220F1A02006A2137 /* NSManagedObjectExtensions.swift in Sources */,
 				22387993220B1D860019F9EA /* BookDetailProvider.swift in Sources */,
@@ -1198,6 +1203,7 @@
 				223879BD220B3FFC0019F9EA /* PublisherDetailProvider.swift in Sources */,
 				22E47CC7216E31BA00E43DBF /* BookAction.swift in Sources */,
 				224293E4212AF09E00E70510 /* Person.swift in Sources */,
+				2211A9702215A7B0004B7589 /* StringExtensions.swift in Sources */,
 				2250C72021B94CD800E899E2 /* SeriesScanner.swift in Sources */,
 				22A498A5220F1A02006A2137 /* NSManagedObjectExtensions.swift in Sources */,
 				22387994220B1D860019F9EA /* BookDetailProvider.swift in Sources */,

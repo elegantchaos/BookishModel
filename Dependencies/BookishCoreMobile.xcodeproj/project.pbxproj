@@ -2102,15 +2102,15 @@
       "OBJ_54" = {
          isa = "PBXGroup";
          children = (
+            "Logger::LoggerTestSupport::Product",
             "Actions::Actions::Product",
             "BookishCoreMobile::BookishCore::Product",
             "BookishCoreMobile::BookishCoreTests::Product",
-            "Actions::ActionsKit::Product",
             "Logger::LoggerKit::Product",
             "BookishCoreMobile::BookishCoreMobile::Product",
-            "JSONDump::JSONDump::Product",
             "Logger::Logger::Product",
-            "Logger::LoggerTestSupport::Product",
+            "JSONDump::JSONDump::Product",
+            "Actions::ActionsKit::Product",
             "BookishCoreMobile::BookishCoreMac::Product"
          );
          name = "Products";
