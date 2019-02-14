@@ -55,6 +55,14 @@ public class ModelObject: NSManagedObject {
     }
     
     /**
+     Entity name. The same as the name of the dynamic type.
+    */
+    
+    public class var entityName: String {
+        return String(describing: self)
+    }
+    
+    /**
      Label describing the category for the entity.
      Subclasses should override.
      */
@@ -78,6 +86,8 @@ public class ModelObject: NSManagedObject {
      Placeholder image name.
      */
     
-    public class var categoryPlaceholderName: String { return "\(self)Placeholder" }
+    public class var categoryPlaceholderName: String {
+        return "\(self)Placeholder"        
+    }
     
 }

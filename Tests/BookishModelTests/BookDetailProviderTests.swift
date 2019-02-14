@@ -25,15 +25,8 @@ class BookDetailProviderTests: ModelTestCase {
     func testDetailSpecDefaults() {
         let spec = DetailSpec(binding: "test")
         XCTAssertEqual(spec.binding, "test")
-        XCTAssertEqual(spec.label, "Test")
         XCTAssertEqual(spec.kind, DetailSpec.textKind)
         XCTAssertEqual(spec.editableKind, DetailSpec.textKind)
-    }
-
-    func testDetailSpecExplicitLabel() {
-        let spec = DetailSpec(binding: "test", label: "explicit")
-        XCTAssertEqual(spec.binding, "test")
-        XCTAssertEqual(spec.label, "explicit")
     }
 
     func testDetailSpecExplicitViewKind() {
