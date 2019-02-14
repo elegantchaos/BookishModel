@@ -41,8 +41,6 @@ Series.title = "Series";
 Series.label = "series";
 
 
-
-
 detail.notes.label = "notes";
 detail.format.label = "format";
 detail.identifier.label = "identifier";

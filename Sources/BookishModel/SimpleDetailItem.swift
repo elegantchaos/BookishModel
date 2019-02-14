@@ -15,6 +15,6 @@ public class SimpleDetailItem: DetailItem {
     }
 
     override public var heading: String {
-        return "detail.label.\(spec.binding)".localized
+        return "detail.\(spec.binding).label".localized
     }
 }
