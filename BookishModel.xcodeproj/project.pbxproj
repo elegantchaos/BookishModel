@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2211A96F2215A7B0004B7589 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2211A9542215A7B0004B7589 /* StringExtensions.swift */; };
 		2211A9702215A7B0004B7589 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2211A9542215A7B0004B7589 /* StringExtensions.swift */; };
+		2211A9722215C072004B7589 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2211A9712215C072004B7589 /* Localizable.strings */; };
+		2211A9732215C072004B7589 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2211A9712215C072004B7589 /* Localizable.strings */; };
 		2212376E220CA405006D4AA5 /* PersonDetailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22123768220CA3EA006D4AA5 /* PersonDetailTests.swift */; };
 		2212376F220CA405006D4AA5 /* PublisherDetailProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2212376A220CA3F4006D4AA5 /* PublisherDetailProviderTests.swift */; };
 		22123770220CA405006D4AA5 /* SeriesDetailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2212376C220CA401006D4AA5 /* SeriesDetailTests.swift */; };
@@ -344,6 +346,7 @@
 
 /* Begin PBXFileReference section */
 		2211A9542215A7B0004B7589 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		2211A9712215C072004B7589 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		22123768220CA3EA006D4AA5 /* PersonDetailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailTests.swift; sourceTree = "<group>"; };
 		2212376A220CA3F4006D4AA5 /* PublisherDetailProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherDetailProviderTests.swift; sourceTree = "<group>"; };
 		2212376C220CA401006D4AA5 /* SeriesDetailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesDetailTests.swift; sourceTree = "<group>"; };
@@ -612,6 +615,7 @@
 			isa = PBXGroup;
 			children = (
 				22A498C9220F3DD0006A2137 /* Sample.bookish */,
+				2211A9712215C072004B7589 /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1050,6 +1054,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22A498CA220F3DD0006A2137 /* Sample.bookish in Resources */,
+				2211A9722215C072004B7589 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1069,6 +1074,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22A498CB220F3DD0006A2137 /* Sample.bookish in Resources */,
+				2211A9732215C072004B7589 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

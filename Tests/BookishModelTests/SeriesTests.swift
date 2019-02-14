@@ -59,7 +59,7 @@ class SeriesTests: ModelTestCase {
     }
 
     func testCategoryLabel() {
-        XCTAssertEqual(Series.categoryLabel, "label.Series")
+        XCTAssertEqual(Series.entityLabel, "label.Series")
     }
     
     func testSeriesEntryIdentifier() {

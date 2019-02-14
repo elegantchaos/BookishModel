@@ -1,0 +1,59 @@
+/* 
+  Localizable.strings
+  BookishModel
+
+  Created by Sam Deane on 14/02/2019.
+  Copyright © 2019 Elegant Chaos Limited. All rights reserved.
+*/
+
+
+Book.count.none = "no books";
+Book.count.singular = "1 book";
+Book.count.plural = "{count} books";
+Book.selected.none = "no books selected";
+Book.selected.singular = "no books selected";
+Book.selected.plural = "{selected} of {count} books selected";
+Book.selected.all = "{count} books selected";
+Book.search.none = "no books to search";
+Book.search.singular = "search 1 book";
+Book.search.plural = "search {count} books";
+Book.title = "Books";
+Book.label = "books";
+
+Person.count.none = "no people";
+Person.count.singular = "1 person";
+Person.count.plural = "{count} people";
+Person.title = "People";
+Person.label = "people";
+
+Publisher.count.none = "no publishers";
+Publisher.count.singular = "1 publisher";
+Publisher.count.plural = "{count} publishers";
+Publisher.title = "Publisher";
+Publisher.label = "publisher";
+
+Series.count.none = "no series";
+Series.count.singular = "1 series";
+Series.count.plural = "{count} series";
+Series.singular = "series";
+Series.plural = "series";
+Series.title = "Series";
+Series.label = "series";
+
+
+
+
+detail.notes.label = "notes";
+detail.format.label = "format";
+detail.identifier.label = "identifier";
+detail.isbn.label = "isbn";
+detail.asin.label = "asin";
+detail.ean.label = "ean";
+detail.classification.label = "classification";
+detail.published.label = "published";
+detail.added.label = "added";
+detail.importDate.label = "imported";
+detail.dimensions.label = "dimensions";
+detail.pages.label = "pages";
+detail.importRaw.label = "import (debug)";
+detail.uuid.label = "uuid (debug)";

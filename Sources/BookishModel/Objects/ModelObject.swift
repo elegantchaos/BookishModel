@@ -67,9 +67,9 @@ public class ModelObject: NSManagedObject {
      Subclasses should override.
      */
     
-    public class var categoryLabel: String {
+    public class var entityLabel: String {
         let entityName = String(describing: self)
-        return "label.\(entityName)".localized
+        return "\(entityName).label".localized
     }
 
     /**
@@ -77,17 +77,36 @@ public class ModelObject: NSManagedObject {
      Subclasses should override.
      */
     
-    public class var categoryTitle: String {
+    public class var entityTitle: String {
         let entityName = String(describing: self)
-        return "title.\(entityName)".localized
+        return "\(entityName).title".localized
     }
 
     /**
      Placeholder image name.
      */
     
-    public class var categoryPlaceholderName: String {
-        return "\(self)Placeholder"        
+    public class var entityPlaceholder: String {
+        return "\(self)Placeholder"
     }
     
+    /**
+     Return a count string for the entity. The exact text is pulled from the translation,
+     but is generally of the form "x entit(y/ies)", or "no entities".
+    */
+    
+    public class func entityCount(_ count: Int, selected: Int = 0, prefix: String = "count") -> String {
+        var key = "\(self).\(prefix)."
+        if count > 0 && count == selected {
+            key += "all"
+        } else {
+            switch count {
+                case 0: key += "none"
+                case 1: key += "singular"
+                default: key += "plural"
+            }
+        }
+        
+        return key.localized(with: ["count": count, "selected": selected])
+    }
 }
