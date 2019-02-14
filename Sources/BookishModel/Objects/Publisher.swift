@@ -7,8 +7,6 @@ import CoreData
 
 public class Publisher: ModelObject {
     
-    public override class var categoryLabel: String { return "Publishers" }
-
 //    public class func named(_ named: String, in context: NSManagedObjectContext) -> Publisher {
 //        return self.named(named, in: context, createIfMissing: true)!
 //    }

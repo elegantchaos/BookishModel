@@ -13,7 +13,7 @@ public class SeriesDetailItem: DetailItem {
     }
     
     public override var heading: String {
-        return "Series"
+        return Series.categoryLabel
     }
     
     public override var removeAction: DetailItem.ActionSpec? {

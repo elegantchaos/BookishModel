@@ -7,8 +7,6 @@ import CoreData
 
 public class Person: ModelObject {
     
-    public override class var categoryLabel: String { return "People" }
-    
     /**
      If there's already an entry for a given role name for this person, return it.
      If not, create it.

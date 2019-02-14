@@ -13,7 +13,7 @@ public class PublisherDetailItem: DetailItem {
     }
     
     public override var heading: String {
-        return "Publisher"
+        return Publisher.categoryLabel
     }
     
     public override var removeAction: DetailItem.ActionSpec? {

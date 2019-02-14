@@ -59,8 +59,21 @@ public class ModelObject: NSManagedObject {
      Subclasses should override.
      */
     
-    public class var categoryLabel: String { return "unknown" }
+    public class var categoryLabel: String {
+        let entityName = String(describing: type(of: self as Any))
+        return "label.\(entityName)".localized
+    }
+
+    /**
+     Title describing the category for the entity.
+     Subclasses should override.
+     */
     
+    public class var categoryTitle: String {
+        let entityName = String(describing: type(of: self as Any))
+        return "title.\(entityName)".localized
+    }
+
     /**
      Placeholder image name.
      */

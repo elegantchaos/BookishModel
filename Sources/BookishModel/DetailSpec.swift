@@ -8,7 +8,6 @@ import Foundation
 public final class DetailSpec {
     
     public let binding: String
-    public let label: String
     public let kind: String
     public let editableKind: String
     
@@ -18,9 +17,8 @@ public final class DetailSpec {
     public static let editableDateKind = "editableDate"
     public static let editableDimensionsKind = "editableDimensions"
     
-    public init(binding: String, label: String? = nil, viewAs: String = "text", editAs: String? = nil) {
+    public init(binding: String, viewAs: String = "text", editAs: String? = nil) {
         self.binding = binding
-        self.label = label ?? binding.capitalized
         self.kind = viewAs
         self.editableKind = editAs ?? viewAs
     }
@@ -30,14 +28,14 @@ public final class DetailSpec {
             DetailSpec(binding: "notes"),
             DetailSpec(binding: "format"),
             DetailSpec(binding: "identifier", viewAs: textKind, editAs: hiddenKind),
-            DetailSpec(binding: "isbn", label: "ISBN", viewAs: hiddenKind, editAs: textKind),
-            DetailSpec(binding: "asin", label:"ASIN", viewAs: hiddenKind, editAs: textKind),
-            DetailSpec(binding: "ean", label: "EAN", viewAs: hiddenKind, editAs: textKind),
+            DetailSpec(binding: "isbn", viewAs: hiddenKind, editAs: textKind),
+            DetailSpec(binding: "asin", viewAs: hiddenKind, editAs: textKind),
+            DetailSpec(binding: "ean", viewAs: hiddenKind, editAs: textKind),
             DetailSpec(binding: "classification"),
             DetailSpec(binding: "published", viewAs: dateKind, editAs: editableDateKind),
             DetailSpec(binding: "added", viewAs: dateKind),
             DetailSpec(binding: "modified", viewAs: dateKind),
-            DetailSpec(binding: "importDate", label: "Imported", viewAs: dateKind, editAs: hiddenKind),
+            DetailSpec(binding: "importDate", viewAs: dateKind, editAs: hiddenKind),
             DetailSpec(binding: "dimensions", viewAs: textKind, editAs: editableDimensionsKind),
             DetailSpec(binding: "pages")
         ]
@@ -45,7 +43,7 @@ public final class DetailSpec {
         #if DEBUG
         details.append(contentsOf: [
             DetailSpec(binding: "uuid", viewAs: textKind),
-            DetailSpec(binding: "importRaw", label: "Raw (Debug)", viewAs: hiddenKind, editAs: textKind),
+            DetailSpec(binding: "importRaw", viewAs: hiddenKind, editAs: textKind),
         ])
         #endif
         
