@@ -49,9 +49,13 @@ class ModelObjectTests: ModelTestCase {
     }
 
     func testCategoryLabel() {
-        XCTAssertEqual(ModelObject.categoryLabel, "unknown")
+        XCTAssertEqual(ModelObject.categoryLabel, "label.ModelObject")
     }
-    
+
+    func testCategoryTitle() {
+        XCTAssertEqual(ModelObject.categoryTitle, "title.ModelObject")
+    }
+
     func testCategoryPlaceholderName() {
         XCTAssertEqual(ModelObject.categoryPlaceholderName, "ModelObjectPlaceholder")
     }

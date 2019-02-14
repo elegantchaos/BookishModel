@@ -195,7 +195,7 @@ class BookDetailProviderTests: ModelTestCase {
         source.filter(for: [book1, book2], editing: false, context: TestContext())
         let row = source.info(section: 0, row: 0) as? PublisherDetailItem
         XCTAssertEqual(row!.publisher, publisher1)
-        XCTAssertEqual(row?.heading, "Publisher")
+        XCTAssertEqual(row?.heading, "label.Publisher")
     }
   
     func testDifferentPublishers() {
@@ -230,7 +230,7 @@ class BookDetailProviderTests: ModelTestCase {
         let row = source.info(section: 0, row: 0) as? SeriesDetailItem
         XCTAssertEqual(row!.series, series)
         
-        XCTAssertEqual(row?.heading, "Series")
+        XCTAssertEqual(row?.heading, "label.Series")
     }
     
     func testDetailAccess() {
@@ -243,7 +243,7 @@ class BookDetailProviderTests: ModelTestCase {
         source.filter(for: [book], editing: false, context: TestContext())
         let row = source.info(section: 0, row: 0) as? SimpleDetailItem
         XCTAssertEqual(row!.spec.binding, "identifier")
-        XCTAssertEqual(row!.heading, "Identifier")
+        XCTAssertEqual(row!.heading, "detail.label.identifier")
     }
 
     func testDetailAccessEditing() {
@@ -255,7 +255,7 @@ class BookDetailProviderTests: ModelTestCase {
         source.filter(for: [book], editing: true, context: TestContext())
         let row = source.info(section: 0, row: 3) as? SimpleDetailItem
         XCTAssertEqual(row?.spec.binding, "notes")
-        XCTAssertEqual(row?.heading, "Notes")
+        XCTAssertEqual(row?.heading, "detail.label.notes")
     }
 
     func testInsertRelationship()
