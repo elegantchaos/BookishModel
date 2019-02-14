@@ -60,7 +60,7 @@ public class ModelObject: NSManagedObject {
      */
     
     public class var categoryLabel: String {
-        let entityName = String(describing: type(of: self as Any))
+        let entityName = String(describing: self)
         return "label.\(entityName)".localized
     }
 
@@ -70,7 +70,7 @@ public class ModelObject: NSManagedObject {
      */
     
     public class var categoryTitle: String {
-        let entityName = String(describing: type(of: self as Any))
+        let entityName = String(describing: self)
         return "title.\(entityName)".localized
     }
 
