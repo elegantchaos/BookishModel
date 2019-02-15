@@ -14,7 +14,7 @@ public class PersonBookDetailItem: DetailItem {
     }
 }
 
-class PersonDetailProvider: DetailProvider {
+public class PersonDetailProvider: DetailProvider {
     
     struct SortedRole {
         let role: Role
@@ -23,11 +23,11 @@ class PersonDetailProvider: DetailProvider {
     
     var sortedRoles = [SortedRole]()
     
-    override var sectionCount: Int {
+    public override var sectionCount: Int {
         return sortedRoles.count + super.sectionCount
     }
     
-    override func sectionTitle(for section: Int) -> String {
+    public override func sectionTitle(for section: Int) -> String {
         if section == 0 {
             return super.sectionTitle(for: section)
         } else {
@@ -35,7 +35,7 @@ class PersonDetailProvider: DetailProvider {
         }
     }
     
-    override func itemCount(for section: Int) -> Int {
+    public override func itemCount(for section: Int) -> Int {
         if section == 0 {
             return super.itemCount(for: section)
         } else {
@@ -43,7 +43,7 @@ class PersonDetailProvider: DetailProvider {
         }
     }
     
-    override func info(section: Int, row: Int) -> DetailItem {
+    public override func info(section: Int, row: Int) -> DetailItem {
         if section == 0 {
             return super.info(section: section, row: row)
         } else {
@@ -53,7 +53,7 @@ class PersonDetailProvider: DetailProvider {
         }
     }
     
-    override func filter(for selection: [ModelObject], editing: Bool, context: DetailContext) {
+    public override func filter(for selection: [ModelObject], editing: Bool, context: DetailContext) {
         super.filter(for: selection, editing: editing, context: context)
         if let person = selection.first as? Person, let relationships = person.relationships?.sortedArray(using: context.relationshipSorting) as? [Relationship] {
             sortedRoles.removeAll()
