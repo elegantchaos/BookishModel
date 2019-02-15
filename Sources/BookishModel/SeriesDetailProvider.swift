@@ -5,12 +5,6 @@
 
 import Foundation
 
-extension Series: DetailOwner {
-    public func getProvider() -> DetailProvider {
-        return SeriesDetailProvider()
-    }
-}
-
 class SeriesDetailProvider: DetailProvider {
     var sortedEntries = [SeriesEntry]()
     

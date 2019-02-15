@@ -5,12 +5,6 @@
 
 import Foundation
 
-extension Book: DetailOwner {
-    public func getProvider() -> DetailProvider {
-        return BookDetailProvider()
-    }
-}
-
 public class BookDetailProvider: DetailProvider {
     private var relationships = [Relationship]()
     private var publishers = [Publisher]()

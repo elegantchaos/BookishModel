@@ -6,7 +6,10 @@
 import CoreData
 
 public class Publisher: ModelObject {
-    
+    override public class func getProvider() -> DetailProvider {
+        return PublisherDetailProvider()
+    }
+
 //    public class func named(_ named: String, in context: NSManagedObjectContext) -> Publisher {
 //        return self.named(named, in: context, createIfMissing: true)!
 //    }

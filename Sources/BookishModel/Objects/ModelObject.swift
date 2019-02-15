@@ -8,7 +8,7 @@ import Logger
 
 let modelObjectChannel = Logger("com.elegantchaos.bookish.model.ModelObject")
 
-public class ModelObject: NSManagedObject {
+public class ModelObject: NSManagedObject, DetailOwner {
     static let missingUUID = "missing-identifier" as NSString
 
     /**
@@ -109,4 +109,9 @@ public class ModelObject: NSManagedObject {
         
         return key.localized(with: ["count": count, "selected": selected])
     }
+
+    public class func getProvider() -> DetailProvider {
+        return DetailProvider()
+    }
+
 }

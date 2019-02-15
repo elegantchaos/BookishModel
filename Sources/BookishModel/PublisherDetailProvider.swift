@@ -5,12 +5,6 @@
 
 import Foundation
 
-extension Publisher: DetailOwner {
-    public func getProvider() -> DetailProvider {
-        return PublisherDetailProvider()
-    }
-}
-
 class PublisherDetailProvider: DetailProvider {
     var sortedBooks = [Book]()
 

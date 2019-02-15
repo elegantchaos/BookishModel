@@ -5,12 +5,6 @@
 
 import CoreData
 
-extension Person: DetailOwner {
-    public func getProvider() -> DetailProvider {
-        return PersonDetailProvider()
-    }
-}
-
 public class PersonBookDetailItem: DetailItem {
     public let book: Book?
     

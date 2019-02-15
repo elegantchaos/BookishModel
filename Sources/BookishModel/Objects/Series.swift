@@ -7,6 +7,10 @@ import CoreData
 
 public class Series: ModelObject {
     
+    override public class func getProvider() -> DetailProvider {
+        return SeriesDetailProvider()
+    }
+
 //    public class func named(_ named: String, in context: NSManagedObjectContext) -> Series {
 //        return self.named(named, in: context, createIfMissing: true)!
 //    }

@@ -12,7 +12,14 @@ public protocol DetailContext {
 }
 
 public protocol DetailOwner {
+    static func getProvider() -> DetailProvider
     func getProvider() -> DetailProvider
+}
+
+extension DetailOwner {
+    public func getProvider() -> DetailProvider {
+        return type(of: self).getProvider()
+    }
 }
 
 public class DetailProvider {

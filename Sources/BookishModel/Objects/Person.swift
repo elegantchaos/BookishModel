@@ -6,7 +6,11 @@
 import CoreData
 
 public class Person: ModelObject {
-    
+
+    override public class func getProvider() -> DetailProvider {
+        return PersonDetailProvider()
+    }
+
     /**
      If there's already an entry for a given role name for this person, return it.
      If not, create it.
@@ -59,5 +63,6 @@ public class Person: ModelObject {
     @objc dynamic var sectionName: String? {
         return Indexing.sectionName(for: sortName)
     }
+
 
 }

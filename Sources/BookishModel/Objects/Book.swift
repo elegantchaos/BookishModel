@@ -19,6 +19,10 @@ public class Book: ModelObject {
         modified = Date()
     }
 
+    override public class func getProvider() -> DetailProvider {
+        return BookDetailProvider()
+    }
+
     public var roles: Set<Role> {
         var result = Set<Role>()
         if let people = self.relationships as? Set<Relationship> {
