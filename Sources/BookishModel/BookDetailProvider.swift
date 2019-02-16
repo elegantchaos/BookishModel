@@ -14,7 +14,7 @@ public class BookDetailProvider: DetailProvider {
         super.init(template: DetailSpec.standardDetails)
     }
     
-    override public func filter(for selection: [ModelObject], editing: Bool, context: DetailContext) {
+    override public func filter(for selection: [ModelObject], editing: Bool, combining: Bool = false, context: DetailContext) {
         if let books = selection as? [Book] {
             let collectedRelationships = MultipleValues.extract(from: books) { book -> Set<Relationship>? in
                 return book.relationships as? Set<Relationship>
@@ -38,7 +38,7 @@ public class BookDetailProvider: DetailProvider {
             series = collectedSeries.common.sorted(by: {($0.name ?? "") < ($1.name ?? "")})
         }
         
-        super.filter(for: selection, editing: editing, context: context)
+        super.filter(for: selection, editing: editing, combining: combining, context: context)
     }
     
     override public var subtitleProperty: String? {

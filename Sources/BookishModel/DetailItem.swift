@@ -10,6 +10,7 @@ public class DetailItem {
 
     static let headingColumnID = "heading"
     static let controlColumnID = "control"
+    static let detailColumnID = "detail"
     static let unknownHeadingID = "<unknown>"
     
 
@@ -47,6 +48,17 @@ public class DetailItem {
             
         default:
             return kind
+        }
+    }
+}
+
+public class SectionDetailItem: DetailItem {
+    public override func viewID(for column: String) -> String {
+        switch column {
+        case DetailItem.detailColumnID:
+            return "section"
+        default:
+            return super.viewID(for: column)
         }
     }
 }

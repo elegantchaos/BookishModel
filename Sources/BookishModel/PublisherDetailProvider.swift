@@ -18,13 +18,13 @@ class PublisherDetailProvider: DetailProvider {
         }
     }
     
-    override func filter(for selection: [ModelObject], editing: Bool, context: DetailContext) {
+    override func filter(for selection: [ModelObject], editing: Bool, combining: Bool = false, context: DetailContext) {
         if let series = selection.first as? Publisher, let books = series.books?.sortedArray(using: context.bookSorting) as? [Book] {
             sortedBooks.removeAll()
             sortedBooks.append(contentsOf: books)
         }
 
-        super.filter(for: selection, editing: editing, context: context)
+        super.filter(for: selection, editing: editing, combining: combining, context: context)
     }
 }
 

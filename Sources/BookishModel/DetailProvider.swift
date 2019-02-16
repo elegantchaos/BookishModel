@@ -27,7 +27,8 @@ public class DetailProvider {
     internal var details: [DetailSpec] = []
     internal let template: [DetailSpec]
     internal var items = [DetailItem]()
-
+    internal var combinedItems = [DetailItem]()
+    
     public init(template: [DetailSpec] = []) {
         self.template = template
     }
@@ -57,7 +58,15 @@ public class DetailProvider {
         return items[row]
     }
     
-    public func filter(for selection: [ModelObject], editing: Bool, context: DetailContext) {
+    public var combinedCount: Int {
+        return combinedItems.count
+    }
+    
+    public func combinedInfo(row: Int) -> DetailItem {
+        return combinedItems[row]
+    }
+    
+    public func filter(for selection: [ModelObject], editing: Bool, combining: Bool = false, context: DetailContext) {
         
         var filteredDetails = [DetailSpec]()
         for detail in template {
@@ -100,6 +109,20 @@ public class DetailProvider {
             let info = SimpleDetailItem(spec: spec, absolute: row, index: index, source: self)
             items.append(info)
             row += 1
+        }
+    }
+    
+    public func combineItems() {
+        combinedItems.removeAll()
+        for section in 0 ..< sectionCount {
+            let title = sectionTitle(for: section)
+            if !title.isEmpty {
+                let item = SectionDetailItem(kind: title, absolute: combinedItems.count, index: 0, placeholder: false, source: self)
+                combinedItems.append(item)
+            }
+            for row in 0 ..< itemCount(for: section) {
+                combinedItems.append(info(section: section, row: row))
+            }
         }
     }
     

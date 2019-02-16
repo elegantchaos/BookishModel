@@ -53,8 +53,8 @@ public class PersonDetailProvider: DetailProvider {
         }
     }
     
-    public override func filter(for selection: [ModelObject], editing: Bool, context: DetailContext) {
-        super.filter(for: selection, editing: editing, context: context)
+    public override func filter(for selection: [ModelObject], editing: Bool, combining: Bool = false, context: DetailContext) {
+        super.filter(for: selection, editing: editing, combining: false, context: context)
         if let person = selection.first as? Person, let relationships = person.relationships?.sortedArray(using: context.relationshipSorting) as? [Relationship] {
             sortedRoles.removeAll()
             for relationship in relationships {
@@ -64,5 +64,10 @@ public class PersonDetailProvider: DetailProvider {
                 }
             }
         }
+        
+        if combining {
+            combineItems()
+        }
+        
     }
 }
