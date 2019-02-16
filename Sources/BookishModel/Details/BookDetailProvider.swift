@@ -10,8 +10,35 @@ public class BookDetailProvider: DetailProvider {
     private var publishers = [Publisher]()
     private var series = [Series]()
     
+    public class var standardDetails: [DetailSpec] {
+        var details = [
+            DetailSpec(binding: "notes"),
+            DetailSpec(binding: "format"),
+            DetailSpec(binding: "identifier", viewAs: DetailSpec.textKind, editAs: DetailSpec.hiddenKind),
+            DetailSpec(binding: "isbn", viewAs: DetailSpec.hiddenKind, editAs: DetailSpec.textKind),
+            DetailSpec(binding: "asin", viewAs: DetailSpec.hiddenKind, editAs: DetailSpec.textKind),
+            DetailSpec(binding: "ean", viewAs: DetailSpec.hiddenKind, editAs: DetailSpec.textKind),
+            DetailSpec(binding: "classification"),
+            DetailSpec(binding: "published", viewAs: DetailSpec.dateKind, editAs: DetailSpec.editableDateKind),
+            DetailSpec(binding: "added", viewAs: DetailSpec.dateKind),
+            DetailSpec(binding: "modified", viewAs: DetailSpec.dateKind),
+            DetailSpec(binding: "importDate", viewAs: DetailSpec.dateKind, editAs: DetailSpec.hiddenKind),
+            DetailSpec(binding: "dimensions", viewAs: DetailSpec.textKind, editAs: DetailSpec.editableDimensionsKind),
+            DetailSpec(binding: "pages")
+        ]
+        
+        #if DEBUG
+        details.append(contentsOf: [
+            DetailSpec(binding: "uuid", viewAs: DetailSpec.textKind),
+            DetailSpec(binding: "importRaw", viewAs: DetailSpec.hiddenKind, editAs: DetailSpec.textKind),
+            ])
+        #endif
+        
+        return details
+    }
+
     public init() {
-        super.init(template: DetailSpec.standardDetails)
+        super.init(template: BookDetailProvider.standardDetails)
     }
     
     override public var visibleColumns: [String] {

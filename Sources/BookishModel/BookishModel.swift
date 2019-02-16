@@ -19,7 +19,7 @@ public class BookishModel {
     static var cachedModel: NSManagedObjectModel!
     
     public class func registerLocalizations() {
-        StringLocalization.registerLocalizationBundle(Bundle(for: Book.self))
+        StringLocalization.registerLocalizationBundle(Bundle(for: BookishModel.self))
     }
     
     public class func modelURL(bundle: Bundle = Bundle(for: BookishModel.self)) -> URL {

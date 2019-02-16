@@ -5,16 +5,24 @@
 
 import CoreData
 
-public class PersonBookDetailItem: DetailItem {
-    public let book: Book?
-    
-    public init(book: Book?, absolute: Int, index: Int, source: DetailProvider) {
-        self.book = book
-        super.init(kind: "book", absolute: absolute, index: index, placeholder: book == nil, source: source)
-    }
-}
-
 public class PersonDetailProvider: DetailProvider {
+    
+    public class var standardDetails: [DetailSpec] {
+        var details = [
+            DetailSpec(binding: "notes"),
+        ]
+        
+        #if DEBUG
+        details.append(contentsOf: [
+            DetailSpec(binding: "uuid", viewAs: DetailSpec.textKind),
+            ])
+        #endif
+        
+        return details
+    }
+    public override init(template: [DetailSpec] = []) {
+        super.init(template: PersonDetailProvider.standardDetails)
+    }
     
     struct SortedRole {
         let role: Role
@@ -30,8 +38,10 @@ public class PersonDetailProvider: DetailProvider {
     public override func sectionTitle(for section: Int) -> String {
         if section == 0 {
             return super.sectionTitle(for: section)
+        } else if let role = sortedRoles[section - 1].role.name {
+            return "Role.title".localized(with: ["role" : role])
         } else {
-            return sortedRoles[section - 1].role.name ?? ""
+            return ""
         }
     }
     

@@ -52,13 +52,3 @@ public class DetailItem {
     }
 }
 
-public class SectionDetailItem: DetailItem {
-    public override func viewID(for column: String) -> String {
-        switch column {
-        case DetailItem.detailColumnID:
-            return "section"
-        default:
-            return super.viewID(for: column)
-        }
-    }
-}

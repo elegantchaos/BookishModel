@@ -61,6 +61,7 @@ Series.plural = "series";
 Series.title = "Series";
 Series.label = "series";
 
+Role.title = "As {role}";
 
 detail.notes.label = "notes";
 detail.format.label = "format";

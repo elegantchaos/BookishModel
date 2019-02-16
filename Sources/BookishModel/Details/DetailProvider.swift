@@ -71,7 +71,7 @@ public class DetailProvider {
     }
     
     public var visibleColumns: [String] {
-        return isEditing ? DetailProvider.EditingColumns : DetailProvider.SimpleColumns
+        return isEditing ? DetailProvider.EditingColumns : DetailProvider.LabelledColumns
     }
     
     public func filter(for selection: [ModelObject], editing: Bool, combining: Bool = false, context: DetailContext) {
