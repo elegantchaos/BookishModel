@@ -23,6 +23,10 @@ extension DetailOwner {
 }
 
 public class DetailProvider {
+    static let SimpleColumns = [DetailItem.detailColumnID]
+    static let LabelledColumns = [DetailItem.headingColumnID, DetailItem.detailColumnID]
+    static let EditingColumns = [DetailItem.controlColumnID, DetailItem.headingColumnID, DetailItem.detailColumnID]
+    
     public internal(set) var isEditing: Bool = false
     internal var details: [DetailSpec] = []
     internal let template: [DetailSpec]
@@ -64,6 +68,10 @@ public class DetailProvider {
     
     public func combinedInfo(row: Int) -> DetailItem {
         return combinedItems[row]
+    }
+    
+    public var visibleColumns: [String] {
+        return isEditing ? DetailProvider.EditingColumns : DetailProvider.SimpleColumns
     }
     
     public func filter(for selection: [ModelObject], editing: Bool, combining: Bool = false, context: DetailContext) {

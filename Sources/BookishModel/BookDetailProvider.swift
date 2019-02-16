@@ -14,6 +14,10 @@ public class BookDetailProvider: DetailProvider {
         super.init(template: DetailSpec.standardDetails)
     }
     
+    override public var visibleColumns: [String] {
+        return isEditing ? DetailProvider.EditingColumns : DetailProvider.LabelledColumns
+    }
+
     override public func filter(for selection: [ModelObject], editing: Bool, combining: Bool = false, context: DetailContext) {
         if let books = selection as? [Book] {
             let collectedRelationships = MultipleValues.extract(from: books) { book -> Set<Relationship>? in
