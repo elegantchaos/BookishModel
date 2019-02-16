@@ -18,6 +18,10 @@ public class BookishModel {
 
     static var cachedModel: NSManagedObjectModel!
     
+    public class func registerLocalizations() {
+        StringLocalization.registerLocalizationBundle(Bundle(for: Book.self))
+    }
+    
     public class func modelURL(bundle: Bundle = Bundle(for: BookishModel.self)) -> URL {
         guard let url = bundle.url(forResource: "Collection", withExtension: "momd") else {
             modelChannel.fatal(Error.locatingModel)
