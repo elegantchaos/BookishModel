@@ -94,6 +94,9 @@ public class DetailProvider {
         isEditing = editing
         
         rebuildItems()
+        if combining {
+            combineItems()
+        }
     }
 
     func rebuildItems() {
