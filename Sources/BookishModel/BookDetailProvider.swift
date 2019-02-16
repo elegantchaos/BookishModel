@@ -37,14 +37,14 @@ public class BookDetailProvider: DetailProvider {
             publishers = collectedPublishers.common.sorted(by: { ($0.name ?? "") < ($1.name ?? "") })
             series = collectedSeries.common.sorted(by: {($0.name ?? "") < ($1.name ?? "")})
         }
-
+        
         super.filter(for: selection, editing: editing, context: context)
     }
     
     override public var subtitleProperty: String? {
         return "subtitle"
     }
-
+    
     override func buildItems() {
         var row = items.count
         let peopleCount = relationships.count
@@ -89,52 +89,101 @@ public class BookDetailProvider: DetailProvider {
         super.buildItems()
     }
     
-    public func insert(relationship: Relationship) -> Int {
-        let index = relationships.count
-        relationships.append(relationship)
-        rebuildItems()
-        return items.first(where:{ $0 is PersonDetailItem && $0.index == index })!.absolute
+    public override func inserted(details: [ModelObject]) -> IndexSet {
+        var changed = false
+        for detail in details {
+            switch detail {
+            case let r as Relationship:
+                relationships.append(r)
+                changed = true
+                
+            case let s as Series:
+                series.append(s)
+                changed = true
+                
+            case let p as Publisher:
+                publishers = [p] // currently we cap the number of publishers at 1
+                changed = true
+                
+            default:
+                break
+            }
+        }
+        
+        var changes = IndexSet()
+        if changed {
+            rebuildItems()
+            for detail in details {
+                changes.insert(items.first(where:{ $0.object == detail })!.absolute)
+            }
+        }
+        return changes
     }
     
-    public func remove(relationship: Relationship) -> Int? {
-        guard let index = relationships.firstIndex(of: relationship), let item = items.first(where:{ $0 is PersonDetailItem && $0.index == index }) else { return nil }
-        relationships.remove(at: index)
-        rebuildItems()
-        return item.absolute
+    public override func removed(details: [ModelObject]) -> IndexSet {
+        var changes = IndexSet()
+        for detail in details {
+            if let item = items.first(where: { $0.object == detail } ) {
+                changes.insert(item.absolute)
+                switch detail {
+                case let r as Relationship:
+                    if let index = relationships.firstIndex(of: r) {
+                        relationships.remove(at: index)
+                    }
+                    
+                case let s as Series:
+                    if let index = series.firstIndex(of: s) {
+                        series.remove(at: index)
+                    }
+                    
+                case let p as Publisher:
+                    if let index = publishers.firstIndex(of: p) {
+                        publishers.remove(at: index)
+                    }
+                    
+                default:
+                    break
+                }
+            }
+        }
+        
+        if changes.count > 0 {
+            rebuildItems()
+        }
+        
+        return changes
     }
     
-    public func update(relationship: Relationship, with: Relationship) -> Int? {
-        guard let index = relationships.firstIndex(of: relationship), let item = items.first(where:{ $0 is PersonDetailItem && $0.index == index }) else { return nil }
-        relationships[index] = with
-        rebuildItems()
-        return item.absolute
-    }
-    
-    public func insert(series seriesToInsert: Series) -> Int {
-        let index = series.count
-        series.append(seriesToInsert)
-        rebuildItems()
-        return items.last(where:{ $0 is SeriesDetailItem && $0.index == index })!.absolute
-    }
-    
-    public func remove(series seriesToRemove: Series) -> Int? {
-        guard let index = series.firstIndex(of: seriesToRemove), let item = items.first(where:{ $0 is SeriesDetailItem && $0.index == index }) else { return nil }
-        series.remove(at: index)
-        rebuildItems()
-        return item.absolute
-    }
-    
-    public func insert(publisher: Publisher) -> Int {
-        publishers = [publisher] // currently we cap the number of publishers at 1
-        rebuildItems()
-        return items.first(where:{ $0 is PublisherDetailItem })!.absolute
-    }
-    
-    public func remove(publisher: Publisher) -> Int? {
-        guard let index = publishers.firstIndex(of: publisher), let item = items.first(where:{ $0 is PublisherDetailItem && $0.index == index }) else { return nil }
-        publishers.remove(at: index)
-        rebuildItems()
-        return item.absolute
+    public override func updated(details: [ModelObject], with: [ModelObject]) -> IndexSet {
+        assert(details.count == with.count)
+
+        var changes = IndexSet()
+        for n in 0 ..< details.count {
+            let detail = details[n]
+            if let item = items.first(where: { $0.object == detail } ) {
+                changes.insert(item.absolute)
+                let newDetail = with[n]
+                switch newDetail {
+                case let r as Relationship:
+                    relationships[item.index] = r
+                    
+                case let s as Series:
+                    series[item.index] = s
+                    
+                case let p as Publisher:
+                    publishers = [p]
+                    
+                default:
+                    break
+                }
+            }
+        }
+        
+        if changes.count > 0 {
+            rebuildItems()
+        }
+
+        return changes
     }
 }
 

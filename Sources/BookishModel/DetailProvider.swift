@@ -103,4 +103,47 @@ public class DetailProvider {
         }
     }
     
-}
+    /**
+     Notify the detail provider that some details have been inserted to the object.
+    
+     Calling this method should cause the provider to update its items (it may just
+     call buildItems() again, or may manually insert some new items).
+     
+     Returns a set of the indexes for the items that the new details will create.
+     This information can be used to animate the change in the UI.
+    */
+    
+    public func inserted(details: [ModelObject]) -> IndexSet {
+        return IndexSet()
+    }
+
+    /**
+     Notify the detail provider that some details have been removed from the object.
+     
+     Calling this method should cause the provider to update its items (it may just
+     call buildItems() again, or may manually remove some existing items).
+     
+     Returns a set of the indexes for the items that will be removed.
+     This information can be used to animate the change in the UI.
+     */
+
+    public func removed(details: [ModelObject]) -> IndexSet {
+        return IndexSet()
+    }
+    
+    /**
+     Notify the detail provider that some details have been updated in the object.
+     
+     Calling this method should cause the provider to update its items (it may just
+     call buildItems() again, or may manually alter or re-create some existing items).
+     
+     Returns a set of the indexes for the items that have updated.
+     This information can be used to animate/refresh the UI to reflect the changes.
+     */
+
+    public func updated(details: [ModelObject], with: [ModelObject]) -> IndexSet {
+        return IndexSet()
+    }
+    
+ }
+
