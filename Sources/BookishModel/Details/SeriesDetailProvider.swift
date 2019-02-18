@@ -20,13 +20,13 @@ class SeriesDetailProvider: DetailProvider {
         }
     }
     
-    override func filter(for selection: [ModelObject], editing: Bool, combining: Bool = false, context: DetailContext) {
+    override func filter(for selection: [ModelObject], editing: Bool, combining: Bool, context: DetailContext) {
         if let series = selection.first as? Series, let entries = series.entries?.sortedArray(using: context.entrySorting) as? [SeriesEntry] {
             sortedEntries.removeAll()
             sortedEntries.append(contentsOf: entries)
         }
 
-        super.filter(for: selection, editing: editing, combining: combining, context: context)
+        super.filter(for: selection, template: [], editing: editing, combining: combining, context: context)
     }
 }
 

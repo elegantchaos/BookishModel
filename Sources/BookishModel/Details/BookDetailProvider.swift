@@ -10,7 +10,7 @@ public class BookDetailProvider: DetailProvider {
     private var publishers = [Publisher]()
     private var series = [Series]()
     
-    public class var standardDetails: [DetailSpec] {
+    public class func standardDetails(showDebug: Bool) -> [DetailSpec] {
         var details = [
             DetailSpec(binding: "notes"),
             DetailSpec(binding: "format"),
@@ -27,25 +27,22 @@ public class BookDetailProvider: DetailProvider {
             DetailSpec(binding: "pages")
         ]
         
-        #if DEBUG
-        details.append(contentsOf: [
-            DetailSpec(binding: "uuid", viewAs: DetailSpec.textKind),
-            DetailSpec(binding: "importRaw", viewAs: DetailSpec.hiddenKind, editAs: DetailSpec.textKind),
-            ])
-        #endif
+        if showDebug {
+            details.append(contentsOf: [
+                DetailSpec(binding: "uuid", viewAs: DetailSpec.textKind),
+                DetailSpec(binding: "importRaw", viewAs: DetailSpec.hiddenKind, editAs: DetailSpec.textKind),
+                ])
+        }
         
         return details
     }
 
-    public init() {
-        super.init(template: BookDetailProvider.standardDetails)
-    }
-    
     override public var visibleColumns: [String] {
         return isEditing ? DetailProvider.EditingColumns : DetailProvider.LabelledColumns
     }
 
-    override public func filter(for selection: [ModelObject], editing: Bool, combining: Bool = false, context: DetailContext) {
+    override public func filter(for selection: [ModelObject], editing: Bool, combining: Bool, context: DetailContext) {
+        let template = BookDetailProvider.standardDetails(showDebug: context.showDebug)
         if let books = selection as? [Book] {
             let collectedRelationships = MultipleValues.extract(from: books) { book -> Set<Relationship>? in
                 return book.relationships as? Set<Relationship>
@@ -69,7 +66,7 @@ public class BookDetailProvider: DetailProvider {
             series = collectedSeries.common.sorted(by: {($0.name ?? "") < ($1.name ?? "")})
         }
         
-        super.filter(for: selection, editing: editing, combining: combining, context: context)
+        super.filter(for: selection, template: template, editing: editing, combining: combining, context: context)
     }
     
     override public var subtitleProperty: String? {

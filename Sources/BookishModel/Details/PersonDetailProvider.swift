@@ -7,21 +7,18 @@ import CoreData
 
 public class PersonDetailProvider: DetailProvider {
     
-    public class var standardDetails: [DetailSpec] {
+    public class func standardDetails(showDebug: Bool) -> [DetailSpec] {
         var details = [
             DetailSpec(binding: "notes"),
         ]
         
-        #if DEBUG
-        details.append(contentsOf: [
-            DetailSpec(binding: "uuid", viewAs: DetailSpec.textKind),
-            ])
-        #endif
+        if showDebug {
+            details.append(contentsOf: [
+                DetailSpec(binding: "uuid", viewAs: DetailSpec.textKind),
+                ])
+        }
         
         return details
-    }
-    public override init(template: [DetailSpec] = []) {
-        super.init(template: PersonDetailProvider.standardDetails)
     }
     
     struct SortedRole {
@@ -63,8 +60,9 @@ public class PersonDetailProvider: DetailProvider {
         }
     }
     
-    public override func filter(for selection: [ModelObject], editing: Bool, combining: Bool = false, context: DetailContext) {
-        super.filter(for: selection, editing: editing, combining: false, context: context)
+    public override func filter(for selection: [ModelObject], editing: Bool, combining: Bool, context: DetailContext) {
+        let template = PersonDetailProvider.standardDetails(showDebug: context.showDebug)
+        super.filter(for: selection, template: template, editing: editing, combining: false, context: context)
         if let person = selection.first as? Person, let relationships = person.relationships?.sortedArray(using: context.relationshipSorting) as? [Relationship] {
             sortedRoles.removeAll()
             for relationship in relationships {

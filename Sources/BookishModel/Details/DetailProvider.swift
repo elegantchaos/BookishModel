@@ -9,6 +9,7 @@ public protocol DetailContext {
     var relationshipSorting: [NSSortDescriptor] { get }
     var bookSorting: [NSSortDescriptor] { get }
     var entrySorting: [NSSortDescriptor] { get }
+    var showDebug: Bool { get }
 }
 
 public protocol DetailOwner {
@@ -28,16 +29,11 @@ public class DetailProvider {
     static let EditingColumns = [DetailItem.controlColumnID, DetailItem.headingColumnID, DetailItem.detailColumnID]
     
     public internal(set) var isEditing: Bool = false
+    
     internal var details: [DetailSpec] = []
-    internal let template: [DetailSpec]
     internal var items = [DetailItem]()
     internal var combinedItems = [DetailItem]()
     
-    public init(template: [DetailSpec] = []) {
-        self.template = template
-    }
-    
-
     public var titleProperty: String? {
         return "name"
     }
@@ -73,8 +69,12 @@ public class DetailProvider {
     public var visibleColumns: [String] {
         return isEditing ? DetailProvider.EditingColumns : DetailProvider.LabelledColumns
     }
+
+    public func filter(for selection: [ModelObject], editing: Bool, combining: Bool, context: DetailContext) {
+        self.filter(for: selection, template: [], editing: editing, combining: combining, context: context)
+    }
     
-    public func filter(for selection: [ModelObject], editing: Bool, combining: Bool = false, context: DetailContext) {
+    internal func filter(for selection: [ModelObject], template: [DetailSpec], editing: Bool, combining: Bool = false, context: DetailContext) {
         
         var filteredDetails = [DetailSpec]()
         for detail in template {
