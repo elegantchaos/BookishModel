@@ -78,7 +78,7 @@ class PersonDetailProviderTests: ModelTestCase {
 //        XCTAssertTrue(info1 is SimpleDetailItem)
 
         let info2 = provider.info(section: 1, row: 0)
-        XCTAssertTrue(info2 is PersonBookDetailItem)
+        XCTAssertTrue(info2 is BookDetailItem)
     }
     
     func testRemoveAction() {

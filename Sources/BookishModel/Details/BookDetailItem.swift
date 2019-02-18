@@ -6,7 +6,7 @@
 import Foundation
 
 
-public class PersonBookDetailItem: DetailItem {
+public class BookDetailItem: DetailItem {
     public let book: Book?
     
     public init(book: Book?, absolute: Int, index: Int, source: DetailProvider) {

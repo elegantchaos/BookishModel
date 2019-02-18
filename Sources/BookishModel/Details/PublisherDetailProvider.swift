@@ -26,7 +26,7 @@ class PublisherDetailProvider: DetailProvider {
         var row = items.count
         for index in 0 ..< sortedBooks.count {
             let book = sortedBooks[index]
-            let info = PersonBookDetailItem(book: book, absolute: row, index: index, source: self)
+            let info = BookDetailItem(book: book, absolute: row, index: index, source: self)
             items.append(info)
             row += 1
         }
