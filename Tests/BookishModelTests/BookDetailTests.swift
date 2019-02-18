@@ -14,7 +14,7 @@ class TestContext: DetailContext {
     var showDebug: Bool = true
 }
 
-class BookDetailProviderTests: ModelTestCase {
+class BookDetailTests: ModelTestCase {
     func testProvider() {
         let container = makeTestContainer()
         let context = container.managedObjectContext

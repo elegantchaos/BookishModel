@@ -7,7 +7,7 @@ import XCTest
 import CoreData
 @testable import BookishModel
 
-class PublisherDetailProviderTests: ModelTestCase {
+class PublisherDetailTests: ModelTestCase {
     func testProvider() {
         let container = makeTestContainer()
         let context = container.managedObjectContext

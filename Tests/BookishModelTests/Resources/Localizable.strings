@@ -1,0 +1,10 @@
+/* 
+  Localized.strings
+  BookishModel
+
+  Created by Sam Deane on 18/02/2019.
+  Copyright © 2019 Elegant Chaos Limited. All rights reserved.
+*/
+
+test = "localized";
+parameters = "Name is {name}.";
