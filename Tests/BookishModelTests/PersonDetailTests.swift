@@ -25,24 +25,31 @@ class PersonDetailProviderTests: ModelTestCase {
         XCTAssertTrue(provider is PersonDetailProvider)
     }
 
+    func testStandardDetails() {
+        let details = PersonDetailProvider.standardDetails(showDebug: false)
+        let debugDetails = PersonDetailProvider.standardDetails(showDebug: true)
+        XCTAssertTrue(details.count > 0)
+        XCTAssertTrue(debugDetails.count > details.count)
+    }
+    
     func testRowCount() {
         let provider = makeTestProvider()
-        provider.filter(for: [], editing: false, context: TestContext())
+        provider.filter(for: [], editing: false, combining: false, context: TestContext())
         XCTAssertEqual(provider.itemCount(for: 0), 0)
         XCTAssertEqual(provider.sectionCount, 1)
         
         person.name = "Test"
         person.notes = "Some notes"
         
-        provider.filter(for: [person], editing: false, context: TestContext())
-        XCTAssertEqual(provider.itemCount(for: 0), 0)
+        provider.filter(for: [person], editing: false, combining: false, context: TestContext())
+        XCTAssertEqual(provider.itemCount(for: 0), 2)
         XCTAssertEqual(provider.sectionCount, 1)
 
         let book = Book(context: context)
         let relationship = person.relationship(as: "author")
         relationship.addToBooks(book)
         
-        provider.filter(for: [person], editing: false, context: TestContext())
+        provider.filter(for: [person], editing: false, combining: false, context: TestContext())
         XCTAssertEqual(provider.sectionCount, 2)
         XCTAssertEqual(provider.itemCount(for: 1), 1)
     }
@@ -54,9 +61,9 @@ class PersonDetailProviderTests: ModelTestCase {
         let relationship = person.relationship(as: "author")
         relationship.addToBooks(book)
         
-        provider.filter(for: [person], editing: false, context: TestContext())
+        provider.filter(for: [person], editing: false, combining: false, context: TestContext())
         XCTAssertEqual(provider.sectionTitle(for: 0), "")
-        XCTAssertEqual(provider.sectionTitle(for: 1), "author")
+        XCTAssertEqual(provider.sectionTitle(for: 1), "Role.title")
     }
     
     func testInfo() {
@@ -66,7 +73,7 @@ class PersonDetailProviderTests: ModelTestCase {
         let relationship = person.relationship(as: "author")
         relationship.addToBooks(book)
         
-        provider.filter(for: [person], editing: false, context: TestContext())
+        provider.filter(for: [person], editing: false, combining: false, context: TestContext())
 //        let info1 = provider.info(section: 0, row: 0)
 //        XCTAssertTrue(info1 is SimpleDetailItem)
 

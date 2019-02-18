@@ -9,23 +9,23 @@ import XCTest
 class DetailItemTests: XCTestCase {
 
     func testHeadingViewID() {
-        let item = DetailItem(kind: "test", absolute: 0, index: 1, placeholder: false, source: DetailProvider(template: []))
+        let item = DetailItem(kind: "test", absolute: 0, index: 1, placeholder: false, source: DetailProvider())
         
         XCTAssertEqual(item.viewID(for: DetailItem.headingColumnID), DetailItem.headingColumnID)
     }
 
     func testControlViewID() {
-        let item = DetailItem(kind: "test", absolute: 0, index: 1, placeholder: false, source: DetailProvider(template: []))
+        let item = DetailItem(kind: "test", absolute: 0, index: 1, placeholder: false, source: DetailProvider())
         XCTAssertEqual(item.viewID(for: DetailItem.controlColumnID), DetailItem.controlColumnID)
     }
 
     func testCustomViewID() {
-        let item = DetailItem(kind: "test", absolute: 0, index: 1, placeholder: false, source: DetailProvider(template: []))
+        let item = DetailItem(kind: "test", absolute: 0, index: 1, placeholder: false, source: DetailProvider())
         XCTAssertEqual(item.viewID(for: "custom column"), item.kind)
     }
 
     func testDefaultHeading() {
-        let item = DetailItem(kind: "test", absolute: 0, index: 1, placeholder: false, source: DetailProvider(template: []))
+        let item = DetailItem(kind: "test", absolute: 0, index: 1, placeholder: false, source: DetailProvider())
         XCTAssertEqual(item.heading, DetailItem.unknownHeadingID)
     }
 }

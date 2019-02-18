@@ -15,13 +15,20 @@ class PublisherDetailProviderTests: ModelTestCase {
         let provider = publisher.getProvider()
         XCTAssertTrue(provider is PublisherDetailProvider)
     }
-    
+
+    func testStandardDetails() {
+        let details = PublisherDetailProvider.standardDetails(showDebug: false)
+        let debugDetails = PublisherDetailProvider.standardDetails(showDebug: true)
+        XCTAssertTrue(details.count > 0)
+        XCTAssertTrue(debugDetails.count > details.count)
+    }
+
     func testRowCount() {
         let container = makeTestContainer()
         let context = container.managedObjectContext
         let source = PublisherDetailProvider()
         
-        source.filter(for: [], editing: false, context: TestContext())
+        source.filter(for: [], editing: false, combining: false, context: TestContext())
         XCTAssertEqual(source.itemCount(for: 0), 0)
         XCTAssertEqual(source.sectionCount, 1)
 
@@ -29,14 +36,14 @@ class PublisherDetailProviderTests: ModelTestCase {
         publisher.name = "Test"
         publisher.notes = "Some notes"
         
-        source.filter(for: [publisher], editing: false, context: TestContext())
+        source.filter(for: [publisher], editing: false, combining: false, context: TestContext())
         XCTAssertEqual(source.itemCount(for: 0), 0)
         XCTAssertEqual(source.sectionCount, 1)
 
         let book = Book(context: context)
         publisher.addToBooks(book)
         
-        source.filter(for: [publisher], editing: false, context: TestContext())
+        source.filter(for: [publisher], editing: false, combining: false, context: TestContext())
         XCTAssertEqual(source.itemCount(for: 0), 1)
         XCTAssertEqual(source.sectionCount, 1)
     }
