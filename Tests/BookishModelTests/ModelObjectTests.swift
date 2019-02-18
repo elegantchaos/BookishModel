@@ -48,15 +48,38 @@ class ModelObjectTests: ModelTestCase {
         XCTAssertEqual(description.name, "Book")
     }
 
-    func testCategoryLabel() {
+    func testEntityName() {
+        XCTAssertEqual(ModelObject.entityName, "ModelObject")
+    }
+    
+    func testEntityLabel() {
         XCTAssertEqual(ModelObject.entityLabel, "ModelObject.label")
     }
 
-    func testCategoryTitle() {
+    func testEntityTitle() {
         XCTAssertEqual(ModelObject.entityTitle, "ModelObject.title")
     }
 
-    func testCategoryPlaceholderName() {
+    func testEntityPlaceholder() {
         XCTAssertEqual(ModelObject.entityPlaceholder, "ModelObjectPlaceholder")
+    }
+    
+    func testEntityCount() {
+        XCTAssertEqual(ModelObject.entityCount(0), "ModelObject.count.none")
+        XCTAssertEqual(ModelObject.entityCount(1), "ModelObject.count.singular")
+        XCTAssertEqual(ModelObject.entityCount(2), "ModelObject.count.plural")
+        XCTAssertEqual(ModelObject.entityCount(2, selected: 2), "ModelObject.count.all")
+    }
+    
+    func testGetProvider() {
+        XCTAssertEqual(ModelObject.getProvider().sectionCount, 1)
+    }
+    
+    func testMissingUniqueIdentifier() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let book = Book(context: context)
+        book.uuid = nil
+        XCTAssertEqual(book.uniqueIdentifier, ModelObject.missingUUID)
     }
 }
