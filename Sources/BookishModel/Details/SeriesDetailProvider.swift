@@ -8,6 +8,20 @@ import Foundation
 class SeriesDetailProvider: DetailProvider {
     var sortedEntries = [SeriesEntry]()
     
+    public class func standardDetails(showDebug: Bool) -> [DetailSpec] {
+        var details = [
+            DetailSpec(binding: "notes"),
+        ]
+        
+        if showDebug {
+            details.append(contentsOf: [
+                DetailSpec(binding: "uuid", viewAs: DetailSpec.textKind),
+                ])
+        }
+        
+        return details
+    }
+
     override func buildItems() {
         super.buildItems()
 
@@ -26,7 +40,8 @@ class SeriesDetailProvider: DetailProvider {
             sortedEntries.append(contentsOf: entries)
         }
 
-        super.filter(for: selection, template: [], editing: editing, combining: combining, context: context)
+        let template = SeriesDetailProvider.standardDetails(showDebug: context.showDebug)
+        super.filter(for: selection, template: template, editing: editing, combining: combining, context: context)
     }
 }
 

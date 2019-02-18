@@ -8,6 +8,20 @@ import Foundation
 class PublisherDetailProvider: DetailProvider {
     var sortedBooks = [Book]()
 
+    public class func standardDetails(showDebug: Bool) -> [DetailSpec] {
+        var details = [
+            DetailSpec(binding: "notes"),
+        ]
+        
+        if showDebug {
+            details.append(contentsOf: [
+                DetailSpec(binding: "uuid", viewAs: DetailSpec.textKind),
+                ])
+        }
+        
+        return details
+    }
+
     override func buildItems() {
         var row = items.count
         for index in 0 ..< sortedBooks.count {
@@ -18,13 +32,14 @@ class PublisherDetailProvider: DetailProvider {
         }
     }
     
-    override func filter(for selection: [ModelObject], editing: Bool, combining: Bool = false, context: DetailContext) {
+    override func filter(for selection: [ModelObject], editing: Bool, combining: Bool, context: DetailContext) {
         if let series = selection.first as? Publisher, let books = series.books?.sortedArray(using: context.bookSorting) as? [Book] {
             sortedBooks.removeAll()
             sortedBooks.append(contentsOf: books)
         }
 
-        super.filter(for: selection, editing: editing, combining: combining, context: context)
+        let template = PublisherDetailProvider.standardDetails(showDebug: context.showDebug)
+        super.filter(for: selection, template: template, editing: editing, combining: combining, context: context)
     }
 }
 
