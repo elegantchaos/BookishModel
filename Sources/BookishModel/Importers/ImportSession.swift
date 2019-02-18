@@ -5,12 +5,12 @@
 
 import CoreData
 
-class ImportSession: Equatable {
-    static func == (lhs: ImportSession, rhs: ImportSession) -> Bool {
+public class ImportSession: Equatable {
+    public static func == (lhs: ImportSession, rhs: ImportSession) -> Bool {
         return lhs === rhs
     }
     
-    typealias Completion = () -> Void
+    public typealias Completion = () -> Void
     
     let url: URL
     let importer: Importer

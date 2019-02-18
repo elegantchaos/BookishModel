@@ -6,17 +6,17 @@
 import Foundation
 import CoreData
 
-class Importer {
-    enum Source {
+public class Importer {
+    public enum Source {
         case knownLocation
         case userSpecifiedFile
     }
     
-    let name: String
-    let source: Source
-    let manager: ImportManager
+    public let name: String
+    public let source: Source
+    public let manager: ImportManager
     
-    init(name: String, source: Source, manager: ImportManager) {
+    public init(name: String, source: Source, manager: ImportManager) {
         self.name = name
         self.source = source
         self.manager = manager
@@ -45,7 +45,7 @@ class Importer {
         return session
     }
     
-    func run(importing url: URL, into context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) {
+    public func run(importing url: URL, into context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) {
         let session = makeSession(importing: url, into: context, completion: completion)
         session.performImport()
     }

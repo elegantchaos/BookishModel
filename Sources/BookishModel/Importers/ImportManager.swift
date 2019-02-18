@@ -5,7 +5,7 @@
 
 import Foundation
 
-class ImportManager {
+public class ImportManager {
     private var importers: [String:Importer] = [:]
     private var sessions: [ImportSession] = []
     
@@ -13,16 +13,16 @@ class ImportManager {
         return importers.sorted(by: { return $0.key < $1.key }).map({ $0.value })
     }
     
-    init() {
+    public init() {
         // TODO: build this dynamically
         register(importer: DeliciousLibraryImporter(manager: self))
     }
     
-    func register(importer: Importer) {
+    public func register(importer: Importer) {
         importers[importer.name] = importer
     }
     
-    func importer(named: String) -> Importer? {
+    public func importer(named: String) -> Importer? {
         return importers[named]
     }
     

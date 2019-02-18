@@ -10,9 +10,9 @@ import Logger
 
 let deliciousChannel = Logger("DeliciousImporter")
 
-class DeliciousLibraryImporter: Importer {
+public class DeliciousLibraryImporter: Importer {
     
-    init(manager: ImportManager) {
+    public init(manager: ImportManager) {
         super.init(name: "Delicious Library", source: .userSpecifiedFile, manager: manager)
     }
     
