@@ -11,6 +11,16 @@ import Foundation
 import Actions
 import CoreData
 
+struct ActionSpec: Decodable {
+    let name: String
+    let action: String
+    let params: [String:String]?
+}
+
+struct ActionFile: Decodable {
+    let actions: [ActionSpec]
+}
+
 struct Task {
     typealias Callback = () -> Void
     
@@ -47,21 +57,56 @@ class BookishTool {
     let taskList: TaskList
     let actionManager = ActionManager()
     let importManager = ImportManager()
+    var variables: [String:Any] = ProcessInfo.processInfo.environment
+    let rootURL = URL(fileURLWithPath: #file).deletingLastPathComponent()
 
     init() {
+        let xmlURL = rootURL.appendingPathComponent("../../Tests/BookishModelTests/Resources/Sample.xml")
+        let sampleURL = rootURL.appendingPathComponent("../BookishModel/Resources/Sample.bookish")
+
         let taskList = TaskList()
-        let url = URL(fileURLWithPath: "test.sql")
         let model = BookishModel.model()
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
-        try! coordinator.destroyPersistentStore(at: url, ofType: "binary")
+        try? coordinator.destroyPersistentStore(at: sampleURL, ofType: NSBinaryStoreType)
         
-        self.container = CollectionContainer(name: "test", url: url) { (container, error) in
+        self.container = CollectionContainer(name: "test", url: sampleURL) { (container, error) in
             taskList.nextTask()
         }
         self.context = container.managedObjectContext
         self.taskList = taskList
 
         actionManager.register(ModelAction.standardActions())
+
+        variables["sampleURL"] = xmlURL
+        for n in 0 ..< CommandLine.arguments.count {
+            variables["\(n)"] = CommandLine.arguments[n]
+        }
+
+    }
+    
+    func loadActions() {
+        let jsonURL = rootURL.appendingPathComponent("Build Sample.json")
+        let decoder = JSONDecoder()
+        let actions = try! decoder.decode(ActionFile.self, from: Data(contentsOf: jsonURL))
+        for action in actions.actions {
+            var expandedParams: [String:Any] = [:]
+            if let params = action.params {
+                for (key, value) in params {
+                    let start = value.startIndex
+                    if let index = value.firstIndex(of: "$"), index == start {
+                        
+                        let variable = String(value[value.index(after: index)...])
+                        expandedParams[key] = variables[variable]
+                    } else {
+                        expandedParams[key] = value
+                    }
+                }
+            }
+
+            taskList.addTask(Task(name: action.name, callback: {
+                self.perform(action: action.action, with: expandedParams)
+            }))
+        }
     }
     
     func perform(action: String, with params: [String:Any] = [:]) {
@@ -87,64 +132,19 @@ class BookishTool {
         print("done")
         exit(0)
     }
+    
+    func run() {
+        taskList.addTask(Task(name: "finish", callback: { self.finish() }))
+        taskList.run()
+    }
 }
 
-struct ActionSpec: Decodable {
-    let name: String
-    let action: String
-    let params: [String:String]?
-}
-
-struct ActionFile: Decodable {
-    let actions: [ActionSpec]
-}
 
 BookishModel.registerLocalizations()
 
-let url = URL(fileURLWithPath: "test.sql")
-let model = BookishModel.model()
-let coordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
-try! coordinator.destroyPersistentStore(at: url, ofType: "binary")
-
 let tool = BookishTool()
-let tasks = tool.taskList
-
-let rootURL = URL(fileURLWithPath: #file).deletingLastPathComponent()
-let jsonURL = rootURL.appendingPathComponent("Build Sample.json")
-let decoder = JSONDecoder()
-let actions = try! decoder.decode(ActionFile.self, from: Data(contentsOf: jsonURL))
-
-let xmlURL = rootURL.appendingPathComponent("../../Tests/BookishModelTests/Resources/Sample.xml")
-var variables: [String:Any] = ProcessInfo.processInfo.environment
-variables["sampleURL"] = xmlURL
-for n in 0 ..< CommandLine.arguments.count {
-    variables["\(n)"] = CommandLine.arguments[n]
-}
-
-for action in actions.actions {
-    tasks.addTask(Task(name: action.name, callback: {
-        var expandedParams: [String:Any] = [:]
-        
-        if let params = action.params {
-            for (key, value) in params {
-                let start = value.startIndex
-                if let index = value.firstIndex(of: "$"), index == start {
-                    
-                    let variable = String(value[value.index(after: index)...])
-                    expandedParams[key] = variables[variable]
-                } else {
-                    expandedParams[key] = value
-                }
-            }
-        }
-        
-        tool.perform(action: action.action, with: expandedParams)
-    }))
-}
-
-tasks.addTask(Task(name: "finish", callback: { tool.finish() }))
-tasks.run()
-
+tool.loadActions()
+tool.run()
 
 dispatchMain()
 

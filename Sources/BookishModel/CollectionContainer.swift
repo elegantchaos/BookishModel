@@ -28,6 +28,7 @@ import CoreData
 
         if let explicitURL = url {
             description.url = explicitURL
+            description.type = NSBinaryStoreType
         }
 
         if let url = description.url {
