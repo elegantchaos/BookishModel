@@ -5,6 +5,8 @@
 
 import XCTest
 import CoreData
+import Actions
+
 @testable import BookishModel
 
 class ImporterTests: ModelTestCase {
@@ -54,7 +56,7 @@ class ImporterTests: ModelTestCase {
             XCTAssertNotNil(container)
 
             let manager = ImportManager()
-            let importer = DeliciousLibraryImporter(manager: manager)
+            let importer = manager.importer(named: "Delicious Library")!
             let bundle = Bundle(for: type(of: self))
             let xmlURL = bundle.url(forResource: "Simple", withExtension: "plist")!
             importer.run(importing: xmlURL, into: container.managedObjectContext) {
@@ -65,4 +67,32 @@ class ImporterTests: ModelTestCase {
         XCTAssertEqual(container.managedObjectContext.countEntities(type: Book.self), 2)
     }
 
+    func testImportAction() {
+        let url = temporaryFile()
+        let expectation = self.expectation(description: "import done")
+        let container = CollectionContainer(name: "test", url: url, mode: .empty) { (container, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(container)
+
+            let actionManager = ActionManager()
+            actionManager.register([ImportAction(identifier: "Import")])
+            
+            let manager = ImportManager()
+            let xmlURL = Bundle(for: type(of: self)).url(forResource: "Simple", withExtension: "plist")!
+            let info = ActionInfo()
+            info[ImportAction.managerKey] = manager
+            info[ImportAction.urlKey] = xmlURL
+            info[ImportAction.importerKey] = "Delicious Library"
+            info[ActionContext.modelKey] = container.managedObjectContext
+            info.registerNotification(notification: { (stage, context) in
+                if stage == .didPerform {
+                    expectation.fulfill()
+                }
+            })
+
+            actionManager.perform(identifier: "Import", info: info)
+        }
+        wait(for: [expectation], timeout: 10.0)
+        XCTAssertEqual(container.managedObjectContext.countEntities(type: Book.self), 2)
+    }
 }
