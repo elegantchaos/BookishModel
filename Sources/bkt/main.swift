@@ -81,7 +81,9 @@ class BookishTool {
     }
     
     func finish() {
-        print(context.countEntities(type: Book.self))
+        let bookCount = context.countEntities(type: Book.self)
+        let seriesCount = context.countEntities(type: Series.self)
+        print("\(bookCount) books, in \(seriesCount) series.")
         print("done")
         exit(0)
     }
@@ -97,9 +99,11 @@ try! coordinator.destroyPersistentStore(at: url, ofType: "binary")
 let tool = BookishTool()
 let tasks = tool.taskList
 
-let xmlURL = URL(fileURLWithPath: "/Users/sam/Projects/Bookish/Dependencies/BookishModel/Tests/BookishModelTests/Resources/Sample.xml")
+let rootURL = URL(fileURLWithPath: #file).deletingLastPathComponent()
+let xmlURL = rootURL.appendingPathComponent("../../Tests/BookishModelTests/Resources/Sample.xml")
 
 tasks.addTask(Task(name: "import", callback: { tool.perform(action: "Import", with: [ImportAction.importerKey: "Delicious Library", ImportAction.urlKey: xmlURL])}))
+tasks.addTask(Task(name: "fix series", callback: { tool.perform(action: "ScanSeries") }))
 tasks.addTask(Task(name: "action", callback: { tool.perform(action: "NewBook") }))
 tasks.addTask(Task(name: "finish", callback: { tool.finish() }))
 

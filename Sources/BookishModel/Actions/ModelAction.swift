@@ -18,6 +18,8 @@ open class ModelAction: Action {
         actions.append(contentsOf: SeriesAction.standardActions())
         actions.append(ChangeValueAction(identifier: "ChangeValue"))
         actions.append(ImportAction(identifier: "Import"))
+        actions.append(ScanSeriesAction(identifier: "ScanSeries"))
+
         return actions
     }
     
