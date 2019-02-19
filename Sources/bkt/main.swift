@@ -115,7 +115,11 @@ let decoder = JSONDecoder()
 let actions = try! decoder.decode(ActionFile.self, from: Data(contentsOf: jsonURL))
 
 let xmlURL = rootURL.appendingPathComponent("../../Tests/BookishModelTests/Resources/Sample.xml")
-let variables = ["sampleURL" : xmlURL]
+var variables: [String:Any] = ProcessInfo.processInfo.environment
+variables["sampleURL"] = xmlURL
+for n in 0 ..< CommandLine.arguments.count {
+    variables["\(n)"] = CommandLine.arguments[n]
+}
 
 for action in actions.actions {
     tasks.addTask(Task(name: action.name, callback: {
