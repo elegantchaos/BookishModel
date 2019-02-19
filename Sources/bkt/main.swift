@@ -46,6 +46,7 @@ class BookishTool {
     let context: NSManagedObjectContext
     let taskList: TaskList
     let actionManager = ActionManager()
+    let importManager = ImportManager()
 
     init() {
         let taskList = TaskList()
@@ -63,16 +64,7 @@ class BookishTool {
         actionManager.register(ModelAction.standardActions())
     }
     
-    func importFromDelicious() {
-        let manager = ImportManager()
-        let importer = DeliciousLibraryImporter(manager: manager)
-        let xmlURL = URL(fileURLWithPath: "/Users/sam/Projects/Bookish/Dependencies/BookishModel/Tests/BookishModelTests/Resources/Sample.xml")
-        importer.run(importing: xmlURL, into: context) {
-            self.taskList.nextTask()
-        }
-    }
-    
-    func perform(action: String) {
+    func perform(action: String, with params: [String:Any] = [:]) {
         let info = ActionInfo()
         info.registerNotification { (stage, actionContext) in
             if stage == .didPerform {
@@ -81,6 +73,10 @@ class BookishTool {
         }
         
         info[ActionContext.modelKey] = context
+        info[ImportAction.managerKey] = importManager
+        for (key, value) in params {
+            info[key] = value
+        }
         actionManager.perform(identifier: action, info: info)
     }
     
@@ -101,7 +97,9 @@ try! coordinator.destroyPersistentStore(at: url, ofType: "binary")
 let tool = BookishTool()
 let tasks = tool.taskList
 
-tasks.addTask(Task(name: "import", callback: { tool.importFromDelicious() }))
+let xmlURL = URL(fileURLWithPath: "/Users/sam/Projects/Bookish/Dependencies/BookishModel/Tests/BookishModelTests/Resources/Sample.xml")
+
+tasks.addTask(Task(name: "import", callback: { tool.perform(action: "Import", with: [ImportAction.importerKey: "Delicious Library", ImportAction.urlKey: xmlURL])}))
 tasks.addTask(Task(name: "action", callback: { tool.perform(action: "NewBook") }))
 tasks.addTask(Task(name: "finish", callback: { tool.finish() }))
 

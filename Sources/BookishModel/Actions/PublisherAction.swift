@@ -31,7 +31,7 @@ public protocol PublisherLifecycleObserver: ActionObserver {
  Common functionality for all Publisher-related actions.
  */
 
-open class PublisherAction: ModelAction {
+open class PublisherAction: SyncModelAction {
     public static let publisherKey = "publisher"
     public static let newPublisherKey = "newPublisher"
     

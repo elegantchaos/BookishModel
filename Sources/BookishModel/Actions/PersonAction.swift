@@ -31,7 +31,7 @@ public protocol PersonLifecycleObserver: ActionObserver {
  Common functionality for all person-related actions.
  */
 
-open class PersonAction: ModelAction {
+open class PersonAction: SyncModelAction {
     public static let personKey = "person"
     public static let relationshipKey = "relationship"
     public static let roleKey = "role"

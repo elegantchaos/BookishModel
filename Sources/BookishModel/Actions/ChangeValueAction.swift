@@ -6,7 +6,7 @@
 import CoreData
 import Actions
 
-public class ChangeValueAction: ModelAction {
+public class ChangeValueAction: SyncModelAction {
     public static let valueKey = "value"
     public static let propertyKey = "property"
 

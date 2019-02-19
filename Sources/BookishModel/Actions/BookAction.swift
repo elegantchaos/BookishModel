@@ -71,7 +71,7 @@ public protocol BookLifecycleObserver: ActionObserver {
  Common functionality for all book-related actions.
  */
 
-open class BookAction: ModelAction {
+open class BookAction: SyncModelAction {
     public static let bookKey = "book"
     
     open class override func standardActions() -> [Action] {

@@ -30,7 +30,7 @@ public protocol SeriesLifecycleObserver: ActionObserver {
  Common functionality for all Series-related actions.
  */
 
-open class SeriesAction: ModelAction {
+open class SeriesAction: SyncModelAction {
     public static let newSeriesKey = "newSeries"
     public static let seriesKey = "series"
     public static let positionKey = "position"
