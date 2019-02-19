@@ -89,6 +89,16 @@ class BookishTool {
     }
 }
 
+struct ActionSpec: Decodable {
+    let name: String
+    let action: String
+    let params: [String:String]?
+}
+
+struct ActionFile: Decodable {
+    let actions: [ActionSpec]
+}
+
 BookishModel.registerLocalizations()
 
 let url = URL(fileURLWithPath: "test.sql")
@@ -100,13 +110,35 @@ let tool = BookishTool()
 let tasks = tool.taskList
 
 let rootURL = URL(fileURLWithPath: #file).deletingLastPathComponent()
+let jsonURL = rootURL.appendingPathComponent("Build Sample.json")
+let decoder = JSONDecoder()
+let actions = try! decoder.decode(ActionFile.self, from: Data(contentsOf: jsonURL))
+
 let xmlURL = rootURL.appendingPathComponent("../../Tests/BookishModelTests/Resources/Sample.xml")
+let variables = ["sampleURL" : xmlURL]
 
-tasks.addTask(Task(name: "import", callback: { tool.perform(action: "Import", with: [ImportAction.importerKey: "Delicious Library", ImportAction.urlKey: xmlURL])}))
-tasks.addTask(Task(name: "fix series", callback: { tool.perform(action: "ScanSeries") }))
-tasks.addTask(Task(name: "action", callback: { tool.perform(action: "NewBook") }))
+for action in actions.actions {
+    tasks.addTask(Task(name: action.name, callback: {
+        var expandedParams: [String:Any] = [:]
+        
+        if let params = action.params {
+            for (key, value) in params {
+                let start = value.startIndex
+                if let index = value.firstIndex(of: "$"), index == start {
+                    
+                    let variable = String(value[value.index(after: index)...])
+                    expandedParams[key] = variables[variable]
+                } else {
+                    expandedParams[key] = value
+                }
+            }
+        }
+        
+        tool.perform(action: action.action, with: expandedParams)
+    }))
+}
+
 tasks.addTask(Task(name: "finish", callback: { tool.finish() }))
-
 tasks.run()
 
 
