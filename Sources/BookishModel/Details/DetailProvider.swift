@@ -34,6 +34,9 @@ public class DetailProvider {
     internal var items = [DetailItem]()
     internal var combinedItems = [DetailItem]()
     
+    public init() {
+    }
+    
     public var titleProperty: String? {
         return "name"
     }

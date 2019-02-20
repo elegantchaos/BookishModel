@@ -22,7 +22,7 @@ public class Importer {
         self.manager = manager
     }
     
-    var canImport: Bool {
+    public var canImport: Bool {
         switch source {
         case .knownLocation:
             if let url = defaultImportLocation {
@@ -36,7 +36,7 @@ public class Importer {
         return false
     }
     
-    var defaultImportLocation: URL? {
+    public var defaultImportLocation: URL? {
         return nil
     }
     

@@ -20,28 +20,41 @@ import CoreData
     public init(name: String, url: URL? = nil, mode: PopulateMode = .defaultRoles, callback: LoadedCallback? = nil) {
         let fm = FileManager.default
         let model = BookishModel.model()
+        let bundle = Bundle.init(for: CollectionContainer.self)
         super.init(name: name, managedObjectModel: model)
-        viewContext.undoManager = UndoManager()
         let description = persistentStoreDescriptions[0]
         description.setOption(true as NSValue, forKey: NSMigratePersistentStoresAutomaticallyOption)
         description.setOption(true as NSValue, forKey: NSInferMappingModelAutomaticallyOption)
-
+        description.type = NSSQLiteStoreType
+        
         if let explicitURL = url {
             description.url = explicitURL
-            if explicitURL.path != "/dev/null" {
-                description.type = NSBinaryStoreType
-            }
         }
 
         if let url = description.url {
             
-            if fm.fileExists(at: url) && ((mode == .replaceWithTestData) || (mode == .replaceWithSampleData)) {
-                deleteStores()
+            if fm.fileExists(at: url) {
+                switch mode {
+                case .replaceWithSampleData:
+                let coordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
+                if let sampleURL = bundle.url(forResource: "Sample", withExtension: "sqlite") {
+                    do {
+                        try coordinator.replacePersistentStore(at: url, destinationOptions: [:], withPersistentStoreFrom: sampleURL, sourceOptions: [:], ofType: NSSQLiteStoreType)
+                    } catch {
+                        print(error)
+                    }
+                }
+                    
+                case .replaceWithTestData:
+                    deleteStores()
+                    
+                default:
+                    break
+                }
             }
-            
+
             if !fm.fileExists(atPath: url.path) && ((mode == .sampleData) || (mode == .replaceWithSampleData)) {
-                let bundle = Bundle.init(for: CollectionContainer.self)
-                if let sample = bundle.url(forResource: "Sample", withExtension: "bookish") {
+                if let sample = bundle.url(forResource: "Sample", withExtension: "sqlite") {
                     do {
                         try? fm.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
                         try fm.copyItem(at: sample, to: url)
@@ -71,7 +84,9 @@ import CoreData
 
     func load(mode: PopulateMode = .empty, callback: LoadedCallback? = nil) {
         loadPersistentStores { (description, error) in
-            if error == nil {
+            if let error = error {
+                print(error)
+            } else {
                 let context = self.viewContext
                 context.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
 
@@ -91,9 +106,18 @@ import CoreData
                     }
                 }
                 
+                self.printSummary()
+                context.undoManager = UndoManager()
                 callback?(self, error)
             }
         }
+    }
+    
+    func printSummary() {
+        let context = viewContext
+        let bookCount = context.countEntities(type: Book.self)
+        let seriesCount = context.countEntities(type: Series.self)
+        print("Loaded \(bookCount) books, in \(seriesCount) series.")
     }
     
     public func save() {

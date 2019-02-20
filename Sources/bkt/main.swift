@@ -62,12 +62,12 @@ class BookishTool {
 
     init() {
         let xmlURL = rootURL.appendingPathComponent("../../Tests/BookishModelTests/Resources/Sample.xml")
-        let sampleURL = rootURL.appendingPathComponent("../BookishModel/Resources/Sample.bookish")
+        let sampleURL = rootURL.appendingPathComponent("../BookishModel/Resources/Sample.sqlite")
 
         let taskList = TaskList()
         let model = BookishModel.model()
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
-        try? coordinator.destroyPersistentStore(at: sampleURL, ofType: NSBinaryStoreType)
+        try? coordinator.destroyPersistentStore(at: sampleURL, ofType: NSSQLiteStoreType)
         
         self.container = CollectionContainer(name: "test", url: sampleURL) { (container, error) in
             taskList.nextTask()

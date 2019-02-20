@@ -129,6 +129,12 @@
 		2272467E221C117F00C80CCF /* ScanSeriesAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22724662221C117E00C80CCF /* ScanSeriesAction.swift */; };
 		22724680221C1AE000C80CCF /* Build Sample.json in Resources */ = {isa = PBXBuildFile; fileRef = 2272467F221C1AE000C80CCF /* Build Sample.json */; };
 		22724681221C1AE000C80CCF /* Build Sample.json in Resources */ = {isa = PBXBuildFile; fileRef = 2272467F221C1AE000C80CCF /* Build Sample.json */; };
+		2272471B221C3FDE00C80CCF /* Sample.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 22724718221C3FDE00C80CCF /* Sample.sqlite */; };
+		2272471C221C3FDE00C80CCF /* Sample.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 22724718221C3FDE00C80CCF /* Sample.sqlite */; };
+		2272471D221C3FDE00C80CCF /* Sample.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 22724719221C3FDE00C80CCF /* Sample.sqlite-shm */; };
+		2272471E221C3FDE00C80CCF /* Sample.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 22724719221C3FDE00C80CCF /* Sample.sqlite-shm */; };
+		2272471F221C3FDE00C80CCF /* Sample.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 2272471A221C3FDE00C80CCF /* Sample.sqlite-wal */; };
+		22724720221C3FDE00C80CCF /* Sample.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 2272471A221C3FDE00C80CCF /* Sample.sqlite-wal */; };
 		22A3E2EB21FB80B900BA4F17 /* MultipleValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A3E2EA21FB80B900BA4F17 /* MultipleValues.swift */; };
 		22A3E2EC21FB80B900BA4F17 /* MultipleValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A3E2EA21FB80B900BA4F17 /* MultipleValues.swift */; };
 		22A49896220DF035006A2137 /* DetailItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A49895220DF035006A2137 /* DetailItemTests.swift */; };
@@ -157,8 +163,6 @@
 		22A498BF220F3555006A2137 /* ImportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A498B6220F3554006A2137 /* ImportManager.swift */; };
 		22A498C0220F3555006A2137 /* ImportSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A498B7220F3554006A2137 /* ImportSession.swift */; };
 		22A498C1220F3555006A2137 /* ImportSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A498B7220F3554006A2137 /* ImportSession.swift */; };
-		22A498CA220F3DD0006A2137 /* Sample.bookish in Resources */ = {isa = PBXBuildFile; fileRef = 22A498C9220F3DD0006A2137 /* Sample.bookish */; };
-		22A498CB220F3DD0006A2137 /* Sample.bookish in Resources */ = {isa = PBXBuildFile; fileRef = 22A498C9220F3DD0006A2137 /* Sample.bookish */; };
 		22A498CD220F475C006A2137 /* ImporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A498CC220F475C006A2137 /* ImporterTests.swift */; };
 		22A498CE220F475C006A2137 /* ImporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A498CC220F475C006A2137 /* ImporterTests.swift */; };
 		22A498D0220F480A006A2137 /* Simple.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22A498CF220F480A006A2137 /* Simple.plist */; };
@@ -458,6 +462,9 @@
 		22724641221C003100C80CCF /* ImportAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportAction.swift; sourceTree = "<group>"; };
 		22724662221C117E00C80CCF /* ScanSeriesAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanSeriesAction.swift; sourceTree = "<group>"; };
 		2272467F221C1AE000C80CCF /* Build Sample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Build Sample.json"; sourceTree = "<group>"; };
+		22724718221C3FDE00C80CCF /* Sample.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sample.sqlite; sourceTree = "<group>"; };
+		22724719221C3FDE00C80CCF /* Sample.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sample.sqlite-shm"; sourceTree = "<group>"; };
+		2272471A221C3FDE00C80CCF /* Sample.sqlite-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sample.sqlite-wal"; sourceTree = "<group>"; };
 		22A1A8BF21A5C24800F2332B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		22A1A8D621A5C4E300F2332B /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = SOURCE_ROOT; };
 		22A3E2EA21FB80B900BA4F17 /* MultipleValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleValues.swift; sourceTree = "<group>"; };
@@ -474,7 +481,6 @@
 		22A498B5220F3554006A2137 /* Importer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Importer.swift; sourceTree = "<group>"; };
 		22A498B6220F3554006A2137 /* ImportManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportManager.swift; sourceTree = "<group>"; };
 		22A498B7220F3554006A2137 /* ImportSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportSession.swift; sourceTree = "<group>"; };
-		22A498C9220F3DD0006A2137 /* Sample.bookish */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sample.bookish; sourceTree = "<group>"; };
 		22A498CC220F475C006A2137 /* ImporterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImporterTests.swift; sourceTree = "<group>"; };
 		22A498CF220F480A006A2137 /* Simple.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Simple.plist; sourceTree = "<group>"; };
 		22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CorruptModel.bundle; sourceTree = "<group>"; };
@@ -588,11 +594,13 @@
 			isa = PBXGroup;
 			children = (
 				2250C7ED21BAF6B000E899E2 /* BookActionTests.swift */,
+				225F8942221AF41800196110 /* BookDetailItemTests.swift */,
 				2250C80A21BE891D00E899E2 /* BookDetailTests.swift */,
 				2250C7FC21BE85CD00E899E2 /* BookTests.swift */,
 				2250C80D21BE96F000E899E2 /* ChangeValueActionTests.swift */,
 				22A498A9220F28F2006A2137 /* CollectionContainerTests.swift */,
 				22A49895220DF035006A2137 /* DetailItemTests.swift */,
+				225F8945221AF4DF00196110 /* DetailProviderTests.swift */,
 				22A498CC220F475C006A2137 /* ImporterTests.swift */,
 				22A4989D220DF5CD006A2137 /* IndexingTests.swift */,
 				224293C2212AE16300E70510 /* MiscModelTests.swift */,
@@ -610,14 +618,12 @@
 				22A498A6220F2321006A2137 /* RelationshipTests.swift */,
 				22D4A41E21BFF5B100427E35 /* Resources */,
 				2250C7CE21BAA2F600E899E2 /* RoleTests.swift */,
-				2250C7F621BAF85900E899E2 /* SeriesActionTests.swift */,
-				225F8942221AF41800196110 /* BookDetailItemTests.swift */,
-				225F8945221AF4DF00196110 /* DetailProviderTests.swift */,
 				225F891F221AE56200196110 /* SectionDetailItemTests.swift */,
-				225F893C221AE66200196110 /* StringLocalizationTests.swift */,
+				2250C7F621BAF85900E899E2 /* SeriesActionTests.swift */,
 				2212376C220CA401006D4AA5 /* SeriesDetailTests.swift */,
 				2250C75F21B94E0C00E899E2 /* SeriesScannerTests.swift */,
 				2250C80721BE881D00E899E2 /* SeriesTests.swift */,
+				225F893C221AE66200196110 /* StringLocalizationTests.swift */,
 				22A498AC220F2F9C006A2137 /* XCTestExtensions.swift */,
 			);
 			path = BookishModelTests;
@@ -703,7 +709,9 @@
 			children = (
 				22DD424D2126D6DA0070C85A /* Collection.xcdatamodeld */,
 				224293B6212AE16200E70510 /* Info.plist */,
-				22A498C9220F3DD0006A2137 /* Sample.bookish */,
+				22724718221C3FDE00C80CCF /* Sample.sqlite */,
+				22724719221C3FDE00C80CCF /* Sample.sqlite-shm */,
+				2272471A221C3FDE00C80CCF /* Sample.sqlite-wal */,
 				2211A9712215C072004B7589 /* Localizable.strings */,
 			);
 			path = Resources;
@@ -1043,21 +1051,21 @@
 		};
 		22F1827821CABCAC00220D20 /* BookishCoreMac */ = {
 			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
+			fileType = text;
 			path = BookishCoreMac;
 			remoteRef = 22F1827721CABCAC00220D20 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		22F1827A21CABCAC00220D20 /* BookishCoreMobile */ = {
 			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
+			fileType = text;
 			path = BookishCoreMobile;
 			remoteRef = 22F1827921CABCAC00220D20 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		22F1827C21CABCAC00220D20 /* BookishCoreTests.xctest */ = {
 			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
+			fileType = file;
 			path = BookishCoreTests.xctest;
 			remoteRef = 22F1827B21CABCAC00220D20 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -1127,7 +1135,7 @@
 		};
 		22F1829F21CABCAC00220D20 /* BookishCoreTests.xctest */ = {
 			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
+			fileType = file;
 			path = BookishCoreTests.xctest;
 			remoteRef = 22F1829E21CABCAC00220D20 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -1167,9 +1175,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22A498CA220F3DD0006A2137 /* Sample.bookish in Resources */,
 				2211A9722215C072004B7589 /* Localizable.strings in Resources */,
+				2272471F221C3FDE00C80CCF /* Sample.sqlite-wal in Resources */,
 				22724680221C1AE000C80CCF /* Build Sample.json in Resources */,
+				2272471D221C3FDE00C80CCF /* Sample.sqlite-shm in Resources */,
+				2272471B221C3FDE00C80CCF /* Sample.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1189,9 +1199,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22A498CB220F3DD0006A2137 /* Sample.bookish in Resources */,
 				2211A9732215C072004B7589 /* Localizable.strings in Resources */,
+				22724720221C3FDE00C80CCF /* Sample.sqlite-wal in Resources */,
 				22724681221C1AE000C80CCF /* Build Sample.json in Resources */,
+				2272471E221C3FDE00C80CCF /* Sample.sqlite-shm in Resources */,
+				2272471C221C3FDE00C80CCF /* Sample.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -53,6 +53,7 @@ open class PersonAction: SyncModelAction {
             NewPersonAction(identifier: "NewPerson"),
             DeletePersonAction(identifier: "DeletePerson"),
             RevealPersonAction(identifier: "RevealPerson"),
+            MergePersonAction(identifier: "Merge")
         ]
     }
 }
@@ -116,4 +117,41 @@ class RevealPersonAction: PersonAction {
     }
 }
 
+/**
+ Action that merges together a number of people.
+ The first person in the selection is treated as the primary, and is retained.
+ All the other people are removed, after transferring any relationships to the first person.
+ */
 
+class MergePersonAction: PersonAction {
+    func moveRelationships(from: Person, to: Person, context: NSManagedObjectContext) {
+        if let relationships = from.relationships as? Set<Relationship> {
+            for fromRelationship in relationships {
+                if let role = fromRelationship.role, let books = fromRelationship.books {
+                    let toRelationship = to.relationship(as: role)
+                    fromRelationship.removeFromBooks(books)
+                    toRelationship.addToBooks(books)
+                }
+                from.removeFromRelationships(fromRelationship)
+                context.delete(fromRelationship)
+            }
+        }
+    }
+    override func validate(context: ActionContext) -> Bool {
+        guard let selection = context[ActionContext.selectionKey] as? [Person], super.validate(context: context) else {
+            return false
+        }
+
+        return selection.count > 1
+    }
+    
+    override func perform(context: ActionContext, model: NSManagedObjectContext) {
+        if let selection = context[ActionContext.selectionKey] as? [Person], let primary = selection.first {
+            let others = selection.dropFirst()
+            for person in others {
+                moveRelationships(from: primary, to: person, context: model)
+                model.delete(person)
+            }
+        }
+    }
+}
