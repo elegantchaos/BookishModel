@@ -8,6 +8,7 @@ import Actions
 import Logger
 
 let personActionChannel = Channel("com.elegantchaos.bookish.model.PersonAction")
+let bktChannel = Channel("com.elegantchaos.bookish.model.BktOutput")
 
 /**
  Protocol providing user interface actions.
@@ -56,7 +57,8 @@ open class PersonAction: SyncModelAction {
             NewPersonAction(identifier: "NewPerson"),
             DeletePersonAction(identifier: "DeletePerson"),
             RevealPersonAction(identifier: "RevealPerson"),
-            MergePersonAction(identifier: "MergePerson")
+            MergePersonAction(identifier: "MergePerson"),
+            SplitPersonAction(identifier: "SplitPerson")
         ]
     }
 }
@@ -154,7 +156,7 @@ class MergePersonAction: PersonAction {
         if let selection = context[ActionContext.selectionKey] as? [Person], let primary = selection.first {
             
             let uuids = selection.compactMap({$0.uuid}).map({ "\"\($0)\"" }).joined(separator: ", ")
-            print("""
+            bktChannel.log("""
                 {
                         "name": "merge \(primary.name ?? "")",
                         "action": "MergePerson",
@@ -171,6 +173,63 @@ class MergePersonAction: PersonAction {
                 notes += "\nMerged with \(person).\n"
             }
             primary.notes = notes
+        }
+    }
+}
+
+
+/**
+ Action that splits each of the selected people into two.
+ This is useful when a person object actually represents two people
+ (this can happen as a result of a Delicious Library import, for example)
+ 
+ The relationships for each of the existing people are duplicated onto the new person.
+ */
+
+class SplitPersonAction: PersonAction {
+    func copyRelationships(from: Person, to: Person, context: NSManagedObjectContext) {
+        if let relationships = from.relationships as? Set<Relationship> {
+            for fromRelationship in relationships {
+                if let role = fromRelationship.role, let books = fromRelationship.books {
+                    let toRelationship = to.relationship(as: role)
+                    toRelationship.addToBooks(books)
+                }
+            }
+        }
+    }
+    
+    override func perform(context: ActionContext, model: NSManagedObjectContext) {
+        if let selection = context[ActionContext.selectionKey] as? [Person] {
+
+            let names = selection.compactMap({$0.name}).joined(separator: ", ")
+            let uuids = selection.compactMap({$0.uuid}).map({ "\"\($0)\"" }).joined(separator: ", ")
+            bktChannel.log("""
+                {
+                "name": "split \(names)",
+                "action": "SplitPerson",
+                "people": [ \(uuids) ]
+                },
+                """)
+            
+            for person in selection {
+                let oldName = person.name ?? ""
+                let newPerson = Person(context: model)
+                
+                let split = oldName.split(separator: ",")
+                if split.count == 2 {
+                    person.name = String(split[0])
+                    newPerson.name = String(split[1])
+                } else {
+                    newPerson.name = oldName
+                }
+                
+                var notes = person.notes ?? ""
+                notes += "\nSplit from \(person)."
+                newPerson.notes = notes
+
+                copyRelationships(from: person, to: newPerson, context: model)
+                personActionChannel.log("Split \(oldName) as \(person) and \(newPerson)")
+            }
         }
     }
 }
