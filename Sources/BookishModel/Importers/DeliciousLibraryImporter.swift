@@ -116,6 +116,7 @@ class DeliciousLibraryImportSession: ImportSession {
     }
 
     private func process(creators: String, for book: Book) {
+        var index = 1
         for creator in creators.split(separator: "\n") {
             let trimmed = creator.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             if trimmed != "" {
@@ -125,6 +126,8 @@ class DeliciousLibraryImportSession: ImportSession {
                 } else {
                     author = Person(context: context)
                     author.name = trimmed
+                    author.uuid = "\(book.uuid!)-author-\(index)"
+                    index += 1
                     cachedPeople[trimmed] = author
                 }
                 let relationship = author.relationship(as: Role.StandardName.author)
