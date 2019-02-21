@@ -27,4 +27,20 @@ public class SeriesEntry: ModelObject {
     
     override func assignInitialUUID() {
     }
+    
+    
+    public override var description: String {
+        var seriesName = series?.name ?? "<unknown>"
+        if let uuid = series?.uuid {
+            seriesName += " (\(uuid))"
+        }
+        
+        var bookName = book?.name ?? "<unknown>"
+        if let uuid = book?.uuid {
+            bookName += " (\(uuid))"
+        }
+        
+        let result = "<Entry: \(bookName) #\(position) in \(seriesName)>"
+        return result
+    }
 }
