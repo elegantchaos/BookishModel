@@ -18,7 +18,7 @@
         {
             "name": "merge",
             "action": "MergePerson",
-            "people": [ "D469D408-517B-4CA3-8278-7B2A311A3726", "5466E459-F551-485F-97FE-C560E17DF87D", "811B0982-9AE5-4347-8321-F6CA73B1B7BA" ]
+            "people": [ "D0656118-3FED-11D9-A33A-000A957CA12C-author-1", "D067F863-3FED-11D9-A33A-000A957CA12C-author-1", "FB40737D-3FFF-11D9-A10D-000A957CA12C-author-1" ]
         }
     
     ]
