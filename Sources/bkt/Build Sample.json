@@ -134,5 +134,47 @@
             "action": "MergePerson",
             "people": [ "A6791948-4199-11D9-86EF-000A957CA12C-author-1", "BE7E87D3-6F9E-4C85-89F0-20B444337535-author-1" ]
         },
+        
+        {
+            "name": "merge Clifford D Simak",
+            "action": "MergePerson",
+            "people": [ "F16DA4C2-4202-11D9-AF45-000A957CA12C-author-1", "0919C24C-4203-11D9-AF45-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "merge Bjarn Stroustrup",
+            "action": "MergePerson",
+            "people": [ "2BC95CEC-439B-11D9-9E3E-000A957CA12C-author-1", "9E4CC57C-439B-11D9-9E3E-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "merge J R R Tolkien",
+            "action": "MergePerson",
+            "people": [ "10A5FA36-4209-11D9-AC99-000A957CA12C-author-1", "FBE37165-4208-11D9-AC99-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "merge A E Van Vogt",
+            "action": "MergePerson",
+            "people": [ "7174C922-420A-11D9-AC99-000A957CA12C-author-1", "496FD262-420A-11D9-AC99-000A957CA12C-author-1", "247173F0-5798-480D-BC21-A61DAC9DA9FF-author-1" ]
+        },
+        
+        {
+            "name": "merge H G Wells",
+            "action": "MergePerson",
+            "people": [ "CDA2EA2E-420A-11D9-AC99-000A957CA12C-author-1", "0A85167D-4238-11D9-A638-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "merge R. D. Wingfield",
+            "action": "MergePerson",
+            "people": [ "77AF5A43-10E5-439D-8FE7-C175CA90FF4F-author-1", "7DA74BF2-24E2-4EC0-BF19-74D15CC8B8BB-author-1" ]
+        },
+        
+        {
+            "name": "merge Herbert S. Zim",
+            "action": "MergePerson",
+            "people": [ "45417FE6-4259-11D9-A638-000A957CA12C-author-1", "187AD13F-420F-11D9-AC99-000A957CA12C-author-1" ]
+        }
     ]
 }
