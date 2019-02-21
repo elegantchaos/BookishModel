@@ -16,9 +16,27 @@
         },
         
         {
-            "name": "merge",
+            "name": "merge aldiss",
             "action": "MergePerson",
             "people": [ "D0656118-3FED-11D9-A33A-000A957CA12C-author-1", "D067F863-3FED-11D9-A33A-000A957CA12C-author-1", "FB40737D-3FFF-11D9-A10D-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "merge apple",
+            "action": "MergePerson",
+            "people": [ "B8A87044-4399-11D9-9E3E-000A957CA12C-author-1", "C25DF65E-4398-11D9-9E3E-000A957CA12C-author-1" ]
+        },
+
+        {
+            "name": "merge ballard",
+            "action": "MergePerson",
+            "people": [ "D0683CA8-3FED-11D9-A33A-000A957CA12C-author-1", "7FE07244-2BBB-4D61-9F27-CD38C48BF75D-author-1" ]
+        },
+        
+        {
+            "name": "merge bova",
+            "action": "MergePerson",
+            "people": [ "4B3328C5-415C-11D9-9BA9-000A957CA12C-author-1", "316C7D77-415C-11D9-9BA9-000A957CA12C-author-1" ]
         }
     
     ]
