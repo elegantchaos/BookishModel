@@ -14,6 +14,8 @@ import CoreData
 struct ActionSpec: Decodable {
     let name: String
     let action: String
+    let people: [String]?
+    let books: [String]?
     let params: [String:String]?
 }
 
@@ -63,7 +65,7 @@ class BookishTool {
     init() {
         let xmlURL = rootURL.appendingPathComponent("../../Tests/BookishModelTests/Resources/Sample.xml")
         let sampleURL = rootURL.appendingPathComponent("../BookishModel/Resources/Sample.sqlite")
-
+        
         let taskList = TaskList()
         let model = BookishModel.model()
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
@@ -104,12 +106,12 @@ class BookishTool {
             }
 
             taskList.addTask(Task(name: action.name, callback: {
-                self.perform(action: action.action, with: expandedParams)
+                self.perform(action: action, with: expandedParams)
             }))
         }
     }
     
-    func perform(action: String, with params: [String:Any] = [:]) {
+    func perform(action: ActionSpec, with params: [String:Any] = [:]) {
         let info = ActionInfo()
         info.registerNotification { (stage, actionContext) in
             if stage == .didPerform {
@@ -122,7 +124,23 @@ class BookishTool {
         for (key, value) in params {
             info[key] = value
         }
-        actionManager.perform(identifier: action, info: info)
+        
+        if let people = action.people {
+            var selection: [ModelObject] = []
+            for personID in people {
+                let request: NSFetchRequest<Person> = Person.fetcher(in: context)
+                request.predicate = NSPredicate(format: "uuid = \"\(personID)\"")
+                request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+                let results = try? context.fetch(request)
+                if let found = results, let person = found.first as? Person {
+                    selection.append(person)
+                }
+            }
+            info[ActionContext.selectionKey] = selection
+        }
+
+        
+        actionManager.perform(identifier: action.action, info: info)
     }
     
     func finish() {

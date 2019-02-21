@@ -5,6 +5,9 @@
 
 import CoreData
 import Actions
+import Logger
+
+let personActionChannel = Channel("com.elegantchaos.bookish.model.PersonAction")
 
 /**
  Protocol providing user interface actions.
@@ -53,7 +56,7 @@ open class PersonAction: SyncModelAction {
             NewPersonAction(identifier: "NewPerson"),
             DeletePersonAction(identifier: "DeletePerson"),
             RevealPersonAction(identifier: "RevealPerson"),
-            MergePersonAction(identifier: "Merge")
+            MergePersonAction(identifier: "MergePerson")
         ]
     }
 }
@@ -129,8 +132,9 @@ class MergePersonAction: PersonAction {
             for fromRelationship in relationships {
                 if let role = fromRelationship.role, let books = fromRelationship.books {
                     let toRelationship = to.relationship(as: role)
-                    fromRelationship.removeFromBooks(books)
                     toRelationship.addToBooks(books)
+                    fromRelationship.removeFromBooks(books)
+                    personActionChannel.log("Updated \(toRelationship)")
                 }
                 from.removeFromRelationships(fromRelationship)
                 context.delete(fromRelationship)
@@ -147,11 +151,15 @@ class MergePersonAction: PersonAction {
     
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
         if let selection = context[ActionContext.selectionKey] as? [Person], let primary = selection.first {
+            var notes = primary.notes ?? ""
             let others = selection.dropFirst()
+            personActionChannel.log("Merging \(primary) with \(others)")
             for person in others {
-                moveRelationships(from: primary, to: person, context: model)
+                moveRelationships(from: person, to: primary, context: model)
                 model.delete(person)
+                notes += "\nMerged with \(person).\n"
             }
+            primary.notes = notes
         }
     }
 }

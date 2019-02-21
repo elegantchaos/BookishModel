@@ -26,4 +26,20 @@ public class Relationship: ModelObject {
     override func assignInitialUUID() {
     }
 
+    public override var description: String {
+        let roleName = role?.name ?? "<unknown>"
+        var personName = person?.name ?? "<unknown>"
+        if let uuid = person?.uuid {
+           personName += " (\(uuid))"
+        }
+        let bookList: String
+        if let books = books as? Set<Book> {
+            bookList = " with" + books.map({ $0.nameAndId }).joined(separator: ",")
+        } else {
+            bookList = ""
+        }
+        
+        return "<Relationship: \(roleName) for \(personName)\(bookList)>"
+    }
+
 }

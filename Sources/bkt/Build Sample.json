@@ -13,6 +13,12 @@
         {
             "name": "fix series",
             "action": "ScanSeries"
+        },
+        
+        {
+            "name": "merge",
+            "action": "MergePerson",
+            "people": [ "D469D408-517B-4CA3-8278-7B2A311A3726", "5466E459-F551-485F-97FE-C560E17DF87D", "811B0982-9AE5-4347-8321-F6CA73B1B7BA" ]
         }
     
     ]
