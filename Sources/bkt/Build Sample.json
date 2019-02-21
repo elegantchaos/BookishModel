@@ -24,7 +24,7 @@
         {
             "name": "merge apple",
             "action": "MergePerson",
-            "people": [ "B8A87044-4399-11D9-9E3E-000A957CA12C-author-1", "C25DF65E-4398-11D9-9E3E-000A957CA12C-author-1" ]
+            "people": [ "B8A87044-4399-11D9-9E3E-000A957CA12C-author-1", "C25DF65E-4398-11D9-9E3E-000A957CA12C-author-1", "DB7AEC13-4398-11D9-9E3E-000A957CA12C-author-1", "74E211BE-4399-11D9-9E3E-000A957CA12C-author-1", "AF9CEE0C-4398-11D9-9E3E-000A957CA12C-author-1" ]
         },
 
         {
@@ -37,7 +37,102 @@
             "name": "merge bova",
             "action": "MergePerson",
             "people": [ "4B3328C5-415C-11D9-9BA9-000A957CA12C-author-1", "316C7D77-415C-11D9-9BA9-000A957CA12C-author-1" ]
-        }
-    
+        },
+
+        {
+            "name": "merge C. J. Cherryh",
+            "action": "MergePerson",
+            "people": [ "68A74C9A-4163-11D9-9BA9-000A957CA12C-author-1", "1AEBB4EE-0BAC-4875-AC94-1335B3B6D3E0-author-1", "E9024499-1B8D-4321-B3EB-3AE1C6E3304F-author-2" ]
+        },
+        
+        {
+            "name": "merge Arthur C Clarke",
+            "action": "MergePerson",
+            "people": [ "B6B8D522-416D-11D9-9BA9-000A957CA12C-author-1", "7D8F3F9C-416E-11D9-9BA9-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "merge Patricia Cornwell",
+            "action": "MergePerson",
+            "people": [ "5DEDBB3B-A08D-4C3B-A0BD-74E1C7177366-author-1", "FCB6F97A-57F8-4F71-A678-9186FD60021C-author-1" ]
+        },
+        
+        {
+            "name": "merge Philip K Dick",
+            "action": "MergePerson",
+            "people": [ "23371C7C-4172-11D9-9BA9-000A957CA12C-author-1", "86850456-049D-495C-A45F-12CEB395C62E-author-1", "47C66A25-4172-11D9-9BA9-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "merge Gordon R Dickson",
+            "action": "MergePerson",
+            "people": [ "7B46FBEE-4173-11D9-9BA9-000A957CA12C-author-1", "8837F8FF-4173-11D9-9BA9-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "merge Jane Fancher",
+            "action": "MergePerson",
+            "people": [ "E9024499-1B8D-4321-B3EB-3AE1C6E3304F-author-1", "0FD63EA6-CCE5-4719-AA5F-9387075352D0-author-1" ]
+        },
+        
+        {
+            "name": "merge David Flanagan",
+            "action": "MergePerson",
+            "people": [ "1ED6BA51-439B-11D9-9E3E-000A957CA12C-author-1", "386D474B-439C-11D9-9E3E-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "merge Ursula K Le Guin",
+            "action": "MergePerson",
+            "people": [ "E1B2C18D-4179-11D9-86EF-000A957CA12C-author-1", "406D5CE0-4257-11D9-A638-000A957CA12C-author-1", "7B1EE010-417A-11D9-86EF-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "merge Hazlitt",
+            "action": "MergePerson",
+            "people": [ "44E2A441-425B-11D9-A638-000A957CA12C-author-1", "9C27FAAE-4239-11D9-A638-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "merge L Ron Hubbard",
+            "action": "MergePerson",
+            "people": [ "A096E12A-417D-11D9-86EF-000A957CA12C-author-1", "C54965DC-417D-11D9-86EF-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "merge M. Jakubowski",
+            "action": "MergePerson",
+            "people": [ "B8E949DA-0C50-4FA2-9337-9D72128EB841-author-1", "2CAFFD2E-0DED-443A-A68D-F1CE4A2180D9-author-1" ]
+        },
+
+        {
+            "name": "merge K W Jeter",
+            "action": "MergePerson",
+            "people": [ "91205D72-4186-11D9-86EF-000A957CA12C-author-1", "874D14EF-4186-11D9-86EF-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "merge Doris Lessing",
+            "action": "MergePerson",
+            "people": [ "CF7EF0F4-4195-11D9-86EF-000A957CA12C-author-1", "00D23716-91D1-4B60-AF31-1F02B43D1674-author-1" ]
+        },
+        
+        {
+            "name": "merge R A MacAvoy",
+            "action": "MergePerson",
+            "people": [ "CBD91FC5-4197-11D9-86EF-000A957CA12C-author-1", "AD474111-4197-11D9-86EF-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "merge George R. R. Martin",
+            "action": "MergePerson",
+            "people": [ "FAB4A0CF-9DEE-41B3-BA64-2FE5335F389E-author-1", "7E1451AD-4197-11D9-86EF-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "merge China Mieville",
+            "action": "MergePerson",
+            "people": [ "A6791948-4199-11D9-86EF-000A957CA12C-author-1", "BE7E87D3-6F9E-4C85-89F0-20B444337535-author-1" ]
+        },
     ]
 }

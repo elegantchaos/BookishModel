@@ -141,6 +141,7 @@ class MergePersonAction: PersonAction {
             }
         }
     }
+    
     override func validate(context: ActionContext) -> Bool {
         guard let selection = context[ActionContext.selectionKey] as? [Person], super.validate(context: context) else {
             return false
@@ -151,6 +152,16 @@ class MergePersonAction: PersonAction {
     
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
         if let selection = context[ActionContext.selectionKey] as? [Person], let primary = selection.first {
+            
+            let uuids = selection.compactMap({$0.uuid}).map({ "\"\($0)\"" }).joined(separator: ", ")
+            print("""
+                {
+                        "name": "merge \(primary.name ?? "")",
+                        "action": "MergePerson",
+                        "people": [ \(uuids) ]
+                },
+            """)
+            
             var notes = primary.notes ?? ""
             let others = selection.dropFirst()
             personActionChannel.log("Merging \(primary) with \(others)")

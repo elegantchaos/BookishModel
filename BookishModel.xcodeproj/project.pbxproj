@@ -127,8 +127,6 @@
 		22724643221C003100C80CCF /* ImportAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22724641221C003100C80CCF /* ImportAction.swift */; };
 		2272467D221C117F00C80CCF /* ScanSeriesAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22724662221C117E00C80CCF /* ScanSeriesAction.swift */; };
 		2272467E221C117F00C80CCF /* ScanSeriesAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22724662221C117E00C80CCF /* ScanSeriesAction.swift */; };
-		22724680221C1AE000C80CCF /* Build Sample.json in Resources */ = {isa = PBXBuildFile; fileRef = 2272467F221C1AE000C80CCF /* Build Sample.json */; };
-		22724681221C1AE000C80CCF /* Build Sample.json in Resources */ = {isa = PBXBuildFile; fileRef = 2272467F221C1AE000C80CCF /* Build Sample.json */; };
 		2272471B221C3FDE00C80CCF /* Sample.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 22724718221C3FDE00C80CCF /* Sample.sqlite */; };
 		2272471C221C3FDE00C80CCF /* Sample.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 22724718221C3FDE00C80CCF /* Sample.sqlite */; };
 		2272471D221C3FDE00C80CCF /* Sample.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 22724719221C3FDE00C80CCF /* Sample.sqlite-shm */; };
@@ -1177,7 +1175,6 @@
 			files = (
 				2211A9722215C072004B7589 /* Localizable.strings in Resources */,
 				2272471F221C3FDE00C80CCF /* Sample.sqlite-wal in Resources */,
-				22724680221C1AE000C80CCF /* Build Sample.json in Resources */,
 				2272471D221C3FDE00C80CCF /* Sample.sqlite-shm in Resources */,
 				2272471B221C3FDE00C80CCF /* Sample.sqlite in Resources */,
 			);
@@ -1201,7 +1198,6 @@
 			files = (
 				2211A9732215C072004B7589 /* Localizable.strings in Resources */,
 				22724720221C3FDE00C80CCF /* Sample.sqlite-wal in Resources */,
-				22724681221C1AE000C80CCF /* Build Sample.json in Resources */,
 				2272471E221C3FDE00C80CCF /* Sample.sqlite-shm in Resources */,
 				2272471C221C3FDE00C80CCF /* Sample.sqlite in Resources */,
 			);
