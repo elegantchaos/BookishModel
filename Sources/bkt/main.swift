@@ -132,7 +132,7 @@ class BookishTool {
                 request.predicate = NSPredicate(format: "uuid = \"\(personID)\"")
                 request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
                 let results = try? context.fetch(request)
-                if let found = results, let person = found.first as? Person {
+                if let found = results, let person = found.first {
                     selection.append(person)
                 }
             }
