@@ -180,15 +180,26 @@
         {
             "name": "rename Apple",
             "action": "ChangeValue",
-            "property": "name",
-            "value": "Apple Computer Inc"
+            "params": {
+                "property": "name",
+                "value": "Apple Computer Inc",
+            },
             "people": ["B8A87044-4399-11D9-9E3E-000A957CA12C-author-1"]
+        },
+        
+        {
+            "name": "split Krzysztof Cwalina Brad Abrams",
+            "action": "SplitPerson",
+            "people": [ "3129B67A-020D-4869-BE74-8E99A537CBCE-author-1" ]
         },
         
         {
             "name": "split John Julius Norwich Quentin Blake",
             "action": "SplitPerson",
-            "people": [ "A2CFFC42-593C-11D9-A781-000A957CA12C-author-1" ]
-        },
+            "people": [ "A2CFFC42-593C-11D9-A781-000A957CA12C-author-1" ],
+            "params": {
+                "splitName": "Quentin Blake"
+            }
+        }
     ]
 }
