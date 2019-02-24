@@ -40,6 +40,7 @@ open class PersonAction: SyncModelAction {
     public static let relationshipKey = "relationship"
     public static let roleKey = "role"
     public static let splitNameKey = "splitName"
+    public static let splitUUIDKey = "splitUUID"
     
     open override func validate(context: ActionContext) -> Bool {
         guard super.validate(context: context) else {
@@ -234,6 +235,10 @@ class SplitPersonAction: PersonAction {
                             newPerson.name = oldName
                         }
                     }
+                }
+                
+                if let uuid = person.uuid, let suffix = context[PersonAction.splitUUIDKey] as? String {
+                    newPerson.uuid = "\(uuid)-\(suffix)"
                 }
                 
                 var notes = person.notes ?? ""
