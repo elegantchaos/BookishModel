@@ -175,6 +175,20 @@
             "name": "merge Herbert S. Zim",
             "action": "MergePerson",
             "people": [ "45417FE6-4259-11D9-A638-000A957CA12C-author-1", "187AD13F-420F-11D9-AC99-000A957CA12C-author-1" ]
-        }
+        },
+        
+        {
+            "name": "rename Apple",
+            "action": "ChangeValue",
+            "property": "name",
+            "value": "Apple Computer Inc"
+            "people": ["B8A87044-4399-11D9-9E3E-000A957CA12C-author-1"]
+        },
+        
+        {
+            "name": "split John Julius Norwich Quentin Blake",
+            "action": "SplitPerson",
+            "people": [ "A2CFFC42-593C-11D9-A781-000A957CA12C-author-1" ]
+        },
     ]
 }
