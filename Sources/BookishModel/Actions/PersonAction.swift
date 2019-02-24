@@ -39,6 +39,7 @@ open class PersonAction: SyncModelAction {
     public static let personKey = "person"
     public static let relationshipKey = "relationship"
     public static let roleKey = "role"
+    public static let splitNameKey = "splitName"
     
     open override func validate(context: ActionContext) -> Bool {
         guard super.validate(context: context) else {
@@ -215,12 +216,24 @@ class SplitPersonAction: PersonAction {
                 let oldName = person.name ?? ""
                 let newPerson = Person(context: model)
                 
-                let split = oldName.split(separator: ",")
-                if split.count == 2 {
-                    person.name = String(split[0])
-                    newPerson.name = String(split[1])
+                let trimCharacters = CharacterSet.whitespaces
+                if let explicitName = context[PersonAction.splitNameKey] as? String {
+                    newPerson.name = explicitName
+                    person.name = oldName.replacingOccurrences(of: explicitName, with: "").trimmingCharacters(in: trimCharacters)
                 } else {
-                    newPerson.name = oldName
+                    let split = oldName.split(separator: ",")
+                    if split.count == 2 {
+                        person.name = String(split[0]).trimmingCharacters(in: trimCharacters)
+                        newPerson.name = String(split[1]).trimmingCharacters(in: trimCharacters)
+                    } else {
+                        let split = oldName.split(separator: " ")
+                        if split.count == 4 {
+                            person.name = split[0...1].joined(separator: " ").trimmingCharacters(in: trimCharacters)
+                            newPerson.name = split[2...3].joined(separator: " ").trimmingCharacters(in: trimCharacters)
+                        } else {
+                            newPerson.name = oldName
+                        }
+                    }
                 }
                 
                 var notes = person.notes ?? ""
