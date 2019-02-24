@@ -16,9 +16,97 @@
         },
         
         {
+            "name": "split Krzysztof Cwalina Brad Abrams",
+            "action": "SplitPerson",
+            "people": [ "3129B67A-020D-4869-BE74-8E99A537CBCE-author-1" ]
+        },
+        
+        {
+            "name": "split John Julius Norwich Quentin Blake",
+            "action": "SplitPerson",
+            "people": [ "A2CFFC42-593C-11D9-A781-000A957CA12C-author-1" ],
+            "params": {
+                "splitName": "Quentin Blake"
+            }
+        },
+        
+        {
+            "name": "split Harry Harrison, Brian Aldiss",
+            "action": "SplitPerson",
+            "people": [ "9618E5EC-420C-11D9-AC99-000A957CA12C-author-1" ],
+            "params": {
+                "splitUUID": "split"
+            }
+        },
+        
+        {
+            "name": "split Herb Sutter Andrei Alexandrescu",
+            "action": "SplitPerson",
+            "people": [ "55436D46-06FC-443A-A9B4-31D71E0991CF-author-1" ]
+        },
+        
+        {
+            "name": "split Christopher Rawson Heather Amery",
+            "action": "SplitPerson",
+            "people": [ "246226DA-4259-11D9-A638-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "split Alan Douglas Sid Astley",
+            "action": "SplitPerson",
+            "people": [ "14C18AC0-4627-11D9-9811-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "split Larry Niven Steven Barnes",
+            "action": "SplitPerson",
+            "people": [ "32384F02-419B-11D9-9118-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "split L.M. Boston Peter Boston",
+            "action": "SplitPerson",
+            "people": [ "356B3D7E-4626-11D9-9811-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "split Allen Macro J.N. Buxton",
+            "action": "SplitPerson",
+            "people": [ "AE7058A4-439D-11D9-9E3E-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "split Alec Guinness John Le Carre",
+            "action": "SplitPerson",
+            "people": [ "33407F1C-4257-11D9-A638-000A957CA12C-author-1" ],
+            "params": {
+                "splitName": "Alec Guinness",
+                "splitUUID": "split"
+            }
+        },
+        
+        {
+            "name": "split John Gribbin Marcus Chown",
+            "action": "SplitPerson",
+            "people": [ "89C34B50-4179-11D9-86EF-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "split Peter Cook William Cook",
+            "action": "SplitPerson",
+            "people": [ "F8C6C65F-416F-11D9-9BA9-000A957CA12C-author-1" ]
+        },
+
+        {
+            "name": "split John Cleese Charles Crichton",
+            "action": "SplitPerson",
+            "people": [ "08869B62-4626-11D9-9811-000A957CA12C-author-1" ]
+        },
+        
+        {
             "name": "merge aldiss",
             "action": "MergePerson",
-            "people": [ "D0656118-3FED-11D9-A33A-000A957CA12C-author-1", "D067F863-3FED-11D9-A33A-000A957CA12C-author-1", "FB40737D-3FFF-11D9-A10D-000A957CA12C-author-1" ]
+            "people": [ "D0656118-3FED-11D9-A33A-000A957CA12C-author-1", "D067F863-3FED-11D9-A33A-000A957CA12C-author-1", "FB40737D-3FFF-11D9-A10D-000A957CA12C-author-1", "9618E5EC-420C-11D9-AC99-000A957CA12C-author-1-split" ]
         },
         
         {
@@ -185,21 +273,8 @@
                 "value": "Apple Computer Inc",
             },
             "people": ["B8A87044-4399-11D9-9E3E-000A957CA12C-author-1"]
-        },
-        
-        {
-            "name": "split Krzysztof Cwalina Brad Abrams",
-            "action": "SplitPerson",
-            "people": [ "3129B67A-020D-4869-BE74-8E99A537CBCE-author-1" ]
-        },
-        
-        {
-            "name": "split John Julius Norwich Quentin Blake",
-            "action": "SplitPerson",
-            "people": [ "A2CFFC42-593C-11D9-A781-000A957CA12C-author-1" ],
-            "params": {
-                "splitName": "Quentin Blake"
-            }
         }
+        
+
     ]
 }
