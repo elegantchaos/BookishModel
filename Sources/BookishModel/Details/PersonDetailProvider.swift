@@ -14,7 +14,7 @@ public class PersonDetailProvider: DetailProvider {
         
         if showDebug {
             details.append(contentsOf: [
-                DetailSpec(binding: "uuid", viewAs: DetailSpec.textKind),
+                DetailSpec(binding: "uuid", viewAs: DetailSpec.textKind, isDebug: true),
                 ])
         }
         

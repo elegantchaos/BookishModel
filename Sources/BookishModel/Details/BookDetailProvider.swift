@@ -29,8 +29,8 @@ public class BookDetailProvider: DetailProvider {
         
         if showDebug {
             details.append(contentsOf: [
-                DetailSpec(binding: "uuid", viewAs: DetailSpec.textKind),
-                DetailSpec(binding: "importRaw", viewAs: DetailSpec.hiddenKind, editAs: DetailSpec.textKind),
+                DetailSpec(binding: "uuid", viewAs: DetailSpec.textKind, isDebug: true),
+                DetailSpec(binding: "importRaw", viewAs: DetailSpec.hiddenKind, editAs: DetailSpec.textKind, isDebug: true),
                 ])
         }
         

@@ -10,6 +10,7 @@ public final class DetailSpec {
     public let binding: String
     public let kind: String
     public let editableKind: String
+    public let isDebug: Bool
     
     public static let textKind = "text"
     public static let dateKind = "date"
@@ -17,10 +18,11 @@ public final class DetailSpec {
     public static let editableDateKind = "editableDate"
     public static let editableDimensionsKind = "editableDimensions"
     
-    public init(binding: String, viewAs: String = "text", editAs: String? = nil) {
+    public init(binding: String, viewAs: String = "text", editAs: String? = nil, isDebug: Bool = false) {
         self.binding = binding
         self.kind = viewAs
         self.editableKind = editAs ?? viewAs
+        self.isDebug = isDebug
     }
     
 }
