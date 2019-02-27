@@ -13,9 +13,9 @@ public class LookupSession {
         case done
     }
     
-    public typealias Callback = (State) -> Void
+    public typealias Callback = (LookupSession, State) -> Void
     
-    let search: String
+    public let search: String
     let manager: LookupManager
     let callback: Callback
     var running: Set<LookupService>
@@ -34,7 +34,7 @@ public class LookupSession {
         let workerQueue = manager.workerQueue
         
         manager.resultQueue.async {
-            callback(.starting)
+            callback(self, .starting)
             
             if services.count > 0 {
                 for service in services {
@@ -44,23 +44,22 @@ public class LookupSession {
                     }
                 }
             } else {
-                callback(.done)
+                callback(self, .done)
             }
         }
     }
     
     public func add(candidate: LookupCandidate) {
         manager.resultQueue.async {
-            self.callback(.foundCandidate(candidate))
+            self.callback(self, .foundCandidate(candidate))
         }
     }
     
     public func done(service: LookupService) {
         manager.resultQueue.async {
-            let running = self.running
             if let _ = self.running.remove(service) {
-                if running.count == 0 {
-                    self.callback(.done)
+                if self.running.count == 0 {
+                    self.callback(self, .done)
                 }
             }
         }
@@ -70,9 +69,9 @@ public class LookupSession {
         manager.resultQueue.async {
             let running = self.running
             if let _ = self.running.remove(service) {
-                self.callback(.failed(service))
+                self.callback(self, .failed(service))
                 if running.count == 0 {
-                    self.callback(.done)
+                    self.callback(self, .done)
                 }
             }
         }
