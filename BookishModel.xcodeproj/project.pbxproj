@@ -133,6 +133,18 @@
 		2272471E221C3FDE00C80CCF /* Sample.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 22724719221C3FDE00C80CCF /* Sample.sqlite-shm */; };
 		2272471F221C3FDE00C80CCF /* Sample.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 2272471A221C3FDE00C80CCF /* Sample.sqlite-wal */; };
 		22724720221C3FDE00C80CCF /* Sample.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 2272471A221C3FDE00C80CCF /* Sample.sqlite-wal */; };
+		229FB9E22226B2C300A564D4 /* LookupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229FB9E12226B2C300A564D4 /* LookupService.swift */; };
+		229FB9E32226B2C300A564D4 /* LookupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229FB9E12226B2C300A564D4 /* LookupService.swift */; };
+		229FB9E52226B2CA00A564D4 /* LookupCandidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229FB9E42226B2CA00A564D4 /* LookupCandidate.swift */; };
+		229FB9E62226B2CA00A564D4 /* LookupCandidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229FB9E42226B2CA00A564D4 /* LookupCandidate.swift */; };
+		229FB9E82226B2D900A564D4 /* GoogleLookupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229FB9E72226B2D900A564D4 /* GoogleLookupService.swift */; };
+		229FB9E92226B2D900A564D4 /* GoogleLookupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229FB9E72226B2D900A564D4 /* GoogleLookupService.swift */; };
+		229FB9EB2226B2E300A564D4 /* ExistingCollectionLookupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229FB9EA2226B2E300A564D4 /* ExistingCollectionLookupService.swift */; };
+		229FB9EC2226B2E300A564D4 /* ExistingCollectionLookupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229FB9EA2226B2E300A564D4 /* ExistingCollectionLookupService.swift */; };
+		229FB9EE2226C2F800A564D4 /* LookupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229FB9ED2226C2F800A564D4 /* LookupManager.swift */; };
+		229FB9EF2226C2F800A564D4 /* LookupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229FB9ED2226C2F800A564D4 /* LookupManager.swift */; };
+		229FB9F12226CBCD00A564D4 /* LookupSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229FB9F02226CBCD00A564D4 /* LookupSession.swift */; };
+		229FB9F22226CBCD00A564D4 /* LookupSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229FB9F02226CBCD00A564D4 /* LookupSession.swift */; };
 		22A3E2EB21FB80B900BA4F17 /* MultipleValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A3E2EA21FB80B900BA4F17 /* MultipleValues.swift */; };
 		22A3E2EC21FB80B900BA4F17 /* MultipleValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A3E2EA21FB80B900BA4F17 /* MultipleValues.swift */; };
 		22A49896220DF035006A2137 /* DetailItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A49895220DF035006A2137 /* DetailItemTests.swift */; };
@@ -463,6 +475,12 @@
 		22724718221C3FDE00C80CCF /* Sample.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sample.sqlite; sourceTree = "<group>"; };
 		22724719221C3FDE00C80CCF /* Sample.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sample.sqlite-shm"; sourceTree = "<group>"; };
 		2272471A221C3FDE00C80CCF /* Sample.sqlite-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sample.sqlite-wal"; sourceTree = "<group>"; };
+		229FB9E12226B2C300A564D4 /* LookupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookupService.swift; sourceTree = "<group>"; };
+		229FB9E42226B2CA00A564D4 /* LookupCandidate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookupCandidate.swift; sourceTree = "<group>"; };
+		229FB9E72226B2D900A564D4 /* GoogleLookupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleLookupService.swift; sourceTree = "<group>"; };
+		229FB9EA2226B2E300A564D4 /* ExistingCollectionLookupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingCollectionLookupService.swift; sourceTree = "<group>"; };
+		229FB9ED2226C2F800A564D4 /* LookupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookupManager.swift; sourceTree = "<group>"; };
+		229FB9F02226CBCD00A564D4 /* LookupSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookupSession.swift; sourceTree = "<group>"; };
 		22A1A8BF21A5C24800F2332B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		22A1A8D621A5C4E300F2332B /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = SOURCE_ROOT; };
 		22A3E2EA21FB80B900BA4F17 /* MultipleValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleValues.swift; sourceTree = "<group>"; };
@@ -572,6 +590,7 @@
 		224293B4212AE16200E70510 /* BookishModel */ = {
 			isa = PBXGroup;
 			children = (
+				229FB9C62226B2B000A564D4 /* Lookup */,
 				224293D1212AE1E700E70510 /* BookishModel.swift */,
 				22DA6A1821E6158D00ECF09A /* BookishModelBridge.h */,
 				221ED50E216B87D900594714 /* CollectionContainer.swift */,
@@ -689,6 +708,19 @@
 				2272467F221C1AE000C80CCF /* Build Sample.json */,
 			);
 			path = bkt;
+			sourceTree = "<group>";
+		};
+		229FB9C62226B2B000A564D4 /* Lookup */ = {
+			isa = PBXGroup;
+			children = (
+				229FB9ED2226C2F800A564D4 /* LookupManager.swift */,
+				229FB9F02226CBCD00A564D4 /* LookupSession.swift */,
+				229FB9E12226B2C300A564D4 /* LookupService.swift */,
+				229FB9E42226B2CA00A564D4 /* LookupCandidate.swift */,
+				229FB9E72226B2D900A564D4 /* GoogleLookupService.swift */,
+				229FB9EA2226B2E300A564D4 /* ExistingCollectionLookupService.swift */,
+			);
+			path = Lookup;
 			sourceTree = "<group>";
 		};
 		22A498B2220F3554006A2137 /* Importers */ = {
@@ -1240,6 +1272,7 @@
 				223879C9220B4A2F0019F9EA /* SimpleDetailItem.swift in Sources */,
 				2250C6E321B1B14200E899E2 /* PublisherAction.swift in Sources */,
 				22DA6A1C21E61BC600ECF09A /* ModelObject.swift in Sources */,
+				229FB9EB2226B2E300A564D4 /* ExistingCollectionLookupService.swift in Sources */,
 				2257114E2218663B0099FFDE /* BookDetailItem.swift in Sources */,
 				224293D2212AE1E700E70510 /* BookishModel.swift in Sources */,
 				22A498B8220F3555006A2137 /* DeliciousLibraryImporter.swift in Sources */,
@@ -1247,6 +1280,7 @@
 				2250C71821B7E15700E899E2 /* NSManagedObjectContextExtensions.swift in Sources */,
 				22571132221865AD0099FFDE /* SectionDetailItem.swift in Sources */,
 				224293E9212AF0D300E70510 /* Role.swift in Sources */,
+				229FB9E52226B2CA00A564D4 /* LookupCandidate.swift in Sources */,
 				226E8E7321AC50A6001F191F /* ChangeValueAction.swift in Sources */,
 				223879C6220B49230019F9EA /* PublisherDetailItem.swift in Sources */,
 				226E8DB121A84031001F191F /* ModelAction.swift in Sources */,
@@ -1256,11 +1290,15 @@
 				2272467D221C117F00C80CCF /* ScanSeriesAction.swift in Sources */,
 				223879BC220B3FFC0019F9EA /* PublisherDetailProvider.swift in Sources */,
 				22E47CC6216E31B700E43DBF /* BookAction.swift in Sources */,
+				229FB9F12226CBCD00A564D4 /* LookupSession.swift in Sources */,
 				224293E3212AF09D00E70510 /* Person.swift in Sources */,
 				2211A96F2215A7B0004B7589 /* StringExtensions.swift in Sources */,
+				229FB9E22226B2C300A564D4 /* LookupService.swift in Sources */,
 				2250C71F21B94CD800E899E2 /* SeriesScanner.swift in Sources */,
+				229FB9E82226B2D900A564D4 /* GoogleLookupService.swift in Sources */,
 				22A498A4220F1A02006A2137 /* NSManagedObjectExtensions.swift in Sources */,
 				22387993220B1D860019F9EA /* BookDetailProvider.swift in Sources */,
+				229FB9EE2226C2F800A564D4 /* LookupManager.swift in Sources */,
 				223879B9220B3FF10019F9EA /* SeriesDetailProvider.swift in Sources */,
 				22F180E321CA8FD600220D20 /* Indexing.swift in Sources */,
 				22724642221C003100C80CCF /* ImportAction.swift in Sources */,
@@ -1329,6 +1367,7 @@
 				223879C1220B48740019F9EA /* PersonDetailItem.swift in Sources */,
 				223879CA220B4A2F0019F9EA /* SimpleDetailItem.swift in Sources */,
 				224293E7212AF0B700E70510 /* Relationship.swift in Sources */,
+				229FB9EC2226B2E300A564D4 /* ExistingCollectionLookupService.swift in Sources */,
 				22DA6A1D21E61BC600ECF09A /* ModelObject.swift in Sources */,
 				22571150221866500099FFDE /* SectionDetailItem.swift in Sources */,
 				221C4B2E216BA8220086D56F /* PersonAction.swift in Sources */,
@@ -1336,6 +1375,7 @@
 				221F272021306C1300DC2DC7 /* Book.swift in Sources */,
 				2250C71921B7E15700E899E2 /* NSManagedObjectContextExtensions.swift in Sources */,
 				226E8E7421AC50A6001F191F /* ChangeValueAction.swift in Sources */,
+				229FB9E62226B2CA00A564D4 /* LookupCandidate.swift in Sources */,
 				226E8DB221A84031001F191F /* ModelAction.swift in Sources */,
 				223879C7220B49230019F9EA /* PublisherDetailItem.swift in Sources */,
 				224293D3212AE1E700E70510 /* BookishModel.swift in Sources */,
@@ -1345,11 +1385,15 @@
 				2272467E221C117F00C80CCF /* ScanSeriesAction.swift in Sources */,
 				223879BD220B3FFC0019F9EA /* PublisherDetailProvider.swift in Sources */,
 				22E47CC7216E31BA00E43DBF /* BookAction.swift in Sources */,
+				229FB9F22226CBCD00A564D4 /* LookupSession.swift in Sources */,
 				224293E4212AF09E00E70510 /* Person.swift in Sources */,
 				2211A9702215A7B0004B7589 /* StringExtensions.swift in Sources */,
+				229FB9E32226B2C300A564D4 /* LookupService.swift in Sources */,
 				2250C72021B94CD800E899E2 /* SeriesScanner.swift in Sources */,
+				229FB9E92226B2D900A564D4 /* GoogleLookupService.swift in Sources */,
 				22A498A5220F1A02006A2137 /* NSManagedObjectExtensions.swift in Sources */,
 				22387994220B1D860019F9EA /* BookDetailProvider.swift in Sources */,
+				229FB9EF2226C2F800A564D4 /* LookupManager.swift in Sources */,
 				223879BA220B3FF10019F9EA /* SeriesDetailProvider.swift in Sources */,
 				22F180E421CA8FD600220D20 /* Indexing.swift in Sources */,
 				22724643221C003100C80CCF /* ImportAction.swift in Sources */,
