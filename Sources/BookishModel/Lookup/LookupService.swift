@@ -23,4 +23,8 @@ public class LookupService: Equatable, Hashable {
     public func lookup(search: String, session: LookupSession) {
         session.done(service: self)
     }
+    
+    public func cancel() {
+        
+    }
 }

@@ -17,7 +17,7 @@ public class LookupSession {
     
     public let search: String
     let manager: LookupManager
-    let callback: Callback
+    var callback: Callback?
     var running: Set<LookupService>
     
     init(search: String, manager: LookupManager, callback: @escaping Callback) {
@@ -29,12 +29,11 @@ public class LookupSession {
     
     func run() {
         let services = manager.services
-        let callback = self.callback
         let search = self.search
         let workerQueue = manager.workerQueue
-        
-        manager.resultQueue.async {
-            callback(self, .starting)
+
+        manager.lockQueue.async {
+            self.callback(state: .starting)
             
             if services.count > 0 {
                 for service in services {
@@ -44,34 +43,47 @@ public class LookupSession {
                     }
                 }
             } else {
-                callback(self, .done)
+                self.callback(state: .done)
             }
         }
     }
     
-    public func add(candidate: LookupCandidate) {
-        manager.resultQueue.async {
-            self.callback(self, .foundCandidate(candidate))
+    public func cancel() {
+        manager.lockQueue.async {
+            self.callback = nil
+            for service in self.running {
+                service.cancel()
+            }
         }
     }
     
+    func callback(state: State) {
+        manager.callbackQueue.async {
+            self.callback?(self, state)
+        }
+    }
+    
+    public func add(candidate: LookupCandidate) {
+        self.callback(state: .foundCandidate(candidate))
+    }
+    
     public func done(service: LookupService) {
-        manager.resultQueue.async {
+        manager.lockQueue.async {
             if let _ = self.running.remove(service) {
                 if self.running.count == 0 {
-                    self.callback(self, .done)
+                    self.callback(state: .done)
                 }
             }
         }
     }
 
     public func failed(service: LookupService) {
-        manager.resultQueue.async {
+        manager.lockQueue.async {
             let running = self.running
             if let _ = self.running.remove(service) {
-                self.callback(self, .failed(service))
+                self.callback(state: .failed(service))
                 if running.count == 0 {
-                    self.callback(self, .done)
+                    self.callback(state: .done)
                 }
             }
         }
