@@ -413,6 +413,7 @@
 		221ED50E216B87D900594714 /* CollectionContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionContainer.swift; sourceTree = "<group>"; };
 		221F271E21306C1300DC2DC7 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		221F272121359DA200DC2DC7 /* Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publisher.swift; sourceTree = "<group>"; };
+		2231C4BC2227FD2400D730FB /* Version 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Version 4.xcdatamodel"; sourceTree = "<group>"; };
 		22387992220B1D860019F9EA /* BookDetailProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailProvider.swift; sourceTree = "<group>"; };
 		223879AF220B1D910019F9EA /* PersonDetailProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailProvider.swift; sourceTree = "<group>"; };
 		223879B2220B1D9A0019F9EA /* DetailProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProvider.swift; sourceTree = "<group>"; };
@@ -727,9 +728,9 @@
 			isa = PBXGroup;
 			children = (
 				22A498B3220F3554006A2137 /* DeliciousLibraryImporter.swift */,
+				22A498B7220F3554006A2137 /* ImportSession.swift */,
 				22A498B5220F3554006A2137 /* Importer.swift */,
 				22A498B6220F3554006A2137 /* ImportManager.swift */,
-				22A498B7220F3554006A2137 /* ImportSession.swift */,
 			);
 			path = Importers;
 			sourceTree = "<group>";
@@ -1702,7 +1703,7 @@
 					"$(inherited)",
 					"@executable_path/",
 					"@loader_path/",
-					/Applications/Xcode10.2b2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx,
+					/Applications/Xcode10.2b3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift_static/macosx,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.elegantchaos.bookish.bkt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1725,7 +1726,7 @@
 					"$(inherited)",
 					"@executable_path/",
 					"@loader_path/",
-					/Applications/Xcode10.2b2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx,
+					/Applications/Xcode10.2b3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift_static/macosx,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.elegantchaos.bookish.bkt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1912,11 +1913,12 @@
 		22DD424D2126D6DA0070C85A /* Collection.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				2231C4BC2227FD2400D730FB /* Version 4.xcdatamodel */,
 				22571152221ADDF60099FFDE /* Version 3.xcdatamodel */,
 				225488DF21F391F500EE8ECB /* Version 2.xcdatamodel */,
 				22DD424E2126D6DA0070C85A /* Version 1.xcdatamodel */,
 			);
-			currentVersion = 22571152221ADDF60099FFDE /* Version 3.xcdatamodel */;
+			currentVersion = 2231C4BC2227FD2400D730FB /* Version 4.xcdatamodel */;
 			path = Collection.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
