@@ -49,4 +49,27 @@ extension String {
         return string
     }
 
+    
+    /**
+     Return a count string. The exact text is pulled from the translation,
+     but is generally of the form "x entit(y/ies)", or "no entities".
+     
+     If a selection count is also supplied, the string is expected to
+     instead be "x 
+     */
+    
+    public func localized(count: Int, selected: Int = 0) -> String {
+        var key = self
+        if count > 0 && count == selected {
+            key += ".all"
+        } else {
+            switch count {
+            case 0: key += ".none"
+            case 1: key += ".singular"
+            default: key += ".plural"
+            }
+        }
+        
+        return key.localized(with: ["count": count, "selected": selected])
+    }
 }
