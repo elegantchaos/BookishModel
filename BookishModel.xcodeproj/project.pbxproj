@@ -27,6 +27,7 @@
 		221F272021306C1300DC2DC7 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F271E21306C1300DC2DC7 /* Book.swift */; };
 		221F272221359DA200DC2DC7 /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F272121359DA200DC2DC7 /* Publisher.swift */; };
 		221F272321359DA200DC2DC7 /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F272121359DA200DC2DC7 /* Publisher.swift */; };
+		2231C5162228342D00D730FB /* LookupServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2231C5152228342D00D730FB /* LookupServiceTests.swift */; };
 		22387993220B1D860019F9EA /* BookDetailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22387992220B1D860019F9EA /* BookDetailProvider.swift */; };
 		22387994220B1D860019F9EA /* BookDetailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22387992220B1D860019F9EA /* BookDetailProvider.swift */; };
 		223879B0220B1D910019F9EA /* PersonDetailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223879AF220B1D910019F9EA /* PersonDetailProvider.swift */; };
@@ -414,6 +415,7 @@
 		221F271E21306C1300DC2DC7 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		221F272121359DA200DC2DC7 /* Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publisher.swift; sourceTree = "<group>"; };
 		2231C4BC2227FD2400D730FB /* Version 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Version 4.xcdatamodel"; sourceTree = "<group>"; };
+		2231C5152228342D00D730FB /* LookupServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookupServiceTests.swift; sourceTree = "<group>"; };
 		22387992220B1D860019F9EA /* BookDetailProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailProvider.swift; sourceTree = "<group>"; };
 		223879AF220B1D910019F9EA /* PersonDetailProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailProvider.swift; sourceTree = "<group>"; };
 		223879B2220B1D9A0019F9EA /* DetailProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProvider.swift; sourceTree = "<group>"; };
@@ -627,6 +629,7 @@
 				22EEF6BD21A6B761007FAD10 /* ModelTestCase.swift */,
 				2250C7F021BAF6B800E899E2 /* PersonActionTests.swift */,
 				22A4989A220DF3A2006A2137 /* PersonDetailItemTests.swift */,
+				2231C5152228342D00D730FB /* LookupServiceTests.swift */,
 				22123768220CA3EA006D4AA5 /* PersonDetailTests.swift */,
 				2250C7FF21BE861A00E899E2 /* PersonTests.swift */,
 				2250C7F921BAF86200E899E2 /* PublisherActionTests.swift */,
@@ -1329,6 +1332,7 @@
 				2212376E220CA405006D4AA5 /* PersonDetailTests.swift in Sources */,
 				2250C7F121BAF6B800E899E2 /* PersonActionTests.swift in Sources */,
 				2250C80B21BE891D00E899E2 /* BookDetailTests.swift in Sources */,
+				2231C5162228342D00D730FB /* LookupServiceTests.swift in Sources */,
 				225F893D221AE66200196110 /* StringLocalizationTests.swift in Sources */,
 				2250C7EB21BAB7D400E899E2 /* RegularExpressionTests.swift in Sources */,
 				2250C7CF21BAA2F600E899E2 /* RoleTests.swift in Sources */,

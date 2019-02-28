@@ -54,6 +54,7 @@ public class LookupSession {
             for service in self.running {
                 service.cancel()
             }
+            self.running.removeAll()
         }
     }
     
@@ -79,10 +80,9 @@ public class LookupSession {
 
     public func failed(service: LookupService) {
         manager.lockQueue.async {
-            let running = self.running
             if let _ = self.running.remove(service) {
                 self.callback(state: .failed(service))
-                if running.count == 0 {
+                if self.running.count == 0 {
                     self.callback(state: .done)
                 }
             }

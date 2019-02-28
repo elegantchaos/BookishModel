@@ -36,24 +36,6 @@ public class GoogleLookupCandidate: LookupCandidate {
     
     public override func makeBook(in context: NSManagedObjectContext) -> Book {
         let book = super.makeBook(in: context)
-        
-        book.name = title
-        if let images = info["imageLinks"] as? [String:Any] {
-            book.imageURL = images["thumbnail"] as? String
-        }
-        
-        for author in authors {
-            let person = Person.named(author, in: context)
-            let relationship = person.relationship(as: Role.StandardName.author)
-            book.addToRelationships(relationship)
-        }
-        
-        if !publisher.isEmpty {
-            book.publisher = Publisher.named(publisher, in: context)
-        }
-
-        book.published = date
-        
         if let pages = info["pageCount"] as? NSNumber {
             book.pages = pages.int16Value
         }

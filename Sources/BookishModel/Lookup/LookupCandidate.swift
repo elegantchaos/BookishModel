@@ -28,6 +28,22 @@ public class LookupCandidate {
     
     public func makeBook(in context: NSManagedObjectContext) -> Book {
         let book = Book(in: context)
+        
+        book.name = title
+        book.imageURL = image
+        
+        for author in authors {
+            let person = Person.named(author, in: context)
+            let relationship = person.relationship(as: Role.StandardName.author)
+            book.addToRelationships(relationship)
+        }
+        
+        if !publisher.isEmpty {
+            book.publisher = Publisher.named(publisher, in: context)
+        }
+        
+        book.published = date
+        
         return book
     }
 }
