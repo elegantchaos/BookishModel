@@ -52,8 +52,8 @@ public class GoogleLookupCandidate: LookupCandidate {
             book.publisher = Publisher.named(publisher, in: context)
         }
 
-        if let pages = info["pageCount"] as? Int {
-            book.pages = Int16(pages)
+        if let pages = info["pageCount"] as? NSNumber {
+            book.pages = pages.int16Value
         }
         
         if let data = try? JSONSerialization.data(withJSONObject: info, options: .prettyPrinted) {
