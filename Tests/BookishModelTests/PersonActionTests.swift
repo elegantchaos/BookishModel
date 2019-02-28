@@ -104,5 +104,51 @@ class PersonActionTests: ModelActionTestCase, PersonViewer, PersonLifecycleObser
         let authors = person1.relationship(as: "author")
         XCTAssertEqual(authors.books?.count, 2)
     }
+    
+    func performSplit(name: String, expected: [String], explicit: String? = nil) {
+        bktChannel.enabled = true
+        
+        let book1 = Book.named("book1", in: context)
+        let book2 = Book.named("book2", in: context)
+        let person = Person.named("test1", in: context)
+        person.name = name
+        let relationship = person.relationship(as: "author")
+        book1.addToRelationships(relationship)
+        book2.addToRelationships(relationship)
+        
+        
+        XCTAssertEqual(context.countEntities(type: Person.self), 1)
+        XCTAssertFalse(actionManager.validate(identifier: "SplitPerson", info: info).enabled)
+        info[ActionContext.selectionKey] = [person]
+
+        XCTAssertTrue(actionManager.validate(identifier: "SplitPerson", info: info).enabled)
+
+        if let explicit = explicit {
+            info[PersonAction.splitNameKey] = explicit
+        }
+        actionManager.perform(identifier: "SplitPerson", info: info)
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(context.countEntities(type: Person.self), 2)
+        
+        XCTAssertEqual(book1.relationships?.count, 2)
+        XCTAssertEqual(book2.relationships?.count, 2)
+        
+        let people: [Person] = context.everyEntity()
+        let names = people.map { $0.name! }.sorted { $0 < $1 }
+        XCTAssertEqual(names, expected)
+    }
+    
+    func testSplitPersonFourNames() {
+        performSplit(name: "A B C D", expected: ["A B", "C D"])
+    }
+    
+    func testSplitPersonCommaInNames() {
+        performSplit(name: "Foo,Bar", expected: ["Bar", "Foo"] )
+    }
+
+    func testSplitPersonExplicitName() {
+        performSplit(name: "Some Complex Name Foo Bar", expected: ["Foo Bar", "Some Complex Name"], explicit: "Foo Bar" )
+    }
+
 }
 
