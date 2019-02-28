@@ -7,46 +7,29 @@ import CoreData
 
 public class GoogleLookupCandidate: LookupCandidate {
     let info: [String:Any]
-    let title: String
-    let authors: [String]
-    let publisher: String
-    let publicationDate: Date?
-    let publicationYear: String
     
     init(info: [String:Any], service: GoogleLookupService) {
+        let title = info["title"] as? String
         let authors = info["authors"] as? [String]
         let publisher = info["publisher"] as? String
-        var pubDate: Date? = nil
-        var pubYear: String = ""
-        
+
+        var date: Date? = nil
         if let publishedDate = info["publishedDate"] as? String {
             let matches = service.dateDetector.matches(in: publishedDate, options: NSRegularExpression.MatchingOptions(), range: NSRange(location: 0, length: publishedDate.count))
-            if let date = matches.first?.date {
-                pubYear = service.dateFormatter.string(from: date)
-                pubDate = date
-            }
-            
+            date = matches.first?.date
         }
         
-        self.info = info
-        self.title = info["title"] as? String ?? ""
-        self.authors = authors ?? []
-        self.publisher = publisher ?? ""
-        self.publicationYear = pubYear
-        self.publicationDate = pubDate
+        var image: String? = nil
+        if let images = info["imageLinks"] as? [String:Any] {
+            image = images["thumbnail"] as? String
+        }
 
-        super.init(service: service)
+        self.info = info
+        super.init(service: service, title: title, authors: authors, publisher: publisher, date: date, image: image)
     }
     
     public override var summary: String {
         let authors = self.authors.joined(separator: ", ")
-        var publisher = self.publisher
-        if !publicationYear.isEmpty {
-            if !publisher.isEmpty {
-                publisher += ", "
-            }
-            publisher += publicationYear
-        }
 
         return "\(title)\n\(authors)\n\(publisher)"
     }
@@ -59,20 +42,19 @@ public class GoogleLookupCandidate: LookupCandidate {
             book.imageURL = images["thumbnail"] as? String
         }
         
-        if let authors = info["authors"] as? [String] {
-            for author in authors {
-                let person = Person.named(author, in: context)
-                let relationship = person.relationship(as: Role.StandardName.author)
-                book.addToRelationships(relationship)
-            }
+        for author in authors {
+            let person = Person.named(author, in: context)
+            let relationship = person.relationship(as: Role.StandardName.author)
+            book.addToRelationships(relationship)
         }
         
-        if let publisherName = info["publisher"] as? String {
-            let publisher = Publisher.named(publisherName, in: context)
-            book.publisher = publisher
+        if !publisher.isEmpty {
+            book.publisher = Publisher.named(publisher, in: context)
         }
 
-        book.pages = info["pageCount"] as? NSDecimalNumber
+        if let pages = info["pageCount"] as? Int {
+            book.pages = Int16(pages)
+        }
         
         if let data = try? JSONSerialization.data(withJSONObject: info, options: .prettyPrinted) {
             book.importRaw = String(data: data, encoding: .utf8)
@@ -84,13 +66,7 @@ public class GoogleLookupCandidate: LookupCandidate {
 
 public class GoogleLookupService: LookupService {
     let dateDetector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.date.rawValue)
-    let dateFormatter = DateFormatter()
-    
-    public override init(name: String) {
-        dateFormatter.dateFormat = "yyyy"
-        super.init(name: name)
-    }
-    
+
     public override func lookup(search: String, session: LookupSession) {
         guard
             let url = URL(string: "https://www.googleapis.com/books/v1/volumes?q=isbn:\(search)"),
