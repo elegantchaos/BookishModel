@@ -28,6 +28,7 @@
 		221F272221359DA200DC2DC7 /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F272121359DA200DC2DC7 /* Publisher.swift */; };
 		221F272321359DA200DC2DC7 /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F272121359DA200DC2DC7 /* Publisher.swift */; };
 		2231C5162228342D00D730FB /* LookupServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2231C5152228342D00D730FB /* LookupServiceTests.swift */; };
+		2231C53122285F1900D730FB /* LookupServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2231C5152228342D00D730FB /* LookupServiceTests.swift */; };
 		22387993220B1D860019F9EA /* BookDetailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22387992220B1D860019F9EA /* BookDetailProvider.swift */; };
 		22387994220B1D860019F9EA /* BookDetailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22387992220B1D860019F9EA /* BookDetailProvider.swift */; };
 		223879B0220B1D910019F9EA /* PersonDetailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223879AF220B1D910019F9EA /* PersonDetailProvider.swift */; };
@@ -1428,6 +1429,7 @@
 				22123771220CA406006D4AA5 /* PersonDetailTests.swift in Sources */,
 				2250C7F221BAF6B800E899E2 /* PersonActionTests.swift in Sources */,
 				2250C80C21BE891D00E899E2 /* BookDetailTests.swift in Sources */,
+				2231C53122285F1900D730FB /* LookupServiceTests.swift in Sources */,
 				225F893E221AE66200196110 /* StringLocalizationTests.swift in Sources */,
 				2250C7EC21BAB7D400E899E2 /* RegularExpressionTests.swift in Sources */,
 				2250C7D021BAA2F600E899E2 /* RoleTests.swift in Sources */,
