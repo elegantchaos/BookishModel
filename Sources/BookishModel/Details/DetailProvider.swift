@@ -88,8 +88,14 @@ public class DetailProvider {
                     includeDetail = true
                 } else {
                     for item in selection {
-                        if let value = item.value(forKey: detail.binding) as? String {
-                            includeDetail = !value.isEmpty
+                        let value = item.value(forKey: detail.binding)
+                        if let string = value as? String {
+                            includeDetail = !string.isEmpty
+                        } else {
+                            includeDetail = value != nil
+                        }
+                        
+                        if includeDetail {
                             break
                         }
                     }
