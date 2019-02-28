@@ -6,6 +6,8 @@
 
 import XCTest
 import CoreData
+import Actions
+
 @testable import BookishModel
 
 class SeriesScannerTests: ModelTestCase {
@@ -52,6 +54,23 @@ class SeriesScannerTests: ModelTestCase {
         XCTAssertTrue(check(book: book, series: series, position: 2))
     }
 
+    func testAction() {
+        let performed = expectation(description: "performed")
+        let manager = ActionManager()
+        let container = makeTestContainer()
+        manager.register([ScanSeriesAction(identifier: "ScanSeries")])
+        let info = ActionInfo(sender: self)
+        info[ActionContext.modelKey] = container.managedObjectContext
+        info.registerNotification { (stage, context) in
+            if stage == .didPerform {
+                performed.fulfill()
+            }
+        }
+        
+        manager.perform(identifier: "ScanSeries", info: info)
+        wait(for: [performed], timeout: 1.0)
+    }
+    
     func test1() {
         // name, series and book all in the title
         let book = scanBook(title: "The Amtrak Wars: Cloud Warrior Bk. 1")

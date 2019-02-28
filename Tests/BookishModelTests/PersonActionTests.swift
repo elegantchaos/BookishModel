@@ -80,6 +80,29 @@ class PersonActionTests: ModelActionTestCase, PersonViewer, PersonLifecycleObser
         XCTAssertEqual(personObserved, person)
     }
  
-    
+    func testMergePerson() {
+        bktChannel.enabled = true
+        
+        let book1 = Book.named("book1", in: context)
+        let person1 = Person.named("test1", in: context)
+        book1.addToRelationships(person1.relationship(as: "author"))
+
+        let book2 = Book.named("book2", in: context)
+        let person2 = Person.named("test2", in: context)
+        book2.addToRelationships(person2.relationship(as: "author"))
+
+        XCTAssertFalse(actionManager.validate(identifier: "MergePerson", info: info).enabled)
+
+        info[ActionContext.selectionKey] = [person1, person2]
+        
+        XCTAssertEqual(context.countEntities(type: Person.self), 2)
+        XCTAssertTrue(actionManager.validate(identifier: "MergePerson", info: info).enabled)
+        actionManager.perform(identifier: "MergePerson", info: info)
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(context.countEntities(type: Person.self), 1)
+
+        let authors = person1.relationship(as: "author")
+        XCTAssertEqual(authors.books?.count, 2)
+    }
 }
 

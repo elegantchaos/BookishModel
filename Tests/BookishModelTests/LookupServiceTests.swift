@@ -188,4 +188,24 @@ class LookupServiceTests: ModelTestCase {
             XCTAssertTrue(authorNames.contains(relationship.person!.name!))
         }
     }
+    
+    func testNoServices() {
+        let started = expectation(description: "started")
+        let finished = expectation(description: "finished")
+        let manager = LookupManager()
+        let session = manager.lookup(ean: "test") { (session, state) in
+            switch state {
+            case .starting:
+                started.fulfill()
+            case .done:
+                finished.fulfill()
+            default:
+                break
+            }
+        }
+        
+        wait(for: [started, finished], timeout: 1.0)
+        XCTAssertEqual(session.search, "test")
+
+    }
 }
