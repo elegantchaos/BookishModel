@@ -11,7 +11,7 @@ class TestContext: DetailContext {
     var bookSorting: [NSSortDescriptor] = []
     var relationshipSorting: [NSSortDescriptor] = []
     var entrySorting: [NSSortDescriptor] = []
-    var showDebug: Bool = true
+    var showDebug: Bool = false
 }
 
 class BookDetailTests: ModelTestCase {
@@ -61,24 +61,24 @@ class BookDetailTests: ModelTestCase {
         book.isbn = "12343"
         book.asin = "blah"
         source.filter(for: [book], editing: false, combining: false, context: TestContext())
-        XCTAssertEqual(source.itemCount(for: 0), 2)
+        XCTAssertEqual(source.itemCount(for: 0), 3)
         
         let person = Person(context: context)
         let relationship = person.relationship(as: "author")
         relationship.addToBooks(book)
 
         source.filter(for: [book], editing: false, combining: false, context: TestContext())
-        XCTAssertEqual(source.itemCount(for: 0), 3)
+        XCTAssertEqual(source.itemCount(for: 0), 4)
 
         let relationship2 = person.relationship(as: "editor")
         relationship2.addToBooks(book)
 
         source.filter(for: [book], editing: false, combining: false, context: TestContext())
-        XCTAssertEqual(source.itemCount(for: 0), 4)
+        XCTAssertEqual(source.itemCount(for: 0), 5)
 
         book.publisher = Publisher(context: context)
         source.filter(for: [book], editing: false, combining: false, context: TestContext())
-        XCTAssertEqual(source.itemCount(for: 0), 5)
+        XCTAssertEqual(source.itemCount(for: 0), 6)
         
         let series = Series(context: context)
         let entry = SeriesEntry(context: context)
@@ -87,7 +87,7 @@ class BookDetailTests: ModelTestCase {
         book.addToEntries(entry)
 
         source.filter(for: [book], editing: false, combining: false, context: TestContext())
-        XCTAssertEqual(source.itemCount(for: 0), 6)
+        XCTAssertEqual(source.itemCount(for: 0), 7)
 
     }
     

@@ -42,7 +42,7 @@ class PersonDetailProviderTests: ModelTestCase {
         person.notes = "Some notes"
         
         provider.filter(for: [person], editing: false, combining: false, context: TestContext())
-        XCTAssertEqual(provider.itemCount(for: 0), 2)
+        XCTAssertEqual(provider.itemCount(for: 0), 1)
         XCTAssertEqual(provider.sectionCount, 1)
 
         let book = Book(context: context)
