@@ -52,6 +52,8 @@ public class GoogleLookupCandidate: LookupCandidate {
             book.publisher = Publisher.named(publisher, in: context)
         }
 
+        book.published = date
+        
         if let pages = info["pageCount"] as? NSNumber {
             book.pages = pages.int16Value
         }
