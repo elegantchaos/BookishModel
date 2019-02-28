@@ -71,9 +71,17 @@ detail.asin.label = "asin";
 detail.ean.label = "ean";
 detail.classification.label = "classification";
 detail.published.label = "published";
+detail.modified.label = "modified";
 detail.added.label = "added";
 detail.importDate.label = "imported";
 detail.dimensions.label = "dimensions";
 detail.pages.label = "pages";
 detail.importRaw.label = "import (debug)";
 detail.uuid.label = "uuid (debug)";
+
+candidate.lookup.scanning = "Scanning for barcodes…";
+candidate.lookup.detected = "Found EAN {search}…";
+candidate.lookup.start = "Looking up {search}…";
+candidate.found.none = "No candidates found";
+candidate.found.singular = "1 candidate found:";
+candidate.found.plural = "{count} candidates found:";
