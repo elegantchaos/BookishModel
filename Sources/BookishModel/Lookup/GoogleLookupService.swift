@@ -7,41 +7,54 @@ import CoreData
 
 public class GoogleLookupCandidate: LookupCandidate {
     let info: [String:Any]
+    let title: String
+    let authors: [String]
+    let publisher: String
+    let publicationDate: Date?
+    let publicationYear: String
     
-    init(info: [String:Any], service: LookupService) {
+    init(info: [String:Any], service: GoogleLookupService) {
+        let authors = info["authors"] as? [String]
+        let publisher = info["publisher"] as? String
+        var pubDate: Date? = nil
+        var pubYear: String = ""
+        
+        if let publishedDate = info["publishedDate"] as? String {
+            let matches = service.dateDetector.matches(in: publishedDate, options: NSRegularExpression.MatchingOptions(), range: NSRange(location: 0, length: publishedDate.count))
+            if let date = matches.first?.date {
+                pubYear = service.dateFormatter.string(from: date)
+                pubDate = date
+            }
+            
+        }
+        
         self.info = info
+        self.title = info["title"] as? String ?? ""
+        self.authors = authors ?? []
+        self.publisher = publisher ?? ""
+        self.publicationYear = pubYear
+        self.publicationDate = pubDate
+
         super.init(service: service)
     }
     
     public override var summary: String {
-        var summary = ""
-
-        if let title = info["title"] as? String {
-            summary += "\(title)\n"
-        }
-        if let authors = info["authors"] as? [String] {
-            summary += authors.joined(separator: ", ")
-            summary += "\n"
-        }
-        if let publisher = info["publisher"] as? String {
-            summary += "\(publisher)\n"
-        }
-        if let publishedDate = info["publishedDate"] as? String {
-            let detector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.date.rawValue)
-            if let matches = detector?.matches(in: publishedDate, options: NSRegularExpression.MatchingOptions(), range: NSRange(location: 0, length: publishedDate.count)) {
-                if let date = matches.first?.date {
-                    summary += "\(date)"
-                }
+        let authors = self.authors.joined(separator: ", ")
+        var publisher = self.publisher
+        if !publicationYear.isEmpty {
+            if !publisher.isEmpty {
+                publisher += ", "
             }
+            publisher += publicationYear
         }
 
-        return summary
+        return "\(title)\n\(authors)\n\(publisher)"
     }
     
     public override func makeBook(in context: NSManagedObjectContext) -> Book {
         let book = super.makeBook(in: context)
         
-        book.name = info["title"] as? String
+        book.name = title
         if let images = info["imageLinks"] as? [String:Any] {
             book.imageURL = images["thumbnail"] as? String
         }
@@ -70,6 +83,13 @@ public class GoogleLookupCandidate: LookupCandidate {
 }
 
 public class GoogleLookupService: LookupService {
+    let dateDetector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.date.rawValue)
+    let dateFormatter = DateFormatter()
+    
+    public override init(name: String) {
+        dateFormatter.dateFormat = "yyyy"
+        super.init(name: name)
+    }
     
     public override func lookup(search: String, session: LookupSession) {
         guard
