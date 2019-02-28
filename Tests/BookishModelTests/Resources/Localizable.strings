@@ -8,3 +8,12 @@
 
 test = "localized";
 parameters = "Name is {name}.";
+
+count.none = "none";
+count.singular = "one";
+count.plural = "{count}";
+
+selection.none = "None selected";
+selection.singular = "One of {count} selected";
+selection.plural = "{selected} of {count} selected";
+selection.all = "All {count} selected";
