@@ -5,7 +5,7 @@
 
 import CoreData
 
-class ExistingCollectionLookupService: LookupService {
+public class ExistingCollectionLookupService: LookupService {
     public override func lookup(search: String, session: LookupSession) {
         
         let context = session.collection.managedObjectContext
@@ -15,13 +15,10 @@ class ExistingCollectionLookupService: LookupService {
         request.sortDescriptors = []
         if let results = try? context.fetch(request), results.count > 0 {
             for book in results {
-                var people = Set<Person>()
-                if let relationships = book.relationships as? Set<Book> {
-                    for relationship in relationships {
-                        people.formUnion(relationship.people)
-                    }
-                    let authors = people.compactMap { $0.name }
-                    let candidate = LookupCandidate(service: self, title: book.name, authors: authors, publisher: book.publisher?.name, date: book.published, image: book.imageURL)
+                if let relationships = book.relationships as? Set<Relationship> {
+                    let names = relationships.compactMap { $0.person?.name }
+                    let uniqueNames = Set(names)
+                    let candidate = LookupCandidate(service: self, title: book.name, authors: Array(uniqueNames), publisher: book.publisher?.name, date: book.published, image: book.imageURL)
                     session.add(candidate: candidate)
                 }
             }
