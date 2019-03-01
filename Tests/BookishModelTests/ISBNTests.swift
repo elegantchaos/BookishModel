@@ -9,6 +9,8 @@ import XCTest
 class ISBNTests: ModelTestCase {
     let valid10 = "3200328584"
     let valid10withX = "013603599X"
+    let invalid10 = "AX123!@z?E"
+    
     let valid13 = "9783200328587"
     let invalid13 = "1233200328587"
 
@@ -16,6 +18,7 @@ class ISBNTests: ModelTestCase {
         XCTAssertTrue(valid10.isISBN10)
         XCTAssertTrue(valid10withX.isISBN10)
         
+        XCTAssertFalse(invalid10.isISBN10)
         XCTAssertFalse(valid13.isISBN10)
         XCTAssertFalse(invalid13.isISBN10)
         
@@ -25,7 +28,8 @@ class ISBNTests: ModelTestCase {
     func testIsISBN13() {
         XCTAssertFalse(valid10.isISBN13)
         XCTAssertFalse(valid10withX.isISBN13)
-        
+        XCTAssertFalse(invalid10.isISBN13)
+
         XCTAssertTrue(valid13.isISBN13)
         XCTAssertFalse(invalid13.isISBN13)
         

@@ -11,15 +11,24 @@ extension String {
     static func checkDigitISBN10(for chars: ArraySlice<CChar>) -> Int8 {
         assert(chars.count == 9)
 
-        let zeroChar = Int8(48)
+        let zeroChar = 48
         var sum = 0
-        var n = 10
+        var t = 0
         for c in chars {
-            let digit = c - zeroChar
-            sum += n * Int(digit)
-            n -= 1
+            let digit: Int
+            switch c {
+            case 88:
+                digit = 10
+            case 48...57:
+                digit = Int(c) - zeroChar
+            default:
+                return -1
+            }
+            t += digit
+            sum += t
         }
         
+        sum += t
         let calculatedChecksum = String.checkDigits[11 - (sum % 11)]
         return Int8(calculatedChecksum)
     }
