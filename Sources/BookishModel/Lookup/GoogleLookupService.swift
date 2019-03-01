@@ -40,6 +40,27 @@ public class GoogleLookupCandidate: LookupCandidate {
             book.pages = pages.int16Value
         }
         
+        if let identifiers = info["industryIdentifiers"] as? [[String:Any]] {
+            for id in identifiers {
+                if let type = id["type"] as? String {
+                    switch type {
+                    case "ISBN_13":
+                        let value = id["identifier"] as? String
+                        book.isbn = value
+                        book.ean = value
+                        
+                    case "ISBN_10":
+                        if book.isbn == nil {
+                            book.isbn = id["identifier"] as? String
+                        }
+                        
+                    default:
+                        break
+                    }
+                }
+            }
+        }
+        
         if let data = try? JSONSerialization.data(withJSONObject: info, options: .prettyPrinted) {
             book.importRaw = String(data: data, encoding: .utf8)
         }
