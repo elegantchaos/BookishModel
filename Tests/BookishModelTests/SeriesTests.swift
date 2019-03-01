@@ -83,4 +83,21 @@ class SeriesTests: ModelTestCase {
         series.uuid = nil
         XCTAssertEqual(entry.uniqueIdentifier, ModelObject.missingUUID)
     }
+    
+    func testDescription() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let entry = SeriesEntry(in: context)
+        XCTAssertEqual(entry.description, "<Entry: <unknown> #0 in <unknown>>")
+        
+        let series = Series.named("test", in: context)
+        series.uuid = "series-id"
+        entry.series = series
+        XCTAssertEqual(entry.description, "<Entry: <unknown> #0 in test (series-id)>")
+        
+        let book = Book.named("test", in: context)
+        book.uuid = "book-id"
+        entry.book = book
+        XCTAssertEqual(entry.description, "<Entry: test (book-id) #0 in test (series-id)>")
+    }
 }

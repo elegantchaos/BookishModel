@@ -21,7 +21,8 @@ class ModelActionTestCase: ModelTestCase {
         actionManager = ActionManager()
         actionManager.register(ModelAction.standardActions())
         actionManager.register([ModelAction(identifier: "ModelAction")]) // base class, registered for testing only
-        
+        actionManager.register([SyncModelAction(identifier: "SyncModelAction")]) // base class, registered for testing only
+
         info[ActionContext.modelKey] = context
         info.registerNotification { (stage, context) in
             if stage == .didPerform {
@@ -44,12 +45,14 @@ class ModelActionTestCase: ModelTestCase {
     }
     
     func testCoverage() {
+        // not real tests - just here to fill in coverage for some untestable areas
+        info[ActionContext.modelKey] = nil
         actionManager.perform(identifier: "ModelAction", info: info)
+        actionManager.perform(identifier: "SyncModelAction", info: info)
     }
     
     func testModelActionValidate() {
         XCTAssertTrue(actionManager.validate(identifier: "ModelAction", info: info).enabled)
         XCTAssertFalse(actionManager.validate(identifier: "ModelAction", info: ActionInfo()).enabled)
     }
-    
 }

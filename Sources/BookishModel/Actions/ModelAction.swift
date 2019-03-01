@@ -31,17 +31,6 @@ open class ModelAction: Action {
         return modelValidate(context:context)
     }
     
-    internal func finish(model: NSManagedObjectContext, completion: @escaping Completion) {
-        do {
-            try model.save()
-        } catch {
-            let nserror = error as NSError
-            modelActionChannel.log("failed to save \(nserror)\n\(nserror.userInfo)")
-        }
-        
-        completion()
-    }
-    
     open override func perform(context: ActionContext, completed: @escaping Completion) {
         if let model = context[ActionContext.modelKey] as? NSManagedObjectContext {
             modelActionChannel.debug("performing \(context.identifier)")
