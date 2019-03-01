@@ -33,8 +33,8 @@ public class Relationship: ModelObject {
            personName += " (\(uuid))"
         }
         let bookList: String
-        if let books = books as? Set<Book> {
-            bookList = " with" + books.map({ $0.nameAndId }).joined(separator: ",")
+        if let books = books as? Set<Book>, books.count > 0 {
+            bookList = " with " + books.map({ $0.nameAndId }).joined(separator: ",")
         } else {
             bookList = ""
         }

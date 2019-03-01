@@ -28,4 +28,26 @@ class RelationshipTests: ModelTestCase {
         XCTAssertEqual(relationship.uniqueIdentifier, ModelObject.missingUUID)
     }
 
+    func testDescription() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+
+        let book = Book.named("test", in: context)
+        book.uuid = "book-id"
+
+        let person = Person.named("test", in: context)
+        person.uuid = "person-id"
+        
+        let relationship = Relationship(in: context)
+        XCTAssertEqual(relationship.description, "<Relationship: <unknown> for <unknown>>")
+        
+        relationship.role = Role.named("author", in: context)
+        XCTAssertEqual(relationship.description, "<Relationship: author for <unknown>>")
+
+        relationship.person = person
+        XCTAssertEqual(relationship.description, "<Relationship: author for test (person-id)>")
+
+        book.addToRelationships(relationship)
+        XCTAssertEqual(relationship.description, "<Relationship: author for test (person-id) with test (book-id)>")
+    }
 }
