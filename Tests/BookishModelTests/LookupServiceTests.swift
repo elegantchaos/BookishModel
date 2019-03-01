@@ -53,10 +53,11 @@ class LookupServiceTests: ModelTestCase {
             }
         }
 
+        let collection = makeTestContainer()
         let manager = LookupManager()
         let service = TestService(test: self)
         manager.register(service: service)
-        let session = manager.lookup(ean: "test") { (session, state) in
+        let session = manager.lookup(ean: "test", collection: collection) { (session, state) in
             service.update(state: state)
         }
         
@@ -108,10 +109,11 @@ class LookupServiceTests: ModelTestCase {
             }
         }
         
+        let collection = makeTestContainer()
         let manager = LookupManager()
         let service = FailingService(test: self)
         manager.register(service: service)
-        let session = manager.lookup(ean: "test") { (session, state) in
+        let session = manager.lookup(ean: "test", collection: collection) { (session, state) in
             service.update(state: state)
         }
         
@@ -154,10 +156,11 @@ class LookupServiceTests: ModelTestCase {
             }
         }
         
+        let collection = makeTestContainer()
         let manager = LookupManager()
         let service = CancellableService(test: self)
         manager.register(service: service)
-        let session = manager.lookup(ean: "test") { (session, state) in
+        let session = manager.lookup(ean: "test", collection: collection) { (session, state) in
             service.update(state: state)
             session.cancel()
         }
@@ -190,10 +193,11 @@ class LookupServiceTests: ModelTestCase {
     }
     
     func testNoServices() {
+        let collection = makeTestContainer()
         let started = expectation(description: "started")
         let finished = expectation(description: "finished")
         let manager = LookupManager()
-        let session = manager.lookup(ean: "test") { (session, state) in
+        let session = manager.lookup(ean: "test", collection: collection) { (session, state) in
             switch state {
             case .starting:
                 started.fulfill()
@@ -207,5 +211,36 @@ class LookupServiceTests: ModelTestCase {
         wait(for: [started, finished], timeout: 1.0)
         XCTAssertEqual(session.search, "test")
 
+    }
+    
+    func testExistingCollectionLookup() {
+        let done = expectation(description: "done")
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let service = ExistingCollectionLookupService(name: "test")
+        let manager = LookupManager()
+        manager.register(service: service)
+        
+        var candidate: LookupCandidate? = nil
+        let book = Book.named("Test Book", in: context)
+        let testEAN = "12345678"
+        book.ean = testEAN
+
+        let session = manager.lookup(ean: testEAN, collection: container) { (session, state) in
+            switch state {
+            case .done:
+                done.fulfill()
+                
+            case .foundCandidate(let c):
+                candidate = c
+                
+            default:
+                break
+            }
+        }
+                
+        wait(for: [done], timeout: 1.0)
+        XCTAssertNotNil(candidate)
+        XCTAssertEqual(session.search, testEAN)
     }
 }

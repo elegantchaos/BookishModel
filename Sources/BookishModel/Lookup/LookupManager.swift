@@ -23,8 +23,8 @@ public class LookupManager {
         services.append(service)
     }
     
-    public func lookup(ean: String, callback: @escaping LookupSession.Callback) -> LookupSession {
-        let session = LookupSession(search: ean, manager: self, callback: callback)
+    public func lookup(ean: String, collection: CollectionContainer, callback: @escaping LookupSession.Callback) -> LookupSession {
+        let session = LookupSession(search: ean, manager: self, collection: collection, callback: callback)
         session.run()
         return session
     }

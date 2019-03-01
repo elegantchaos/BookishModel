@@ -594,18 +594,18 @@
 		224293B4212AE16200E70510 /* BookishModel */ = {
 			isa = PBXGroup;
 			children = (
-				229FB9C62226B2B000A564D4 /* Lookup */,
+				221C4B36216BABE40086D56F /* Actions */,
 				224293D1212AE1E700E70510 /* BookishModel.swift */,
 				22DA6A1821E6158D00ECF09A /* BookishModelBridge.h */,
 				221ED50E216B87D900594714 /* CollectionContainer.swift */,
 				22F180E221CA8FD600220D20 /* Indexing.swift */,
 				22A3E2EA21FB80B900BA4F17 /* MultipleValues.swift */,
-				221C4B36216BABE40086D56F /* Actions */,
+				2250C71E21B94CD800E899E2 /* SeriesScanner.swift */,
 				22571151221866720099FFDE /* Details */,
 				22A498B2220F3554006A2137 /* Importers */,
+				229FB9C62226B2B000A564D4 /* Lookup */,
 				224A5EBB21F8C26000DDB457 /* Objects */,
 				22A498C8220F3DD0006A2137 /* Resources */,
-				2250C71E21B94CD800E899E2 /* SeriesScanner.swift */,
 				2250C74921B94D5F00E899E2 /* Utilities */,
 			);
 			path = BookishModel;

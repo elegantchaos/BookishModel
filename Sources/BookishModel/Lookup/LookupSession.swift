@@ -17,13 +17,15 @@ public class LookupSession {
     
     public let search: String
     let manager: LookupManager
+    let collection: CollectionContainer
     var callback: Callback?
     var running: Set<LookupService>
     
-    init(search: String, manager: LookupManager, callback: @escaping Callback) {
+    init(search: String, manager: LookupManager, collection: CollectionContainer, callback: @escaping Callback) {
         self.search = search
         self.manager = manager
         self.callback = callback
+        self.collection = collection
         self.running = Set<LookupService>()
     }
     
