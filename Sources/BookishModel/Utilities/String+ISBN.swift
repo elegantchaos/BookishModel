@@ -88,7 +88,16 @@ extension String {
      */
 
     var isISBN13: Bool {
-        guard self.count == 13, let chars = self.cString(using: .ascii) else {
+        
+        guard
+            // should be 13 chars long
+            // ean prefix should be 978, or 979x where x is 1..9
+            count == 13,
+            let chars = self.cString(using: .ascii),
+            chars[0] == 57, // "9"
+            chars[1] == 55, // "7"
+            (chars[2] == 56) || ((chars[2] == 57) && (chars[3] != 48)) // "8" or "9x" where x is 1..9
+            else {
             return false
         }
         
