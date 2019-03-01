@@ -80,7 +80,8 @@ detail.importRaw.label = "import (debug)";
 detail.uuid.label = "uuid (debug)";
 
 candidate.lookup.scanning = "Scanning for barcodes…";
-candidate.lookup.detected = "Found EAN {search}…";
+candidate.lookup.valid = "Found ISBN {search}…";
+candidate.lookup.invalid = "Unknown format {search}!";
 candidate.lookup.start = "Looking up {search}…";
 candidate.found.none = "No candidates found";
 candidate.found.singular = "1 candidate found:";
