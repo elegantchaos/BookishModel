@@ -7,33 +7,36 @@ import XCTest
 @testable import BookishModel
 
 class ISBNTests: ModelTestCase {
-    let valid10 = "3200328584"
-    let valid10withX = "013603599X"
-    let invalid10 = "AX123!@z?E"
+    let valid10 = ["0356502090","0316005401", "1597809802", "0345453743", "3200328584", "1416583785", "3200327316", "0349119287", "1605985228", "0684853159",  "013603599X"]
+    let valid13 = ["9781848564961", "9780681403222", "9783200327313", "9780349139234", "9781597809825", "9780553283686", "9783200328587", "9780316005388", "9780446671279", "9781605985220"]
+    let invalid = ["", "AX123!@z?E", "1233200328587", "blah", "03565020901", "97803491392344"]
     
-    let valid13 = "9783200328587"
-    let invalid13 = "1233200328587"
-
     func testIsISBN10() {
-        XCTAssertTrue(valid10.isISBN10)
-        XCTAssertTrue(valid10withX.isISBN10)
+        for v in valid10 {
+            XCTAssertTrue(v.isISBN10)
+        }
         
-        XCTAssertFalse(invalid10.isISBN10)
-        XCTAssertFalse(valid13.isISBN10)
-        XCTAssertFalse(invalid13.isISBN10)
-        
-        XCTAssertFalse("blah".isISBN10)
+        for v in valid13 {
+            XCTAssertFalse(v.isISBN10)
+        }
+
+        for v in invalid {
+            XCTAssertFalse(v.isISBN10)
+        }
     }
     
     func testIsISBN13() {
-        XCTAssertFalse(valid10.isISBN13)
-        XCTAssertFalse(valid10withX.isISBN13)
-        XCTAssertFalse(invalid10.isISBN13)
+        for v in valid13 {
+            XCTAssertTrue(v.isISBN13)
+        }
 
-        XCTAssertTrue(valid13.isISBN13)
-        XCTAssertFalse(invalid13.isISBN13)
-        
-        XCTAssertFalse("blah".isISBN13)
+        for v in valid10 {
+            XCTAssertFalse(v.isISBN13)
+        }
+
+        for v in invalid {
+            XCTAssertFalse(v.isISBN13)
+        }
     }
 
 
