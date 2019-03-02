@@ -125,6 +125,10 @@
 		225F8947221AF4DF00196110 /* DetailProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225F8945221AF4DF00196110 /* DetailProviderTests.swift */; };
 		225F894F221AFB3F00196110 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225F894E221AFB3F00196110 /* main.swift */; };
 		225F896A221B0A9000196110 /* BookishModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22429391212AE0F300E70510 /* BookishModel.framework */; };
+		22674507222ABAD3002549CE /* RoleDetailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22674506222ABAD3002549CE /* RoleDetailProvider.swift */; };
+		22674508222ABAD3002549CE /* RoleDetailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22674506222ABAD3002549CE /* RoleDetailProvider.swift */; };
+		2267450A222ABAEC002549CE /* RoleDetailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22674509222ABAEC002549CE /* RoleDetailItem.swift */; };
+		2267450B222ABAEC002549CE /* RoleDetailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22674509222ABAEC002549CE /* RoleDetailItem.swift */; };
 		226E8DB121A84031001F191F /* ModelAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226E8DB021A84031001F191F /* ModelAction.swift */; };
 		226E8DB221A84031001F191F /* ModelAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226E8DB021A84031001F191F /* ModelAction.swift */; };
 		226E8E7321AC50A6001F191F /* ChangeValueAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226E8E7221AC50A6001F191F /* ChangeValueAction.swift */; };
@@ -478,6 +482,8 @@
 		225F894E221AFB3F00196110 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		225F895B221AFC6E00196110 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		226744EB222AB6C6002549CE /* Version 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Version 5.xcdatamodel"; sourceTree = "<group>"; };
+		22674506222ABAD3002549CE /* RoleDetailProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleDetailProvider.swift; sourceTree = "<group>"; };
+		22674509222ABAEC002549CE /* RoleDetailItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleDetailItem.swift; sourceTree = "<group>"; };
 		226E8DB021A84031001F191F /* ModelAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelAction.swift; sourceTree = "<group>"; };
 		226E8E7221AC50A6001F191F /* ChangeValueAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeValueAction.swift; sourceTree = "<group>"; };
 		22724641221C003100C80CCF /* ImportAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportAction.swift; sourceTree = "<group>"; };
@@ -709,6 +715,8 @@
 				22571131221865AD0099FFDE /* SectionDetailItem.swift */,
 				223879C2220B490B0019F9EA /* SeriesDetailItem.swift */,
 				223879B8220B3FF10019F9EA /* SeriesDetailProvider.swift */,
+				22674506222ABAD3002549CE /* RoleDetailProvider.swift */,
+				22674509222ABAEC002549CE /* RoleDetailItem.swift */,
 				223879C8220B4A2F0019F9EA /* SimpleDetailItem.swift */,
 			);
 			path = Details;
@@ -1274,7 +1282,9 @@
 				221ED50C216B79F100594714 /* DetailSpec.swift in Sources */,
 				2250C70521B557A400E899E2 /* SeriesAction.swift in Sources */,
 				2250C70221B556FC00E899E2 /* SeriesEntry.swift in Sources */,
+				2267450A222ABAEC002549CE /* RoleDetailItem.swift in Sources */,
 				223879B6220B1F550019F9EA /* DetailItem.swift in Sources */,
+				22674507222ABAD3002549CE /* RoleDetailProvider.swift in Sources */,
 				223879B3220B1D9A0019F9EA /* DetailProvider.swift in Sources */,
 				22A498BC220F3555006A2137 /* Importer.swift in Sources */,
 				221ED50F216B87D900594714 /* CollectionContainer.swift in Sources */,
@@ -1372,7 +1382,9 @@
 				22A3E2EC21FB80B900BA4F17 /* MultipleValues.swift in Sources */,
 				221ED50D216B79F100594714 /* DetailSpec.swift in Sources */,
 				2250C70621B557A400E899E2 /* SeriesAction.swift in Sources */,
+				2267450B222ABAEC002549CE /* RoleDetailItem.swift in Sources */,
 				2250C70321B556FC00E899E2 /* SeriesEntry.swift in Sources */,
+				22674508222ABAD3002549CE /* RoleDetailProvider.swift in Sources */,
 				223879B7220B1F550019F9EA /* DetailItem.swift in Sources */,
 				223879B4220B1D9A0019F9EA /* DetailProvider.swift in Sources */,
 				22A498BD220F3555006A2137 /* Importer.swift in Sources */,

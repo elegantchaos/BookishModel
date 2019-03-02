@@ -31,4 +31,9 @@ public class Role: ModelObject {
     @objc public var label: String? { return lowercaseName }
     
     @objc public var sortName: String? { return name }
+
+    override public class func getProvider() -> DetailProvider {
+        return RoleDetailProvider()
+    }
+
 }
