@@ -477,6 +477,7 @@
 		225F894C221AFB3F00196110 /* bkt */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = bkt; sourceTree = BUILT_PRODUCTS_DIR; };
 		225F894E221AFB3F00196110 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		225F895B221AFC6E00196110 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
+		226744EB222AB6C6002549CE /* Version 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Version 5.xcdatamodel"; sourceTree = "<group>"; };
 		226E8DB021A84031001F191F /* ModelAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelAction.swift; sourceTree = "<group>"; };
 		226E8E7221AC50A6001F191F /* ChangeValueAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeValueAction.swift; sourceTree = "<group>"; };
 		22724641221C003100C80CCF /* ImportAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportAction.swift; sourceTree = "<group>"; };
@@ -1931,12 +1932,13 @@
 		22DD424D2126D6DA0070C85A /* Collection.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				226744EB222AB6C6002549CE /* Version 5.xcdatamodel */,
 				2231C4BC2227FD2400D730FB /* Version 4.xcdatamodel */,
 				22571152221ADDF60099FFDE /* Version 3.xcdatamodel */,
 				225488DF21F391F500EE8ECB /* Version 2.xcdatamodel */,
 				22DD424E2126D6DA0070C85A /* Version 1.xcdatamodel */,
 			);
-			currentVersion = 2231C4BC2227FD2400D730FB /* Version 4.xcdatamodel */;
+			currentVersion = 226744EB222AB6C6002549CE /* Version 5.xcdatamodel */;
 			path = Collection.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
