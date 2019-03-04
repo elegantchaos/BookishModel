@@ -17,6 +17,8 @@ public class BookishModel {
     static let version = "1.0.0"
 
     static var cachedModel: NSManagedObjectModel!
+
+    public static let topLevelEntities = [ Book.self, Person.self, Publisher.self, Series.self, Role.self ]
     
     public class func registerLocalizations() {
         StringLocalization.registerLocalizationBundle(Bundle(for: BookishModel.self))
