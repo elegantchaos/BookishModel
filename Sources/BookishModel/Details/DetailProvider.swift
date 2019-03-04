@@ -6,9 +6,10 @@
 import CoreData
 
 public protocol DetailContext {
-    var relationshipSorting: [NSSortDescriptor] { get }
-    var bookSorting: [NSSortDescriptor] { get }
-    var entrySorting: [NSSortDescriptor] { get }
+    var entitySorting: [String:[NSSortDescriptor]] { get }
+//    var relationshipSorting: [NSSortDescriptor] { get }
+//    var bookSorting: [NSSortDescriptor] { get }
+//    var entrySorting: [NSSortDescriptor] { get }
     var showDebug: Bool { get }
 }
 

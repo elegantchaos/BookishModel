@@ -33,7 +33,7 @@ class PublisherDetailProvider: DetailProvider {
     }
     
     override func filter(for selection: [ModelObject], editing: Bool, combining: Bool, context: DetailContext) {
-        if let series = selection.first as? Publisher, let books = series.books?.sortedArray(using: context.bookSorting) as? [Book] {
+        if let series = selection.first as? Publisher, let sort = context.entitySorting["Book"], let books = series.books?.sortedArray(using: sort) as? [Book] {
             sortedBooks.removeAll()
             sortedBooks.append(contentsOf: books)
         }

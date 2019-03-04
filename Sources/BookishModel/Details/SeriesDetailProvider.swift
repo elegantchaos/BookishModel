@@ -35,7 +35,8 @@ class SeriesDetailProvider: DetailProvider {
     }
     
     override func filter(for selection: [ModelObject], editing: Bool, combining: Bool, context: DetailContext) {
-        if let series = selection.first as? Series, let entries = series.entries?.sortedArray(using: context.entrySorting) as? [SeriesEntry] {
+        
+        if let series = selection.first as? Series, let sort = context.entitySorting["SeriesEntry"], let entries = series.entries?.sortedArray(using: sort) as? [SeriesEntry] {
             sortedEntries.removeAll()
             sortedEntries.append(contentsOf: entries)
         }

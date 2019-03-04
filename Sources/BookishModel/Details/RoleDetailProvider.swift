@@ -35,7 +35,7 @@ class RoleDetailProvider: DetailProvider {
     }
     
     override func filter(for selection: [ModelObject], editing: Bool, combining: Bool, context: DetailContext) {
-        if let role = selection.first as? Role, let relationships = role.relationships?.sortedArray(using: context.relationshipSorting) as? [Relationship] {
+        if let role = selection.first as? Role, let sort = context.entitySorting["Relationship"], let relationships = role.relationships?.sortedArray(using: sort) as? [Relationship] {
             sortedRelationships.removeAll()
             sortedRelationships.append(contentsOf: relationships)
         }

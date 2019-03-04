@@ -36,7 +36,7 @@ public class PersonDetailProvider: DetailProvider {
         if section == 0 {
             return super.sectionTitle(for: section)
         } else if let role = sortedRoles[section - 1].role.name {
-            return "Role.title".localized(with: ["role" : role])
+            return "Role.section".localized(with: ["role" : role])
         } else {
             return ""
         }
@@ -63,11 +63,12 @@ public class PersonDetailProvider: DetailProvider {
     public override func filter(for selection: [ModelObject], editing: Bool, combining: Bool, context: DetailContext) {
         let template = PersonDetailProvider.standardDetails(showDebug: context.showDebug)
         super.filter(for: selection, template: template, editing: editing, combining: false, context: context)
-        if let person = selection.first as? Person, let relationships = person.relationships?.sortedArray(using: context.relationshipSorting) as? [Relationship] {
+        if let person = selection.first as? Person, let sort = context.entitySorting["Relationship"], let relationships = person.relationships?.sortedArray(using: sort) as? [Relationship] {
             sortedRoles.removeAll()
             for relationship in relationships {
                 if let role = relationship.role,
-                    let books = relationship.books?.sortedArray(using: context.bookSorting) as? [Book] {
+                    let sort = context.entitySorting["Book"],
+                    let books = relationship.books?.sortedArray(using: sort) as? [Book] {
                     sortedRoles.append(SortedRole(role: role, books: books))
                 }
             }

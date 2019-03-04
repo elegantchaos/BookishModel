@@ -32,6 +32,10 @@ public class Role: ModelObject {
     
     @objc public var sortName: String? { return name }
 
+    @objc dynamic var sectionName: String? {
+        return Indexing.sectionName(for: sortName)
+    }
+
     override public class func getProvider() -> DetailProvider {
         return RoleDetailProvider()
     }
