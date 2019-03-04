@@ -20,6 +20,16 @@ public class BookishModel {
 
     public static let topLevelEntities = [ Book.self, Person.self, Publisher.self, Series.self, Role.self ]
     
+    public static let defaultSorting: [String:[NSSortDescriptor]] = [
+        "Book" : [NSSortDescriptor(key: "sortName", ascending: true)],
+        "Person" : [NSSortDescriptor(key: "sortName", ascending: true)],
+        "Publisher" : [NSSortDescriptor(key: "sortName", ascending: true)],
+        "Relationship" : [NSSortDescriptor(key: "role.name", ascending: true)],
+        "Series" : [NSSortDescriptor(key: "sortName", ascending: true)],
+        "SeriesEntry" : [NSSortDescriptor(key: "position", ascending: true)],
+        "Role" : [NSSortDescriptor(key: "name", ascending: true)]
+    ]
+
     public class func registerLocalizations() {
         StringLocalization.registerLocalizationBundle(Bundle(for: BookishModel.self))
     }
