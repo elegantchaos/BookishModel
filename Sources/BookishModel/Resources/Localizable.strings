@@ -43,8 +43,8 @@ Publisher.selected.all = "{count} selected";
 Publisher.search.none = "no publishers to search";
 Publisher.search.singular = "search 1 publisher";
 Publisher.search.plural = "search {count} publishers";
-Publisher.title = "Publisher";
-Publisher.label = "publisher";
+Publisher.title = "Publishers";
+Publisher.label = "publishers";
 
 Series.count.none = "no series";
 Series.count.singular = "1 series";
@@ -61,8 +61,8 @@ Series.plural = "series";
 Series.title = "Series";
 Series.label = "series";
 
-Role.title = "Role";
-Role.label = "Role";
+Role.title = "Roles";
+Role.label = "roles";
 Role.section = "As {role}";
 
 detail.notes.label = "notes";
