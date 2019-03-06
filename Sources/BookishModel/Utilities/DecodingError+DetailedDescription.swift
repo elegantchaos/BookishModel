@@ -10,8 +10,14 @@ extension DecodingError.Context {
     /**
      Returns a more detailed description of the decoding error.
      
-     We attempt to include the line in which the error occurred.
-    */
+     We attempt to include the lines around the error.
+     
+     The line itself is highlighted with ←
+     and the error character with ↑
+     
+     (the accuracy of this is dependant on the character mentioned in the underlying error)
+
+     */
     
     public func detailedDescription(for data: Data, window: Int = 2) -> String {
         var detail = debugDescription
@@ -39,14 +45,15 @@ extension DecodingError.Context {
                         
                         for n in from...to {
                             let isLine = n == lineNo
-                            detail += "\n\(n): \(lines[n])"
+                            let sep = isLine ? ":→" : ": " 
+                            detail += "\n\(n)\(sep)\(lines[n])"
                             if isLine {
-                                detail += "\t<---"
+                                detail += " ←"
                                 var indent = "\n\(n):"
                                 for _ in 0 ..< offsetInLine {
                                     indent += " "
                                 }
-                                detail += "\(indent)^\(indent)|\(indent)|"
+                                detail += "\(indent)↑"
                             }
                         }
                         
