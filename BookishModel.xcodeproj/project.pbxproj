@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22115B1C222FDF0A00C3F170 /* DecodingError+DetailedDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22115B1B222FDF0A00C3F170 /* DecodingError+DetailedDescription.swift */; };
+		22115B1D222FDF0A00C3F170 /* DecodingError+DetailedDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22115B1B222FDF0A00C3F170 /* DecodingError+DetailedDescription.swift */; };
 		2211A96F2215A7B0004B7589 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2211A9542215A7B0004B7589 /* StringExtensions.swift */; };
 		2211A9702215A7B0004B7589 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2211A9542215A7B0004B7589 /* StringExtensions.swift */; };
 		2211A9722215C072004B7589 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2211A9712215C072004B7589 /* Localizable.strings */; };
@@ -410,6 +412,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		22115B1B222FDF0A00C3F170 /* DecodingError+DetailedDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DecodingError+DetailedDescription.swift"; sourceTree = "<group>"; };
 		2211A9542215A7B0004B7589 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		2211A9712215C072004B7589 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		22123768220CA3EA006D4AA5 /* PersonDetailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailTests.swift; sourceTree = "<group>"; };
@@ -692,6 +695,7 @@
 			children = (
 				2211A9542215A7B0004B7589 /* StringExtensions.swift */,
 				2231C570222971B600D730FB /* String+ISBN.swift */,
+				22115B1B222FDF0A00C3F170 /* DecodingError+DetailedDescription.swift */,
 				2250C75C21B94D9700E899E2 /* RegularExpressionExtensions.swift */,
 				2250C71721B7E15700E899E2 /* NSManagedObjectContextExtensions.swift */,
 				22A498A3220F1A02006A2137 /* NSManagedObjectExtensions.swift */,
@@ -1315,6 +1319,7 @@
 				223879BC220B3FFC0019F9EA /* PublisherDetailProvider.swift in Sources */,
 				22E47CC6216E31B700E43DBF /* BookAction.swift in Sources */,
 				229FB9F12226CBCD00A564D4 /* LookupSession.swift in Sources */,
+				22115B1C222FDF0A00C3F170 /* DecodingError+DetailedDescription.swift in Sources */,
 				224293E3212AF09D00E70510 /* Person.swift in Sources */,
 				2231C571222971B600D730FB /* String+ISBN.swift in Sources */,
 				2211A96F2215A7B0004B7589 /* StringExtensions.swift in Sources */,
@@ -1415,6 +1420,7 @@
 				223879BD220B3FFC0019F9EA /* PublisherDetailProvider.swift in Sources */,
 				22E47CC7216E31BA00E43DBF /* BookAction.swift in Sources */,
 				229FB9F22226CBCD00A564D4 /* LookupSession.swift in Sources */,
+				22115B1D222FDF0A00C3F170 /* DecodingError+DetailedDescription.swift in Sources */,
 				224293E4212AF09E00E70510 /* Person.swift in Sources */,
 				2231C572222971B600D730FB /* String+ISBN.swift in Sources */,
 				2211A9702215A7B0004B7589 /* StringExtensions.swift in Sources */,
@@ -1725,7 +1731,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 221ED4E9216785BB00594714 /* BookishModelMac.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2H48644JM2;
@@ -1734,7 +1739,7 @@
 					"$(inherited)",
 					"@executable_path/",
 					"@loader_path/",
-					/Applications/Xcode10.2b3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift_static/macosx,
+					/Applications/Xcode10.2b3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.elegantchaos.bookish.bkt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1748,7 +1753,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 221ED4E9216785BB00594714 /* BookishModelMac.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2H48644JM2;
@@ -1757,7 +1761,7 @@
 					"$(inherited)",
 					"@executable_path/",
 					"@loader_path/",
-					/Applications/Xcode10.2b3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift_static/macosx,
+					/Applications/Xcode10.2b3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.elegantchaos.bookish.bkt;
 				PRODUCT_NAME = "$(TARGET_NAME)";

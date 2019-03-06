@@ -1,5 +1,6 @@
 {
     "_header" : "Created by Sam Deane on 19/02/2019. All code (c) 2019 - present day, Elegant Chaos Limited.",
+
     "actions" : [
         {
             "name": "import",
@@ -13,6 +14,338 @@
         {
             "name": "fix series",
             "action": "ScanSeries"
+        },
+        
+        {
+            "name": "split Tim King Brian Knight",
+            "action": "SplitPerson",
+            "people": [ "ECC62AC6-439C-11D9-9E3E-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "split Tom DeMarco Tim Lister",
+            "action": "SplitPerson",
+            "people": [ "DE9E2FA1-439A-11D9-9E3E-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "split Steve Jackson Alan Longford",
+            "action": "SplitPerson",
+            "people": [ "5B487B18-4626-11D9-9811-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "split Norman Stone Nicolo Machiavelli",
+            "action": "SplitPerson",
+            "people": [ "A57DE409-4198-11D9-86EF-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "split Giancarlo Succi Michele Marchesi",
+            "action": "SplitPerson",
+            "people": [ "8F6A8610-439E-11D9-9E3E-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "split Joseph Schwartz Michael McGuinness",
+            "action": "SplitPerson",
+            "people": [ "A09C7E66-4233-11D9-A638-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "split Harry Harrison Marvin Minsky",
+            "action": "SplitPerson",
+            "people": [ "60C10FE0-417A-11D9-86EF-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "split Jostein Gaarder Paulette Moller",
+            "action": "SplitPerson",
+            "people": [ "F2A2A917-4177-11D9-86EF-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "split Larry Niven Jerry Pournelle",
+            "action": "SplitPerson",
+            "people": [ "42087175-419B-11D9-9118-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "split Adele Goldberg David Robson",
+            "action": "SplitPerson",
+            "people": [ "AF425185-439B-11D9-9E3E-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "split W. T. Williams, G.H. Savage",
+            "action": "SplitPerson",
+            "people": [ "49CAFF4A-425A-11D9-A638-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "split William Gibson Bruce Sterling",
+            "action": "SplitPerson",
+            "people": [ "72D72FB8-4178-11D9-86EF-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "split J R R Tolkien Christopher Tolkien",
+            "action": "SplitPerson",
+            "people": [ "076ADDE0-4209-11D9-AC99-000A957CA12C-author-1" ],
+            "params": {
+                "splitName": "Christopher Tolkien"
+            }
+        },
+
+        
+        {
+            "name": "split Phillip Knightley Caroline Kennedy",
+            "action": "SplitPerson",
+            "people": [ "EBEF7B34-4627-11D9-8228-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "split Maryann Barber Joshua Kerievsky",
+            "action": "SplitPerson",
+            "people": [ "F5F7A9BD-A6AF-4D11-B546-0F2967D5938F-author-1" ]
+        },
+        
+        {
+            "name": "split Tim King Brian Knight",
+            "action": "SplitPerson",
+            "people": [ "ECC62AC6-439C-11D9-9E3E-000A957CA12C-author-1" ]
+        },
+
+        
+        {
+            "name": "split Stanislaw Lem L. Iribarne",
+            "action": "SplitPerson",
+            "people": [ "8A3C7E18-4195-11D9-86EF-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "split Fred Hoyle Geoffrey Hoyle",
+            "action": "SplitPerson",
+            "people": [ "90BFD9CB-417D-11D9-86EF-000A957CA12C-author-1" ]
+        },
+
+        {
+            "name": "split Spike Milligan Jack Hobbs",
+            "action": "SplitPerson",
+            "people": [ "96B12232-4258-11D9-A638-000A957CA12C-author-1" ]
+        },
+
+        {
+            "name": "split Paul Horowitz Winfield Hill",
+            "action": "SplitPerson",
+            "people": [ "0D6B5D76-4399-11D9-9E3E-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "split Peter Hoeg Barbara Haveland",
+            "action": "SplitPerson",
+            "people": [ "943C8406-4199-11D9-86EF-000A957CA12C-author-1" ]
+        },
+
+        {
+            "name": "split Lucia Alvarez de Toledo Ernesto Guevara",
+            "action": "SplitPerson",
+            "people": [ "CCA4FEE6-3E2B-4BA0-B388-8819DC6D9134-author-1" ],
+            "params": {
+                "splitName": "Ernesto Guevara"
+            }
+        },
+
+        {
+            "name": "split Isaac Asimov Martin H. Greenberg",
+            "action": "SplitPerson",
+            "people": [ "D06808C2-3FED-11D9-A33A-000A957CA12C-author-1" ],
+            "params": {
+                "splitName": "Martin H. Greenberg"
+            }
+        },
+        
+        {
+            "name": "split Cornelius Tacitus Michael Grant",
+            "action": "SplitPerson",
+            "people": [ "34347E32-4236-11D9-A638-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "split Alexander Solzhenitsyn Michael Glenny",
+            "action": "SplitPerson",
+            "people": [ "B0351E1E-4203-11D9-AF45-000A957CA12C-author-1" ]
+        },
+        
+        {
+            "name": "split Peter Dickinson Gareth Floyd",
+            "action": "SplitPerson",
+            "people": [ "6A9B699F-4173-11D9-9BA9-000A957CA12C-author-1" ],
+            "params": {
+                "splitName": "Gareth Floyd"
+            }
+        },
+
+        {
+            "name": "split Karl Marx Friedrich Engels",
+            "action": "SplitPerson",
+            "people": [ "8A920FC4-4238-11D9-A638-000A957CA12C-author-1" ],
+            "params": {
+                "splitName": "Friedrich Engels"
+            }
+        },
+        
+        {
+            "name": "split Robert Orfali Dan Harkey Jeri Edwards",
+            "action": "SplitPerson",
+            "people": [ "B89362B6-439D-11D9-9E3E-000A957CA12C-author-1" ],
+            "params": {
+                "splitName": "Jeri Edwards"
+            }
+        },
+        
+        {
+            "name": "split Robert Orfali Dan Harkey Jeri Edwards",
+            "action": "SplitPerson",
+            "people": [ "B89362B6-439D-11D9-9E3E-000A957CA12C-author-1" ],
+            "params": {
+                "splitName": "Dan Harkey"
+            }
+        },
+        
+        {
+            "name": "split Leo Tolstoy Rosemary Edmonds",
+            "action": "SplitPerson",
+            "people": [ "4A72FF62-4209-11D9-AC99-000A957CA12C-author-1" ],
+            "params": {
+                "splitName": "Rosemary Edmonds"
+            }
+        },
+        
+        {
+            "name": "split Donald A. Norman Tamara Dunaeff",
+            "action": "SplitPerson",
+            "people": [ "3033EE4F-8FEF-48D2-BB11-335738A84EEF-author-1" ],
+            "params": {
+                "splitName": "Tamara Dunaeff"
+            }
+        },
+        
+        {
+            "name": "split Jackie Neider Mason Woo Tom Davis",
+            "action": "SplitPerson",
+            "people": [ "B2C9E03A-439C-11D9-9E3E-000A957CA12C-author-1" ],
+            "params": {
+                "splitName": "Tom Davis"
+            }
+        },
+        
+        {
+            "name": "split Jackie Neider Mason Woo Tom Davis",
+            "action": "SplitPerson",
+            "people": [ "B2C9E03A-439C-11D9-9E3E-000A957CA12C-author-1" ],
+            "params": {
+                "splitName": "Mason Woo"
+            }
+        },
+        
+        {
+            "name": "split Rudyard Kipling J. Lockwood Kipling W. H. Drake",
+            "action": "SplitPerson",
+            "people": [ "5BAE54EF-4257-11D9-A638-000A957CA12C-author-1" ],
+            "params": {
+                "splitName": "W. H. Drake"
+            }
+        },
+        
+        {
+            "name": "split Rudyard Kipling J. Lockwood Kipling W. H. Drake",
+            "action": "SplitPerson",
+            "people": [ "5BAE54EF-4257-11D9-A638-000A957CA12C-author-1" ],
+            "params": {
+                "splitName": "J. Lockwood Kipling"
+            }
+        },
+        
+        {
+            "name": "split Stanislaw Lem Joanna Kilmartin Steve Cox",
+            "action": "SplitPerson",
+            "people": [ "67F3A956-4195-11D9-86EF-000A957CA12C-author-1" ],
+            "params": {
+                "splitName": "Steve Cox"
+            }
+        },
+        
+        {
+            "name": "split Stanislaw Lem Joanna Kilmartin Steve Cox",
+            "action": "SplitPerson",
+            "people": [ "67F3A956-4195-11D9-86EF-000A957CA12C-author-1" ],
+            "params": {
+                "splitName": "Joanna Kilmartin"
+            }
+        },
+        
+        {
+            "name": "split Mark F. Komarinski Cary Collett",
+            "action": "SplitPerson",
+            "people": [ "6B9C1211-4399-11D9-9E3E-000A957CA12C-author-1" ],
+            "params": {
+                "splitName": "Cary Collett"
+            }
+        },
+        
+        {
+            "name": "split Larry Wall Randal L. Schwartz Tom Christiansen",
+            "action": "SplitPerson",
+            "people": [ "971E181E-439C-11D9-9E3E-000A957CA12C-author-1" ],
+            "params": {
+                "splitName": "Tom Christiansen"
+            }
+        },
+        
+        {
+            "name": "split Larry Wall Randal L. Schwartz",
+            "action": "SplitPerson",
+            "people": [ "971E181E-439C-11D9-9E3E-000A957CA12C-author-1" ],
+            "params": {
+                "splitName": "Randal L. Schwartz"
+            }
+        },
+        
+        {
+            "name": "split E.E. Simbalist W.K. Backhaus S.C. Betney",
+            "action": "SplitPerson",
+            "people": [ "6D4360B2-4524-11D9-845D-000A957CA12C-author-1" ],
+            "params": {
+                "splitName": "S.C. Betney"
+            }
+        },
+
+        {
+            "name": "split E.E. Simbalist W.K. Backhaus",
+            "action": "SplitPerson",
+            "people": [ "6D4360B2-4524-11D9-845D-000A957CA12C-author-1" ],
+            "params": {
+                "splitName": "W.K. Backhaus"
+            }
+        },
+
+        {
+            "name": "split Robert J. Nemiroff Jerry T. Bonnell",
+            "action": "SplitPerson",
+            "people": [ "5460103E-4530-11D9-845D-000A957CA12C-author-1" ],
+            "params": {
+                "splitName": "Jerry T. Bonnell"
+            }
+        },
+
+        {
+            "name": "split Douglas Gilbert Alban Whitten John ",
+            "action": "SplitPerson",
+            "people": [ "C23B35D3-4232-11D9-A638-000A957CA12C-author-1" ],
+            "params": {
+                "splitName": "John Reginald Verney Brooks"
+            }
         },
         
         {
