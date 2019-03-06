@@ -116,24 +116,7 @@ class BookishTool {
             let actions = try decoder.decode(ActionFile.self, from: jsonData)
             makeActionTasks(actions)
         } catch DecodingError.dataCorrupted(let context) {
-            print(context.debugDescription)
-            if let u = context.underlyingError {
-               let underlying = u as NSError
-                if let description = underlying.userInfo["NSDebugDescription"] as? String {
-                    if let range = description.range(of: "character ") {
-                        var position = description[range.upperBound...]
-                        position.removeLast()
-                        if let i = Int(position), let json = String(data: jsonData, encoding: .utf8) {
-                            let index = json.index(json.startIndex, offsetBy: i)
-                            let start = json.range(of: "\n", options: .backwards, range: Range(uncheckedBounds: (json.startIndex, index)))?.lowerBound ?? json.startIndex
-                            let end = json.range(of: "\n", options: [], range: Range(uncheckedBounds: (index, json.endIndex)))?.upperBound ?? json.endIndex
-                            let line = json[start...end]
-                            print(description)
-                            print(line)
-                        }
-                    }
-                }
-            }
+            print(context.detailedDescription(for: jsonData))
             
         } catch {
             print(error)
