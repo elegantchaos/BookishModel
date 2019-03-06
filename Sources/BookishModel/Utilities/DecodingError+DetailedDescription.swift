@@ -27,23 +27,30 @@ extension DecodingError.Context {
                     if let i = Int(position), let json = String(data: data, encoding: .utf8) {
                         let index = json.index(json.startIndex, offsetBy: i)
                         let start = json.range(of: "\n", options: .backwards, range: Range(uncheckedBounds: (json.startIndex, index)))?.lowerBound ?? json.startIndex
-                        let end = json.range(of: "\n", options: [], range: Range(uncheckedBounds: (index, json.endIndex)))?.upperBound ?? json.endIndex
-                        let line = json[start...end]
+                        let offsetInLine = json.distance(from: start, to: index)
                         detail += "\n\(description)\n\n"
-//                        detail += "\n\(line)"
                         
                         let lineNo = json[...index].count(where: { $0 == "\n" } )
-//                        detail += "\n line: \(lineNo)"
                         
                         let lines = json.split(separator: "\n")
                         let lineCount = lines.count
                         let from = lineNo > window ? lineNo - window : 0
                         let to = lineNo + window < lineCount ? lineNo + window : lineCount
-                        let excerpt = lines[from...to]
                         
                         for n in from...to {
-                            detail += "\(n): \(lines[n])\n"
+                            let isLine = n == lineNo
+                            detail += "\n\(n): \(lines[n])"
+                            if isLine {
+                                detail += "\t<---"
+                                var indent = "\n\(n):"
+                                for _ in 0 ..< offsetInLine {
+                                    indent += " "
+                                }
+                                detail += "\(indent)^\(indent)|\(indent)|"
+                            }
                         }
+                        
+                        detail += "\n"
                     }
                 }
             }
