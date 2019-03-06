@@ -20,9 +20,9 @@ public class BookDetailProvider: DetailProvider {
             DetailSpec(binding: "ean", viewAs: DetailSpec.hiddenKind, editAs: DetailSpec.textKind),
             DetailSpec(binding: "classification"),
             DetailSpec(binding: "published", viewAs: DetailSpec.dateKind, editAs: DetailSpec.editableDateKind),
-            DetailSpec(binding: "added", viewAs: DetailSpec.dateKind),
-            DetailSpec(binding: "modified", viewAs: DetailSpec.dateKind),
-            DetailSpec(binding: "importDate", viewAs: DetailSpec.dateKind, editAs: DetailSpec.hiddenKind),
+            DetailSpec(binding: "added", viewAs: DetailSpec.timeKind),
+            DetailSpec(binding: "modified", viewAs: DetailSpec.timeKind),
+            DetailSpec(binding: "importDate", viewAs: DetailSpec.timeKind, editAs: DetailSpec.hiddenKind),
             DetailSpec(binding: "dimensions", viewAs: DetailSpec.textKind, editAs: DetailSpec.editableDimensionsKind),
             DetailSpec(binding: "pages")
         ]

@@ -14,6 +14,7 @@ public final class DetailSpec {
     
     public static let textKind = "text"
     public static let dateKind = "date"
+    public static let timeKind = "time"
     public static let hiddenKind = "hidden"
     public static let editableDateKind = "editableDate"
     public static let editableDimensionsKind = "editableDimensions"
