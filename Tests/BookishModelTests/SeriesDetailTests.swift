@@ -44,7 +44,7 @@ class SeriesDetailProviderTests: ModelTestCase {
         book.addToSeries(series, position: 1)
         
         source.filter(for: [series], editing: false, combining: false, context: TestContext())
-        XCTAssertEqual(source.itemCount(for: 0), 2)
+        XCTAssertEqual(source.itemCount(for: 0), 1)
         XCTAssertEqual(source.sectionCount, 1)
     }
 

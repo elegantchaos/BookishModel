@@ -63,7 +63,7 @@ class PersonDetailProviderTests: ModelTestCase {
         
         provider.filter(for: [person], editing: false, combining: false, context: TestContext())
         XCTAssertEqual(provider.sectionTitle(for: 0), "")
-        XCTAssertEqual(provider.sectionTitle(for: 1), "Role.title")
+        XCTAssertEqual(provider.sectionTitle(for: 1), "Role.section")
     }
     
     func testInfo() {

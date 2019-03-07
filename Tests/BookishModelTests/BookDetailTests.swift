@@ -8,9 +8,12 @@ import CoreData
 @testable import BookishModel
 
 class TestContext: DetailContext {
-    var bookSorting: [NSSortDescriptor] = []
-    var relationshipSorting: [NSSortDescriptor] = []
-    var entrySorting: [NSSortDescriptor] = []
+    var entitySorting: [String : [NSSortDescriptor]] = [
+        "Book": [],
+        "Entry": [],
+        "Relationship": []
+    ]
+    
     var showDebug: Bool = false
 }
 
