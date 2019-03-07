@@ -21,6 +21,8 @@
 		22123773220CA406006D4AA5 /* SeriesDetailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2212376C220CA401006D4AA5 /* SeriesDetailTests.swift */; };
 		2213FD2622312FD900D8B4D8 /* DecodingErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2213FD2522312FD900D8B4D8 /* DecodingErrorTests.swift */; };
 		2213FD2722312FD900D8B4D8 /* DecodingErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2213FD2522312FD900D8B4D8 /* DecodingErrorTests.swift */; };
+		2213FD292231355700D8B4D8 /* JSON Errors.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2213FD282231355700D8B4D8 /* JSON Errors.plist */; };
+		2213FD2A2231355700D8B4D8 /* JSON Errors.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2213FD282231355700D8B4D8 /* JSON Errors.plist */; };
 		221C4B2D216BA8220086D56F /* PersonAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C4B2C216BA8220086D56F /* PersonAction.swift */; };
 		221C4B2E216BA8220086D56F /* PersonAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C4B2C216BA8220086D56F /* PersonAction.swift */; };
 		221ED50C216B79F100594714 /* DetailSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221ED50B216B79F100594714 /* DetailSpec.swift */; };
@@ -421,6 +423,7 @@
 		2212376A220CA3F4006D4AA5 /* PublisherDetailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherDetailTests.swift; sourceTree = "<group>"; };
 		2212376C220CA401006D4AA5 /* SeriesDetailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesDetailTests.swift; sourceTree = "<group>"; };
 		2213FD2522312FD900D8B4D8 /* DecodingErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodingErrorTests.swift; sourceTree = "<group>"; };
+		2213FD282231355700D8B4D8 /* JSON Errors.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JSON Errors.plist"; sourceTree = "<group>"; };
 		221C4B23216BA50C0086D56F /* BookAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookAction.swift; sourceTree = "<group>"; };
 		221C4B2C216BA8220086D56F /* PersonAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonAction.swift; sourceTree = "<group>"; };
 		221ED4E9216785BB00594714 /* BookishModelMac.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = BookishModelMac.xcconfig; sourceTree = "<group>"; };
@@ -785,6 +788,7 @@
 				22A498AF220F34AB006A2137 /* Sample.xml */,
 				22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */,
 				224293C4212AE16300E70510 /* Info.plist */,
+				2213FD282231355700D8B4D8 /* JSON Errors.plist */,
 				22D4A3CE21BEDDA100427E35 /* MissingModel.bundle */,
 			);
 			path = Resources;
@@ -1248,6 +1252,7 @@
 			files = (
 				22A498D0220F480A006A2137 /* Simple.plist in Resources */,
 				22D4A3D121BEDDA100427E35 /* MissingModel.bundle in Resources */,
+				2213FD292231355700D8B4D8 /* JSON Errors.plist in Resources */,
 				225F8940221AE6B300196110 /* Localizable.strings in Resources */,
 				22A498B0220F34AB006A2137 /* Sample.xml in Resources */,
 				22D4A3CF21BEDDA100427E35 /* CorruptModel.bundle in Resources */,
@@ -1271,6 +1276,7 @@
 			files = (
 				22A498D1220F480A006A2137 /* Simple.plist in Resources */,
 				22D4A3D221BEDDA100427E35 /* MissingModel.bundle in Resources */,
+				2213FD2A2231355700D8B4D8 /* JSON Errors.plist in Resources */,
 				225F8941221AE6B300196110 /* Localizable.strings in Resources */,
 				22A498B1220F34AB006A2137 /* Sample.xml in Resources */,
 				22D4A3D021BEDDA100427E35 /* CorruptModel.bundle in Resources */,

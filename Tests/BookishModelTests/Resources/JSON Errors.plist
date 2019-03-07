@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+
+<dict>
+<key>json</key>
+<string>
+{
+    "foo": bar
+}
+</string>
+
+<key>expected</key>
+<string>
+The given data was not valid JSON.
+Invalid value around character 14.
+
+
+0: {
+1:     "foo": bar
+2:→} ←
+2:            ↑
+</string>
+</dict>
+
+<dict>
+<key>json</key>
+<string>
+foobar
+</string>
+
+<key>expected</key>
+<string>
+The given data was not valid JSON.
+</string>
+</dict>
+
+<dict>
+<key>json</key>
+<string>
+[ "a list" ]
+</string>
+
+<key>expected</key>
+<string>
+Expected to decode Dictionary&lt;String, Any&gt; but found an array instead.
+</string>
+</dict>
+
+<dict>
+<key>json</key>
+<string>
+{
+    "foo": 123
+}
+</string>
+
+<key>expected</key>
+<string>
+Expected to decode String but found a number instead.
+Path was: foo
+</string>
+</dict>
+
+</array>
+</plist>

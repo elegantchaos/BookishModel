@@ -22,8 +22,15 @@ extension DecodingError.Context {
     public func detailedDescription(for data: Data, window: Int = 2) -> String {
         var detail = debugDescription
         if codingPath.count > 0 {
-            detail += codingPath.description
+            detail += "\nPath was: "
+            for key in codingPath {
+                if codingPath.count > 0 {
+                    detail += key.stringValue
+                }
+            }
+            detail += "\n"
         }
+        
         if let underlyingError = underlyingError {
             let underlyingNS = underlyingError as NSError
             if let description = underlyingNS.userInfo[NSDebugDescriptionErrorKey] as? String {
