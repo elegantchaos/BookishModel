@@ -5,10 +5,35 @@
 
 import Foundation
 
+/**
+ Returns a more detailed description of the decoding error context.
+ 
+ We attempt to include the lines around the error.
+ 
+ The line itself is highlighted with ←
+ and the error character with ↑
+ 
+ (the accuracy of this is dependant on the character mentioned in the underlying error)
+ 
+ */
+
+extension DecodingError {
+    public func detailedDescription(for data: Data, window: Int = 2) -> String {
+        switch (self) {
+        case .dataCorrupted(let context):
+            return context.detailedDescription(for: data)
+        case .typeMismatch(_, let context):
+            return context.detailedDescription(for: data)
+        default:
+            return errorDescription ?? String(describing: self)
+        }
+    }
+}
+
 extension DecodingError.Context {
     
     /**
-     Returns a more detailed description of the decoding error.
+     Returns a more detailed description of the decoding error context.
      
      We attempt to include the lines around the error.
      
@@ -24,9 +49,7 @@ extension DecodingError.Context {
         if codingPath.count > 0 {
             detail += "\nPath was: "
             for key in codingPath {
-                if codingPath.count > 0 {
-                    detail += key.stringValue
-                }
+                detail += key.stringValue
             }
             detail += "\n"
         }

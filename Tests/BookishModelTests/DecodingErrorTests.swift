@@ -19,13 +19,8 @@ class DecodingErrorTests: ModelTestCase {
         do {
             let _ = try decoder.decode(Test.self, from: data)
             XCTFail("shouldn't decode")
-        } catch DecodingError.dataCorrupted(let context) {
-            let actual = context.detailedDescription(for: data).trimmingCharacters(in: whitespace)
-            let expected = expecting.trimmingCharacters(in: whitespace)
-            XCTAssertEqual(actual, expected)
-            return actual == expected
-        } catch DecodingError.typeMismatch(let type, let context) {
-            let actual = context.detailedDescription(for: data).trimmingCharacters(in: whitespace)
+        } catch let error as DecodingError {
+            let actual = error.detailedDescription(for: data).trimmingCharacters(in: whitespace)
             let expected = expecting.trimmingCharacters(in: whitespace)
             XCTAssertEqual(actual, expected)
             return actual == expected
