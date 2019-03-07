@@ -40,8 +40,8 @@ extension DecodingError.Context {
                         
                         let lines = json.split(separator: "\n")
                         let lineCount = lines.count
-                        let from = lineNo > window ? lineNo - window : 0
-                        let to = lineNo + window < lineCount ? lineNo + window : lineCount
+                        let from = max(lineNo - window, 0)
+                        let to = min(lineNo + window, lineCount - 1)
                         
                         for n in from...to {
                             let isLine = n == lineNo
