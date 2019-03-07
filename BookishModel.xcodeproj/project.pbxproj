@@ -193,6 +193,7 @@
 		22A498CE220F475C006A2137 /* ImporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A498CC220F475C006A2137 /* ImporterTests.swift */; };
 		22A498D0220F480A006A2137 /* Simple.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22A498CF220F480A006A2137 /* Simple.plist */; };
 		22A498D1220F480A006A2137 /* Simple.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22A498CF220F480A006A2137 /* Simple.plist */; };
+		22ADAC5E223146BE00967943 /* SequenceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ADAC5D223146BE00967943 /* SequenceExtensions.swift */; };
 		22D4A3CF21BEDDA100427E35 /* CorruptModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */; };
 		22D4A3D021BEDDA100427E35 /* CorruptModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */; };
 		22D4A3D121BEDDA100427E35 /* MissingModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3CE21BEDDA100427E35 /* MissingModel.bundle */; };
@@ -525,6 +526,7 @@
 		22A498B7220F3554006A2137 /* ImportSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportSession.swift; sourceTree = "<group>"; };
 		22A498CC220F475C006A2137 /* ImporterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImporterTests.swift; sourceTree = "<group>"; };
 		22A498CF220F480A006A2137 /* Simple.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Simple.plist; sourceTree = "<group>"; };
+		22ADAC5D223146BE00967943 /* SequenceExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceExtensions.swift; sourceTree = "<group>"; };
 		22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CorruptModel.bundle; sourceTree = "<group>"; };
 		22D4A3CE21BEDDA100427E35 /* MissingModel.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MissingModel.bundle; sourceTree = "<group>"; };
 		22D4A51221C1215900427E35 /* .bin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = .bin; sourceTree = "<group>"; };
@@ -701,6 +703,7 @@
 			isa = PBXGroup;
 			children = (
 				2211A9542215A7B0004B7589 /* StringExtensions.swift */,
+				22ADAC5D223146BE00967943 /* SequenceExtensions.swift */,
 				2231C570222971B600D730FB /* String+ISBN.swift */,
 				22115B1B222FDF0A00C3F170 /* DecodingError+DetailedDescription.swift */,
 				2250C75C21B94D9700E899E2 /* RegularExpressionExtensions.swift */,
@@ -1115,21 +1118,21 @@
 		};
 		22F1827821CABCAC00220D20 /* BookishCoreMac */ = {
 			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
+			fileType = text;
 			path = BookishCoreMac;
 			remoteRef = 22F1827721CABCAC00220D20 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		22F1827A21CABCAC00220D20 /* BookishCoreMobile */ = {
 			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
+			fileType = text;
 			path = BookishCoreMobile;
 			remoteRef = 22F1827921CABCAC00220D20 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		22F1827C21CABCAC00220D20 /* BookishCoreTests.xctest */ = {
 			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
+			fileType = file;
 			path = BookishCoreTests.xctest;
 			remoteRef = 22F1827B21CABCAC00220D20 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -1318,6 +1321,7 @@
 				2250C71821B7E15700E899E2 /* NSManagedObjectContextExtensions.swift in Sources */,
 				22571132221865AD0099FFDE /* SectionDetailItem.swift in Sources */,
 				224293E9212AF0D300E70510 /* Role.swift in Sources */,
+				22ADAC5E223146BE00967943 /* SequenceExtensions.swift in Sources */,
 				229FB9E52226B2CA00A564D4 /* LookupCandidate.swift in Sources */,
 				226E8E7321AC50A6001F191F /* ChangeValueAction.swift in Sources */,
 				223879C6220B49230019F9EA /* PublisherDetailItem.swift in Sources */,
