@@ -9,10 +9,10 @@ import XCTest
 class SequenceExtensionTests: ModelTestCase {
 
     func testCountOccurrences() {
-        XCTAssertEqual([].countOccurencesOf(1), 0)
-        XCTAssertEqual([2, 3, 2].countOccurencesOf(1), 0)
-        XCTAssertEqual([1, 2, 3, 2, 1].countOccurencesOf(1), 2)
-        XCTAssertEqual("foobar".countOccurencesOf("o"), 2)
-        XCTAssertEqual(["foo", "bar"].countOccurencesOf("foo"), 1)
+        XCTAssertEqual([].count(instancesOf: 1), 0)
+        XCTAssertEqual([2, 3, 2].count(instancesOf: 1), 0)
+        XCTAssertEqual([1, 2, 3, 2, 1].count(instancesOf: 1), 2)
+        XCTAssertEqual("foobar".count(instancesOf: "o"), 2)
+        XCTAssertEqual(["foo", "bar"].count(instancesOf: "foo"), 1)
     }
 }

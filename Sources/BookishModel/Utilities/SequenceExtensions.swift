@@ -6,7 +6,7 @@
 import Foundation
 
 extension Sequence where Self.Element: Comparable {
-    func countOccurencesOf(_ element: Self.Element) -> Int {
+    func count(instancesOf element: Self.Element) -> Int {
         return reduce(into: 0) { (result, c) in
             if c == element {
                 result += 1

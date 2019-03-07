@@ -66,7 +66,7 @@ extension DecodingError.Context {
                         let offsetInLine = json.distance(from: start, to: index)
                         detail += "\n\(description)\n\n"
                         
-                        let errorLine = json[...index].countOccurencesOf("\n")
+                        let errorLine = json[...index].count(instancesOf: "\n")
                         let lines = json.split(separator: "\n")
                         let linesCount = lines.count
                         let fromLine = max(errorLine - window, 0)
