@@ -194,6 +194,9 @@
 		22A498D0220F480A006A2137 /* Simple.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22A498CF220F480A006A2137 /* Simple.plist */; };
 		22A498D1220F480A006A2137 /* Simple.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22A498CF220F480A006A2137 /* Simple.plist */; };
 		22ADAC5E223146BE00967943 /* SequenceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ADAC5D223146BE00967943 /* SequenceExtensions.swift */; };
+		22ADAC7922314BE000967943 /* SequenceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ADAC5D223146BE00967943 /* SequenceExtensions.swift */; };
+		22ADAC7B22314C0700967943 /* SequenceExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ADAC7A22314C0700967943 /* SequenceExtensionTests.swift */; };
+		22ADAC7C22314C0700967943 /* SequenceExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ADAC7A22314C0700967943 /* SequenceExtensionTests.swift */; };
 		22D4A3CF21BEDDA100427E35 /* CorruptModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */; };
 		22D4A3D021BEDDA100427E35 /* CorruptModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */; };
 		22D4A3D121BEDDA100427E35 /* MissingModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3CE21BEDDA100427E35 /* MissingModel.bundle */; };
@@ -527,6 +530,7 @@
 		22A498CC220F475C006A2137 /* ImporterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImporterTests.swift; sourceTree = "<group>"; };
 		22A498CF220F480A006A2137 /* Simple.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Simple.plist; sourceTree = "<group>"; };
 		22ADAC5D223146BE00967943 /* SequenceExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceExtensions.swift; sourceTree = "<group>"; };
+		22ADAC7A22314C0700967943 /* SequenceExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceExtensionTests.swift; sourceTree = "<group>"; };
 		22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CorruptModel.bundle; sourceTree = "<group>"; };
 		22D4A3CE21BEDDA100427E35 /* MissingModel.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MissingModel.bundle; sourceTree = "<group>"; };
 		22D4A51221C1215900427E35 /* .bin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = .bin; sourceTree = "<group>"; };
@@ -640,6 +644,7 @@
 			children = (
 				2250C7ED21BAF6B000E899E2 /* BookActionTests.swift */,
 				225F8942221AF41800196110 /* BookDetailItemTests.swift */,
+				22ADAC7A22314C0700967943 /* SequenceExtensionTests.swift */,
 				2250C80A21BE891D00E899E2 /* BookDetailTests.swift */,
 				2250C7FC21BE85CD00E899E2 /* BookTests.swift */,
 				2250C80D21BE96F000E899E2 /* ChangeValueActionTests.swift */,
@@ -1381,6 +1386,7 @@
 				2231C5CC2229724500D730FB /* ISBNTests.swift in Sources */,
 				22A498AA220F28F2006A2137 /* CollectionContainerTests.swift in Sources */,
 				2250C7FD21BE85CD00E899E2 /* BookTests.swift in Sources */,
+				22ADAC7B22314C0700967943 /* SequenceExtensionTests.swift in Sources */,
 				2250C7EE21BAF6B000E899E2 /* BookActionTests.swift in Sources */,
 				225F8946221AF4DF00196110 /* DetailProviderTests.swift in Sources */,
 				2250C7F721BAF85900E899E2 /* SeriesActionTests.swift in Sources */,
@@ -1424,6 +1430,7 @@
 				221F272021306C1300DC2DC7 /* Book.swift in Sources */,
 				2250C71921B7E15700E899E2 /* NSManagedObjectContextExtensions.swift in Sources */,
 				226E8E7421AC50A6001F191F /* ChangeValueAction.swift in Sources */,
+				22ADAC7922314BE000967943 /* SequenceExtensions.swift in Sources */,
 				229FB9E62226B2CA00A564D4 /* LookupCandidate.swift in Sources */,
 				226E8DB221A84031001F191F /* ModelAction.swift in Sources */,
 				223879C7220B49230019F9EA /* PublisherDetailItem.swift in Sources */,
@@ -1483,6 +1490,7 @@
 				2231C5CD2229724500D730FB /* ISBNTests.swift in Sources */,
 				22A498AB220F28F2006A2137 /* CollectionContainerTests.swift in Sources */,
 				2250C7FE21BE85CD00E899E2 /* BookTests.swift in Sources */,
+				22ADAC7C22314C0700967943 /* SequenceExtensionTests.swift in Sources */,
 				2250C7EF21BAF6B000E899E2 /* BookActionTests.swift in Sources */,
 				225F8947221AF4DF00196110 /* DetailProviderTests.swift in Sources */,
 				2250C7F821BAF85900E899E2 /* SeriesActionTests.swift in Sources */,
