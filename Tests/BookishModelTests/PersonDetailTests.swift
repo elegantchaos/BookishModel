@@ -45,6 +45,10 @@ class PersonDetailProviderTests: ModelTestCase {
         XCTAssertEqual(provider.itemCount(for: 0), 1)
         XCTAssertEqual(provider.sectionCount, 1)
 
+        provider.filter(for: [person], editing: false, combining: false, context: TestContext(showDebug: true))
+        XCTAssertEqual(provider.itemCount(for: 0), 2)
+        XCTAssertEqual(provider.sectionCount, 1)
+
         let book = Book(context: context)
         let relationship = person.relationship(as: "author")
         relationship.addToBooks(book)

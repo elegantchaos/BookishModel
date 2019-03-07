@@ -7,11 +7,13 @@ import Foundation
 
 
 public class BookDetailItem: DetailItem {
+    public static let bookKind = "book"
+    
     public let book: Book?
     
     public init(book: Book?, absolute: Int, index: Int, source: DetailProvider) {
         self.book = book
-        super.init(kind: "book", absolute: absolute, index: index, placeholder: book == nil, source: source)
+        super.init(kind: BookDetailItem.bookKind, absolute: absolute, index: index, placeholder: book == nil, source: source)
     }
     
     public override var heading: String {

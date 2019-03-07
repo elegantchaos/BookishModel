@@ -20,13 +20,13 @@
 		<key>audienceRecommendedAgeSingularString</key>
 		<string></string>
 		<key>boxHeightInInches</key>
-		<real>7.6399998664855957</real>
+		<real>7.639999866485596</real>
 		<key>boxLengthInInches</key>
-		<real>0.87000000476837158</real>
+		<real>0.8700000047683716</real>
 		<key>boxWeightInPounds</key>
-		<real>0.0</real>
+		<real>0</real>
 		<key>boxWidthInInches</key>
-		<real>4.9600000381469727</real>
+		<real>4.960000038146973</real>
 		<key>buyPrice</key>
 		<string></string>
 		<key>cinematographersCompositeString</key>
@@ -65,13 +65,13 @@ navy blue</string>
 		<key>coverImageMediumURLString</key>
 		<string>http://ecx.images-amazon.com/images/I/4153VEB9GYL._SL160_.jpg</string>
 		<key>coverImageNormalizedCornerRadiusLowerLeft</key>
-		<real>0.012525241563754059</real>
+		<real>0.01252524156375406</real>
 		<key>coverImageNormalizedCornerRadiusLowerRight</key>
-		<real>0.0065937986583670082</real>
+		<real>0.006593798658367008</real>
 		<key>coverImageNormalizedCornerRadiusUpperLeft</key>
-		<real>0.0066313318384980842</real>
+		<real>0.006631331838498084</real>
 		<key>coverImageNormalizedCornerRadiusUpperRight</key>
-		<real>0.0067613406777451901</real>
+		<real>0.00676134067774519</real>
 		<key>coverImageSmallURLString</key>
 		<string>http://ecx.images-amazon.com/images/I/4153VEB9GYL._SL75_.jpg</string>
 		<key>creationDate</key>
@@ -121,7 +121,7 @@ navy blue</string>
 		<key>minutes</key>
 		<integer>0</integer>
 		<key>netRating</key>
-		<real>4.1100001335144043</real>
+		<real>4.110000133514404</real>
 		<key>notes</key>
 		<string></string>
 		<key>numberInSeries</key>
@@ -147,13 +147,13 @@ navy blue</string>
 		<key>rare</key>
 		<integer>0</integer>
 		<key>rating</key>
-		<real>0.0</real>
+		<real>0</real>
 		<key>screenwritersCompositeString</key>
 		<string></string>
 		<key>serialNumber</key>
 		<string></string>
 		<key>seriesSingularString</key>
-		<string></string>
+		<string>Test Series</string>
 		<key>subtitle</key>
 		<string></string>
 		<key>title</key>
@@ -185,13 +185,13 @@ navy blue</string>
 		<key>audienceRecommendedAgeSingularString</key>
 		<string></string>
 		<key>boxHeightInInches</key>
-		<real>0.0</real>
+		<real>0</real>
 		<key>boxLengthInInches</key>
-		<real>0.0</real>
+		<real>0</real>
 		<key>boxWeightInPounds</key>
-		<real>0.0</real>
+		<real>0</real>
 		<key>boxWidthInInches</key>
-		<real>0.0</real>
+		<real>0</real>
 		<key>buyPrice</key>
 		<string></string>
 		<key>cinematographersCompositeString</key>
@@ -233,13 +233,13 @@ beige</string>
 		<key>coverImageMediumURLString</key>
 		<string>http://ecx.images-amazon.com/images/I/51bJ0NghofL._SL160_.jpg</string>
 		<key>coverImageNormalizedCornerRadiusLowerLeft</key>
-		<real>0.0020880362418162191</real>
+		<real>0.002088036241816219</real>
 		<key>coverImageNormalizedCornerRadiusLowerRight</key>
-		<real>0.0011928092516178227</real>
+		<real>0.001192809251617823</real>
 		<key>coverImageNormalizedCornerRadiusUpperLeft</key>
-		<real>0.0056365358305113028</real>
+		<real>0.005636535830511303</real>
 		<key>coverImageNormalizedCornerRadiusUpperRight</key>
-		<real>0.087613247725836146</real>
+		<real>0.08761324772583615</real>
 		<key>coverImageSmallURLString</key>
 		<string>http://ecx.images-amazon.com/images/I/51bJ0NghofL._SL75_.jpg</string>
 		<key>creationDate</key>
@@ -291,7 +291,7 @@ Kindle eBooks</string>
 		<key>minutes</key>
 		<integer>0</integer>
 		<key>netRating</key>
-		<real>0.0</real>
+		<real>0</real>
 		<key>notes</key>
 		<string></string>
 		<key>numberInSeries</key>
@@ -299,7 +299,7 @@ Kindle eBooks</string>
 		<key>numberOfMedia</key>
 		<integer>1</integer>
 		<key>ownerSingularString</key>
-		<string></string>
+		<string>Test Series</string>
 		<key>pages</key>
 		<integer>707</integer>
 		<key>platformsCompositeString</key>
@@ -317,7 +317,7 @@ Kindle eBooks</string>
 		<key>rare</key>
 		<integer>0</integer>
 		<key>rating</key>
-		<real>0.0</real>
+		<real>0</real>
 		<key>screenwritersCompositeString</key>
 		<string></string>
 		<key>serialNumber</key>
@@ -337,6 +337,5 @@ Kindle eBooks</string>
 		<key>uuidString</key>
 		<string>FAB4A0CF-9DEE-41B3-BA64-2FE5335F389E</string>
 	</dict>
-
 </array>
 </plist>

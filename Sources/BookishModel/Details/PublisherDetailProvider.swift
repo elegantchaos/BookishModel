@@ -23,6 +23,8 @@ class PublisherDetailProvider: DetailProvider {
     }
 
     override func buildItems() {
+        super.buildItems()
+        
         var row = items.count
         for index in 0 ..< sortedBooks.count {
             let book = sortedBooks[index]

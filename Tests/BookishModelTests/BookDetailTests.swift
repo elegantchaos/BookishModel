@@ -11,10 +11,15 @@ class TestContext: DetailContext {
     var entitySorting: [String : [NSSortDescriptor]] = [
         "Book": [],
         "Entry": [],
+        "SeriesEntry": [],
         "Relationship": []
     ]
     
-    var showDebug: Bool = false
+    var showDebug: Bool
+    
+    init(showDebug: Bool = false) {
+        self.showDebug = showDebug
+    }
 }
 
 class BookDetailTests: ModelTestCase {
@@ -65,7 +70,10 @@ class BookDetailTests: ModelTestCase {
         book.asin = "blah"
         source.filter(for: [book], editing: false, combining: false, context: TestContext())
         XCTAssertEqual(source.itemCount(for: 0), 3)
-        
+
+        source.filter(for: [book], editing: false, combining: false, context: TestContext(showDebug: true))
+        XCTAssertEqual(source.itemCount(for: 0), 4)
+
         let person = Person(context: context)
         let relationship = person.relationship(as: "author")
         relationship.addToBooks(book)
