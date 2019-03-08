@@ -99,12 +99,12 @@ class DeletePublisherAction: PublisherAction {
 
 class RevealPublisherAction: PublisherAction {
     override func validate(context: ActionContext) -> Bool {
-        return (context[PublisherAction.newPublisherKey] as? Publisher != nil) && modelValidate(context: context)
+        return (context[PublisherAction.publisherKey] as? Publisher != nil) && modelValidate(context: context)
     }
     
     public override func perform(context: ActionContext, model: NSManagedObjectContext) {
         if let viewer = context[ActionContext.rootKey] as? PublisherViewer {
-            if let publisher = context[PublisherAction.newPublisherKey] as? Publisher {
+            if let publisher = context[PublisherAction.publisherKey] as? Publisher {
                 viewer.reveal(publisher: publisher)
             }
         }
