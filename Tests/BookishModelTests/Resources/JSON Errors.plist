@@ -34,7 +34,7 @@ Invalid value around character 14.
 
 <key>expected</key>
 <string>
-No value associated with key foo ("foo").
+No value associated with key foo.
 </string>
 </dict>
 

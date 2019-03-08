@@ -20,17 +20,15 @@ import Foundation
 extension DecodingError {
     public func detailedDescription(for data: Data, window: Int = 2) -> String {
         switch (self) {
-        case .dataCorrupted(let context), .typeMismatch(_, let context), .keyNotFound(_, let context), .valueNotFound(_, let context):
+        case .dataCorrupted(let context), .typeMismatch(_, let context), .valueNotFound(_, let context):
             return context.detailedDescription(for: data)
+        case .keyNotFound(let key, let context):
+            return context.detailedDescription(for: data, missingKey: key)
         }
     }
 }
 
 extension CodingKey {
-    public var description: String {
-        return detailDescription
-    }
-    
     public var detailDescription: String {
         if let i = intValue {
             return String(describing: i)
@@ -51,11 +49,19 @@ extension DecodingError.Context {
      and the error character with ↑
      
      (the accuracy of this is dependant on the character mentioned in the underlying error)
-
+     
      */
     
-    public func detailedDescription(for data: Data, window: Int = 2) -> String {
-        var detail = debugDescription
+    public func detailedDescription(for data: Data, window: Int = 2, missingKey: CodingKey? = nil) -> String {
+        var detail = ""
+        if let key = missingKey {
+            // The debugDescription for missing keys is a bit shit (it prints the key using the built-in description
+            // method, which has a crappy format, so we override that case and provide our own description instead.
+            detail = "No value associated with key \(key.detailDescription)."
+        } else {
+            detail += debugDescription
+        }
+
         if codingPath.count > 0 {
             detail += "\nPath was: "
             detail += codingPath.map({ $0.detailDescription }).joined(separator: ".")
