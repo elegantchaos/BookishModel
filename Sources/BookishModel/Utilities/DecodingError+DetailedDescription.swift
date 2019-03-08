@@ -20,12 +20,18 @@ import Foundation
 extension DecodingError {
     public func detailedDescription(for data: Data, window: Int = 2) -> String {
         switch (self) {
-        case .dataCorrupted(let context):
+        case .dataCorrupted(let context), .typeMismatch(_, let context), .keyNotFound(_, let context), .valueNotFound(_, let context):
             return context.detailedDescription(for: data)
-        case .typeMismatch(_, let context):
-            return context.detailedDescription(for: data)
-        default:
-            return errorDescription ?? String(describing: self)
+        }
+    }
+}
+
+extension CodingKey {
+    public var description: String {
+        if let i = intValue {
+            return String(describing: i)
+        } else {
+            return stringValue
         }
     }
 }
@@ -48,9 +54,7 @@ extension DecodingError.Context {
         var detail = debugDescription
         if codingPath.count > 0 {
             detail += "\nPath was: "
-            for key in codingPath {
-                detail += key.stringValue
-            }
+            detail += codingPath.map({ $0.description }).joined(separator: ".")
             detail += "\n"
         }
         

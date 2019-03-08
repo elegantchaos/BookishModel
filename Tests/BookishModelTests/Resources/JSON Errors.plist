@@ -27,6 +27,20 @@ Invalid value around character 14.
 <dict>
 <key>json</key>
 <string>
+{
+    "bar": "foo"
+}
+</string>
+
+<key>expected</key>
+<string>
+No value associated with key foo ("foo").
+</string>
+</dict>
+
+<dict>
+<key>json</key>
+<string>
 foobar
 </string>
 
@@ -61,6 +75,21 @@ Expected to decode Dictionary&lt;String, Any&gt; but found an array instead.
 Expected to decode String but found a number instead.
 Path was: foo
 </string>
+</dict>
+
+<dict>
+<key>json</key>
+<string>
+{ "foo": bar }
+</string>
+
+<key>expected</key>
+<string>
+The given data was not valid JSON.
+Invalid value around character 10.
+
+
+0: { "foo": bar }</string>
 </dict>
 
 </array>

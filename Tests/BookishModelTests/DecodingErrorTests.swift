@@ -13,8 +13,12 @@ class DecodingErrorTests: ModelTestCase {
     }
 
     func decode(json: String, expecting: String) -> Bool {
-        let whitespace = CharacterSet.whitespacesAndNewlines
         let data = json.data(using: .utf8)!
+        return decode(data: data, expecting: expecting)
+    }
+    
+    func decode(data: Data, expecting: String) -> Bool {
+        let whitespace = CharacterSet.whitespacesAndNewlines
         let decoder = JSONDecoder()
         do {
             let _ = try decoder.decode(Test.self, from: data)
@@ -43,5 +47,18 @@ class DecodingErrorTests: ModelTestCase {
             let expected = item["expected"]!
             XCTAssertTrue(decode(json: json, expecting: expected))
         }
+    }
+ 
+    func testCodingKeyDescription() {
+        enum IntKey: Int, CodingKey {
+            case test = 1
+        }
+
+        enum StringKey: String, CodingKey {
+            case test = "test"
+        }
+        
+        XCTAssertEqual(IntKey.test.description, "1")
+        XCTAssertEqual(StringKey.test.description, "test")
     }
 }
