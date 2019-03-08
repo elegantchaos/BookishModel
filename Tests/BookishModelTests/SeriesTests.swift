@@ -100,4 +100,12 @@ class SeriesTests: ModelTestCase {
         entry.book = book
         XCTAssertEqual(entry.description, "<Entry: test (book-id) #0 in test (series-id)>")
     }
+    
+    func testSectionName() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let series = Series(context: context)
+        series.name = "TeSt NaMe"
+        XCTAssertEqual(series.sectionName, "T")
+    }
 }

@@ -28,6 +28,10 @@ extension DecodingError {
 
 extension CodingKey {
     public var description: String {
+        return detailDescription
+    }
+    
+    public var detailDescription: String {
         if let i = intValue {
             return String(describing: i)
         } else {
@@ -54,7 +58,7 @@ extension DecodingError.Context {
         var detail = debugDescription
         if codingPath.count > 0 {
             detail += "\nPath was: "
-            detail += codingPath.map({ $0.description }).joined(separator: ".")
+            detail += codingPath.map({ $0.detailDescription }).joined(separator: ".")
             detail += "\n"
         }
         

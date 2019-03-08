@@ -40,4 +40,35 @@ class RoleTests: ModelTestCase {
         XCTAssertTrue(names.count > 0)
     }
 
+    func testLowecaseName() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let role = Role(context: context)
+        role.name = "TeSt NaMe"
+        XCTAssertEqual(role.lowercaseName, "test name")
+    }
+
+    func testLabel() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let role = Role(context: context)
+        role.name = "TeSt NaMe"
+        XCTAssertEqual(role.label, "test name")
+    }
+
+    func testSortName() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let role = Role(context: context)
+        role.name = "TeSt NaMe"
+        XCTAssertEqual(role.sortName, "TeSt NaMe")
+    }
+
+    func testSectionName() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let role = Role(context: context)
+        role.name = "TeSt NaMe"
+        XCTAssertEqual(role.sectionName, "T")
+    }
 }

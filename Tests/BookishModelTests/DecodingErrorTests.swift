@@ -3,6 +3,7 @@
 //  All code (c) 2019 - present day, Elegant Chaos Limited.
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
+import Foundation
 import XCTest
 @testable import BookishModel
 
@@ -51,14 +52,17 @@ class DecodingErrorTests: ModelTestCase {
  
     func testCodingKeyDescription() {
         enum IntKey: Int, CodingKey {
-            case test = 1
+            case test
+            
+            var description: String { return detailDescription }
         }
 
         enum StringKey: String, CodingKey {
-            case test = "test"
+            case test
+            var description: String { return detailDescription }
         }
         
-        XCTAssertEqual(IntKey.test.description, "1")
-        XCTAssertEqual(StringKey.test.description, "test")
+        XCTAssertEqual(String(describing:IntKey.test), "0")
+        XCTAssertEqual(String(describing:StringKey.test), "test")
     }
 }

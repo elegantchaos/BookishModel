@@ -19,4 +19,13 @@ class PublisherTests: ModelTestCase {
         XCTAssertTrue(allPublishers.contains(p1))
         XCTAssertTrue(allPublishers.contains(p2))
     }
+
+    func testSectionName() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let publisher = Publisher(context: context)
+        publisher.name = "TeSt NaMe"
+        XCTAssertEqual(publisher.sectionName, "T")
+    }
+
 }
