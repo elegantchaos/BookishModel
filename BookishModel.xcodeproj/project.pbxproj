@@ -150,6 +150,7 @@
 		2272471F221C3FDE00C80CCF /* Sample.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 2272471A221C3FDE00C80CCF /* Sample.sqlite-wal */; };
 		22724720221C3FDE00C80CCF /* Sample.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 2272471A221C3FDE00C80CCF /* Sample.sqlite-wal */; };
 		2295A9152232C4820085CD86 /* SeriesEntryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2295A9142232C4820085CD86 /* SeriesEntryItem.swift */; };
+		2295A9322232CF1F0085CD86 /* SeriesEntryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2295A9142232C4820085CD86 /* SeriesEntryItem.swift */; };
 		229FB9E22226B2C300A564D4 /* LookupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229FB9E12226B2C300A564D4 /* LookupService.swift */; };
 		229FB9E32226B2C300A564D4 /* LookupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229FB9E12226B2C300A564D4 /* LookupService.swift */; };
 		229FB9E52226B2CA00A564D4 /* LookupCandidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229FB9E42226B2CA00A564D4 /* LookupCandidate.swift */; };
@@ -729,7 +730,6 @@
 			isa = PBXGroup;
 			children = (
 				2257114D2218663B0099FFDE /* BookDetailItem.swift */,
-				2295A9142232C4820085CD86 /* SeriesEntryItem.swift */,
 				22387992220B1D860019F9EA /* BookDetailProvider.swift */,
 				223879B5220B1F550019F9EA /* DetailItem.swift */,
 				223879B2220B1D9A0019F9EA /* DetailProvider.swift */,
@@ -738,11 +738,12 @@
 				223879AF220B1D910019F9EA /* PersonDetailProvider.swift */,
 				223879C5220B49230019F9EA /* PublisherDetailItem.swift */,
 				223879BB220B3FFC0019F9EA /* PublisherDetailProvider.swift */,
+				22674509222ABAEC002549CE /* RoleDetailItem.swift */,
+				22674506222ABAD3002549CE /* RoleDetailProvider.swift */,
 				22571131221865AD0099FFDE /* SectionDetailItem.swift */,
 				223879C2220B490B0019F9EA /* SeriesDetailItem.swift */,
 				223879B8220B3FF10019F9EA /* SeriesDetailProvider.swift */,
-				22674506222ABAD3002549CE /* RoleDetailProvider.swift */,
-				22674509222ABAEC002549CE /* RoleDetailItem.swift */,
+				2295A9142232C4820085CD86 /* SeriesEntryItem.swift */,
 				223879C8220B4A2F0019F9EA /* SimpleDetailItem.swift */,
 			);
 			path = Details;
@@ -1431,6 +1432,7 @@
 				223879C1220B48740019F9EA /* PersonDetailItem.swift in Sources */,
 				223879CA220B4A2F0019F9EA /* SimpleDetailItem.swift in Sources */,
 				224293E7212AF0B700E70510 /* Relationship.swift in Sources */,
+				2295A9322232CF1F0085CD86 /* SeriesEntryItem.swift in Sources */,
 				229FB9EC2226B2E300A564D4 /* ExistingCollectionLookupService.swift in Sources */,
 				22DA6A1D21E61BC600ECF09A /* ModelObject.swift in Sources */,
 				22571150221866500099FFDE /* SectionDetailItem.swift in Sources */,
