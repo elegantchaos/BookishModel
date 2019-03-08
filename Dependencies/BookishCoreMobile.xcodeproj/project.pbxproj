@@ -338,7 +338,7 @@
                "-target",
                "x86_64-apple-macosx10.10",
                "-sdk",
-               "/Applications/Xcode10.2b3.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
+               "/Applications/Xcode10.2b4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
             );
             SWIFT_VERSION = "4.2";
          };
@@ -356,7 +356,7 @@
                "-target",
                "x86_64-apple-macosx10.10",
                "-sdk",
-               "/Applications/Xcode10.2b3.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
+               "/Applications/Xcode10.2b4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
             );
             SWIFT_VERSION = "4.2";
          };
@@ -886,7 +886,7 @@
                "-target",
                "x86_64-apple-macosx10.10",
                "-sdk",
-               "/Applications/Xcode10.2b3.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
+               "/Applications/Xcode10.2b4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
             );
             SWIFT_VERSION = "4.2";
          };
@@ -904,7 +904,7 @@
                "-target",
                "x86_64-apple-macosx10.10",
                "-sdk",
-               "/Applications/Xcode10.2b3.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
+               "/Applications/Xcode10.2b4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
             );
             SWIFT_VERSION = "4.2";
          };
@@ -1262,7 +1262,7 @@
                "-target",
                "x86_64-apple-macosx10.10",
                "-sdk",
-               "/Applications/Xcode10.2b3.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
+               "/Applications/Xcode10.2b4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
             );
             SWIFT_VERSION = "4.2";
          };
@@ -1280,7 +1280,7 @@
                "-target",
                "x86_64-apple-macosx10.10",
                "-sdk",
-               "/Applications/Xcode10.2b3.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
+               "/Applications/Xcode10.2b4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
             );
             SWIFT_VERSION = "4.2";
          };
@@ -1591,7 +1591,7 @@
                "-target",
                "x86_64-apple-macosx10.10",
                "-sdk",
-               "/Applications/Xcode10.2b3.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
+               "/Applications/Xcode10.2b4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
             );
             SWIFT_VERSION = "4.2";
          };
@@ -1609,7 +1609,7 @@
                "-target",
                "x86_64-apple-macosx10.10",
                "-sdk",
-               "/Applications/Xcode10.2b3.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
+               "/Applications/Xcode10.2b4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
             );
             SWIFT_VERSION = "4.2";
          };
@@ -1878,7 +1878,7 @@
             "OBJ_51",
             "OBJ_53"
          );
-         name = "Logger";
+         name = "Logger 1.3.2";
          path = "";
          sourceTree = "SOURCE_ROOT";
       };
@@ -1887,7 +1887,7 @@
          children = (
          );
          name = "Example";
-         path = "Packages/Logger/Sources/Example";
+         path = ".build/checkouts/Logger/Sources/Example";
          sourceTree = "SOURCE_ROOT";
       };
       "OBJ_4" = {
@@ -1939,7 +1939,7 @@
             "OBJ_47"
          );
          name = "Logger";
-         path = "Packages/Logger/Sources/Logger";
+         path = ".build/checkouts/Logger/Sources/Logger";
          sourceTree = "SOURCE_ROOT";
       };
       "OBJ_41" = {
@@ -1984,7 +1984,7 @@
             "OBJ_50"
          );
          name = "LoggerKit";
-         path = "Packages/Logger/Sources/LoggerKit";
+         path = ".build/checkouts/Logger/Sources/LoggerKit";
          sourceTree = "SOURCE_ROOT";
       };
       "OBJ_49" = {
@@ -2022,7 +2022,7 @@
             "OBJ_52"
          );
          name = "LoggerTestSupport";
-         path = "Packages/Logger/Sources/LoggerTestSupport";
+         path = ".build/checkouts/Logger/Sources/LoggerTestSupport";
          sourceTree = "SOURCE_ROOT";
       };
       "OBJ_52" = {
@@ -2034,22 +2034,22 @@
          isa = "PBXFileReference";
          explicitFileType = "sourcecode.swift";
          name = "Package.swift";
-         path = "/Users/sam/Projects/Bookish/Dependencies/BookishModel/Packages/Logger/Package.swift";
+         path = "/Users/sam/Projects/Bookish/Dependencies/BookishModel/.build/checkouts/Logger/Package.swift";
          sourceTree = "<group>";
       };
       "OBJ_54" = {
          isa = "PBXGroup";
          children = (
-            "BookishCoreMobile::BookishCoreMobile::Product",
-            "Logger::Logger::Product",
-            "Logger::LoggerTestSupport::Product",
             "BookishCoreMobile::BookishCoreMac::Product",
+            "Actions::ActionsKit::Product",
+            "Logger::Logger::Product",
+            "JSONDump::JSONDump::Product",
+            "Logger::LoggerTestSupport::Product",
+            "BookishCoreMobile::BookishCoreTests::Product",
             "BookishCoreMobile::BookishCore::Product",
             "Actions::Actions::Product",
-            "BookishCoreMobile::BookishCoreTests::Product",
-            "Logger::LoggerKit::Product",
-            "JSONDump::JSONDump::Product",
-            "Actions::ActionsKit::Product"
+            "BookishCoreMobile::BookishCoreMobile::Product",
+            "Logger::LoggerKit::Product"
          );
          name = "Products";
          path = "";
