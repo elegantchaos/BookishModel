@@ -50,7 +50,7 @@ class SeriesDetailProviderTests: ModelTestCase {
         source.filter(for: [series], editing: false, combining: false, context: TestContext())
         XCTAssertEqual(source.itemCount(for: 0), 2)
         XCTAssertEqual(source.info(section: 0, row: 0).kind, DetailSpec.textKind)
-        XCTAssertEqual(source.info(section: 0, row: 1).kind, BookDetailItem.bookKind)
+        XCTAssertEqual(source.info(section: 0, row: 1).kind, SeriesEntryDetailItem.entryKind)
         XCTAssertEqual(source.sectionCount, 1)
     }
 
