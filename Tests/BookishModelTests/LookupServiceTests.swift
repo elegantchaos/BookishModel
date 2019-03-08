@@ -243,4 +243,9 @@ class LookupServiceTests: ModelTestCase {
         XCTAssertNotNil(candidate)
         XCTAssertEqual(session.search, testEAN)
     }
+    
+    func testCandidateSummary() {
+        let service = ExistingCollectionLookupService(name: "test")
+        XCTAssertEqual(LookupCandidate(service: service, authors:["Foo"]).summary, "")
+    }
 }

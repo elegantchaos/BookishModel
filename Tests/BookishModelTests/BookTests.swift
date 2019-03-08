@@ -29,4 +29,92 @@ class BookTests: ModelTestCase {
         book.length = 3.0
         XCTAssertEqual(book.dimensions, "1.0 x 2.0 x 3.0")
     }
+    
+    func testAddToSeries() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let book = Book(context: context)
+        XCTAssertEqual(book.entries?.count, 0)
+        let series = Series(context: context)
+        book.addToSeries(series, position: 1)
+        let entries = (book.entries as? Set<SeriesEntry>)!
+        XCTAssertEqual(entries.count, 1)
+        XCTAssertEqual(Array(entries).first?.position, 1)
+        
+        // adding the same series again should just update the position
+        book.addToSeries(series, position: 2)
+        let entries2 = (book.entries as? Set<SeriesEntry>)!
+        XCTAssertEqual(entries2.count, 1)
+        XCTAssertEqual(Array(entries2).first?.position, 2)
+    }
+    
+    func testSetPosition() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let book = Book(context: context)
+        XCTAssertEqual(book.entries?.count, 0)
+        let series = Series(context: context)
+        book.addToSeries(series, position: 1)
+        let entries = (book.entries as? Set<SeriesEntry>)!
+        XCTAssertEqual(entries.count, 1)
+        XCTAssertEqual(Array(entries).first?.position, 1)
+        
+        book.setPosition(in: series, to: 2)
+        XCTAssertEqual(Array(entries).first?.position, 2)
+    }
+
+    func testSetPositionMissing() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let book = Book(context: context)
+        XCTAssertEqual(book.entries?.count, 0)
+        let series = Series(context: context)
+        
+        XCTAssertFatalError {
+            book.setPosition(in: series, to: 2)
+        }
+    }
+
+    func testPosition() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let book = Book(context: context)
+        XCTAssertEqual(book.entries?.count, 0)
+        let series = Series(context: context)
+        XCTAssertEqual(book.position(in: series), Book.notFound)
+
+        book.addToSeries(series, position: 1)
+        XCTAssertEqual(book.position(in: series), 1)
+    }
+
+    func testSectionName() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let book = Book(context: context)
+        XCTAssertEqual(book.sectionName, "U")
+    }
+    
+    func testSortName() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let book = Book(context: context)
+        book.name = "Foo Bar"
+        XCTAssertEqual(book.sortName, "Foo Bar")
+    }
+    
+    func testIdentifier() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let book = Book(context: context)
+        book.asin = "test-asin"
+        book.ean = "test-ean"
+        book.isbn = "test-isbn"
+        XCTAssertEqual(book.identifier, "test-isbn (isbn)\ntest-ean (ean)\ntest-asin (asin)")
+        
+        book.asin = book.isbn
+        XCTAssertEqual(book.identifier, "test-isbn (isbn/asin)\ntest-ean (ean)")
+        
+        book.identifier = "blah" // setter should do nothing
+        XCTAssertEqual(book.identifier, "test-isbn (isbn/asin)\ntest-ean (ean)")
+    }
 }

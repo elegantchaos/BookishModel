@@ -43,4 +43,12 @@ class PersonTests:ModelTestCase {
         XCTAssertTrue(allPeople.contains(person1))
         XCTAssertTrue(allPeople.contains(person2))
     }
+    
+    func testSectionName() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let person = Person(context: context)
+        person.name = "Foo Bar"
+        XCTAssertEqual(person.sectionName, "B")
+    }
 }

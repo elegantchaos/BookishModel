@@ -4,12 +4,15 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import CoreData
+import Logger
 
+let bookChannel = Channel("com.elegantchaos.bookish.model.book")
 
 public class Book: ModelObject {
     
     static var untitledCount = 0
-
+    static let notFound = 1
+    
     public override func awakeFromInsert() {
         super.awakeFromInsert()
         name = "Untitled \(Book.untitledCount)"
@@ -125,7 +128,7 @@ public class Book: ModelObject {
             }
         }
 
-        assertionFailure("book should already be in series")
+        bookChannel.fatal("book should already be in series")
     }
 
     /**
@@ -142,7 +145,7 @@ public class Book: ModelObject {
             }
         }
         
-        return 0
+        return Book.notFound
     }
     
     
