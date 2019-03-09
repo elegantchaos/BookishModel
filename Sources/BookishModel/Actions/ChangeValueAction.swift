@@ -10,6 +10,28 @@ public class ChangeValueAction: SyncModelAction {
     public static let valueKey = "value"
     public static let propertyKey = "property"
 
+    /**
+     Helper which sends the action for a given object.
+     */
+    
+    public class func send(_ identifier: String, from sender: Any, manager: ActionManager, property: String, value: Any, to: Any?) {
+        if let object = to {
+            send(identifier, from: sender, manager: manager, property: property, value: value, selection: [object])
+        }
+    }
+    
+    /**
+     Helper which sends the action for a group of objects.
+    */
+    
+    public class func send(_ identifier: String, from sender: Any, manager: ActionManager, property: String, value: Any, selection: [Any]) {
+        let info = ActionInfo(sender: sender)
+        info[ChangeValueAction.propertyKey] = property
+        info[ChangeValueAction.valueKey] = value
+        info[ActionContext.selectionKey] = selection
+        manager.perform(identifier: identifier, info: info)
+    }
+
     public override func validate(context: ActionContext) -> Bool {
         return
             (context[ActionContext.selectionKey] as? [NSManagedObject] != nil) &&
