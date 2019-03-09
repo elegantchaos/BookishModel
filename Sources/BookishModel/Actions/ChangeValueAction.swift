@@ -11,24 +11,29 @@ public class ChangeValueAction: SyncModelAction {
     public static let propertyKey = "property"
 
     /**
-     Helper which sends the action for a given object.
+     Helper which sends the action.
+     A single-object selection may be specified explicitly, or may be omitted, in which
+     case it's expected to be supplied by the context.
      */
     
     public class func send(_ identifier: String, from sender: Any, manager: ActionManager, property: String, value: Any, to: Any?) {
-        if let object = to {
-            send(identifier, from: sender, manager: manager, property: property, value: value, selection: [object])
-        }
+        let selection = to == nil ? nil : [to!]
+        send(identifier, from: sender, manager: manager, property: property, value: value, selection: selection)
     }
     
     /**
-     Helper which sends the action for a group of objects.
+     Helper which builds and sends the action.
+     The selection may be specified explicitly, or may be omitted, in which
+     case it's expected to be supplied by the context.
     */
     
-    public class func send(_ identifier: String, from sender: Any, manager: ActionManager, property: String, value: Any, selection: [Any]) {
+    public class func send(_ identifier: String, from sender: Any, manager: ActionManager, property: String, value: Any, selection: [Any]? = nil) {
         let info = ActionInfo(sender: sender)
         info[ChangeValueAction.propertyKey] = property
         info[ChangeValueAction.valueKey] = value
-        info[ActionContext.selectionKey] = selection
+        if let selection = selection {
+            info[ActionContext.selectionKey] = selection
+        }
         manager.perform(identifier: identifier, info: info)
     }
 
@@ -47,10 +52,9 @@ public class ChangeValueAction: SyncModelAction {
             let value = context[ChangeValueAction.valueKey]
         {
             for item in selection {
+                assert(item.managedObjectContext == model)
                 item.setValue(value, forKey: key)
             }
         }
-        
-        try! model.save()
     }
 }
