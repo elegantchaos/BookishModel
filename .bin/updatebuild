@@ -10,8 +10,10 @@ fi
 BUILD=`git rev-list --count HEAD`
 UPDATED="BUILD_NO = $BUILD"
 
-if [[ "$EXISTING" != "$UPDATED" ]]
+if [[ "$EXISTING" == "$UPDATED" ]]
 then
+    echo "Build number is $BUILD."
+else
     echo "Updated build number to $BUILD."
     echo "$UPDATED" > "$CONFIG_FILE"
     git update-index --assume-unchanged "$CONFIG_FILE"
