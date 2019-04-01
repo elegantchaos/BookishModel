@@ -201,7 +201,6 @@
 		22ADAC7922314BE000967943 /* SequenceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ADAC5D223146BE00967943 /* SequenceExtensions.swift */; };
 		22ADAC7B22314C0700967943 /* SequenceExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ADAC7A22314C0700967943 /* SequenceExtensionTests.swift */; };
 		22ADAC7C22314C0700967943 /* SequenceExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ADAC7A22314C0700967943 /* SequenceExtensionTests.swift */; };
-		22BE790022523ADB002EADD7 /* BuildNumber.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 22BE78FF22523ADB002EADD7 /* BuildNumber.xcconfig */; };
 		22D4A3CF21BEDDA100427E35 /* CorruptModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */; };
 		22D4A3D021BEDDA100427E35 /* CorruptModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */; };
 		22D4A3D121BEDDA100427E35 /* MissingModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3CE21BEDDA100427E35 /* MissingModel.bundle */; };
@@ -1262,7 +1261,6 @@
 				2272471F221C3FDE00C80CCF /* Sample.sqlite-wal in Resources */,
 				2272471D221C3FDE00C80CCF /* Sample.sqlite-shm in Resources */,
 				2272471B221C3FDE00C80CCF /* Sample.sqlite in Resources */,
-				22BE790022523ADB002EADD7 /* BuildNumber.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
