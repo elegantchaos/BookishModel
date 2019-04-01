@@ -5,6 +5,7 @@
 
 import CoreData
 import Logger
+import Actions
 
 let modelObjectChannel = Logger("com.elegantchaos.bookish.model.ModelObject")
 
@@ -126,4 +127,12 @@ public class ModelObject: NSManagedObject, DetailOwner {
         return "<\(type(of:self).entityName): \(self.nameAndId)>"
     }
 
+}
+
+// MARK: Action Serialization Support
+
+extension ModelObject: ActionSerialization {
+    public var serialized: Any {
+        return self.uniqueIdentifier as! String
+    }
 }
