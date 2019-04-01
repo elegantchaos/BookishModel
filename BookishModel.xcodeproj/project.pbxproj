@@ -954,6 +954,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 224293A8212AE0F400E70510 /* Build configuration list for PBXNativeTarget "BookishModelMac" */;
 			buildPhases = (
+				22BE788B225233EB002EADD7 /* Update Build Number */,
 				2242938C212AE0F300E70510 /* Headers */,
 				2242938D212AE0F300E70510 /* Sources */,
 				2242938E212AE0F300E70510 /* Frameworks */,
@@ -992,6 +993,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 224293CA212AE16300E70510 /* Build configuration list for PBXNativeTarget "BookishModelMobile" */;
 			buildPhases = (
+				22BE78A62252358B002EADD7 /* Update Build Number */,
 				224293AE212AE16200E70510 /* Headers */,
 				224293AF212AE16200E70510 /* Sources */,
 				224293B0212AE16200E70510 /* Frameworks */,
@@ -1131,21 +1133,21 @@
 		};
 		22F1827821CABCAC00220D20 /* BookishCoreMac */ = {
 			isa = PBXReferenceProxy;
-			fileType = text;
+			fileType = "compiled.mach-o.executable";
 			path = BookishCoreMac;
 			remoteRef = 22F1827721CABCAC00220D20 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		22F1827A21CABCAC00220D20 /* BookishCoreMobile */ = {
 			isa = PBXReferenceProxy;
-			fileType = text;
+			fileType = "compiled.mach-o.executable";
 			path = BookishCoreMobile;
 			remoteRef = 22F1827921CABCAC00220D20 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		22F1827C21CABCAC00220D20 /* BookishCoreTests.xctest */ = {
 			isa = PBXReferenceProxy;
-			fileType = file;
+			fileType = wrapper.cfbundle;
 			path = BookishCoreTests.xctest;
 			remoteRef = 22F1827B21CABCAC00220D20 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -1215,7 +1217,7 @@
 		};
 		22F1829F21CABCAC00220D20 /* BookishCoreTests.xctest */ = {
 			isa = PBXReferenceProxy;
-			fileType = file;
+			fileType = wrapper.cfbundle;
 			path = BookishCoreTests.xctest;
 			remoteRef = 22F1829E21CABCAC00220D20 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -1300,6 +1302,49 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		22BE788B225233EB002EADD7 /* Update Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Update Build Number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				Configs/BuildNumber.xcconfig,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = ".bin/updatebuild\n";
+			showEnvVarsInLog = 0;
+		};
+		22BE78A62252358B002EADD7 /* Update Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Update Build Number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				Configs/BuildNumber.xcconfig,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = ".bin/updatebuild\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2242938D212AE0F300E70510 /* Sources */ = {
