@@ -36,7 +36,6 @@ public class LookupSession {
 
         manager.lockQueue.async {
             self.callback(state: .starting)
-            
             if services.count > 0 {
                 for service in services {
                     self.running.insert(service)
