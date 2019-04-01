@@ -5,5 +5,6 @@ SWIFT_INCLUDE_PATHS = $(CONFIGURATION_BUILD_DIR)
 ARCHS = $(ARCHS_STANDARD)
 SDKROOT = iphoneos
 IPHONEOS_DEPLOYMENT_TARGET = 12.0
+SUPPORTED_PLATFORMS = iphonesimulator iphoneos
 
 #include "BookishModel.xcconfig"
