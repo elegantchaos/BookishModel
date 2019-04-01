@@ -1,0 +1,18 @@
+CONFIG_FILE="Configs/BuildNumber.xcconfig"
+
+if [[ -e "$CONFIG_FILE" ]]
+then
+    EXISTING=`cat $CONFIG_FILE`
+else
+    EXISTING=""
+fi
+
+BUILD=`git rev-list --count HEAD`
+UPDATED="BUILD_NO = $BUILD"
+
+if [[ "$EXISTING" != "$UPDATED" ]]
+then
+    echo "Updated build number to $BUILD."
+    echo "$UPDATED" > "$CONFIG_FILE"
+    git update-index --assume-unchanged "$CONFIG_FILE"
+fi
