@@ -1,4 +1,10 @@
-CONFIG_FILE="Configs/BuildNumber.xcconfig"
+ROOT="$SRCROOT"
+if [[ "$ROOT" == "" ]]
+then
+    ROOT="$PWD"
+fi
+
+CONFIG_FILE="$ROOT/Configs/BuildNumber.xcconfig"
 
 if [[ -e "$CONFIG_FILE" ]]
 then
