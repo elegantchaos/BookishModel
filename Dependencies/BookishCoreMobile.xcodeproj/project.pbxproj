@@ -2074,16 +2074,16 @@
       "OBJ_56" = {
          isa = "PBXGroup";
          children = (
-            "Logger::LoggerTestSupport::Product",
-            "BookishCoreMobile::BookishCoreMobile::Product",
-            "Actions::ActionsKit::Product",
-            "Logger::LoggerKit::Product",
-            "BookishCoreMobile::BookishCore::Product",
-            "JSONDump::JSONDump::Product",
-            "BookishCoreMobile::BookishCoreMac::Product",
             "BookishCoreMobile::BookishCoreTests::Product",
-            "Logger::Logger::Product",
-            "Actions::Actions::Product"
+            "Actions::ActionsKit::Product",
+            "Actions::Actions::Product",
+            "BookishCoreMobile::BookishCoreMobile::Product",
+            "BookishCoreMobile::BookishCore::Product",
+            "Logger::LoggerTestSupport::Product",
+            "JSONDump::JSONDump::Product",
+            "Logger::LoggerKit::Product",
+            "BookishCoreMobile::BookishCoreMac::Product",
+            "Logger::Logger::Product"
          );
          name = "Products";
          path = "";

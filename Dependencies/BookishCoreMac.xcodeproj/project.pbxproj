@@ -2075,15 +2075,15 @@
          isa = "PBXGroup";
          children = (
             "BookishCoreMac::BookishCore::Product",
-            "BookishCoreMac::BookishCoreMac::Product",
             "Logger::Logger::Product",
-            "BookishCoreMac::BookishCoreMobile::Product",
-            "Actions::ActionsKit::Product",
-            "BookishCoreMac::BookishCoreTests::Product",
-            "Logger::LoggerTestSupport::Product",
-            "Actions::Actions::Product",
             "JSONDump::JSONDump::Product",
-            "Logger::LoggerKit::Product"
+            "Logger::LoggerKit::Product",
+            "Actions::ActionsKit::Product",
+            "Actions::Actions::Product",
+            "BookishCoreMac::BookishCoreTests::Product",
+            "BookishCoreMac::BookishCoreMac::Product",
+            "BookishCoreMac::BookishCoreMobile::Product",
+            "Logger::LoggerTestSupport::Product"
          );
          name = "Products";
          path = "";
