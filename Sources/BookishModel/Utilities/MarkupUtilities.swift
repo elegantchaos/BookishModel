@@ -90,10 +90,19 @@ public class TagHandler<State: TagProcessorState> {
     }
 }
 
+/// Object that logs an error when it encounters a tag.
+public class UnexpectedHandler<State: TagProcessorState>: TagHandler<State> {
+    required init(name: String = "", attributes: [String:String] = [:], processor: TagProcessor<State>) {
+        super.init(name: name, attributes: attributes, processor: processor)
+        tagProcessorChannel.log(name)
+    }
+}
+
 public class TagProcessor<State: TagProcessorState>: TagProcessorInterface {
     typealias Handler = TagHandler<State>
     var handlerStack: [Handler] = []
     var handlerTypes: [String:Handler.Type] = [:]
+    var defaultHandler: Handler.Type = UnexpectedHandler.self
     var state = State()
     var parser: TagParser? { return nil }
     
@@ -131,7 +140,7 @@ public class TagProcessor<State: TagProcessorState>: TagProcessorInterface {
     }
     
     public func start(tag: String, attributes attributeDict: [String : String] = [:]) {
-        let handlerType = handlerTypes[tag] ?? TagHandler.self
+        let handlerType = handlerTypes[tag] ?? defaultHandler
         let handler = handlerType.init(name: tag, attributes: attributeDict, processor: self)
         handlerStack.append(handler)
     }
