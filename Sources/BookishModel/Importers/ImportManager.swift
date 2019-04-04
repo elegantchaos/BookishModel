@@ -16,6 +16,7 @@ public class ImportManager {
     public init() {
         // TODO: build this dynamically
         register(importer: DeliciousLibraryImporter(manager: self))
+        register(importer: KindleImporter(manager: self))
     }
     
     public func register(importer: Importer) {
