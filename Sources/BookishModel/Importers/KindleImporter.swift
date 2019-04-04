@@ -112,24 +112,9 @@ class KindleProcessor: TagProcessor<KindleState> {
 }
 
 class KindleImportSession: ImportSession {
-    typealias Record = [String:Any]
-    typealias RecordList = [Record]
-    
     var cachedPeople: [String:Person] = [:]
     var cachedPublishers: [String:Publisher] = [:]
     var cachedSeries: [String:Series] = [:]
-    
-    let formatsToSkip = ["Audio CD", "Audio CD Enhanced", "Audio CD Import", "Video Game", "VHS Tape", "VideoGame", "DVD"]
-    
-    let seriesNameBookPattern = try! NSRegularExpression(pattern: "(.*)\\((.*)S[.]{0,1}\\)")
-    let seriesSPattern = try! NSRegularExpression(pattern: "(.*)\\((.*)S[.]{0,1}\\)")
-    let seriesPattern = try! NSRegularExpression(pattern: "(.*)\\((.*)\\)$")
-    let bookIndexPatterns = [
-        try! NSRegularExpression(pattern: "(.*)\\:{0,1} Bk\\.{0,1} *(\\d+)"),
-        try! NSRegularExpression(pattern: "(.*)\\:{0,1} Book\\.{0,1} *(\\d+)"),
-        try! NSRegularExpression(pattern: "(.*)\\:{0,1} No\\.{0,1} *(\\d+)")
-    ]
-    
     
     override func run() {
         if let data = try? Data(contentsOf: url) {
@@ -146,6 +131,15 @@ class KindleImportSession: ImportSession {
         book.name = kindleBook.title
         book.importDate = Date()
         book.asin = kindleBook.asin
+        
+        if let date = kindleBook.raw["publication_date"] as? Date {
+            book.published = date
+        }
+        
+        if let date = kindleBook.raw["purchase_date"] as? Date {
+            book.added = date
+        }
+        
         book.importRaw = kindleBook.raw.jsonDump()
         process(creators: kindleBook.authors, for: book)
         process(publishers: kindleBook.publishers, for: book)

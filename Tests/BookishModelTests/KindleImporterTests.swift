@@ -11,6 +11,8 @@ import Actions
 
 class KindleImporterTests: ModelTestCase {
     func testImport() {
+        tagProcessorChannel.enabled = true
+        
         let manager = ImportManager()
         let importer = KindleImporter(manager: manager)
         let container = makeTestContainer()
