@@ -26,7 +26,7 @@ class KindleImporterTests: ModelTestCase {
         wait(for: [expectation], timeout: 10.0)
         
         let books: [Book] = container.managedObjectContext.everyEntity(sorting: [NSSortDescriptor(key: "name", ascending: true)])
-        XCTAssertEqual(books.count, 204)
+        XCTAssertEqual(books.count, 189)
         let titles = books.map { $0.name! }
         
         let expected = [
@@ -67,13 +67,11 @@ class KindleImporterTests: ModelTestCase {
             "Artificial Condition: The Murderbot Diaries",
             "Ascension Point (The Unity Sequence Book 1)",
             "Assassin’s Quest: Keystone. Gate. Crossroads. Catalyst. (The Farseer Trilogy, Book 3)",
-            "Autonomous",
             "Bad Metal 02: Dirty Jobs",
             "Becoming a Technical Leader",
             "Behind the Throne: The Indranan War, Book 1",
             "Between Two Thorns (The Split Worlds Book 1)",
             "Black Swan Rising (Black Swan Rising Trilogy Series Book 1)",
-            "Blood of Elves (The Witcher Book 1)",
             "Caliban's War: Book 2 of the Expanse (now a Prime Original series)",
             "Changer (KESTREL Book 1)",
             "Command Decision: Vatta's War: Book Four",
@@ -81,7 +79,6 @@ class KindleImporterTests: ModelTestCase {
             "Constitution: Book 1 of The Legacy Fleet Series",
             "Containment",
             "Contractor (The Contractors Book 1)",
-            "Dangerous To Know: The Chronicles of Breed: Book One",
             "Dark Space",
             "Date Night on Union Station (EarthCent Ambassador Book 1)",
             "Dead Soul (In Her Name, Book 3)",
@@ -102,18 +99,14 @@ class KindleImporterTests: ModelTestCase {
             "Exiles: The Progenitor Trilogy, Book One",
             "Extreme Programming Explained: Embrace Change (XP Series)",
             "Final Battle (In Her Name, Book 6)",
-            "Firefall",
             "First Contact (In Her Name, Book 1)",
             "Fleet of Knives: An Embers of War novel",
             "Forbidden The Stars (The Interstellar Age Book 1)",
             "Future Freaks",
-            "Galveston",
             "Going Dark (The Red Trilogy Book 3)",
             "Gulliver's Travels",
-            "Head On",
             "Hero at Large: Second Edition (The Hunter Legacy Book 1)",
             "Hunted Hero Hunting: Second Edition (The Hunter Legacy Book 2)",
-            "Introducing Meteorology: A Guide to Weather (Introducing Earth and Environmental Sciences)",
             "Jaggy Splinters",
             "Killing Titan (War Dogs Trilogy Book 2)",
             "Legend Of The Sword (In Her Name, Book 2)",
@@ -122,14 +115,12 @@ class KindleImporterTests: ModelTestCase {
             "Misfit Magic (Misfits Book 1)",
             "Moving Target: Vatta's War: Book Two",
             "Ninefox Gambit (Machineries of Empire Book 1)",
-            "Noumenon",
             "Old Man's War",
             "Oxford Dictionary of English",
             "Paper Promises: Money, Debt and the New World Order",
             "Peopleware: Productive Projects and Teams",
             "Places in the Darkness",
             "Provenance: A new novel set in the world of the Hugo, Nebula and Arthur C. Clarke Award-Winning ANCILLARY JUSTICE",
-            "Red Seas Under Red Skies: The Gentleman Bastard Sequence, Book Two (Gentleman Bastards 2)",
             "Reinventing Organizations: A Guide to Creating Organizations Inspired by the Next Stage of Human Consciousness",
             "Rook: Bridge & Sword: Awakenings (Bridge & Sword Series Book 1)",
             "Royal Assassin (The Farseer Trilogy, Book 2)",
@@ -146,7 +137,6 @@ class KindleImporterTests: ModelTestCase {
             "Spinward Fringe Broadcast 3: Triton",
             "Spinward Fringe Broadcast 4: Frontline",
             "Steel World (Undying Mercenaries Series Book 1)",
-            "Stick Control: For the Snare Drummer",
             "Take Back the Sky (War Dogs Trilogy 3)",
             "Team Geek: A Software Developer's Guide to Working Well with Others",
             "Tech-Heaven (The Nanotech Succession Book 0)",
@@ -154,7 +144,6 @@ class KindleImporterTests: ModelTestCase {
             "The Adventures of Sherlock Holmes",
             "The Age of Ra: Special Edition (Pantheon Book 1)",
             "The Apocalypse Codex: Book 4 in The Laundry Files",
-            "The Armored Saint (The Sacred Throne Book 1)",
             "The Atrocity Archives: Book 1 in The Laundry Files",
             "The Better Part of Valour: A Confederation Novel (Valour Confederation Book 2)",
             "The Bloodline Feud: The Family Trade and The Hidden Family (Merchant Princes Omnibus Book 1)",
@@ -195,8 +184,6 @@ class KindleImporterTests: ModelTestCase {
             "The Non-Designer's Design Book: Non-Designers Design Bk_p3",
             "The Obelisk Gate: The Broken Earth, Book 2, WINNER OF THE HUGO AWARD 2017 (Broken Earth Trilogy)",
             "The Paper Samurai",
-            "The Peripheral",
-            "The Pike Chronicles: Books 1-4: An Interstellar Space Opera Adventure (Pike Chronicles Space Opera Book 1)",
             "The Quantum Thief (Jean le Flambeur Book 1)",
             "The Red: First Light (The Red Trilogy Book 1)",
             "The Republic of Thieves: The Gentleman Bastard Sequence, Book Three (Gentleman Bastards 3)",
@@ -208,7 +195,6 @@ class KindleImporterTests: ModelTestCase {
             "The Spider's War: Book Five of the Dagger and the Coin",
             "The Steel Remains (A Land Fit for Heroes series Book 1)",
             "The Synchronicity War Part 1",
-            "The Tea Master and the Detective",
             "The Three-Body Problem",
             "The Traders' War: The Clan Corporate and The Merchants' War (Merchant Princes Omnibus Book 2)",
             "The Trials (The Red Trilogy Book 2)",
@@ -223,7 +209,6 @@ class KindleImporterTests: ModelTestCase {
             "Trading In Danger: Vatta's War: Book One",
             "Transmission: Ragnarok: Book Two",
             "Two All - All For One",
-            "Ultima (Proxima Book 2)",
             "Uprising (The Fall of Haven Book 1)",
             "Use Of Weapons (Culture series Book 3)",
             "Valour's Choice: A Confederation Novel (Valour Confederation Book 1)",
@@ -235,7 +220,7 @@ class KindleImporterTests: ModelTestCase {
             "Warstrider (Warstrider Series, Book One)",
             "When The Devil Drives (Jasmine Sharp Book 2)",
         ]
-        
+
         if titles != expected {
             XCTFail("titles didn't match")
             print("let expected = [")

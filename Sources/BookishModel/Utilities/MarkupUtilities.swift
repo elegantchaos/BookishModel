@@ -94,7 +94,7 @@ public class TagHandler<State: TagProcessorState> {
 public class UnexpectedHandler<State: TagProcessorState>: TagHandler<State> {
     required init(name: String = "", attributes: [String:String] = [:], processor: TagProcessor<State>) {
         super.init(name: name, attributes: attributes, processor: processor)
-        tagProcessorChannel.log(name)
+        tagProcessorChannel.log("unregistered tag type: \(name)")
     }
 }
 
