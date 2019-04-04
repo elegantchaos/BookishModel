@@ -20,7 +20,7 @@ class MiscModelTests: ModelTestCase {
     
     func testLoadingMissingModel() {
         #if !os(iOS) || targetEnvironment(simulator)
-        XCTAssertFatalError(equals: BookishModel.Error.locatingModel) {
+        XCTAssertFatalError(equals: BookishModel.Error.locatingModel, timeout: 10.0) {
             if let url = Bundle(for: MiscModelTests.self).url(forResource: "MissingModel", withExtension: "bundle") {
                 if let bundle = Bundle(url: url) {
                     let _ = BookishModel.model(bundle: bundle, cached: false)
