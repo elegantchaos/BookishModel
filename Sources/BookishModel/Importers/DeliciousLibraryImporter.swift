@@ -31,16 +31,6 @@ class DeliciousLibraryImportSession: ImportSession {
     
     let formatsToSkip = ["Audio CD", "Audio CD Enhanced", "Audio CD Import", "Video Game", "VHS Tape", "VideoGame", "DVD"]
     
-    let seriesNameBookPattern = try! NSRegularExpression(pattern: "(.*)\\((.*)S[.]{0,1}\\)")
-    let seriesSPattern = try! NSRegularExpression(pattern: "(.*)\\((.*)S[.]{0,1}\\)")
-    let seriesPattern = try! NSRegularExpression(pattern: "(.*)\\((.*)\\)$")
-    let bookIndexPatterns = [
-        try! NSRegularExpression(pattern: "(.*)\\:{0,1} Bk\\.{0,1} *(\\d+)"),
-        try! NSRegularExpression(pattern: "(.*)\\:{0,1} Book\\.{0,1} *(\\d+)"),
-        try! NSRegularExpression(pattern: "(.*)\\:{0,1} No\\.{0,1} *(\\d+)")
-        ]
-
-        
     override func run() {
         if let data = try? Data(contentsOf: url) {
             if let list = (try? PropertyListSerialization.propertyList(from: data, options: [], format: nil)) as? RecordList {
