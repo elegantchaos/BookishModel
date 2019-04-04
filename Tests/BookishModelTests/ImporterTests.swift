@@ -23,7 +23,7 @@ class ImporterTests: ModelTestCase {
         manager.register(importer: i2)
         XCTAssertTrue(manager.importer(named: "test") === i1)
         XCTAssertTrue(manager.importer(named: "test2") === i2)
-        XCTAssertEqual(manager.sortedImporters.count, 3)
+        XCTAssertEqual(manager.sortedImporters.count, 4)
         XCTAssertTrue(manager.sortedImporters[1] === i1)
     }
     

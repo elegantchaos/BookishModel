@@ -24,12 +24,88 @@ public class KindleImporter: Importer {
 }
 
 
+struct KindleBook {
+    let title: String
+    let authors: [String]
+    let publishers: [String]
+    let asin: String
+    let raw: [String:Any]
+}
+
 class KindleState: TagProcessorState {
+    var books: [KindleBook] = []
     required init() {
     }
 }
 
+class DateHandler: TagHandler<KindleState> {
+    static let formatter = ISO8601DateFormatter()
+    var date: Date?
+    
+    override func processor(_ processor: TagProcessor<KindleState>, foundText text: String) {
+        if let date = DateHandler.formatter.date(from: text) {
+            self.date = date
+        }
+    }
+        
+    override func reduce(_ processor: TagProcessor<KindleState>) -> Any? {
+        return date
+    }
+}
+
+class StringHandler: TagHandler<KindleState> {
+    var text = ""
+    
+    override func processor(_ processor: TagProcessor<KindleState>, foundText text: String) {
+        self.text.append(text)
+    }
+    
+    override func reduce(_ processor: TagProcessor<KindleState>) -> Any? {
+        return text
+    }
+}
+
+class ListHandler: TagHandler<KindleState> {
+    var list: [String] = []
+    
+    override func processor(_ processor: TagProcessor<KindleState>, foundTag tag: String, value: Any) {
+        if let string = value as? String {
+            list.append(string)
+        }
+    }
+    
+    override func reduce(_ processor: TagProcessor<KindleState>) -> Any? {
+        return list
+    }
+}
+
+class MetadataHandler: TagHandler<KindleState> {
+    var properties: [String:Any] = [:]
+    
+    override func processor(_ processor: TagProcessor<KindleState>, foundTag tag: String, value: Any) {
+        properties[tag] = value
+    }
+    
+    override func reduce(_ processor: TagProcessor<KindleState>) -> Any? {
+        if let title = properties["title"] as? String,
+            let authors = properties["authors"] as? [String],
+            let publishers = properties["publishers"] as? [String],
+            let asin = properties["ASIN"] as? String {
+            processor.state.books.append(KindleBook(title: title, authors: authors, publishers: publishers, asin: asin, raw: properties))
+        }
+        return nil
+    }
+}
+
 class KindleProcessor: TagProcessor<KindleState> {
+    override init() {
+        super.init()
+        register(handler: MetadataHandler.self, for: ["meta_data"])
+        register(handler: ListHandler.self, for: ["authors", "publishers"])
+        register(handler: StringHandler.self, for: ["title", "author", "publisher", "ASIN", "cde_contenttype", "content_type", "textbook_type"])
+        register(handler: DateHandler.self, for: ["publication_date", "purchase_date"])
+    }
+
     override var parser: TagParser? {
         return XMLTagParser(processor: self)
     }
@@ -59,85 +135,25 @@ class KindleImportSession: ImportSession {
         if let data = try? Data(contentsOf: url) {
             let processor = KindleProcessor()
             processor.parse(data: data)
-            print(processor.state)
-//            if let parsed = XMLProcessor.init(contentsOf: url) {
-//                parsed.parse()
-//            }
-//            if let list = (try? PropertyListSerialization.propertyList(from: data, options: [], format: nil)) as? RecordList {
-//                for record in list {
-//                    process(record: record)
-//                }
-//            }
-        }
-    }
-    
-    private func process(record: Record) {
-        let format = record["formatSingularString"] as? String
-        let formatOK = format == nil || !formatsToSkip.contains(format!)
-        let type = record["type"] as? String
-        let typeOK = type == nil || !formatsToSkip.contains(type!)
-        if formatOK && typeOK {
-            if let title = record["title"] as? String, let creators = record["creatorsCompositeString"] as? String {
-                let book = Book(context: context)
-                book.name = title
-                book.subtitle = record["subtitle"] as? String
-                book.importDate = Date()
-                
-                if let uuid = record["uuidString"] as? String {
-                    book.uuid = uuid
-                } else if let uuid = record["foreignUUIDString"] as? String {
-                    book.uuid = uuid
-                }
-                
-                if let isbn = record["isbn"] as? String {
-                    let trimmed = isbn.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-                    book.isbn = trimmed
-                }
-                
-                if let height = record["boxHeightInInches"] as? Double, height > 0 {
-                    book.height = height
-                }
-                
-                if let width = record["boxWidthInInches"] as? Double, width > 0 {
-                    book.width = width
-                }
-                
-                if let length = record["boxLengthInInches"] as? Double, length > 0 {
-                    book.length = length
-                }
-                
-                book.ean = record["ean"] as? String
-                book.asin = record["asin"] as? String
-                book.classification = record["deweyDecimal"] as? String
-                
-                book.added = record["creationDate"] as? Date
-                book.modified = record["lastModificationDate"] as? Date
-                book.published = record["publishDate"] as? Date
-                
-                book.importRaw = record.jsonDump()
-                
-                book.format = format
-                
-                if let url = (record["coverImageLargeURLString"] as? String) ?? (record["coverImageMediumURLString"] as? String) ?? (record["coverImageSmallURLString"] as? String) {
-                    book.imageURL = url
-                }
-                
-                process(creators: creators, for: book)
-                
-                if let publishers = record["publishersCompositeString"] as? String, !publishers.isEmpty {
-                    process(publishers: publishers, for: book)
-                }
-                
-                if let series = record["seriesSingularString"] as? String, !series.isEmpty {
-                    process(series: series, position: 0, for: book)
-                }
+            for book in processor.state.books {
+                process(book: book)
             }
         }
     }
     
-    private func process(creators: String, for book: Book) {
+    private func process(book kindleBook: KindleBook) {
+        let book = Book(context: context)
+        book.name = kindleBook.title
+        book.importDate = Date()
+        book.asin = kindleBook.asin
+        book.importRaw = kindleBook.raw.jsonDump()
+        process(creators: kindleBook.authors, for: book)
+        process(publishers: kindleBook.publishers, for: book)
+    }
+    
+    private func process(creators: [String], for book: Book) {
         var index = 1
-        for creator in creators.split(separator: "\n") {
+        for creator in creators {
             let trimmed = creator.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             if trimmed != "" {
                 let author: Person
@@ -156,8 +172,8 @@ class KindleImportSession: ImportSession {
         }
     }
     
-    private func process(publishers: String, for book: Book) {
-        for publisher in publishers.split(separator: "\n") {
+    private func process(publishers: [String], for book: Book) {
+        for publisher in publishers {
             let trimmed = publisher.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             if trimmed != "" {
                 let publisher: Publisher
