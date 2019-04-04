@@ -64,6 +64,7 @@ class BookishTool {
 
     init() {
         let xmlURL = rootURL.appendingPathComponent("../../Tests/BookishModelTests/Resources/Sample.xml")
+        let kindleURL = rootURL.appendingPathComponent("../../Tests/BookishModelTests/Resources/Kindle.xml")
         let sampleURL = rootURL.appendingPathComponent("../BookishModel/Resources/Sample.sqlite")
         
         let taskList = TaskList()
@@ -80,6 +81,7 @@ class BookishTool {
         actionManager.register(ModelAction.standardActions())
 
         variables["sampleURL"] = xmlURL
+        variables["kindleURL"] = kindleURL
         for n in 0 ..< CommandLine.arguments.count {
             variables["\(n)"] = CommandLine.arguments[n]
         }

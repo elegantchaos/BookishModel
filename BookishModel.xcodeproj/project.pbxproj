@@ -1149,21 +1149,21 @@
 		};
 		22F1827821CABCAC00220D20 /* BookishCoreMac */ = {
 			isa = PBXReferenceProxy;
-			fileType = text;
+			fileType = "compiled.mach-o.executable";
 			path = BookishCoreMac;
 			remoteRef = 22F1827721CABCAC00220D20 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		22F1827A21CABCAC00220D20 /* BookishCoreMobile */ = {
 			isa = PBXReferenceProxy;
-			fileType = text;
+			fileType = "compiled.mach-o.executable";
 			path = BookishCoreMobile;
 			remoteRef = 22F1827921CABCAC00220D20 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		22F1827C21CABCAC00220D20 /* BookishCoreTests.xctest */ = {
 			isa = PBXReferenceProxy;
-			fileType = file;
+			fileType = wrapper.cfbundle;
 			path = BookishCoreTests.xctest;
 			remoteRef = 22F1827B21CABCAC00220D20 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -1233,7 +1233,7 @@
 		};
 		22F1829F21CABCAC00220D20 /* BookishCoreTests.xctest */ = {
 			isa = PBXReferenceProxy;
-			fileType = file;
+			fileType = wrapper.cfbundle;
 			path = BookishCoreTests.xctest;
 			remoteRef = 22F1829E21CABCAC00220D20 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -1801,7 +1801,7 @@
 					"$(inherited)",
 					"@executable_path/",
 					"@loader_path/",
-					/Applications/Xcode10.2b3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx,
+					/Applications/Xcode10.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.elegantchaos.bookish.bkt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1823,7 +1823,7 @@
 					"$(inherited)",
 					"@executable_path/",
 					"@loader_path/",
-					/Applications/Xcode10.2b3.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx,
+					/Applications/Xcode10.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.elegantchaos.bookish.bkt;
 				PRODUCT_NAME = "$(TARGET_NAME)";

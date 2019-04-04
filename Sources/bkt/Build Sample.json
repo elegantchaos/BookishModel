@@ -3,14 +3,23 @@
 
     "actions" : [
         {
-            "name": "import",
+            "name": "import from Delicious Library",
             "action": "Import",
             "params": {
                 "importer": "Delicious Library",
                 "url": "$sampleURL"
             }
         },
-    
+
+        {
+            "name": "import from Kindle",
+            "action": "Import",
+            "params": {
+                "importer": "Kindle",
+                "url": "$kindleURL"
+            }
+        },
+
         {
             "name": "fix series",
             "action": "ScanSeries"

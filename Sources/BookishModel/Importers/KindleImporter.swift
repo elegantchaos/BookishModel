@@ -93,10 +93,10 @@ class MetadataHandler: TagHandler<KindleState> {
             let asin = properties["ASIN"] as? String,
             let type = properties["cde_contenttype"] as? String {
             
-            if type == "EBOK" {
+            // skip samples and the built-in dictionaries
+            if (type == "EBOK") && (title != "---------------") {
                 processor.state.books.append(KindleBook(title: title, authors: authors, publishers: publishers, asin: asin, raw: properties))
             } else {
-                // skip samples for now
                 print("Skipped type \(type) \(title)")
             }
         }

@@ -26,7 +26,7 @@ class KindleImporterTests: ModelTestCase {
         wait(for: [expectation], timeout: 10.0)
         
         let books: [Book] = container.managedObjectContext.everyEntity(sorting: [NSSortDescriptor(key: "name", ascending: true)])
-        XCTAssertEqual(books.count, 189)
+        XCTAssertEqual(books.count, 177)
         let titles = books.map { $0.name! }
         
         let expected = [
@@ -34,18 +34,6 @@ class KindleImporterTests: ModelTestCase {
             "'NetWalkers Book 2: WildCards",
             "'NetWalkers Part One: Partners",
             "'NetWalkers Part Two: Of Mentors and Mimetrons",
-            "---------------",
-            "---------------",
-            "---------------",
-            "---------------",
-            "---------------",
-            "---------------",
-            "---------------",
-            "---------------",
-            "---------------",
-            "---------------",
-            "---------------",
-            "---------------",
             "A Big Ship at the Edge of the Universe (The Salvagers Book 1)",
             "A Book of Death and Fish",
             "A Closed and Common Orbit: Wayfarers 2",
@@ -220,6 +208,7 @@ class KindleImporterTests: ModelTestCase {
             "Warstrider (Warstrider Series, Book One)",
             "When The Devil Drives (Jasmine Sharp Book 2)",
         ]
+
 
         if titles != expected {
             XCTFail("titles didn't match")
