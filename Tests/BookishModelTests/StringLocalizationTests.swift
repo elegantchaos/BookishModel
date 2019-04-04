@@ -7,9 +7,11 @@ import XCTest
 @testable import BookishModel
 
 class StringLocalizationTests: ModelTestCase {
-
+    class override func setUp() {
+        StringLocalization.registerLocalizationBundle(Bundle(for: self))
+    }
+    
     func testLocalized() {
-        StringLocalization.registerLocalizationBundle(Bundle(for: type(of: self)))
         XCTAssertEqual("test".localized, "localized")
     }
     
