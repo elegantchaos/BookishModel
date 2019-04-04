@@ -115,19 +115,20 @@ class MiscModelTests: ModelTestCase {
     }
     
     func testCoverage() {
-        let _ : NSFetchRequest<Book> = Book.fetchRequest()
-        let _ : NSFetchRequest<SeriesEntry> = SeriesEntry.fetchRequest()
-        let _ : NSFetchRequest<Publisher> = Publisher.fetchRequest()
-        let _ : NSFetchRequest<Series> = Series.fetchRequest()
+        // ensure a few things are called, just to bump up coverage
+        XCTAssertNotNil(Book.fetchRequest() as NSFetchRequest<Book>)
+        XCTAssertNotNil(SeriesEntry.fetchRequest() as NSFetchRequest<SeriesEntry>)
+        XCTAssertNotNil(Publisher.fetchRequest() as NSFetchRequest<Publisher>)
+        XCTAssertNotNil(Series.fetchRequest() as NSFetchRequest<Series>)
         
         let container = makeTestContainer()
         container.setupTestData()
 
         let context = container.managedObjectContext
-        let _ : NSFetchRequest<Book> = Book.fetcher(in: context)
-        let _ : NSFetchRequest<SeriesEntry> = SeriesEntry.fetcher(in: context)
-        let _ : NSFetchRequest<Publisher> = Publisher.fetcher(in: context)
-        let _ : NSFetchRequest<Series> = Series.fetcher(in: context)
+        XCTAssertNotNil(Book.fetcher(in: context) as NSFetchRequest<Book>)
+        XCTAssertNotNil(SeriesEntry.fetcher(in: context) as NSFetchRequest<SeriesEntry>)
+        XCTAssertNotNil(Publisher.fetcher(in: context) as NSFetchRequest<Publisher>)
+        XCTAssertNotNil(Series.fetcher(in: context) as NSFetchRequest<Series>)
 
     }
 }
