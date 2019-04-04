@@ -40,6 +40,7 @@
 		22318E982256529E00EE3EBC /* Kindle.xml in Resources */ = {isa = PBXBuildFile; fileRef = 22318E8E22563AD600EE3EBC /* Kindle.xml */; };
 		22318E99225652A500EE3EBC /* KindleImporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22318E8C225638DD00EE3EBC /* KindleImporterTests.swift */; };
 		22318E9A225652AA00EE3EBC /* MarkupUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22318E952256452400EE3EBC /* MarkupUtilities.swift */; };
+		22318E9B2256639600EE3EBC /* KindleImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22318E702256385C00EE3EBC /* KindleImporter.swift */; };
 		2231C5162228342D00D730FB /* LookupServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2231C5152228342D00D730FB /* LookupServiceTests.swift */; };
 		2231C53122285F1900D730FB /* LookupServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2231C5152228342D00D730FB /* LookupServiceTests.swift */; };
 		2231C571222971B600D730FB /* String+ISBN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2231C570222971B600D730FB /* String+ISBN.swift */; };
@@ -1460,6 +1461,7 @@
 				22DA6A1D21E61BC600ECF09A /* ModelObject.swift in Sources */,
 				22571150221866500099FFDE /* SectionDetailItem.swift in Sources */,
 				221C4B2E216BA8220086D56F /* PersonAction.swift in Sources */,
+				22318E9B2256639600EE3EBC /* KindleImporter.swift in Sources */,
 				22A498B9220F3555006A2137 /* DeliciousLibraryImporter.swift in Sources */,
 				221F272021306C1300DC2DC7 /* Book.swift in Sources */,
 				2250C71921B7E15700E899E2 /* NSManagedObjectContextExtensions.swift in Sources */,
