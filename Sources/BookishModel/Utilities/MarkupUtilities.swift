@@ -97,9 +97,9 @@ public class TagProcessor<State: TagProcessorState>: TagProcessorInterface {
     var state = State()
     var parser: TagParser? { return nil }
     
-    func register(tag: Handler.Type, for tagNames: [String]) {
+    func register(handler: Handler.Type, for tagNames: [String]) {
         for name in tagNames {
-            handlerTypes[name] = tag
+            handlerTypes[name] = handler
         }
     }
     
