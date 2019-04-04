@@ -1948,7 +1948,7 @@
             "OBJ_53",
             "OBJ_55"
          );
-         name = "Logger 1.3.4";
+         name = "Logger";
          path = "";
          sourceTree = "SOURCE_ROOT";
       };
@@ -1957,7 +1957,7 @@
          children = (
          );
          name = "Example";
-         path = ".build/checkouts/Logger/Sources/Example";
+         path = "Packages/Logger/Sources/Example";
          sourceTree = "SOURCE_ROOT";
       };
       "OBJ_42" = {
@@ -1972,7 +1972,7 @@
             "OBJ_49"
          );
          name = "Logger";
-         path = ".build/checkouts/Logger/Sources/Logger";
+         path = "Packages/Logger/Sources/Logger";
          sourceTree = "SOURCE_ROOT";
       };
       "OBJ_43" = {
@@ -2037,7 +2037,7 @@
             "OBJ_52"
          );
          name = "LoggerKit";
-         path = ".build/checkouts/Logger/Sources/LoggerKit";
+         path = "Packages/Logger/Sources/LoggerKit";
          sourceTree = "SOURCE_ROOT";
       };
       "OBJ_51" = {
@@ -2056,7 +2056,7 @@
             "OBJ_54"
          );
          name = "LoggerTestSupport";
-         path = ".build/checkouts/Logger/Sources/LoggerTestSupport";
+         path = "Packages/Logger/Sources/LoggerTestSupport";
          sourceTree = "SOURCE_ROOT";
       };
       "OBJ_54" = {
@@ -2068,22 +2068,22 @@
          isa = "PBXFileReference";
          explicitFileType = "sourcecode.swift";
          name = "Package.swift";
-         path = "/Users/sam/Projects/Bookish/Dependencies/BookishModel/.build/checkouts/Logger/Package.swift";
+         path = "/Users/sam/Projects/Bookish/Dependencies/BookishModel/Packages/Logger/Package.swift";
          sourceTree = "<group>";
       };
       "OBJ_56" = {
          isa = "PBXGroup";
          children = (
+            "BookishCoreMac::BookishCoreTests::Product",
+            "Logger::LoggerKit::Product",
             "Actions::Actions::Product",
+            "BookishCoreMac::BookishCoreMac::Product",
+            "JSONDump::JSONDump::Product",
             "BookishCoreMac::BookishCore::Product",
             "Actions::ActionsKit::Product",
-            "Logger::LoggerTestSupport::Product",
-            "Logger::Logger::Product",
             "BookishCoreMac::BookishCoreMobile::Product",
-            "Logger::LoggerKit::Product",
-            "BookishCoreMac::BookishCoreTests::Product",
-            "JSONDump::JSONDump::Product",
-            "BookishCoreMac::BookishCoreMac::Product"
+            "Logger::Logger::Product",
+            "Logger::LoggerTestSupport::Product"
          );
          name = "Products";
          path = "";
