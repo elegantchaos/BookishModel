@@ -15,7 +15,7 @@ public class Importer {
     public let name: String
     public let source: Source
     public let manager: ImportManager
-    public class var identifier: String { return "unknown" }
+    public class var identifier: String { return "import" }
 
     public init(name: String, source: Source, manager: ImportManager) {
         self.name = name
@@ -42,6 +42,28 @@ public class Importer {
         return nil
     }
     
+    public var fileTypes: [String]? {
+        return nil
+    }
+    
+    public var panelPrompt: String {
+        let identifier = type(of:self).identifier
+        var string = "\(identifier).prompt".localized
+        if string == "\(identifier).prompt" {
+            string = "importer.prompt".localized
+        }
+        return string
+    }
+
+    public var panelMessage: String {
+        let identifier = type(of:self).identifier
+        var string = "\(identifier).message".localized
+        if string == "\(identifier).message" {
+            string = "importer.message".localized
+        }
+        return string
+    }
+
     internal func makeSession(importing url: URL, into context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) -> ImportSession {
         let session = ImportSession(importer: self, context: context, url: url, completion: completion)
         return session

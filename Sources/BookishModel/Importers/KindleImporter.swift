@@ -22,6 +22,19 @@ public class KindleImporter: Importer {
     override func makeSession(importing url: URL, into context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) -> ImportSession {
         return KindleImportSession(importer: self, context: context, url: url, completion: completion)
     }
+    
+    public override var defaultImportLocation: URL? {
+        if let library = try? FileManager.default.url(for: .libraryDirectory, in: .userDomainMask, appropriateFor: nil, create: false) {
+            let cache = library.appendingPathComponent("Containers/com.amazon.Kindle/Data/Library/Application Support/Kindle/Cache/KindleSyncMetadataCache.xml")
+            return cache
+        }
+
+        return nil
+    }
+
+    public override var fileTypes: [String]? {
+        return ["xml"]
+    }
 }
 
 

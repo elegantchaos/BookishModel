@@ -20,6 +20,10 @@ public class DeliciousLibraryImporter: Importer {
     override func makeSession(importing url: URL, into context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) -> ImportSession {
         return DeliciousLibraryImportSession(importer: self, context: context, url: url, completion: completion)
     }
+
+    public override var fileTypes: [String]? {
+        return ["xml"]
+    }
 }
 
 class DeliciousLibraryImportSession: ImportSession {

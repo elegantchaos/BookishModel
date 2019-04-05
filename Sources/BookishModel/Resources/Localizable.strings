@@ -90,3 +90,9 @@ candidate.found.none = "No candidates found";
 candidate.found.singular = "1 candidate found:";
 candidate.found.plural = "{count} candidates found:";
 candidate.found.source = "source: {source}";
+
+importer.prompt = "Import";
+importer.message = "Select file to import:";
+
+com.elegantchaos.bookish.importer.kindle.message = "Select a Kindle cache file to import:";
+com.elegantchaos.bookish.importer.delicious-library.message = "Select a Delicious Library export file to import:";
