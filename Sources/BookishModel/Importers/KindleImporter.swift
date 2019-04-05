@@ -155,7 +155,8 @@ class KindleImportSession: ImportSession {
     private func process(creators: [String], for book: Book) {
         var index = 1
         for creator in creators {
-            let trimmed = creator.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            let unsorted = Indexing.nameUnsort(for: creator) ?? ""
+            let trimmed = unsorted.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             if trimmed != "" {
                 let author: Person
                 if let cached = cachedPeople[trimmed] {
@@ -163,7 +164,7 @@ class KindleImportSession: ImportSession {
                 } else {
                     author = Person(context: context)
                     author.name = trimmed
-                    author.uuid = "\(book.uuid!)-author-\(index)"
+                    author.uuid = "\(book.asin!)-author-\(index)"
                     index += 1
                     cachedPeople[trimmed] = author
                 }

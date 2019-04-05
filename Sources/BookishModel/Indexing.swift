@@ -47,4 +47,17 @@ class Indexing {
         return name
     }
 
+    class func nameUnsort(for name: String?) -> String? {
+        if let name = name {
+            let words = name.split(separator: ",")
+            if words.count > 1 {
+                let tail = words[1...].joined(separator: " ")
+                if let head = words.first {
+                    return "\(head) \(tail)"
+                }
+            }
+        }
+        
+        return name
+    }
 }
