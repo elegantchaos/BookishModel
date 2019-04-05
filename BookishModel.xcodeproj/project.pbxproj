@@ -557,6 +557,7 @@
 		22DA6A1B21E61BC600ECF09A /* ModelObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelObject.swift; sourceTree = "<group>"; };
 		22DD424E2126D6DA0070C85A /* Version 1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Version 1.xcdatamodel"; sourceTree = "<group>"; };
 		22DD42792126DDA80070C85A /* BookishModel.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = BookishModel.xcconfig; sourceTree = "<group>"; };
+		22DDE6CD2257516C00816C5C /* Version 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Version 6.xcdatamodel"; sourceTree = "<group>"; };
 		22EEF6BD21A6B761007FAD10 /* ModelTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTestCase.swift; sourceTree = "<group>"; };
 		22F1179A21A5A4C900AE3FBB /* Package.resolved */ = {isa = PBXFileReference; lastKnownFileType = text; path = Package.resolved; sourceTree = SOURCE_ROOT; };
 		22F1179E21A5A4C900AE3FBB /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = SOURCE_ROOT; };
@@ -2010,13 +2011,14 @@
 		22DD424D2126D6DA0070C85A /* Collection.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				22DDE6CD2257516C00816C5C /* Version 6.xcdatamodel */,
 				226744EB222AB6C6002549CE /* Version 5.xcdatamodel */,
 				2231C4BC2227FD2400D730FB /* Version 4.xcdatamodel */,
 				22571152221ADDF60099FFDE /* Version 3.xcdatamodel */,
 				225488DF21F391F500EE8ECB /* Version 2.xcdatamodel */,
 				22DD424E2126D6DA0070C85A /* Version 1.xcdatamodel */,
 			);
-			currentVersion = 226744EB222AB6C6002549CE /* Version 5.xcdatamodel */;
+			currentVersion = 22DDE6CD2257516C00816C5C /* Version 6.xcdatamodel */;
 			path = Collection.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
