@@ -135,21 +135,36 @@ class KindleImportSession: ImportSession {
     }
     
     private func process(book kindleBook: KindleBook) {
-        let book = Book(context: context)
-        book.name = kindleBook.title
+        let identifier: String
+        let purchased = kindleBook.raw["purchase_date"] as? Date
+        if let purchased = purchased {
+            identifier = "kindle-import-\(kindleBook.asin)-\(purchased)"
+        } else {
+            identifier = "kindle-import-\(kindleBook.asin)"
+        }
+
+        // we try to find a book with the same uuid
+        // this is intended to ensure that if the same import runs multiple times,
+        // we won't keep making new copies of the same books
+        let book: Book
+        if let existing = Book.withIdentifier(identifier, in: context) {
+            book = existing
+        } else {
+            book = Book.named(kindleBook.title, in: context)
+            book.uuid = identifier
+        }
+
         book.importDate = Date()
         book.asin = kindleBook.asin
         book.source = KindleImporter.identifier
+        book.format = "Kindle Edition"
         
         if let date = kindleBook.raw["publication_date"] as? Date {
             book.published = date
         }
         
-        if let date = kindleBook.raw["purchase_date"] as? Date {
+        if let date = purchased {
             book.added = date
-            book.uuid = "kindle-import-\(kindleBook.asin)-\(date)"
-        } else {
-            book.uuid = "kindle-import-\(kindleBook.asin)"
         }
         
         book.importRaw = kindleBook.raw.jsonDump()
@@ -167,8 +182,7 @@ class KindleImportSession: ImportSession {
                 if let cached = cachedPeople[trimmed] {
                     author = cached
                 } else {
-                    author = Person(context: context)
-                    author.name = trimmed
+                    author = Person.named(trimmed, in: context)
                     author.source = KindleImporter.identifier
                     author.uuid = "\(book.asin!)-author-\(index)"
                     index += 1
@@ -188,9 +202,8 @@ class KindleImportSession: ImportSession {
                 if let cached = cachedPublishers[trimmed] {
                     publisher = cached
                 } else {
-                    publisher = Publisher(context: context)
+                    publisher = Publisher.named(trimmed, in: context)
                     publisher.source = KindleImporter.identifier
-                    publisher.name = trimmed
                     cachedPublishers[trimmed] = publisher
                 }
                 publisher.addToBooks(book)

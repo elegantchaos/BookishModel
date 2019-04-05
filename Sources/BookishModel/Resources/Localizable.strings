@@ -78,8 +78,9 @@ detail.added.label = "added";
 detail.importDate.label = "imported";
 detail.dimensions.label = "dimensions";
 detail.pages.label = "pages";
-detail.importRaw.label = "import (debug)";
-detail.uuid.label = "uuid (debug)";
+detail.importRaw.label = "🛠 import";
+detail.uuid.label = "🛠 id";
+detail.source.label = "🛠 source";
 
 candidate.lookup.scanning = "Scanning for barcodes…";
 candidate.lookup.valid = "Found ISBN {search}…";

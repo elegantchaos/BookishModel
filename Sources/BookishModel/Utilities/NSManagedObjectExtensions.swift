@@ -11,7 +11,7 @@ import CoreData
 
 internal func getNamed<EntityType: NSManagedObject>(_ named: String, type: EntityType.Type, in context: NSManagedObjectContext, createIfMissing: Bool) -> EntityType? {
     let request: NSFetchRequest<EntityType> = EntityType.fetcher(in: context)
-    request.predicate = NSPredicate(format: "name = \"\(named)\"")
+    request.predicate = NSPredicate(format: "name = %@", named)
     if let results = try? context.fetch(request), let object = results.first {
         return object
     }
@@ -22,6 +22,20 @@ internal func getNamed<EntityType: NSManagedObject>(_ named: String, type: Entit
             object.setValue(named, forKey: "name")
             return object
         }
+    }
+    
+    return nil
+}
+
+/**
+ Generic which gets an existing entity of a given identifier and type.
+ */
+
+internal func getWithIdentifier<EntityType: NSManagedObject>(_ identifier: String, type: EntityType.Type, in context: NSManagedObjectContext) -> EntityType? {
+    let request: NSFetchRequest<EntityType> = EntityType.fetcher(in: context)
+    request.predicate = NSPredicate(format: "uuid = %@", identifier)
+    if let results = try? context.fetch(request), let object = results.first {
+        return object
     }
     
     return nil
@@ -45,7 +59,14 @@ extension NSManagedObject {
         return getNamed(named, type: self, in: context, createIfMissing: createIfMissing)
     }
 
+    /**
+     Return the entity of our type with a given uuid.
+     */
     
+    public class func withIdentifier(_ identifier: String, in context: NSManagedObjectContext) -> Self? {
+        return getWithIdentifier(identifier, type: self, in: context)
+    }
+
     /**
      Make a new instance in the given context.
      

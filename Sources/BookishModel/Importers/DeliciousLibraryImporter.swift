@@ -49,17 +49,30 @@ class DeliciousLibraryImportSession: ImportSession {
         let typeOK = type == nil || !formatsToSkip.contains(type!)
         if formatOK && typeOK {
             if let title = record["title"] as? String, let creators = record["creatorsCompositeString"] as? String {
-                let book = Book(context: context)
+                let identifier: String
+                if let uuid = record["uuidString"] as? String {
+                    identifier = uuid
+                } else if let uuid = record["foreignUUIDString"] as? String {
+                    identifier = uuid
+                } else {
+                    identifier = "delicious-import-\(title)"
+                }
+
+                // we try to find a book with the same uuid
+                // this is intended to ensure that if the same import runs multiple times,
+                // we won't keep making new copies of the same books
+                let book: Book
+                if let existing = Book.withIdentifier(identifier, in: context) {
+                    book = existing
+                } else {
+                    book = Book.named(title, in: context)
+                    book.uuid = identifier
+                }
+
                 book.name = title
                 book.source = DeliciousLibraryImporter.identifier
                 book.subtitle = record["subtitle"] as? String
                 book.importDate = Date()
-                
-                if let uuid = record["uuidString"] as? String {
-                    book.uuid = uuid
-                } else if let uuid = record["foreignUUIDString"] as? String {
-                    book.uuid = uuid
-                }
                 
                 if let isbn = record["isbn"] as? String {
                     let trimmed = isbn.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
