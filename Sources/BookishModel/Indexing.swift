@@ -51,9 +51,9 @@ class Indexing {
         if let name = name {
             let words = name.split(separator: ",")
             if words.count > 1 {
-                let tail = words[1...].joined(separator: " ")
+                let tail = words[1...].joined(separator: " ").trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
                 if let head = words.first {
-                    return "\(head) \(tail)"
+                    return "\(tail) \(head)"
                 }
             }
         }
