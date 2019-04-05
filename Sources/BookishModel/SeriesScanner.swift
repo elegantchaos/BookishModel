@@ -91,6 +91,20 @@ class SeriesBracketsBookDetector: SeriesDetector {
     }
 }
 
+class SeriesBracketsBookNumberDetector: SeriesDetector {
+    let pattern = try! NSRegularExpression(pattern: "(.*) \\((.*?) \(SeriesDetector.bookPattern)(\\d+)\\)$")
+    
+    override func detect(name: String, subtitle: String) -> Result? {
+        if let match = pattern.firstMatch(of: name, capturing: [\Captured.name: 1, \Captured.series: 2, \Captured.position: 4]) {
+            if let series = matchWithArticles(subtitle, match.series) {
+                return Result(name: match.name, subtitle: "", series: series, position: match.position)
+            }
+            return Result(name: match.name, subtitle: subtitle, series: match.series, position: match.position)
+        }
+        return nil
+    }
+}
+
 class SeriesNameBookDetector: SeriesDetector {
     let pattern = try! NSRegularExpression(pattern: "(.*?)\\:+ (.*?)\\:{0,1} \(SeriesDetector.bookPattern)(\\d+)(.*)")
     
@@ -149,7 +163,7 @@ class SeriesScanner {
     
     let context: NSManagedObjectContext
     
-    let detectors = [ NameBookSeriesBracketsSDetector(), SeriesBracketsSBookDetector(), SeriesBracketsBookDetector(), SeriesNameBookDetector(), SubtitleBracketsBookDetector(), SubtitleBookDetector() ]
+    let detectors = [ SeriesBracketsBookNumberDetector(), SeriesBracketsBookDetector(), NameBookSeriesBracketsSDetector(), SeriesBracketsSBookDetector(), SeriesNameBookDetector(), SubtitleBracketsBookDetector(), SubtitleBookDetector() ]
     
     let bookIndexPatterns = [
         try! NSRegularExpression(pattern: "(.*)\\:{0,1} Bk\\.{0,1} *(\\d+)"),
@@ -182,6 +196,7 @@ class SeriesScanner {
                     let name = book.name ?? ""
                     let subtitle = book.subtitle ?? ""
                     if let detected = detector.detect(name: name, subtitle: subtitle) {
+                        print("detected with \(detector)")
                         book.name = detected.name
                         book.subtitle = detected.subtitle
                         seriesDetectorChannel.log("extracted <\(detected.name)> <\(detected.subtitle)> <\(detected.series) \(detected.position)> from <\(name)> <\(subtitle)>")

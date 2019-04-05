@@ -145,6 +145,15 @@ class SeriesScannerTests: ModelTestCase {
         XCTAssertTrue(check(book: book, seriesName: "Arabesk", position: 0))
     }
 
+    func test10() {
+        // series in brackets with "S." at the end, also set as the subtitle
+        let book = scanBook(title: "The Better Part of Valour: A Confederation Novel (Valour Confederation Book 2)")
+        XCTAssertEqual(book.name, "The Better Part of Valour: A Confederation Novel")
+        XCTAssertEqual(book.subtitle, "")
+        XCTAssertTrue(check(book: book, seriesName: "Valour Confederation", position: 2))
+    }
+
+    
 }
 
 
