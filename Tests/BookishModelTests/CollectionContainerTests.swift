@@ -40,7 +40,7 @@ class CollectionContainerTests: ModelTestCase {
     func testCreateSampleData() {
         let url = temporaryFile()
         let container = makeTestContainer(name: "test", url: url, mode: .sampleData)
-        XCTAssertEqual(container.managedObjectContext.countEntities(type: Book.self), 1356) // sample data file is created with bkt
+        XCTAssertEqual(container.managedObjectContext.countEntities(type: Book.self), 1505) // sample data file is created with bkt
     }
 
     func testReset() {

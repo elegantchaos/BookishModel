@@ -170,6 +170,15 @@ class SeriesScannerTests: ModelTestCase {
         XCTAssertTrue(check(book: book, seriesName: "A Song of Ice and Fire", position: 5))
     }
 
+    func test13() {
+        // subtitle is name of series, with number at the end
+        seriesDetectorChannel.enabled = true
+        let book = scanBook(title: "A Storm of Swords: Steel and Snow (A Song of Ice and Fire, Book 3 Part 1)", subtitle: "A Song of Ice and Fire, Book 3 Part 1")
+        XCTAssertEqual(book.name, "A Storm of Swords: Steel and Snow Part 1")
+        XCTAssertEqual(book.subtitle, "")
+        XCTAssertTrue(check(book: book, seriesName: "A Song of Ice and Fire", position: 3))
+    }
+
     
 }
 

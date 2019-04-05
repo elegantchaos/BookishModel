@@ -25,6 +25,7 @@ class SeriesDetector {
         var subtitle = ""
         var series = ""
         var rest = ""
+        var extra = ""
         var position = 0
     }
     
@@ -95,14 +96,17 @@ class SeriesBracketsBookDetector: SeriesDetector {
 
 class SeriesBracketsBookNumberDetector: SeriesDetector {
     // eg: "The Better Part of Valour: A Confederation Novel (Valour Confederation Book 2)"
-    let pattern = try! NSRegularExpression(pattern: "(.*) \\((.*?)[:, ]+\(SeriesDetector.bookPattern)(\\d+)\\)$")
+    let pattern = try! NSRegularExpression(pattern: "(.*) \\(((.*?)[:, ]+\(SeriesDetector.bookPattern)(\\d+)(.*?))\\)$")
     
     override func detect(name: String, subtitle: String) -> Result? {
-        if let match = pattern.firstMatch(of: name, capturing: [\Captured.name: 1, \Captured.series: 2, \Captured.position: 4]) {
-            if let series = matchWithArticles(subtitle, match.series) {
-                return Result(name: match.name, subtitle: "", series: series, position: match.position)
+        if let match = pattern.firstMatch(of: name, capturing: [\Captured.name: 1, \Captured.series: 3, \Captured.position: 5, \Captured.rest: 6, \Captured.extra: 2]) {
+            let combinedName = match.name + match.rest
+            if subtitle == match.extra {
+                return Result(name: combinedName, subtitle: "", series: match.series, position: match.position)
+            } else if let series = matchWithArticles(subtitle, match.extra) {
+                return Result(name: combinedName, subtitle: "", series: series, position: match.position)
             }
-            return Result(name: match.name, subtitle: subtitle, series: match.series, position: match.position)
+            return Result(name: combinedName, subtitle: subtitle, series: match.series, position: match.position)
         }
         return nil
     }
@@ -196,6 +200,13 @@ class SeriesScanner {
         let books: [Book] = context.everyEntity()
         var seriesAdded: Bool
         
+        let partPattern: NSRegularExpression = try! NSRegularExpression(pattern: "(.*?) *(Part \\d+) *(.*?)")
+        struct Part: RegularExpressionResult {
+            var before = ""
+            var part = ""
+            var after = ""
+        }
+
         repeat {
             let seriesCount = context.countEntities(type: Series.self)
             for book in books {
@@ -211,8 +222,16 @@ class SeriesScanner {
                             }
                             book.name = detected.name
                             book.subtitle = detected.subtitle
-                            seriesDetectorChannel.log("extracted <\(detected.name)> <\(detected.subtitle)> <\(detected.series) \(detected.position)> from <\(name)> <\(subtitle)>")
-                            process(series: detected.series, position: detected.position, for: book)
+                            var series = detected.series
+                            if (series != "" && detected.position != 0) {
+                                let mapping = [\Part.before: 1, \Part.part: 2, \Part.after: 3]
+                                if let match = partPattern.firstMatch(of: detected.series, capturing: mapping) {
+                                    book.name = detected.name + match.part
+                                    series = match.before + match.after
+                                }
+                            }
+                            seriesDetectorChannel.log("extracted <\(detected.name)> <\(detected.subtitle)> <\(series) \(detected.position)> from <\(name)> <\(subtitle)>")
+                            process(series: series, position: detected.position, for: book)
                             break
                         }
                     }
