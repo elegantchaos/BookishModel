@@ -7,7 +7,7 @@ import Foundation
 import CoreData
 import Logger
 
-let seriesDetectorChannel = Logger("DeliciousImporter")
+let seriesDetectorChannel = Logger("com.elegantchaos.bookish.model.SeriesDetector")
 
 class SeriesDetector {
     static let bookPattern = "(Book |Bk\\. |Bk\\.|Bk |No\\. |No\\.|No |)"
@@ -64,6 +64,7 @@ class SeriesDetector {
 }
 
 class SeriesBracketsSBookDetector: SeriesDetector {
+    // eg: "Effendi: The Second Arabesk (Arabesk S.)"
     let pattern = try! NSRegularExpression(pattern: "(.*) \\((.*) S[.]{0,1}\\)")
     
     override func detect(name: String, subtitle: String) -> Result? {
@@ -79,6 +80,7 @@ class SeriesBracketsSBookDetector: SeriesDetector {
 }
 
 class SeriesBracketsBookDetector: SeriesDetector {
+    // eg: name: "Carpe Jugulum (Discworld Novel)" subtitle: "Discworld Novel"
     let pattern = try! NSRegularExpression(pattern: "(.*) \\((.*)\\)$")
     
     override func detect(name: String, subtitle: String) -> Result? {
@@ -92,6 +94,7 @@ class SeriesBracketsBookDetector: SeriesDetector {
 }
 
 class SeriesBracketsBookNumberDetector: SeriesDetector {
+    // eg: "The Better Part of Valour: A Confederation Novel (Valour Confederation Book 2)"
     let pattern = try! NSRegularExpression(pattern: "(.*) \\((.*?) \(SeriesDetector.bookPattern)(\\d+)\\)$")
     
     override func detect(name: String, subtitle: String) -> Result? {
@@ -106,6 +109,7 @@ class SeriesBracketsBookNumberDetector: SeriesDetector {
 }
 
 class SeriesNameBookDetector: SeriesDetector {
+    // eg: "The Amtrak Wars: Cloud Warrior Bk. 1"
     let pattern = try! NSRegularExpression(pattern: "(.*?)\\:+ (.*?)\\:{0,1} \(SeriesDetector.bookPattern)(\\d+)(.*)")
     
     override func detect(name: String, subtitle: String) -> Result? {
@@ -121,6 +125,7 @@ class SeriesNameBookDetector: SeriesDetector {
 }
 
 class NameBookSeriesBracketsSDetector: SeriesDetector {
+    // eg: "Name Book 2 (Series S.)"
     let pattern = try! NSRegularExpression(pattern: "(.*?)\\:{0,1} \(SeriesDetector.bookPattern)(\\d+) \\((.*) S.\\)")
     
     override func detect(name: String, subtitle: String) -> Result? {
@@ -136,6 +141,7 @@ class NameBookSeriesBracketsSDetector: SeriesDetector {
 }
 
 class SubtitleBookDetector: SeriesDetector {
+    // eg: "The Amber Citadel" subtitle: "Jewelfire Trilogy 1"
     var pattern: NSRegularExpression { return try! NSRegularExpression(pattern: "(.*?)[:, ]+\(SeriesDetector.bookPattern)(\\d+)(.*)") }
 
     override func detect(name: String, subtitle: String) -> Result? {
@@ -152,6 +158,7 @@ class SubtitleBookDetector: SeriesDetector {
 }
 
 class SubtitleBracketsBookDetector: SubtitleBookDetector {
+    // eg: name: "Ancillary Justice" subtitle: "(Imperial Radch Book 1)"
     override var pattern: NSRegularExpression { return try! NSRegularExpression(pattern: "\\((.*?)[:, ]+\(SeriesDetector.bookPattern)(\\d+)(.*)\\)") }
 }
 
@@ -196,7 +203,11 @@ class SeriesScanner {
                     let name = book.name ?? ""
                     let subtitle = book.subtitle ?? ""
                     if let detected = detector.detect(name: name, subtitle: subtitle) {
-                        print("detected with \(detector)")
+                        if subtitle == "" {
+                            seriesDetectorChannel.log("detected with \(detector) from \"\(name)\"")
+                        } else {
+                            seriesDetectorChannel.log("detected with \(detector) from name: \"\(name)\" subtitle: \"\(subtitle)\"")
+                        }
                         book.name = detected.name
                         book.subtitle = detected.subtitle
                         seriesDetectorChannel.log("extracted <\(detected.name)> <\(detected.subtitle)> <\(detected.series) \(detected.position)> from <\(name)> <\(subtitle)>")
