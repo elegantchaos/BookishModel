@@ -6,7 +6,7 @@
             "name": "import from Delicious Library",
             "action": "Import",
             "params": {
-                "importer": "Delicious Library",
+                "importer": "com.elegantchaos.bookish.importer.delicious-library",
                 "url": "$sampleURL"
             }
         },
@@ -15,7 +15,7 @@
             "name": "import from Kindle",
             "action": "Import",
             "params": {
-                "importer": "Kindle",
+                "importer": "com.elegantchaos.bookish.importer.kindle",
                 "url": "$kindleURL"
             }
         },

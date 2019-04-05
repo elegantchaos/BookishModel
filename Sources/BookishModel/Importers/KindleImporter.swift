@@ -13,7 +13,8 @@ import Logger
 let kindleChannel = Logger("KindleImporter")
 
 public class KindleImporter: Importer {
-    
+    override class public var identifier: String { return "com.elegantchaos.bookish.importer.kindle" }
+
     public init(manager: ImportManager) {
         super.init(name: "Kindle", source: .userSpecifiedFile, manager: manager)
     }
@@ -97,7 +98,7 @@ class MetadataHandler: TagHandler<KindleState> {
             if (type == "EBOK") && (title != "---------------") {
                 processor.state.books.append(KindleBook(title: title, authors: authors, publishers: publishers, asin: asin, raw: properties))
             } else {
-                print("Skipped type \(type) \(title)")
+                kindleChannel.log("Skipped type \(type) \(title)")
             }
         }
         return nil
@@ -138,6 +139,7 @@ class KindleImportSession: ImportSession {
         book.name = kindleBook.title
         book.importDate = Date()
         book.asin = kindleBook.asin
+        book.source = KindleImporter.identifier
         
         if let date = kindleBook.raw["publication_date"] as? Date {
             book.published = date
@@ -145,6 +147,9 @@ class KindleImportSession: ImportSession {
         
         if let date = kindleBook.raw["purchase_date"] as? Date {
             book.added = date
+            book.uuid = "kindle-import-\(kindleBook.asin)-\(date)"
+        } else {
+            book.uuid = "kindle-import-\(kindleBook.asin)"
         }
         
         book.importRaw = kindleBook.raw.jsonDump()
@@ -164,6 +169,7 @@ class KindleImportSession: ImportSession {
                 } else {
                     author = Person(context: context)
                     author.name = trimmed
+                    author.source = KindleImporter.identifier
                     author.uuid = "\(book.asin!)-author-\(index)"
                     index += 1
                     cachedPeople[trimmed] = author
@@ -183,30 +189,11 @@ class KindleImportSession: ImportSession {
                     publisher = cached
                 } else {
                     publisher = Publisher(context: context)
+                    publisher.source = KindleImporter.identifier
                     publisher.name = trimmed
                     cachedPublishers[trimmed] = publisher
                 }
                 publisher.addToBooks(book)
-            }
-        }
-    }
-    
-    private func process(series: String, position: Int, for book: Book) {
-        let trimmed = series.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        if trimmed != "" {
-            let series: Series
-            if let cached = cachedSeries[trimmed] {
-                series = cached
-            } else {
-                series = Series(context: context)
-                series.name = trimmed
-                cachedSeries[trimmed] = series
-            }
-            let entry = SeriesEntry(context: context)
-            entry.book = book
-            entry.series = series
-            if position != 0 {
-                entry.position = Int16(position)
             }
         }
     }

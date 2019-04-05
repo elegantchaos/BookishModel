@@ -15,12 +15,14 @@ public class Importer {
     public let name: String
     public let source: Source
     public let manager: ImportManager
-    
+    public class var identifier: String { return "unknown" }
+
     public init(name: String, source: Source, manager: ImportManager) {
         self.name = name
         self.source = source
         self.manager = manager
     }
+    
     
     public var canImport: Bool {
         switch source {

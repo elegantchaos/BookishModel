@@ -68,7 +68,7 @@ class CollectionContainerTests: ModelTestCase {
         }
 
         let container = makeTestContainer(name: "test", url: url, mode: .sampleData)
-        XCTAssertEqual(container.managedObjectContext.countEntities(type: Book.self), 1364)
+        XCTAssertEqual(container.managedObjectContext.countEntities(type: Book.self), 1541)
     }
 
     func testReset() {

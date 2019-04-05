@@ -129,6 +129,9 @@ class BookishTool {
         let info = ActionInfo()
         info.registerNotification { (stage, actionContext) in
             if stage == .didPerform {
+                if let report = actionContext["report"] as? String {
+                    print(report)
+                }
                 self.taskList.nextTask()
             }
         }

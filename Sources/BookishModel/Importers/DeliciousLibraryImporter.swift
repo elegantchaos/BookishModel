@@ -11,7 +11,8 @@ import Logger
 let deliciousChannel = Logger("DeliciousImporter")
 
 public class DeliciousLibraryImporter: Importer {
-    
+    override class public var identifier: String { return "com.elegantchaos.bookish.importer.delicious-library" }
+
     public init(manager: ImportManager) {
         super.init(name: "Delicious Library", source: .userSpecifiedFile, manager: manager)
     }
@@ -50,6 +51,7 @@ class DeliciousLibraryImportSession: ImportSession {
             if let title = record["title"] as? String, let creators = record["creatorsCompositeString"] as? String {
                 let book = Book(context: context)
                 book.name = title
+                book.source = DeliciousLibraryImporter.identifier
                 book.subtitle = record["subtitle"] as? String
                 book.importDate = Date()
                 
@@ -115,6 +117,7 @@ class DeliciousLibraryImportSession: ImportSession {
                     author = cached
                 } else {
                     author = Person(context: context)
+                    author.source = DeliciousLibraryImporter.identifier
                     author.name = trimmed
                     author.uuid = "\(book.uuid!)-author-\(index)"
                     index += 1
@@ -135,6 +138,7 @@ class DeliciousLibraryImportSession: ImportSession {
                     publisher = cached
                 } else {
                     publisher = Publisher(context: context)
+                    publisher.source = DeliciousLibraryImporter.identifier
                     publisher.name = trimmed
                     cachedPublishers[trimmed] = publisher
                 }
@@ -151,6 +155,7 @@ class DeliciousLibraryImportSession: ImportSession {
                 series = cached
             } else {
                 series = Series(context: context)
+                series.source = DeliciousLibraryImporter.identifier
                 series.name = trimmed
                 cachedSeries[trimmed] = series
             }

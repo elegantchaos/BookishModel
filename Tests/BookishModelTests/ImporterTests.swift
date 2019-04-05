@@ -11,25 +11,29 @@ import Actions
 
 class ImporterTests: ModelTestCase {
     
-    class DummyImporter: Importer {
+    class DummyImporter1: Importer {
+        override class var identifier: String { return "dummy1" }
         override var defaultImportLocation: URL { return URL(fileURLWithPath: "/test") }
     }
-    
+
+    class DummyImporter2: DummyImporter1 {
+        override class var identifier: String { return "dummy2" }
+    }
+
     func testRegistration() {
         let manager = ImportManager()
-        let i1 = Importer(name: "test", source: .knownLocation, manager: manager)
-        let i2 = Importer(name: "test2", source: .userSpecifiedFile, manager: manager)
-        manager.register(importer: i1)
-        manager.register(importer: i2)
-        XCTAssertTrue(manager.importer(named: "test") === i1)
-        XCTAssertTrue(manager.importer(named: "test2") === i2)
+        let i1 = DummyImporter1(name: "test1", source: .knownLocation, manager: manager)
+        let i2 = DummyImporter2(name: "test2", source: .userSpecifiedFile, manager: manager)
+        manager.register([i1, i2])
+        XCTAssertTrue(manager.importer(identifier: "dummy1") === i1)
+        XCTAssertTrue(manager.importer(identifier: "dummy2") === i2)
         XCTAssertEqual(manager.sortedImporters.count, 4)
-        XCTAssertTrue(manager.sortedImporters[1] === i1)
+        XCTAssertTrue(manager.sortedImporters[2] === i1)
     }
     
     func testDefaultsKnownLocation() {
         let manager = ImportManager()
-        let importer = DummyImporter(name: "test", source: .knownLocation, manager: manager)
+        let importer = DummyImporter1(name: "test", source: .knownLocation, manager: manager)
         XCTAssertFalse(importer.canImport)
         XCTAssertEqual(importer.defaultImportLocation.path, "/test")
         
@@ -56,7 +60,7 @@ class ImporterTests: ModelTestCase {
             XCTAssertNotNil(container)
 
             let manager = ImportManager()
-            let importer = manager.importer(named: "Delicious Library")!
+            let importer = manager.importer(identifier: DeliciousLibraryImporter.identifier)!
             let bundle = Bundle(for: type(of: self))
             let xmlURL = bundle.url(forResource: "Simple", withExtension: "plist")!
             importer.run(importing: xmlURL, into: container.managedObjectContext) {
@@ -82,7 +86,7 @@ class ImporterTests: ModelTestCase {
             let info = ActionInfo()
             info[ImportAction.managerKey] = manager
             info[ImportAction.urlKey] = xmlURL
-            info[ImportAction.importerKey] = "Delicious Library"
+            info[ImportAction.importerKey] = DeliciousLibraryImporter.identifier
             info[ActionContext.modelKey] = container.managedObjectContext
             info.registerNotification(notification: { (stage, context) in
                 if stage == .didPerform {

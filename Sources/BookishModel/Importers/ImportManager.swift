@@ -10,21 +10,25 @@ public class ImportManager {
     private var sessions: [ImportSession] = []
     
     public var sortedImporters: [Importer] {
-        return importers.sorted(by: { return $0.key < $1.key }).map({ $0.value })
+        return importers.sorted(by: { return $0.value.name < $1.value.name }).map({ $0.value })
     }
     
     public init() {
-        // TODO: build this dynamically
-        register(importer: DeliciousLibraryImporter(manager: self))
-        register(importer: KindleImporter(manager: self))
+        // TODO: build this dynamically - from plugins maybe?
+        register([
+            DeliciousLibraryImporter(manager: self),
+            KindleImporter(manager: self)
+        ])
     }
     
-    public func register(importer: Importer) {
-        importers[importer.name] = importer
+    public func register(_ importersToRegister: [Importer]) {
+        for importer in importersToRegister {
+            importers[type(of: importer).identifier] = importer
+        }
     }
     
-    public func importer(named: String) -> Importer? {
-        return importers[named]
+    public func importer(identifier: String) -> Importer? {
+        return importers[identifier]
     }
     
     func sessionWillBegin(_ session: ImportSession) {

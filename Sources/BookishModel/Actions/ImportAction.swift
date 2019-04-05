@@ -15,14 +15,17 @@ public class ImportAction: ModelAction {
     override func perform(context: ActionContext, model: NSManagedObjectContext, completion: @escaping ModelAction.Completion) {
         
         guard let manager = context[ImportAction.managerKey] as? ImportManager,
-            let importerName = context[ImportAction.importerKey] as? String,
-            let importer = manager.importer(named: importerName),
+            let importerID = context[ImportAction.importerKey] as? String,
+            let importer = manager.importer(identifier: importerID),
             let url = context[ImportAction.urlKey] as? URL else {
                 completion()
                 return
         }
         
+        let count = model.countEntities(type: Book.self)
         importer.run(importing: url, into: model) {
+            let added = model.countEntities(type: Book.self) - count
+            context["report"] = "Imported \(added) books."
             completion()
         }
         
