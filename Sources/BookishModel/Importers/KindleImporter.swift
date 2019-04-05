@@ -165,11 +165,11 @@ class KindleImportSession: ImportSession {
         } else {
             book = Book.named(kindleBook.title, in: context)
             book.uuid = identifier
+            book.source = KindleImporter.identifier
         }
 
         book.importDate = Date()
         book.asin = kindleBook.asin
-        book.source = KindleImporter.identifier
         book.format = "Kindle Edition"
         
         if let date = kindleBook.raw["publication_date"] as? Date {
@@ -196,8 +196,10 @@ class KindleImportSession: ImportSession {
                     author = cached
                 } else {
                     author = Person.named(trimmed, in: context)
-                    author.source = KindleImporter.identifier
-                    author.uuid = "\(book.asin!)-author-\(index)"
+                    if author.source == nil {
+                        author.source = KindleImporter.identifier
+                        author.uuid = "\(book.asin!)-author-\(index)"
+                    }
                     index += 1
                     cachedPeople[trimmed] = author
                 }
@@ -216,7 +218,9 @@ class KindleImportSession: ImportSession {
                     publisher = cached
                 } else {
                     publisher = Publisher.named(trimmed, in: context)
-                    publisher.source = KindleImporter.identifier
+                    if publisher.source == nil {
+                        publisher.source = KindleImporter.identifier
+                    }
                     cachedPublishers[trimmed] = publisher
                 }
                 publisher.addToBooks(book)

@@ -146,7 +146,8 @@ class NameBookSeriesBracketsSDetector: SeriesDetector {
 
 class SubtitleBookDetector: SeriesDetector {
     // eg: "The Amber Citadel" subtitle: "Jewelfire Trilogy 1"
-    var pattern: NSRegularExpression { return try! NSRegularExpression(pattern: "(.*?)[:, ]+\(SeriesDetector.bookPattern)(\\d+)(.*)") }
+    // eg: name: "Ancillary Justice" subtitle: "(Imperial Radch Book 1)"
+    var pattern: NSRegularExpression { return try! NSRegularExpression(pattern: "\\({0,1}(.*?)[:, ]+\(SeriesDetector.bookPattern)(\\d+)(.*?)\\){0,1}") }
 
     override func detect(name: String, subtitle: String) -> Result? {
         let mapping = [\Captured.series: 1, \Captured.position: 3, \Captured.rest: 4]
@@ -161,11 +162,6 @@ class SubtitleBookDetector: SeriesDetector {
     }
 }
 
-class SubtitleBracketsBookDetector: SubtitleBookDetector {
-    // eg: name: "Ancillary Justice" subtitle: "(Imperial Radch Book 1)"
-    override var pattern: NSRegularExpression { return try! NSRegularExpression(pattern: "\\((.*?)[:, ]+\(SeriesDetector.bookPattern)(\\d+)(.*)\\)") }
-}
-
 class SeriesScanner {
     typealias Record = [String:Any]
     typealias RecordList = [Record]
@@ -174,7 +170,7 @@ class SeriesScanner {
     
     let context: NSManagedObjectContext
     
-    let detectors = [ SeriesBracketsBookNumberDetector(), SeriesBracketsBookDetector(), NameBookSeriesBracketsSDetector(), SeriesBracketsSBookDetector(), SeriesNameBookDetector(), SubtitleBracketsBookDetector(), SubtitleBookDetector() ]
+    let detectors = [ SeriesBracketsBookNumberDetector(), SeriesBracketsBookDetector(), NameBookSeriesBracketsSDetector(), SeriesBracketsSBookDetector(), SubtitleBookDetector(), SeriesNameBookDetector()]
     
     let bookIndexPatterns = [
         try! NSRegularExpression(pattern: "(.*)\\:{0,1} Bk\\.{0,1} *(\\d+)"),

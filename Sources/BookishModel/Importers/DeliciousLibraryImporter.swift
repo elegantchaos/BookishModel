@@ -133,10 +133,11 @@ class DeliciousLibraryImportSession: ImportSession {
                 if let cached = cachedPeople[trimmed] {
                     author = cached
                 } else {
-                    author = Person(context: context)
-                    author.source = DeliciousLibraryImporter.identifier
-                    author.name = trimmed
-                    author.uuid = "\(book.uuid!)-author-\(index)"
+                    author = Person.named(trimmed, in: context)
+                    if author.source == nil {
+                        author.source = DeliciousLibraryImporter.identifier
+                        author.uuid = "\(book.uuid!)-author-\(index)"
+                    }
                     index += 1
                     cachedPeople[trimmed] = author
                 }
@@ -154,9 +155,10 @@ class DeliciousLibraryImportSession: ImportSession {
                 if let cached = cachedPublishers[trimmed] {
                     publisher = cached
                 } else {
-                    publisher = Publisher(context: context)
-                    publisher.source = DeliciousLibraryImporter.identifier
-                    publisher.name = trimmed
+                    publisher = Publisher.named(trimmed, in: context)
+                    if publisher.source == nil {
+                        publisher.source = DeliciousLibraryImporter.identifier
+                    }
                     cachedPublishers[trimmed] = publisher
                 }
                 publisher.addToBooks(book)
@@ -171,9 +173,10 @@ class DeliciousLibraryImportSession: ImportSession {
             if let cached = cachedSeries[trimmed] {
                 series = cached
             } else {
-                series = Series(context: context)
-                series.source = DeliciousLibraryImporter.identifier
-                series.name = trimmed
+                series = Series.named(trimmed, in: context)
+                if series.source == nil {
+                    series.source = DeliciousLibraryImporter.identifier
+                }
                 cachedSeries[trimmed] = series
             }
             let entry = SeriesEntry(context: context)
