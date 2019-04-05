@@ -95,7 +95,7 @@ class SeriesBracketsBookDetector: SeriesDetector {
 
 class SeriesBracketsBookNumberDetector: SeriesDetector {
     // eg: "The Better Part of Valour: A Confederation Novel (Valour Confederation Book 2)"
-    let pattern = try! NSRegularExpression(pattern: "(.*) \\((.*?) \(SeriesDetector.bookPattern)(\\d+)\\)$")
+    let pattern = try! NSRegularExpression(pattern: "(.*) \\((.*?)[:, ]+\(SeriesDetector.bookPattern)(\\d+)\\)$")
     
     override func detect(name: String, subtitle: String) -> Result? {
         if let match = pattern.firstMatch(of: name, capturing: [\Captured.name: 1, \Captured.series: 2, \Captured.position: 4]) {
@@ -194,29 +194,34 @@ class SeriesScanner {
     
     public func run() {
         let books: [Book] = context.everyEntity()
+        var seriesAdded: Bool
         
-        var matched: Bool
         repeat {
-            matched = false
+            let seriesCount = context.countEntities(type: Series.self)
             for book in books {
-                for detector in detectors {
-                    let name = book.name ?? ""
-                    let subtitle = book.subtitle ?? ""
-                    if let detected = detector.detect(name: name, subtitle: subtitle) {
-                        if subtitle == "" {
-                            seriesDetectorChannel.log("detected with \(detector) from \"\(name)\"")
-                        } else {
-                            seriesDetectorChannel.log("detected with \(detector) from name: \"\(name)\" subtitle: \"\(subtitle)\"")
+                if book.entries?.count == 0 { // only apply to books not already in a series
+                    for detector in detectors {
+                        let name = book.name ?? ""
+                        let subtitle = book.subtitle ?? ""
+                        if let detected = detector.detect(name: name, subtitle: subtitle) {
+                            if subtitle == "" {
+                                seriesDetectorChannel.log("detected with \(detector) from \"\(name)\"")
+                            } else {
+                                seriesDetectorChannel.log("detected with \(detector) from name: \"\(name)\" subtitle: \"\(subtitle)\"")
+                            }
+                            book.name = detected.name
+                            book.subtitle = detected.subtitle
+                            seriesDetectorChannel.log("extracted <\(detected.name)> <\(detected.subtitle)> <\(detected.series) \(detected.position)> from <\(name)> <\(subtitle)>")
+                            process(series: detected.series, position: detected.position, for: book)
+                            break
                         }
-                        book.name = detected.name
-                        book.subtitle = detected.subtitle
-                        seriesDetectorChannel.log("extracted <\(detected.name)> <\(detected.subtitle)> <\(detected.series) \(detected.position)> from <\(name)> <\(subtitle)>")
-                        process(series: detected.series, position: detected.position, for: book)
-                        matched = true
                     }
                 }
             }
-        } while (matched)
+            
+            // if we added some more series, loop again
+            seriesAdded = context.countEntities(type: Series.self) > seriesCount
+        } while (seriesAdded)
         
     }
     
@@ -229,14 +234,10 @@ class SeriesScanner {
             } else {
                 series = Series(context: context)
                 series.name = trimmed
+                series.source = "com.elegantchaos.bookish.series-detection"
                 cachedSeries[trimmed] = series
             }
-            let entry = SeriesEntry(context: context)
-            entry.book = book
-            entry.series = series
-            if position != 0 {
-                entry.position = Int16(position)
-            }
+            book.addToSeries(series, position: position)
         }
     }
 }
