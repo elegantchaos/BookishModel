@@ -31,6 +31,7 @@ public class LookupCandidate {
         
         book.name = title
         book.imageURL = image
+        book.source = service.name
         
         for author in authors {
             let person = Person.named(author, in: context)

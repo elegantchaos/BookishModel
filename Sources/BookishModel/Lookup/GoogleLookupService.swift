@@ -73,22 +73,26 @@ public class GoogleLookupService: LookupService {
     let dateDetector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.date.rawValue)
 
     public override func lookup(search: String, session: LookupSession) {
+        let query = (search.isISBN10 || search.isISBN13) ? "q=isbn:\(search)" : "q=\(search.replacingOccurrences(of: " ", with: "+"))"
         guard
-            let url = URL(string: "https://www.googleapis.com/books/v1/volumes?q=isbn:\(search)"),
+            let url = URL(string: "https://www.googleapis.com/books/v1/volumes?\(query)"),
             let data = try? Data(contentsOf: url),
             let parsed = try? JSONSerialization.jsonObject(with: data, options: []),
             let info = parsed as? [String:Any],
             let items = info["items"] as? [[String:Any]],
-            items.count > 0,
-            let volume = items[0]["volumeInfo"] as? [String:Any]
+            items.count > 0
         else {
             session.failed(service: self)
             return
         }
-
         
-        let candidate = GoogleLookupCandidate(info: volume, service: self)
-        session.add(candidate: candidate)
+        for item in items {
+            if let volume = item["volumeInfo"] as? [String:Any] {
+                let candidate = GoogleLookupCandidate(info: volume, service: self)
+                session.add(candidate: candidate)
+            }
+        }
+
         session.done(service: self)
     }
 }
