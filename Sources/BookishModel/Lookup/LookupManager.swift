@@ -4,6 +4,7 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Foundation
+import CoreData
 
 public class LookupManager {
 
@@ -23,8 +24,8 @@ public class LookupManager {
         services.append(service)
     }
     
-    public func lookup(ean: String, collection: CollectionContainer, callback: @escaping LookupSession.Callback) -> LookupSession {
-        let session = LookupSession(search: ean, manager: self, collection: collection, callback: callback)
+    public func lookup(ean: String, context: NSManagedObjectContext, callback: @escaping LookupSession.Callback) -> LookupSession {
+        let session = LookupSession(search: ean, manager: self, context: context, callback: callback)
         session.run()
         return session
     }

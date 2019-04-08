@@ -8,7 +8,7 @@ import CoreData
 public class ExistingCollectionLookupService: LookupService {
     public override func lookup(search: String, session: LookupSession) {
         
-        let context = session.collection.managedObjectContext
+        let context = session.context
         context.perform {
             let request: NSFetchRequest<Book> = context.fetcher()
             request.predicate = NSPredicate(format: "(isbn = \"\(search)\") or (ean = \"\(search)\")")
