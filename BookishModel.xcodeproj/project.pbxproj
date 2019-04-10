@@ -873,9 +873,9 @@
 			children = (
 				225F894D221AFB3F00196110 /* bkt */,
 				22F1834A21CABE4B00220D20 /* BookishCore */,
+				224293B4212AE16200E70510 /* BookishModel */,
 				22F1834D21CABE4B00220D20 /* BookishCoreMac */,
 				22F1834821CABE4B00220D20 /* BookishCoreMobile */,
-				224293B4212AE16200E70510 /* BookishModel */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
