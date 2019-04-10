@@ -101,7 +101,7 @@ import CoreData
                     let request: NSFetchRequest<Role> = Role.fetcher(in: context)
                     if let results = try? context.fetch(request) {
                         if results.count == 0 {
-                            self.makeDefaultRoles(context: context)
+                            self.makeStandardRoles(context: context)
                         }
                     }
                 }
@@ -160,9 +160,10 @@ import CoreData
      A few roles should always be present.
      */
     
-    func makeDefaultRoles(context: NSManagedObjectContext) {
-        for role in Role.StandardName.allCases {
-            _ = Role.named(role, in: context)
+    func makeStandardRoles(context: NSManagedObjectContext) {
+        for name in Role.StandardName.allCases {
+            let role = Role.named(name, in: context)
+            role.notes = "Role.standard.\(name).notes".localized
         }
     }
 
@@ -174,7 +175,7 @@ import CoreData
     func setupTestData() {
         let context = viewContext
         
-        makeDefaultRoles(context: context)
+        makeStandardRoles(context: context)
         
         let formatter = DateFormatter()
         formatter.setLocalizedDateFormatFromTemplate("dd/MM/yy")

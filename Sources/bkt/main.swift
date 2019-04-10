@@ -63,6 +63,8 @@ class BookishTool {
     let rootURL = URL(fileURLWithPath: #file).deletingLastPathComponent()
 
     init() {
+        StringLocalization.registerLocalizationBundle(Bundle.main)
+        
         let xmlURL = rootURL.appendingPathComponent("../../Tests/BookishModelTests/Resources/Sample.xml")
         let kindleURL = rootURL.appendingPathComponent("../../Tests/BookishModelTests/Resources/Kindle.xml")
         let sampleURL = rootURL.appendingPathComponent("../BookishModel/Resources/Sample.sqlite")

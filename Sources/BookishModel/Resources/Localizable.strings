@@ -65,6 +65,13 @@ Role.title = "Roles";
 Role.label = "roles";
 Role.section = "As {role}";
 
+Role.standard.author.notes = "A person with this role is a main author of a volume.";
+Role.standard.contributor.notes = "A person with this role is a contributor to a volume.";
+Role.standard.editor.notes = "A person with this role is the editor of a volume.";
+Role.standard.foreword.notes = "A person with this role is supplied the foreword for a volume.";
+Role.standard.illustrator.notes = "A person with this role is the illustrator of a volume.";
+Role.standard.translator.notes = "A person with this role is the translator of a volume.";
+
 detail.notes.label = "notes";
 detail.format.label = "format";
 detail.identifier.label = "identifier";
