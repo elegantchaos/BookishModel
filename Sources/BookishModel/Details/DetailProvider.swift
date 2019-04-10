@@ -42,10 +42,6 @@ public class DetailProvider {
         return "name"
     }
     
-    public var subtitleProperty: String? {
-        return nil
-    }
-    
     public var sectionCount: Int {
         return 1
     }

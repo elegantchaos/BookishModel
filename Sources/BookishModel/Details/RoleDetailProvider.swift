@@ -10,7 +10,7 @@ class RoleDetailProvider: DetailProvider {
     
     public class func standardDetails(showDebug: Bool) -> [DetailSpec] {
         var details = [
-            DetailSpec(binding: "notes"),
+            DetailSpec(binding: "notes", viewAs: DetailSpec.hiddenKind, editAs: DetailSpec.textKind),
         ]
         
         if showDebug {
@@ -45,7 +45,7 @@ class RoleDetailProvider: DetailProvider {
             sortedPeople.append(contentsOf: people)
         }
         
-        let template = SeriesDetailProvider.standardDetails(showDebug: context.showDebug)
+        let template = RoleDetailProvider.standardDetails(showDebug: context.showDebug)
         super.filter(for: selection, template: template, editing: editing, combining: combining, context: context)
     }
 }

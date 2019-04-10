@@ -13,11 +13,6 @@ class DetailProviderTests: ModelTestCase {
         XCTAssertEqual(provider.titleProperty, "name")
     }
 
-    func testSubtitleProperty() {
-        let provider = DetailProvider()
-        XCTAssertNil(provider.subtitleProperty)
-    }
-
     func testInserted() {
         let provider = DetailProvider()
         XCTAssertEqual(provider.inserted(details: []).count, 0)

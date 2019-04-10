@@ -36,6 +36,10 @@ public class Role: ModelObject {
         return Indexing.sectionName(for: sortName)
     }
 
+    public override var summary: String? {
+        return notes
+    }
+    
     override public class func getProvider() -> DetailProvider {
         return RoleDetailProvider()
     }

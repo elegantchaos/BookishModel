@@ -71,10 +71,6 @@ public class BookDetailProvider: DetailProvider {
         super.filter(for: selection, template: template, editing: editing, combining: combining, context: context)
     }
     
-    override public var subtitleProperty: String? {
-        return "subtitle"
-    }
-    
     override func buildItems() {
         var row = items.count
         let peopleCount = relationships.count

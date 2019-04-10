@@ -183,6 +183,31 @@ public class Book: ModelObject {
         }
     }
     
+    public override var summary: String? {
+        if let subtitle = subtitle, subtitle.count > 0 {
+            return subtitle
+        }
+        
+        if let series = entries as? Set<SeriesEntry>, series.count > 0 {
+            let names = series.compactMap({ (entry) -> String? in
+                if let name = entry.series?.name {
+                    if entry.position > 0 {
+                        return "\(name), Book \(entry.position)"
+                    } else {
+                        return name
+                    }
+                }
+                return nil
+            })
+            
+            if names.count > 0 {
+                return names.joined(separator: ", ")
+            }
+        }
+        
+        return nil
+    }
+    
     public override func didChangeValue(forKey key: String) { // TODO: not sure that this is the best approach...
         if key == "name" {
             sortName = Indexing.titleSort(for: name)

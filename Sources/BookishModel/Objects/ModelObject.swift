@@ -122,7 +122,11 @@ public class ModelObject: NSManagedObject, DetailOwner {
         }
         return result
     }
-
+    
+    @objc public var summary: String? {
+        return nil
+    }
+    
     public override var description: String {
         return "<\(type(of:self).entityName): \(self.nameAndId)>"
     }
