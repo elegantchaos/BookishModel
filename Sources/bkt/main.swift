@@ -154,8 +154,19 @@ class BookishTool {
                 }
             }
             info[ActionContext.selectionKey] = selection
+        } else if let books = action.books {
+            var selection: [ModelObject] = []
+            for bookID in books {
+                let request: NSFetchRequest<Book> = Book.fetcher(in: context)
+                request.predicate = NSPredicate(format: "uuid = \"\(bookID)\"")
+                request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+                let results = try? context.fetch(request)
+                if let found = results, let book = found.first {
+                    selection.append(book)
+                }
+            }
+            info[ActionContext.selectionKey] = selection
         }
-
         
         actionManager.perform(identifier: action.action, info: info)
     }

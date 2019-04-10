@@ -710,6 +710,19 @@
                 "value": "Apple Computer Inc",
             },
             "people": ["B8A87044-4399-11D9-9E3E-000A957CA12C-author-1"]
+        },
+        
+        {
+            "name": "remove some sensitive books",
+            "action":"DeleteBook",
+            "books": [
+                "184B744A-400C-11D9-9530-000A957CA12C",
+                "D269ECBE-4210-11D9-AC99-000A957CA12C",
+                "B8E949DA-0C50-4FA2-9337-9D72128EB841",
+                "2CAFFD2E-0DED-443A-A68D-F1CE4A2180D9",
+                "31D7E992-DAB2-4C6B-9FC1-B2799AAFBD60"
+            ]
+            
         }
         
 
