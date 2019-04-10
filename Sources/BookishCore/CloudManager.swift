@@ -55,6 +55,7 @@ public class CloudManager {
     
     public func allJournalEntries() -> [[String:Any]] {
         let query = CKQuery(recordType: "JournalEntry", predicate: NSPredicate(value: true))
+        query.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         journalContainer.privateCloudDatabase.perform(query, inZoneWith: nil) { (records, error) in
             if let error = error {
                 print(error)
