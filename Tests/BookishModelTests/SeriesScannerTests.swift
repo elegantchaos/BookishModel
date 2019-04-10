@@ -183,8 +183,24 @@ class SeriesScannerTests: ModelTestCase {
         XCTAssertTrue(check(book: book, seriesName: "A Song of Ice and Fire", position: 5))
     }
 
+    func test15() {
+        seriesDetectorChannel.enabled = true
+        let book = scanBook(title: "The Fuller Memorandum: Book 3 in The Laundry Files")
+        XCTAssertEqual(book.name, "The Fuller Memorandum")
+        XCTAssertEqual(book.subtitle, "")
+        XCTAssertTrue(check(book: book, seriesName: "The Laundry Files", position: 3))
+    }
+
+    func test16() {
+        seriesDetectorChannel.enabled = true
+        let book = scanBook(title: "The Name of the Wind: The Kingkiller Chronicle: Book 1 (Kingkiller Chonicles)")
+        XCTAssertEqual(book.name, "The Name of the Wind")
+        XCTAssertEqual(book.subtitle, "")
+        XCTAssertTrue(check(book: book, seriesName: "The Kingkiller Chronicle", position: 1))
+    }
+
     
-    
+
 }
 
 

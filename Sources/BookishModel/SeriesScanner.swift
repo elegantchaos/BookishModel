@@ -10,7 +10,7 @@ import Logger
 let seriesDetectorChannel = Logger("com.elegantchaos.bookish.model.SeriesDetector")
 
 class SeriesDetector {
-    static let bookPattern = "(Book |Bk\\. |Bk\\.|Bk |No\\. |No\\.|No |)"
+    static let bookPattern = "(Number |Book |Bk\\. |Bk\\.|Bk |No\\. |No\\.|No |)"
     
     struct Result {
         let name: String
@@ -94,6 +94,18 @@ class SeriesBracketsBookDetector: SeriesDetector {
     }
 }
 
+class TitleInSeriesDetector: SeriesDetector {
+    // eg: "The Fuller Memorandum: Book 3 in The Laundry Files"
+    let pattern = try! NSRegularExpression(pattern: "(.*?)[:, ]+\(SeriesDetector.bookPattern)(\\d+) (in|of) (.*?)$")
+    
+    override func detect(name: String, subtitle: String) -> Result? {
+        if let match = pattern.firstMatch(of: name, capturing: [\Captured.name: 1, \Captured.series: 5, \Captured.position: 3]) {
+            return Result(name: match.name, subtitle: subtitle, series: match.series, position: match.position)
+        }
+        return nil
+    }
+}
+
 class SeriesBracketsBookNumberDetector: SeriesDetector {
     // eg: "The Better Part of Valour: A Confederation Novel (Valour Confederation Book 2)"
     let pattern = try! NSRegularExpression(pattern: "(.*) \\(((.*?)[:, ]+\(SeriesDetector.bookPattern)(\\d+)(.*?))\\)$")
@@ -121,6 +133,22 @@ class SeriesNameBookDetector: SeriesDetector {
             if !match.series.isEmpty && !name.isEmpty {
                 let matchedSubtitle = subtitle.contains(match.series) ? "" : subtitle
                 return Result(name: match.name + match.rest, subtitle: matchedSubtitle, series: match.series, position: match.position)
+            }
+        }
+        
+        return nil
+    }
+}
+
+class NameSeriesBookBracketsDetector: SeriesDetector {
+    // eg: "The Name of the Wind: The Kingkiller Chronicle: Book 1 (Kingkiller Chonicles)"
+    let pattern = try! NSRegularExpression(pattern: "(.*?)\\:+ (.*?)\\:{0,1} \(SeriesDetector.bookPattern)(\\d+) \\((.*)\\)")
+    
+    override func detect(name: String, subtitle: String) -> Result? {
+        if let match = pattern.firstMatch(of: name, capturing: [\Captured.series: 2, \Captured.name: 1, \Captured.position: 4, \Captured.rest: 5]) {
+            if !match.series.isEmpty && !name.isEmpty {
+                let matchedSubtitle = subtitle.contains(match.series) ? "" : subtitle
+                return Result(name: match.name, subtitle: matchedSubtitle, series: match.series, position: match.position)
             }
         }
         
@@ -170,7 +198,7 @@ class SeriesScanner {
     
     let context: NSManagedObjectContext
     
-    let detectors = [ SeriesBracketsBookNumberDetector(), SeriesBracketsBookDetector(), NameBookSeriesBracketsSDetector(), SeriesBracketsSBookDetector(), SubtitleBookDetector(), SeriesNameBookDetector()]
+    let detectors = [ NameSeriesBookBracketsDetector(), TitleInSeriesDetector(), SeriesBracketsBookNumberDetector(), SeriesBracketsBookDetector(), NameBookSeriesBracketsSDetector(), SeriesBracketsSBookDetector(), SubtitleBookDetector(), SeriesNameBookDetector()]
     
     let bookIndexPatterns = [
         try! NSRegularExpression(pattern: "(.*)\\:{0,1} Bk\\.{0,1} *(\\d+)"),
