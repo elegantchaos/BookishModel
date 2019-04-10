@@ -89,7 +89,7 @@ class PersonDetailProviderTests: ModelTestCase {
         let container = makeTestContainer()
         let context = container.managedObjectContext
         let relationship = Relationship(context: context)
-        let item = PersonDetailItem(relationship: relationship, absolute: 0, index: 0, source: BookDetailProvider())
+        let item = RelationshipDetailItem(relationship: relationship, absolute: 0, index: 0, source: BookDetailProvider())
         if let (key, action, object) = item.removeAction {
             XCTAssertEqual(key, PersonAction.relationshipKey)
             XCTAssertEqual(action, "button.RemoveRelationship")
@@ -100,7 +100,7 @@ class PersonDetailProviderTests: ModelTestCase {
     }
 
     func testRemoveActionNil() {
-        let item = PersonDetailItem(relationship: nil, absolute: 0, index: 0, source: BookDetailProvider())
+        let item = RelationshipDetailItem(relationship: nil, absolute: 0, index: 0, source: BookDetailProvider())
         XCTAssertNil(item.removeAction)
     }
 

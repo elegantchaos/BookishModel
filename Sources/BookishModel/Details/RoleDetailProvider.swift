@@ -6,7 +6,7 @@
 import Foundation
 
 class RoleDetailProvider: DetailProvider {
-    var sortedRelationships = [Relationship]()
+    var sortedPeople = [Person]()
     
     public class func standardDetails(showDebug: Bool) -> [DetailSpec] {
         var details = [
@@ -22,13 +22,17 @@ class RoleDetailProvider: DetailProvider {
         return details
     }
     
+    override public var visibleColumns: [String] {
+        return DetailProvider.LabelledColumns
+    }
+
     override func buildItems() {
         super.buildItems()
         
         var row = items.count
-        for index in 0 ..< sortedRelationships.count {
-            let relationship = sortedRelationships[index]
-            let info = PersonDetailItem(relationship: relationship, absolute: index, index: index, source: self)
+        for index in 0 ..< sortedPeople.count {
+            let person = sortedPeople[index]
+            let info = PersonDetailItem(person: person, absolute: index, index: index, source: self)
             items.append(info)
             row += 1
         }
@@ -36,8 +40,9 @@ class RoleDetailProvider: DetailProvider {
     
     override func filter(for selection: [ModelObject], editing: Bool, combining: Bool, context: DetailContext) {
         if let role = selection.first as? Role, let sort = context.entitySorting["Relationship"], let relationships = role.relationships?.sortedArray(using: sort) as? [Relationship] {
-            sortedRelationships.removeAll()
-            sortedRelationships.append(contentsOf: relationships)
+            let people = relationships.compactMap { $0.person }
+            sortedPeople.removeAll()
+            sortedPeople.append(contentsOf: people)
         }
         
         let template = SeriesDetailProvider.standardDetails(showDebug: context.showDebug)

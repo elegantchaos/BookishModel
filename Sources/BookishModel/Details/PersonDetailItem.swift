@@ -1,40 +1,18 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-//  Created by Sam Deane on 06/02/2019.
+//  Created by Sam Deane on 10/04/2019.
 //  All code (c) 2019 - present day, Elegant Chaos Limited.
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Foundation
 
 public class PersonDetailItem: DetailItem {
-    static let roleColumnID = "role"
-
-    public var relationship: Relationship? { return object as? Relationship }
+    public var person: Person? { return object as? Person }
     
-    public init(relationship: Relationship? = nil, absolute: Int, index: Int, source: DetailProvider) {
-        super.init(kind: "person", absolute: absolute, index: index, placeholder: relationship == nil, source: source, object: relationship)
+    public init(person: Person? = nil, absolute: Int, index: Int, source: DetailProvider) {
+        super.init(kind: "person", absolute: absolute, index: index, placeholder: person == nil, source: source, object: person)
     }
     
     public override var heading: String {
-        return placeholder ? "Person" : relationship?.role?.name ?? super.heading
+        return ""
     }
-    
-    override public func viewID(for column: String) -> String { // TODO: move out of model?
-        switch column {
-        case DetailItem.headingColumnID:
-            return PersonDetailItem.roleColumnID
-            
-        default:
-            return super.viewID(for: column)
-        }
-    }
-    
-    public override var removeAction: DetailItem.ActionSpec? {
-        if let relationship = relationship {
-            return ( PersonAction.relationshipKey, "button.RemoveRelationship", relationship )
-        } else {
-            return super.removeAction
-        }
-    }
-
-    
 }

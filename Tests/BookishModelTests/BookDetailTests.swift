@@ -120,7 +120,7 @@ class BookDetailTests: ModelTestCase {
         
         source.filter(for: [book], editing: false, combining: false, context: TestContext())
         let personRow = source.info(section: 0, row: 0)
-        XCTAssertTrue(personRow is PersonDetailItem)
+        XCTAssertTrue(personRow is RelationshipDetailItem)
         XCTAssertEqual(personRow.absolute, 0)
         XCTAssertEqual(personRow.index, 0)
 
@@ -142,7 +142,7 @@ class BookDetailTests: ModelTestCase {
         source.filter(for: [book], editing: true, combining: false, context: TestContext())
 
         let editablePersonRow = source.info(section: 0, row: 1)
-        XCTAssertTrue(editablePersonRow is PersonDetailItem)
+        XCTAssertTrue(editablePersonRow is RelationshipDetailItem)
         XCTAssertEqual(editablePersonRow.kind, "person")
         XCTAssertTrue(editablePersonRow.placeholder)
         
@@ -165,7 +165,7 @@ class BookDetailTests: ModelTestCase {
         relationship.addToBooks(book2)
 
         source.filter(for: [book1, book2], editing: false, combining: false, context: TestContext())
-        let personRow = source.info(section: 0, row: 0) as? PersonDetailItem
+        let personRow = source.info(section: 0, row: 0) as? RelationshipDetailItem
         XCTAssertNotNil(personRow)
         
         XCTAssertEqual(relationship, personRow!.relationship)
@@ -186,9 +186,9 @@ class BookDetailTests: ModelTestCase {
         relationship2.addToBooks(book)
         
         source.filter(for: [book], editing: false, combining: false, context: TestContext())
-        let row1 = source.info(section: 0, row: 0) as? PersonDetailItem
+        let row1 = source.info(section: 0, row: 0) as? RelationshipDetailItem
         XCTAssertEqual(row1!.relationship, relationship2)
-        let row2 = source.info(section: 0, row: 1) as? PersonDetailItem
+        let row2 = source.info(section: 0, row: 1) as? RelationshipDetailItem
         XCTAssertEqual(row2!.relationship, relationship1)
         
         XCTAssertEqual(row1?.heading, "author")

@@ -79,13 +79,13 @@ public class BookDetailProvider: DetailProvider {
         var row = items.count
         let peopleCount = relationships.count
         for index in 0 ..< peopleCount {
-            let info = PersonDetailItem(relationship: relationships[index], absolute: row, index: index, source: self)
+            let info = RelationshipDetailItem(relationship: relationships[index], absolute: row, index: index, source: self)
             items.append(info)
             row += 1
         }
         
         if isEditing {
-            let info = PersonDetailItem(absolute: row, index: peopleCount, source: self)
+            let info = RelationshipDetailItem(absolute: row, index: peopleCount, source: self)
             items.append(info)
             row += 1
         }

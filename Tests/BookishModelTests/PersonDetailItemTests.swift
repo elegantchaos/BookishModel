@@ -9,13 +9,13 @@ import XCTest
 class PersonDetailItemTests: ModelTestCase {
 
     func testHeadingViewID() {
-        let item = PersonDetailItem(absolute: 0, index: 1, source: DetailProvider())
+        let item = RelationshipDetailItem(absolute: 0, index: 1, source: DetailProvider())
         
-        XCTAssertEqual(item.viewID(for: DetailItem.headingColumnID), PersonDetailItem.roleColumnID)
+        XCTAssertEqual(item.viewID(for: DetailItem.headingColumnID), RelationshipDetailItem.roleColumnID)
     }
 
     func testCustomViewID() {
-        let item = PersonDetailItem(absolute: 0, index: 1, source: DetailProvider())
+        let item = RelationshipDetailItem(absolute: 0, index: 1, source: DetailProvider())
         XCTAssertEqual(item.viewID(for: "custom column"), item.kind)
     }
 
@@ -25,12 +25,12 @@ class PersonDetailItemTests: ModelTestCase {
         let person = Person(context: context)
         let relationship = person.relationship(as: "test role")
 
-        let item = PersonDetailItem(relationship: relationship, absolute: 0, index: 1, source: DetailProvider())
+        let item = RelationshipDetailItem(relationship: relationship, absolute: 0, index: 1, source: DetailProvider())
         XCTAssertEqual(item.heading, "test role")
     }
     
     func testPlaceholderHeading() {
-        let item = PersonDetailItem(absolute: 0, index: 1, source: DetailProvider())
+        let item = RelationshipDetailItem(absolute: 0, index: 1, source: DetailProvider())
         XCTAssertEqual(item.heading, "Person")
     }
     
