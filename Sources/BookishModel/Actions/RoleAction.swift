@@ -80,14 +80,28 @@ class NewRoleAction: RoleAction {
  */
 
 class DeleteRoleAction: RoleAction {
+    override func validate(context: ActionContext) -> Bool {
+        
+        // only valid if there are some unlocked items in the selection
+        if let selection = context[ActionContext.selectionKey] as? [Role] {
+            if selection.allSatisfy({ return $0.locked }) {
+                return false
+            }
+        }
+
+        return super.validate(context: context)
+    }
+    
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
         if let selection = context[ActionContext.selectionKey] as? [Role] {
             for role in selection {
-                context.info.forObservers { (observer: RoleLifecycleObserver) in
-                    observer.deleted(role: role)
+                if !role.locked { // only delete the unlocked ones
+                    context.info.forObservers { (observer: RoleLifecycleObserver) in
+                        observer.deleted(role: role)
+                    }
+                    
+                    model.delete(role)
                 }
-                
-                model.delete(role)
             }
         }
     }
