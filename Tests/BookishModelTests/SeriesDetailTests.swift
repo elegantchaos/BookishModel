@@ -73,4 +73,16 @@ class SeriesDetailProviderTests: ModelTestCase {
         let item = SeriesDetailItem(series: nil, absolute: 0, index: 0, source: BookDetailProvider())
         XCTAssertNil(item.removeAction)
     }
+    
+    func testHeading() {
+        let item = SeriesEntryDetailItem(entry: nil, absolute: 0, index: 0, source: BookDetailProvider())
+        XCTAssertEqual(item.heading, "")
+        
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let entry = SeriesEntry(context: context)
+        entry.position = 2
+        let item2 = SeriesEntryDetailItem(entry: entry, absolute: 0, index: 0, source: BookDetailProvider())
+        XCTAssertEqual(item2.heading, "#2")
+    }
 }
