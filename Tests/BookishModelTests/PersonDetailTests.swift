@@ -104,4 +104,9 @@ class PersonDetailProviderTests: ModelTestCase {
         XCTAssertNil(item.removeAction)
     }
 
+    func testPersonDetailHeading() {
+        let item = PersonDetailItem(person: nil, absolute: 0, index: 0, source: BookDetailProvider())
+        XCTAssertEqual(item.heading, "")
+        XCTAssertNil(item.person)
+    }
 }

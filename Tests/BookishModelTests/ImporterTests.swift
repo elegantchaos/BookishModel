@@ -99,4 +99,23 @@ class ImporterTests: ModelTestCase {
         wait(for: [expectation], timeout: 10.0)
         XCTAssertEqual(container.managedObjectContext.countEntities(type: Book.self), 2)
     }
+    
+    func testFileTypes() {
+        let manager = ImportManager()
+        let importer = Importer(name: "test", source: .userSpecifiedFile, manager: manager)
+        XCTAssertNil(importer.fileTypes)
+    }
+
+    func testPanelPrompt() {
+        let manager = ImportManager()
+        let importer = Importer(name: "test", source: .userSpecifiedFile, manager: manager)
+        XCTAssertEqual(importer.panelPrompt, "importer.prompt")
+    }
+
+    func testPanelMessage() {
+        let manager = ImportManager()
+        let importer = Importer(name: "test", source: .userSpecifiedFile, manager: manager)
+        XCTAssertEqual(importer.panelMessage, "importer.message")
+    }
+
 }
