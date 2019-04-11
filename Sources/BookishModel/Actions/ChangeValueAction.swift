@@ -48,12 +48,25 @@ public class ChangeValueAction: SyncModelAction {
     public override func perform(context: ActionContext, model: NSManagedObjectContext) {
         if
             let selection = context[ActionContext.selectionKey] as? [NSManagedObject],
-            let key = context[ChangeValueAction.propertyKey] as? String,
-            let value = context[ChangeValueAction.valueKey]
+            let key = context[ChangeValueAction.propertyKey] as? String
         {
+            let value = context[ChangeValueAction.valueKey]
             for item in selection {
                 assert(item.managedObjectContext == model)
-                item.setValue(value, forKey: key)
+                let existingValue = item.value(forKey: key)
+                let changed: Bool
+                if value == nil && existingValue == nil {
+                    changed = false
+                } else if (value == nil) || (existingValue == nil) {
+                    changed = true
+                } else if let existingObject = existingValue as? NSObject, let object = value as? NSObject {
+                    changed = !existingObject.isEqual(object)
+                } else {
+                    changed = true
+                }
+                if changed {
+                    item.setValue(value, forKey: key)
+                }
             }
         }
     }

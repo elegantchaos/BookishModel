@@ -8,7 +8,7 @@ import Logger
 
 let bookChannel = Channel("com.elegantchaos.bookish.model.book")
 
-public class Book: ModelObject {
+public class Book: ChangeTrackingModelObject {
     
     static var untitledCount = 0
     static let notFound = 1
@@ -202,11 +202,8 @@ public class Book: ModelObject {
         return nil
     }
     
-    public override func didChangeValue(forKey key: String) { // TODO: not sure that this is the best approach...
-        if key == "name" {
-            sortName = Indexing.titleSort(for: name)
-        }
-        super.didChangeValue(forKey: key)
+    override public func updateSortName() {
+        sortName = Indexing.titleSort(for: name)
     }
     
     @objc dynamic var sectionName: String? {

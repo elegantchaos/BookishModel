@@ -5,7 +5,7 @@
 
 import CoreData
 
-public class Person: ModelObject {
+public class Person: ChangeTrackingModelObject {
 
     override public class func getProvider() -> DetailProvider {
         return PersonDetailProvider()
@@ -53,11 +53,8 @@ public class Person: ModelObject {
         return entry
     }
 
-    public override func didChangeValue(forKey key: String) { // TODO: not sure that this is the best approach...
-        if key == "name" {
-            sortName = Indexing.nameSort(for: name)
-        }
-        super.didChangeValue(forKey: key)
+    override public func updateSortName() {
+        sortName = Indexing.nameSort(for: name)
     }
     
     @objc dynamic var sectionName: String? {

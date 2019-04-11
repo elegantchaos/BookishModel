@@ -16,7 +16,7 @@ public class BookDetailProvider: DetailProvider {
             DetailSpec(binding: "format"),
             DetailSpec(binding: "identifier", viewAs: DetailSpec.textKind, editAs: DetailSpec.hiddenKind),
             DetailSpec(binding: "asin", viewAs: DetailSpec.hiddenKind, editAs: DetailSpec.textKind),
-            DetailSpec(binding: "ean", viewAs: DetailSpec.hiddenKind, editAs: DetailSpec.textKind),
+            DetailSpec(binding: "isbn", viewAs: DetailSpec.hiddenKind, editAs: DetailSpec.textKind),
             DetailSpec(binding: "classification"),
             DetailSpec(binding: "owner"),
             DetailSpec(binding: "published", viewAs: DetailSpec.dateKind, editAs: DetailSpec.editableDateKind),

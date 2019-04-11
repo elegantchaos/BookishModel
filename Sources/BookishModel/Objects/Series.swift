@@ -5,19 +5,16 @@
 
 import CoreData
 
-public class Series: ModelObject {
+public class Series: ChangeTrackingModelObject {
     
     override public class func getProvider() -> DetailProvider {
         return SeriesDetailProvider()
     }
     
-    public override func didChangeValue(forKey key: String) { // TODO: not sure that this is the best approach...
-        if key == "name" {
-            sortName = Indexing.titleSort(for: name)
-        }
-        super.didChangeValue(forKey: key)
+    override public func updateSortName() {
+        sortName = Indexing.titleSort(for: name)
     }
-    
+
     @objc dynamic var sectionName: String? {
         return Indexing.sectionName(for: sortName)
     }

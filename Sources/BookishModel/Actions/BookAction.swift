@@ -429,7 +429,7 @@ class ChangeSeriesAction: BookAction {
             var updatedSeries = context[SeriesAction.newSeriesKey] as? Series
             
             // if we weren't given a series, but were given a name, make a new series with that name
-            if updatedSeries == nil, let newSeriesName = context[SeriesAction.newSeriesKey] as? String {
+            if updatedSeries == nil, let newSeriesName = context[SeriesAction.newSeriesKey] as? String, !newSeriesName.isEmpty {
                 updatedSeries = Series(context: model)
                 updatedSeries?.name = newSeriesName
                 bookActionChannel.log("Made new Series \(newSeriesName)")

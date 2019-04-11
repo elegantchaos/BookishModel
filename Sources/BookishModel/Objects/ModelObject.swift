@@ -140,3 +140,27 @@ extension ModelObject: ActionSerialization {
         return self.uniqueIdentifier as! String
     }
 }
+
+
+public class ChangeTrackingModelObject: ModelObject {
+    public override func didChangeValue(forKey key: String) { // TODO: not sure that this is the best approach...
+        switch key {
+            
+        case "sortName", "modified":
+            break
+
+        case "name":
+            updateSortName()
+            fallthrough
+
+        default:
+            print("\(key) modified")
+            setPrimitiveValue(Date(), forKey: "modified")
+        }
+
+        super.didChangeValue(forKey: key)
+    }
+
+    public func updateSortName() {
+    }
+}

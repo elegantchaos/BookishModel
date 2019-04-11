@@ -5,36 +5,13 @@
 
 import CoreData
 
-public class Publisher: ModelObject {
+public class Publisher: ChangeTrackingModelObject {
     override public class func getProvider() -> DetailProvider {
         return PublisherDetailProvider()
     }
 
-//    public class func named(_ named: String, in context: NSManagedObjectContext) -> Publisher {
-//        return self.named(named, in: context, createIfMissing: true)!
-//    }
-//
-//    public class func named(_ named: String, in context: NSManagedObjectContext, createIfMissing: Bool) -> Publisher? {
-//        let request: NSFetchRequest<Publisher> = Publisher.fetcher(in: context)
-//        request.predicate = NSPredicate(format: "name = \"\(named)\"")
-//        if let results = try? context.fetch(request), results.count > 0 {
-//            return results[0]
-//        }
-//        
-//        if createIfMissing {
-//            let publisher = Publisher(context: context)
-//            publisher.name = named
-//            return publisher
-//        }
-//        
-//        return nil
-//    }
-    
-    public override func didChangeValue(forKey key: String) { // TODO: not sure that this is the best approach...
-        if key == "name" {
-            sortName = Indexing.titleSort(for: name)
-        }
-        super.didChangeValue(forKey: key)
+    override public func updateSortName() {
+        sortName = Indexing.titleSort(for: name)
     }
     
     @objc dynamic var sectionName: String? {
