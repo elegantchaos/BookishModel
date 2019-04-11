@@ -107,14 +107,13 @@ class BookTests: ModelTestCase {
         let context = container.managedObjectContext
         let book = Book(context: context)
         book.asin = "test-asin"
-        book.ean = "test-ean"
         book.isbn = "test-isbn"
-        XCTAssertEqual(book.identifier, "test-isbn (isbn)\ntest-ean (ean)\ntest-asin (asin)")
+        XCTAssertEqual(book.identifier, "test-isbn (isbn)\ntest-asin (asin)")
         
         book.asin = book.isbn
-        XCTAssertEqual(book.identifier, "test-isbn (isbn/asin)\ntest-ean (ean)")
+        XCTAssertEqual(book.identifier, "test-isbn (isbn/asin)")
         
         book.identifier = "blah" // setter should do nothing
-        XCTAssertEqual(book.identifier, "test-isbn (isbn/asin)\ntest-ean (ean)")
+        XCTAssertEqual(book.identifier, "test-isbn (isbn/asin)")
     }
 }

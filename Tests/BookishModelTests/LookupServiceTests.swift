@@ -223,10 +223,10 @@ class LookupServiceTests: ModelTestCase {
         
         var candidate: LookupCandidate? = nil
         let book = Book.named("Test Book", in: context)
-        let testEAN = "12345678"
-        book.ean = testEAN
+        let testISBN = "12345678"
+        book.isbn = testISBN
 
-        let session = manager.lookup(ean: testEAN, context: container.managedObjectContext) { (session, state) in
+        let session = manager.lookup(ean: testISBN, context: container.managedObjectContext) { (session, state) in
             switch state {
             case .done:
                 done.fulfill()
@@ -241,7 +241,7 @@ class LookupServiceTests: ModelTestCase {
                 
         wait(for: [done], timeout: 1.0)
         XCTAssertNotNil(candidate)
-        XCTAssertEqual(session.search, testEAN)
+        XCTAssertEqual(session.search, testISBN)
     }
     
     func testCandidateSummary() {

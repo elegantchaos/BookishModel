@@ -11,11 +11,18 @@ class SeriesDetailProvider: DetailProvider {
     public class func standardDetails(showDebug: Bool) -> [DetailSpec] {
         var details = [
             DetailSpec(binding: "notes"),
+            DetailSpec(binding: "items"),
+            DetailSpec(binding: "added", viewAs: DetailSpec.timeKind),
+            DetailSpec(binding: "modified", viewAs: DetailSpec.timeKind),
+            DetailSpec(binding: "importDate", viewAs: DetailSpec.timeKind, editAs: DetailSpec.hiddenKind),
         ]
         
         if showDebug {
             details.append(contentsOf: [
                 DetailSpec(binding: "uuid", viewAs: DetailSpec.textKind),
+                DetailSpec(binding: "log", viewAs: DetailSpec.textKind, isDebug: true),
+                DetailSpec(binding: "imageURL", viewAs: DetailSpec.textKind, isDebug: true),
+                DetailSpec(binding: "source", viewAs: DetailSpec.textKind, isDebug: true),
                 ])
         }
         

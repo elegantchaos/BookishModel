@@ -8,6 +8,7 @@ import XCTest
 
 class ISBNTests: ModelTestCase {
     let valid10 = ["0356502090","0316005401", "1597809802", "0345453743", "3200328584", "1416583785", "3200327316", "0349119287", "1605985228", "0684853159",  "013603599X"]
+    let converted = ["9780356502090"]
     let valid13 = ["9781605985220", "9791090636071", "9780681403222", "9783200327313", "9780349139234", "9781597809825", "9780553283686", "9783200328587", "9780316005388", "9780446671279"]
     let invalid = ["", "AX123!@z?E", "1233200328587", "blah", "03565020901", "97803491392344", "9780605985220"]
     
@@ -39,5 +40,11 @@ class ISBNTests: ModelTestCase {
         }
     }
 
-
+    func testConversion() {
+        for n in 0 ..< converted.count {
+            let isbn10 = valid10[n]
+            let expected = converted[n]
+            XCTAssertEqual(isbn10.isbn10to13, expected)
+        }
+    }
 }

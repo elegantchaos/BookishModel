@@ -143,7 +143,7 @@ class BookDetailTests: ModelTestCase {
 
         let editablePersonRow = source.info(section: 0, row: 1)
         XCTAssertTrue(editablePersonRow is RelationshipDetailItem)
-        XCTAssertEqual(editablePersonRow.kind, "person")
+        XCTAssertEqual(editablePersonRow.kind, "relationship")
         XCTAssertTrue(editablePersonRow.placeholder)
         
         let editableSeriesRow = source.info(section: 0, row: 4)

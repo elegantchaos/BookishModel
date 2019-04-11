@@ -77,10 +77,12 @@ class DeliciousLibraryImportSession: ImportSession {
                 book.source = DeliciousLibraryImporter.identifier
                 book.subtitle = record["subtitle"] as? String
                 book.importDate = Date()
-                
-                if let isbn = record["isbn"] as? String {
+
+                if let ean = record["ean"] as? String, ean.isISBN13 {
+                    book.isbn = ean
+                } else if let isbn = record["isbn"] as? String {
                     let trimmed = isbn.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-                    book.isbn = trimmed
+                    book.isbn = trimmed.isbn10to13
                 }
                 
                 if let height = record["boxHeightInInches"] as? Double, height > 0 {
@@ -95,7 +97,6 @@ class DeliciousLibraryImportSession: ImportSession {
                     book.length = length
                 }
 
-                book.ean = record["ean"] as? String
                 book.asin = record["asin"] as? String
                 book.classification = record["deweyDecimal"] as? String
                 

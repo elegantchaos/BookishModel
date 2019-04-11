@@ -154,23 +154,17 @@ public class Book: ModelObject {
         var result = [String]()
         var separateASIN = true
         
-        if let isbn = isbn {
+        if let isbn = isbn, !isbn.isEmpty {
             let tag: String
-            if let asin = asin, isbn == asin {
+            if let asin = asin, isbn == asin.isbn10to13 {
                 separateASIN = false
                 tag = "isbn/asin"
             } else {
                 tag = "isbn"
             }
-            if !isbn.isEmpty {
-                result.append("\(isbn) (\(tag))")
-            }
+            result.append("\(isbn) (\(tag))")
         }
         
-        if let ean = ean, !ean.isEmpty {
-            result.append("\(ean) (ean)")
-        }
-
         if separateASIN, let asin = asin, !asin.isEmpty {
             result.append("\(asin) (asin)")
         }

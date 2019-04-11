@@ -15,11 +15,12 @@ public class BookDetailProvider: DetailProvider {
             DetailSpec(binding: "notes"),
             DetailSpec(binding: "format"),
             DetailSpec(binding: "identifier", viewAs: DetailSpec.textKind, editAs: DetailSpec.hiddenKind),
-            DetailSpec(binding: "isbn", viewAs: DetailSpec.hiddenKind, editAs: DetailSpec.textKind),
             DetailSpec(binding: "asin", viewAs: DetailSpec.hiddenKind, editAs: DetailSpec.textKind),
             DetailSpec(binding: "ean", viewAs: DetailSpec.hiddenKind, editAs: DetailSpec.textKind),
             DetailSpec(binding: "classification"),
+            DetailSpec(binding: "owner"),
             DetailSpec(binding: "published", viewAs: DetailSpec.dateKind, editAs: DetailSpec.editableDateKind),
+            DetailSpec(binding: "read", viewAs: DetailSpec.dateKind, editAs: DetailSpec.editableDateKind),
             DetailSpec(binding: "added", viewAs: DetailSpec.timeKind),
             DetailSpec(binding: "modified", viewAs: DetailSpec.timeKind),
             DetailSpec(binding: "importDate", viewAs: DetailSpec.timeKind, editAs: DetailSpec.hiddenKind),
@@ -30,6 +31,7 @@ public class BookDetailProvider: DetailProvider {
         if showDebug {
             details.append(contentsOf: [
                 DetailSpec(binding: "uuid", viewAs: DetailSpec.textKind, isDebug: true),
+                DetailSpec(binding: "log", viewAs: DetailSpec.textKind, isDebug: true),
                 DetailSpec(binding: "imageURL", viewAs: DetailSpec.textKind, isDebug: true),
                 DetailSpec(binding: "source", viewAs: DetailSpec.textKind, isDebug: true),
                 DetailSpec(binding: "importRaw", viewAs: DetailSpec.hiddenKind, editAs: DetailSpec.textKind, isDebug: true),

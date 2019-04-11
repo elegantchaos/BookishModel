@@ -10,11 +10,17 @@ public class PersonDetailProvider: DetailProvider {
     public class func standardDetails(showDebug: Bool) -> [DetailSpec] {
         var details = [
             DetailSpec(binding: "notes"),
+            DetailSpec(binding: "biography"),
+            DetailSpec(binding: "born", viewAs: DetailSpec.dateKind, editAs: DetailSpec.editableDateKind),
+            DetailSpec(binding: "died", viewAs: DetailSpec.dateKind, editAs: DetailSpec.editableDateKind),
         ]
         
         if showDebug {
             details.append(contentsOf: [
                 DetailSpec(binding: "uuid", viewAs: DetailSpec.textKind, isDebug: true),
+                DetailSpec(binding: "log", viewAs: DetailSpec.textKind, isDebug: true),
+                DetailSpec(binding: "imageURL", viewAs: DetailSpec.textKind, isDebug: true),
+                DetailSpec(binding: "source", viewAs: DetailSpec.textKind, isDebug: true),
                 ])
         }
         

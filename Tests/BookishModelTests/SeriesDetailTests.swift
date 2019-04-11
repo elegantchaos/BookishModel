@@ -37,20 +37,21 @@ class SeriesDetailProviderTests: ModelTestCase {
         series.notes = "Some notes"
         
         source.filter(for: [series], editing: false, combining: false, context: TestContext(showDebug: true))
-        XCTAssertEqual(source.itemCount(for: 0), 2)
+        XCTAssertEqual(source.itemCount(for: 0), 3)
         XCTAssertEqual(source.sectionCount, 1)
 
         source.filter(for: [series], editing: false, combining: false, context: TestContext())
-        XCTAssertEqual(source.itemCount(for: 0), 1)
+        XCTAssertEqual(source.itemCount(for: 0), 2)
         XCTAssertEqual(source.sectionCount, 1)
 
         let book = Book(context: context)
         book.addToSeries(series, position: 1)
         
         source.filter(for: [series], editing: false, combining: false, context: TestContext())
-        XCTAssertEqual(source.itemCount(for: 0), 2)
+        XCTAssertEqual(source.itemCount(for: 0), 3)
         XCTAssertEqual(source.info(section: 0, row: 0).kind, DetailSpec.textKind)
-        XCTAssertEqual(source.info(section: 0, row: 1).kind, SeriesEntryDetailItem.entryKind)
+        XCTAssertEqual(source.info(section: 0, row: 1).kind, DetailSpec.textKind)
+        XCTAssertEqual(source.info(section: 0, row: 2).kind, SeriesEntryDetailItem.entryKind)
         XCTAssertEqual(source.sectionCount, 1)
     }
 

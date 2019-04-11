@@ -107,4 +107,33 @@ extension String {
         return calculatedDigit == existingDigit
     }
 
+    /**
+     Given an isbn10 string, return the isbn13 equivalent.
+     */
+    
+    public var isbn10to13: String {
+        // if we've got the wrong length string, just return the original
+        guard self.count == 10, let chars = self.cString(using: .ascii) else {
+            return self
+        }
+  
+        // if we're not an isbn10 string, return the original
+        let isbn9 = chars[...8]
+        let calculatedDigit = String.checkDigitISBN10(for: isbn9)
+        let existingDigit = chars[9]
+        guard calculatedDigit == existingDigit else {
+            return self
+        }
+
+        var isbn13: [CChar] = [ 57, 55, 56 ]
+        isbn13.append(contentsOf: isbn9)
+        let checkDigit = String.checkDigitISBN13(for: ArraySlice<CChar>(isbn13))
+        isbn13.append(checkDigit)
+        
+        if let string = NSString(bytes: isbn13, length: isbn13.count, encoding: String.Encoding.ascii.rawValue) {
+            return string as String
+        }
+        
+        return self
+    }
 }
