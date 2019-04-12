@@ -24,6 +24,8 @@ extension DecodingError {
             return context.detailedDescription(for: data)
         case .keyNotFound(let key, let context):
             return context.detailedDescription(for: data, missingKey: key)
+        @unknown default:
+            return ""
         }
     }
 }

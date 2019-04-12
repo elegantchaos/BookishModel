@@ -1094,10 +1094,11 @@
 				TargetAttributes = {
 					22429390212AE0F300E70510 = {
 						CreatedOnToolsVersion = 10.0;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 					};
 					22429398212AE0F400E70510 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1020;
 						TestTargetID = 22DD42432126D6DA0070C85A;
 					};
 					224293B2212AE16200E70510 = {
@@ -1642,7 +1643,7 @@
 				SWIFT_INCLUDE_PATHS = "$(CONFIGURATION_BUILD_DIR)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(BOOKISH_MODEL_BRIDGING_PATH)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1672,7 +1673,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "$(CONFIGURATION_BUILD_DIR)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(BOOKISH_MODEL_BRIDGING_PATH)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1692,7 +1693,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.elegantchaos.BookishModelMacTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1710,7 +1711,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.elegantchaos.BookishModelMacTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

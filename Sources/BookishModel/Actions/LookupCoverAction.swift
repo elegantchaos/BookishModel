@@ -15,7 +15,7 @@ public class LookupCoverAction: SyncModelAction {
             let books = context[ActionContext.selectionKey] as? [Book] {
             for book in books {
                 if let isbn = book.isbn {
-                    manager.lookup(ean: isbn, context: model) { (session, state) in
+                    _ = manager.lookup(ean: isbn, context: model) { (session, state) in
                         switch(state) {
                         case let .foundCandidate(candidate):
                             book.imageURL = candidate.image
