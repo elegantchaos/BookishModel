@@ -166,15 +166,15 @@ class MergePersonAction: PersonAction {
                 },
             """)
             
-            var notes = primary.notes ?? ""
+            var log = primary.log ?? ""
             let others = selection.dropFirst()
             personActionChannel.log("Merging \(primary) with \(others)")
             for person in others {
                 moveRelationships(from: person, to: primary, context: model)
                 model.delete(person)
-                notes += "\nMerged with \(person).\n"
+                log += "\nMerged with \(person).\n"
             }
-            primary.notes = notes
+            primary.log = log
         }
     }
 }
@@ -241,9 +241,9 @@ class SplitPersonAction: PersonAction {
                     newPerson.uuid = "\(uuid)-\(suffix)"
                 }
                 
-                var notes = person.notes ?? ""
-                notes += "\nSplit from \(person)."
-                newPerson.notes = notes
+                var log = person.log ?? ""
+                log += "\nSplit from \(person)."
+                newPerson.log = log
 
                 copyRelationships(from: person, to: newPerson, context: model)
                 personActionChannel.log("Split \(oldName) as \(person) and \(newPerson)")
