@@ -89,6 +89,8 @@ detail.importRaw.label = "🛠 import";
 detail.uuid.label = "🛠 id";
 detail.source.label = "🛠 source";
 
+scanner.startup = "Scan a barcode or enter an ISBN/EAN/title.";
+
 candidate.lookup.scanning = "Scanning for barcodes…";
 candidate.lookup.valid = "Found ISBN {search}…";
 candidate.lookup.invalid = "Unknown format {search}!";
