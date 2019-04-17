@@ -28,9 +28,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BookishCoreMac::BookishCoreMobile"
-               BuildableName = "BookishCoreMobile"
-               BlueprintName = "BookishCoreMobile"
+               BlueprintIdentifier = "BookishCoreMac::BookishCore"
+               BuildableName = "BookishCore.framework"
+               BlueprintName = "BookishCore"
                ReferencedContainer = "container:Dependencies/BookishCoreMac.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -42,9 +42,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BookishCoreMac::BookishCore"
-               BuildableName = "BookishCore.framework"
-               BlueprintName = "BookishCore"
+               BlueprintIdentifier = "BookishCoreMac::BookishCoreMobile"
+               BuildableName = "BookishCoreMobile"
+               BlueprintName = "BookishCoreMobile"
                ReferencedContainer = "container:Dependencies/BookishCoreMac.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
