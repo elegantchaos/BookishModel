@@ -154,7 +154,6 @@ public class ChangeTrackingModelObject: ModelObject {
             fallthrough
 
         default:
-            print("\(key) modified")
             setPrimitiveValue(Date(), forKey: "modified")
         }
 
