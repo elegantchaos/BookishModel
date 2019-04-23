@@ -21,6 +21,7 @@ public protocol TagProcessorInterface {
 /// Something that actually does the parsing.
 public protocol TagParser {
     init(processor: TagProcessorInterface)
+    func parse(text: String)
     func parse(data: Data)
     func parse(contentsOf: URL)
 }
@@ -33,6 +34,12 @@ public protocol TagParser {
         self.processor = processor
     }
     
+    func parse(text: String) {
+        if let data = text.data(using: .utf8) {
+            parse(data: data)
+        }
+    }
+
     func parse(contentsOf url: URL) {
         if let parser = XMLParser.init(contentsOf: url) {
             parser.delegate = self
@@ -122,7 +129,16 @@ public class TagProcessor<State: TagProcessorState>: TagProcessorInterface {
             tagProcessorChannel.log("Unbalanced tags - markup is probably corrupt.")
         }
     }
+
+    func parse(text: String) {
+        if let parser = parser {
+            prepare()
+            parser.parse(text: text)
+            cleanup()
+        }
+    }
     
+
     func parse(url: URL) {
         if let parser = parser {
             prepare()

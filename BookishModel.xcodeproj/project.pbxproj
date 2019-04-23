@@ -49,6 +49,8 @@
 		22318E99225652A500EE3EBC /* KindleImporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22318E8C225638DD00EE3EBC /* KindleImporterTests.swift */; };
 		22318E9A225652AA00EE3EBC /* MarkupUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22318E952256452400EE3EBC /* MarkupUtilities.swift */; };
 		22318E9B2256639600EE3EBC /* KindleImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22318E702256385C00EE3EBC /* KindleImporter.swift */; };
+		2231C3DB226A47EA009A9937 /* MarkupUtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2231C3DA226A47EA009A9937 /* MarkupUtilityTests.swift */; };
+		2231C3DC226A47EA009A9937 /* MarkupUtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2231C3DA226A47EA009A9937 /* MarkupUtilityTests.swift */; };
 		2231C5162228342D00D730FB /* LookupServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2231C5152228342D00D730FB /* LookupServiceTests.swift */; };
 		2231C53122285F1900D730FB /* LookupServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2231C5152228342D00D730FB /* LookupServiceTests.swift */; };
 		2231C571222971B600D730FB /* String+ISBN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2231C570222971B600D730FB /* String+ISBN.swift */; };
@@ -466,6 +468,7 @@
 		22318E8C225638DD00EE3EBC /* KindleImporterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KindleImporterTests.swift; sourceTree = "<group>"; };
 		22318E8E22563AD600EE3EBC /* Kindle.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Kindle.xml; sourceTree = "<group>"; };
 		22318E952256452400EE3EBC /* MarkupUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkupUtilities.swift; sourceTree = "<group>"; };
+		2231C3DA226A47EA009A9937 /* MarkupUtilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkupUtilityTests.swift; sourceTree = "<group>"; };
 		2231C4BC2227FD2400D730FB /* Version 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Version 4.xcdatamodel"; sourceTree = "<group>"; };
 		2231C5152228342D00D730FB /* LookupServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookupServiceTests.swift; sourceTree = "<group>"; };
 		2231C570222971B600D730FB /* String+ISBN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ISBN.swift"; sourceTree = "<group>"; };
@@ -696,6 +699,7 @@
 				2213FD2522312FD900D8B4D8 /* DecodingErrorTests.swift */,
 				224293C2212AE16300E70510 /* MiscModelTests.swift */,
 				2250C7F321BAF7AD00E899E2 /* ModelActionTestCase.swift */,
+				2231C3DA226A47EA009A9937 /* MarkupUtilityTests.swift */,
 				22A498A0220DF877006A2137 /* ModelObjectTests.swift */,
 				22EEF6BD21A6B761007FAD10 /* ModelTestCase.swift */,
 				2250C7F021BAF6B800E899E2 /* PersonActionTests.swift */,
@@ -1438,6 +1442,7 @@
 				2250C80B21BE891D00E899E2 /* BookDetailTests.swift in Sources */,
 				2231C5162228342D00D730FB /* LookupServiceTests.swift in Sources */,
 				225F893D221AE66200196110 /* StringLocalizationTests.swift in Sources */,
+				2231C3DB226A47EA009A9937 /* MarkupUtilityTests.swift in Sources */,
 				2250C7EB21BAB7D400E899E2 /* RegularExpressionTests.swift in Sources */,
 				2250C7CF21BAA2F600E899E2 /* RoleTests.swift in Sources */,
 				22EEF6BE21A6B761007FAD10 /* ModelTestCase.swift in Sources */,
@@ -1550,6 +1555,7 @@
 				2250C80C21BE891D00E899E2 /* BookDetailTests.swift in Sources */,
 				2231C53122285F1900D730FB /* LookupServiceTests.swift in Sources */,
 				225F893E221AE66200196110 /* StringLocalizationTests.swift in Sources */,
+				2231C3DC226A47EA009A9937 /* MarkupUtilityTests.swift in Sources */,
 				2250C7EC21BAB7D400E899E2 /* RegularExpressionTests.swift in Sources */,
 				2250C7D021BAA2F600E899E2 /* RoleTests.swift in Sources */,
 				22EEF6BF21A6B761007FAD10 /* ModelTestCase.swift in Sources */,
