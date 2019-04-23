@@ -8,7 +8,7 @@ import Foundation
 public class BookDetailProvider: DetailProvider {
     private var relationships = [Relationship]()
     private var publishers = [Publisher]()
-    private var series = [Series]()
+    private var entries = [SeriesEntry]()
     
     public class func standardDetails(showDebug: Bool) -> [DetailSpec] {
         var details = [
@@ -56,18 +56,13 @@ public class BookDetailProvider: DetailProvider {
                 return book.publisher == nil ? nil : Set<Publisher>([book.publisher!])
             }
             
-            let collectedSeries = MultipleValues.extract(from: books) { book -> Set<Series>? in
-                if let entries = book.entries as? Set<SeriesEntry> {
-                    let series = entries.map { $0.series } as! [Series]
-                    return Set<Series>(series)
-                }
-                
-                return nil
+            let collectedSeries = MultipleValues.extract(from: books) { book -> Set<SeriesEntry>? in
+                return book.entries as? Set<SeriesEntry>
             }
             
             relationships = collectedRelationships.common.sorted(by: { ($0.person?.name ?? "") < ($1.person?.name ?? "") })
             publishers = collectedPublishers.common.sorted(by: { ($0.name ?? "") < ($1.name ?? "") })
-            series = collectedSeries.common.sorted(by: {($0.name ?? "") < ($1.name ?? "")})
+            entries = collectedSeries.common.sorted(by: {($0.series?.name ?? "") < ($1.series?.name ?? "")})
         }
         
         super.filter(for: selection, template: template, editing: editing, combining: combining, context: context)
@@ -101,15 +96,15 @@ public class BookDetailProvider: DetailProvider {
             row += 1
         }
         
-        let seriesCount = series.count
-        for index in 0 ..< seriesCount {
-            let info = SeriesDetailItem(series: series[index], absolute: row, index: index, source: self)
+        let entriesCount = entries.count
+        for index in 0 ..< entriesCount {
+            let info = SeriesDetailItem(entry: entries[index], absolute: row, index: index, source: self)
             items.append(info)
             row += 1
         }
         
         if isEditing {
-            let info = SeriesDetailItem(absolute: row, index: seriesCount, source: self)
+            let info = SeriesDetailItem(absolute: row, index: entriesCount, source: self)
             items.append(info)
             row += 1
         }
@@ -125,8 +120,8 @@ public class BookDetailProvider: DetailProvider {
                 relationships.append(r)
                 changed = true
                 
-            case let s as Series:
-                series.append(s)
+            case let s as SeriesEntry:
+                entries.append(s)
                 changed = true
                 
             case let p as Publisher:
@@ -151,17 +146,22 @@ public class BookDetailProvider: DetailProvider {
     public override func removed(details: [ModelObject]) -> IndexSet {
         var changes = IndexSet()
         for detail in details {
-            if let item = items.first(where: { $0.object == detail } ) {
+            if let item = items.first(where: { $0.matches(object: detail) } ) {
                 changes.insert(item.absolute)
                 switch detail {
                 case let r as Relationship:
                     if let index = relationships.firstIndex(of: r) {
                         relationships.remove(at: index)
                     }
-                    
+
                 case let s as Series:
-                    if let index = series.firstIndex(of: s) {
-                        series.remove(at: index)
+                    if let index = entries.firstIndex(where: {$0.series == s}) {
+                        entries.remove(at: index)
+                    }
+
+                case let e as SeriesEntry:
+                    if let index = entries.firstIndex(of: e) {
+                        entries.remove(at: index)
                     }
                     
                 case let p as Publisher:
@@ -195,8 +195,8 @@ public class BookDetailProvider: DetailProvider {
                 case let r as Relationship:
                     relationships[item.index] = r
                     
-                case let s as Series:
-                    series[item.index] = s
+                case let e as SeriesEntry:
+                    entries[item.index] = e
                     
                 case let p as Publisher:
                     publishers = [p]

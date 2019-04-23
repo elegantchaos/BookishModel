@@ -50,6 +50,10 @@ public class DetailItem {
             return kind
         }
     }
+    
+    public func matches(object: ModelObject) -> Bool {
+        return self.object == object
+    }
 }
 
 

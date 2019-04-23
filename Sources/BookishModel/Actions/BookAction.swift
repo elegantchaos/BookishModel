@@ -28,8 +28,9 @@ public protocol BookChangeObserver: ActionObserver {
     func added(relationship: Relationship)
     func removed(relationship: Relationship)
     func replaced(relationship: Relationship, with: Relationship)
-    func added(series: Series)
+    func added(series: Series, position: Int)
     func removed(series: Series)
+    func changed(series: Series, to: Series, position: Int)
     func added(publisher: Publisher)
     func changed(publisher: Publisher, to: Publisher)
     func removed(publisher: Publisher)
@@ -45,10 +46,13 @@ public extension BookChangeObserver {
     func replaced(relationship: Relationship, with: Relationship) {
     }
     
-    func added(series: Series) {
+    func added(series: Series, position: Int) {
     }
     
     func removed(series: Series) {
+    }
+    
+    func changed(series: Series, to: Series, position: Int) {
     }
     
     func added(publisher: Publisher) {
@@ -384,10 +388,11 @@ class AddSeriesAction: BookAction {
                 entry.series = series
                 entry.position = 1
             }
-            
+
             context.info.forObservers { (observer: BookChangeObserver) in
-                observer.added(series: series)
+                observer.added(series: series, position: 1)
             }
+
         }
     }
 }
@@ -407,11 +412,11 @@ class RemoveSeriesAction: BookAction {
             let series = context[SeriesAction.seriesKey] as? Series {
             for book in selection {
                 book.removeFromSeries(series)
+                context.info.forObservers { (observer: BookChangeObserver) in
+                    observer.removed(series: series)
+                }
             }
             
-            context.info.forObservers { (observer: BookChangeObserver) in
-                observer.removed(series: series)
-            }
         }
         
     }
@@ -459,11 +464,23 @@ class ChangeSeriesAction: BookAction {
                     book.addToSeries(series, position: bookPosition ?? 0)
                     bookActionChannel.debug("added to \(series.name!)")
                 }
+                if let existingSeries = existingSeries {
+                    context.info.forObservers { (observer: BookChangeObserver) in
+                        observer.changed(series: existingSeries, to: series, position: position ?? 0)
+                    }
+                } else {
+                    context.info.forObservers { (observer: BookChangeObserver) in
+                        observer.added(series: series, position: position ?? 0)
+                    }
+                }
             } else if let existingSeries = existingSeries, let updatedPosition = position {
                 // we've not got a series to change to, but we might be updating our position
                 // in an existing series
                 for book in selection {
                     book.setPosition(in: existingSeries, to: updatedPosition)
+                }
+                context.info.forObservers { (observer: BookChangeObserver) in
+                    observer.changed(series: existingSeries, to: existingSeries, position: position ?? 0)
                 }
             }
         }

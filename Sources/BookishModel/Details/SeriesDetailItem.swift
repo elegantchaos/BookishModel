@@ -6,10 +6,10 @@
 import Foundation
 
 public class SeriesDetailItem: DetailItem {
-    public var series: Series? { return object as? Series }
+    public var entry: SeriesEntry? { return object as? SeriesEntry }
     
-    public init(series: Series? = nil, absolute: Int, index: Int, source: DetailProvider) {
-        super.init(kind: "series", absolute: absolute, index: index, placeholder: series == nil, source: source, object: series)
+    public init(entry: SeriesEntry? = nil, absolute: Int, index: Int, source: DetailProvider) {
+        super.init(kind: "series", absolute: absolute, index: index, placeholder: entry == nil, source: source, object: entry)
     }
     
     public override var heading: String {
@@ -17,11 +17,18 @@ public class SeriesDetailItem: DetailItem {
     }
     
     public override var removeAction: DetailItem.ActionSpec? {
-        if let series = series {
+        if let entry = entry, let series = entry.series {
             return ( SeriesAction.seriesKey, "button.RemoveSeries", series )
         } else {
             return super.removeAction
         }
-        
+    }
+
+    public override func matches(object: ModelObject) -> Bool {
+        if let series = object as? Series {
+            return entry?.series == series
+        } else {
+            return super.matches(object: object)
+        }
     }
 }
