@@ -31,6 +31,7 @@ public protocol BookChangeObserver: ActionObserver {
     func added(series: Series)
     func removed(series: Series)
     func added(publisher: Publisher)
+    func changed(publisher: Publisher, to: Publisher)
     func removed(publisher: Publisher)
 }
 
@@ -53,6 +54,9 @@ public extension BookChangeObserver {
     func added(publisher: Publisher) {
     }
     
+    func changed(publisher: Publisher, to: Publisher) {
+    }
+
     func removed(publisher: Publisher) {
     }
 }
@@ -338,14 +342,19 @@ class ChangePublisherAction: BookAction {
                         if existingPublisher != newPublisher {
                             newPublisher.addToBooks(book)
                             bookActionChannel.log("changed publisher from \(existingPublisher.name!) to \(newPublisher.name!)")
+                            context.info.forObservers { (observer: BookChangeObserver) in
+                                observer.changed(publisher: existingPublisher, to: newPublisher)
+                            }
+                    } else {
+                            bookActionChannel.log("publisher unchanged \(existingPublisher.name!)")
                         }
                     } else {
                             newPublisher.addToBooks(book)
                             bookActionChannel.log("set publisher to \(newPublisher.name!)")
+                            context.info.forObservers { (observer: BookChangeObserver) in
+                                observer.added(publisher: newPublisher)
+                            }
                     }
-                }
-                context.info.forObservers { (observer: BookChangeObserver) in
-                    observer.added(publisher: newPublisher)
                 }
             } else if let existingPublisher = context[PublisherAction.publisherKey] as? Publisher {
                 bookActionChannel.log("cleared publisher \(existingPublisher.name!)")
