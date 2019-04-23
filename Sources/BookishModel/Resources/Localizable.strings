@@ -73,24 +73,42 @@ Role.standard.illustrator.notes = "A person with this role is the illustrator of
 Role.standard.translator.notes = "A person with this role is the translator of a volume.";
 
 detail.notes.label = "notes";
+detail.notes.placeholder = "general notes";
+
 detail.format.label = "format";
+detail.format.placeholder = "format (hardback, paperback, etc)";
+
 detail.biography.label = "biography";
 detail.identifier.label = "identifier";
+
 detail.isbn.label = "isbn";
+detail.isbn.placeholder = "isbn or ean number";
+
 detail.asin.label = "asin";
+detail.asin.placeholder = "amazon identification number";
+
 detail.ean.label = "ean";
+
 detail.classification.label = "classification";
+detail.classification.placeholder = "classification (dewey, loc, etc)";
+
 detail.born.label = "born";
 detail.died.label = "died";
 detail.items.label = "volumes";
 detail.published.label = "published";
 detail.modified.label = "modified";
 detail.added.label = "added";
+
 detail.owner.label = "owner";
+detail.owner.placeholder = "owner";
+
 detail.read.label = "last read";
 detail.importDate.label = "imported";
 detail.dimensions.label = "dimensions";
+
 detail.pages.label = "pages";
+detail.pages.placeholder = "number of pages";
+
 detail.importRaw.label = "🛠 import";
 detail.uuid.label = "🛠 id";
 detail.source.label = "🛠 source";
