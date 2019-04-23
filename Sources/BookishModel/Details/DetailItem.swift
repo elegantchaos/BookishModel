@@ -52,3 +52,13 @@ public class DetailItem {
     }
 }
 
+
+extension DetailItem: CustomStringConvertible {
+    public var description: String {
+        var text = "\(absolute) \(kind) \(index)"
+        if let object = object {
+            text += " \(object)"
+        }
+        return text
+    }
+}
