@@ -587,6 +587,7 @@
 		22F1834C21CABE4B00220D20 /* BookishCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookishCore.swift; sourceTree = "<group>"; };
 		22F1834E21CABE4B00220D20 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		22F1845B21E3AD2E00220D20 /* CloudManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudManager.swift; sourceTree = "<group>"; };
+		22FA65BB2274998100F697F9 /* Version 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Version 8.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2045,6 +2046,7 @@
 		22DD424D2126D6DA0070C85A /* Collection.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				22FA65BB2274998100F697F9 /* Version 8.xcdatamodel */,
 				221B855F225F3BF400BC4D32 /* Version 7.xcdatamodel */,
 				22DDE6CD2257516C00816C5C /* Version 6.xcdatamodel */,
 				226744EB222AB6C6002549CE /* Version 5.xcdatamodel */,
@@ -2053,7 +2055,7 @@
 				225488DF21F391F500EE8ECB /* Version 2.xcdatamodel */,
 				22DD424E2126D6DA0070C85A /* Version 1.xcdatamodel */,
 			);
-			currentVersion = 221B855F225F3BF400BC4D32 /* Version 7.xcdatamodel */;
+			currentVersion = 22FA65BB2274998100F697F9 /* Version 8.xcdatamodel */;
 			path = Collection.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
