@@ -10,17 +10,7 @@ let bookChannel = Channel("com.elegantchaos.bookish.model.book")
 
 public class Book: ChangeTrackingModelObject {
     
-    static var untitledCount = 0
     static let notFound = 1
-    
-    public override func awakeFromInsert() {
-        super.awakeFromInsert()
-        name = "Untitled \(Book.untitledCount)"
-        Book.untitledCount += 1
-        
-        added = Date()
-        modified = Date()
-    }
 
     override public class func getProvider() -> DetailProvider {
         return BookDetailProvider()

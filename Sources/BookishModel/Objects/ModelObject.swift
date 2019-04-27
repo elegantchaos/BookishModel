@@ -143,6 +143,30 @@ extension ModelObject: ActionSerialization {
 
 
 public class ChangeTrackingModelObject: ModelObject {
+    
+    static var untitledCounts: [String:Int] = [:]
+    
+    public override func awakeFromInsert() {
+        super.awakeFromInsert()
+        
+        var count = 1
+        let entityName = type(of: self).entityName
+        var name = "Untitled \(entityName)"
+        repeat {
+            let existing = type(of: self).named(name, in: self.managedObjectContext!, createIfMissing: false)
+            if existing == nil {
+                break
+            }
+            count += 1
+            name = "Untitled \(entityName) \(count)"
+        } while (true)
+        
+        let now = Date()
+        setValue(name, forKey: "name")
+        setValue(now, forKey: "added")
+        setValue(now, forKey: "modified")
+    }
+    
     public override func didChangeValue(forKey key: String) { // TODO: not sure that this is the best approach...
         switch key {
             
