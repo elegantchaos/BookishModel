@@ -9,6 +9,42 @@ import XCTest
 class NavigationStackTests: ModelTestCase {
     
     func testPush() {
-        let stack = NavigationStack<Int>()
+        navigationStackChannel.enabled = true
+        let stack = NavigationStack<String>()
+
+        stack.push("one")
+        XCTAssertEqual(stack.current, "one")
+        
+        stack.push("two")
+        XCTAssertEqual(stack.current, "two")
+    }
+
+    func testGoBack() {
+        navigationStackChannel.enabled = true
+        let stack = NavigationStack<String>()
+        stack.push("one")
+        stack.push("two")
+        XCTAssertEqual(stack.current, "two")
+        
+        XCTAssertTrue(stack.goBack())
+        XCTAssertEqual(stack.current, "one")
+        
+        XCTAssertFalse(stack.goBack())
+    }
+    
+    func testGoForward() {
+        navigationStackChannel.enabled = true
+        let stack = NavigationStack<String>()
+        stack.push("one")
+        stack.push("two")
+        XCTAssertEqual(stack.current, "two")
+        
+        XCTAssertTrue(stack.goBack())
+        XCTAssertEqual(stack.current, "one")
+        
+        XCTAssertTrue(stack.goForward())
+        XCTAssertEqual(stack.current, "two")
+        
+        XCTAssertFalse(stack.goForward())
     }
 }
