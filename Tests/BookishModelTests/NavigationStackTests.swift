@@ -47,4 +47,26 @@ class NavigationStackTests: ModelTestCase {
         
         XCTAssertFalse(stack.goForward())
     }
+    
+    func testGoBackThenPush() {
+        navigationStackChannel.enabled = true
+        let stack = NavigationStack<String>()
+        stack.push("one")
+        stack.push("two")
+        XCTAssertEqual(stack.current, "two")
+        
+        XCTAssertTrue(stack.goBack())
+        XCTAssertEqual(stack.current, "one")
+        
+        stack.push("three")
+        XCTAssertEqual(stack.current, "three")
+
+        XCTAssertTrue(stack.goBack())
+        XCTAssertEqual(stack.current, "one")
+
+        XCTAssertTrue(stack.goForward())
+        XCTAssertEqual(stack.current, "three")
+
+        XCTAssertFalse(stack.goForward())
+    }
 }
