@@ -19,6 +19,14 @@ public class NavigationStack<ItemType> {
         }
     }
 
+    public var canGoBack: Bool {
+        return position > 1
+    }
+    
+    public var canGoForward: Bool {
+        return position < stack.count
+    }
+    
     public init() {
         stack = []
         position = 0
@@ -41,7 +49,7 @@ public class NavigationStack<ItemType> {
         navigationStackChannel.log("New position \(position)")
     }
     
-    public func goBack() -> ItemType? {
+    @discardableResult public func goBack() -> ItemType? {
         guard position > 1 else {
             return nil
         }
@@ -50,7 +58,7 @@ public class NavigationStack<ItemType> {
         return stack[position - 1]
     }
 
-    public func goForward() -> ItemType? {
+    @discardableResult public func goForward() -> ItemType? {
         guard position < stack.count else {
             return nil
         }
