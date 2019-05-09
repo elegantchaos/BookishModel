@@ -5,6 +5,20 @@
 
 import Foundation
 
-class NavigationStack {
+class NavigationStack<ItemType> {
+    var stack: [ItemType]
+    var position: Array<ItemType>.Index
+    
+    init() {
+        stack = []
+        position = stack.endIndex
+    }
+    
+    func push(_ item: ItemType) {
+        let count = stack.endIndex - position
+        stack.removeLast(count)
+        stack.append(item)
+        position = stack.endIndex
+    }
     
 }

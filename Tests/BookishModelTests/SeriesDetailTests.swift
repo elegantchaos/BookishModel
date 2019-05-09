@@ -37,18 +37,18 @@ class SeriesDetailProviderTests: ModelTestCase {
         series.notes = "Some notes"
         
         source.filter(for: [series], editing: false, combining: false, context: TestContext(showDebug: true))
-        XCTAssertEqual(source.itemCount(for: 0), 4)
+        XCTAssertEqual(source.itemCount(for: 0), 5)
         XCTAssertEqual(source.sectionCount, 1)
 
         source.filter(for: [series], editing: false, combining: false, context: TestContext())
-        XCTAssertEqual(source.itemCount(for: 0), 3)
+        XCTAssertEqual(source.itemCount(for: 0), 4)
         XCTAssertEqual(source.sectionCount, 1)
 
         let book = Book(context: context)
         book.addToSeries(series, position: 1)
         
         source.filter(for: [series], editing: false, combining: false, context: TestContext())
-        XCTAssertEqual(source.itemCount(for: 0), 4)
+        XCTAssertEqual(source.itemCount(for: 0), 5)
         XCTAssertEqual(source.info(section: 0, row: 0).kind, DetailSpec.textKind)
         XCTAssertEqual(source.info(section: 0, row: 1).kind, DetailSpec.textKind)
         XCTAssertEqual(source.info(section: 0, row: 2).kind, DetailSpec.timeKind)
@@ -59,7 +59,9 @@ class SeriesDetailProviderTests: ModelTestCase {
         let container = makeTestContainer()
         let context = container.managedObjectContext
         let series = Series(context: context)
-        let item = SeriesDetailItem(series: series, absolute: 0, index: 0, source: BookDetailProvider())
+        let book = Book.named("test", in: context)
+        let entry = book.addToSeries(series, position: 1)
+        let item = SeriesDetailItem(entry: entry, absolute: 0, index: 0, source: BookDetailProvider())
         if let (key, action, object) = item.removeAction {
             XCTAssertEqual(key, SeriesAction.seriesKey)
             XCTAssertEqual(action, "button.RemoveSeries")
@@ -70,7 +72,7 @@ class SeriesDetailProviderTests: ModelTestCase {
     }
     
     func testRemoveActionNil() {
-        let item = SeriesDetailItem(series: nil, absolute: 0, index: 0, source: BookDetailProvider())
+        let item = SeriesDetailItem(entry: nil, absolute: 0, index: 0, source: BookDetailProvider())
         XCTAssertNil(item.removeAction)
     }
     

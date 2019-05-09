@@ -27,7 +27,9 @@ class MarkupUtilityTests: XCTestCase {
         }
         
         override func processor(_ processor: TagProcessor<MarkupUtilityTests.TestState>, foundData data: Data) {
-            processor.state.data = String(data: data, encoding: .utf8)
+            if let string = String(data: data, encoding: .utf8) {
+                processor.state.data = string
+            }
         }
     }
     

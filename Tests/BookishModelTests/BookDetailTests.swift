@@ -242,7 +242,7 @@ class BookDetailTests: ModelTestCase {
         
         source.filter(for: [book], editing: false, combining: false, context: TestContext())
         let row = source.info(section: 0, row: 0) as? SeriesDetailItem
-        XCTAssertEqual(row!.series, series)
+        XCTAssertEqual(row!.entry!.series!, series)
         
         XCTAssertEqual(row?.heading, "Series.label")
     }
@@ -308,9 +308,10 @@ class BookDetailTests: ModelTestCase {
         let book = Book(context: context)
         source.filter(for: [book], editing: false, combining: false, context: TestContext())
         let series = Series(context: context)
-        XCTAssertEqual(source.inserted(details: [series]).first, 0)
-        XCTAssertEqual(source.removed(details: [series]).first, 0)
-        XCTAssertEqual(source.removed(details: [series]).count, 0)
+        let entry = book.addToSeries(series, position: 1)
+        XCTAssertEqual(source.inserted(details: [entry]).first, 0)
+        XCTAssertEqual(source.removed(details: [entry]).first, 0)
+        XCTAssertEqual(source.removed(details: [entry]).count, 0)
     }
 
 }

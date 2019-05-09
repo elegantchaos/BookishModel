@@ -3,8 +3,12 @@
 //  All code (c) 2019 - present day, Elegant Chaos Limited.
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-import Foundation
+import XCTest
+@testable import BookishModel
 
-class NavigationStackTests {
+class NavigationStackTests: ModelTestCase {
     
+    func testPush() {
+        let stack = NavigationStack<Int>()
+    }
 }

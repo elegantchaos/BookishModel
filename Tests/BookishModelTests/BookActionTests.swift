@@ -15,7 +15,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
     var publisherObserved: Publisher?
     var seriesObserved: Series?
 
-    func added(series: Series) {
+    func added(series: Series, position: Int) {
         seriesObserved = series
     }
     
