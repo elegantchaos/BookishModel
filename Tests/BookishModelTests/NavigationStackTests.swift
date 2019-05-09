@@ -26,10 +26,10 @@ class NavigationStackTests: ModelTestCase {
         stack.push("two")
         XCTAssertEqual(stack.current, "two")
         
-        XCTAssertTrue(stack.goBack())
+        XCTAssertEqual(stack.goBack(), "one")
         XCTAssertEqual(stack.current, "one")
         
-        XCTAssertFalse(stack.goBack())
+        XCTAssertNil(stack.goBack())
     }
     
     func testGoForward() {
@@ -39,13 +39,13 @@ class NavigationStackTests: ModelTestCase {
         stack.push("two")
         XCTAssertEqual(stack.current, "two")
         
-        XCTAssertTrue(stack.goBack())
+        XCTAssertEqual(stack.goBack(), "one")
         XCTAssertEqual(stack.current, "one")
         
-        XCTAssertTrue(stack.goForward())
+        XCTAssertEqual(stack.goForward(), "two")
         XCTAssertEqual(stack.current, "two")
         
-        XCTAssertFalse(stack.goForward())
+        XCTAssertNil(stack.goForward())
     }
     
     func testGoBackThenPush() {
@@ -55,18 +55,32 @@ class NavigationStackTests: ModelTestCase {
         stack.push("two")
         XCTAssertEqual(stack.current, "two")
         
-        XCTAssertTrue(stack.goBack())
+        XCTAssertEqual(stack.goBack(), "one")
         XCTAssertEqual(stack.current, "one")
         
         stack.push("three")
         XCTAssertEqual(stack.current, "three")
 
-        XCTAssertTrue(stack.goBack())
+        XCTAssertEqual(stack.goBack(), "one")
         XCTAssertEqual(stack.current, "one")
 
-        XCTAssertTrue(stack.goForward())
+        XCTAssertEqual(stack.goForward(), "three")
         XCTAssertEqual(stack.current, "three")
 
-        XCTAssertFalse(stack.goForward())
+        XCTAssertNil(stack.goForward())
+    }
+    
+    func testReset() {
+        navigationStackChannel.enabled = true
+        let stack = NavigationStack<String>()
+        stack.push("one")
+        stack.push("two")
+        XCTAssertEqual(stack.current, "two")
+
+        stack.reset(to: "three")
+        XCTAssertEqual(stack.current, "three")
+        
+        stack.reset()
+        XCTAssertNil(stack.current)
     }
 }

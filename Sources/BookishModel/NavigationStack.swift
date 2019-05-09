@@ -7,12 +7,11 @@ import Logger
 
 let navigationStackChannel = Logger("com.elegantchaos.bookish.model.NavigationStack")
 
-class NavigationStack<ItemType> {
-    var stack: [ItemType]
-
-    var position: Int
+public class NavigationStack<ItemType> {
+    internal var stack: [ItemType]
+    internal var position: Int
     
-    var current: ItemType? {
+    public var current: ItemType? {
         if stack.count == 0 {
             return nil
         } else {
@@ -20,12 +19,20 @@ class NavigationStack<ItemType> {
         }
     }
 
-    init() {
+    public init() {
         stack = []
         position = 0
     }
 
-    func push(_ item: ItemType) {
+    public func reset(to: ItemType? = nil) {
+        stack = []
+        position = 0
+        if let item = to {
+            push(item)
+        }
+    }
+    
+    public func push(_ item: ItemType) {
         navigationStackChannel.log("Adding item \(item). Current position \(position).")
         let count = stack.count - position
         stack.removeLast(count)
@@ -34,21 +41,21 @@ class NavigationStack<ItemType> {
         navigationStackChannel.log("New position \(position)")
     }
     
-    func goBack() -> Bool {
+    public func goBack() -> ItemType? {
         guard position > 1 else {
-            return false
+            return nil
         }
 
         position -= 1
-        return true
+        return stack[position - 1]
     }
 
-    func goForward() -> Bool {
+    public func goForward() -> ItemType? {
         guard position < stack.count else {
-            return false
+            return nil
         }
         
         position += 1
-        return true
+        return stack[position - 1]
     }
 }
