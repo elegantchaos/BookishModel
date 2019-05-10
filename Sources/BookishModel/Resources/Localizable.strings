@@ -63,7 +63,7 @@ Series.label = "series";
 
 Role.title = "Roles";
 Role.label = "roles";
-Role.section = "As {role}";
+Role.section = "Books As {role}:";
 
 Role.standard.author.notes = "A person with this role is a main author of a volume.";
 Role.standard.contributor.notes = "A person with this role is a contributor to a volume.";
