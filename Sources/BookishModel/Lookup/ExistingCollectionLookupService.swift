@@ -11,7 +11,7 @@ public class ExistingCollectionLookupService: LookupService {
         let context = session.context
         context.perform {
             let request: NSFetchRequest<Book> = context.fetcher()
-            request.predicate = NSPredicate(format: "isbn = %@", search)
+            request.predicate = NSPredicate(format: "(isbn = %@) or (name contains[cd] %@) or (SUBQUERY(relationships, $x, $x.person.name contains[cd] %@).@count > 0)", search, search, search)
             request.sortDescriptors = []
             if let results = try? context.fetch(request), results.count > 0 {
                 for book in results {
