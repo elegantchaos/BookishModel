@@ -34,6 +34,10 @@ public class GoogleLookupCandidate: LookupCandidate {
         return "\(title)\n\(authors)\n\(publisher)"
     }
     
+    public override var action: String {
+        return "AddCandidate"
+    }
+    
     public override func makeBook(in context: NSManagedObjectContext) -> Book {
         let book = super.makeBook(in: context)
         if let pages = info["pageCount"] as? NSNumber {

@@ -26,6 +26,14 @@ public class LookupCandidate {
         return ""
     }
     
+    public var action: String {
+        return ""
+    }
+    
+    public var existingBook: Book? {
+        return nil
+    }
+    
     public func makeBook(in context: NSManagedObjectContext) -> Book {
         let book = Book(in: context)
         

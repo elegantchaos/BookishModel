@@ -18,7 +18,7 @@ public class ExistingCollectionLookupService: LookupService {
                     if let relationships = book.relationships as? Set<Relationship> {
                         let names = relationships.compactMap { $0.person?.name }
                         let uniqueNames = Set(names)
-                        let candidate = LookupCandidate(service: self, title: book.name, authors: Array(uniqueNames), publisher: book.publisher?.name, date: book.published, image: book.imageURL)
+                        let candidate = ExistingCollectionLookupCandidate(book: book, service: self, authors: Array(uniqueNames))
                         session.add(candidate: candidate)
                     }
                 }
@@ -28,5 +28,19 @@ public class ExistingCollectionLookupService: LookupService {
             session.done(service: self)
         }
     }
+}
+
+public class ExistingCollectionLookupCandidate: LookupCandidate {
+    let book: Book
+
+    public init(book: Book, service: LookupService, authors: [String]) {
+        self.book = book
+        super.init(service: service, title: book.name, authors: authors, publisher: book.publisher?.name, date: book.published, image: book.imageURL)
+    }
+
+    public override var action: String { return "ViewCandidate" }
     
+    public override var existingBook: Book? {
+        return book
+    }
 }
