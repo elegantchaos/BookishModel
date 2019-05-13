@@ -130,7 +130,7 @@ detail.uuid.label = "🛠 id";
 
 scanner.startup = "Scan a barcode or enter an ISBN/EAN/title.";
 
-candidate.lookup.scanning = "Scanning for barcodes…";
+candidate.lookup.initial = "";
 candidate.lookup.valid = "Found ISBN {search}…";
 candidate.lookup.invalid = "Unknown format {search}!";
 candidate.lookup.start = "Looking up {search}…";
