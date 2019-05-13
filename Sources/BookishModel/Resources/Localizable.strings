@@ -78,6 +78,7 @@ detail.asin.label = "asin";
 detail.asin.placeholder = "amazon identification number";
 
 detail.biography.label = "biography";
+detail.biography.placeholder = "biographical notes";
 
 detail.born.label = "born";
 
@@ -98,6 +99,7 @@ detail.identifier.label = "identifier";
 detail.importDate.label = "imported";
 
 detail.imageURL.label = "🛠 image url";
+detail.imageURL.placeholder = "location of image";
 
 detail.importRaw.label = "🛠 import";
 
@@ -107,6 +109,7 @@ detail.isbn.placeholder = "isbn or ean number";
 detail.items.label = "volumes";
 
 detail.log.label = "🛠 log";
+detail.log.placeholder = "action log";
 
 detail.modified.label = "modified";
 
@@ -124,6 +127,7 @@ detail.published.label = "published";
 detail.read.label = "last read";
 
 detail.source.label = "🛠 source";
+detail.source.placeholder = "source of this item";
 
 detail.uuid.label = "🛠 id";
 
