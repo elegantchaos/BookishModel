@@ -7,12 +7,13 @@ import CoreData
 
 @objc open class CollectionContainer: NSPersistentContainer {
     public enum PopulateMode {
-        case empty                  /// don't populate with anything
-        case defaultRoles           /// add default roles only
-        case testData               /// add default roles and test data if empty
-        case sampleData             /// add previously saved sample data if empty
-        case replaceWithTestData    /// wipe existing data and add test data
-        case replaceWithSampleData  /// wipe existing data and add sample data
+        case empty                      /// don't populate with anything
+        case defaultRoles               /// add default roles only
+        case testData                   /// add default roles and test data if empty
+        case sampleData                 /// add previously saved sample data if empty
+        case replaceWithDefaultRoles    /// wipe existing data and add default roles only
+        case replaceWithTestData        /// wipe existing data and add test data
+        case replaceWithSampleData      /// wipe existing data and add sample data
     }
     
     public typealias LoadedCallback = (CollectionContainer, Error?) -> Void
@@ -45,8 +46,8 @@ import CoreData
                     }
                 }
                     
-                case .replaceWithTestData:
-                    deleteStores()
+                case .replaceWithTestData, .replaceWithDefaultRoles:
+                    deleteStores(url: url)
                     
                 default:
                     break
@@ -97,7 +98,7 @@ import CoreData
                             self.setupTestData()
                         }
                     }
-                } else if (mode == .defaultRoles) {
+                } else if (mode == .defaultRoles) || (mode == .replaceWithDefaultRoles) {
                     let request: NSFetchRequest<Role> = Role.fetcher(in: context)
                     if let results = try? context.fetch(request) {
                         if results.count == 0 {
@@ -135,7 +136,7 @@ import CoreData
     }
     
     
-    func deleteStores(remove: Bool = false) {
+    func deleteStores(remove: Bool = false, url: URL? = nil) {
         let fm = FileManager.default
         if let coordinator = managedObjectContext.persistentStoreCoordinator {
             for store in coordinator.persistentStores {
@@ -151,6 +152,8 @@ import CoreData
                 }
                 try? coordinator.remove(store)
             }
+        } else if let url = url, fm.fileExists(atPath: url.path) {
+            try? fm.removeItem(at: url)
         }
     }
     
