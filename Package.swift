@@ -27,7 +27,7 @@ let package = Package(
             dependencies: ["BookishCore"]),
         .target(
             name: "BookishCore",
-            dependencies: ["Logger", "LoggerKit", "Actions", "ActionsKit", "JSONDump", "CommandShell"]),
+            dependencies: ["Logger", "LoggerKit", "Actions", "ActionsKit", "JSONDump"]),
         .testTarget(
             name: "BookishCoreTests",
             dependencies: ["BookishCore", "LoggerTestSupport"])
