@@ -5,11 +5,11 @@
 
 import Foundation
 
-protocol RegularExpressionResult {
+public protocol RegularExpressionResult {
     init()
 }
 
-extension NSRegularExpression {
+public extension NSRegularExpression {
     func firstMatch<T: RegularExpressionResult>(of string: String, capturing mappings: [PartialKeyPath<T>:Int]) -> T? {
         let range = NSRange(location: 0, length: string.count)
         if let match = firstMatch(in: string, options: [], range: range) {
@@ -17,9 +17,11 @@ extension NSRegularExpression {
             for mapping in mappings {
                 if let range = Range(match.range(at: mapping.value), in: string) {
                     if let path = mapping.key as? WritableKeyPath<T,String> {
-                        result[keyPath: path] = String(string[range])
+                        let captured = String(string[range])
+                        result[keyPath: path] = captured
                     } else if let path = mapping.key as? WritableKeyPath<T,Int> {
-                        result[keyPath: path] = (String(string[range]) as NSString).integerValue
+                        let captured = (String(string[range]) as NSString).integerValue
+                        result[keyPath: path] = captured
                     }
                 }
             }

@@ -6,6 +6,7 @@
 import Foundation
 import CoreData
 import Logger
+import BookishCore
 
 let seriesDetectorChannel = Logger("com.elegantchaos.bookish.model.SeriesDetector")
 

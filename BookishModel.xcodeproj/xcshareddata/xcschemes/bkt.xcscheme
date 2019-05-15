@@ -79,6 +79,14 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "--test-document"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "make"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "Sample"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
