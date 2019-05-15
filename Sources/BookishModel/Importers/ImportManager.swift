@@ -10,14 +10,16 @@ public class ImportManager {
     private var sessions: [ImportSession] = []
     
     public var sortedImporters: [Importer] {
-        return importers.sorted(by: { return $0.value.name < $1.value.name }).map({ $0.value })
+        let instances = importers.values
+        return instances.sorted(by: { return $0.name < $1.name })
     }
     
     public init() {
         // TODO: build this dynamically - from plugins maybe?
         register([
             DeliciousLibraryImporter(manager: self),
-            KindleImporter(manager: self)
+            KindleImporter(manager: self),
+            TestDataImporter(manager: self)
         ])
     }
     
