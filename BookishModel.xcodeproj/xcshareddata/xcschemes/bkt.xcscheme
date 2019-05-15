@@ -42,6 +42,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BookishCoreMac::BookishCoreTests"
+               BuildableName = "BookishCoreTests.xctest"
+               BlueprintName = "BookishCoreTests"
+               ReferencedContainer = "container:Dependencies/BookishCoreMac.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "22429398212AE0F400E70510"
+               BuildableName = "BookishModelTestsMac.xctest"
+               BlueprintName = "BookishModelTestsMac"
+               ReferencedContainer = "container:BookishModel.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
@@ -91,11 +111,11 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "Roles"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "Test"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>

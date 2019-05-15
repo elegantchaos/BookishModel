@@ -6,11 +6,11 @@
 import Foundation
 import CoreData
 
-public class TestDataImporter: StandardRolesImporter {
+public class TestDataImporter: Importer {
     override class public var identifier: String { return "com.elegantchaos.bookish.importer.test-data" }
 
     public init(manager: ImportManager) {
-        super.init(name: "Test Data", manager: manager)
+        super.init(name: "Test Data", source: .knownLocation, manager: manager)
     }
 
     override func makeSession(in context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) -> ImportSession {
@@ -19,7 +19,7 @@ public class TestDataImporter: StandardRolesImporter {
 
 }
 
-class TestDataImportSession: ImportSession {
+class TestDataImportSession: StandardRolesImportSession {
     /**
      Populate the document with some test data.
      */

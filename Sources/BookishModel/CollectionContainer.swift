@@ -61,7 +61,7 @@ let collectionChannel = Channel("com.elegantchaos.bookish.model.collection")
                             collectionChannel.log("Failed to populate collection with sample \(sampleName).\n\n\(error)")
                         }
                     }
-                    
+
                 default:
                     break
                 }

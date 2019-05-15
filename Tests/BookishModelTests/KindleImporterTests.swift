@@ -20,7 +20,7 @@ class KindleImporterTests: ModelTestCase {
         let expectation = self.expectation(description: "import done")
         let bundle = Bundle(for: type(of: self))
         let xmlURL = bundle.url(forResource: "Kindle", withExtension: "xml")!
-        importer.run(importing: xmlURL, into: container.managedObjectContext) {
+        importer.run(importing: xmlURL, in: container.managedObjectContext) {
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 10.0)

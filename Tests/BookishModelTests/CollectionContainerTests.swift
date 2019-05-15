@@ -8,6 +8,10 @@ import XCTest
 
 class CollectionContainerTests: ModelTestCase {
 
+    override func setUp() {
+        collectionChannel.enabled = true
+    }
+    
     func makeTestContainer(name: String, url: URL? = nil, mode: CollectionContainer.PopulateMode) -> CollectionContainer {
         let expectation = self.expectation(description: "made")
         let container = CollectionContainer(name: name, url: url, mode: mode) { (container, error) in
@@ -27,7 +31,7 @@ class CollectionContainerTests: ModelTestCase {
     
     func testCreateDefaultRoles() {
         let url = temporaryFile()
-        let container = makeTestContainer(name: "test", url: url, mode: .populateWith(sample: "Empty"))
+        let container = makeTestContainer(name: "roles", url: url, mode: .populateWith(sample: "Roles"))
         XCTAssertEqual(container.managedObjectContext.countEntities(type: Role.self), Role.StandardName.allCases.count)
     }
 
@@ -39,13 +43,13 @@ class CollectionContainerTests: ModelTestCase {
 
     func testCreateSampleData() {
         let url = temporaryFile()
-        let container = makeTestContainer(name: "test", url: url, mode: .populateWith(sample: "Sample"))
+        let container = makeTestContainer(name: "sample", url: url, mode: .populateWith(sample: "Sample"))
         XCTAssertEqual(container.managedObjectContext.countEntities(type: Book.self), 1505) // sample data file is created with bkt
     }
 
     func testReset() {
         let url = temporaryFile()
-        let container = makeTestContainer(name: "test", url: url, mode: .populateWith(sample: "Sample"))
+        let container = makeTestContainer(name: "reset", url: url, mode: .populateWith(sample: "Test"))
         XCTAssertEqual(container.managedObjectContext.countEntities(type: Book.self), 4)
         container.reset()
         XCTAssertEqual(container.managedObjectContext.countEntities(type: Book.self), 0)

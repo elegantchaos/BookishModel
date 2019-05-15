@@ -41,7 +41,7 @@ class ImporterTests: ModelTestCase {
         
         let expectation = self.expectation(description: "completed")
         let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-        importer.run(importing: URL(fileURLWithPath: "/test"), into: context) {
+        importer.run(importing: URL(fileURLWithPath: "/test"), in: context) {
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 1.0)
@@ -65,7 +65,7 @@ class ImporterTests: ModelTestCase {
             let importer = manager.importer(identifier: DeliciousLibraryImporter.identifier)!
             let bundle = Bundle(for: type(of: self))
             let xmlURL = bundle.url(forResource: "Simple", withExtension: "plist")!
-            importer.run(importing: xmlURL, into: container.managedObjectContext) {
+            importer.run(importing: xmlURL, in: container.managedObjectContext) {
                 expectation.fulfill()
             }
         }

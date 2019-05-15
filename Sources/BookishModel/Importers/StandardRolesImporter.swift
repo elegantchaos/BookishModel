@@ -9,12 +9,8 @@ import CoreData
 public class StandardRolesImporter: Importer {
     override class public var identifier: String { return "com.elegantchaos.bookish.importer.standard-roles" }
     
-    public convenience init(manager: ImportManager) {
-        self.init(name: "Standard Roles", manager: manager)
-    }
-    
-    public init(name: String, manager: ImportManager) {
-        super.init(name: name, source: .knownLocation, manager: manager)
+    public init(manager: ImportManager) {
+        super.init(name: "Standard Roles", source: .knownLocation, manager: manager)
     }
     
     override func makeSession(in context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) -> ImportSession {
