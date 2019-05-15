@@ -5,38 +5,21 @@
 
 import Foundation
 import CoreData
-import JSONDump
-import Logger
 
-public class TestDataImporter: Importer {
+public class TestDataImporter: StandardRolesImporter {
     override class public var identifier: String { return "com.elegantchaos.bookish.importer.test-data" }
-    
+
     public init(manager: ImportManager) {
-        super.init(name: "Test Data", source: .knownLocation, manager: manager)
+        super.init(name: "Test Data", manager: manager)
     }
-    
+
     override func makeSession(in context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) -> ImportSession {
         return TestDataImportSession(importer: self, context: context, completion: completion)
     }
+
 }
 
-
 class TestDataImportSession: ImportSession {
-
-    
-    /**
-     A few roles should always be present.
-     */
-    
-    func makeStandardRoles() {
-        for name in Role.StandardName.allCases {
-            let role = Role.named(name, in: context)
-            role.notes = "Role.standard.\(name).notes".localized
-            role.locked = true
-        }
-    }
-    
-    
     /**
      Populate the document with some test data.
      */
@@ -97,11 +80,10 @@ class TestDataImportSession: ImportSession {
             series.addToEntries(entry)
         }
     }
-
-
+    
+    
     override func run() {
-        makeStandardRoles()
+        super.run()
         setupTestData()
     }
 }
-

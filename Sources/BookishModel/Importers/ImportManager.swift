@@ -19,7 +19,6 @@ public class ImportManager {
         register([
             DeliciousLibraryImporter(manager: self),
             KindleImporter(manager: self),
-            TestDataImporter(manager: self)
         ])
     }
     

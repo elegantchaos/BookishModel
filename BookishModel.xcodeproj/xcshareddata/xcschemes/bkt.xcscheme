@@ -90,12 +90,12 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "Empty"
-            isEnabled = "NO">
+            argument = "Roles"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "Test"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>

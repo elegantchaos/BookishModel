@@ -24,7 +24,10 @@ class MakeCommand: Command {
 
         let bookCount = context.countEntities(type: Book.self)
         let seriesCount = context.countEntities(type: Series.self)
-        print("\(bookCount) books, in \(seriesCount) series.")
+        let personCount = context.countEntities(type: Person.self)
+        let publisherCount = context.countEntities(type: Publisher.self)
+        let roleCount = context.countEntities(type: Role.self)
+        print("\(bookCount) books, \(personCount) people, \(publisherCount) publishers, \(seriesCount) series, \(roleCount) roles.")
         shell.exit(result: .ok)
     }
 
@@ -54,7 +57,11 @@ class MakeCommand: Command {
             actionManager.register(ModelAction.standardActions())
             
             let importManager = ImportManager()
-            
+            importManager.register([
+                StandardRolesImporter(manager: importManager),
+                TestDataImporter(manager: importManager)
+            ])
+
             let actions = ActionList(container: container, actionManager: actionManager, importManager: importManager)
             actions.load(from: jsonURL, variables: variables)
             actions.addTask(Task(name: "finish", callback: { self.finish(shell: shell) }))
