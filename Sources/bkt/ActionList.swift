@@ -7,7 +7,6 @@ import Foundation
 import Actions
 import BookishModel
 import CoreData
-import CommandShell
 
 struct ActionSpec: Decodable {
     let name: String
@@ -21,44 +20,18 @@ struct ActionFile: Decodable {
     let actions: [ActionSpec]
 }
 
-class BookishTool {
+class ActionList: TaskList {
     let container: CollectionContainer
-    let context: NSManagedObjectContext
-    let taskList: TaskList
-    let actionManager = ActionManager()
-    let importManager = ImportManager()
-    var variables: [String:Any] = ProcessInfo.processInfo.environment
-    let rootURL = URL(fileURLWithPath: #file).deletingLastPathComponent()
+    let actionManager: ActionManager
+    let importManager: ImportManager
     
-    init() {
-        StringLocalization.registerLocalizationBundle(Bundle.main)
-        
-        let xmlURL = rootURL.appendingPathComponent("../../Tests/BookishModelTests/Resources/Sample.xml")
-        let kindleURL = rootURL.appendingPathComponent("../../Tests/BookishModelTests/Resources/Kindle.xml")
-        let sampleURL = rootURL.appendingPathComponent("../BookishModel/Resources/Sample.sqlite")
-        
-        let taskList = TaskList()
-        let model = BookishModel.model()
-        let coordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
-        try? coordinator.destroyPersistentStore(at: sampleURL, ofType: NSSQLiteStoreType)
-        
-        self.container = CollectionContainer(name: "test", url: sampleURL) { (container, error) in
-            taskList.nextTask()
-        }
-        self.context = container.managedObjectContext
-        self.taskList = taskList
-        
-        actionManager.register(ModelAction.standardActions())
-        
-        variables["sampleURL"] = xmlURL
-        variables["kindleURL"] = kindleURL
-        for n in 0 ..< CommandLine.arguments.count {
-            variables["\(n)"] = CommandLine.arguments[n]
-        }
-        
+    init(container: CollectionContainer, actionManager: ActionManager, importManager: ImportManager) {
+        self.container = container
+        self.actionManager = actionManager
+        self.importManager = importManager
     }
     
-    fileprivate func makeActionTasks(_ actions: ActionFile) {
+    fileprivate func makeActionTasks(_ actions: ActionFile, variables: [String:Any]) {
         for action in actions.actions {
             var expandedParams: [String:Any] = [:]
             if let params = action.params {
@@ -74,19 +47,18 @@ class BookishTool {
                 }
             }
             
-            taskList.addTask(Task(name: action.name, callback: {
+            addTask(Task(name: action.name, callback: {
                 self.perform(action: action, with: expandedParams)
             }))
         }
     }
     
-    func loadActions() {
-        let jsonURL = rootURL.appendingPathComponent("Build Sample.json")
+    func load(from jsonURL: URL, variables: [String:Any]) {
         let jsonData = try! Data(contentsOf: jsonURL)
         let decoder = JSONDecoder()
         do {
             let actions = try decoder.decode(ActionFile.self, from: jsonData)
-            makeActionTasks(actions)
+            makeActionTasks(actions, variables: variables)
         } catch DecodingError.dataCorrupted(let context) {
             print(context.detailedDescription(for: jsonData))
             
@@ -94,18 +66,19 @@ class BookishTool {
             print(error)
         }
     }
-    
-    func perform(action: ActionSpec, with params: [String:Any] = [:]) {
+
+    fileprivate func perform(action: ActionSpec, with params: [String:Any] = [:]) {
         let info = ActionInfo()
         info.registerNotification { (stage, actionContext) in
             if stage == .didPerform {
                 if let report = actionContext["report"] as? String {
                     print(report)
                 }
-                self.taskList.nextTask()
+                self.nextTask()
             }
         }
         
+        let context = container.managedObjectContext
         info[ActionContext.modelKey] = context
         info[ImportAction.managerKey] = importManager
         for (key, value) in params {
@@ -139,33 +112,5 @@ class BookishTool {
         }
         
         actionManager.perform(identifier: action.action, info: info)
-    }
-    
-    func finish() {
-        let bookCount = context.countEntities(type: Book.self)
-        let seriesCount = context.countEntities(type: Series.self)
-        print("\(bookCount) books, in \(seriesCount) series.")
-        print("done")
-        exit(0)
-    }
-    
-    func run() {
-        taskList.addTask(Task(name: "finish", callback: { self.finish() }))
-        taskList.run()
-    }
-}
-
-class BookishToolCommand: Command {
-    
-    override var description: Command.Description {
-        return Description(name: "make", help: "Make a sample database", usage: ["<name>"])
-    }
-
-    override func run(shell: Shell) throws -> Result {
-        let tool = BookishTool()
-        tool.loadActions()
-        tool.run()
-        
-        return .running
     }
 }
