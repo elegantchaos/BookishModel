@@ -14,51 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BookishCoreMac::BookishCore"
-               BuildableName = "BookishCore.framework"
-               BlueprintName = "BookishCore"
-               ReferencedContainer = "container:Dependencies/BookishCoreMac.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "BookishCoreMac::bktCore"
                BuildableName = "bktCore"
                BlueprintName = "bktCore"
-               ReferencedContainer = "container:Dependencies/BookishCoreMac.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BookishCoreMac::BookishCoreMobile"
-               BuildableName = "BookishCoreMobile"
-               BlueprintName = "BookishCoreMobile"
-               ReferencedContainer = "container:Dependencies/BookishCoreMac.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BookishCoreMac::BookishCoreMac"
-               BuildableName = "BookishCoreMac"
-               BlueprintName = "BookishCoreMac"
                ReferencedContainer = "container:Dependencies/BookishCoreMac.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -95,15 +53,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BookishCoreMac::BookishCore"
-            BuildableName = "BookishCore.framework"
-            BlueprintName = "BookishCore"
+            BlueprintIdentifier = "BookishCoreMac::bktCore"
+            BuildableName = "bktCore"
+            BlueprintName = "bktCore"
             ReferencedContainer = "container:Dependencies/BookishCoreMac.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

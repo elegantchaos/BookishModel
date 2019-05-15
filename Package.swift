@@ -26,6 +26,9 @@ let package = Package(
             name: "BookishCoreMobile",
             dependencies: ["BookishCore"]),
         .target(
+            name: "bktCore",
+            dependencies: ["BookishCore", "CommandShell"]),
+        .target(
             name: "BookishCore",
             dependencies: ["Logger", "LoggerKit", "Actions", "ActionsKit", "JSONDump"]),
         .testTarget(
