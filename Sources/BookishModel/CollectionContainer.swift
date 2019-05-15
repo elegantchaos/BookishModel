@@ -56,7 +56,7 @@ let collectionChannel = Channel("com.elegantchaos.bookish.model.collection")
                     if let sample = bundle.url(forResource: sampleName, withExtension: "sqlite") {
                         do {
                             try? fm.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
-                            try fm.copyItem(at: sample, to: url)
+                            try fm.copyItem(at: sample, to: url) // TODO: do we need to copy the -shm and -wal files too?
                         } catch {
                             collectionChannel.log("Failed to populate collection with sample \(sampleName).\n\n\(error)")
                         }
