@@ -21,6 +21,11 @@ public class LookupAction: SyncModelAction {
 public class LookupCoverAction: LookupAction {
     public static let managerKey = "lookupManager"
     
+    public override func validate(context: ActionContext) -> Bool {
+        let books = context[ActionContext.selectionKey] as? [Book]
+        return (books != nil) && (context[LookupCoverAction.managerKey] != nil) && super.validate(context: context)
+    }
+    
     public override func perform(context: ActionContext, model: NSManagedObjectContext) {
         
         if let manager = context[LookupCoverAction.managerKey] as? LookupManager,

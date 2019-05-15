@@ -17,6 +17,7 @@ open class ModelAction: Action {
         actions.append(contentsOf: PublisherAction.standardActions())
         actions.append(contentsOf: SeriesAction.standardActions())
         actions.append(contentsOf: RoleAction.standardActions())
+        actions.append(contentsOf: LookupAction.standardActions())
         actions.append(ChangeValueAction(identifier: "ChangeValue"))
         actions.append(ImportAction(identifier: "Import"))
         actions.append(ScanSeriesAction(identifier: "ScanSeries"))
