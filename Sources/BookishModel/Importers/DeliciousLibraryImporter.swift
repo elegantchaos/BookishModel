@@ -17,7 +17,7 @@ public class DeliciousLibraryImporter: Importer {
         super.init(name: "Delicious Library", source: .userSpecifiedFile, manager: manager)
     }
     
-    override func makeSession(importing url: URL, into context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) -> ImportSession {
+    override func makeSession(importing url: URL, in context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) -> URLImportSession {
         return DeliciousLibraryImportSession(importer: self, context: context, url: url, completion: completion)
     }
 
@@ -26,7 +26,7 @@ public class DeliciousLibraryImporter: Importer {
     }
 }
 
-class DeliciousLibraryImportSession: ImportSession {
+class DeliciousLibraryImportSession: URLImportSession {
     typealias Record = [String:Any]
     typealias RecordList = [Record]
     

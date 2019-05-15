@@ -17,7 +17,7 @@ public class KindleImporter: Importer {
         super.init(name: "Kindle", source: .userSpecifiedFile, manager: manager)
     }
     
-    override func makeSession(importing url: URL, into context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) -> ImportSession {
+    override func makeSession(importing url: URL, in context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) -> URLImportSession {
         return KindleImportSession(importer: self, context: context, url: url, completion: completion)
     }
     
@@ -130,7 +130,7 @@ class KindleProcessor: TagProcessor<KindleState> {
     }
 }
 
-class KindleImportSession: ImportSession {
+class KindleImportSession: URLImportSession {
     var cachedPeople: [String:Person] = [:]
     var cachedPublishers: [String:Publisher] = [:]
     var cachedSeries: [String:Series] = [:]

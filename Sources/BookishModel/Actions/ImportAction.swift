@@ -26,20 +26,32 @@ public class ImportAction: ModelAction {
     
     override func perform(context: ActionContext, model: NSManagedObjectContext, completion: @escaping ModelAction.Completion) {
         
-        guard let manager = context[ImportAction.managerKey] as? ImportManager,
+        guard
+            let manager = context[ImportAction.managerKey] as? ImportManager,
             let importerID = context[ImportAction.importerKey] as? String,
-            let importer = manager.importer(identifier: importerID),
-            let url = context.url(withKey: ImportAction.urlKey) else {
+            let importer = manager.importer(identifier: importerID)
+            else {
                 completion()
                 return
         }
         
         let count = model.countEntities(type: Book.self)
-        importer.run(importing: url, into: model) {
+
+        let importCompletion =  {
             let added = model.countEntities(type: Book.self) - count
             context["report"] = "Imported \(added) books."
             completion()
         }
         
+        if importer.source == .knownLocation {
+            importer.run(in: model, completion: importCompletion)
+        } else {
+            guard let url = context.url(withKey: ImportAction.urlKey) else {
+                completion()
+                return
+            }
+            
+            importer.run(importing: url, in: model, completion: importCompletion)
+        }
     }
 }

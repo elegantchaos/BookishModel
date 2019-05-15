@@ -4,21 +4,20 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import CoreData
+import Logger
+
+let collectionChannel = Channel("com.elegantchaos.bookish.model.collection")
 
 @objc open class CollectionContainer: NSPersistentContainer {
     public enum PopulateMode {
-        case empty                      /// don't populate with anything
-        case defaultRoles               /// add default roles only
-        case testData                   /// add default roles and test data if empty
-        case sampleData                 /// add previously saved sample data if empty
-        case replaceWithDefaultRoles    /// wipe existing data and add default roles only
-        case replaceWithTestData        /// wipe existing data and add test data
-        case replaceWithSampleData      /// wipe existing data and add sample data
+        case empty                              /// don't populate with anything
+        case populateWith(sample: String)       /// if empty, add some sample data
+        case replaceWith(sample: String)        /// wipe existing data and replace with some sample data
     }
     
     public typealias LoadedCallback = (CollectionContainer, Error?) -> Void
     
-    public init(name: String, url: URL? = nil, mode: PopulateMode = .defaultRoles, callback: LoadedCallback? = nil) {
+    public init(name: String, url: URL? = nil, mode: PopulateMode = .empty, callback: LoadedCallback? = nil) {
         let fm = FileManager.default
         let model = BookishModel.model()
         let bundle = Bundle.init(for: CollectionContainer.self)
@@ -36,37 +35,40 @@ import CoreData
             
             if fm.fileExists(at: url) {
                 switch mode {
-                case .replaceWithSampleData:
+                case let .replaceWith(sampleName):
                 let coordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
-                if let sampleURL = bundle.url(forResource: "Sample", withExtension: "sqlite") {
+                if let sampleURL = bundle.url(forResource: sampleName, withExtension: "sqlite") {
                     do {
                         try coordinator.replacePersistentStore(at: url, destinationOptions: [:], withPersistentStoreFrom: sampleURL, sourceOptions: [:], ofType: NSSQLiteStoreType)
                     } catch {
-                        print(error)
+                        collectionChannel.log("Failed to replace collection with sample \(sampleName).\n\n\(error)")
                     }
                 }
-                    
-                case .replaceWithTestData, .replaceWithDefaultRoles:
-                    deleteStores(url: url)
                     
                 default:
                     break
                 }
             }
 
-            if !fm.fileExists(atPath: url.path) && ((mode == .sampleData) || (mode == .replaceWithSampleData)) {
-                if let sample = bundle.url(forResource: "Sample", withExtension: "sqlite") {
-                    do {
-                        try? fm.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
-                        try fm.copyItem(at: sample, to: url)
-                    } catch {
-                        print("failed to copy sample database")
+            if !fm.fileExists(atPath: url.path) {
+                switch mode {
+                case let .replaceWith(sample: sampleName), let .populateWith(sample: sampleName):
+                    if let sample = bundle.url(forResource: sampleName, withExtension: "sqlite") {
+                        do {
+                            try? fm.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
+                            try fm.copyItem(at: sample, to: url)
+                        } catch {
+                            collectionChannel.log("Failed to populate collection with sample \(sampleName).\n\n\(error)")
+                        }
                     }
+                    
+                default:
+                    break
                 }
             }
         }
         
-        load(mode: mode, callback: callback)
+        load(callback: callback)
     }
     
     
@@ -74,7 +76,7 @@ import CoreData
         managedObjectContext.reset()
         managedObjectContext.processPendingChanges()
         deleteStores(remove: false)
-        load(mode: .empty, callback: callback)
+        load(callback: callback)
     }
 
     open func delete(remove: Bool = false) {
@@ -83,32 +85,15 @@ import CoreData
         deleteStores(remove: remove)
     }
 
-    func load(mode: PopulateMode = .empty, callback: LoadedCallback? = nil) {
+    func load(callback: LoadedCallback? = nil) {
         loadPersistentStores { (description, error) in
             if let error = error {
                 print(error)
             } else {
                 let context = self.viewContext
                 context.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
-
-                if (mode == .testData) || (mode == .replaceWithTestData) {
-                    let request: NSFetchRequest<Book> = Book.fetcher(in: context)
-                    if let results = try? context.fetch(request) {
-                        if results.count == 0 {
-                            self.setupTestData()
-                        }
-                    }
-                } else if (mode == .defaultRoles) || (mode == .replaceWithDefaultRoles) {
-                    let request: NSFetchRequest<Role> = Role.fetcher(in: context)
-                    if let results = try? context.fetch(request) {
-                        if results.count == 0 {
-                            self.makeStandardRoles(context: context)
-                        }
-                    }
-                }
-                
-                self.printSummary()
                 context.undoManager = UndoManager()
+                self.printSummary()
                 callback?(self, error)
             }
         }
@@ -157,87 +142,6 @@ import CoreData
         }
     }
     
-    public var managedObjectContext: NSManagedObjectContext { return viewContext }
-    
-    /**
-     A few roles should always be present.
-     */
-    
-    func makeStandardRoles(context: NSManagedObjectContext) {
-        for name in Role.StandardName.allCases {
-            let role = Role.named(name, in: context)
-            role.notes = "Role.standard.\(name).notes".localized
-            role.locked = true
-        }
-    }
-
-    
-    /**
-     Populate the document with some test data.
-     */
-
-    func setupTestData() {
-        let context = viewContext
-        
-        makeStandardRoles(context: context)
-        
-        let formatter = DateFormatter()
-        formatter.setLocalizedDateFormatFromTemplate("dd/MM/yy")
-        
-        let sharedEditor = Person(context: context)
-        sharedEditor.name = "Ms Editor"
-        sharedEditor.uuid = "person-1"
-        sharedEditor.notes = "This person is the editor of a number of books."
-        let entry = sharedEditor.relationship(as: Role.StandardName.editor)
-        
-        let book = Book(context: context)
-        book.name = "A Book"
-        book.uuid = "book-1"
-        book.notes = "Some\nmulti\nline\nnotes."
-        entry.addToBooks(book)
-        
-        let publisher = Publisher(context: context)
-        publisher.notes = "Some notes about the publisher"
-        publisher.uuid = "publisher-1"
-        publisher.addToBooks(book)
-        
-        sharedEditor.relationship(as: Role.StandardName.author).addToBooks(book)
-        sharedEditor.relationship(as: Role.StandardName.illustrator).addToBooks(book)
-        
-        let sharedPublisher = Publisher(context: context)
-        sharedPublisher.name = "Publisher 2"
-        sharedPublisher.notes = "Some notes about the publisher"
-        
-        let series = Series(context: context)
-        series.name = "Example Series"
-        series.uuid = "series-1"
-        series.notes = "Some notes about the series"
-        
-        for n in 2...4 {
-            let book = Book(context: context)
-            book.name = "Book \(n)"
-            book.uuid = "book-\(n)"
-            book.subtitle = "Slightly longer subtitle \(n)"
-            book.notes = "This is an example book."
-            book.published = formatter.date(from: "12/11/69")
-            entry.addToBooks(book)
-            let illustrator = Person(context: context)
-            illustrator.name = "Mr Illustrator \(n)"
-            illustrator.uuid = "person-\(n)"
-            illustrator.notes = "Another example person."
-            let entry2 = illustrator.relationship(as: Role.StandardName.illustrator)
-            entry2.addToBooks(book)
-            
-            sharedPublisher.addToBooks(book)
-            
-            let entry = SeriesEntry(context: context)
-            entry.book = book
-            entry.position = Int16(n)
-            series.addToEntries(entry)
-        }
-        
-        save()
-    }
-    
+    public var managedObjectContext: NSManagedObjectContext { return viewContext }    
     
 }

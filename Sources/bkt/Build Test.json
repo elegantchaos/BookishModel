@@ -3,9 +3,12 @@
 
     "actions" : [
         {
-            "name": "create test data",
-            "action": "MakeTestData",
-        }
+            "name": "import Test Data",
+            "action": "Import",
+            "params": {
+                "importer": "com.elegantchaos.bookish.importer.test-data",
+            }
+        },
 
     ]
 }

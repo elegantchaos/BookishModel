@@ -23,12 +23,13 @@ public class Importer {
         self.manager = manager
     }
     
-    
     public var canImport: Bool {
         switch source {
         case .knownLocation:
             if let url = defaultImportLocation {
                 return FileManager.default.fileExists(atPath: url.path)
+            } else {
+                return true
             }
             
         case .userSpecifiedFile:
@@ -64,13 +65,24 @@ public class Importer {
         return string
     }
 
-    internal func makeSession(importing url: URL, into context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) -> ImportSession {
-        let session = ImportSession(importer: self, context: context, url: url, completion: completion)
+    internal func makeSession(in context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) -> ImportSession {
+        let session = ImportSession(importer: self, context: context, completion: completion)
+        return session
+    }
+
+    internal func makeSession(importing url: URL, in context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) -> URLImportSession {
+        let session = URLImportSession(importer: self, context: context, url: url, completion: completion)
         return session
     }
     
-    public func run(importing url: URL, into context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) {
-        let session = makeSession(importing: url, into: context, completion: completion)
+    public func run(importing url: URL, in context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) {
+        let session = makeSession(importing: url, in: context, completion: completion)
         session.performImport()
     }
+
+    public func run(in context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) {
+        let session = makeSession(in: context, completion: completion)
+        session.performImport()
+    }
+
 }

@@ -12,11 +12,11 @@ public class TestDataImporter: Importer {
     override class public var identifier: String { return "com.elegantchaos.bookish.importer.test-data" }
     
     public init(manager: ImportManager) {
-        super.init(name: "Test Data", source: .userSpecifiedFile, manager: manager)
+        super.init(name: "Test Data", source: .knownLocation, manager: manager)
     }
     
-    override func makeSession(importing url: URL, into context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) -> ImportSession {
-        return TestDataImportSession(importer: self, context: context, url: url, completion: completion)
+    override func makeSession(in context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) -> ImportSession {
+        return TestDataImportSession(importer: self, context: context, completion: completion)
     }
 }
 
