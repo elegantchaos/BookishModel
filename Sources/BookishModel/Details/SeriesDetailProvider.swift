@@ -29,15 +29,33 @@ class SeriesDetailProvider: DetailProvider {
         return details
     }
 
-    override func buildItems() {
-        super.buildItems()
-
-        var row = items.count
-        for index in 0 ..< sortedEntries.count {
-            let entry = sortedEntries[index]
-            let info = SeriesEntryDetailItem(entry: entry, absolute: row, index: index, source: self)
-            items.append(info)
-            row += 1
+    override var sectionCount: Int {
+        return 2
+    }
+    
+    public override func sectionTitle(for section: Int) -> String {
+        if section == 1 {
+            return "Series.section".localized
+        } else {
+            return super.sectionTitle(for: section)
+        }
+    }
+    
+    public override func itemCount(for section: Int) -> Int {
+        if section == 0 {
+            return super.itemCount(for: section)
+        } else {
+            return sortedEntries.count
+        }
+    }
+    
+    public override func info(section: Int, row: Int) -> DetailItem {
+        if section == 0 {
+            return super.info(section: section, row: row)
+        } else {
+            let entry = sortedEntries[row]
+            let info = SeriesEntryDetailItem(entry: entry, absolute: row, index: row, source: self)
+            return info
         }
     }
     

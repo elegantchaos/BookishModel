@@ -45,6 +45,7 @@ Publisher.search.singular = "search 1 publisher";
 Publisher.search.plural = "search {count} publishers";
 Publisher.title = "Publishers";
 Publisher.label = "publishers";
+Publisher.section = "Books As Publisher";
 
 Series.count.none = "no series";
 Series.count.singular = "1 series";
@@ -60,10 +61,11 @@ Series.singular = "series";
 Series.plural = "series";
 Series.title = "Series";
 Series.label = "series";
+Series.section = "Books In Series";
 
 Role.title = "Roles";
 Role.label = "roles";
-Role.section = "Books As {role}:";
+Role.section = "Books As {role}";
 
 Role.standard.author.notes = "A person with this role is a main author of a volume.";
 Role.standard.contributor.notes = "A person with this role is a contributor to a volume.";

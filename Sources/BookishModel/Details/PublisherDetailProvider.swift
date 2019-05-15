@@ -28,15 +28,32 @@ class PublisherDetailProvider: DetailProvider {
         return details
     }
 
-    override func buildItems() {
-        super.buildItems()
-        
-        var row = items.count
-        for index in 0 ..< sortedBooks.count {
-            let book = sortedBooks[index]
-            let info = BookDetailItem(book: book, absolute: row, index: index, source: self)
-            items.append(info)
-            row += 1
+    override var sectionCount: Int {
+        return 2
+    }
+    
+    public override func sectionTitle(for section: Int) -> String {
+        if section == 1 {
+            return "Publisher.section".localized
+        } else {
+            return super.sectionTitle(for: section)
+        }
+    }
+
+    public override func itemCount(for section: Int) -> Int {
+        if section == 0 {
+            return super.itemCount(for: section)
+        } else {
+            return sortedBooks.count
+        }
+    }
+    
+    public override func info(section: Int, row: Int) -> DetailItem {
+        if section == 0 {
+            return super.info(section: section, row: row)
+        } else {
+            let info = BookDetailItem(book: sortedBooks[row], absolute: row, index: row, source: self)
+            return info
         }
     }
     
