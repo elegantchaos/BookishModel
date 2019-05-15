@@ -30,6 +30,7 @@ class PublisherDetailTests: ModelTestCase {
         
         source.filter(for: [], editing: false, combining: false, context: TestContext())
         XCTAssertEqual(source.itemCount(for: 0), 0)
+        XCTAssertEqual(source.itemCount(for: 1), 0)
         XCTAssertEqual(source.sectionCount, 2)
 
         let publisher = Publisher(context: context)
@@ -38,17 +39,20 @@ class PublisherDetailTests: ModelTestCase {
         
         source.filter(for: [publisher], editing: false, combining: false, context: TestContext())
         XCTAssertEqual(source.itemCount(for: 0), 3)
+        XCTAssertEqual(source.itemCount(for: 1), 0)
         XCTAssertEqual(source.sectionCount, 2)
 
         source.filter(for: [publisher], editing: false, combining: false, context: TestContext(showDebug: true))
         XCTAssertEqual(source.itemCount(for: 0), 4)
+        XCTAssertEqual(source.itemCount(for: 1), 0)
         XCTAssertEqual(source.sectionCount, 2)
 
         let book = Book(context: context)
         publisher.addToBooks(book)
         
         source.filter(for: [publisher], editing: false, combining: false, context: TestContext())
-        XCTAssertEqual(source.itemCount(for: 0), 4)
+        XCTAssertEqual(source.itemCount(for: 0), 3)
+        XCTAssertEqual(source.itemCount(for: 1), 1)
         XCTAssertEqual(source.sectionCount, 2)
     }
     
