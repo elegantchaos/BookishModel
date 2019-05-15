@@ -107,8 +107,6 @@
 		2250C76321B94E1000E899E2 /* SeriesScannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C75F21B94E0C00E899E2 /* SeriesScannerTests.swift */; };
 		2250C7CF21BAA2F600E899E2 /* RoleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C7CE21BAA2F600E899E2 /* RoleTests.swift */; };
 		2250C7D021BAA2F600E899E2 /* RoleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C7CE21BAA2F600E899E2 /* RoleTests.swift */; };
-		2250C7EB21BAB7D400E899E2 /* RegularExpressionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C7EA21BAB7D400E899E2 /* RegularExpressionTests.swift */; };
-		2250C7EC21BAB7D400E899E2 /* RegularExpressionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C7EA21BAB7D400E899E2 /* RegularExpressionTests.swift */; };
 		2250C7EE21BAF6B000E899E2 /* BookActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C7ED21BAF6B000E899E2 /* BookActionTests.swift */; };
 		2250C7EF21BAF6B000E899E2 /* BookActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C7ED21BAF6B000E899E2 /* BookActionTests.swift */; };
 		2250C7F121BAF6B800E899E2 /* PersonActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C7F021BAF6B800E899E2 /* PersonActionTests.swift */; };
@@ -224,6 +222,20 @@
 		22D5A40D228C3F2D00E9FDDC /* MakeCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D5A40B228C3EE100E9FDDC /* MakeCommand.swift */; };
 		22D5A40E228C3F3000E9FDDC /* TaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D5A3EF228C3EAC00E9FDDC /* TaskList.swift */; };
 		22D5A4F4228C462600E9FDDC /* ActionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D5A4F3228C462600E9FDDC /* ActionList.swift */; };
+		22D5A5DE228C5DC100E9FDDC /* Empty.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 22D5A5B5228C5DC100E9FDDC /* Empty.sqlite */; };
+		22D5A5DF228C5DC100E9FDDC /* Empty.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 22D5A5B5228C5DC100E9FDDC /* Empty.sqlite */; };
+		22D5A5E0228C5DC100E9FDDC /* Empty.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 22D5A5DC228C5DC100E9FDDC /* Empty.sqlite-shm */; };
+		22D5A5E1228C5DC100E9FDDC /* Empty.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 22D5A5DC228C5DC100E9FDDC /* Empty.sqlite-shm */; };
+		22D5A5E2228C5DC100E9FDDC /* Empty.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 22D5A5DD228C5DC100E9FDDC /* Empty.sqlite-wal */; };
+		22D5A5E3228C5DC100E9FDDC /* Empty.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 22D5A5DD228C5DC100E9FDDC /* Empty.sqlite-wal */; };
+		22D5A5E7228C5DF700E9FDDC /* Test.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 22D5A5E4228C5DF700E9FDDC /* Test.sqlite-wal */; };
+		22D5A5E8228C5DF700E9FDDC /* Test.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 22D5A5E4228C5DF700E9FDDC /* Test.sqlite-wal */; };
+		22D5A5E9228C5DF700E9FDDC /* Test.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 22D5A5E5228C5DF700E9FDDC /* Test.sqlite-shm */; };
+		22D5A5EA228C5DF700E9FDDC /* Test.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 22D5A5E5228C5DF700E9FDDC /* Test.sqlite-shm */; };
+		22D5A5EB228C5DF700E9FDDC /* Test.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 22D5A5E6228C5DF700E9FDDC /* Test.sqlite */; };
+		22D5A5EC228C5DF700E9FDDC /* Test.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 22D5A5E6228C5DF700E9FDDC /* Test.sqlite */; };
+		22D5A5EE228C5F3F00E9FDDC /* TestDataImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D5A5ED228C5F3F00E9FDDC /* TestDataImporter.swift */; };
+		22D5A5EF228C5F3F00E9FDDC /* TestDataImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D5A5ED228C5F3F00E9FDDC /* TestDataImporter.swift */; };
 		22DA6A1921E6158D00ECF09A /* BookishModelBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 22DA6A1821E6158D00ECF09A /* BookishModelBridge.h */; };
 		22DA6A1A21E6158D00ECF09A /* BookishModelBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 22DA6A1821E6158D00ECF09A /* BookishModelBridge.h */; };
 		22DA6A1C21E61BC600ECF09A /* ModelObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DA6A1B21E61BC600ECF09A /* ModelObject.swift */; };
@@ -549,7 +561,6 @@
 		2250C71E21B94CD800E899E2 /* SeriesScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeriesScanner.swift; sourceTree = "<group>"; };
 		2250C75F21B94E0C00E899E2 /* SeriesScannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesScannerTests.swift; sourceTree = "<group>"; };
 		2250C7CE21BAA2F600E899E2 /* RoleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleTests.swift; sourceTree = "<group>"; };
-		2250C7EA21BAB7D400E899E2 /* RegularExpressionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressionTests.swift; sourceTree = "<group>"; };
 		2250C7ED21BAF6B000E899E2 /* BookActionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookActionTests.swift; sourceTree = "<group>"; };
 		2250C7F021BAF6B800E899E2 /* PersonActionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonActionTests.swift; sourceTree = "<group>"; };
 		2250C7F321BAF7AD00E899E2 /* ModelActionTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelActionTestCase.swift; sourceTree = "<group>"; };
@@ -621,6 +632,13 @@
 		22D5A4F3228C462600E9FDDC /* ActionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionList.swift; sourceTree = "<group>"; };
 		22D5A4F5228C4E5400E9FDDC /* Build Test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Build Test.json"; sourceTree = "<group>"; };
 		22D5A4F6228C4E5400E9FDDC /* Build Empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Build Empty.json"; sourceTree = "<group>"; };
+		22D5A5B5228C5DC100E9FDDC /* Empty.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Empty.sqlite; sourceTree = "<group>"; };
+		22D5A5DC228C5DC100E9FDDC /* Empty.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Empty.sqlite-shm"; sourceTree = "<group>"; };
+		22D5A5DD228C5DC100E9FDDC /* Empty.sqlite-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Empty.sqlite-wal"; sourceTree = "<group>"; };
+		22D5A5E4228C5DF700E9FDDC /* Test.sqlite-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Test.sqlite-wal"; sourceTree = "<group>"; };
+		22D5A5E5228C5DF700E9FDDC /* Test.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Test.sqlite-shm"; sourceTree = "<group>"; };
+		22D5A5E6228C5DF700E9FDDC /* Test.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Test.sqlite; sourceTree = "<group>"; };
+		22D5A5ED228C5F3F00E9FDDC /* TestDataImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDataImporter.swift; sourceTree = "<group>"; };
 		22DA6A1821E6158D00ECF09A /* BookishModelBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookishModelBridge.h; sourceTree = "<group>"; };
 		22DA6A1B21E61BC600ECF09A /* ModelObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelObject.swift; sourceTree = "<group>"; };
 		22DD424E2126D6DA0070C85A /* Version 1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Version 1.xcdatamodel"; sourceTree = "<group>"; };
@@ -765,7 +783,6 @@
 				2250C7F921BAF86200E899E2 /* PublisherActionTests.swift */,
 				2212376A220CA3F4006D4AA5 /* PublisherDetailTests.swift */,
 				2250C80421BE877E00E899E2 /* PublisherTests.swift */,
-				2250C7EA21BAB7D400E899E2 /* RegularExpressionTests.swift */,
 				22A498A6220F2321006A2137 /* RelationshipTests.swift */,
 				22D4A41E21BFF5B100427E35 /* Resources */,
 				2250C7CE21BAA2F600E899E2 /* RoleTests.swift */,
@@ -876,6 +893,7 @@
 			isa = PBXGroup;
 			children = (
 				22A498B3220F3554006A2137 /* DeliciousLibraryImporter.swift */,
+				22D5A5ED228C5F3F00E9FDDC /* TestDataImporter.swift */,
 				22318E702256385C00EE3EBC /* KindleImporter.swift */,
 				22A498B7220F3554006A2137 /* ImportSession.swift */,
 				22A498B5220F3554006A2137 /* Importer.swift */,
@@ -889,9 +907,15 @@
 			children = (
 				22DD424D2126D6DA0070C85A /* Collection.xcdatamodeld */,
 				224293B6212AE16200E70510 /* Info.plist */,
+				22D5A5B5228C5DC100E9FDDC /* Empty.sqlite */,
+				22D5A5DC228C5DC100E9FDDC /* Empty.sqlite-shm */,
+				22D5A5DD228C5DC100E9FDDC /* Empty.sqlite-wal */,
 				22724718221C3FDE00C80CCF /* Sample.sqlite */,
 				22724719221C3FDE00C80CCF /* Sample.sqlite-shm */,
 				2272471A221C3FDE00C80CCF /* Sample.sqlite-wal */,
+				22D5A5E6228C5DF700E9FDDC /* Test.sqlite */,
+				22D5A5E5228C5DF700E9FDDC /* Test.sqlite-shm */,
+				22D5A5E4228C5DF700E9FDDC /* Test.sqlite-wal */,
 				2211A9712215C072004B7589 /* Localizable.strings */,
 			);
 			path = Resources;
@@ -1282,21 +1306,21 @@
 		};
 		22F1827821CABCAC00220D20 /* BookishCoreMac */ = {
 			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
+			fileType = text;
 			path = BookishCoreMac;
 			remoteRef = 22F1827721CABCAC00220D20 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		22F1827A21CABCAC00220D20 /* BookishCoreMobile */ = {
 			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
+			fileType = text;
 			path = BookishCoreMobile;
 			remoteRef = 22F1827921CABCAC00220D20 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		22F1827C21CABCAC00220D20 /* BookishCoreTests.xctest */ = {
 			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
+			fileType = file;
 			path = BookishCoreTests.xctest;
 			remoteRef = 22F1827B21CABCAC00220D20 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -1366,7 +1390,7 @@
 		};
 		22F1829F21CABCAC00220D20 /* BookishCoreTests.xctest */ = {
 			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
+			fileType = file;
 			path = BookishCoreTests.xctest;
 			remoteRef = 22F1829E21CABCAC00220D20 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -1406,9 +1430,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22D5A5E7228C5DF700E9FDDC /* Test.sqlite-wal in Resources */,
+				22D5A5E0228C5DC100E9FDDC /* Empty.sqlite-shm in Resources */,
 				2211A9722215C072004B7589 /* Localizable.strings in Resources */,
+				22D5A5EB228C5DF700E9FDDC /* Test.sqlite in Resources */,
 				2272471F221C3FDE00C80CCF /* Sample.sqlite-wal in Resources */,
 				2272471D221C3FDE00C80CCF /* Sample.sqlite-shm in Resources */,
+				22D5A5E9228C5DF700E9FDDC /* Test.sqlite-shm in Resources */,
+				22D5A5E2228C5DC100E9FDDC /* Empty.sqlite-wal in Resources */,
+				22D5A5DE228C5DC100E9FDDC /* Empty.sqlite in Resources */,
 				2272471B221C3FDE00C80CCF /* Sample.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1431,9 +1461,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22D5A5E8228C5DF700E9FDDC /* Test.sqlite-wal in Resources */,
+				22D5A5E1228C5DC100E9FDDC /* Empty.sqlite-shm in Resources */,
 				2211A9732215C072004B7589 /* Localizable.strings in Resources */,
+				22D5A5EC228C5DF700E9FDDC /* Test.sqlite in Resources */,
 				22724720221C3FDE00C80CCF /* Sample.sqlite-wal in Resources */,
 				2272471E221C3FDE00C80CCF /* Sample.sqlite-shm in Resources */,
+				22D5A5EA228C5DF700E9FDDC /* Test.sqlite-shm in Resources */,
+				22D5A5E3228C5DC100E9FDDC /* Empty.sqlite-wal in Resources */,
+				22D5A5DF228C5DC100E9FDDC /* Empty.sqlite in Resources */,
 				2272471C221C3FDE00C80CCF /* Sample.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1464,6 +1500,7 @@
 				22F180C421CA662D00220D20 /* FileManagerExtensions.swift in Sources */,
 				22A3E2EB21FB80B900BA4F17 /* MultipleValues.swift in Sources */,
 				221ED50C216B79F100594714 /* DetailSpec.swift in Sources */,
+				22D5A5EE228C5F3F00E9FDDC /* TestDataImporter.swift in Sources */,
 				2250C70521B557A400E899E2 /* SeriesAction.swift in Sources */,
 				2250C70221B556FC00E899E2 /* SeriesEntry.swift in Sources */,
 				22F0CFDB22845D8A00B8B506 /* NavigationStack.swift in Sources */,
@@ -1551,7 +1588,6 @@
 				2231C5162228342D00D730FB /* LookupServiceTests.swift in Sources */,
 				225F893D221AE66200196110 /* StringLocalizationTests.swift in Sources */,
 				2231C3DB226A47EA009A9937 /* MarkupUtilityTests.swift in Sources */,
-				2250C7EB21BAB7D400E899E2 /* RegularExpressionTests.swift in Sources */,
 				2250C7CF21BAA2F600E899E2 /* RoleTests.swift in Sources */,
 				22EEF6BE21A6B761007FAD10 /* ModelTestCase.swift in Sources */,
 				2250C80E21BE96F000E899E2 /* ChangeValueActionTests.swift in Sources */,
@@ -1626,6 +1662,7 @@
 				229FB9E32226B2C300A564D4 /* LookupService.swift in Sources */,
 				2250C72021B94CD800E899E2 /* SeriesScanner.swift in Sources */,
 				22F0CFDC22845D8A00B8B506 /* NavigationStack.swift in Sources */,
+				22D5A5EF228C5F3F00E9FDDC /* TestDataImporter.swift in Sources */,
 				229FB9E92226B2D900A564D4 /* GoogleLookupService.swift in Sources */,
 				22A498A5220F1A02006A2137 /* NSManagedObjectExtensions.swift in Sources */,
 				22387994220B1D860019F9EA /* BookDetailProvider.swift in Sources */,
@@ -1665,7 +1702,6 @@
 				2231C53122285F1900D730FB /* LookupServiceTests.swift in Sources */,
 				225F893E221AE66200196110 /* StringLocalizationTests.swift in Sources */,
 				2231C3DC226A47EA009A9937 /* MarkupUtilityTests.swift in Sources */,
-				2250C7EC21BAB7D400E899E2 /* RegularExpressionTests.swift in Sources */,
 				2250C7D021BAA2F600E899E2 /* RoleTests.swift in Sources */,
 				22EEF6BF21A6B761007FAD10 /* ModelTestCase.swift in Sources */,
 				2250C80F21BE96F000E899E2 /* ChangeValueActionTests.swift in Sources */,

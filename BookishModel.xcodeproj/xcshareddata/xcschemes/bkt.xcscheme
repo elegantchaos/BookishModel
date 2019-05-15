@@ -87,6 +87,14 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "Sample"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "Empty"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "Test"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
