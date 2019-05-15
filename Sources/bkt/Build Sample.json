@@ -7,7 +7,7 @@
             "action": "Import",
             "params": {
                 "importer": "com.elegantchaos.bookish.importer.delicious-library",
-                "url": "$sampleURL"
+                "url": "$resourceURL/Sample.xml"
             }
         },
 
@@ -16,7 +16,7 @@
             "action": "Import",
             "params": {
                 "importer": "com.elegantchaos.bookish.importer.kindle",
-                "url": "$kindleURL"
+                "url": "$resourceURL/Kindle.xml"
             }
         },
 

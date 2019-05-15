@@ -28,24 +28,24 @@ class MakeCommand: Command {
         shell.exit(result: .ok)
     }
 
-    override func run(shell: Shell) throws -> Result {
-        let rootURL = URL(fileURLWithPath: #file).deletingLastPathComponent()
-        let jsonURL = rootURL.appendingPathComponent("Build Sample.json")
+    fileprivate func make(name: String, shell: Shell) {
+        shell.log("Making collection '\(name)'.")
 
+        let rootURL = URL(fileURLWithPath: #file).deletingLastPathComponent()
+        let jsonURL = rootURL.appendingPathComponent("Build \(name).json")
+        
         StringLocalization.registerLocalizationBundle(Bundle.main)
         
-        let xmlURL = rootURL.appendingPathComponent("../../Tests/BookishModelTests/Resources/Sample.xml")
-        let kindleURL = rootURL.appendingPathComponent("../../Tests/BookishModelTests/Resources/Kindle.xml")
-        let sampleURL = rootURL.appendingPathComponent("../BookishModel/Resources/Sample.sqlite")
+        let resourceURL = rootURL.appendingPathComponent("../../Tests/BookishModelTests/Resources/")
+        let outputURL = rootURL.appendingPathComponent("../BookishModel/Resources/\(name).sqlite")
         
         let model = BookishModel.model()
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
-        try? coordinator.destroyPersistentStore(at: sampleURL, ofType: NSSQLiteStoreType)
+        try? coordinator.destroyPersistentStore(at: outputURL, ofType: NSSQLiteStoreType)
         
-        self.container = CollectionContainer(name: "test", url: sampleURL) { (container, error) in
+        self.container = CollectionContainer(name: name, url: outputURL) { (container, error) in
             var variables: [String:Any] = ProcessInfo.processInfo.environment
-            variables["sampleURL"] = xmlURL
-            variables["kindleURL"] = kindleURL
+            variables["resourceURL"] = resourceURL.path
             for n in 0 ..< CommandLine.arguments.count {
                 variables["\(n)"] = CommandLine.arguments[n]
             }
@@ -61,7 +61,10 @@ class MakeCommand: Command {
             actions.run()
             self.actions = actions
         }
-        
+    }
+    override func run(shell: Shell) throws -> Result {
+        let name = shell.arguments.argument("name")
+        make(name: name, shell: shell)
         return .running
     }
 }

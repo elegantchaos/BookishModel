@@ -7,6 +7,7 @@ import Foundation
 import Actions
 import BookishModel
 import CoreData
+import BookishCore
 
 struct ActionSpec: Decodable {
     let name: String
@@ -20,11 +21,17 @@ struct ActionFile: Decodable {
     let actions: [ActionSpec]
 }
 
+struct Variable: RegularExpressionResult {
+    var name = ""
+}
+
 class ActionList: TaskList {
     let container: CollectionContainer
     let actionManager: ActionManager
     let importManager: ImportManager
     
+    let variablePattern = try! NSRegularExpression(pattern: ".*\\$(\\w+).*")
+
     init(container: CollectionContainer, actionManager: ActionManager, importManager: ImportManager) {
         self.container = container
         self.actionManager = actionManager
@@ -32,15 +39,15 @@ class ActionList: TaskList {
     }
     
     fileprivate func makeActionTasks(_ actions: ActionFile, variables: [String:Any]) {
+        
         for action in actions.actions {
             var expandedParams: [String:Any] = [:]
             if let params = action.params {
                 for (key, value) in params {
-                    let start = value.startIndex
-                    if let index = value.firstIndex(of: "$"), index == start {
-                        
-                        let variable = String(value[value.index(after: index)...])
-                        expandedParams[key] = variables[variable]
+                    let string: String = value
+                    if let match = variablePattern.firstMatch(of: string, capturing: [\Variable.name: 1]), let variable = variables[match.name] as? String {
+                        let expanded = string.replacingOccurrences(of: "$\(match.name)", with: variable)
+                        expandedParams[key] = expanded
                     } else {
                         expandedParams[key] = value
                     }

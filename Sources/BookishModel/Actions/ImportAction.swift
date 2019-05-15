@@ -7,6 +7,18 @@ import Foundation
 import CoreData
 import Actions
 
+extension ActionContext { // TODO: move into Actions
+    func url(withKey key: String) -> URL? {
+        let value = info[key]
+        if let url = value as? URL {
+            return url
+        } else if let string = value as? String {
+            return URL(fileURLWithPath: string)
+        }
+        return nil
+    }
+}
+
 public class ImportAction: ModelAction {
     public static let importerKey = "importer"
     public static let managerKey = "importManager"
@@ -17,7 +29,7 @@ public class ImportAction: ModelAction {
         guard let manager = context[ImportAction.managerKey] as? ImportManager,
             let importerID = context[ImportAction.importerKey] as? String,
             let importer = manager.importer(identifier: importerID),
-            let url = context[ImportAction.urlKey] as? URL else {
+            let url = context.url(withKey: ImportAction.urlKey) else {
                 completion()
                 return
         }
