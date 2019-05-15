@@ -122,8 +122,6 @@ class MiscModelTests: ModelTestCase {
         XCTAssertNotNil(Series.fetchRequest() as NSFetchRequest<Series>)
         
         let container = makeTestContainer()
-        container.setupTestData()
-
         let context = container.managedObjectContext
         XCTAssertNotNil(Book.fetcher(in: context) as NSFetchRequest<Book>)
         XCTAssertNotNil(SeriesEntry.fetcher(in: context) as NSFetchRequest<SeriesEntry>)

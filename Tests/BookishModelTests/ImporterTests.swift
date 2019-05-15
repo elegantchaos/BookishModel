@@ -22,13 +22,15 @@ class ImporterTests: ModelTestCase {
 
     func testRegistration() {
         let manager = ImportManager()
-        let i1 = DummyImporter1(name: "test1", source: .knownLocation, manager: manager)
-        let i2 = DummyImporter2(name: "test2", source: .userSpecifiedFile, manager: manager)
+        let initialCount = manager.sortedImporters.count
+        let i1 = DummyImporter1(name: "A test 1", source: .knownLocation, manager: manager)
+        let i2 = DummyImporter2(name: "Z test 2", source: .userSpecifiedFile, manager: manager)
         manager.register([i1, i2])
         XCTAssertTrue(manager.importer(identifier: "dummy1") === i1)
         XCTAssertTrue(manager.importer(identifier: "dummy2") === i2)
-        XCTAssertEqual(manager.sortedImporters.count, 4)
-        XCTAssertTrue(manager.sortedImporters[2] === i1)
+        XCTAssertEqual(manager.sortedImporters.count, initialCount + 2)
+        XCTAssertTrue(manager.sortedImporters[0] === i1)
+        XCTAssertTrue(manager.sortedImporters[initialCount + 1] === i2)
     }
     
     func testDefaultsKnownLocation() {
