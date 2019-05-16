@@ -5,6 +5,8 @@
 
 import XCTest
 import Actions
+import CoreData
+
 @testable import BookishModel
 
 class LookupActionTests: ModelActionTestCase, BookViewer {
