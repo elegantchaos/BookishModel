@@ -120,4 +120,33 @@ class ImporterTests: ModelTestCase {
         XCTAssertEqual(importer.panelMessage, "importer.message")
     }
 
+    func testStandardRolesImporter() {
+        let container = makeTestContainer()
+        let manager = ImportManager()
+        let importer = StandardRolesImporter(manager: manager)
+        manager.register([importer])
+        let expectation = self.expectation(description: "completed")
+        importer.run(in: container.managedObjectContext) {
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1.0)
+        let count = container.managedObjectContext.countEntities(type: Role.self)
+        XCTAssertEqual(count, Role.StandardName.allCases.count)
+    }
+    
+    func testTestDataImporter() {
+        let container = makeTestContainer()
+        let manager = ImportManager()
+        let importer = TestDataImporter(manager: manager)
+        manager.register([importer])
+        let expectation = self.expectation(description: "completed")
+        importer.run(in: container.managedObjectContext) {
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1.0)
+        let roles = container.managedObjectContext.countEntities(type: Role.self)
+        XCTAssertEqual(roles, Role.StandardName.allCases.count)
+        let books = container.managedObjectContext.countEntities(type: Book.self)
+        XCTAssertEqual(books, 4)
+    }
 }
