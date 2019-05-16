@@ -7,7 +7,36 @@ import XCTest
 import Actions
 @testable import BookishModel
 
-class LookupActionTests: ModelActionTestCase {
+class LookupActionTests: ModelActionTestCase, BookViewer {
+    var viewed: Book? = nil
+    var revealed: XCTestExpectation? = nil
+    
+    class TestCandidate: LookupCandidate {
+        var madeBookCalled = false
+        var existingBookCalled = false
+        var book: Book? = nil
+        
+        init(book: Book? = nil) {
+            self.book = book
+            super.init(service: LookupService(name: "test"))
+        }
+
+        override var existingBook: Book? {
+            existingBookCalled = true
+            return book
+        }
+        
+        override func makeBook(in context: NSManagedObjectContext) -> Book {
+            madeBookCalled = true
+            return Book(in: context)
+        }
+    }
+    
+    func reveal(book: Book) {
+        viewed = book
+        revealed?.fulfill()
+    }
+    
     func testLookupCover() {
         class TestService: LookupService {
             override func lookup(search: String, session: LookupSession) {
@@ -51,4 +80,34 @@ class LookupActionTests: ModelActionTestCase {
         observer.invalidate()
     }
 
+    func testViewCandidate() {
+        let book = Book(context: context)
+        let candidate = TestCandidate(book: book)
+        revealed = expectation(description: "revealed")
+
+        info[LookupAction.candidateKey] = candidate
+        info[ActionContext.rootKey] = self
+        actionManager.perform(identifier: "ViewCandidate", info: info)
+
+        wait(for: [revealed!], timeout: 1.0)
+        
+        XCTAssertTrue(candidate.existingBookCalled)
+        XCTAssertFalse(candidate.madeBookCalled)
+        XCTAssertEqual(book, viewed)
+    }
+    
+    func testAddCandidate() {
+        let candidate = TestCandidate()
+        revealed = expectation(description: "revealed")
+        
+        info[LookupAction.candidateKey] = candidate
+        info[ActionContext.rootKey] = self
+        actionManager.perform(identifier: "AddCandidate", info: info)
+        
+        wait(for: [revealed!], timeout: 1.0)
+        
+        XCTAssertFalse(candidate.existingBookCalled)
+        XCTAssertTrue(candidate.madeBookCalled)
+        XCTAssertNotNil(viewed)
+    }
 }

@@ -246,6 +246,7 @@
 		22DA6A1D21E61BC600ECF09A /* ModelObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DA6A1B21E61BC600ECF09A /* ModelObject.swift */; };
 		22E47CC6216E31B700E43DBF /* BookAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C4B23216BA50C0086D56F /* BookAction.swift */; };
 		22E47CC7216E31BA00E43DBF /* BookAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C4B23216BA50C0086D56F /* BookAction.swift */; };
+		22E96EEA228D60C200DE95A8 /* LookupAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221B8513225B567300BC4D32 /* LookupAction.swift */; };
 		22EEF6BE21A6B761007FAD10 /* ModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EEF6BD21A6B761007FAD10 /* ModelTestCase.swift */; };
 		22EEF6BF21A6B761007FAD10 /* ModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EEF6BD21A6B761007FAD10 /* ModelTestCase.swift */; };
 		22F0CFDB22845D8A00B8B506 /* NavigationStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F0CFDA22845D8A00B8B506 /* NavigationStack.swift */; };
@@ -1275,7 +1276,7 @@
 /* Begin PBXReferenceProxy section */
 		22B6ECBB228C8B38000AAB2A /* bktCore */ = {
 			isa = PBXReferenceProxy;
-			fileType = text;
+			fileType = "compiled.mach-o.executable";
 			path = bktCore;
 			remoteRef = 22B6ECBA228C8B38000AAB2A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -1352,21 +1353,21 @@
 		};
 		22F1827821CABCAC00220D20 /* BookishCoreMac */ = {
 			isa = PBXReferenceProxy;
-			fileType = text;
+			fileType = "compiled.mach-o.executable";
 			path = BookishCoreMac;
 			remoteRef = 22F1827721CABCAC00220D20 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		22F1827A21CABCAC00220D20 /* BookishCoreMobile */ = {
 			isa = PBXReferenceProxy;
-			fileType = text;
+			fileType = "compiled.mach-o.executable";
 			path = BookishCoreMobile;
 			remoteRef = 22F1827921CABCAC00220D20 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		22F1827C21CABCAC00220D20 /* BookishCoreTests.xctest */ = {
 			isa = PBXReferenceProxy;
-			fileType = file;
+			fileType = wrapper.cfbundle;
 			path = BookishCoreTests.xctest;
 			remoteRef = 22F1827B21CABCAC00220D20 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -1436,7 +1437,7 @@
 		};
 		22F1829F21CABCAC00220D20 /* BookishCoreTests.xctest */ = {
 			isa = PBXReferenceProxy;
-			fileType = file;
+			fileType = wrapper.cfbundle;
 			path = BookishCoreTests.xctest;
 			remoteRef = 22F1829E21CABCAC00220D20 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -1663,6 +1664,7 @@
 				22F180C521CA662D00220D20 /* FileManagerExtensions.swift in Sources */,
 				2257114F2218663B0099FFDE /* BookDetailItem.swift in Sources */,
 				22A3E2EC21FB80B900BA4F17 /* MultipleValues.swift in Sources */,
+				22E96EEA228D60C200DE95A8 /* LookupAction.swift in Sources */,
 				22D5A650228C723100E9FDDC /* StandardRolesImporter.swift in Sources */,
 				221ED50D216B79F100594714 /* DetailSpec.swift in Sources */,
 				2250C70621B557A400E899E2 /* SeriesAction.swift in Sources */,
