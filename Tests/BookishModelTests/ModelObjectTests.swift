@@ -27,17 +27,21 @@ class ModelObjectTests: ModelTestCase {
 
     func testEntityDescriptionBadContext() {
         let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        #if testFatalErrors && (!os(iOS) || targetEnvironment(simulator))
         let _ = XCTAssertFatalError {
             let _ = ModelObject.entityDescription(for: Book.self, in: context)
         }
+        #endif
     }
     
     func testEntityDescriptionNoEntity() {
         let container = makeTestContainer()
         let context = container.managedObjectContext
+        #if testFatalErrors && (!os(iOS) || targetEnvironment(simulator))
         let _ = XCTAssertFatalError {
             let _ = ModelObject.entityDescription(for: String.self, in: context)
         }
+        #endif
     }
     
     func testEntityDescriptionFromObject() {

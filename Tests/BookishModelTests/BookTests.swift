@@ -70,9 +70,11 @@ class BookTests: ModelTestCase {
         XCTAssertEqual(book.entries?.count, 0)
         let series = Series(context: context)
         
+        #if testFatalErrors && (!os(iOS) || targetEnvironment(simulator))
         XCTAssertFatalError {
             book.setPosition(in: series, to: 2)
         }
+        #endif
     }
 
     func testPosition() {
