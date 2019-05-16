@@ -16,7 +16,7 @@ let package = Package(
         .package(url: "https://github.com/elegantchaos/Actions", from: "1.2.4"),
         .package(url: "https://github.com/elegantchaos/JSONDump", from: "1.0.4"),
         .package(url: "https://github.com/elegantchaos/Coverage", from: "1.0.4"),
-        .package(url: "https://github.com/elegantchaos/CommandShell", from: "1.0.2"),
+        .package(url: "https://github.com/elegantchaos/CommandShell", from: "1.0.3"),
     ],
     targets: [
         .target(
