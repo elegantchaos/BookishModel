@@ -247,6 +247,10 @@
 		22E47CC6216E31B700E43DBF /* BookAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C4B23216BA50C0086D56F /* BookAction.swift */; };
 		22E47CC7216E31BA00E43DBF /* BookAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221C4B23216BA50C0086D56F /* BookAction.swift */; };
 		22E96EEA228D60C200DE95A8 /* LookupAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221B8513225B567300BC4D32 /* LookupAction.swift */; };
+		22E96F6B228D837800DE95A8 /* DataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E96F6A228D837800DE95A8 /* DataFetcher.swift */; };
+		22E96F6C228D837800DE95A8 /* DataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E96F6A228D837800DE95A8 /* DataFetcher.swift */; };
+		22E96F70228D850B00DE95A8 /* GoogleLookupServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E96F6D228D847D00DE95A8 /* GoogleLookupServiceTests.swift */; };
+		22E96F71228D850B00DE95A8 /* GoogleLookupServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E96F6D228D847D00DE95A8 /* GoogleLookupServiceTests.swift */; };
 		22EEF6BE21A6B761007FAD10 /* ModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EEF6BD21A6B761007FAD10 /* ModelTestCase.swift */; };
 		22EEF6BF21A6B761007FAD10 /* ModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EEF6BD21A6B761007FAD10 /* ModelTestCase.swift */; };
 		22F0CFDB22845D8A00B8B506 /* NavigationStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F0CFDA22845D8A00B8B506 /* NavigationStack.swift */; };
@@ -672,6 +676,8 @@
 		22DD424E2126D6DA0070C85A /* Version 1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Version 1.xcdatamodel"; sourceTree = "<group>"; };
 		22DD42792126DDA80070C85A /* BookishModel.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = BookishModel.xcconfig; sourceTree = "<group>"; };
 		22DDE6CD2257516C00816C5C /* Version 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Version 6.xcdatamodel"; sourceTree = "<group>"; };
+		22E96F6A228D837800DE95A8 /* DataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcher.swift; sourceTree = "<group>"; };
+		22E96F6D228D847D00DE95A8 /* GoogleLookupServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleLookupServiceTests.swift; sourceTree = "<group>"; };
 		22EEF6BD21A6B761007FAD10 /* ModelTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTestCase.swift; sourceTree = "<group>"; };
 		22F0CFDA22845D8A00B8B506 /* NavigationStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationStack.swift; sourceTree = "<group>"; };
 		22F0CFF722845DA300B8B506 /* NavigationStackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationStackTests.swift; sourceTree = "<group>"; };
@@ -797,6 +803,7 @@
 				22318E8C225638DD00EE3EBC /* KindleImporterTests.swift */,
 				22A4989D220DF5CD006A2137 /* IndexingTests.swift */,
 				2231C5152228342D00D730FB /* LookupServiceTests.swift */,
+				22E96F6D228D847D00DE95A8 /* GoogleLookupServiceTests.swift */,
 				22B6ECD2228C8D5C000AAB2A /* LookupActionTests.swift */,
 				2231C5CB2229724500D730FB /* ISBNTests.swift */,
 				2213FD2522312FD900D8B4D8 /* DecodingErrorTests.swift */,
@@ -854,6 +861,7 @@
 			isa = PBXGroup;
 			children = (
 				2211A9542215A7B0004B7589 /* StringExtensions.swift */,
+				22E96F6A228D837800DE95A8 /* DataFetcher.swift */,
 				22ADAC5D223146BE00967943 /* SequenceExtensions.swift */,
 				2231C570222971B600D730FB /* String+ISBN.swift */,
 				22115B1B222FDF0A00C3F170 /* DecodingError+DetailedDescription.swift */,
@@ -1542,6 +1550,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22E96F6B228D837800DE95A8 /* DataFetcher.swift in Sources */,
 				221B8554225E2CDD00BC4D32 /* PersonDetailItem.swift in Sources */,
 				22A498BE220F3555006A2137 /* ImportManager.swift in Sources */,
 				22F180C421CA662D00220D20 /* FileManagerExtensions.swift in Sources */,
@@ -1620,6 +1629,7 @@
 				22123770220CA405006D4AA5 /* SeriesDetailTests.swift in Sources */,
 				224293D4212AE83C00E70510 /* MiscModelTests.swift in Sources */,
 				225F8920221AE56200196110 /* SectionDetailItemTests.swift in Sources */,
+				22E96F70228D850B00DE95A8 /* GoogleLookupServiceTests.swift in Sources */,
 				225F8943221AF41800196110 /* BookDetailItemTests.swift in Sources */,
 				22A498A1220DF877006A2137 /* ModelObjectTests.swift in Sources */,
 				2250C7FA21BAF86200E899E2 /* PublisherActionTests.swift in Sources */,
@@ -1699,6 +1709,7 @@
 				223879C7220B49230019F9EA /* PublisherDetailItem.swift in Sources */,
 				224293D3212AE1E700E70510 /* BookishModel.swift in Sources */,
 				2250C6FA21B5398D00E899E2 /* PublisherAction.swift in Sources */,
+				22E96F6C228D837800DE95A8 /* DataFetcher.swift in Sources */,
 				224293EA212AF0D300E70510 /* Role.swift in Sources */,
 				22A498C1220F3555006A2137 /* ImportSession.swift in Sources */,
 				2272467E221C117F00C80CCF /* ScanSeriesAction.swift in Sources */,
@@ -1737,6 +1748,7 @@
 				22123773220CA406006D4AA5 /* SeriesDetailTests.swift in Sources */,
 				224293C3212AE16300E70510 /* MiscModelTests.swift in Sources */,
 				225F8921221AE56200196110 /* SectionDetailItemTests.swift in Sources */,
+				22E96F71228D850B00DE95A8 /* GoogleLookupServiceTests.swift in Sources */,
 				225F8944221AF41800196110 /* BookDetailItemTests.swift in Sources */,
 				22A498A2220DF877006A2137 /* ModelObjectTests.swift in Sources */,
 				2250C7FB21BAF86200E899E2 /* PublisherActionTests.swift in Sources */,

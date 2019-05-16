@@ -70,15 +70,14 @@ public class GoogleLookupCandidate: LookupCandidate {
 }
 
 public class GoogleLookupService: LookupService {
+    var fetcher: DataFetcher = JSONDataFetcher()
     let dateDetector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.date.rawValue)
 
     public override func lookup(search: String, session: LookupSession) {
         let query = (search.isISBN10 || search.isISBN13) ? "q=isbn:\(search)" : "q=\(search.replacingOccurrences(of: " ", with: "+"))"
         guard
             let url = URL(string: "https://www.googleapis.com/books/v1/volumes?\(query)"),
-            let data = try? Data(contentsOf: url),
-            let parsed = try? JSONSerialization.jsonObject(with: data, options: []),
-            let info = parsed as? [String:Any],
+            let info = fetcher.info(for: url),
             let items = info["items"] as? [[String:Any]],
             items.count > 0
         else {
