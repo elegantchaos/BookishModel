@@ -107,7 +107,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "Sample"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "Roles"
@@ -115,7 +115,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "Test"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
