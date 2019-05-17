@@ -9,6 +9,7 @@ public class BookDetailProvider: DetailProvider {
     private var relationships = [Relationship]()
     private var publishers = [Publisher]()
     private var entries = [SeriesEntry]()
+    private var tags: Set<Tag> = []
     
     public class func standardDetails(showDebug: Bool) -> [DetailSpec] {
         var details = [
@@ -60,6 +61,20 @@ public class BookDetailProvider: DetailProvider {
                 return book.entries as? Set<SeriesEntry>
             }
             
+            var commonTags = Set<Tag>()
+            var isFirst = true
+            for book in books {
+                if let tags = book.tags as? Set<Tag> {
+                    if isFirst {
+                        commonTags.formUnion(tags)
+                        isFirst = false
+                    } else {
+                        commonTags.formIntersection(tags)
+                    }
+                }
+            }
+            self.tags = commonTags
+            
             relationships = collectedRelationships.common.sorted(by: { ($0.person?.name ?? "") < ($1.person?.name ?? "") })
             publishers = collectedPublishers.common.sorted(by: { ($0.name ?? "") < ($1.name ?? "") })
             entries = collectedSeries.common.sorted(by: {($0.series?.name ?? "") < ($1.series?.name ?? "")})
@@ -70,6 +85,11 @@ public class BookDetailProvider: DetailProvider {
     
     override func buildItems() {
         var row = items.count
+
+        let info = TagsDetailItem(tags: tags, absolute: row, index: 0, source: self)
+        items.append(info)
+        row += 1
+        
         let peopleCount = relationships.count
         for index in 0 ..< peopleCount {
             let info = RelationshipDetailItem(relationship: relationships[index], absolute: row, index: index, source: self)

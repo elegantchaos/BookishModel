@@ -18,6 +18,7 @@ Book.search.none = "no books to search";
 Book.search.singular = "search 1 book";
 Book.search.plural = "search {count} books";
 Book.title = "Books";
+Book.title.singular = "Book";
 Book.label = "books";
 
 Person.count.none = "no people";
@@ -31,6 +32,7 @@ Person.search.none = "no people to search";
 Person.search.singular = "search 1 person";
 Person.search.plural = "search {count} people";
 Person.title = "People";
+Person.title.singular = "Person";
 Person.label = "people";
 
 Publisher.count.none = "no publishers";
@@ -44,6 +46,7 @@ Publisher.search.none = "no publishers to search";
 Publisher.search.singular = "search 1 publisher";
 Publisher.search.plural = "search {count} publishers";
 Publisher.title = "Publishers";
+Publisher.title.singular = "Publisher";
 Publisher.label = "publishers";
 Publisher.section = "Books As Publisher";
 
@@ -60,6 +63,7 @@ Series.search.plural = "search {count} series";
 Series.singular = "series";
 Series.plural = "series";
 Series.title = "Series";
+Series.title.singular = "Series";
 Series.label = "series";
 Series.section = "Books In Series";
 
@@ -133,6 +137,10 @@ detail.source.placeholder = "source of this item";
 
 detail.uuid.label = "🛠 id";
 
+editing.start.long = "Start Editing {entity}";
+editing.stop.long = "Finish Editing {entity}";
+editing.start.short = "Edit";
+editing.stop.short = "Done";
 
 scanner.startup = "Scan a barcode or enter an ISBN/EAN/title.";
 
