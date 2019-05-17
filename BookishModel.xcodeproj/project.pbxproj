@@ -131,6 +131,8 @@
 		2250C80F21BE96F000E899E2 /* ChangeValueActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250C80D21BE96F000E899E2 /* ChangeValueActionTests.swift */; };
 		2251B7E9228EE88F006C1529 /* TagsDetailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2251B7E8228EE88F006C1529 /* TagsDetailItem.swift */; };
 		2251B7EA228EE88F006C1529 /* TagsDetailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2251B7E8228EE88F006C1529 /* TagsDetailItem.swift */; };
+		2251B814228F0336006C1529 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2251B813228F0336006C1529 /* Tag.swift */; };
+		2251B815228F0336006C1529 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2251B813228F0336006C1529 /* Tag.swift */; };
 		22571132221865AD0099FFDE /* SectionDetailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22571131221865AD0099FFDE /* SectionDetailItem.swift */; };
 		2257114E2218663B0099FFDE /* BookDetailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2257114D2218663B0099FFDE /* BookDetailItem.swift */; };
 		2257114F2218663B0099FFDE /* BookDetailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2257114D2218663B0099FFDE /* BookDetailItem.swift */; };
@@ -608,6 +610,7 @@
 		2250C80D21BE96F000E899E2 /* ChangeValueActionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeValueActionTests.swift; sourceTree = "<group>"; };
 		2251B7E8228EE88F006C1529 /* TagsDetailItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsDetailItem.swift; sourceTree = "<group>"; };
 		2251B812228EEB81006C1529 /* Version 9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Version 9.xcdatamodel"; sourceTree = "<group>"; };
+		2251B813228F0336006C1529 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		225488DF21F391F500EE8ECB /* Version 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Version 2.xcdatamodel"; sourceTree = "<group>"; };
 		22571131221865AD0099FFDE /* SectionDetailItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionDetailItem.swift; sourceTree = "<group>"; };
 		2257114D2218663B0099FFDE /* BookDetailItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailItem.swift; sourceTree = "<group>"; };
@@ -855,6 +858,7 @@
 			children = (
 				22DA6A1B21E61BC600ECF09A /* ModelObject.swift */,
 				221F271E21306C1300DC2DC7 /* Book.swift */,
+				2251B813228F0336006C1529 /* Tag.swift */,
 				2250C70121B556FC00E899E2 /* SeriesEntry.swift */,
 				224293DE212AF05800E70510 /* Person.swift */,
 				221F272121359DA200DC2DC7 /* Publisher.swift */,
@@ -1603,6 +1607,7 @@
 				221F271F21306C1300DC2DC7 /* Book.swift in Sources */,
 				221F272221359DA200DC2DC7 /* Publisher.swift in Sources */,
 				22A498C0220F3555006A2137 /* ImportSession.swift in Sources */,
+				2251B814228F0336006C1529 /* Tag.swift in Sources */,
 				22318E972256493800EE3EBC /* MarkupUtilities.swift in Sources */,
 				2272467D221C117F00C80CCF /* ScanSeriesAction.swift in Sources */,
 				2251B7E9228EE88F006C1529 /* TagsDetailItem.swift in Sources */,
@@ -1687,6 +1692,7 @@
 				22A3E2EC21FB80B900BA4F17 /* MultipleValues.swift in Sources */,
 				22E96EEA228D60C200DE95A8 /* LookupAction.swift in Sources */,
 				22D5A650228C723100E9FDDC /* StandardRolesImporter.swift in Sources */,
+				2251B815228F0336006C1529 /* Tag.swift in Sources */,
 				221ED50D216B79F100594714 /* DetailSpec.swift in Sources */,
 				2250C70621B557A400E899E2 /* SeriesAction.swift in Sources */,
 				2267450B222ABAEC002549CE /* RoleDetailItem.swift in Sources */,
