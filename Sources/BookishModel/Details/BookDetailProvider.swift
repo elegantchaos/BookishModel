@@ -9,7 +9,6 @@ public class BookDetailProvider: DetailProvider {
     private var relationships = [Relationship]()
     private var publishers = [Publisher]()
     private var entries = [SeriesEntry]()
-    private var tags: Set<Tag> = []
     
     public class func standardDetails(showDebug: Bool) -> [DetailSpec] {
         var details = [
@@ -64,25 +63,11 @@ public class BookDetailProvider: DetailProvider {
             let collectedTags = MultipleValues.extract(from: books) { book -> Set<Tag>? in
                 return book.tags as? Set<Tag>
             }
-//
-//            var commonTags = Set<Tag>()
-//            var isFirst = true
-//            for book in books {
-//                if let tags = book.tags as? Set<Tag> {
-//                    if isFirst {
-//                        commonTags.formUnion(tags)
-//                        isFirst = false
-//                    } else {
-//                        commonTags.formIntersection(tags)
-//                    }
-//                }
-//            }
-//            self.tags = commonTags
             
             relationships = collectedRelationships.common.sorted(by: { ($0.person?.name ?? "") < ($1.person?.name ?? "") })
             publishers = collectedPublishers.common.sorted(by: { ($0.name ?? "") < ($1.name ?? "") })
             entries = collectedSeries.common.sorted(by: {($0.series?.name ?? "") < ($1.series?.name ?? "")})
-            tags = collectedTags.common /*.sorted(by: { ($0.name ?? "") < ($1.name ?? "") })*/
+            tags = collectedTags.common
         }
         
         super.filter(for: selection, template: template, editing: editing, combining: combining, context: context)
@@ -131,12 +116,6 @@ public class BookDetailProvider: DetailProvider {
         }
         
         super.buildItems()
-        
-        if (tags.count > 0) || isEditing {
-            let info = TagsDetailItem(tags: tags, absolute: items.count, index: 0, source: self)
-            items.append(info)
-        }
-        
     }
     
     public override func inserted(details: [ModelObject]) -> IndexSet {

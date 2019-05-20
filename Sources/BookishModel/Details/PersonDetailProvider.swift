@@ -33,8 +33,7 @@ public class PersonDetailProvider: DetailProvider {
     }
     
     var sortedRoles = [SortedRole]()
-    private var tags: Set<Tag> = []
-
+    
     public override var sectionCount: Int {
         return sortedRoles.count + super.sectionCount
     }
@@ -69,7 +68,6 @@ public class PersonDetailProvider: DetailProvider {
     
     public override func filter(for selection: [ModelObject], editing: Bool, combining: Bool, context: DetailContext) {
         let template = PersonDetailProvider.standardDetails(showDebug: context.showDebug)
-        tags.removeAll()
         if let people = selection as? [Person] {
             let collectedTags = MultipleValues.extract(from: people) { person -> Set<Tag>? in
                 return person.tags as? Set<Tag>
@@ -92,15 +90,6 @@ public class PersonDetailProvider: DetailProvider {
         
         if combining {
             combineItems()
-        }
-        
-    }
-    
-    override func buildItems() {
-        super.buildItems()
-        if (tags.count > 0) || isEditing {
-            let info = TagsDetailItem(tags: tags, absolute: items.count, index: 0, source: self)
-            items.append(info)
         }
         
     }

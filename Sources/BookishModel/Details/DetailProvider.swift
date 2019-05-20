@@ -35,7 +35,8 @@ public class DetailProvider {
     internal var items = [DetailItem]()
     internal var combinedItems = [DetailItem]()
     internal var shouldCombine = false
-    
+    internal var tags: Set<Tag>? = nil
+
     public init() {
     }
     
@@ -128,6 +129,11 @@ public class DetailProvider {
             let info = SimpleDetailItem(spec: spec, absolute: row, index: index, source: self)
             items.append(info)
             row += 1
+        }
+
+        if let tags = tags, (tags.count > 0) || isEditing {
+            let info = TagsDetailItem(tags: tags, absolute: row, index: 0, source: self)
+            items.append(info)
         }
     }
     
