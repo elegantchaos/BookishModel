@@ -135,6 +135,8 @@ detail.read.label = "last read";
 detail.source.label = "🛠 source";
 detail.source.placeholder = "source of this item";
 
+detail.tag.label = "tags";
+
 detail.uuid.label = "🛠 id";
 
 editing.start.long = "Start Editing {entity}";

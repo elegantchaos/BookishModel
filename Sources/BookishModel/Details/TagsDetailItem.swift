@@ -14,6 +14,6 @@ public class TagsDetailItem: DetailItem {
     }
     
     public override var heading: String {
-        return ""
+        return "detail.tag.label".localized
     }
 }
