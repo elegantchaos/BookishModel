@@ -232,7 +232,6 @@
 		22D5A5EF228C5F3F00E9FDDC /* TestDataImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D5A5ED228C5F3F00E9FDDC /* TestDataImporter.swift */; };
 		22D5A64F228C723100E9FDDC /* StandardRolesImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D5A64E228C723100E9FDDC /* StandardRolesImporter.swift */; };
 		22D5A650228C723100E9FDDC /* StandardRolesImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D5A64E228C723100E9FDDC /* StandardRolesImporter.swift */; };
-		22D5A655228C746400E9FDDC /* Roles.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 22D5A651228C746300E9FDDC /* Roles.sqlite */; };
 		22DA6A1921E6158D00ECF09A /* BookishModelBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 22DA6A1821E6158D00ECF09A /* BookishModelBridge.h */; };
 		22DA6A1A21E6158D00ECF09A /* BookishModelBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 22DA6A1821E6158D00ECF09A /* BookishModelBridge.h */; };
 		22DA6A1C21E61BC600ECF09A /* ModelObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DA6A1B21E61BC600ECF09A /* ModelObject.swift */; };
@@ -1276,7 +1275,7 @@
 /* Begin PBXReferenceProxy section */
 		22B6ECBB228C8B38000AAB2A /* bktCore */ = {
 			isa = PBXReferenceProxy;
-			fileType = text;
+			fileType = "compiled.mach-o.executable";
 			path = bktCore;
 			remoteRef = 22B6ECBA228C8B38000AAB2A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -1353,21 +1352,21 @@
 		};
 		22F1827821CABCAC00220D20 /* BookishCoreMac */ = {
 			isa = PBXReferenceProxy;
-			fileType = text;
+			fileType = "compiled.mach-o.executable";
 			path = BookishCoreMac;
 			remoteRef = 22F1827721CABCAC00220D20 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		22F1827A21CABCAC00220D20 /* BookishCoreMobile */ = {
 			isa = PBXReferenceProxy;
-			fileType = text;
+			fileType = "compiled.mach-o.executable";
 			path = BookishCoreMobile;
 			remoteRef = 22F1827921CABCAC00220D20 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		22F1827C21CABCAC00220D20 /* BookishCoreTests.xctest */ = {
 			isa = PBXReferenceProxy;
-			fileType = file;
+			fileType = wrapper.cfbundle;
 			path = BookishCoreTests.xctest;
 			remoteRef = 22F1827B21CABCAC00220D20 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -1437,7 +1436,7 @@
 		};
 		22F1829F21CABCAC00220D20 /* BookishCoreTests.xctest */ = {
 			isa = PBXReferenceProxy;
-			fileType = file;
+			fileType = wrapper.cfbundle;
 			path = BookishCoreTests.xctest;
 			remoteRef = 22F1829E21CABCAC00220D20 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -1506,7 +1505,6 @@
 				2229BBB12292B76800307CDB /* Sample in Resources */,
 				2211A9732215C072004B7589 /* Localizable.strings in Resources */,
 				2229BBB32292B76800307CDB /* Roles in Resources */,
-				22D5A655228C746400E9FDDC /* Roles.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
