@@ -61,23 +61,28 @@ public class BookDetailProvider: DetailProvider {
                 return book.entries as? Set<SeriesEntry>
             }
             
-            var commonTags = Set<Tag>()
-            var isFirst = true
-            for book in books {
-                if let tags = book.tags as? Set<Tag> {
-                    if isFirst {
-                        commonTags.formUnion(tags)
-                        isFirst = false
-                    } else {
-                        commonTags.formIntersection(tags)
-                    }
-                }
+            let collectedTags = MultipleValues.extract(from: books) { book -> Set<Tag>? in
+                return book.tags as? Set<Tag>
             }
-            self.tags = commonTags
+//
+//            var commonTags = Set<Tag>()
+//            var isFirst = true
+//            for book in books {
+//                if let tags = book.tags as? Set<Tag> {
+//                    if isFirst {
+//                        commonTags.formUnion(tags)
+//                        isFirst = false
+//                    } else {
+//                        commonTags.formIntersection(tags)
+//                    }
+//                }
+//            }
+//            self.tags = commonTags
             
             relationships = collectedRelationships.common.sorted(by: { ($0.person?.name ?? "") < ($1.person?.name ?? "") })
             publishers = collectedPublishers.common.sorted(by: { ($0.name ?? "") < ($1.name ?? "") })
             entries = collectedSeries.common.sorted(by: {($0.series?.name ?? "") < ($1.series?.name ?? "")})
+            tags = collectedTags.common /*.sorted(by: { ($0.name ?? "") < ($1.name ?? "") })*/
         }
         
         super.filter(for: selection, template: template, editing: editing, combining: combining, context: context)
@@ -128,9 +133,8 @@ public class BookDetailProvider: DetailProvider {
         super.buildItems()
         
         if (tags.count > 0) || isEditing {
-            let info = TagsDetailItem(tags: tags, absolute: row, index: 0, source: self)
+            let info = TagsDetailItem(tags: tags, absolute: items.count, index: 0, source: self)
             items.append(info)
-            row += 1
         }
         
     }

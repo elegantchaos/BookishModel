@@ -10,7 +10,7 @@ public struct MultipleValues<ValueType> where ValueType: Hashable {
     let common: Set<ValueType>
 
     /**
-     Extract items from a selection of books.
+     Extract items from a selection of entities.
      We take a function which obtains a set of items to consider for a given book.
      We get back a struct containing two sets:
      - all: the items that were present for any book
@@ -20,8 +20,8 @@ public struct MultipleValues<ValueType> where ValueType: Hashable {
     static public func extract<ItemType>(from selection: [ItemType], extractor: (ItemType) -> Set<ValueType>?) -> MultipleValues<ValueType> {
         var all = Set<ValueType>()
         var common = Set<ValueType>()
-        for book in selection {
-            if let items = extractor(book) {
+        for entity in selection {
+            if let items = extractor(entity) {
                 if all.count == 0 {
                     common.formUnion(items)
                 } else {
@@ -32,5 +32,6 @@ public struct MultipleValues<ValueType> where ValueType: Hashable {
         }
         return MultipleValues(all: all, common: common)
     }
+    
 }
 
