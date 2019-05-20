@@ -662,7 +662,6 @@
 		22D5A4F6228C4E5400E9FDDC /* Build Roles.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Build Roles.json"; sourceTree = "<group>"; };
 		22D5A5ED228C5F3F00E9FDDC /* TestDataImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDataImporter.swift; sourceTree = "<group>"; };
 		22D5A64E228C723100E9FDDC /* StandardRolesImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardRolesImporter.swift; sourceTree = "<group>"; };
-		22D5A651228C746300E9FDDC /* Roles.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Roles.sqlite; sourceTree = "<group>"; };
 		22DA6A1821E6158D00ECF09A /* BookishModelBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookishModelBridge.h; sourceTree = "<group>"; };
 		22DA6A1B21E61BC600ECF09A /* ModelObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelObject.swift; sourceTree = "<group>"; };
 		22DD424E2126D6DA0070C85A /* Version 1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Version 1.xcdatamodel"; sourceTree = "<group>"; };
@@ -941,7 +940,6 @@
 			children = (
 				22DD424D2126D6DA0070C85A /* Collection.xcdatamodeld */,
 				224293B6212AE16200E70510 /* Info.plist */,
-				22D5A651228C746300E9FDDC /* Roles.sqlite */,
 				2229BBAE2292B76800307CDB /* Roles */,
 				2229BB862292B76800307CDB /* Sample */,
 				2229BBAF2292B76800307CDB /* Test */,
