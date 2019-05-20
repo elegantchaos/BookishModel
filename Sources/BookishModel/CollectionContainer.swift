@@ -28,7 +28,7 @@ let collectionChannel = Channel("com.elegantchaos.bookish.model.collection")
         description.type = NSSQLiteStoreType
         
         if let explicitURL = url {
-            assert(explicitURL.pathExtension == "sqlite")
+            assert((explicitURL.pathExtension == "sqlite") || (explicitURL.path == "/dev/null"))
             description.url = explicitURL
             description.type = NSSQLiteStoreType
         }
