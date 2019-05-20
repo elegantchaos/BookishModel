@@ -134,6 +134,15 @@ class KindleImportSession: URLImportSession {
     var cachedPeople: [String:Person] = [:]
     var cachedPublishers: [String:Publisher] = [:]
     var cachedSeries: [String:Series] = [:]
+    let kindleTag: Tag
+    let importedTag: Tag
+
+    override init(importer: Importer, context: NSManagedObjectContext, url: URL, completion: @escaping Completion) {
+        kindleTag = Tag.named("kindle", in: context)
+        importedTag = Tag.named("imported", in: context)
+        
+        super.init(importer: importer, context: context, url: url, completion: completion)
+    }
     
     override func run() {
         if let data = try? Data(contentsOf: url) {
@@ -146,6 +155,7 @@ class KindleImportSession: URLImportSession {
     }
     
     private func process(book kindleBook: KindleBook) {
+        
         let identifier: String
         let purchased = kindleBook.raw["purchase_date"] as? Date
         if let purchased = purchased {
@@ -166,6 +176,9 @@ class KindleImportSession: URLImportSession {
             book.source = KindleImporter.identifier
         }
 
+        kindleTag.addToBooks(book)
+        importedTag.addToBooks(book)
+        
         book.importDate = Date()
         book.asin = kindleBook.asin
         book.format = "Kindle Edition"

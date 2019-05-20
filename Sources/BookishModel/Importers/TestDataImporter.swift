@@ -40,6 +40,9 @@ class TestDataImportSession: StandardRolesImportSession {
         book.notes = "Some\nmulti\nline\nnotes."
         entry.addToBooks(book)
         
+        let tag = Tag.named("test", in: context)
+        tag.addToBooks(book)
+        
         let publisher = Publisher(context: context)
         publisher.notes = "Some notes about the publisher"
         publisher.uuid = "publisher-1"
@@ -59,6 +62,7 @@ class TestDataImportSession: StandardRolesImportSession {
         
         for n in 2...4 {
             let book = Book(context: context)
+            tag.addToBooks(book)
             book.name = "Book \(n)"
             book.uuid = "book-\(n)"
             book.subtitle = "Slightly longer subtitle \(n)"

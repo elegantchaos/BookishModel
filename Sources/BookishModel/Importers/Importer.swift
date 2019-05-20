@@ -35,8 +35,6 @@ public class Importer {
         case .userSpecifiedFile:
             return true
         }
-        
-        return false
     }
     
     public var defaultImportLocation: URL? {

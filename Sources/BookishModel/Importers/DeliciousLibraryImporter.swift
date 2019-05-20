@@ -33,8 +33,18 @@ class DeliciousLibraryImportSession: URLImportSession {
     var cachedPeople: [String:Person] = [:]
     var cachedPublishers: [String:Publisher] = [:]
     var cachedSeries: [String:Series] = [:]
-    
+    let deliciousTag: Tag
+    let importedTag: Tag
+
     let formatsToSkip = ["Audio CD", "Audio CD Enhanced", "Audio CD Import", "Video Game", "VHS Tape", "VideoGame", "DVD"]
+
+    
+    override init(importer: Importer, context: NSManagedObjectContext, url: URL, completion: @escaping Completion) {
+        deliciousTag = Tag.named("delicious-library", in: context)
+        importedTag = Tag.named("imported", in: context)
+        
+        super.init(importer: importer, context: context, url: url, completion: completion)
+    }
     
     override func run() {
         if let data = try? Data(contentsOf: url) {
@@ -71,10 +81,13 @@ class DeliciousLibraryImportSession: URLImportSession {
                 } else {
                     book = Book.named(title, in: context)
                     book.uuid = identifier
+                    book.source = DeliciousLibraryImporter.identifier
                 }
 
+                deliciousTag.addToBooks(book)
+                importedTag.addToBooks(book)
+                
                 book.name = title
-                book.source = DeliciousLibraryImporter.identifier
                 book.subtitle = record["subtitle"] as? String
                 book.importDate = Date()
 

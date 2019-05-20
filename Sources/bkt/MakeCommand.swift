@@ -9,9 +9,13 @@ import BookishModel
 import CoreData
 import CommandShell
 
+struct Session {
+    let container: CollectionContainer
+    let actions: ActionList
+}
+
 class MakeCommand: Command {
-    var container: CollectionContainer? = nil
-    var actions: ActionList? = nil
+    var sessions: [Session] = []
     
     override var description: Command.Description {
         return Description(
@@ -22,18 +26,28 @@ class MakeCommand: Command {
         )
     }
 
-    fileprivate func finish(shell: Shell) {
-        guard let context = container?.managedObjectContext else {
-            shell.exit(result: .runFailed)
+    fileprivate func cleanup(container: CollectionContainer) {
+        if let index = sessions.firstIndex(where: { $0.container === container }) {
+            sessions.remove(at: index)
+            if sessions.count == 0 {
+                shell.exit(result: .ok)
+            }
         }
-
+    }
+    
+    fileprivate func finish(shell: Shell, container: CollectionContainer) {
+        let context = container.managedObjectContext
         let bookCount = context.countEntities(type: Book.self)
         let seriesCount = context.countEntities(type: Series.self)
         let personCount = context.countEntities(type: Person.self)
         let publisherCount = context.countEntities(type: Publisher.self)
         let roleCount = context.countEntities(type: Role.self)
-        print("\(bookCount) books, \(personCount) people, \(publisherCount) publishers, \(seriesCount) series, \(roleCount) roles.")
-        shell.exit(result: .ok)
+        let tagCount = context.countEntities(type: Tag.self)
+        print("\(bookCount) books, \(personCount) people, \(publisherCount) publishers, \(seriesCount) series, \(roleCount) roles, \(tagCount) tags.")
+        
+        DispatchQueue.main.async {
+            self.cleanup(container: container)
+        }
     }
 
     fileprivate func make(name: String, shell: Shell) {
@@ -53,7 +67,7 @@ class MakeCommand: Command {
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
         try? coordinator.destroyPersistentStore(at: outputURL, ofType: NSSQLiteStoreType)
         
-        self.container = CollectionContainer(name: name, url: outputURL) { (container, error) in
+        let container = CollectionContainer(name: name, url: outputURL) { (container, error) in
             var variables: [String:Any] = ProcessInfo.processInfo.environment
             variables["resourceURL"] = resourceURL.path
             for n in 0 ..< CommandLine.arguments.count {
@@ -71,9 +85,9 @@ class MakeCommand: Command {
 
             let actions = ActionList(container: container, actionManager: actionManager, importManager: importManager)
             actions.load(from: jsonURL, variables: variables)
-            actions.addTask(Task(name: "finish", callback: { self.finish(shell: shell) }))
+            actions.addTask(Task(name: "finish", callback: { self.finish(shell: shell, container: container) }))
             actions.run()
-            self.actions = actions
+            self.sessions.append(Session(container: container, actions: actions))
         }
     }
     
