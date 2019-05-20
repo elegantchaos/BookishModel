@@ -86,12 +86,6 @@ public class BookDetailProvider: DetailProvider {
     override func buildItems() {
         var row = items.count
 
-        if (tags.count > 0) || isEditing {
-            let info = TagsDetailItem(tags: tags, absolute: row, index: 0, source: self)
-            items.append(info)
-            row += 1
-        }
-        
         let peopleCount = relationships.count
         for index in 0 ..< peopleCount {
             let info = RelationshipDetailItem(relationship: relationships[index], absolute: row, index: index, source: self)
@@ -132,6 +126,13 @@ public class BookDetailProvider: DetailProvider {
         }
         
         super.buildItems()
+        
+        if (tags.count > 0) || isEditing {
+            let info = TagsDetailItem(tags: tags, absolute: row, index: 0, source: self)
+            items.append(info)
+            row += 1
+        }
+        
     }
     
     public override func inserted(details: [ModelObject]) -> IndexSet {
