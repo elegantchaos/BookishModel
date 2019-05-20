@@ -141,12 +141,12 @@ class BookDetailTests: ModelTestCase {
 
         source.filter(for: [book], editing: true, combining: false, context: TestContext())
 
-        let editablePersonRow = source.info(section: 0, row: 1)
+        let editablePersonRow = source.info(section: 0, row: 2)
         XCTAssertTrue(editablePersonRow is RelationshipDetailItem)
         XCTAssertEqual(editablePersonRow.kind, "relationship")
         XCTAssertTrue(editablePersonRow.placeholder)
         
-        let editableSeriesRow = source.info(section: 0, row: 4)
+        let editableSeriesRow = source.info(section: 0, row: 5)
         XCTAssertTrue(editableSeriesRow is SeriesDetailItem)
         XCTAssertEqual(editableSeriesRow.kind, "series")
         XCTAssertTrue(editableSeriesRow.placeholder)
@@ -267,7 +267,7 @@ class BookDetailTests: ModelTestCase {
         let book = Book(context: context)
         
         source.filter(for: [book], editing: true, combining: false, context: TestContext())
-        let row = source.info(section: 0, row: 3) as? SimpleDetailItem
+        let row = source.info(section: 0, row: 4) as? SimpleDetailItem
         XCTAssertEqual(row?.spec.binding, "notes")
         XCTAssertEqual(row?.heading, "detail.notes.label")
     }

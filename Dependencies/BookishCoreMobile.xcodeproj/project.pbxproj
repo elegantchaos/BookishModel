@@ -124,308 +124,308 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2251B7B9228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB2E2292B1A900307CDB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Logger::Logger";
+			remoteInfo = Logger;
+		};
+		2229BB2F2292B1A900307CDB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Docopt::Docopt";
+			remoteInfo = Docopt;
+		};
+		2229BB302292B1A900307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "BookishCoreMobile::BookishCore";
 			remoteInfo = BookishCore;
 		};
-		2251B7BA228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB312292B1A900307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "JSONDump::JSONDump";
 			remoteInfo = JSONDump;
 		};
-		2251B7BB228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB322292B1A900307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Actions::ActionsKit";
 			remoteInfo = ActionsKit;
 		};
-		2251B7BC228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB332292B1A900307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Actions::Actions";
 			remoteInfo = Actions;
 		};
-		2251B7BD228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB342292B1A900307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Logger::Logger";
 			remoteInfo = Logger;
 		};
-		2251B7BE228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB352292B1A900307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Logger::Logger";
 			remoteInfo = Logger;
 		};
-		2251B7BF228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB362292B1A900307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Actions::Actions";
 			remoteInfo = Actions;
 		};
-		2251B7C0228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB372292B1A900307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Logger::LoggerKit";
 			remoteInfo = LoggerKit;
 		};
-		2251B7C1228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB382292B1A900307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Logger::Logger";
 			remoteInfo = Logger;
 		};
-		2251B7C2228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB392292B1A900307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Logger::Logger";
 			remoteInfo = Logger;
 		};
-		2251B7C3228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB3A2292B1A900307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "JSONDump::JSONDump";
 			remoteInfo = JSONDump;
 		};
-		2251B7C4228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB3B2292B1A900307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Actions::ActionsKit";
 			remoteInfo = ActionsKit;
 		};
-		2251B7C5228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB3C2292B1A900307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Actions::Actions";
 			remoteInfo = Actions;
 		};
-		2251B7C6228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB3D2292B1A900307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Logger::LoggerKit";
 			remoteInfo = LoggerKit;
 		};
-		2251B7C7228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB3E2292B1A900307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Logger::Logger";
 			remoteInfo = Logger;
 		};
-		2251B7C8228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB3F2292B1A900307CDB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Arguments::Arguments";
+			remoteInfo = Arguments;
+		};
+		2229BB402292B1A900307CDB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Logger::Logger";
+			remoteInfo = Logger;
+		};
+		2229BB412292B1A900307CDB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Docopt::Docopt";
+			remoteInfo = Docopt;
+		};
+		2229BB422292B1A900307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "CommandShell::CommandShell";
 			remoteInfo = CommandShell;
 		};
-		2251B7C9228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB432292B1A900307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Arguments::Arguments";
 			remoteInfo = Arguments;
 		};
-		2251B7CA228EC325006C1529 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Logger::Logger";
-			remoteInfo = Logger;
-		};
-		2251B7CB228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB442292B1A900307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Docopt::Docopt";
 			remoteInfo = Docopt;
 		};
-		2251B7CC228EC325006C1529 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Logger::Logger";
-			remoteInfo = Logger;
-		};
-		2251B7CD228EC325006C1529 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Docopt::Docopt";
-			remoteInfo = Docopt;
-		};
-		2251B7CE228EC325006C1529 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Arguments::Arguments";
-			remoteInfo = Arguments;
-		};
-		2251B7CF228EC325006C1529 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Docopt::Docopt";
-			remoteInfo = Docopt;
-		};
-		2251B7D0228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB452292B1A900307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "BookishCoreMobile::BookishCore";
 			remoteInfo = BookishCore;
 		};
-		2251B7D1228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB462292B1A900307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "JSONDump::JSONDump";
 			remoteInfo = JSONDump;
 		};
-		2251B7D2228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB472292B1A900307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Actions::ActionsKit";
 			remoteInfo = ActionsKit;
 		};
-		2251B7D3228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB482292B1A900307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Actions::Actions";
 			remoteInfo = Actions;
 		};
-		2251B7D4228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB492292B1A900307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Logger::LoggerKit";
 			remoteInfo = LoggerKit;
 		};
-		2251B7D5228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB4A2292B1A900307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Logger::Logger";
 			remoteInfo = Logger;
 		};
-		2251B7D6228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB4B2292B1A900307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "BookishCoreMobile::BookishCore";
 			remoteInfo = BookishCore;
 		};
-		2251B7D7228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB4C2292B1A900307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "JSONDump::JSONDump";
 			remoteInfo = JSONDump;
 		};
-		2251B7D8228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB4D2292B1A900307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Actions::ActionsKit";
 			remoteInfo = ActionsKit;
 		};
-		2251B7D9228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB4E2292B1A900307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Actions::Actions";
 			remoteInfo = Actions;
 		};
-		2251B7DA228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB4F2292B1A900307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Logger::LoggerKit";
 			remoteInfo = LoggerKit;
 		};
-		2251B7DB228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB502292B1A900307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Logger::Logger";
 			remoteInfo = Logger;
 		};
-		2251B7DC228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB512292B1A900307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Logger::Logger";
 			remoteInfo = Logger;
 		};
-		2251B7DD228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB7D2292B1AA00307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Logger::LoggerTestSupport";
 			remoteInfo = LoggerTestSupport;
 		};
-		2251B7DE228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB7E2292B1AA00307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "BookishCoreMobile::BookishCore";
 			remoteInfo = BookishCore;
 		};
-		2251B7DF228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB7F2292B1AA00307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "JSONDump::JSONDump";
 			remoteInfo = JSONDump;
 		};
-		2251B7E0228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB802292B1AA00307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Actions::ActionsKit";
 			remoteInfo = ActionsKit;
 		};
-		2251B7E1228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB812292B1AA00307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Actions::Actions";
 			remoteInfo = Actions;
 		};
-		2251B7E2228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB822292B1AA00307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Logger::LoggerKit";
 			remoteInfo = LoggerKit;
 		};
-		2251B7E3228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB832292B1AA00307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Logger::Logger";
 			remoteInfo = Logger;
 		};
-		2251B7E4228EC325006C1529 /* PBXContainerItemProxy */ = {
+		2229BB842292B1AA00307CDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
@@ -484,7 +484,7 @@
 		OBJ_49 /* ActionManagerMobile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionManagerMobile.swift; sourceTree = "<group>"; };
 		OBJ_50 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = /Users/sam/Projects/Bookish/Dependencies/BookishModel/Packages/Actions/Package.swift; sourceTree = "<group>"; };
 		OBJ_53 /* Arguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arguments.swift; sourceTree = "<group>"; };
-		OBJ_54 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = /Users/sam/Projects/Bookish/Dependencies/BookishModel/.build/checkouts/Arguments/Package.swift; sourceTree = "<group>"; };
+		OBJ_54 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = /Users/sam/Projects/Bookish/Dependencies/BookishModel/Packages/Arguments/Package.swift; sourceTree = "<group>"; };
 		OBJ_57 /* Argument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Argument.swift; sourceTree = "<group>"; };
 		OBJ_58 /* BranchPattern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchPattern.swift; sourceTree = "<group>"; };
 		OBJ_59 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
@@ -724,7 +724,7 @@
 				OBJ_26 /* CommandShell 1.0.3 */,
 				OBJ_33 /* JSONDump 1.0.4 */,
 				OBJ_37 /* Actions */,
-				OBJ_51 /* Arguments 1.0.7 */,
+				OBJ_51 /* Arguments */,
 				OBJ_55 /* Docopt 0.6.10 */,
 				OBJ_73 /* Logger */,
 			);
@@ -826,13 +826,13 @@
 			name = "";
 			sourceTree = "<group>";
 		};
-		OBJ_51 /* Arguments 1.0.7 */ = {
+		OBJ_51 /* Arguments */ = {
 			isa = PBXGroup;
 			children = (
 				OBJ_52 /* Arguments */,
 				OBJ_54 /* Package.swift */,
 			);
-			name = "Arguments 1.0.7";
+			name = Arguments;
 			sourceTree = SOURCE_ROOT;
 		};
 		OBJ_52 /* Arguments */ = {
@@ -841,7 +841,7 @@
 				OBJ_53 /* Arguments.swift */,
 			);
 			name = Arguments;
-			path = .build/checkouts/Arguments/Sources/Arguments;
+			path = Packages/Arguments/Sources/Arguments;
 			sourceTree = SOURCE_ROOT;
 		};
 		OBJ_55 /* Docopt 0.6.10 */ = {
@@ -941,20 +941,20 @@
 		OBJ_89 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				"Arguments::Arguments::Product" /* Arguments.framework */,
-				"Actions::Actions::Product" /* Actions.framework */,
-				"Docopt::Docopt::Product" /* Docopt.framework */,
-				"BookishCoreMobile::BookishCoreMac::Product" /* BookishCoreMac */,
-				"Logger::Logger::Product" /* Logger.framework */,
 				"Actions::ActionsKit::Product" /* ActionsKit.framework */,
-				"CommandShell::CommandShell::Product" /* CommandShell.framework */,
-				"Logger::LoggerKit::Product" /* LoggerKit.framework */,
+				"Docopt::Docopt::Product" /* Docopt.framework */,
 				"BookishCoreMobile::bktCore::Product" /* bktCore */,
 				"BookishCoreMobile::BookishCore::Product" /* BookishCore.framework */,
 				"BookishCoreMobile::BookishCoreMobile::Product" /* BookishCoreMobile */,
-				"BookishCoreMobile::BookishCoreTests::Product" /* BookishCoreTests.xctest */,
-				"Logger::LoggerTestSupport::Product" /* LoggerTestSupport.framework */,
+				"Logger::Logger::Product" /* Logger.framework */,
+				"Actions::Actions::Product" /* Actions.framework */,
+				"BookishCoreMobile::BookishCoreMac::Product" /* BookishCoreMac */,
 				"JSONDump::JSONDump::Product" /* JSONDump.framework */,
+				"BookishCoreMobile::BookishCoreTests::Product" /* BookishCoreTests.xctest */,
+				"CommandShell::CommandShell::Product" /* CommandShell.framework */,
+				"Logger::LoggerKit::Product" /* LoggerKit.framework */,
+				"Logger::LoggerTestSupport::Product" /* LoggerTestSupport.framework */,
+				"Arguments::Arguments::Product" /* Arguments.framework */,
 			);
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -1597,222 +1597,222 @@
 		OBJ_126 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Logger::Logger" /* Logger */;
-			targetProxy = 2251B7BD228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB342292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_138 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Actions::Actions" /* Actions */;
-			targetProxy = 2251B7BC228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB332292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_139 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Logger::Logger" /* Logger */;
-			targetProxy = 2251B7BE228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB352292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_155 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Logger::Logger" /* Logger */;
-			targetProxy = 2251B7CA228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB2E2292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_156 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Docopt::Docopt" /* Docopt */;
-			targetProxy = 2251B7CB228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB2F2292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_179 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "JSONDump::JSONDump" /* JSONDump */;
-			targetProxy = 2251B7BA228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB312292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_181 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Actions::ActionsKit" /* ActionsKit */;
-			targetProxy = 2251B7BB228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB322292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_182 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Actions::Actions" /* Actions */;
-			targetProxy = 2251B7BF228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB362292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_183 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Logger::LoggerKit" /* LoggerKit */;
-			targetProxy = 2251B7C0228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB372292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_185 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Logger::Logger" /* Logger */;
-			targetProxy = 2251B7C2228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB392292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_199 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "BookishCoreMobile::BookishCore" /* BookishCore */;
-			targetProxy = 2251B7B9228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB302292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_200 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "JSONDump::JSONDump" /* JSONDump */;
-			targetProxy = 2251B7C3228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB3A2292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_201 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Actions::ActionsKit" /* ActionsKit */;
-			targetProxy = 2251B7C4228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB3B2292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_202 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Actions::Actions" /* Actions */;
-			targetProxy = 2251B7C5228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB3C2292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_203 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Logger::LoggerKit" /* LoggerKit */;
-			targetProxy = 2251B7C6228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB3D2292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_204 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Logger::Logger" /* Logger */;
-			targetProxy = 2251B7C7228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB3E2292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_218 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "BookishCoreMobile::BookishCore" /* BookishCore */;
-			targetProxy = 2251B7D6228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB4B2292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_219 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "JSONDump::JSONDump" /* JSONDump */;
-			targetProxy = 2251B7D7228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB4C2292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_220 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Actions::ActionsKit" /* ActionsKit */;
-			targetProxy = 2251B7D8228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB4D2292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_221 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Actions::Actions" /* Actions */;
-			targetProxy = 2251B7D9228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB4E2292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_222 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Logger::LoggerKit" /* LoggerKit */;
-			targetProxy = 2251B7DA228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB4F2292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_223 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Logger::Logger" /* Logger */;
-			targetProxy = 2251B7DB228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB502292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_234 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "BookishCoreMobile::BookishCoreTests" /* BookishCoreTests */;
-			targetProxy = 2251B7E4228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB842292B1AA00307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_250 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Logger::LoggerTestSupport" /* LoggerTestSupport */;
-			targetProxy = 2251B7DD228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB7D2292B1AA00307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_252 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "BookishCoreMobile::BookishCore" /* BookishCore */;
-			targetProxy = 2251B7DE228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB7E2292B1AA00307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_253 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "JSONDump::JSONDump" /* JSONDump */;
-			targetProxy = 2251B7DF228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB7F2292B1AA00307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_254 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Actions::ActionsKit" /* ActionsKit */;
-			targetProxy = 2251B7E0228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB802292B1AA00307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_255 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Actions::Actions" /* Actions */;
-			targetProxy = 2251B7E1228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB812292B1AA00307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_256 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Logger::LoggerKit" /* LoggerKit */;
-			targetProxy = 2251B7E2228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB822292B1AA00307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_257 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Logger::Logger" /* Logger */;
-			targetProxy = 2251B7E3228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB832292B1AA00307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_271 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Arguments::Arguments" /* Arguments */;
-			targetProxy = 2251B7C9228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB3F2292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_272 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Logger::Logger" /* Logger */;
-			targetProxy = 2251B7CC228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB402292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_273 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Docopt::Docopt" /* Docopt */;
-			targetProxy = 2251B7CD228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB412292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_338 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Logger::Logger" /* Logger */;
-			targetProxy = 2251B7C1228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB382292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_352 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Logger::Logger" /* Logger */;
-			targetProxy = 2251B7DC228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB512292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_369 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "CommandShell::CommandShell" /* CommandShell */;
-			targetProxy = 2251B7C8228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB422292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_370 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Arguments::Arguments" /* Arguments */;
-			targetProxy = 2251B7CE228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB432292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_371 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Docopt::Docopt" /* Docopt */;
-			targetProxy = 2251B7CF228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB442292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_372 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "BookishCoreMobile::BookishCore" /* BookishCore */;
-			targetProxy = 2251B7D0228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB452292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_373 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "JSONDump::JSONDump" /* JSONDump */;
-			targetProxy = 2251B7D1228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB462292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_374 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Actions::ActionsKit" /* ActionsKit */;
-			targetProxy = 2251B7D2228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB472292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_375 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Actions::Actions" /* Actions */;
-			targetProxy = 2251B7D3228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB482292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_376 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Logger::LoggerKit" /* LoggerKit */;
-			targetProxy = 2251B7D4228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB492292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 		OBJ_377 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Logger::Logger" /* Logger */;
-			targetProxy = 2251B7D5228EC325006C1529 /* PBXContainerItemProxy */;
+			targetProxy = 2229BB4A2292B1A900307CDB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

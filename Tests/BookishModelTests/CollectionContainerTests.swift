@@ -23,32 +23,36 @@ class CollectionContainerTests: ModelTestCase {
         return container
     }
     
+    func temporaryDatabase() -> URL {
+        return temporaryFile().appendingPathExtension("sqlite")
+    }
+    
     func testCreateEmpty() {
-        let url = temporaryFile()
+        let url = temporaryDatabase()
         let container = makeTestContainer(name: "test", url: url, mode: .empty)
         XCTAssertEqual(container.managedObjectContext.countEntities(type: Role.self), 0)
     }
     
     func testCreateDefaultRoles() {
-        let url = temporaryFile()
+        let url = temporaryDatabase()
         let container = makeTestContainer(name: "roles", url: url, mode: .populateWith(sample: "Roles"))
         XCTAssertEqual(container.managedObjectContext.countEntities(type: Role.self), Role.StandardName.allCases.count)
     }
 
     func testCreateTestData() {
-        let url = temporaryFile()
+        let url = temporaryDatabase()
         let container = makeTestContainer(name: "test", url: url, mode: .populateWith(sample: "Test"))
         XCTAssertEqual(container.managedObjectContext.countEntities(type: Book.self), 4)
     }
 
     func testCreateSampleData() {
-        let url = temporaryFile()
+        let url = temporaryDatabase()
         let container = makeTestContainer(name: "sample", url: url, mode: .populateWith(sample: "Sample"))
-        XCTAssertEqual(container.managedObjectContext.countEntities(type: Book.self), 1505) // sample data file is created with bkt
+        XCTAssertEqual(container.managedObjectContext.countEntities(type: Book.self), 1499) // sample data file is created with bkt
     }
 
     func testReset() {
-        let url = temporaryFile()
+        let url = temporaryDatabase()
         let container = makeTestContainer(name: "reset", url: url, mode: .populateWith(sample: "Test"))
         XCTAssertEqual(container.managedObjectContext.countEntities(type: Book.self), 4)
         container.reset()

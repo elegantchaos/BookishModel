@@ -86,9 +86,11 @@ public class BookDetailProvider: DetailProvider {
     override func buildItems() {
         var row = items.count
 
-        let info = TagsDetailItem(tags: tags, absolute: row, index: 0, source: self)
-        items.append(info)
-        row += 1
+        if (tags.count > 0) || isEditing {
+            let info = TagsDetailItem(tags: tags, absolute: row, index: 0, source: self)
+            items.append(info)
+            row += 1
+        }
         
         let peopleCount = relationships.count
         for index in 0 ..< peopleCount {

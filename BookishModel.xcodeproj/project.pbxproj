@@ -41,6 +41,12 @@
 		221F272021306C1300DC2DC7 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F271E21306C1300DC2DC7 /* Book.swift */; };
 		221F272221359DA200DC2DC7 /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F272121359DA200DC2DC7 /* Publisher.swift */; };
 		221F272321359DA200DC2DC7 /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F272121359DA200DC2DC7 /* Publisher.swift */; };
+		2229BBB02292B76800307CDB /* Sample in Resources */ = {isa = PBXBuildFile; fileRef = 2229BB862292B76800307CDB /* Sample */; };
+		2229BBB12292B76800307CDB /* Sample in Resources */ = {isa = PBXBuildFile; fileRef = 2229BB862292B76800307CDB /* Sample */; };
+		2229BBB22292B76800307CDB /* Roles in Resources */ = {isa = PBXBuildFile; fileRef = 2229BBAE2292B76800307CDB /* Roles */; };
+		2229BBB32292B76800307CDB /* Roles in Resources */ = {isa = PBXBuildFile; fileRef = 2229BBAE2292B76800307CDB /* Roles */; };
+		2229BBB42292B76800307CDB /* Test in Resources */ = {isa = PBXBuildFile; fileRef = 2229BBAF2292B76800307CDB /* Test */; };
+		2229BBB52292B76800307CDB /* Test in Resources */ = {isa = PBXBuildFile; fileRef = 2229BBAF2292B76800307CDB /* Test */; };
 		22318E712256385C00EE3EBC /* KindleImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22318E702256385C00EE3EBC /* KindleImporter.swift */; };
 		22318E8D225638DD00EE3EBC /* KindleImporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22318E8C225638DD00EE3EBC /* KindleImporterTests.swift */; };
 		22318E8F22563AD600EE3EBC /* Kindle.xml in Resources */ = {isa = PBXBuildFile; fileRef = 22318E8E22563AD600EE3EBC /* Kindle.xml */; };
@@ -161,12 +167,6 @@
 		22724643221C003100C80CCF /* ImportAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22724641221C003100C80CCF /* ImportAction.swift */; };
 		2272467D221C117F00C80CCF /* ScanSeriesAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22724662221C117E00C80CCF /* ScanSeriesAction.swift */; };
 		2272467E221C117F00C80CCF /* ScanSeriesAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22724662221C117E00C80CCF /* ScanSeriesAction.swift */; };
-		2272471B221C3FDE00C80CCF /* Sample.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 22724718221C3FDE00C80CCF /* Sample.sqlite */; };
-		2272471C221C3FDE00C80CCF /* Sample.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 22724718221C3FDE00C80CCF /* Sample.sqlite */; };
-		2272471D221C3FDE00C80CCF /* Sample.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 22724719221C3FDE00C80CCF /* Sample.sqlite-shm */; };
-		2272471E221C3FDE00C80CCF /* Sample.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 22724719221C3FDE00C80CCF /* Sample.sqlite-shm */; };
-		2272471F221C3FDE00C80CCF /* Sample.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 2272471A221C3FDE00C80CCF /* Sample.sqlite-wal */; };
-		22724720221C3FDE00C80CCF /* Sample.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 2272471A221C3FDE00C80CCF /* Sample.sqlite-wal */; };
 		2295A9152232C4820085CD86 /* SeriesEntryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2295A9142232C4820085CD86 /* SeriesEntryItem.swift */; };
 		2295A9322232CF1F0085CD86 /* SeriesEntryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2295A9142232C4820085CD86 /* SeriesEntryItem.swift */; };
 		229FB9E22226B2C300A564D4 /* LookupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229FB9E12226B2C300A564D4 /* LookupService.swift */; };
@@ -228,22 +228,11 @@
 		22D5A40D228C3F2D00E9FDDC /* MakeCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D5A40B228C3EE100E9FDDC /* MakeCommand.swift */; };
 		22D5A40E228C3F3000E9FDDC /* TaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D5A3EF228C3EAC00E9FDDC /* TaskList.swift */; };
 		22D5A4F4228C462600E9FDDC /* ActionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D5A4F3228C462600E9FDDC /* ActionList.swift */; };
-		22D5A5E7228C5DF700E9FDDC /* Test.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 22D5A5E4228C5DF700E9FDDC /* Test.sqlite-wal */; };
-		22D5A5E8228C5DF700E9FDDC /* Test.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 22D5A5E4228C5DF700E9FDDC /* Test.sqlite-wal */; };
-		22D5A5E9228C5DF700E9FDDC /* Test.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 22D5A5E5228C5DF700E9FDDC /* Test.sqlite-shm */; };
-		22D5A5EA228C5DF700E9FDDC /* Test.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 22D5A5E5228C5DF700E9FDDC /* Test.sqlite-shm */; };
-		22D5A5EB228C5DF700E9FDDC /* Test.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 22D5A5E6228C5DF700E9FDDC /* Test.sqlite */; };
-		22D5A5EC228C5DF700E9FDDC /* Test.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 22D5A5E6228C5DF700E9FDDC /* Test.sqlite */; };
 		22D5A5EE228C5F3F00E9FDDC /* TestDataImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D5A5ED228C5F3F00E9FDDC /* TestDataImporter.swift */; };
 		22D5A5EF228C5F3F00E9FDDC /* TestDataImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D5A5ED228C5F3F00E9FDDC /* TestDataImporter.swift */; };
 		22D5A64F228C723100E9FDDC /* StandardRolesImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D5A64E228C723100E9FDDC /* StandardRolesImporter.swift */; };
 		22D5A650228C723100E9FDDC /* StandardRolesImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D5A64E228C723100E9FDDC /* StandardRolesImporter.swift */; };
-		22D5A654228C746400E9FDDC /* Roles.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 22D5A651228C746300E9FDDC /* Roles.sqlite */; };
 		22D5A655228C746400E9FDDC /* Roles.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 22D5A651228C746300E9FDDC /* Roles.sqlite */; };
-		22D5A656228C746400E9FDDC /* Roles.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 22D5A652228C746300E9FDDC /* Roles.sqlite-shm */; };
-		22D5A657228C746400E9FDDC /* Roles.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 22D5A652228C746300E9FDDC /* Roles.sqlite-shm */; };
-		22D5A658228C746400E9FDDC /* Roles.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 22D5A653228C746300E9FDDC /* Roles.sqlite-wal */; };
-		22D5A659228C746400E9FDDC /* Roles.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 22D5A653228C746300E9FDDC /* Roles.sqlite-wal */; };
 		22DA6A1921E6158D00ECF09A /* BookishModelBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 22DA6A1821E6158D00ECF09A /* BookishModelBridge.h */; };
 		22DA6A1A21E6158D00ECF09A /* BookishModelBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 22DA6A1821E6158D00ECF09A /* BookishModelBridge.h */; };
 		22DA6A1C21E61BC600ECF09A /* ModelObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DA6A1B21E61BC600ECF09A /* ModelObject.swift */; };
@@ -559,6 +548,9 @@
 		221ED50E216B87D900594714 /* CollectionContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionContainer.swift; sourceTree = "<group>"; };
 		221F271E21306C1300DC2DC7 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		221F272121359DA200DC2DC7 /* Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publisher.swift; sourceTree = "<group>"; };
+		2229BB862292B76800307CDB /* Sample */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sample; sourceTree = "<group>"; };
+		2229BBAE2292B76800307CDB /* Roles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Roles; sourceTree = "<group>"; };
+		2229BBAF2292B76800307CDB /* Test */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Test; sourceTree = "<group>"; };
 		22318E702256385C00EE3EBC /* KindleImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KindleImporter.swift; sourceTree = "<group>"; };
 		22318E8C225638DD00EE3EBC /* KindleImporterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KindleImporterTests.swift; sourceTree = "<group>"; };
 		22318E8E22563AD600EE3EBC /* Kindle.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Kindle.xml; sourceTree = "<group>"; };
@@ -631,9 +623,6 @@
 		22724641221C003100C80CCF /* ImportAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportAction.swift; sourceTree = "<group>"; };
 		22724662221C117E00C80CCF /* ScanSeriesAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanSeriesAction.swift; sourceTree = "<group>"; };
 		2272467F221C1AE000C80CCF /* Build Sample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Build Sample.json"; sourceTree = "<group>"; };
-		22724718221C3FDE00C80CCF /* Sample.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sample.sqlite; sourceTree = "<group>"; };
-		22724719221C3FDE00C80CCF /* Sample.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sample.sqlite-shm"; sourceTree = "<group>"; };
-		2272471A221C3FDE00C80CCF /* Sample.sqlite-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sample.sqlite-wal"; sourceTree = "<group>"; };
 		2295A9142232C4820085CD86 /* SeriesEntryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesEntryItem.swift; sourceTree = "<group>"; };
 		229FB9E12226B2C300A564D4 /* LookupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookupService.swift; sourceTree = "<group>"; };
 		229FB9E42226B2CA00A564D4 /* LookupCandidate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookupCandidate.swift; sourceTree = "<group>"; };
@@ -672,14 +661,9 @@
 		22D5A4F3228C462600E9FDDC /* ActionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionList.swift; sourceTree = "<group>"; };
 		22D5A4F5228C4E5400E9FDDC /* Build Test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Build Test.json"; sourceTree = "<group>"; };
 		22D5A4F6228C4E5400E9FDDC /* Build Roles.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Build Roles.json"; sourceTree = "<group>"; };
-		22D5A5E4228C5DF700E9FDDC /* Test.sqlite-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Test.sqlite-wal"; sourceTree = "<group>"; };
-		22D5A5E5228C5DF700E9FDDC /* Test.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Test.sqlite-shm"; sourceTree = "<group>"; };
-		22D5A5E6228C5DF700E9FDDC /* Test.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Test.sqlite; sourceTree = "<group>"; };
 		22D5A5ED228C5F3F00E9FDDC /* TestDataImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDataImporter.swift; sourceTree = "<group>"; };
 		22D5A64E228C723100E9FDDC /* StandardRolesImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardRolesImporter.swift; sourceTree = "<group>"; };
 		22D5A651228C746300E9FDDC /* Roles.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Roles.sqlite; sourceTree = "<group>"; };
-		22D5A652228C746300E9FDDC /* Roles.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roles.sqlite-shm"; sourceTree = "<group>"; };
-		22D5A653228C746300E9FDDC /* Roles.sqlite-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roles.sqlite-wal"; sourceTree = "<group>"; };
 		22DA6A1821E6158D00ECF09A /* BookishModelBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookishModelBridge.h; sourceTree = "<group>"; };
 		22DA6A1B21E61BC600ECF09A /* ModelObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelObject.swift; sourceTree = "<group>"; };
 		22DD424E2126D6DA0070C85A /* Version 1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Version 1.xcdatamodel"; sourceTree = "<group>"; };
@@ -959,14 +943,9 @@
 				22DD424D2126D6DA0070C85A /* Collection.xcdatamodeld */,
 				224293B6212AE16200E70510 /* Info.plist */,
 				22D5A651228C746300E9FDDC /* Roles.sqlite */,
-				22D5A652228C746300E9FDDC /* Roles.sqlite-shm */,
-				22D5A653228C746300E9FDDC /* Roles.sqlite-wal */,
-				22724718221C3FDE00C80CCF /* Sample.sqlite */,
-				22724719221C3FDE00C80CCF /* Sample.sqlite-shm */,
-				2272471A221C3FDE00C80CCF /* Sample.sqlite-wal */,
-				22D5A5E6228C5DF700E9FDDC /* Test.sqlite */,
-				22D5A5E5228C5DF700E9FDDC /* Test.sqlite-shm */,
-				22D5A5E4228C5DF700E9FDDC /* Test.sqlite-wal */,
+				2229BBAE2292B76800307CDB /* Roles */,
+				2229BB862292B76800307CDB /* Sample */,
+				2229BBAF2292B76800307CDB /* Test */,
 				2211A9712215C072004B7589 /* Localizable.strings */,
 			);
 			path = Resources;
@@ -1498,16 +1477,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22D5A658228C746400E9FDDC /* Roles.sqlite-wal in Resources */,
-				22D5A5E7228C5DF700E9FDDC /* Test.sqlite-wal in Resources */,
+				2229BBB42292B76800307CDB /* Test in Resources */,
+				2229BBB02292B76800307CDB /* Sample in Resources */,
 				2211A9722215C072004B7589 /* Localizable.strings in Resources */,
-				22D5A5EB228C5DF700E9FDDC /* Test.sqlite in Resources */,
-				2272471F221C3FDE00C80CCF /* Sample.sqlite-wal in Resources */,
-				2272471D221C3FDE00C80CCF /* Sample.sqlite-shm in Resources */,
-				22D5A656228C746400E9FDDC /* Roles.sqlite-shm in Resources */,
-				22D5A5E9228C5DF700E9FDDC /* Test.sqlite-shm in Resources */,
-				22D5A654228C746400E9FDDC /* Roles.sqlite in Resources */,
-				2272471B221C3FDE00C80CCF /* Sample.sqlite in Resources */,
+				2229BBB22292B76800307CDB /* Roles in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1529,16 +1502,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22D5A659228C746400E9FDDC /* Roles.sqlite-wal in Resources */,
-				22D5A5E8228C5DF700E9FDDC /* Test.sqlite-wal in Resources */,
+				2229BBB52292B76800307CDB /* Test in Resources */,
+				2229BBB12292B76800307CDB /* Sample in Resources */,
 				2211A9732215C072004B7589 /* Localizable.strings in Resources */,
-				22D5A5EC228C5DF700E9FDDC /* Test.sqlite in Resources */,
-				22724720221C3FDE00C80CCF /* Sample.sqlite-wal in Resources */,
-				2272471E221C3FDE00C80CCF /* Sample.sqlite-shm in Resources */,
-				22D5A657228C746400E9FDDC /* Roles.sqlite-shm in Resources */,
-				22D5A5EA228C5DF700E9FDDC /* Test.sqlite-shm in Resources */,
+				2229BBB32292B76800307CDB /* Roles in Resources */,
 				22D5A655228C746400E9FDDC /* Roles.sqlite in Resources */,
-				2272471C221C3FDE00C80CCF /* Sample.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
