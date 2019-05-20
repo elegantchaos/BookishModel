@@ -28,7 +28,9 @@ let collectionChannel = Channel("com.elegantchaos.bookish.model.collection")
         description.type = NSSQLiteStoreType
         
         if let explicitURL = url {
+            assert(explicitURL.pathExtension == "sqlite")
             description.url = explicitURL
+            description.type = NSSQLiteStoreType
         }
 
         if let url = description.url {
@@ -37,7 +39,7 @@ let collectionChannel = Channel("com.elegantchaos.bookish.model.collection")
                 switch mode {
                 case let .replaceWith(sampleName):
                 let coordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
-                if let sampleURL = bundle.url(forResource: sampleName, withExtension: "sqlite") {
+                if let sampleURL = bundle.url(forResource: sampleName, withExtension: "sqlite", subdirectory: sampleName) {
                     do {
                         try coordinator.replacePersistentStore(at: url, destinationOptions: [:], withPersistentStoreFrom: sampleURL, sourceOptions: [:], ofType: NSSQLiteStoreType)
                     } catch {
@@ -51,20 +53,27 @@ let collectionChannel = Channel("com.elegantchaos.bookish.model.collection")
             }
 
             if !fm.fileExists(atPath: url.path) {
+                let directory = url.deletingLastPathComponent()
                 switch mode {
                 case let .replaceWith(sample: sampleName), let .populateWith(sample: sampleName):
-                    if let sample = bundle.url(forResource: sampleName, withExtension: "sqlite") {
+                    try? fm.createDirectory(at: directory, withIntermediateDirectories: true)
+                    let root = url.deletingPathExtension()
+                    for ext in ["sqlite", "sqlite-shm", "sqlite-wal"] {
+                    if let sample = bundle.url(forResource: sampleName, withExtension: ext, subdirectory: sampleName) {
                         do {
-                            try? fm.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
-                            try fm.copyItem(at: sample, to: url) // TODO: do we need to copy the -shm and -wal files too?
+                            try fm.copyItem(at: sample, to: root.appendingPathExtension(ext)) // TODO: do we need to copy the -shm and -wal files too?
                         } catch {
                             collectionChannel.log("Failed to populate collection with sample \(sampleName).\n\n\(error)")
                         }
                     }
-
+                }
+                    
                 default:
                     break
                 }
+                
+                let content = try? fm.contentsOfDirectory(at: directory, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
+                print(content ?? "no database files")
             }
         }
         
@@ -90,6 +99,7 @@ let collectionChannel = Channel("com.elegantchaos.bookish.model.collection")
             if let error = error {
                 print(error)
             } else {
+                print(description)
                 let context = self.viewContext
                 context.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
                 context.undoManager = UndoManager()
