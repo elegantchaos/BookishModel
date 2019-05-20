@@ -14,7 +14,12 @@ class MakeCommand: Command {
     var actions: ActionList? = nil
     
     override var description: Command.Description {
-        return Description(name: "make", help: "Make a sample database", usage: ["<name>"])
+        return Description(
+            name: "make",
+            help: "Make a sample database",
+            usage: ["<names>"],
+            arguments: ["names": "Comma-separated list of names of the databases to make"]
+        )
     }
 
     fileprivate func finish(shell: Shell) {
@@ -40,7 +45,9 @@ class MakeCommand: Command {
         StringLocalization.registerLocalizationBundle(Bundle.main)
         
         let resourceURL = rootURL.appendingPathComponent("../../Tests/BookishModelTests/Resources/")
-        let outputURL = rootURL.appendingPathComponent("../BookishModel/Resources/\(name).sqlite")
+        let outputDirectory = rootURL.appendingPathComponent("../BookishModel/Resources/").appendingPathComponent(name)
+        try? FileManager.default.createDirectory(at: outputDirectory, withIntermediateDirectories: true)
+        let outputURL = outputDirectory.appendingPathComponent("\(name).sqlite")
         
         let model = BookishModel.model()
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
@@ -69,9 +76,12 @@ class MakeCommand: Command {
             self.actions = actions
         }
     }
+    
     override func run(shell: Shell) throws -> Result {
-        let name = shell.arguments.argument("name")
-        make(name: name, shell: shell)
+        let names = shell.arguments.argument("names").split(separator: ",")
+        for name in names {
+            make(name: String(name), shell: shell)
+        }
         return .running
     }
 }
