@@ -679,11 +679,6 @@
 		22F1182221A5C15D00AE3FBB /* BookishCoreMac.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BookishCoreMac.xcodeproj; path = Dependencies/BookishCoreMac.xcodeproj; sourceTree = SOURCE_ROOT; };
 		22F180C321CA662D00220D20 /* FileManagerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerExtensions.swift; sourceTree = "<group>"; };
 		22F180E221CA8FD600220D20 /* Indexing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indexing.swift; sourceTree = "<group>"; };
-		22F1834921CABE4B00220D20 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		22F1834B21CABE4B00220D20 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
-		22F1834C21CABE4B00220D20 /* BookishCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookishCore.swift; sourceTree = "<group>"; };
-		22F1834E21CABE4B00220D20 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		22F1845B21E3AD2E00220D20 /* CloudManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudManager.swift; sourceTree = "<group>"; };
 		22FA65BB2274998100F697F9 /* Version 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Version 8.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -996,10 +991,7 @@
 			isa = PBXGroup;
 			children = (
 				225F894D221AFB3F00196110 /* bkt */,
-				22F1834A21CABE4B00220D20 /* BookishCore */,
 				224293B4212AE16200E70510 /* BookishModel */,
-				22F1834D21CABE4B00220D20 /* BookishCoreMac */,
-				22F1834821CABE4B00220D20 /* BookishCoreMobile */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -1061,32 +1053,6 @@
 				22B6ECBB228C8B38000AAB2A /* bktCore */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		22F1834821CABE4B00220D20 /* BookishCoreMobile */ = {
-			isa = PBXGroup;
-			children = (
-				22F1834921CABE4B00220D20 /* main.swift */,
-			);
-			path = BookishCoreMobile;
-			sourceTree = "<group>";
-		};
-		22F1834A21CABE4B00220D20 /* BookishCore */ = {
-			isa = PBXGroup;
-			children = (
-				22F1834B21CABE4B00220D20 /* ImageCache.swift */,
-				22F1834C21CABE4B00220D20 /* BookishCore.swift */,
-				22F1845B21E3AD2E00220D20 /* CloudManager.swift */,
-			);
-			path = BookishCore;
-			sourceTree = "<group>";
-		};
-		22F1834D21CABE4B00220D20 /* BookishCoreMac */ = {
-			isa = PBXGroup;
-			children = (
-				22F1834E21CABE4B00220D20 /* main.swift */,
-			);
-			path = BookishCoreMac;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

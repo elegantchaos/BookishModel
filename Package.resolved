@@ -2,24 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "Actions",
-        "repositoryURL": "https://github.com/elegantchaos/Actions",
-        "state": {
-          "branch": null,
-          "revision": "638364eccfa0bc8f5694c7e1787e946b0a4574d0",
-          "version": "1.2.4"
-        }
-      },
-      {
-        "package": "Arguments",
-        "repositoryURL": "https://github.com/elegantchaos/Arguments",
-        "state": {
-          "branch": null,
-          "revision": "781c924c16e9e4cbad65db8a5ed510fb711de3da",
-          "version": "1.0.7"
-        }
-      },
-      {
         "package": "CommandShell",
         "repositoryURL": "https://github.com/elegantchaos/CommandShell",
         "state": {
@@ -44,6 +26,15 @@
           "branch": null,
           "revision": "a236953ec13b4c2c54a4450110973d9ff9db7711",
           "version": "0.6.10"
+        }
+      },
+      {
+        "package": "Expressions",
+        "repositoryURL": "https://github.com/elegantchaos/Expressions",
+        "state": {
+          "branch": "bookish",
+          "revision": "0602ed5ecf50e470ab5067d28f0c07e9340380ba",
+          "version": null
         }
       },
       {
