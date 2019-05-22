@@ -9,7 +9,9 @@ import Actions
 public class TagAction: SyncModelAction {
     public static let addedTagsKey = "added"
     public static let removedTagsKey = "removed"
-
+    public static let tagKey = "tag"
+    public static let tagNameKey = "tagName"
+    
     open class override func standardActions() -> [Action] {
         return [
             ChangeTagsAction(),
@@ -39,15 +41,17 @@ public class ChangeTagsAction: TagAction {
 
 public class DeleteTagAction: TagAction {
     public override func perform(context: ActionContext, model: NSManagedObjectContext) {
-        print("delete tag")
-        print(context)
+        if let tag = context[TagAction.tagKey] as? Tag {
+            model.delete(tag)
+        }
     }
     
 }
 
 public class RenameTagAction: TagAction {
     public override func perform(context: ActionContext, model: NSManagedObjectContext) {
-        print("rename tag")
-        print(context)
+        if let tag = context[TagAction.tagKey] as? Tag, let name = context[TagAction.tagNameKey] as? String {
+            tag.name = name
+        }
     }
 }
