@@ -219,8 +219,8 @@
 		22ADAC7922314BE000967943 /* SequenceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ADAC5D223146BE00967943 /* SequenceExtensions.swift */; };
 		22ADAC7B22314C0700967943 /* SequenceExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ADAC7A22314C0700967943 /* SequenceExtensionTests.swift */; };
 		22ADAC7C22314C0700967943 /* SequenceExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ADAC7A22314C0700967943 /* SequenceExtensionTests.swift */; };
-		22B07AA7229550D100068680 /* ChangeTagsAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B07AA6229550D100068680 /* ChangeTagsAction.swift */; };
-		22B07AA8229550D100068680 /* ChangeTagsAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B07AA6229550D100068680 /* ChangeTagsAction.swift */; };
+		22B07AA7229550D100068680 /* TagAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B07AA6229550D100068680 /* TagAction.swift */; };
+		22B07AA8229550D100068680 /* TagAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B07AA6229550D100068680 /* TagAction.swift */; };
 		22B6ECD3228C8D5C000AAB2A /* LookupActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B6ECD2228C8D5C000AAB2A /* LookupActionTests.swift */; };
 		22B6ECD4228C8D5C000AAB2A /* LookupActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B6ECD2228C8D5C000AAB2A /* LookupActionTests.swift */; };
 		22D4A3CF21BEDDA100427E35 /* CorruptModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */; };
@@ -666,7 +666,7 @@
 		22A498CF220F480A006A2137 /* Simple.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Simple.plist; sourceTree = "<group>"; };
 		22ADAC5D223146BE00967943 /* SequenceExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceExtensions.swift; sourceTree = "<group>"; };
 		22ADAC7A22314C0700967943 /* SequenceExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceExtensionTests.swift; sourceTree = "<group>"; };
-		22B07AA6229550D100068680 /* ChangeTagsAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTagsAction.swift; sourceTree = "<group>"; };
+		22B07AA6229550D100068680 /* TagAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagAction.swift; sourceTree = "<group>"; };
 		22B6ECD2228C8D5C000AAB2A /* LookupActionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookupActionTests.swift; sourceTree = "<group>"; };
 		22BE78FF22523ADB002EADD7 /* BuildNumber.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = BuildNumber.xcconfig; sourceTree = "<group>"; };
 		22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CorruptModel.bundle; sourceTree = "<group>"; };
@@ -746,7 +746,7 @@
 			children = (
 				221C4B23216BA50C0086D56F /* BookAction.swift */,
 				226E8E7221AC50A6001F191F /* ChangeValueAction.swift */,
-				22B07AA6229550D100068680 /* ChangeTagsAction.swift */,
+				22B07AA6229550D100068680 /* TagAction.swift */,
 				22724641221C003100C80CCF /* ImportAction.swift */,
 				226E8DB021A84031001F191F /* ModelAction.swift */,
 				221C4B2C216BA8220086D56F /* PersonAction.swift */,
@@ -1531,7 +1531,7 @@
 				221B8554225E2CDD00BC4D32 /* PersonDetailItem.swift in Sources */,
 				22A498BE220F3555006A2137 /* ImportManager.swift in Sources */,
 				22F180C421CA662D00220D20 /* FileManagerExtensions.swift in Sources */,
-				22B07AA7229550D100068680 /* ChangeTagsAction.swift in Sources */,
+				22B07AA7229550D100068680 /* TagAction.swift in Sources */,
 				22A3E2EB21FB80B900BA4F17 /* MultipleValues.swift in Sources */,
 				221ED50C216B79F100594714 /* DetailSpec.swift in Sources */,
 				22D5A5EE228C5F3F00E9FDDC /* TestDataImporter.swift in Sources */,
@@ -1711,7 +1711,7 @@
 				229FB9E92226B2D900A564D4 /* GoogleLookupService.swift in Sources */,
 				22A498A5220F1A02006A2137 /* NSManagedObjectExtensions.swift in Sources */,
 				22387994220B1D860019F9EA /* BookDetailProvider.swift in Sources */,
-				22B07AA8229550D100068680 /* ChangeTagsAction.swift in Sources */,
+				22B07AA8229550D100068680 /* TagAction.swift in Sources */,
 				229FB9EF2226C2F800A564D4 /* LookupManager.swift in Sources */,
 				223879BA220B3FF10019F9EA /* SeriesDetailProvider.swift in Sources */,
 				22F180E421CA8FD600220D20 /* Indexing.swift in Sources */,

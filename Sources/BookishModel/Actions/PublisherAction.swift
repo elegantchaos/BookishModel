@@ -49,9 +49,9 @@ open class PublisherAction: SyncModelAction {
     
     open class override func standardActions() -> [Action] {
         return [
-            NewPublisherAction(identifier: "NewPublisher"),
-            DeletePublisherAction(identifier: "DeletePublisher"),
-            RevealPublisherAction(identifier: "RevealPublisher"),
+            NewPublisherAction(),
+            DeletePublisherAction(),
+            RevealPublisherAction(),
         ]
     }
 }

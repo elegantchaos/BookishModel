@@ -51,9 +51,9 @@ open class RoleAction: SyncModelAction {
     
     open class override func standardActions() -> [Action] {
         return [
-            NewRoleAction(identifier: "NewRole"),
-            DeleteRoleAction(identifier: "DeleteRole"),
-            RevealRoleAction(identifier: "RevealRole"),
+            NewRoleAction(),
+            DeleteRoleAction(),
+            RevealRoleAction(),
         ]
     }
 }

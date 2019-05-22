@@ -84,17 +84,17 @@ open class BookAction: SyncModelAction {
     
     open class override func standardActions() -> [Action] {
         return [
-            NewBookAction(identifier: "NewBook"),
-            DeleteBookAction(identifier: "DeleteBook"),
-            AddPublisherAction(identifier: "AddPublisher"),
-            RemovePublisherAction(identifier: "RemovePublisher"),
-            ChangePublisherAction(identifier: "ChangePublisher"),
-            AddRelationshipAction(identifier: "AddRelationship"),
-            RemoveRelationshipAction(identifier: "RemoveRelationship"),
-            ChangeRelationshipAction(identifier: "ChangeRelationship"),
-            AddSeriesAction(identifier: "AddSeries"),
-            RemoveSeriesAction(identifier: "RemoveSeries"),
-            RevealBookAction(identifier: "RevealBook")
+            NewBookAction(),
+            DeleteBookAction(),
+            AddPublisherAction(),
+            RemovePublisherAction(),
+            ChangePublisherAction(),
+            AddRelationshipAction(),
+            RemoveRelationshipAction(),
+            ChangeRelationshipAction(),
+            AddSeriesAction(),
+            RemoveSeriesAction(),
+            RevealBookAction()
         ]
     }
     

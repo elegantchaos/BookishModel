@@ -56,11 +56,11 @@ open class PersonAction: SyncModelAction {
     
     open class override func standardActions() -> [Action] {
         return [
-            NewPersonAction(identifier: "NewPerson"),
-            DeletePersonAction(identifier: "DeletePerson"),
-            RevealPersonAction(identifier: "RevealPerson"),
-            MergePersonAction(identifier: "MergePerson"),
-            SplitPersonAction(identifier: "SplitPerson")
+            NewPersonAction(),
+            DeletePersonAction(),
+            RevealPersonAction(),
+            MergePersonAction(),
+            SplitPersonAction()
         ]
     }
 }

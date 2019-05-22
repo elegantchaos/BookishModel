@@ -18,10 +18,10 @@ open class ModelAction: Action {
         actions.append(contentsOf: SeriesAction.standardActions())
         actions.append(contentsOf: RoleAction.standardActions())
         actions.append(contentsOf: LookupAction.standardActions())
-        actions.append(ChangeValueAction(identifier: "ChangeValue"))
-        actions.append(ChangeTagsAction(identifier: "ChangeTags"))
-        actions.append(ImportAction(identifier: "Import"))
-        actions.append(ScanSeriesAction(identifier: "ScanSeries"))
+        actions.append(contentsOf: TagAction.standardActions())
+        actions.append(ChangeValueAction())
+        actions.append(ImportAction())
+        actions.append(ScanSeriesAction())
 
         return actions
     }

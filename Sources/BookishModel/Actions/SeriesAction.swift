@@ -49,10 +49,10 @@ open class SeriesAction: SyncModelAction {
     
     open class override func standardActions() -> [Action] {
         return [
-            NewSeriesAction(identifier: "NewSeries"),
-            DeleteSeriesAction(identifier: "DeleteSeries"),
-            RevealSeriesAction(identifier: "RevealSeries"),
-            ChangeSeriesAction(identifier: "ChangeSeries")
+            NewSeriesAction(),
+            DeleteSeriesAction(),
+            RevealSeriesAction(),
+            ChangeSeriesAction()
         ]
     }
 }

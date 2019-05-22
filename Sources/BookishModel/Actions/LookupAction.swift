@@ -11,9 +11,9 @@ public class LookupAction: SyncModelAction {
 
     override open class func standardActions() -> [Action] {
         return [
-            LookupCoverAction(identifier: "LookupCover"),
-            ViewCandidateAction(identifier: "ViewCandidate"),
-            AddCandidateAction(identifier: "AddCandidate"),
+            LookupCoverAction(),
+            ViewCandidateAction(),
+            AddCandidateAction(),
         ]
     }
 }
