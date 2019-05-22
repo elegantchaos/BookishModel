@@ -99,7 +99,6 @@ let collectionChannel = Channel("com.elegantchaos.bookish.model.collection")
             if let error = error {
                 print(error)
             } else {
-                print(description)
                 let context = self.viewContext
                 context.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
                 context.undoManager = UndoManager()
