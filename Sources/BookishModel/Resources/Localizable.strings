@@ -78,15 +78,19 @@ Role.standard.foreword.notes = "A person with this role is supplied the foreword
 Role.standard.illustrator.notes = "A person with this role is the illustrator of a volume.";
 Role.standard.translator.notes = "A person with this role is the translator of a volume.";
 
+Tag.menu.title = "Tags";
+
 Tag.delete.message = "Delete Tag";
 Tag.delete.info = "Are you sure you want to delete the tag “{tag}”?";
 Tag.delete.ok = "OK";
 Tag.delete.cancel = "Cancel";
+Tag.delete.menu = "Delete Tag";
 
 Tag.rename.message = "Rename Tag";
 Tag.rename.info = "New tag name:";
 Tag.rename.ok = "OK";
 Tag.rename.cancel = "Cancel";
+Tag.rename.menu = "Rename Tag";
 
 detail.added.label = "added";
 
