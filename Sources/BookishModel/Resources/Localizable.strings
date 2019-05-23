@@ -81,7 +81,7 @@ Role.standard.translator.notes = "A person with this role is the translator of a
 Tag.menu.title = "Tags";
 
 Tag.delete.message = "Delete Tag";
-Tag.delete.info = "Are you sure you want to delete the tag “{tag}”?";
+Tag.delete.info = "Are you sure you want to delete the tag “{tag}”? This will remove it from all collection items.";
 Tag.delete.ok = "OK";
 Tag.delete.cancel = "Cancel";
 Tag.delete.menu = "Delete Tag";
