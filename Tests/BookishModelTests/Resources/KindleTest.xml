@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<response>
+  <sync_time>2019-04-04T09:43:47+0000;softwareVersion:52078;SE:F;SC:F;ST:KS-15000000000048,Periodical-1554371027214,KM-15000000000016,KB-15000000000166,</sync_time>
+  <cache_metadata>
+    <version>1</version>
+  </cache_metadata>
+  <add_update_list>
+    <meta_data>
+      <ASIN>B079RMQJR1</ASIN>
+      <title pronunciation="">Thin Air: From the author of Netflix's Altered Carbon (GOLLANCZ S.F.)</title>
+      <authors>
+        <author pronunciation="">Morgan, Richard</author>
+      </authors>
+      <publishers>
+        <publisher>Gollancz</publisher>
+      </publishers>
+      <publication_date>2018-10-25T00:00:00+0000</publication_date>
+      <purchase_date>2019-03-31T19:19:27+0000</purchase_date>
+      <textbook_type/>
+      <cde_contenttype>EBOK</cde_contenttype>
+      <content_type>application/x-mobipocket-ebook</content_type>
+    </meta_data>
+    <meta_data>
+      <ASIN>B06Y16K2QV</ASIN>
+      <title pronunciation="">Places in the Darkness</title>
+      <authors>
+        <author pronunciation="">Brookmyre, Chris</author>
+      </authors>
+      <publishers>
+        <publisher>Orbit</publisher>
+      </publishers>
+      <publication_date>2017-11-09T00:00:00+0000</publication_date>
+      <purchase_date>2019-03-31T19:18:06+0000</purchase_date>
+      <textbook_type/>
+      <cde_contenttype>EBOK</cde_contenttype>
+      <content_type>application/x-mobipocket-ebook</content_type>
+    </meta_data>
+    <meta_data>
+      <ASIN>B0764CLQNB</ASIN>
+      <title pronunciation="">A Big Ship at the Edge of the Universe (The Salvagers Book 1)</title>
+      <authors>
+        <author pronunciation="">White, Alex</author>
+      </authors>
+      <publishers>
+        <publisher>Orbit</publisher>
+      </publishers>
+      <publication_date>2018-06-26T00:00:00+0000</publication_date>
+      <purchase_date>2019-03-28T00:56:09+0000</purchase_date>
+      <textbook_type/>
+      <cde_contenttype>EBOK</cde_contenttype>
+      <content_type>application/x-mobipocket-ebook</content_type>
+    </meta_data>
+  </add_update_list>
+</response>

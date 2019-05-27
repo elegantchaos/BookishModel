@@ -231,6 +231,8 @@
 		22C8941A229BFBA4001508C8 /* TagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C89418229BFBA4001508C8 /* TagTests.swift */; };
 		22C8941C229C006C001508C8 /* TagActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C8941B229C006C001508C8 /* TagActionTests.swift */; };
 		22C8941D229C006C001508C8 /* TagActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C8941B229C006C001508C8 /* TagActionTests.swift */; };
+		22C89422229C04E6001508C8 /* KindleTest.xml in Resources */ = {isa = PBXBuildFile; fileRef = 22C8941F229C04E6001508C8 /* KindleTest.xml */; };
+		22C89423229C04E6001508C8 /* KindleTest.xml in Resources */ = {isa = PBXBuildFile; fileRef = 22C8941F229C04E6001508C8 /* KindleTest.xml */; };
 		22D4A3CF21BEDDA100427E35 /* CorruptModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */; };
 		22D4A3D021BEDDA100427E35 /* CorruptModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */; };
 		22D4A3D121BEDDA100427E35 /* MissingModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3CE21BEDDA100427E35 /* MissingModel.bundle */; };
@@ -681,6 +683,7 @@
 		22C894152298459F001508C8 /* EntityPredicateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityPredicateTests.swift; sourceTree = "<group>"; };
 		22C89418229BFBA4001508C8 /* TagTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTests.swift; sourceTree = "<group>"; };
 		22C8941B229C006C001508C8 /* TagActionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagActionTests.swift; sourceTree = "<group>"; };
+		22C8941F229C04E6001508C8 /* KindleTest.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = KindleTest.xml; sourceTree = "<group>"; };
 		22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CorruptModel.bundle; sourceTree = "<group>"; };
 		22D4A3CE21BEDDA100427E35 /* MissingModel.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MissingModel.bundle; sourceTree = "<group>"; };
 		22D4A51221C1215900427E35 /* .bin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = .bin; sourceTree = "<group>"; };
@@ -984,6 +987,7 @@
 				225F893F221AE6B300196110 /* Localizable.strings */,
 				22318E8E22563AD600EE3EBC /* Kindle.xml */,
 				22A498AF220F34AB006A2137 /* Sample.xml */,
+				22C8941F229C04E6001508C8 /* KindleTest.xml */,
 				22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */,
 				224293C4212AE16300E70510 /* Info.plist */,
 				2213FD282231355700D8B4D8 /* JSON Errors.plist */,
@@ -1504,6 +1508,7 @@
 				22A498D0220F480A006A2137 /* Simple.plist in Resources */,
 				22D4A3D121BEDDA100427E35 /* MissingModel.bundle in Resources */,
 				2213FD292231355700D8B4D8 /* JSON Errors.plist in Resources */,
+				22C89422229C04E6001508C8 /* KindleTest.xml in Resources */,
 				225F8940221AE6B300196110 /* Localizable.strings in Resources */,
 				22A498B0220F34AB006A2137 /* Sample.xml in Resources */,
 				22318E8F22563AD600EE3EBC /* Kindle.xml in Resources */,
@@ -1529,6 +1534,7 @@
 				22A498D1220F480A006A2137 /* Simple.plist in Resources */,
 				22D4A3D221BEDDA100427E35 /* MissingModel.bundle in Resources */,
 				2213FD2A2231355700D8B4D8 /* JSON Errors.plist in Resources */,
+				22C89423229C04E6001508C8 /* KindleTest.xml in Resources */,
 				225F8941221AE6B300196110 /* Localizable.strings in Resources */,
 				22A498B1220F34AB006A2137 /* Sample.xml in Resources */,
 				22318E982256529E00EE3EBC /* Kindle.xml in Resources */,
