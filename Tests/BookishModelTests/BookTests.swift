@@ -118,4 +118,28 @@ class BookTests: ModelTestCase {
         book.identifier = "blah" // setter should do nothing
         XCTAssertEqual(book.identifier, "test-isbn (isbn/asin)")
     }
+    
+    func testSummary() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let book = Book(context: context)
+        XCTAssertNil(book.summary)
+
+        let series = Series(context: context)
+        book.addToSeries(series, position: 0)
+
+        series.name = nil
+        XCTAssertNil(book.summary)
+
+        series.name = "Series"
+        XCTAssertEqual(book.summary, "Series")
+        
+        book.addToSeries(series, position: 2)
+        XCTAssertEqual(book.summary, "Series, Book 2")
+
+
+        book.subtitle = "Test"
+        XCTAssertEqual(book.summary, "Test")
+
+    }
 }
