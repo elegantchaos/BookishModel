@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.98" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Book" representedClassName=".Book" syncable="YES" codeGenerationType="category">
+    <entity name="Book" representedClassName=".Book" syncable="YES" codeGenerationType="category" coreSpotlightDisplayNameExpression="name">
         <attribute name="added" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
         <attribute name="asin" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
         <attribute name="classification" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
@@ -31,13 +31,13 @@
         <relationship name="relationships" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Relationship" inverseName="books" inverseEntity="Relationship" syncable="YES"/>
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="books" inverseEntity="Tag" syncable="YES"/>
     </entity>
-    <entity name="Person" representedClassName=".Person" syncable="YES" codeGenerationType="category">
+    <entity name="Person" representedClassName=".Person" syncable="YES" codeGenerationType="category" coreSpotlightDisplayNameExpression="name">
         <attribute name="added" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
         <attribute name="biography" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
         <attribute name="born" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
         <attribute name="died" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="imageURL" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="importDate" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
         <attribute name="log" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
         <attribute name="modified" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
@@ -53,7 +53,7 @@
     <entity name="Publisher" representedClassName=".Publisher" syncable="YES" codeGenerationType="category">
         <attribute name="added" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="imageURL" optional="YES" attributeType="URI" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="URI" syncable="YES"/>
         <attribute name="importDate" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
         <attribute name="log" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
         <attribute name="modified" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
@@ -73,7 +73,7 @@
     <entity name="Role" representedClassName=".Role" syncable="YES" codeGenerationType="category">
         <attribute name="added" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="imageURL" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="locked" optional="YES" attributeType="Boolean" usesScalarValueType="YES" spotlightIndexingEnabled="YES" syncable="YES"/>
         <attribute name="log" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
         <attribute name="modified" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
@@ -85,7 +85,7 @@
     <entity name="Series" representedClassName=".Series" syncable="YES" codeGenerationType="category">
         <attribute name="added" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="imageURL" optional="YES" attributeType="URI" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="URI" syncable="YES"/>
         <attribute name="importDate" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
         <attribute name="items" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" spotlightIndexingEnabled="YES" syncable="YES"/>
         <attribute name="log" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
@@ -106,7 +106,7 @@
     <entity name="Tag" representedClassName=".Tag" syncable="YES" codeGenerationType="category">
         <attribute name="added" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="imageURL" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="modified" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
         <attribute name="uuid" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
@@ -116,13 +116,13 @@
         <relationship name="series" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Series" inverseName="tags" inverseEntity="Series" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Book" positionX="-563.734375" positionY="66.40625" width="128" height="480"/>
-        <element name="Person" positionX="-236.18359375" positionY="669.03125" width="128" height="300"/>
-        <element name="Publisher" positionX="-824.32421875" positionY="467.9453125" width="128" height="240"/>
+        <element name="Book" positionX="-563.734375" positionY="66.40625" width="128" height="478"/>
+        <element name="Person" positionX="-236.18359375" positionY="669.03125" width="128" height="298"/>
+        <element name="Publisher" positionX="-824.32421875" positionY="467.9453125" width="128" height="238"/>
         <element name="Relationship" positionX="-332.08203125" positionY="481.375" width="128" height="90"/>
-        <element name="Role" positionX="-390.59765625" positionY="671.35546875" width="128" height="195"/>
-        <element name="Series" positionX="-616.43359375" positionY="822.40625" width="128" height="255"/>
+        <element name="Role" positionX="-390.59765625" positionY="671.35546875" width="128" height="193"/>
+        <element name="Series" positionX="-616.43359375" positionY="822.40625" width="128" height="253"/>
         <element name="SeriesEntry" positionX="-615.33984375" positionY="638.01171875" width="128" height="90"/>
-        <element name="Tag" positionX="-621" positionY="216" width="128" height="195"/>
+        <element name="Tag" positionX="-621" positionY="216" width="128" height="193"/>
     </elements>
 </model>
