@@ -229,6 +229,8 @@
 		22C894172298459F001508C8 /* EntityPredicateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C894152298459F001508C8 /* EntityPredicateTests.swift */; };
 		22C89419229BFBA4001508C8 /* TagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C89418229BFBA4001508C8 /* TagTests.swift */; };
 		22C8941A229BFBA4001508C8 /* TagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C89418229BFBA4001508C8 /* TagTests.swift */; };
+		22C8941C229C006C001508C8 /* TagActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C8941B229C006C001508C8 /* TagActionTests.swift */; };
+		22C8941D229C006C001508C8 /* TagActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C8941B229C006C001508C8 /* TagActionTests.swift */; };
 		22D4A3CF21BEDDA100427E35 /* CorruptModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */; };
 		22D4A3D021BEDDA100427E35 /* CorruptModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */; };
 		22D4A3D121BEDDA100427E35 /* MissingModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D4A3CE21BEDDA100427E35 /* MissingModel.bundle */; };
@@ -678,6 +680,7 @@
 		22C893BA229841E6001508C8 /* NSEntityDescriptionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSEntityDescriptionExtensions.swift; sourceTree = "<group>"; };
 		22C894152298459F001508C8 /* EntityPredicateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityPredicateTests.swift; sourceTree = "<group>"; };
 		22C89418229BFBA4001508C8 /* TagTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTests.swift; sourceTree = "<group>"; };
+		22C8941B229C006C001508C8 /* TagActionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagActionTests.swift; sourceTree = "<group>"; };
 		22D4A3BB21BEDDA000427E35 /* CorruptModel.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CorruptModel.bundle; sourceTree = "<group>"; };
 		22D4A3CE21BEDDA100427E35 /* MissingModel.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MissingModel.bundle; sourceTree = "<group>"; };
 		22D4A51221C1215900427E35 /* .bin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = .bin; sourceTree = "<group>"; };
@@ -808,6 +811,7 @@
 				2250C80A21BE891D00E899E2 /* BookDetailTests.swift */,
 				2250C7FC21BE85CD00E899E2 /* BookTests.swift */,
 				22C89418229BFBA4001508C8 /* TagTests.swift */,
+				22C8941B229C006C001508C8 /* TagActionTests.swift */,
 				2250C80D21BE96F000E899E2 /* ChangeValueActionTests.swift */,
 				22A498A9220F28F2006A2137 /* CollectionContainerTests.swift */,
 				22E96F72228D98B100DE95A8 /* DataFetcherTests.swift */,
@@ -1635,6 +1639,7 @@
 				2250C80021BE861A00E899E2 /* PersonTests.swift in Sources */,
 				221B8563225F5CE300BC4D32 /* RoleActionTests.swift in Sources */,
 				22C894162298459F001508C8 /* EntityPredicateTests.swift in Sources */,
+				22C8941C229C006C001508C8 /* TagActionTests.swift in Sources */,
 				2250C80521BE877E00E899E2 /* PublisherTests.swift in Sources */,
 				2212376E220CA405006D4AA5 /* PersonDetailTests.swift in Sources */,
 				2250C7F121BAF6B800E899E2 /* PersonActionTests.swift in Sources */,
@@ -1761,6 +1766,7 @@
 				2250C80121BE861A00E899E2 /* PersonTests.swift in Sources */,
 				221B8564225F5CE400BC4D32 /* RoleActionTests.swift in Sources */,
 				22C894172298459F001508C8 /* EntityPredicateTests.swift in Sources */,
+				22C8941D229C006C001508C8 /* TagActionTests.swift in Sources */,
 				2250C80621BE877E00E899E2 /* PublisherTests.swift in Sources */,
 				22123771220CA406006D4AA5 /* PersonDetailTests.swift in Sources */,
 				2250C7F221BAF6B800E899E2 /* PersonActionTests.swift in Sources */,
