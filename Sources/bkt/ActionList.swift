@@ -8,6 +8,7 @@ import Actions
 import BookishModel
 import CoreData
 import BookishCore
+import Expressions
 
 struct ActionSpec: Decodable {
     let name: String
@@ -21,7 +22,7 @@ struct ActionFile: Decodable {
     let actions: [ActionSpec]
 }
 
-struct Variable: RegularExpressionResult {
+struct Variable: Constructable {
     var name = ""
 }
 
@@ -45,7 +46,7 @@ class ActionList: TaskList {
             if let params = action.params {
                 for (key, value) in params {
                     let string: String = value
-                    if let match = variablePattern.firstMatch(of: string, capturing: [\Variable.name: 1]), let variable = variables[match.name] as? String {
+                    if let match = variablePattern.firstMatch(in: string, capturing: [\Variable.name: 1]), let variable = variables[match.name] as? String {
                         let expanded = string.replacingOccurrences(of: "$\(match.name)", with: variable)
                         expandedParams[key] = expanded
                     } else {
