@@ -66,6 +66,7 @@ class PersonDetailProviderTests: ModelTestCase {
         relationship.addToBooks(book)
         
         provider.filter(for: [person], editing: false, combining: false, context: TestContext())
+        XCTAssertEqual(provider.titleProperty, "name")
         XCTAssertEqual(provider.sectionTitle(for: 0), "")
         XCTAssertEqual(provider.sectionTitle(for: 1), "Role.section")
     }
@@ -77,14 +78,35 @@ class PersonDetailProviderTests: ModelTestCase {
         let relationship = person.relationship(as: "author")
         relationship.addToBooks(book)
         
+        person.notes = "Test"
+        
         provider.filter(for: [person], editing: false, combining: false, context: TestContext())
-//        let info1 = provider.info(section: 0, row: 0)
-//        XCTAssertTrue(info1 is SimpleDetailItem)
+        let info1 = provider.info(section: 0, row: 0)
+        XCTAssertTrue(info1 is SimpleDetailItem)
 
         let info2 = provider.info(section: 1, row: 0)
         XCTAssertTrue(info2 is BookDetailItem)
     }
-    
+
+    func testCombining() {
+        let provider = makeTestProvider()
+        
+        let book = Book(context: context)
+        let relationship = person.relationship(as: "author")
+        relationship.addToBooks(book)
+        
+        person.notes = "Test"
+        
+        provider.filter(for: [person], editing: false, combining: true, context: TestContext())
+        XCTAssertEqual(provider.combinedCount, 3)
+
+        let info1 = provider.combinedInfo(row: 0)
+        XCTAssertTrue(info1 is SimpleDetailItem)
+        
+        let info2 = provider.combinedInfo(row: 2)
+        XCTAssertTrue(info2 is BookDetailItem)
+    }
+
     func testRemoveAction() {
         let container = makeTestContainer()
         let context = container.managedObjectContext
