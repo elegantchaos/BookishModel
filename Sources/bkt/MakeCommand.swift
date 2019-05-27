@@ -65,7 +65,11 @@ class MakeCommand: Command {
         
         let model = BookishModel.model()
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
-        try? coordinator.destroyPersistentStore(at: outputURL, ofType: NSSQLiteStoreType)
+        do {
+            try coordinator.destroyPersistentStore(at: outputURL, ofType: NSSQLiteStoreType)
+        } catch {
+            shell.log("Couldn't delete old file: \(error)")
+        }
         
         let container = CollectionContainer(name: name, url: outputURL) { (container, error) in
             var variables: [String:Any] = ProcessInfo.processInfo.environment
