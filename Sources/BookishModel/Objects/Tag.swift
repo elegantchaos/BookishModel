@@ -12,9 +12,21 @@ public class Tag: ChangeTrackingModelObject {
         } else if let people = objects as? [Person] {
             removeFromPeople(NSSet(array: people))
         } else if let publishers = objects as? [Publisher] {
-        removeFromPublishers(NSSet(array: publishers))
+            removeFromPublishers(NSSet(array: publishers))
         } else if let series = objects as? [Series] {
             removeFromSeries(NSSet(array: series))
+        } else {
+            for object in objects {
+                if let book = object as? Book {
+                    removeFromBooks(book)
+                } else if let person = object as? Person {
+                    removeFromPeople(person)
+                } else if let publisher = object as? Publisher {
+                    removeFromPublishers(publisher)
+                } else if let series = object as? Series {
+                    removeFromSeries(series)
+                }
+            }
         }
     }
 
@@ -27,6 +39,18 @@ public class Tag: ChangeTrackingModelObject {
             addToPublishers(NSSet(array: publishers))
         } else if let series = objects as? [Series] {
             addToSeries(NSSet(array: series))
+        } else {
+            for object in objects {
+                if let book = object as? Book {
+                    addToBooks(book)
+                } else if let person = object as? Person {
+                    addToPeople(person)
+                } else if let publisher = object as? Publisher {
+                    addToPublishers(publisher)
+                } else if let series = object as? Series {
+                    addToSeries(series)
+                }
+            }
         }
     }
 }
