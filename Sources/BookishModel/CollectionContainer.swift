@@ -77,6 +77,9 @@ let collectionChannel = Channel("com.elegantchaos.bookish.model.collection")
             }
         }
         
+        let spotlight = NSCoreDataCoreSpotlightDelegate(forStoreWith: description, model: model)
+        description.setOption(spotlight, forKey:NSCoreDataCoreSpotlightExporter)
+        
         load(callback: callback)
     }
     
