@@ -9,6 +9,8 @@ import Logger
 let collectionChannel = Channel("com.elegantchaos.bookish.model.collection")
 
 @objc open class CollectionContainer: NSPersistentContainer {
+    var spotlightIndexer: NSCoreDataCoreSpotlightDelegate? = nil
+    
     public enum PopulateMode {
         case empty                              /// don't populate with anything
         case populateWith(sample: String)       /// if empty, add some sample data
@@ -25,6 +27,8 @@ let collectionChannel = Channel("com.elegantchaos.bookish.model.collection")
         let description = persistentStoreDescriptions[0]
         description.setOption(true as NSValue, forKey: NSMigratePersistentStoresAutomaticallyOption)
         description.setOption(true as NSValue, forKey: NSInferMappingModelAutomaticallyOption)
+//        description.setOption(true as NSValue, forKey: NSPersistentHistoryTrackingKey)
+//        description.shouldAddStoreAsynchronously = true
         description.type = NSSQLiteStoreType
         
         if let explicitURL = url {
@@ -79,6 +83,7 @@ let collectionChannel = Channel("com.elegantchaos.bookish.model.collection")
         
         let spotlight = NSCoreDataCoreSpotlightDelegate(forStoreWith: description, model: model)
         description.setOption(spotlight, forKey:NSCoreDataCoreSpotlightExporter)
+        self.spotlightIndexer = spotlight
         
         load(callback: callback)
     }
