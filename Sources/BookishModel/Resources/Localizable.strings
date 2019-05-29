@@ -149,6 +149,9 @@ detail.read.label = "last read";
 detail.source.label = "🛠 source";
 detail.source.placeholder = "source of this item";
 
+detail.subtitle.label = "subtitle";
+detail.subtitle.placeholder = "subtitle";
+
 detail.tag.label = "tags";
 
 detail.uuid.label = "🛠 id";
