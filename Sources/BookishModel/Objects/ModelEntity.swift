@@ -23,10 +23,11 @@ public class ModelEntity: ModelObject {
             name = "Untitled \(entityName) \(count)"
         } while (true)
         
+        let asEntity = self as! ModelEntityCommon
         let now = Date()
-        setValue(name, forKey: "name")
-        setValue(now, forKey: "added")
-        setValue(now, forKey: "modified")
+        asEntity.name = name
+        asEntity.added = now
+        asEntity.modified = now
     }
     
     public override func didChangeValue(forKey key: String) { // TODO: not sure that this is the best approach...
@@ -48,16 +49,38 @@ public class ModelEntity: ModelObject {
     
     public func updateSortName() {
     }
+
+    public override var description: String {
+        return "<\(type(of:self).entityName): \((self as! ModelEntityCommon).nameAndId)>"
+    }
 }
 
+/**
+ All ModelEntity subclasses should conform to this protocol.
+ ModelEntity itself doesn't, because the properties that it defines are declared on
+ the subclasses by the CoreData integration, and so defining them
+ 
+ */
+
 public protocol ModelEntityCommon: ModelEntity {
-    var name: String? { get set }
+    dynamic var name: String? { get set }
     var uuid: String? { get set }
     var imageData: Data? { get set }
     var imageURL: String? { get set }
     var added: Date? { get set }
     var modified: Date? { get set }
 }
+
+extension ModelEntityCommon {
+    public var nameAndId: String {
+        var result = name ?? "<unknown>"
+        if let uuid = uuid {
+            result += " (\(uuid))"
+        }
+        return result
+    }
+}
+
 
 public protocol ModelEntitySortable: ModelEntity {
     var sortName: String? { get set }

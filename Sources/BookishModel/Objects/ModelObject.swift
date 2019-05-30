@@ -115,20 +115,16 @@ public class ModelObject: NSManagedObject, DetailOwner {
         return DetailProvider()
     }
 
-    public var nameAndId: String {
-        var result = self.value(forKey: "name") as? String ?? "<unknown>"
-        if let uuid = self.value(forKey: "uuid") as? String {
-            result += " (\(uuid))"
-        }
-        return result
-    }
-    
     @objc public var summary: String? {
         return nil
     }
     
     public override var description: String {
-        return "<\(type(of:self).entityName): \(self.nameAndId)>"
+        if let asEntity = self as? ModelEntityCommon {
+            return "<\(type(of:self).entityName): \(asEntity.nameAndId)>"
+        } else {
+            return "<\(type(of:self).entityName)>"
+        }
     }
 
 }
