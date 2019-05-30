@@ -5,7 +5,7 @@
 
 import CoreData
 
-public class Person: ChangeTrackingModelObject {
+public class Person: ModelEntity, ModelEntityCommon {
 
     override public class func getProvider() -> DetailProvider {
         return PersonDetailProvider()

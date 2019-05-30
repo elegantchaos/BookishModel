@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.98" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Book" representedClassName=".Book" syncable="YES" codeGenerationType="category" coreSpotlightDisplayNameExpression="name">
+        <attribute name="added" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="asin" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="classification" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="format" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="height" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="imageData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="importDate" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="importRaw" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="isbn" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="length" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="log" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="modified" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="owner" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="pages" optional="YES" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="published" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="read" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="sortName" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="source" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="subtitle" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="uuid" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="weight" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="width" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="entries" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SeriesEntry" inverseName="book" inverseEntity="SeriesEntry" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <relationship name="publisher" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Publisher" inverseName="books" inverseEntity="Publisher" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <relationship name="relationships" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Relationship" inverseName="books" inverseEntity="Relationship" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="books" inverseEntity="Tag" spotlightIndexingEnabled="YES" syncable="YES"/>
+    </entity>
+    <entity name="Person" representedClassName=".Person" syncable="YES" codeGenerationType="category" coreSpotlightDisplayNameExpression="name">
+        <attribute name="added" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="biography" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="born" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="died" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="imageData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="importDate" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="log" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="modified" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="sortName" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="source" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="uuid" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <relationship name="aliases" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="aliases" inverseEntity="Person" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <relationship name="relationships" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Relationship" inverseName="person" inverseEntity="Relationship" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="people" inverseEntity="Tag" spotlightIndexingEnabled="YES" syncable="YES"/>
+    </entity>
+    <entity name="Publisher" representedClassName=".Publisher" syncable="YES" codeGenerationType="category">
+        <attribute name="added" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="imageData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="importDate" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="log" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="modified" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="sortName" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="source" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="uuid" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <relationship name="books" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Book" inverseName="publisher" inverseEntity="Book" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="publishers" inverseEntity="Tag" spotlightIndexingEnabled="YES" syncable="YES"/>
+    </entity>
+    <entity name="Relationship" representedClassName=".Relationship" syncable="YES" codeGenerationType="category">
+        <relationship name="books" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="relationships" inverseEntity="Book" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <relationship name="person" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="relationships" inverseEntity="Person" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <relationship name="role" maxCount="1" deletionRule="Nullify" destinationEntity="Role" inverseName="relationships" inverseEntity="Role" spotlightIndexingEnabled="YES" syncable="YES"/>
+    </entity>
+    <entity name="Role" representedClassName=".Role" syncable="YES" codeGenerationType="category">
+        <attribute name="added" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="imageData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="locked" optional="YES" attributeType="Boolean" usesScalarValueType="YES" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="log" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="modified" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="uuid" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <relationship name="relationships" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Relationship" inverseName="role" inverseEntity="Relationship" spotlightIndexingEnabled="YES" syncable="YES"/>
+    </entity>
+    <entity name="Series" representedClassName=".Series" syncable="YES" codeGenerationType="category">
+        <attribute name="added" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="imageData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="importDate" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="items" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="log" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="modified" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="sortName" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="source" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="uuid" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <relationship name="entries" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SeriesEntry" inverseName="series" inverseEntity="SeriesEntry" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="series" inverseEntity="Tag" spotlightIndexingEnabled="YES" syncable="YES"/>
+    </entity>
+    <entity name="SeriesEntry" representedClassName=".SeriesEntry" syncable="YES" codeGenerationType="category">
+        <attribute name="position" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="book" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="entries" inverseEntity="Book" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <relationship name="series" maxCount="1" deletionRule="Nullify" destinationEntity="Series" inverseName="entries" inverseEntity="Series" spotlightIndexingEnabled="YES" syncable="YES"/>
+    </entity>
+    <entity name="Tag" representedClassName=".Tag" syncable="YES" codeGenerationType="category">
+        <attribute name="added" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="imageData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modified" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <relationship name="books" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Book" inverseName="tags" inverseEntity="Book" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <relationship name="people" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Person" inverseName="tags" inverseEntity="Person" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <relationship name="publishers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Publisher" inverseName="tags" inverseEntity="Publisher" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <relationship name="series" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Series" inverseName="tags" inverseEntity="Series" spotlightIndexingEnabled="YES" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Book" positionX="-563.734375" positionY="66.40625" width="128" height="480"/>
+        <element name="Person" positionX="-236.18359375" positionY="669.03125" width="128" height="300"/>
+        <element name="Publisher" positionX="-824.32421875" positionY="467.9453125" width="128" height="240"/>
+        <element name="Relationship" positionX="-332.08203125" positionY="481.375" width="128" height="90"/>
+        <element name="Role" positionX="-390.59765625" positionY="671.35546875" width="128" height="195"/>
+        <element name="Series" positionX="-616.43359375" positionY="822.40625" width="128" height="255"/>
+        <element name="SeriesEntry" positionX="-615.33984375" positionY="638.01171875" width="128" height="90"/>
+        <element name="Tag" positionX="-621" positionY="216" width="128" height="195"/>
+    </elements>
+</model>

@@ -5,7 +5,7 @@
 
 import CoreData
 
-public class Role: ChangeTrackingModelObject {
+public class Role: ModelEntity, ModelEntityCommon {
     public enum StandardName: String, CaseIterable {
         case author = "Author"
         case contributor = "Contributor"

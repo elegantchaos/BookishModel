@@ -5,7 +5,7 @@
 
 import CoreData
 
-public class Publisher: ChangeTrackingModelObject {
+public class Publisher: ModelEntity, ModelEntityCommon {
     override public class func getProvider() -> DetailProvider {
         return PublisherDetailProvider()
     }

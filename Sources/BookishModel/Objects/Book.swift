@@ -8,7 +8,7 @@ import Logger
 
 let bookChannel = Channel("com.elegantchaos.bookish.model.book")
 
-public class Book: ChangeTrackingModelObject {
+public class Book: ModelEntity, ModelEntityCommon {
     
     static let notFound = 1
 

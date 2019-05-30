@@ -5,7 +5,7 @@
 
 import Foundation
 
-public class Tag: ChangeTrackingModelObject {
+public class Tag: ModelEntity, ModelEntityCommon {
     public func remove(from objects: [ModelObject]) {
         if let books = objects as? [Book] {
             removeFromBooks(NSSet(array: books))
