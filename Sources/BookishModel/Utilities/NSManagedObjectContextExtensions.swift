@@ -109,4 +109,15 @@ extension NSManagedObjectContext {
         #endif
     }
 
+    /**
+     Return the object matching an external identifier.
+    */
+    
+    public func object(uri identifier: String) -> NSManagedObject? {
+        guard let uri = URL(string: identifier), let objectID = persistentStoreCoordinator?.managedObjectID(forURIRepresentation: uri) else {
+            return nil
+        }
+
+        return try? existingObject(with: objectID)
+    }
 }
