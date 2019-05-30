@@ -16,7 +16,7 @@ public class ChangeValueAction: SyncModelAction {
      case it's expected to be supplied by the context.
      */
     
-    public class func send(_ identifier: String, from sender: Any, manager: ActionManager, property: String, value: Any, to: Any?) {
+    public class func send(_ identifier: String, from sender: Any, manager: ActionManager, property: String, value: Any?, to: Any?) {
         let selection = to == nil ? nil : [to!]
         send(identifier, from: sender, manager: manager, property: property, value: value, selection: selection)
     }
@@ -27,7 +27,7 @@ public class ChangeValueAction: SyncModelAction {
      case it's expected to be supplied by the context.
     */
     
-    public class func send(_ identifier: String, from sender: Any, manager: ActionManager, property: String, value: Any, selection: [Any]? = nil) {
+    public class func send(_ identifier: String, from sender: Any, manager: ActionManager, property: String, value: Any?, selection: [Any]? = nil) {
         let info = ActionInfo(sender: sender)
         info[ChangeValueAction.propertyKey] = property
         info[ChangeValueAction.valueKey] = value
@@ -41,7 +41,6 @@ public class ChangeValueAction: SyncModelAction {
         return
             (context[ActionContext.selectionKey] as? [NSManagedObject] != nil) &&
             (context[ChangeValueAction.propertyKey] as? String != nil) &&
-            (context[ChangeValueAction.valueKey] != nil) &&
                 super.validate(context: context)
     }
     
