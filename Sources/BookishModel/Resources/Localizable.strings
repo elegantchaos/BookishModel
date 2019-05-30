@@ -175,6 +175,8 @@ candidate.found.singular = "1 candidate found:";
 candidate.found.plural = "{count} candidates found:";
 candidate.found.source = "source: {source}";
 
+search.initial = "";
+
 importer.prompt = "Import";
 importer.message = "Select file to import:";
 
