@@ -268,8 +268,8 @@ class BookDetailTests: ModelTestCase {
         
         source.filter(for: [book], editing: true, combining: false, context: TestContext())
         let row = source.info(section: 0, row: 3) as? SimpleDetailItem
-        XCTAssertEqual(row?.spec.binding, "notes")
-        XCTAssertEqual(row?.heading, "detail.notes.label")
+        XCTAssertEqual(row?.spec.binding, "subtitle")
+        XCTAssertEqual(row?.heading, "detail.subtitle.label")
     }
 
     func testInsertRelationship()
