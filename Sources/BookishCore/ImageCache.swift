@@ -6,6 +6,7 @@
 public protocol ImageFactory {
     associatedtype ImageClass
     static func image(from data: Data) -> ImageClass?
+    static func image(named: String) -> ImageClass?
 }
 
 public class ImageCache<Factory: ImageFactory> {
@@ -54,6 +55,9 @@ public class NSImageFactory: ImageFactory {
     public typealias ImageClass = NSImage
     public static func image(from data: Data) -> NSImage? {
         return NSImage(data: data)
+    }
+    public static func image(named name: String) -> NSImage? {
+        return NSImage(named: name)
     }
 }
 
