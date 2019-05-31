@@ -26,14 +26,14 @@ class EntityPredicateTests: ModelTestCase {
     
     func testTextAttributes() {
         let container = makeTestContainer()
-        let description = ModelObject.entityDescription(for: Book.self, in: container.managedObjectContext)
+        let description = Book.entityDescription(in: container.managedObjectContext)
         let predicates = description.textAttributePredicates(comparing: "test", using: "contains[cd]")
         XCTAssertTrue(check(predicates: predicates))
     }
     
     func testAnyPredicate() {
         let container = makeTestContainer()
-        let description = ModelObject.entityDescription(for: Book.self, in: container.managedObjectContext)
+        let description = Book.entityDescription(in: container.managedObjectContext)
         let predicate = description.anyAttributesPredicate(comparing: "test", using: "contains[cd]")
         XCTAssertTrue(predicate is NSCompoundPredicate)
         if let compound = predicate as? NSCompoundPredicate, let subpredicates = compound.subpredicates as? [NSPredicate] {

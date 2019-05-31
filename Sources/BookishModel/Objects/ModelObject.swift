@@ -91,16 +91,6 @@ public class ModelObject: NSManagedObject, DetailOwner {
         return "\(self)Placeholder"
     }
     
-    public class func count(in context: NSManagedObjectContext) -> Int {
-        if let description = context.persistentStoreCoordinator?.managedObjectModel.entitiesByName[entityName] {
-            let request: NSFetchRequest<ModelObject> = NSFetchRequest()
-            request.entity = description
-            return context.countAssertNoThrow(request)
-        }
-        
-        return 0
-    }
-    
     /**
      Return a count string for the entity. The exact text is pulled from the translation,
      but is generally of the form "x entit(y/ies)", or "no entities".

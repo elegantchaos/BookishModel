@@ -17,7 +17,7 @@ internal func getNamed<EntityType: NSManagedObject>(_ named: String, type: Entit
     }
     
     if createIfMissing {
-        let description = EntityType.entityDescription(for: EntityType.self, in: context)
+        let description = EntityType.self.entityDescription(in: context)
         if let object = NSManagedObject(entity: description, insertInto: context) as? EntityType {
             object.setValue(named, forKey: "name")
             return object
@@ -78,7 +78,7 @@ extension NSManagedObject {
      */
     
     public convenience init(in context: NSManagedObjectContext) {
-        let description = NSManagedObject.entityDescription(for: type(of: self), in: context)
+        let description = type(of: self).entityDescription(in: context)
         self.init(entity: description, insertInto: context)
     }
     
@@ -93,25 +93,24 @@ extension NSManagedObject {
     
     public class func fetcher<T>(in context: NSManagedObjectContext) -> NSFetchRequest<T> where T: NSManagedObject {
         let request = NSFetchRequest<T>()
-        request.entity = T.entityDescription(for: T.self, in: context)
+        request.entity = T.entityDescription(in: context)
         return request
     }
     
     /**
-     Return the entity description for a given model class, using the mode from the supplied context to find it.
+     Return count of instances of a given entity type.
      */
     
-    public class func entityDescription<T>(for type: T, in context: NSManagedObjectContext) -> NSEntityDescription {
-        let name = String(describing: type)
-        guard let coordinator = context.persistentStoreCoordinator else {
-            modelObjectChannel.fatal("missing coordinator")
-        }
-        
-        guard let description = coordinator.managedObjectModel.entitiesByName[name] else {
-            modelObjectChannel.fatal("no entity named \(name)")
-        }
-        
-        return description
+    public class func count(in context: NSManagedObjectContext) -> Int {
+        return context.countEntities(type: self)
+    }
+    
+    /**
+     Return the entity description for this type in a given context.
+     */
+    
+    public class func entityDescription(in context: NSManagedObjectContext) -> NSEntityDescription {
+        return context.entityDescription(for: self)
     }
     
     /**
@@ -119,11 +118,7 @@ extension NSManagedObject {
      */
     
     public func entityDescription() -> NSEntityDescription {
-        guard let context = managedObjectContext else {
-            fatalError("no context")
-        }
-        
-        return NSManagedObject.entityDescription(for: type(of: self), in: context)
+        return type(of: self).entityDescription(in: self.managedObjectContext!)
     }
 
 }

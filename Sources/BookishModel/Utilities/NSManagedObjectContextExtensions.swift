@@ -24,29 +24,37 @@ extension NSManagedObjectContext {
     }
     
     /**
-     Return the entity description for a given model class, using the mode from the supplied context to find it.
+     Return the entity description for a named model class.
      */
-    
-    public func entityDescription<T>(for type: T) -> NSEntityDescription {
-        let name = String(describing: type)
+
+    public func entityDescription(for name: String) -> NSEntityDescription {
         guard let coordinator = persistentStoreCoordinator else {
             fatalError("missing coordinator")
         }
-        
+
         guard let description = coordinator.managedObjectModel.entitiesByName[name] else {
             fatalError("no entity named \(name)")
         }
-        
+
         return description
     }
+
+    /**
+     Return the entity description for a given model class.
+     */
     
+    public func entityDescription(for type: NSManagedObject.Type) -> NSEntityDescription {
+        let name = String(describing: type)
+        return entityDescription(for: name)
+    }
+
     /**
      Return count of instances of a given entity type.
      */
     
-    public func countEntities<Entity: NSManagedObject>(type: Entity.Type, sorting: [NSSortDescriptor]? = nil) -> Int {
-        let request: NSFetchRequest<Entity> = fetcher()
-        request.sortDescriptors = sorting
+    public func countEntities(type: NSManagedObject.Type) -> Int {
+        let request: NSFetchRequest<NSManagedObject> = NSFetchRequest()
+        request.entity = entityDescription(for: type)
         return countAssertNoThrow(request)
     }
 
