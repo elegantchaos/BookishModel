@@ -3,6 +3,13 @@
 
     "actions" : [
         {
+            "name": "import Standard Roles",
+            "action": "Import",
+            "params": {
+                "importer": "com.elegantchaos.bookish.importer.standard-roles",
+            }
+        },
+        {
             "name": "import from Delicious Library",
             "action": "Import",
             "params": {
