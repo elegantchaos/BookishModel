@@ -12,7 +12,7 @@ extension NSEntityDescription {
      and return true if they all match.
      */
     
-    func allAttributesPredicate(comparing object: CVarArg, using comparison: String) -> NSPredicate {
+    public func allAttributesPredicate(comparing object: CVarArg, using comparison: String) -> NSPredicate {
         let predicates = textAttributePredicates(comparing: object, using: comparison)
         return NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
     }
@@ -22,7 +22,7 @@ extension NSEntityDescription {
      and return true if some of them match.
      */
     
-    func anyAttributesPredicate(comparing object: CVarArg, using comparison: String) -> NSPredicate {
+    public func anyAttributesPredicate(comparing object: CVarArg, using comparison: String) -> NSPredicate {
         let predicates = textAttributePredicates(comparing: object, using: comparison)
         return NSCompoundPredicate(orPredicateWithSubpredicates: predicates)
     }
@@ -31,7 +31,7 @@ extension NSEntityDescription {
      Returns predicates for all attributes that can be matched against a text string.
     */
     
-    func textAttributePredicates(comparing object: CVarArg, using comparison: String) -> [NSPredicate] {
+    public func textAttributePredicates(comparing object: CVarArg, using comparison: String) -> [NSPredicate] {
         var results: [NSPredicate] = []
         for (name, attribute) in attributesByName {
             switch attribute.attributeType {
