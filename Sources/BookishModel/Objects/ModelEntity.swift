@@ -4,7 +4,7 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Foundation
-
+import BookishCore
 
 public class ModelEntity: ModelObject {
 
@@ -79,9 +79,56 @@ extension ModelEntityCommon {
         }
         return result
     }
+    
 }
 
 
 public protocol ModelEntitySortable: ModelEntity {
     var sortName: String? { get set }
+}
+
+// TODO: Move ImageView into BookishCore? Or move it and ImageFactory into separate Images library
+
+public protocol ImageView: NSObject {
+    associatedtype ImageType
+    
+    var image: ImageType? { get set }
+}
+
+#if os(iOS)
+
+import UIKit
+
+extension UIImageView: ImageView {
+    public typealias ImageType = UIImage
+}
+
+#endif
+
+#if os(macOS)
+
+import AppKit
+
+extension NSImageView: ImageView {
+    public typealias ImageType = NSImage
+}
+
+#endif
+
+
+extension ModelEntityCommon {
+    public func setImage<View: ImageView, Factory: ImageFactory>(for view: View, cache: ImageCache<Factory>, callback: ((Factory.ImageClass) -> Void)? = nil) where Factory.ImageClass == View.ImageType {
+        if let data = imageData, let image = Factory.image(from: data) {
+            view.image = image
+        } else {
+            view.image = Factory.image(named: type(of: self).entityPlaceholder)
+            if let urlString = imageURL, let url = URL(string: urlString) {
+                cache.image(for: url) { (image) in
+                    view.image = image
+                    callback?(image)
+                }
+            }
+        }
+    }
+
 }
