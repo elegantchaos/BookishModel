@@ -5,6 +5,7 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import XCTest
+import CoreData
 @testable import BookishCore
 
 class NSManagedObjectContextTests: CoreDataTestCase {

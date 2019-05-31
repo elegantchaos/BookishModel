@@ -4,6 +4,7 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import XCTest
+import CoreData
 @testable import BookishCore
 
 class CoreDataTestCase: XCTestCase {

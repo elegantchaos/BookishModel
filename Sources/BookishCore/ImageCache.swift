@@ -41,6 +41,9 @@ public class UIImageFactory: ImageFactory {
     public static func image(from data: Data) -> UIImage? {
         return UIImage(data: data)
     }
+    public static func image(named name: String) -> UIImage? {
+        return UIImage(named: name)
+    }
 }
 
 public typealias UIImageCache = ImageCache<UIImageFactory>

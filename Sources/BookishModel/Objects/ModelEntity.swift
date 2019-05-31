@@ -63,7 +63,7 @@ public class ModelEntity: ModelObject {
  */
 
 public protocol ModelEntityCommon: ModelEntity {
-    dynamic var name: String? { get set }
+    var name: String? { get set }
     var uuid: String? { get set }
     var imageData: Data? { get set }
     var imageURL: String? { get set }
