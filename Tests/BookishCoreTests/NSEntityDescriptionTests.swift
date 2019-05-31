@@ -6,15 +6,14 @@
 import XCTest
 @testable import BookishModel
 
-class EntityPredicateTests: ModelTestCase {
+class EntityPredicateTests: CoreDataTestCase {
     func check(predicates: [NSPredicate]) -> Bool {
         let formats = predicates.map { $0.predicateFormat }
 
         // check a few random attributes to see if predicates were created for them
         let containsRightStuff =
             formats.contains("name CONTAINS[cd] \"test\"") &&
-            formats.contains("log CONTAINS[cd] \"test\"") &&
-            formats.contains("isbn CONTAINS[cd] \"test\"")
+            formats.contains("uuid CONTAINS[cd] \"test\"")
         if !containsRightStuff {
             return false
         }
@@ -26,18 +25,29 @@ class EntityPredicateTests: ModelTestCase {
     
     func testTextAttributes() {
         let container = makeTestContainer()
-        let description = Book.entityDescription(in: container.managedObjectContext)
+        let description = TestEntity.entityDescription(in: container.viewContext)
         let predicates = description.textAttributePredicates(comparing: "test", using: "contains[cd]")
         XCTAssertTrue(check(predicates: predicates))
     }
     
     func testAnyPredicate() {
         let container = makeTestContainer()
-        let description = Book.entityDescription(in: container.managedObjectContext)
+        let description = TestEntity.entityDescription(in: container.viewContext)
         let predicate = description.anyAttributesPredicate(comparing: "test", using: "contains[cd]")
         XCTAssertTrue(predicate is NSCompoundPredicate)
         if let compound = predicate as? NSCompoundPredicate, let subpredicates = compound.subpredicates as? [NSPredicate] {
             XCTAssertTrue(check(predicates: subpredicates))
         }
     }
+
+    func testAllPredicate() {
+        let container = makeTestContainer()
+        let description = TestEntity.entityDescription(in: container.viewContext)
+        let predicate = description.allAttributesPredicate(comparing: "test", using: "contains[cd]")
+        XCTAssertTrue(predicate is NSCompoundPredicate)
+        if let compound = predicate as? NSCompoundPredicate, let subpredicates = compound.subpredicates as? [NSPredicate] {
+            XCTAssertTrue(check(predicates: subpredicates))
+        }
+    }
+
 }
