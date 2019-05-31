@@ -101,8 +101,16 @@ extension NSManagedObject {
      Return count of instances of a given entity type.
      */
     
-    public class func count(in context: NSManagedObjectContext) -> Int {
+    public class func countEntities(in context: NSManagedObjectContext) -> Int {
         return context.countEntities(type: self)
+    }
+    
+    /**
+     Return every instance of a given entity type.
+     */
+    
+    public class func everyEntity<T: NSManagedObject>(in context: NSManagedObjectContext, sorting: [NSSortDescriptor]? = nil) -> [T] {
+        return context.everyEntity(type: self, sorting: sorting)
     }
     
     /**

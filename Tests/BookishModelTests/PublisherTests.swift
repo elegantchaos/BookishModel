@@ -14,7 +14,7 @@ class PublisherTests: ModelTestCase {
         let context = container.managedObjectContext
         let p1 = Publisher(context: context)
         let p2 = Publisher(context: context)
-        let allPublishers: [Publisher] = context.everyEntity()
+        let allPublishers: [Publisher] = Publisher.everyEntity(in: context)
         XCTAssertEqual(allPublishers.count, 2)
         XCTAssertTrue(allPublishers.contains(p1))
         XCTAssertTrue(allPublishers.contains(p2))

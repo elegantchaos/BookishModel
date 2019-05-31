@@ -13,7 +13,7 @@ class BookTests: ModelTestCase {
         let context = container.managedObjectContext
         let b1 = Book(context: context)
         let b2 = Book(context: context)
-        let allBooks: [Book] = context.everyEntity()
+        let allBooks: [Book] = Book.everyEntity(in: context)
         XCTAssertEqual(allBooks.count, 2)
         XCTAssertTrue(allBooks.contains(b1))
         XCTAssertTrue(allBooks.contains(b2))

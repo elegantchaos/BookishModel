@@ -133,7 +133,7 @@ class PersonActionTests: ModelActionTestCase, PersonViewer, PersonLifecycleObser
         XCTAssertEqual(book1.relationships?.count, 2)
         XCTAssertEqual(book2.relationships?.count, 2)
         
-        let people: [Person] = context.everyEntity()
+        let people: [Person] = Person.everyEntity(in: context)
         let names = people.map { $0.name! }.sorted { $0 < $1 }
         XCTAssertEqual(names, expected)
     }

@@ -63,10 +63,11 @@ extension NSManagedObjectContext {
      Return every instance of a given entity type.
     */
     
-    public func everyEntity<Entity: NSManagedObject>(sorting: [NSSortDescriptor]? = nil) -> [Entity] {
-        let request: NSFetchRequest<Entity> = fetcher()
+    public func everyEntity<Entity: NSManagedObject>(type: NSManagedObject.Type, sorting: [NSSortDescriptor]? = nil) -> [Entity] {
+        let request: NSFetchRequest<NSManagedObject> = NSFetchRequest()
+        request.entity = entityDescription(for: type)
         request.sortDescriptors = sorting
-        return fetchAssertNoThrow(request)
+        return fetchAssertNoThrow(request) as! [Entity]
     }
     
     /**

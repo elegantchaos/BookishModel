@@ -17,7 +17,7 @@ class SeriesTests: ModelTestCase {
         e1.book = b
         e1.series = s1
         let s2 = Series(context: context)
-        let allSeries: [Series] = context.everyEntity()
+        let allSeries: [Series] = Series.everyEntity(in: context)
         XCTAssertEqual(allSeries.count, 2)
         XCTAssertTrue(allSeries.contains(s1))
         XCTAssertTrue(allSeries.contains(s2))
@@ -28,7 +28,7 @@ class SeriesTests: ModelTestCase {
         let context = container.managedObjectContext
         let e1 = SeriesEntry(context: context)
         let e2 = SeriesEntry(context: context)
-        let allEntries: [SeriesEntry] = context.everyEntity()
+        let allEntries: [SeriesEntry] = SeriesEntry.everyEntity(in: context)
         XCTAssertEqual(allEntries.count, 2)
         XCTAssertTrue(allEntries.contains(e1))
         XCTAssertTrue(allEntries.contains(e2))

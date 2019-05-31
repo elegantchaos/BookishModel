@@ -38,7 +38,7 @@ class PersonTests:ModelTestCase {
         let context = container.managedObjectContext
         let person1 = Person(context: context)
         let person2 = Person(context: context)
-        let allPeople: [Person] = context.everyEntity()
+        let allPeople: [Person] = Person.everyEntity(in: context)
         XCTAssertEqual(allPeople.count, 2)
         XCTAssertTrue(allPeople.contains(person1))
         XCTAssertTrue(allPeople.contains(person2))

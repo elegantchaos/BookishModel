@@ -214,7 +214,7 @@ class SeriesScanner {
     }
     
     private func makeCaches() {
-        let everySeries: [Series] = context.everyEntity()
+        let everySeries: [Series] = Series.everyEntity(in: context)
         for series in everySeries {
             if let name = series.name {
                 cachedSeries[name] = series
@@ -223,7 +223,7 @@ class SeriesScanner {
     }
     
     public func run() {
-        let books: [Book] = context.everyEntity()
+        let books: [Book] = Book.everyEntity(in: context)
         var seriesAdded: Bool
         
         let partPattern: NSRegularExpression = try! NSRegularExpression(pattern: "(.*?) *(Part \\d+) *(.*?)")

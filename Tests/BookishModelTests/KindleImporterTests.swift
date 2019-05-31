@@ -25,7 +25,7 @@ class KindleImporterTests: ModelTestCase {
         }
         wait(for: [expectation], timeout: 10.0)
         
-        let books: [Book] = container.managedObjectContext.everyEntity(sorting: [NSSortDescriptor(key: "name", ascending: true)])
+        let books: [Book] = Book.everyEntity(in: container.managedObjectContext, sorting: [NSSortDescriptor(key: "name", ascending: true)])
         XCTAssertEqual(books.count, 3)
         let titles = books.map { $0.name! }
         

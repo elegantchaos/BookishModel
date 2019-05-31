@@ -22,7 +22,7 @@ public class Role: ModelEntity, ModelEntityCommon {
     }
     
     public class func allRoles(context: NSManagedObjectContext) -> [Role] {
-        let result: [Role] = context.everyEntity(sorting: [NSSortDescriptor(key: "name", ascending: true)])
+        let result: [Role] = self.everyEntity(in: context, sorting: [NSSortDescriptor(key: "name", ascending: true)])
         return result
     }
 
