@@ -44,7 +44,7 @@ class GoogleLookupServiceTests: ModelTestCase {
         manager.register(service: service)
         
         var candidate: LookupCandidate? = nil
-        let session = manager.lookup(ean: expectedISBN ?? "blah", context: container.managedObjectContext) { (session, state) in
+        let session = manager.lookup(query: expectedISBN ?? "blah", context: container.managedObjectContext) { (session, state) in
             switch state {
             case .done:
                 done.fulfill()

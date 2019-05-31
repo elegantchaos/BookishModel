@@ -8,6 +8,26 @@ import CoreData
 public class GoogleLookupCandidate: LookupCandidate {
     let info: [String:Any]
     
+    class func isbn(from info: [String:Any]) -> String? {
+        if let identifiers = info["industryIdentifiers"] as? [[String:Any]] {
+            for id in identifiers {
+                if let type = id["type"] as? String, let value = id["identifier"] as? String {
+                    switch type {
+                    case "ISBN_13":
+                        return value
+                        
+                    case "ISBN_10":
+                        return value.isbn10to13
+                        
+                    default:
+                        break
+                    }
+                }
+            }
+        }
+        return nil
+    }
+    
     init(info: [String:Any], service: GoogleLookupService) {
         let title = info["title"] as? String
         let authors = info["authors"] as? [String]
@@ -44,21 +64,8 @@ public class GoogleLookupCandidate: LookupCandidate {
             book.pages = pages.int16Value
         }
         
-        if let identifiers = info["industryIdentifiers"] as? [[String:Any]] {
-            for id in identifiers {
-                if let type = id["type"] as? String, let value = id["identifier"] as? String {
-                    switch type {
-                    case "ISBN_13":
-                        book.isbn = value
-                        
-                    case "ISBN_10":
-                        book.isbn = value.isbn10to13
-                        
-                    default:
-                        break
-                    }
-                }
-            }
+        if let isbn = GoogleLookupCandidate.isbn(from: info) {
+            book.isbn = isbn
         }
         
         if let data = try? JSONSerialization.data(withJSONObject: info, options: .prettyPrinted) {
@@ -74,7 +81,9 @@ public class GoogleLookupService: LookupService {
     let dateDetector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.date.rawValue)
 
     public override func lookup(search: String, session: LookupSession) {
-        let query = (search.isISBN10 || search.isISBN13) ? "q=isbn:\(search)" : "q=\(search.replacingOccurrences(of: " ", with: "+"))"
+        let isISBN = search.isISBN10 || search.isISBN13
+        
+        let query = isISBN ? "q=isbn:\(search)" : "q=\(search.replacingOccurrences(of: " ", with: "+"))"
         guard
             let url = URL(string: "https://www.googleapis.com/books/v1/volumes?\(query)"),
             let info = fetcher.info(for: url),

@@ -27,25 +27,68 @@ public class LookupCoverAction: LookupAction {
     }
     
     public override func perform(context: ActionContext, model: NSManagedObjectContext) {
-        
         if let manager = context[LookupCoverAction.managerKey] as? LookupManager,
             let books = context[ActionContext.selectionKey] as? [Book] {
             for book in books {
-                if let isbn = book.isbn {
-                    _ = manager.lookup(ean: isbn, context: model) { (session, state) in
-                        switch(state) {
-                        case let .foundCandidate(candidate):
-                            book.imageURL = candidate.image
-                        default:
-                            break
-                        }
+                lookupByISBN(book: book, manager: manager, context: model)
+            }
+        }
+    }
+    
+    func lookupByISBN(book: Book, manager: LookupManager, context: NSManagedObjectContext) {
+        if let isbn = book.isbn {
+            var replaced = false
+            _ = manager.lookup(query: isbn, context: context) { (session, state) in
+                switch(state) {
+                case let .foundCandidate(candidate):
+                    if !replaced && !(candidate is ExistingCollectionLookupCandidate) {
+                        book.imageURL = candidate.image
+                        replaced = true
                     }
+                case .done:
+                    // if we got no hits with isbn, try a free text search combining the title, author(s) and publisher
+                    if !replaced {
+                        self.lookupByMetadata(book: book, manager: manager, context: context)
+                    }
+                default:
+                    break
+                }
+            }
+        } else {
+            lookupByMetadata(book: book, manager: manager, context: context)
+        }
+    }
+    
+    func lookupByMetadata(book: Book, manager: LookupManager, context: NSManagedObjectContext) {
+        var items: [String] = []
+        if let name = book.name {
+            items.append("title:\"\(name)\"")
+        }
+        if let relationships = book.relationships as? Set<Relationship> {
+            for relationship in relationships {
+                if let name = relationship.person?.name, let role = relationship.role?.uuid, role == "author" {
+                    items.append("author:\"\(name)\"")
                 }
             }
         }
         
+        if items.count > 0 {
+            var replaced = false
+            let query = items.joined(separator: "+")
+            print(query)
+            _ = manager.lookup(query: query, context: context) { (session, state) in
+                switch(state) {
+                case let .foundCandidate(candidate):
+                    if !replaced && !(candidate is ExistingCollectionLookupCandidate) {
+                        book.imageURL = candidate.image
+                        replaced = true
+                    }
+                default:
+                    break
+                }
+            }
+        }
     }
-    
 }
 
 public class AddCandidateAction: LookupAction {

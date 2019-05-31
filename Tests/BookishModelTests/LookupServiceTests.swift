@@ -57,7 +57,7 @@ class LookupServiceTests: ModelTestCase {
         let manager = LookupManager()
         let service = TestService(test: self)
         manager.register(service: service)
-        let session = manager.lookup(ean: "test", context: collection.managedObjectContext) { (session, state) in
+        let session = manager.lookup(query: "test", context: collection.managedObjectContext) { (session, state) in
             service.update(state: state)
         }
         
@@ -113,7 +113,7 @@ class LookupServiceTests: ModelTestCase {
         let manager = LookupManager()
         let service = FailingService(test: self)
         manager.register(service: service)
-        let session = manager.lookup(ean: "test", context: collection.managedObjectContext) { (session, state) in
+        let session = manager.lookup(query: "test", context: collection.managedObjectContext) { (session, state) in
             service.update(state: state)
         }
         
@@ -160,7 +160,7 @@ class LookupServiceTests: ModelTestCase {
         let manager = LookupManager()
         let service = CancellableService(test: self)
         manager.register(service: service)
-        let session = manager.lookup(ean: "test", context: collection.managedObjectContext) { (session, state) in
+        let session = manager.lookup(query: "test", context: collection.managedObjectContext) { (session, state) in
             service.update(state: state)
             session.cancel()
         }
@@ -197,7 +197,7 @@ class LookupServiceTests: ModelTestCase {
         let started = expectation(description: "started")
         let finished = expectation(description: "finished")
         let manager = LookupManager()
-        let session = manager.lookup(ean: "test", context: collection.managedObjectContext) { (session, state) in
+        let session = manager.lookup(query: "test", context: collection.managedObjectContext) { (session, state) in
             switch state {
             case .starting:
                 started.fulfill()
@@ -226,7 +226,7 @@ class LookupServiceTests: ModelTestCase {
         let testISBN = "12345678"
         book.isbn = testISBN
 
-        let session = manager.lookup(ean: testISBN, context: container.managedObjectContext) { (session, state) in
+        let session = manager.lookup(query: testISBN, context: container.managedObjectContext) { (session, state) in
             switch state {
             case .done:
                 done.fulfill()

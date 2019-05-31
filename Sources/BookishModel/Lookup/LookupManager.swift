@@ -24,8 +24,8 @@ public class LookupManager {
         services.append(service)
     }
     
-    public func lookup(ean: String, context: NSManagedObjectContext, callback: @escaping LookupSession.Callback) -> LookupSession {
-        let session = LookupSession(search: ean, manager: self, context: context, callback: callback)
+    public func lookup(query: String, context: NSManagedObjectContext, callback: @escaping LookupSession.Callback) -> LookupSession {
+        let session = LookupSession(search: query, manager: self, context: context, callback: callback)
         session.run()
         return session
     }
