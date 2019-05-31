@@ -7,26 +7,37 @@
 import XCTest
 @testable import BookishCore
 
-class NSManagedObjectContextTests: XCTestCase {
-    
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+class NSManagedObjectContextTests: CoreDataTestCase {
+    func testFetcher() {
+        let container = makeTestContainer()
+        let context = container.viewContext
+        
+        let fetcher: NSFetchRequest<TestEntity> = context.fetcher()
+        XCTAssertEqual(fetcher.entity?.name, "TestEntity")
+    }
+
+    func testEntityDescription() {
+        let container = makeTestContainer()
+        let context = container.viewContext
+        
+        let description = context.entityDescription(for: TestEntity.self)
+        XCTAssertEqual(description.name, "TestEntity")
     }
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func testURI() {
+        let container = makeTestContainer()
+        let context = container.viewContext
+        let object = TestEntity.named("test", in: context)
+        let url = object.objectID.uriRepresentation()
+        let found = context.object(uri: url.absoluteString) as? TestEntity
+        XCTAssertEqual(found?.name, "test")
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testInvalidURI() {
+        let container = makeTestContainer()
+        let context = container.viewContext
+        let found = context.object(uri: "x-coredata:///TestEntity/tC6D3EA7C-A29D-4AA8-AB4B-ACB3D96793912") as? TestEntity
+        XCTAssertNil(found)
     }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
+
 }
