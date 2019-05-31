@@ -24,6 +24,7 @@ class StandardRolesImportSession: ImportSession {
         for name in Role.StandardName.allCases {
             let role = Role.named(name, in: context)
             role.notes = "Role.standard.\(name).notes".localized
+            role.uuid = "standard-\(name)"
             role.locked = true
         }
     }

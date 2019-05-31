@@ -67,6 +67,7 @@ public class LookupSession {
     }
     
     public func add(candidate: LookupCandidate) {
+        lookupChannel.log("Candidate \(candidate)")
         self.callback(state: .foundCandidate(candidate))
     }
     

@@ -5,6 +5,9 @@
 
 import Foundation
 import CoreData
+import Logger
+
+let lookupChannel = Channel("com.elegantchaos.bookish.model.Lookup")
 
 public class LookupManager {
 
@@ -21,10 +24,12 @@ public class LookupManager {
     }
     
     public func register(service: LookupService) {
+        lookupChannel.log("Registered \(service.name)")
         services.append(service)
     }
     
     public func lookup(query: String, context: NSManagedObjectContext, callback: @escaping LookupSession.Callback) -> LookupSession {
+        lookupChannel.log("Looking up \(query)")
         let session = LookupSession(search: query, manager: self, context: context, callback: callback)
         session.run()
         return session

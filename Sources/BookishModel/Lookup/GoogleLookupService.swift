@@ -41,7 +41,9 @@ public class GoogleLookupCandidate: LookupCandidate {
         
         var image: String? = nil
         if let images = info["imageLinks"] as? [String:Any] {
-            image = images["thumbnail"] as? String
+            image = (images["thumbnail"] as? String) ?? (images["smallThumbnail"] as? String)
+            image = image?.replacingOccurrences(of: "edge=curl&", with: "")
+//            image = image?.replacingOccurrences(of: "zoom=1&", with: "")
         }
 
         self.info = info
@@ -82,10 +84,11 @@ public class GoogleLookupService: LookupService {
 
     public override func lookup(search: String, session: LookupSession) {
         let isISBN = search.isISBN10 || search.isISBN13
-        
         let query = isISBN ? "q=isbn:\(search)" : "q=\(search.replacingOccurrences(of: " ", with: "+"))"
+        var components = URLComponents(string: "https://www.googleapis.com/books/v1/volumes")
+        components?.query = query
         guard
-            let url = URL(string: "https://www.googleapis.com/books/v1/volumes?\(query)"),
+            let url = components?.url,
             let info = fetcher.info(for: url),
             let items = info["items"] as? [[String:Any]],
             items.count > 0
@@ -94,6 +97,7 @@ public class GoogleLookupService: LookupService {
             return
         }
         
+        lookupChannel.log("Query \(query)")
         for item in items {
             if let volume = item["volumeInfo"] as? [String:Any] {
                 let candidate = GoogleLookupCandidate(info: volume, service: self)

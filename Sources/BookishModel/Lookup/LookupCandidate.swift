@@ -5,7 +5,7 @@
 
 import CoreData
 
-public class LookupCandidate {
+public class LookupCandidate: CustomStringConvertible {
     public let service: LookupService
     public let title: String
     public let authors: [String]
@@ -54,5 +54,11 @@ public class LookupCandidate {
         book.published = date
         
         return book
+    }
+    
+    public var description: String {
+        get {
+            return "<Candidate: \(title) \(authors) \(publisher)>"
+        }
     }
 }

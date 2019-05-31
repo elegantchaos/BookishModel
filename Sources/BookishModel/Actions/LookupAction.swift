@@ -62,12 +62,12 @@ public class LookupCoverAction: LookupAction {
     func lookupByMetadata(book: Book, manager: LookupManager, context: NSManagedObjectContext) {
         var items: [String] = []
         if let name = book.name {
-            items.append("title:\"\(name)\"")
+            items.append("intitle:\"\(name)\"")
         }
         if let relationships = book.relationships as? Set<Relationship> {
             for relationship in relationships {
-                if let name = relationship.person?.name, let role = relationship.role?.uuid, role == "author" {
-                    items.append("author:\"\(name)\"")
+                if let name = relationship.person?.name, let role = relationship.role?.uuid, role == "standard-author" {
+                    items.append("inauthor:\"\(name)\"")
                 }
             }
         }
