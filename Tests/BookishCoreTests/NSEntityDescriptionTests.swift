@@ -4,7 +4,7 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import XCTest
-@testable import BookishModel
+@testable import BookishCore
 
 class EntityPredicateTests: CoreDataTestCase {
     func check(predicates: [NSPredicate]) -> Bool {

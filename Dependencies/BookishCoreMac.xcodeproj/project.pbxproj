@@ -9,11 +9,11 @@
 /* Begin PBXAggregateTarget section */
 		"BookishCoreMac::BookishCoreMacPackageTests::ProductTarget" /* BookishCoreMacPackageTests */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = OBJ_229 /* Build configuration list for PBXAggregateTarget "BookishCoreMacPackageTests" */;
+			buildConfigurationList = OBJ_228 /* Build configuration list for PBXAggregateTarget "BookishCoreMacPackageTests" */;
 			buildPhases = (
 			);
 			dependencies = (
-				OBJ_232 /* PBXTargetDependency */,
+				OBJ_231 /* PBXTargetDependency */,
 			);
 			name = BookishCoreMacPackageTests;
 			productName = BookishCoreMacPackageTests;
@@ -21,463 +21,456 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		OBJ_126 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_48 /* Action.swift */; };
-		OBJ_127 /* ActionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_49 /* ActionContext.swift */; };
-		OBJ_128 /* ActionIdentification.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_50 /* ActionIdentification.swift */; };
-		OBJ_129 /* ActionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_51 /* ActionInfo.swift */; };
-		OBJ_130 /* ActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_52 /* ActionManager.swift */; };
-		OBJ_131 /* ActionNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_53 /* ActionNotification.swift */; };
-		OBJ_132 /* ActionSerialisation.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_54 /* ActionSerialisation.swift */; };
-		OBJ_133 /* DelegatedAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_55 /* DelegatedAction.swift */; };
-		OBJ_135 /* Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::Logger::Product" /* Logger.framework */; };
-		OBJ_143 /* ActionManagerMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_57 /* ActionManagerMac.swift */; };
-		OBJ_144 /* ActionManagerMobile.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_58 /* ActionManagerMobile.swift */; };
-		OBJ_146 /* Actions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Actions::Actions::Product" /* Actions.framework */; };
-		OBJ_147 /* Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::Logger::Product" /* Logger.framework */; };
-		OBJ_155 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_59 /* Package.swift */; };
-		OBJ_161 /* Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_62 /* Arguments.swift */; };
-		OBJ_163 /* Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::Logger::Product" /* Logger.framework */; };
-		OBJ_164 /* Docopt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Docopt::Docopt::Product" /* Docopt.framework */; };
-		OBJ_173 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_63 /* Package.swift */; };
-		OBJ_179 /* BookishCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* BookishCore.swift */; };
-		OBJ_180 /* CloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* CloudManager.swift */; };
-		OBJ_181 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* ImageCache.swift */; };
-		OBJ_182 /* NSEntityDescriptionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* NSEntityDescriptionExtensions.swift */; };
-		OBJ_183 /* NSManagedObjectContextExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* NSManagedObjectContextExtensions.swift */; };
-		OBJ_184 /* NSManagedObjectExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* NSManagedObjectExtensions.swift */; };
-		OBJ_186 /* Expressions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Expressions::Expressions::Product" /* Expressions.framework */; };
-		OBJ_187 /* JSONDump.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "JSONDump::JSONDump::Product" /* JSONDump.framework */; };
-		OBJ_188 /* ActionsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Actions::ActionsKit::Product" /* ActionsKit.framework */; };
-		OBJ_189 /* Actions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Actions::Actions::Product" /* Actions.framework */; };
-		OBJ_190 /* LoggerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::LoggerKit::Product" /* LoggerKit.framework */; };
-		OBJ_191 /* Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::Logger::Product" /* Logger.framework */; };
-		OBJ_206 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* main.swift */; };
-		OBJ_208 /* BookishCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "BookishCoreMac::BookishCore::Product" /* BookishCore.framework */; };
-		OBJ_209 /* Expressions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Expressions::Expressions::Product" /* Expressions.framework */; };
-		OBJ_210 /* JSONDump.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "JSONDump::JSONDump::Product" /* JSONDump.framework */; };
-		OBJ_211 /* ActionsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Actions::ActionsKit::Product" /* ActionsKit.framework */; };
-		OBJ_212 /* Actions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Actions::Actions::Product" /* Actions.framework */; };
-		OBJ_213 /* LoggerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::LoggerKit::Product" /* LoggerKit.framework */; };
-		OBJ_214 /* Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::Logger::Product" /* Logger.framework */; };
-		OBJ_227 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
-		OBJ_239 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* main.swift */; };
-		OBJ_241 /* BookishCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "BookishCoreMac::BookishCore::Product" /* BookishCore.framework */; };
-		OBJ_242 /* Expressions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Expressions::Expressions::Product" /* Expressions.framework */; };
-		OBJ_243 /* JSONDump.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "JSONDump::JSONDump::Product" /* JSONDump.framework */; };
-		OBJ_244 /* ActionsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Actions::ActionsKit::Product" /* ActionsKit.framework */; };
-		OBJ_245 /* Actions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Actions::Actions::Product" /* Actions.framework */; };
-		OBJ_246 /* LoggerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::LoggerKit::Product" /* LoggerKit.framework */; };
-		OBJ_247 /* Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::Logger::Product" /* Logger.framework */; };
-		OBJ_259 /* BookishCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* BookishCoreTests.swift */; };
-		OBJ_260 /* CoreDataTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* CoreDataTestCase.swift */; };
-		OBJ_261 /* NSEntityDescriptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* NSEntityDescriptionTests.swift */; };
-		OBJ_262 /* NSManagedObjectContextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_28 /* NSManagedObjectContextTests.swift */; };
-		OBJ_263 /* NSManagedObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* NSManagedObjectTests.swift */; };
-		OBJ_265 /* LoggerTestSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::LoggerTestSupport::Product" /* LoggerTestSupport.framework */; };
-		OBJ_266 /* BookishCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "BookishCoreMac::BookishCore::Product" /* BookishCore.framework */; };
-		OBJ_267 /* Expressions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Expressions::Expressions::Product" /* Expressions.framework */; };
-		OBJ_268 /* JSONDump.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "JSONDump::JSONDump::Product" /* JSONDump.framework */; };
-		OBJ_269 /* ActionsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Actions::ActionsKit::Product" /* ActionsKit.framework */; };
-		OBJ_270 /* Actions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Actions::Actions::Product" /* Actions.framework */; };
-		OBJ_271 /* LoggerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::LoggerKit::Product" /* LoggerKit.framework */; };
-		OBJ_272 /* Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::Logger::Product" /* Logger.framework */; };
-		OBJ_287 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_33 /* Command.swift */; };
-		OBJ_288 /* CommandLine+CommandShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_34 /* CommandLine+CommandShell.swift */; };
-		OBJ_289 /* CommandShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_35 /* CommandShell.swift */; };
-		OBJ_290 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_36 /* Result.swift */; };
-		OBJ_292 /* Arguments.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Arguments::Arguments::Product" /* Arguments.framework */; };
-		OBJ_293 /* Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::Logger::Product" /* Logger.framework */; };
-		OBJ_294 /* Docopt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Docopt::Docopt::Product" /* Docopt.framework */; };
-		OBJ_303 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_37 /* Package.swift */; };
-		OBJ_308 /* Argument.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_66 /* Argument.swift */; };
-		OBJ_309 /* BranchPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_67 /* BranchPattern.swift */; };
-		OBJ_310 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_68 /* Command.swift */; };
-		OBJ_311 /* Docopt.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_69 /* Docopt.swift */; };
-		OBJ_312 /* DocoptError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_70 /* DocoptError.swift */; };
-		OBJ_313 /* Either.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_71 /* Either.swift */; };
-		OBJ_314 /* LeafPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_72 /* LeafPattern.swift */; };
-		OBJ_315 /* OneOrMore.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_73 /* OneOrMore.swift */; };
-		OBJ_316 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_74 /* Option.swift */; };
-		OBJ_317 /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_75 /* Optional.swift */; };
-		OBJ_318 /* OptionsShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_76 /* OptionsShortcut.swift */; };
-		OBJ_319 /* Pattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_77 /* Pattern.swift */; };
-		OBJ_320 /* Required.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_78 /* Required.swift */; };
-		OBJ_321 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_79 /* String.swift */; };
-		OBJ_322 /* Tokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_80 /* Tokens.swift */; };
-		OBJ_329 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_81 /* Package.swift */; };
-		OBJ_334 /* Expressions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_44 /* Expressions.swift */; };
-		OBJ_341 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_45 /* Package.swift */; };
-		OBJ_346 /* JSONDump.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_40 /* JSONDump.swift */; };
-		OBJ_353 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_41 /* Package.swift */; };
-		OBJ_358 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_85 /* Channel.swift */; };
-		OBJ_359 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_86 /* Context.swift */; };
-		OBJ_360 /* Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_87 /* Handler.swift */; };
-		OBJ_361 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_88 /* Manager.swift */; };
-		OBJ_362 /* NSLogHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_89 /* NSLogHandler.swift */; };
-		OBJ_363 /* OSLogHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_90 /* OSLogHandler.swift */; };
-		OBJ_364 /* PrintHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_91 /* PrintHandler.swift */; };
-		OBJ_370 /* LoggerMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_93 /* LoggerMenu.swift */; };
-		OBJ_371 /* LoggerSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_94 /* LoggerSettingsView.swift */; };
-		OBJ_373 /* Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::Logger::Product" /* Logger.framework */; };
-		OBJ_380 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_97 /* Package.swift */; };
-		OBJ_385 /* XCTest+Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_96 /* XCTest+Logger.swift */; };
-		OBJ_387 /* Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::Logger::Product" /* Logger.framework */; };
-		OBJ_394 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* main.swift */; };
-		OBJ_396 /* CommandShell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "CommandShell::CommandShell::Product" /* CommandShell.framework */; };
-		OBJ_397 /* Arguments.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Arguments::Arguments::Product" /* Arguments.framework */; };
-		OBJ_398 /* Docopt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Docopt::Docopt::Product" /* Docopt.framework */; };
-		OBJ_399 /* BookishCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "BookishCoreMac::BookishCore::Product" /* BookishCore.framework */; };
-		OBJ_400 /* Expressions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Expressions::Expressions::Product" /* Expressions.framework */; };
-		OBJ_401 /* JSONDump.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "JSONDump::JSONDump::Product" /* JSONDump.framework */; };
-		OBJ_402 /* ActionsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Actions::ActionsKit::Product" /* ActionsKit.framework */; };
-		OBJ_403 /* Actions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Actions::Actions::Product" /* Actions.framework */; };
-		OBJ_404 /* LoggerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::LoggerKit::Product" /* LoggerKit.framework */; };
-		OBJ_405 /* Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::Logger::Product" /* Logger.framework */; };
+		OBJ_125 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_48 /* Action.swift */; };
+		OBJ_126 /* ActionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_49 /* ActionContext.swift */; };
+		OBJ_127 /* ActionIdentification.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_50 /* ActionIdentification.swift */; };
+		OBJ_128 /* ActionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_51 /* ActionInfo.swift */; };
+		OBJ_129 /* ActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_52 /* ActionManager.swift */; };
+		OBJ_130 /* ActionNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_53 /* ActionNotification.swift */; };
+		OBJ_131 /* ActionSerialisation.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_54 /* ActionSerialisation.swift */; };
+		OBJ_132 /* DelegatedAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_55 /* DelegatedAction.swift */; };
+		OBJ_134 /* Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::Logger::Product" /* Logger.framework */; };
+		OBJ_142 /* ActionManagerMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_57 /* ActionManagerMac.swift */; };
+		OBJ_143 /* ActionManagerMobile.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_58 /* ActionManagerMobile.swift */; };
+		OBJ_145 /* Actions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Actions::Actions::Product" /* Actions.framework */; };
+		OBJ_146 /* Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::Logger::Product" /* Logger.framework */; };
+		OBJ_154 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_59 /* Package.swift */; };
+		OBJ_160 /* Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_62 /* Arguments.swift */; };
+		OBJ_162 /* Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::Logger::Product" /* Logger.framework */; };
+		OBJ_163 /* Docopt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Docopt::Docopt::Product" /* Docopt.framework */; };
+		OBJ_172 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_63 /* Package.swift */; };
+		OBJ_178 /* BookishCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* BookishCore.swift */; };
+		OBJ_179 /* CloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* CloudManager.swift */; };
+		OBJ_180 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* ImageCache.swift */; };
+		OBJ_181 /* NSEntityDescriptionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* NSEntityDescriptionExtensions.swift */; };
+		OBJ_182 /* NSManagedObjectContextExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* NSManagedObjectContextExtensions.swift */; };
+		OBJ_183 /* NSManagedObjectExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* NSManagedObjectExtensions.swift */; };
+		OBJ_185 /* Expressions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Expressions::Expressions::Product" /* Expressions.framework */; };
+		OBJ_186 /* JSONDump.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "JSONDump::JSONDump::Product" /* JSONDump.framework */; };
+		OBJ_187 /* ActionsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Actions::ActionsKit::Product" /* ActionsKit.framework */; };
+		OBJ_188 /* Actions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Actions::Actions::Product" /* Actions.framework */; };
+		OBJ_189 /* LoggerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::LoggerKit::Product" /* LoggerKit.framework */; };
+		OBJ_190 /* Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::Logger::Product" /* Logger.framework */; };
+		OBJ_205 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* main.swift */; };
+		OBJ_207 /* BookishCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "BookishCoreMac::BookishCore::Product" /* BookishCore.framework */; };
+		OBJ_208 /* Expressions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Expressions::Expressions::Product" /* Expressions.framework */; };
+		OBJ_209 /* JSONDump.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "JSONDump::JSONDump::Product" /* JSONDump.framework */; };
+		OBJ_210 /* ActionsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Actions::ActionsKit::Product" /* ActionsKit.framework */; };
+		OBJ_211 /* Actions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Actions::Actions::Product" /* Actions.framework */; };
+		OBJ_212 /* LoggerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::LoggerKit::Product" /* LoggerKit.framework */; };
+		OBJ_213 /* Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::Logger::Product" /* Logger.framework */; };
+		OBJ_226 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
+		OBJ_238 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* main.swift */; };
+		OBJ_240 /* BookishCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "BookishCoreMac::BookishCore::Product" /* BookishCore.framework */; };
+		OBJ_241 /* Expressions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Expressions::Expressions::Product" /* Expressions.framework */; };
+		OBJ_242 /* JSONDump.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "JSONDump::JSONDump::Product" /* JSONDump.framework */; };
+		OBJ_243 /* ActionsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Actions::ActionsKit::Product" /* ActionsKit.framework */; };
+		OBJ_244 /* Actions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Actions::Actions::Product" /* Actions.framework */; };
+		OBJ_245 /* LoggerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::LoggerKit::Product" /* LoggerKit.framework */; };
+		OBJ_246 /* Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::Logger::Product" /* Logger.framework */; };
+		OBJ_258 /* BookishCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* BookishCoreTests.swift */; };
+		OBJ_259 /* CoreDataTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* CoreDataTestCase.swift */; };
+		OBJ_260 /* NSEntityDescriptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* NSEntityDescriptionTests.swift */; };
+		OBJ_261 /* NSManagedObjectContextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_28 /* NSManagedObjectContextTests.swift */; };
+		OBJ_262 /* NSManagedObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* NSManagedObjectTests.swift */; };
+		OBJ_264 /* LoggerTestSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::LoggerTestSupport::Product" /* LoggerTestSupport.framework */; };
+		OBJ_265 /* BookishCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "BookishCoreMac::BookishCore::Product" /* BookishCore.framework */; };
+		OBJ_266 /* Expressions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Expressions::Expressions::Product" /* Expressions.framework */; };
+		OBJ_267 /* JSONDump.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "JSONDump::JSONDump::Product" /* JSONDump.framework */; };
+		OBJ_268 /* ActionsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Actions::ActionsKit::Product" /* ActionsKit.framework */; };
+		OBJ_269 /* Actions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Actions::Actions::Product" /* Actions.framework */; };
+		OBJ_270 /* LoggerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::LoggerKit::Product" /* LoggerKit.framework */; };
+		OBJ_271 /* Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::Logger::Product" /* Logger.framework */; };
+		OBJ_286 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_33 /* Command.swift */; };
+		OBJ_287 /* CommandLine+CommandShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_34 /* CommandLine+CommandShell.swift */; };
+		OBJ_288 /* CommandShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_35 /* CommandShell.swift */; };
+		OBJ_289 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_36 /* Result.swift */; };
+		OBJ_291 /* Arguments.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Arguments::Arguments::Product" /* Arguments.framework */; };
+		OBJ_292 /* Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::Logger::Product" /* Logger.framework */; };
+		OBJ_293 /* Docopt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Docopt::Docopt::Product" /* Docopt.framework */; };
+		OBJ_302 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_37 /* Package.swift */; };
+		OBJ_307 /* Argument.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_66 /* Argument.swift */; };
+		OBJ_308 /* BranchPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_67 /* BranchPattern.swift */; };
+		OBJ_309 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_68 /* Command.swift */; };
+		OBJ_310 /* Docopt.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_69 /* Docopt.swift */; };
+		OBJ_311 /* DocoptError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_70 /* DocoptError.swift */; };
+		OBJ_312 /* Either.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_71 /* Either.swift */; };
+		OBJ_313 /* LeafPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_72 /* LeafPattern.swift */; };
+		OBJ_314 /* OneOrMore.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_73 /* OneOrMore.swift */; };
+		OBJ_315 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_74 /* Option.swift */; };
+		OBJ_316 /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_75 /* Optional.swift */; };
+		OBJ_317 /* OptionsShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_76 /* OptionsShortcut.swift */; };
+		OBJ_318 /* Pattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_77 /* Pattern.swift */; };
+		OBJ_319 /* Required.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_78 /* Required.swift */; };
+		OBJ_320 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_79 /* String.swift */; };
+		OBJ_321 /* Tokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_80 /* Tokens.swift */; };
+		OBJ_328 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_81 /* Package.swift */; };
+		OBJ_333 /* Expressions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_44 /* Expressions.swift */; };
+		OBJ_340 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_45 /* Package.swift */; };
+		OBJ_345 /* JSONDump.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_40 /* JSONDump.swift */; };
+		OBJ_352 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_41 /* Package.swift */; };
+		OBJ_357 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_85 /* Channel.swift */; };
+		OBJ_358 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_86 /* Context.swift */; };
+		OBJ_359 /* Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_87 /* Handler.swift */; };
+		OBJ_360 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_88 /* Manager.swift */; };
+		OBJ_361 /* NSLogHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_89 /* NSLogHandler.swift */; };
+		OBJ_362 /* OSLogHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_90 /* OSLogHandler.swift */; };
+		OBJ_363 /* PrintHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_91 /* PrintHandler.swift */; };
+		OBJ_369 /* LoggerMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_93 /* LoggerMenu.swift */; };
+		OBJ_370 /* LoggerSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_94 /* LoggerSettingsView.swift */; };
+		OBJ_372 /* Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::Logger::Product" /* Logger.framework */; };
+		OBJ_379 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_97 /* Package.swift */; };
+		OBJ_384 /* XCTest+Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_96 /* XCTest+Logger.swift */; };
+		OBJ_386 /* Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::Logger::Product" /* Logger.framework */; };
+		OBJ_393 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* main.swift */; };
+		OBJ_395 /* CommandShell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "CommandShell::CommandShell::Product" /* CommandShell.framework */; };
+		OBJ_396 /* Arguments.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Arguments::Arguments::Product" /* Arguments.framework */; };
+		OBJ_397 /* Docopt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Docopt::Docopt::Product" /* Docopt.framework */; };
+		OBJ_398 /* BookishCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "BookishCoreMac::BookishCore::Product" /* BookishCore.framework */; };
+		OBJ_399 /* Expressions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Expressions::Expressions::Product" /* Expressions.framework */; };
+		OBJ_400 /* JSONDump.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "JSONDump::JSONDump::Product" /* JSONDump.framework */; };
+		OBJ_401 /* ActionsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Actions::ActionsKit::Product" /* ActionsKit.framework */; };
+		OBJ_402 /* Actions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Actions::Actions::Product" /* Actions.framework */; };
+		OBJ_403 /* LoggerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::LoggerKit::Product" /* LoggerKit.framework */; };
+		OBJ_404 /* Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Logger::Logger::Product" /* Logger.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		22B116F522A18D48003FA7D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Expressions::Expressions";
-			remoteInfo = Expressions;
-		};
-		22B116F622A18D48003FA7D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "JSONDump::JSONDump";
-			remoteInfo = JSONDump;
-		};
-		22B116F722A18D48003FA7D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Actions::ActionsKit";
-			remoteInfo = ActionsKit;
-		};
-		22B116F822A18D48003FA7D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Actions::Actions";
-			remoteInfo = Actions;
-		};
-		22B116F922A18D48003FA7D7 /* PBXContainerItemProxy */ = {
+		22B11C5522A531E5003FA7D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Logger::Logger";
 			remoteInfo = Logger;
 		};
-		22B116FA22A18D48003FA7D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Logger::Logger";
-			remoteInfo = Logger;
-		};
-		22B116FB22A18D48003FA7D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Actions::Actions";
-			remoteInfo = Actions;
-		};
-		22B116FC22A18D48003FA7D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Logger::LoggerKit";
-			remoteInfo = LoggerKit;
-		};
-		22B116FD22A18D48003FA7D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Logger::Logger";
-			remoteInfo = Logger;
-		};
-		22B116FE22A18D48003FA7D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Logger::Logger";
-			remoteInfo = Logger;
-		};
-		22B116FF22A18D48003FA7D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Logger::LoggerTestSupport";
-			remoteInfo = LoggerTestSupport;
-		};
-		22B1170022A18D48003FA7D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Logger::Logger";
-			remoteInfo = Logger;
-		};
-		22B1170122A18D48003FA7D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "BookishCoreMac::BookishCore";
-			remoteInfo = BookishCore;
-		};
-		22B1170222A18D48003FA7D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Expressions::Expressions";
-			remoteInfo = Expressions;
-		};
-		22B1170322A18D48003FA7D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "JSONDump::JSONDump";
-			remoteInfo = JSONDump;
-		};
-		22B1170422A18D48003FA7D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Actions::ActionsKit";
-			remoteInfo = ActionsKit;
-		};
-		22B1170522A18D48003FA7D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Actions::Actions";
-			remoteInfo = Actions;
-		};
-		22B1170622A18D48003FA7D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Logger::LoggerKit";
-			remoteInfo = LoggerKit;
-		};
-		22B1170722A18D48003FA7D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Logger::Logger";
-			remoteInfo = Logger;
-		};
-		22B1170822A18D48003FA7D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Logger::Logger";
-			remoteInfo = Logger;
-		};
-		22B1170922A18D48003FA7D7 /* PBXContainerItemProxy */ = {
+		22B11C5622A531E5003FA7D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Docopt::Docopt";
 			remoteInfo = Docopt;
 		};
-		22B1170A22A18D48003FA7D7 /* PBXContainerItemProxy */ = {
+		22B11C5722A531E5003FA7D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "BookishCoreMac::BookishCore";
 			remoteInfo = BookishCore;
 		};
-		22B1170B22A18D48003FA7D7 /* PBXContainerItemProxy */ = {
+		22B11C5822A531E5003FA7D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Expressions::Expressions";
 			remoteInfo = Expressions;
 		};
-		22B1170C22A18D48003FA7D7 /* PBXContainerItemProxy */ = {
+		22B11C5922A531E5003FA7D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "JSONDump::JSONDump";
 			remoteInfo = JSONDump;
 		};
-		22B1170D22A18D48003FA7D7 /* PBXContainerItemProxy */ = {
+		22B11C5A22A531E5003FA7D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Actions::ActionsKit";
 			remoteInfo = ActionsKit;
 		};
-		22B1170E22A18D48003FA7D7 /* PBXContainerItemProxy */ = {
+		22B11C5B22A531E5003FA7D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Actions::Actions";
 			remoteInfo = Actions;
 		};
-		22B1170F22A18D48003FA7D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Logger::LoggerKit";
-			remoteInfo = LoggerKit;
-		};
-		22B1171022A18D48003FA7D7 /* PBXContainerItemProxy */ = {
+		22B11C5C22A531E5003FA7D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Logger::Logger";
 			remoteInfo = Logger;
 		};
-		22B1171122A18D48003FA7D7 /* PBXContainerItemProxy */ = {
+		22B11C5D22A531E5003FA7D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Logger::Logger";
+			remoteInfo = Logger;
+		};
+		22B11C5E22A531E5003FA7D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Actions::Actions";
+			remoteInfo = Actions;
+		};
+		22B11C5F22A531E5003FA7D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Logger::LoggerKit";
+			remoteInfo = LoggerKit;
+		};
+		22B11C6022A531E5003FA7D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Logger::Logger";
+			remoteInfo = Logger;
+		};
+		22B11C6122A531E5003FA7D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Logger::Logger";
+			remoteInfo = Logger;
+		};
+		22B11C6222A531E5003FA7D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Expressions::Expressions";
+			remoteInfo = Expressions;
+		};
+		22B11C6322A531E5003FA7D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "JSONDump::JSONDump";
+			remoteInfo = JSONDump;
+		};
+		22B11C6422A531E5003FA7D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Actions::ActionsKit";
+			remoteInfo = ActionsKit;
+		};
+		22B11C6522A531E5003FA7D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Actions::Actions";
+			remoteInfo = Actions;
+		};
+		22B11C6622A531E5003FA7D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Logger::LoggerKit";
+			remoteInfo = LoggerKit;
+		};
+		22B11C6722A531E5003FA7D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Logger::Logger";
+			remoteInfo = Logger;
+		};
+		22B11C6822A531E5003FA7D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Arguments::Arguments";
 			remoteInfo = Arguments;
 		};
-		22B1171222A18D48003FA7D7 /* PBXContainerItemProxy */ = {
+		22B11C6922A531E5003FA7D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Logger::Logger";
 			remoteInfo = Logger;
 		};
-		22B1171322A18D48003FA7D7 /* PBXContainerItemProxy */ = {
+		22B11C6A22A531E5003FA7D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Docopt::Docopt";
 			remoteInfo = Docopt;
 		};
-		22B1171422A18D48003FA7D7 /* PBXContainerItemProxy */ = {
+		22B11C6B22A531E5003FA7D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "CommandShell::CommandShell";
 			remoteInfo = CommandShell;
 		};
-		22B1171522A18D48003FA7D7 /* PBXContainerItemProxy */ = {
+		22B11C6C22A531E5003FA7D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Arguments::Arguments";
 			remoteInfo = Arguments;
 		};
-		22B1171622A18D48003FA7D7 /* PBXContainerItemProxy */ = {
+		22B11C6D22A531E5003FA7D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Docopt::Docopt";
 			remoteInfo = Docopt;
 		};
-		22B1171722A18D48003FA7D7 /* PBXContainerItemProxy */ = {
+		22B11C6E22A531E5003FA7D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "BookishCoreMac::BookishCore";
 			remoteInfo = BookishCore;
 		};
-		22B1171822A18D48003FA7D7 /* PBXContainerItemProxy */ = {
+		22B11C6F22A531E5003FA7D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Expressions::Expressions";
 			remoteInfo = Expressions;
 		};
-		22B1171922A18D48003FA7D7 /* PBXContainerItemProxy */ = {
+		22B11C7022A531E5003FA7D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "JSONDump::JSONDump";
 			remoteInfo = JSONDump;
 		};
-		22B1171A22A18D48003FA7D7 /* PBXContainerItemProxy */ = {
+		22B11C7122A531E5003FA7D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Actions::ActionsKit";
 			remoteInfo = ActionsKit;
 		};
-		22B1171B22A18D48003FA7D7 /* PBXContainerItemProxy */ = {
+		22B11C7222A531E5003FA7D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Actions::Actions";
 			remoteInfo = Actions;
 		};
-		22B1171C22A18D48003FA7D7 /* PBXContainerItemProxy */ = {
+		22B11C7322A531E5003FA7D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Logger::LoggerKit";
 			remoteInfo = LoggerKit;
 		};
-		22B1171D22A18D48003FA7D7 /* PBXContainerItemProxy */ = {
+		22B11C7422A531E5003FA7D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Logger::Logger";
 			remoteInfo = Logger;
 		};
-		22B1171E22A18D48003FA7D7 /* PBXContainerItemProxy */ = {
+		22B11C7522A531E5003FA7D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "BookishCoreMac::BookishCore";
 			remoteInfo = BookishCore;
 		};
-		22B1171F22A18D48003FA7D7 /* PBXContainerItemProxy */ = {
+		22B11C7622A531E5003FA7D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Expressions::Expressions";
 			remoteInfo = Expressions;
 		};
-		22B1172022A18D48003FA7D7 /* PBXContainerItemProxy */ = {
+		22B11C7722A531E5003FA7D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "JSONDump::JSONDump";
 			remoteInfo = JSONDump;
 		};
-		22B1172122A18D48003FA7D7 /* PBXContainerItemProxy */ = {
+		22B11C7822A531E5003FA7D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Actions::ActionsKit";
 			remoteInfo = ActionsKit;
 		};
-		22B1172222A18D48003FA7D7 /* PBXContainerItemProxy */ = {
+		22B11C7922A531E5003FA7D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Actions::Actions";
 			remoteInfo = Actions;
 		};
-		22B1172322A18D48003FA7D7 /* PBXContainerItemProxy */ = {
+		22B11C7A22A531E5003FA7D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Logger::LoggerKit";
 			remoteInfo = LoggerKit;
 		};
-		22B1172422A18D48003FA7D7 /* PBXContainerItemProxy */ = {
+		22B11C7B22A531E5003FA7D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Logger::Logger";
 			remoteInfo = Logger;
 		};
-		22B1175622A18D4A003FA7D7 /* PBXContainerItemProxy */ = {
+		22B11C7C22A531E6003FA7D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = "BookishCoreMac::BookishCoreTests";
-			remoteInfo = BookishCoreTests;
+			remoteGlobalIDString = "Logger::LoggerTestSupport";
+			remoteInfo = LoggerTestSupport;
+		};
+		22B11C7D22A531E6003FA7D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Logger::Logger";
+			remoteInfo = Logger;
+		};
+		22B11C7E22A531E6003FA7D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "BookishCoreMac::BookishCore";
+			remoteInfo = BookishCore;
+		};
+		22B11C7F22A531E6003FA7D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Expressions::Expressions";
+			remoteInfo = Expressions;
+		};
+		22B11C8022A531E6003FA7D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "JSONDump::JSONDump";
+			remoteInfo = JSONDump;
+		};
+		22B11C8122A531E6003FA7D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Actions::ActionsKit";
+			remoteInfo = ActionsKit;
+		};
+		22B11C8222A531E6003FA7D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Actions::Actions";
+			remoteInfo = Actions;
+		};
+		22B11C8322A531E6003FA7D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Logger::LoggerKit";
+			remoteInfo = LoggerKit;
+		};
+		22B11C8422A531E6003FA7D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Logger::Logger";
+			remoteInfo = Logger;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -501,11 +494,10 @@
 		OBJ_114 /* Dependencies */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Dependencies; sourceTree = SOURCE_ROOT; };
 		OBJ_115 /* Configs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Configs; sourceTree = SOURCE_ROOT; };
 		OBJ_116 /* Packages */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Packages; sourceTree = SOURCE_ROOT; };
-		OBJ_117 /* build */ = {isa = PBXFileReference; lastKnownFileType = folder; path = build; sourceTree = SOURCE_ROOT; };
-		OBJ_118 /* BookishModel.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = BookishModel.xcworkspace; sourceTree = SOURCE_ROOT; };
-		OBJ_119 /* Package.swift.original */ = {isa = PBXFileReference; lastKnownFileType = file; path = Package.swift.original; sourceTree = "<group>"; };
+		OBJ_117 /* BookishModel.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = BookishModel.xcworkspace; sourceTree = SOURCE_ROOT; };
+		OBJ_118 /* Package.swift.original */ = {isa = PBXFileReference; lastKnownFileType = file; path = Package.swift.original; sourceTree = "<group>"; };
+		OBJ_119 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		OBJ_12 /* CloudManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudManager.swift; sourceTree = "<group>"; };
-		OBJ_120 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		OBJ_13 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		OBJ_14 /* NSEntityDescriptionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSEntityDescriptionExtensions.swift; sourceTree = "<group>"; };
 		OBJ_15 /* NSManagedObjectContextExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObjectContextExtensions.swift; sourceTree = "<group>"; };
@@ -572,156 +564,156 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		OBJ_134 /* Frameworks */ = {
+		OBJ_133 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_135 /* Logger.framework in Frameworks */,
+				OBJ_134 /* Logger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_145 /* Frameworks */ = {
+		OBJ_144 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_146 /* Actions.framework in Frameworks */,
-				OBJ_147 /* Logger.framework in Frameworks */,
+				OBJ_145 /* Actions.framework in Frameworks */,
+				OBJ_146 /* Logger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_162 /* Frameworks */ = {
+		OBJ_161 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_163 /* Logger.framework in Frameworks */,
-				OBJ_164 /* Docopt.framework in Frameworks */,
+				OBJ_162 /* Logger.framework in Frameworks */,
+				OBJ_163 /* Docopt.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_185 /* Frameworks */ = {
+		OBJ_184 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_186 /* Expressions.framework in Frameworks */,
-				OBJ_187 /* JSONDump.framework in Frameworks */,
-				OBJ_188 /* ActionsKit.framework in Frameworks */,
-				OBJ_189 /* Actions.framework in Frameworks */,
-				OBJ_190 /* LoggerKit.framework in Frameworks */,
-				OBJ_191 /* Logger.framework in Frameworks */,
+				OBJ_185 /* Expressions.framework in Frameworks */,
+				OBJ_186 /* JSONDump.framework in Frameworks */,
+				OBJ_187 /* ActionsKit.framework in Frameworks */,
+				OBJ_188 /* Actions.framework in Frameworks */,
+				OBJ_189 /* LoggerKit.framework in Frameworks */,
+				OBJ_190 /* Logger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_207 /* Frameworks */ = {
+		OBJ_206 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_208 /* BookishCore.framework in Frameworks */,
-				OBJ_209 /* Expressions.framework in Frameworks */,
-				OBJ_210 /* JSONDump.framework in Frameworks */,
-				OBJ_211 /* ActionsKit.framework in Frameworks */,
-				OBJ_212 /* Actions.framework in Frameworks */,
-				OBJ_213 /* LoggerKit.framework in Frameworks */,
-				OBJ_214 /* Logger.framework in Frameworks */,
+				OBJ_207 /* BookishCore.framework in Frameworks */,
+				OBJ_208 /* Expressions.framework in Frameworks */,
+				OBJ_209 /* JSONDump.framework in Frameworks */,
+				OBJ_210 /* ActionsKit.framework in Frameworks */,
+				OBJ_211 /* Actions.framework in Frameworks */,
+				OBJ_212 /* LoggerKit.framework in Frameworks */,
+				OBJ_213 /* Logger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_240 /* Frameworks */ = {
+		OBJ_239 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_241 /* BookishCore.framework in Frameworks */,
-				OBJ_242 /* Expressions.framework in Frameworks */,
-				OBJ_243 /* JSONDump.framework in Frameworks */,
-				OBJ_244 /* ActionsKit.framework in Frameworks */,
-				OBJ_245 /* Actions.framework in Frameworks */,
-				OBJ_246 /* LoggerKit.framework in Frameworks */,
-				OBJ_247 /* Logger.framework in Frameworks */,
+				OBJ_240 /* BookishCore.framework in Frameworks */,
+				OBJ_241 /* Expressions.framework in Frameworks */,
+				OBJ_242 /* JSONDump.framework in Frameworks */,
+				OBJ_243 /* ActionsKit.framework in Frameworks */,
+				OBJ_244 /* Actions.framework in Frameworks */,
+				OBJ_245 /* LoggerKit.framework in Frameworks */,
+				OBJ_246 /* Logger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_264 /* Frameworks */ = {
+		OBJ_263 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_265 /* LoggerTestSupport.framework in Frameworks */,
-				OBJ_266 /* BookishCore.framework in Frameworks */,
-				OBJ_267 /* Expressions.framework in Frameworks */,
-				OBJ_268 /* JSONDump.framework in Frameworks */,
-				OBJ_269 /* ActionsKit.framework in Frameworks */,
-				OBJ_270 /* Actions.framework in Frameworks */,
-				OBJ_271 /* LoggerKit.framework in Frameworks */,
-				OBJ_272 /* Logger.framework in Frameworks */,
+				OBJ_264 /* LoggerTestSupport.framework in Frameworks */,
+				OBJ_265 /* BookishCore.framework in Frameworks */,
+				OBJ_266 /* Expressions.framework in Frameworks */,
+				OBJ_267 /* JSONDump.framework in Frameworks */,
+				OBJ_268 /* ActionsKit.framework in Frameworks */,
+				OBJ_269 /* Actions.framework in Frameworks */,
+				OBJ_270 /* LoggerKit.framework in Frameworks */,
+				OBJ_271 /* Logger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_291 /* Frameworks */ = {
+		OBJ_290 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_292 /* Arguments.framework in Frameworks */,
-				OBJ_293 /* Logger.framework in Frameworks */,
-				OBJ_294 /* Docopt.framework in Frameworks */,
+				OBJ_291 /* Arguments.framework in Frameworks */,
+				OBJ_292 /* Logger.framework in Frameworks */,
+				OBJ_293 /* Docopt.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_323 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_335 /* Frameworks */ = {
+		OBJ_322 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_347 /* Frameworks */ = {
+		OBJ_334 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_365 /* Frameworks */ = {
+		OBJ_346 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_372 /* Frameworks */ = {
+		OBJ_364 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_373 /* Logger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_386 /* Frameworks */ = {
+		OBJ_371 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_387 /* Logger.framework in Frameworks */,
+				OBJ_372 /* Logger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_395 /* Frameworks */ = {
+		OBJ_385 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_396 /* CommandShell.framework in Frameworks */,
-				OBJ_397 /* Arguments.framework in Frameworks */,
-				OBJ_398 /* Docopt.framework in Frameworks */,
-				OBJ_399 /* BookishCore.framework in Frameworks */,
-				OBJ_400 /* Expressions.framework in Frameworks */,
-				OBJ_401 /* JSONDump.framework in Frameworks */,
-				OBJ_402 /* ActionsKit.framework in Frameworks */,
-				OBJ_403 /* Actions.framework in Frameworks */,
-				OBJ_404 /* LoggerKit.framework in Frameworks */,
-				OBJ_405 /* Logger.framework in Frameworks */,
+				OBJ_386 /* Logger.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_394 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_395 /* CommandShell.framework in Frameworks */,
+				OBJ_396 /* Arguments.framework in Frameworks */,
+				OBJ_397 /* Docopt.framework in Frameworks */,
+				OBJ_398 /* BookishCore.framework in Frameworks */,
+				OBJ_399 /* Expressions.framework in Frameworks */,
+				OBJ_400 /* JSONDump.framework in Frameworks */,
+				OBJ_401 /* ActionsKit.framework in Frameworks */,
+				OBJ_402 /* Actions.framework in Frameworks */,
+				OBJ_403 /* LoggerKit.framework in Frameworks */,
+				OBJ_404 /* Logger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -899,10 +891,9 @@
 				OBJ_114 /* Dependencies */,
 				OBJ_115 /* Configs */,
 				OBJ_116 /* Packages */,
-				OBJ_117 /* build */,
-				OBJ_118 /* BookishModel.xcworkspace */,
-				OBJ_119 /* Package.swift.original */,
-				OBJ_120 /* README.md */,
+				OBJ_117 /* BookishModel.xcworkspace */,
+				OBJ_118 /* Package.swift.original */,
+				OBJ_119 /* README.md */,
 			);
 			name = "";
 			sourceTree = "<group>";
@@ -1043,21 +1034,21 @@
 		OBJ_98 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				"Docopt::Docopt::Product" /* Docopt.framework */,
-				"Expressions::Expressions::Product" /* Expressions.framework */,
+				"Arguments::Arguments::Product" /* Arguments.framework */,
+				"CommandShell::CommandShell::Product" /* CommandShell.framework */,
+				"BookishCoreMac::bktCore::Product" /* bktCore */,
+				"Actions::Actions::Product" /* Actions.framework */,
+				"Logger::LoggerKit::Product" /* LoggerKit.framework */,
+				"BookishCoreMac::BookishCoreMobile::Product" /* BookishCoreMobile */,
 				"BookishCoreMac::BookishCore::Product" /* BookishCore.framework */,
 				"Logger::LoggerTestSupport::Product" /* LoggerTestSupport.framework */,
-				"JSONDump::JSONDump::Product" /* JSONDump.framework */,
-				"BookishCoreMac::bktCore::Product" /* bktCore */,
-				"BookishCoreMac::BookishCoreMobile::Product" /* BookishCoreMobile */,
 				"Logger::Logger::Product" /* Logger.framework */,
-				"Actions::Actions::Product" /* Actions.framework */,
-				"Arguments::Arguments::Product" /* Arguments.framework */,
-				"BookishCoreMac::BookishCoreTests::Product" /* BookishCoreTests.xctest */,
-				"Logger::LoggerKit::Product" /* LoggerKit.framework */,
-				"BookishCoreMac::BookishCoreMac::Product" /* BookishCoreMac */,
-				"CommandShell::CommandShell::Product" /* CommandShell.framework */,
 				"Actions::ActionsKit::Product" /* ActionsKit.framework */,
+				"Expressions::Expressions::Product" /* Expressions.framework */,
+				"Docopt::Docopt::Product" /* Docopt.framework */,
+				"JSONDump::JSONDump::Product" /* JSONDump.framework */,
+				"BookishCoreMac::BookishCoreMac::Product" /* BookishCoreMac */,
+				"BookishCoreMac::BookishCoreTests::Product" /* BookishCoreTests.xctest */,
 			);
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -1067,15 +1058,15 @@
 /* Begin PBXNativeTarget section */
 		"Actions::Actions" /* Actions */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_122 /* Build configuration list for PBXNativeTarget "Actions" */;
+			buildConfigurationList = OBJ_121 /* Build configuration list for PBXNativeTarget "Actions" */;
 			buildPhases = (
-				OBJ_125 /* Sources */,
-				OBJ_134 /* Frameworks */,
+				OBJ_124 /* Sources */,
+				OBJ_133 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				OBJ_136 /* PBXTargetDependency */,
+				OBJ_135 /* PBXTargetDependency */,
 			);
 			name = Actions;
 			productName = Actions;
@@ -1084,16 +1075,16 @@
 		};
 		"Actions::ActionsKit" /* ActionsKit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_139 /* Build configuration list for PBXNativeTarget "ActionsKit" */;
+			buildConfigurationList = OBJ_138 /* Build configuration list for PBXNativeTarget "ActionsKit" */;
 			buildPhases = (
-				OBJ_142 /* Sources */,
-				OBJ_145 /* Frameworks */,
+				OBJ_141 /* Sources */,
+				OBJ_144 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				OBJ_147 /* PBXTargetDependency */,
 				OBJ_148 /* PBXTargetDependency */,
-				OBJ_149 /* PBXTargetDependency */,
 			);
 			name = ActionsKit;
 			productName = ActionsKit;
@@ -1102,9 +1093,9 @@
 		};
 		"Actions::SwiftPMPackageDescription" /* ActionsPackageDescription */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_151 /* Build configuration list for PBXNativeTarget "ActionsPackageDescription" */;
+			buildConfigurationList = OBJ_150 /* Build configuration list for PBXNativeTarget "ActionsPackageDescription" */;
 			buildPhases = (
-				OBJ_154 /* Sources */,
+				OBJ_153 /* Sources */,
 			);
 			buildRules = (
 			);
@@ -1116,16 +1107,16 @@
 		};
 		"Arguments::Arguments" /* Arguments */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_157 /* Build configuration list for PBXNativeTarget "Arguments" */;
+			buildConfigurationList = OBJ_156 /* Build configuration list for PBXNativeTarget "Arguments" */;
 			buildPhases = (
-				OBJ_160 /* Sources */,
-				OBJ_162 /* Frameworks */,
+				OBJ_159 /* Sources */,
+				OBJ_161 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				OBJ_164 /* PBXTargetDependency */,
 				OBJ_165 /* PBXTargetDependency */,
-				OBJ_166 /* PBXTargetDependency */,
 			);
 			name = Arguments;
 			productName = Arguments;
@@ -1134,9 +1125,9 @@
 		};
 		"Arguments::SwiftPMPackageDescription" /* ArgumentsPackageDescription */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_169 /* Build configuration list for PBXNativeTarget "ArgumentsPackageDescription" */;
+			buildConfigurationList = OBJ_168 /* Build configuration list for PBXNativeTarget "ArgumentsPackageDescription" */;
 			buildPhases = (
-				OBJ_172 /* Sources */,
+				OBJ_171 /* Sources */,
 			);
 			buildRules = (
 			);
@@ -1148,20 +1139,20 @@
 		};
 		"BookishCoreMac::BookishCore" /* BookishCore */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_175 /* Build configuration list for PBXNativeTarget "BookishCore" */;
+			buildConfigurationList = OBJ_174 /* Build configuration list for PBXNativeTarget "BookishCore" */;
 			buildPhases = (
-				OBJ_178 /* Sources */,
-				OBJ_185 /* Frameworks */,
+				OBJ_177 /* Sources */,
+				OBJ_184 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				OBJ_192 /* PBXTargetDependency */,
-				OBJ_194 /* PBXTargetDependency */,
+				OBJ_191 /* PBXTargetDependency */,
+				OBJ_193 /* PBXTargetDependency */,
+				OBJ_195 /* PBXTargetDependency */,
 				OBJ_196 /* PBXTargetDependency */,
 				OBJ_197 /* PBXTargetDependency */,
-				OBJ_198 /* PBXTargetDependency */,
-				OBJ_200 /* PBXTargetDependency */,
+				OBJ_199 /* PBXTargetDependency */,
 			);
 			name = BookishCore;
 			productName = BookishCore;
@@ -1170,21 +1161,21 @@
 		};
 		"BookishCoreMac::BookishCoreMac" /* BookishCoreMac */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_202 /* Build configuration list for PBXNativeTarget "BookishCoreMac" */;
+			buildConfigurationList = OBJ_201 /* Build configuration list for PBXNativeTarget "BookishCoreMac" */;
 			buildPhases = (
-				OBJ_205 /* Sources */,
-				OBJ_207 /* Frameworks */,
+				OBJ_204 /* Sources */,
+				OBJ_206 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				OBJ_214 /* PBXTargetDependency */,
 				OBJ_215 /* PBXTargetDependency */,
 				OBJ_216 /* PBXTargetDependency */,
 				OBJ_217 /* PBXTargetDependency */,
 				OBJ_218 /* PBXTargetDependency */,
 				OBJ_219 /* PBXTargetDependency */,
 				OBJ_220 /* PBXTargetDependency */,
-				OBJ_221 /* PBXTargetDependency */,
 			);
 			name = BookishCoreMac;
 			productName = BookishCoreMac;
@@ -1193,21 +1184,21 @@
 		};
 		"BookishCoreMac::BookishCoreMobile" /* BookishCoreMobile */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_235 /* Build configuration list for PBXNativeTarget "BookishCoreMobile" */;
+			buildConfigurationList = OBJ_234 /* Build configuration list for PBXNativeTarget "BookishCoreMobile" */;
 			buildPhases = (
-				OBJ_238 /* Sources */,
-				OBJ_240 /* Frameworks */,
+				OBJ_237 /* Sources */,
+				OBJ_239 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				OBJ_247 /* PBXTargetDependency */,
 				OBJ_248 /* PBXTargetDependency */,
 				OBJ_249 /* PBXTargetDependency */,
 				OBJ_250 /* PBXTargetDependency */,
 				OBJ_251 /* PBXTargetDependency */,
 				OBJ_252 /* PBXTargetDependency */,
 				OBJ_253 /* PBXTargetDependency */,
-				OBJ_254 /* PBXTargetDependency */,
 			);
 			name = BookishCoreMobile;
 			productName = BookishCoreMobile;
@@ -1216,22 +1207,22 @@
 		};
 		"BookishCoreMac::BookishCoreTests" /* BookishCoreTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_255 /* Build configuration list for PBXNativeTarget "BookishCoreTests" */;
+			buildConfigurationList = OBJ_254 /* Build configuration list for PBXNativeTarget "BookishCoreTests" */;
 			buildPhases = (
-				OBJ_258 /* Sources */,
-				OBJ_264 /* Frameworks */,
+				OBJ_257 /* Sources */,
+				OBJ_263 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				OBJ_273 /* PBXTargetDependency */,
+				OBJ_272 /* PBXTargetDependency */,
+				OBJ_274 /* PBXTargetDependency */,
 				OBJ_275 /* PBXTargetDependency */,
 				OBJ_276 /* PBXTargetDependency */,
 				OBJ_277 /* PBXTargetDependency */,
 				OBJ_278 /* PBXTargetDependency */,
 				OBJ_279 /* PBXTargetDependency */,
 				OBJ_280 /* PBXTargetDependency */,
-				OBJ_281 /* PBXTargetDependency */,
 			);
 			name = BookishCoreTests;
 			productName = BookishCoreTests;
@@ -1240,9 +1231,9 @@
 		};
 		"BookishCoreMac::SwiftPMPackageDescription" /* BookishCoreMacPackageDescription */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_223 /* Build configuration list for PBXNativeTarget "BookishCoreMacPackageDescription" */;
+			buildConfigurationList = OBJ_222 /* Build configuration list for PBXNativeTarget "BookishCoreMacPackageDescription" */;
 			buildPhases = (
-				OBJ_226 /* Sources */,
+				OBJ_225 /* Sources */,
 			);
 			buildRules = (
 			);
@@ -1254,14 +1245,15 @@
 		};
 		"BookishCoreMac::bktCore" /* bktCore */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_390 /* Build configuration list for PBXNativeTarget "bktCore" */;
+			buildConfigurationList = OBJ_389 /* Build configuration list for PBXNativeTarget "bktCore" */;
 			buildPhases = (
-				OBJ_393 /* Sources */,
-				OBJ_395 /* Frameworks */,
+				OBJ_392 /* Sources */,
+				OBJ_394 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				OBJ_405 /* PBXTargetDependency */,
 				OBJ_406 /* PBXTargetDependency */,
 				OBJ_407 /* PBXTargetDependency */,
 				OBJ_408 /* PBXTargetDependency */,
@@ -1271,7 +1263,6 @@
 				OBJ_412 /* PBXTargetDependency */,
 				OBJ_413 /* PBXTargetDependency */,
 				OBJ_414 /* PBXTargetDependency */,
-				OBJ_415 /* PBXTargetDependency */,
 			);
 			name = bktCore;
 			productName = bktCore;
@@ -1280,17 +1271,17 @@
 		};
 		"CommandShell::CommandShell" /* CommandShell */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_283 /* Build configuration list for PBXNativeTarget "CommandShell" */;
+			buildConfigurationList = OBJ_282 /* Build configuration list for PBXNativeTarget "CommandShell" */;
 			buildPhases = (
-				OBJ_286 /* Sources */,
-				OBJ_291 /* Frameworks */,
+				OBJ_285 /* Sources */,
+				OBJ_290 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				OBJ_294 /* PBXTargetDependency */,
 				OBJ_295 /* PBXTargetDependency */,
 				OBJ_296 /* PBXTargetDependency */,
-				OBJ_297 /* PBXTargetDependency */,
 			);
 			name = CommandShell;
 			productName = CommandShell;
@@ -1299,9 +1290,9 @@
 		};
 		"CommandShell::SwiftPMPackageDescription" /* CommandShellPackageDescription */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_299 /* Build configuration list for PBXNativeTarget "CommandShellPackageDescription" */;
+			buildConfigurationList = OBJ_298 /* Build configuration list for PBXNativeTarget "CommandShellPackageDescription" */;
 			buildPhases = (
-				OBJ_302 /* Sources */,
+				OBJ_301 /* Sources */,
 			);
 			buildRules = (
 			);
@@ -1313,10 +1304,10 @@
 		};
 		"Docopt::Docopt" /* Docopt */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_304 /* Build configuration list for PBXNativeTarget "Docopt" */;
+			buildConfigurationList = OBJ_303 /* Build configuration list for PBXNativeTarget "Docopt" */;
 			buildPhases = (
-				OBJ_307 /* Sources */,
-				OBJ_323 /* Frameworks */,
+				OBJ_306 /* Sources */,
+				OBJ_322 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1329,9 +1320,9 @@
 		};
 		"Docopt::SwiftPMPackageDescription" /* DocoptPackageDescription */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_325 /* Build configuration list for PBXNativeTarget "DocoptPackageDescription" */;
+			buildConfigurationList = OBJ_324 /* Build configuration list for PBXNativeTarget "DocoptPackageDescription" */;
 			buildPhases = (
-				OBJ_328 /* Sources */,
+				OBJ_327 /* Sources */,
 			);
 			buildRules = (
 			);
@@ -1343,10 +1334,10 @@
 		};
 		"Expressions::Expressions" /* Expressions */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_330 /* Build configuration list for PBXNativeTarget "Expressions" */;
+			buildConfigurationList = OBJ_329 /* Build configuration list for PBXNativeTarget "Expressions" */;
 			buildPhases = (
-				OBJ_333 /* Sources */,
-				OBJ_335 /* Frameworks */,
+				OBJ_332 /* Sources */,
+				OBJ_334 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1359,9 +1350,9 @@
 		};
 		"Expressions::SwiftPMPackageDescription" /* ExpressionsPackageDescription */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_337 /* Build configuration list for PBXNativeTarget "ExpressionsPackageDescription" */;
+			buildConfigurationList = OBJ_336 /* Build configuration list for PBXNativeTarget "ExpressionsPackageDescription" */;
 			buildPhases = (
-				OBJ_340 /* Sources */,
+				OBJ_339 /* Sources */,
 			);
 			buildRules = (
 			);
@@ -1373,10 +1364,10 @@
 		};
 		"JSONDump::JSONDump" /* JSONDump */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_342 /* Build configuration list for PBXNativeTarget "JSONDump" */;
+			buildConfigurationList = OBJ_341 /* Build configuration list for PBXNativeTarget "JSONDump" */;
 			buildPhases = (
-				OBJ_345 /* Sources */,
-				OBJ_347 /* Frameworks */,
+				OBJ_344 /* Sources */,
+				OBJ_346 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1389,9 +1380,9 @@
 		};
 		"JSONDump::SwiftPMPackageDescription" /* JSONDumpPackageDescription */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_349 /* Build configuration list for PBXNativeTarget "JSONDumpPackageDescription" */;
+			buildConfigurationList = OBJ_348 /* Build configuration list for PBXNativeTarget "JSONDumpPackageDescription" */;
 			buildPhases = (
-				OBJ_352 /* Sources */,
+				OBJ_351 /* Sources */,
 			);
 			buildRules = (
 			);
@@ -1403,10 +1394,10 @@
 		};
 		"Logger::Logger" /* Logger */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_354 /* Build configuration list for PBXNativeTarget "Logger" */;
+			buildConfigurationList = OBJ_353 /* Build configuration list for PBXNativeTarget "Logger" */;
 			buildPhases = (
-				OBJ_357 /* Sources */,
-				OBJ_365 /* Frameworks */,
+				OBJ_356 /* Sources */,
+				OBJ_364 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1419,15 +1410,15 @@
 		};
 		"Logger::LoggerKit" /* LoggerKit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_366 /* Build configuration list for PBXNativeTarget "LoggerKit" */;
+			buildConfigurationList = OBJ_365 /* Build configuration list for PBXNativeTarget "LoggerKit" */;
 			buildPhases = (
-				OBJ_369 /* Sources */,
-				OBJ_372 /* Frameworks */,
+				OBJ_368 /* Sources */,
+				OBJ_371 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				OBJ_374 /* PBXTargetDependency */,
+				OBJ_373 /* PBXTargetDependency */,
 			);
 			name = LoggerKit;
 			productName = LoggerKit;
@@ -1436,15 +1427,15 @@
 		};
 		"Logger::LoggerTestSupport" /* LoggerTestSupport */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_381 /* Build configuration list for PBXNativeTarget "LoggerTestSupport" */;
+			buildConfigurationList = OBJ_380 /* Build configuration list for PBXNativeTarget "LoggerTestSupport" */;
 			buildPhases = (
-				OBJ_384 /* Sources */,
-				OBJ_386 /* Frameworks */,
+				OBJ_383 /* Sources */,
+				OBJ_385 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				OBJ_388 /* PBXTargetDependency */,
+				OBJ_387 /* PBXTargetDependency */,
 			);
 			name = LoggerTestSupport;
 			productName = LoggerTestSupport;
@@ -1453,9 +1444,9 @@
 		};
 		"Logger::SwiftPMPackageDescription" /* LoggerPackageDescription */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_376 /* Build configuration list for PBXNativeTarget "LoggerPackageDescription" */;
+			buildConfigurationList = OBJ_375 /* Build configuration list for PBXNativeTarget "LoggerPackageDescription" */;
 			buildPhases = (
-				OBJ_379 /* Sources */,
+				OBJ_378 /* Sources */,
 			);
 			buildRules = (
 			);
@@ -1516,483 +1507,483 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		OBJ_125 /* Sources */ = {
+		OBJ_124 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_126 /* Action.swift in Sources */,
-				OBJ_127 /* ActionContext.swift in Sources */,
-				OBJ_128 /* ActionIdentification.swift in Sources */,
-				OBJ_129 /* ActionInfo.swift in Sources */,
-				OBJ_130 /* ActionManager.swift in Sources */,
-				OBJ_131 /* ActionNotification.swift in Sources */,
-				OBJ_132 /* ActionSerialisation.swift in Sources */,
-				OBJ_133 /* DelegatedAction.swift in Sources */,
+				OBJ_125 /* Action.swift in Sources */,
+				OBJ_126 /* ActionContext.swift in Sources */,
+				OBJ_127 /* ActionIdentification.swift in Sources */,
+				OBJ_128 /* ActionInfo.swift in Sources */,
+				OBJ_129 /* ActionManager.swift in Sources */,
+				OBJ_130 /* ActionNotification.swift in Sources */,
+				OBJ_131 /* ActionSerialisation.swift in Sources */,
+				OBJ_132 /* DelegatedAction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_142 /* Sources */ = {
+		OBJ_141 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_143 /* ActionManagerMac.swift in Sources */,
-				OBJ_144 /* ActionManagerMobile.swift in Sources */,
+				OBJ_142 /* ActionManagerMac.swift in Sources */,
+				OBJ_143 /* ActionManagerMobile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_154 /* Sources */ = {
+		OBJ_153 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_155 /* Package.swift in Sources */,
+				OBJ_154 /* Package.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_160 /* Sources */ = {
+		OBJ_159 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_161 /* Arguments.swift in Sources */,
+				OBJ_160 /* Arguments.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_172 /* Sources */ = {
+		OBJ_171 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_173 /* Package.swift in Sources */,
+				OBJ_172 /* Package.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_178 /* Sources */ = {
+		OBJ_177 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_179 /* BookishCore.swift in Sources */,
-				OBJ_180 /* CloudManager.swift in Sources */,
-				OBJ_181 /* ImageCache.swift in Sources */,
-				OBJ_182 /* NSEntityDescriptionExtensions.swift in Sources */,
-				OBJ_183 /* NSManagedObjectContextExtensions.swift in Sources */,
-				OBJ_184 /* NSManagedObjectExtensions.swift in Sources */,
+				OBJ_178 /* BookishCore.swift in Sources */,
+				OBJ_179 /* CloudManager.swift in Sources */,
+				OBJ_180 /* ImageCache.swift in Sources */,
+				OBJ_181 /* NSEntityDescriptionExtensions.swift in Sources */,
+				OBJ_182 /* NSManagedObjectContextExtensions.swift in Sources */,
+				OBJ_183 /* NSManagedObjectExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_205 /* Sources */ = {
+		OBJ_204 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_206 /* main.swift in Sources */,
+				OBJ_205 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_226 /* Sources */ = {
+		OBJ_225 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_227 /* Package.swift in Sources */,
+				OBJ_226 /* Package.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_238 /* Sources */ = {
+		OBJ_237 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_239 /* main.swift in Sources */,
+				OBJ_238 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_258 /* Sources */ = {
+		OBJ_257 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_259 /* BookishCoreTests.swift in Sources */,
-				OBJ_260 /* CoreDataTestCase.swift in Sources */,
-				OBJ_261 /* NSEntityDescriptionTests.swift in Sources */,
-				OBJ_262 /* NSManagedObjectContextTests.swift in Sources */,
-				OBJ_263 /* NSManagedObjectTests.swift in Sources */,
+				OBJ_258 /* BookishCoreTests.swift in Sources */,
+				OBJ_259 /* CoreDataTestCase.swift in Sources */,
+				OBJ_260 /* NSEntityDescriptionTests.swift in Sources */,
+				OBJ_261 /* NSManagedObjectContextTests.swift in Sources */,
+				OBJ_262 /* NSManagedObjectTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_286 /* Sources */ = {
+		OBJ_285 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_287 /* Command.swift in Sources */,
-				OBJ_288 /* CommandLine+CommandShell.swift in Sources */,
-				OBJ_289 /* CommandShell.swift in Sources */,
-				OBJ_290 /* Result.swift in Sources */,
+				OBJ_286 /* Command.swift in Sources */,
+				OBJ_287 /* CommandLine+CommandShell.swift in Sources */,
+				OBJ_288 /* CommandShell.swift in Sources */,
+				OBJ_289 /* Result.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_302 /* Sources */ = {
+		OBJ_301 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_303 /* Package.swift in Sources */,
+				OBJ_302 /* Package.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_307 /* Sources */ = {
+		OBJ_306 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_308 /* Argument.swift in Sources */,
-				OBJ_309 /* BranchPattern.swift in Sources */,
-				OBJ_310 /* Command.swift in Sources */,
-				OBJ_311 /* Docopt.swift in Sources */,
-				OBJ_312 /* DocoptError.swift in Sources */,
-				OBJ_313 /* Either.swift in Sources */,
-				OBJ_314 /* LeafPattern.swift in Sources */,
-				OBJ_315 /* OneOrMore.swift in Sources */,
-				OBJ_316 /* Option.swift in Sources */,
-				OBJ_317 /* Optional.swift in Sources */,
-				OBJ_318 /* OptionsShortcut.swift in Sources */,
-				OBJ_319 /* Pattern.swift in Sources */,
-				OBJ_320 /* Required.swift in Sources */,
-				OBJ_321 /* String.swift in Sources */,
-				OBJ_322 /* Tokens.swift in Sources */,
+				OBJ_307 /* Argument.swift in Sources */,
+				OBJ_308 /* BranchPattern.swift in Sources */,
+				OBJ_309 /* Command.swift in Sources */,
+				OBJ_310 /* Docopt.swift in Sources */,
+				OBJ_311 /* DocoptError.swift in Sources */,
+				OBJ_312 /* Either.swift in Sources */,
+				OBJ_313 /* LeafPattern.swift in Sources */,
+				OBJ_314 /* OneOrMore.swift in Sources */,
+				OBJ_315 /* Option.swift in Sources */,
+				OBJ_316 /* Optional.swift in Sources */,
+				OBJ_317 /* OptionsShortcut.swift in Sources */,
+				OBJ_318 /* Pattern.swift in Sources */,
+				OBJ_319 /* Required.swift in Sources */,
+				OBJ_320 /* String.swift in Sources */,
+				OBJ_321 /* Tokens.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_328 /* Sources */ = {
+		OBJ_327 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_329 /* Package.swift in Sources */,
+				OBJ_328 /* Package.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_333 /* Sources */ = {
+		OBJ_332 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_334 /* Expressions.swift in Sources */,
+				OBJ_333 /* Expressions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_340 /* Sources */ = {
+		OBJ_339 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_341 /* Package.swift in Sources */,
+				OBJ_340 /* Package.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_345 /* Sources */ = {
+		OBJ_344 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_346 /* JSONDump.swift in Sources */,
+				OBJ_345 /* JSONDump.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_352 /* Sources */ = {
+		OBJ_351 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_353 /* Package.swift in Sources */,
+				OBJ_352 /* Package.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_357 /* Sources */ = {
+		OBJ_356 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_358 /* Channel.swift in Sources */,
-				OBJ_359 /* Context.swift in Sources */,
-				OBJ_360 /* Handler.swift in Sources */,
-				OBJ_361 /* Manager.swift in Sources */,
-				OBJ_362 /* NSLogHandler.swift in Sources */,
-				OBJ_363 /* OSLogHandler.swift in Sources */,
-				OBJ_364 /* PrintHandler.swift in Sources */,
+				OBJ_357 /* Channel.swift in Sources */,
+				OBJ_358 /* Context.swift in Sources */,
+				OBJ_359 /* Handler.swift in Sources */,
+				OBJ_360 /* Manager.swift in Sources */,
+				OBJ_361 /* NSLogHandler.swift in Sources */,
+				OBJ_362 /* OSLogHandler.swift in Sources */,
+				OBJ_363 /* PrintHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_369 /* Sources */ = {
+		OBJ_368 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_370 /* LoggerMenu.swift in Sources */,
-				OBJ_371 /* LoggerSettingsView.swift in Sources */,
+				OBJ_369 /* LoggerMenu.swift in Sources */,
+				OBJ_370 /* LoggerSettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_379 /* Sources */ = {
+		OBJ_378 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_380 /* Package.swift in Sources */,
+				OBJ_379 /* Package.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_384 /* Sources */ = {
+		OBJ_383 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_385 /* XCTest+Logger.swift in Sources */,
+				OBJ_384 /* XCTest+Logger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_393 /* Sources */ = {
+		OBJ_392 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_394 /* main.swift in Sources */,
+				OBJ_393 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		OBJ_136 /* PBXTargetDependency */ = {
+		OBJ_135 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Logger::Logger" /* Logger */;
-			targetProxy = 22B116F922A18D48003FA7D7 /* PBXContainerItemProxy */;
+			targetProxy = 22B11C5C22A531E5003FA7D7 /* PBXContainerItemProxy */;
+		};
+		OBJ_147 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Actions::Actions" /* Actions */;
+			targetProxy = 22B11C5B22A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_148 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Actions::Actions" /* Actions */;
-			targetProxy = 22B116F822A18D48003FA7D7 /* PBXContainerItemProxy */;
+			target = "Logger::Logger" /* Logger */;
+			targetProxy = 22B11C5D22A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
-		OBJ_149 /* PBXTargetDependency */ = {
+		OBJ_164 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Logger::Logger" /* Logger */;
-			targetProxy = 22B116FA22A18D48003FA7D7 /* PBXContainerItemProxy */;
+			targetProxy = 22B11C5522A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_165 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Logger::Logger" /* Logger */;
-			targetProxy = 22B1170822A18D48003FA7D7 /* PBXContainerItemProxy */;
-		};
-		OBJ_166 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
 			target = "Docopt::Docopt" /* Docopt */;
-			targetProxy = 22B1170922A18D48003FA7D7 /* PBXContainerItemProxy */;
+			targetProxy = 22B11C5622A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
-		OBJ_192 /* PBXTargetDependency */ = {
+		OBJ_191 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Expressions::Expressions" /* Expressions */;
-			targetProxy = 22B116F522A18D48003FA7D7 /* PBXContainerItemProxy */;
+			targetProxy = 22B11C5822A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
-		OBJ_194 /* PBXTargetDependency */ = {
+		OBJ_193 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "JSONDump::JSONDump" /* JSONDump */;
-			targetProxy = 22B116F622A18D48003FA7D7 /* PBXContainerItemProxy */;
+			targetProxy = 22B11C5922A531E5003FA7D7 /* PBXContainerItemProxy */;
+		};
+		OBJ_195 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Actions::ActionsKit" /* ActionsKit */;
+			targetProxy = 22B11C5A22A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_196 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Actions::ActionsKit" /* ActionsKit */;
-			targetProxy = 22B116F722A18D48003FA7D7 /* PBXContainerItemProxy */;
+			target = "Actions::Actions" /* Actions */;
+			targetProxy = 22B11C5E22A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_197 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Actions::Actions" /* Actions */;
-			targetProxy = 22B116FB22A18D48003FA7D7 /* PBXContainerItemProxy */;
-		};
-		OBJ_198 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
 			target = "Logger::LoggerKit" /* LoggerKit */;
-			targetProxy = 22B116FC22A18D48003FA7D7 /* PBXContainerItemProxy */;
+			targetProxy = 22B11C5F22A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
-		OBJ_200 /* PBXTargetDependency */ = {
+		OBJ_199 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Logger::Logger" /* Logger */;
-			targetProxy = 22B116FE22A18D48003FA7D7 /* PBXContainerItemProxy */;
+			targetProxy = 22B11C6122A531E5003FA7D7 /* PBXContainerItemProxy */;
+		};
+		OBJ_214 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "BookishCoreMac::BookishCore" /* BookishCore */;
+			targetProxy = 22B11C5722A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_215 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "BookishCoreMac::BookishCore" /* BookishCore */;
-			targetProxy = 22B1170A22A18D48003FA7D7 /* PBXContainerItemProxy */;
+			target = "Expressions::Expressions" /* Expressions */;
+			targetProxy = 22B11C6222A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_216 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Expressions::Expressions" /* Expressions */;
-			targetProxy = 22B1170B22A18D48003FA7D7 /* PBXContainerItemProxy */;
+			target = "JSONDump::JSONDump" /* JSONDump */;
+			targetProxy = 22B11C6322A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_217 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "JSONDump::JSONDump" /* JSONDump */;
-			targetProxy = 22B1170C22A18D48003FA7D7 /* PBXContainerItemProxy */;
+			target = "Actions::ActionsKit" /* ActionsKit */;
+			targetProxy = 22B11C6422A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_218 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Actions::ActionsKit" /* ActionsKit */;
-			targetProxy = 22B1170D22A18D48003FA7D7 /* PBXContainerItemProxy */;
+			target = "Actions::Actions" /* Actions */;
+			targetProxy = 22B11C6522A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_219 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Actions::Actions" /* Actions */;
-			targetProxy = 22B1170E22A18D48003FA7D7 /* PBXContainerItemProxy */;
+			target = "Logger::LoggerKit" /* LoggerKit */;
+			targetProxy = 22B11C6622A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_220 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Logger::LoggerKit" /* LoggerKit */;
-			targetProxy = 22B1170F22A18D48003FA7D7 /* PBXContainerItemProxy */;
-		};
-		OBJ_221 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
 			target = "Logger::Logger" /* Logger */;
-			targetProxy = 22B1171022A18D48003FA7D7 /* PBXContainerItemProxy */;
+			targetProxy = 22B11C6722A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
-		OBJ_232 /* PBXTargetDependency */ = {
+		OBJ_231 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "BookishCoreMac::BookishCoreTests" /* BookishCoreTests */;
-			targetProxy = 22B1175622A18D4A003FA7D7 /* PBXContainerItemProxy */;
+			targetProxy = "BookishCoreMac::BookishCoreTests" /* BookishCoreTests */;
+		};
+		OBJ_247 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "BookishCoreMac::BookishCore" /* BookishCore */;
+			targetProxy = 22B11C7522A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_248 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "BookishCoreMac::BookishCore" /* BookishCore */;
-			targetProxy = 22B1171E22A18D48003FA7D7 /* PBXContainerItemProxy */;
+			target = "Expressions::Expressions" /* Expressions */;
+			targetProxy = 22B11C7622A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_249 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Expressions::Expressions" /* Expressions */;
-			targetProxy = 22B1171F22A18D48003FA7D7 /* PBXContainerItemProxy */;
+			target = "JSONDump::JSONDump" /* JSONDump */;
+			targetProxy = 22B11C7722A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_250 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "JSONDump::JSONDump" /* JSONDump */;
-			targetProxy = 22B1172022A18D48003FA7D7 /* PBXContainerItemProxy */;
+			target = "Actions::ActionsKit" /* ActionsKit */;
+			targetProxy = 22B11C7822A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_251 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Actions::ActionsKit" /* ActionsKit */;
-			targetProxy = 22B1172122A18D48003FA7D7 /* PBXContainerItemProxy */;
+			target = "Actions::Actions" /* Actions */;
+			targetProxy = 22B11C7922A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_252 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Actions::Actions" /* Actions */;
-			targetProxy = 22B1172222A18D48003FA7D7 /* PBXContainerItemProxy */;
+			target = "Logger::LoggerKit" /* LoggerKit */;
+			targetProxy = 22B11C7A22A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_253 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Logger::LoggerKit" /* LoggerKit */;
-			targetProxy = 22B1172322A18D48003FA7D7 /* PBXContainerItemProxy */;
-		};
-		OBJ_254 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
 			target = "Logger::Logger" /* Logger */;
-			targetProxy = 22B1172422A18D48003FA7D7 /* PBXContainerItemProxy */;
+			targetProxy = 22B11C7B22A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
-		OBJ_273 /* PBXTargetDependency */ = {
+		OBJ_272 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Logger::LoggerTestSupport" /* LoggerTestSupport */;
-			targetProxy = 22B116FF22A18D48003FA7D7 /* PBXContainerItemProxy */;
+			targetProxy = 22B11C7C22A531E6003FA7D7 /* PBXContainerItemProxy */;
+		};
+		OBJ_274 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "BookishCoreMac::BookishCore" /* BookishCore */;
+			targetProxy = 22B11C7E22A531E6003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_275 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "BookishCoreMac::BookishCore" /* BookishCore */;
-			targetProxy = 22B1170122A18D48003FA7D7 /* PBXContainerItemProxy */;
+			target = "Expressions::Expressions" /* Expressions */;
+			targetProxy = 22B11C7F22A531E6003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_276 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Expressions::Expressions" /* Expressions */;
-			targetProxy = 22B1170222A18D48003FA7D7 /* PBXContainerItemProxy */;
+			target = "JSONDump::JSONDump" /* JSONDump */;
+			targetProxy = 22B11C8022A531E6003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_277 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "JSONDump::JSONDump" /* JSONDump */;
-			targetProxy = 22B1170322A18D48003FA7D7 /* PBXContainerItemProxy */;
+			target = "Actions::ActionsKit" /* ActionsKit */;
+			targetProxy = 22B11C8122A531E6003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_278 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Actions::ActionsKit" /* ActionsKit */;
-			targetProxy = 22B1170422A18D48003FA7D7 /* PBXContainerItemProxy */;
+			target = "Actions::Actions" /* Actions */;
+			targetProxy = 22B11C8222A531E6003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_279 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Actions::Actions" /* Actions */;
-			targetProxy = 22B1170522A18D48003FA7D7 /* PBXContainerItemProxy */;
+			target = "Logger::LoggerKit" /* LoggerKit */;
+			targetProxy = 22B11C8322A531E6003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_280 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Logger::LoggerKit" /* LoggerKit */;
-			targetProxy = 22B1170622A18D48003FA7D7 /* PBXContainerItemProxy */;
-		};
-		OBJ_281 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
 			target = "Logger::Logger" /* Logger */;
-			targetProxy = 22B1170722A18D48003FA7D7 /* PBXContainerItemProxy */;
+			targetProxy = 22B11C8422A531E6003FA7D7 /* PBXContainerItemProxy */;
+		};
+		OBJ_294 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Arguments::Arguments" /* Arguments */;
+			targetProxy = 22B11C6822A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_295 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Arguments::Arguments" /* Arguments */;
-			targetProxy = 22B1171122A18D48003FA7D7 /* PBXContainerItemProxy */;
+			target = "Logger::Logger" /* Logger */;
+			targetProxy = 22B11C6922A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_296 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Logger::Logger" /* Logger */;
-			targetProxy = 22B1171222A18D48003FA7D7 /* PBXContainerItemProxy */;
-		};
-		OBJ_297 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
 			target = "Docopt::Docopt" /* Docopt */;
-			targetProxy = 22B1171322A18D48003FA7D7 /* PBXContainerItemProxy */;
+			targetProxy = 22B11C6A22A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
-		OBJ_374 /* PBXTargetDependency */ = {
+		OBJ_373 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Logger::Logger" /* Logger */;
-			targetProxy = 22B116FD22A18D48003FA7D7 /* PBXContainerItemProxy */;
+			targetProxy = 22B11C6022A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
-		OBJ_388 /* PBXTargetDependency */ = {
+		OBJ_387 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Logger::Logger" /* Logger */;
-			targetProxy = 22B1170022A18D48003FA7D7 /* PBXContainerItemProxy */;
+			targetProxy = 22B11C7D22A531E6003FA7D7 /* PBXContainerItemProxy */;
+		};
+		OBJ_405 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "CommandShell::CommandShell" /* CommandShell */;
+			targetProxy = 22B11C6B22A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_406 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "CommandShell::CommandShell" /* CommandShell */;
-			targetProxy = 22B1171422A18D48003FA7D7 /* PBXContainerItemProxy */;
+			target = "Arguments::Arguments" /* Arguments */;
+			targetProxy = 22B11C6C22A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_407 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Arguments::Arguments" /* Arguments */;
-			targetProxy = 22B1171522A18D48003FA7D7 /* PBXContainerItemProxy */;
+			target = "Docopt::Docopt" /* Docopt */;
+			targetProxy = 22B11C6D22A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_408 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Docopt::Docopt" /* Docopt */;
-			targetProxy = 22B1171622A18D48003FA7D7 /* PBXContainerItemProxy */;
+			target = "BookishCoreMac::BookishCore" /* BookishCore */;
+			targetProxy = 22B11C6E22A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_409 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "BookishCoreMac::BookishCore" /* BookishCore */;
-			targetProxy = 22B1171722A18D48003FA7D7 /* PBXContainerItemProxy */;
+			target = "Expressions::Expressions" /* Expressions */;
+			targetProxy = 22B11C6F22A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_410 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Expressions::Expressions" /* Expressions */;
-			targetProxy = 22B1171822A18D48003FA7D7 /* PBXContainerItemProxy */;
+			target = "JSONDump::JSONDump" /* JSONDump */;
+			targetProxy = 22B11C7022A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_411 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "JSONDump::JSONDump" /* JSONDump */;
-			targetProxy = 22B1171922A18D48003FA7D7 /* PBXContainerItemProxy */;
+			target = "Actions::ActionsKit" /* ActionsKit */;
+			targetProxy = 22B11C7122A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_412 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Actions::ActionsKit" /* ActionsKit */;
-			targetProxy = 22B1171A22A18D48003FA7D7 /* PBXContainerItemProxy */;
+			target = "Actions::Actions" /* Actions */;
+			targetProxy = 22B11C7222A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_413 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Actions::Actions" /* Actions */;
-			targetProxy = 22B1171B22A18D48003FA7D7 /* PBXContainerItemProxy */;
+			target = "Logger::LoggerKit" /* LoggerKit */;
+			targetProxy = 22B11C7322A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
 		OBJ_414 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "Logger::LoggerKit" /* LoggerKit */;
-			targetProxy = 22B1171C22A18D48003FA7D7 /* PBXContainerItemProxy */;
-		};
-		OBJ_415 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
 			target = "Logger::Logger" /* Logger */;
-			targetProxy = 22B1171D22A18D48003FA7D7 /* PBXContainerItemProxy */;
+			targetProxy = 22B11C7422A531E5003FA7D7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		OBJ_123 /* Debug */ = {
+		OBJ_122 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* BookishModelMac.xcconfig */;
 			buildSettings = {
@@ -2017,7 +2008,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_124 /* Release */ = {
+		OBJ_123 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* BookishModelMac.xcconfig */;
 			buildSettings = {
@@ -2042,7 +2033,7 @@
 			};
 			name = Release;
 		};
-		OBJ_140 /* Debug */ = {
+		OBJ_139 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* BookishModelMac.xcconfig */;
 			buildSettings = {
@@ -2067,7 +2058,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_141 /* Release */ = {
+		OBJ_140 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* BookishModelMac.xcconfig */;
 			buildSettings = {
@@ -2092,7 +2083,7 @@
 			};
 			name = Release;
 		};
-		OBJ_152 /* Debug */ = {
+		OBJ_151 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -2101,7 +2092,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_153 /* Release */ = {
+		OBJ_152 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -2110,7 +2101,7 @@
 			};
 			name = Release;
 		};
-		OBJ_158 /* Debug */ = {
+		OBJ_157 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* BookishModelMac.xcconfig */;
 			buildSettings = {
@@ -2135,7 +2126,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_159 /* Release */ = {
+		OBJ_158 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* BookishModelMac.xcconfig */;
 			buildSettings = {
@@ -2160,7 +2151,7 @@
 			};
 			name = Release;
 		};
-		OBJ_170 /* Debug */ = {
+		OBJ_169 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -2169,7 +2160,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_171 /* Release */ = {
+		OBJ_170 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -2178,7 +2169,7 @@
 			};
 			name = Release;
 		};
-		OBJ_176 /* Debug */ = {
+		OBJ_175 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* BookishModelMac.xcconfig */;
 			buildSettings = {
@@ -2207,7 +2198,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_177 /* Release */ = {
+		OBJ_176 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* BookishModelMac.xcconfig */;
 			buildSettings = {
@@ -2236,7 +2227,7 @@
 			};
 			name = Release;
 		};
-		OBJ_203 /* Debug */ = {
+		OBJ_202 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* BookishModelMac.xcconfig */;
 			buildSettings = {
@@ -2262,7 +2253,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_204 /* Release */ = {
+		OBJ_203 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* BookishModelMac.xcconfig */;
 			buildSettings = {
@@ -2288,7 +2279,7 @@
 			};
 			name = Release;
 		};
-		OBJ_224 /* Debug */ = {
+		OBJ_223 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -2297,7 +2288,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_225 /* Release */ = {
+		OBJ_224 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -2306,19 +2297,19 @@
 			};
 			name = Release;
 		};
-		OBJ_230 /* Debug */ = {
+		OBJ_229 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = Debug;
 		};
-		OBJ_231 /* Release */ = {
+		OBJ_230 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 			};
 			name = Release;
 		};
-		OBJ_236 /* Debug */ = {
+		OBJ_235 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* BookishModelMac.xcconfig */;
 			buildSettings = {
@@ -2344,7 +2335,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_237 /* Release */ = {
+		OBJ_236 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* BookishModelMac.xcconfig */;
 			buildSettings = {
@@ -2370,7 +2361,7 @@
 			};
 			name = Release;
 		};
-		OBJ_256 /* Debug */ = {
+		OBJ_255 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* BookishModelMac.xcconfig */;
 			buildSettings = {
@@ -2396,7 +2387,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_257 /* Release */ = {
+		OBJ_256 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* BookishModelMac.xcconfig */;
 			buildSettings = {
@@ -2422,7 +2413,7 @@
 			};
 			name = Release;
 		};
-		OBJ_284 /* Debug */ = {
+		OBJ_283 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* BookishModelMac.xcconfig */;
 			buildSettings = {
@@ -2447,7 +2438,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_285 /* Release */ = {
+		OBJ_284 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* BookishModelMac.xcconfig */;
 			buildSettings = {
@@ -2471,6 +2462,15 @@
 				TARGET_NAME = CommandShell;
 			};
 			name = Release;
+		};
+		OBJ_299 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4.2 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode10.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
 		};
 		OBJ_3 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -2499,16 +2499,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_300 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				LD = /usr/bin/true;
-				OTHER_SWIFT_FLAGS = "-swift-version 4.2 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode10.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
-				SWIFT_VERSION = 4.2;
-			};
-			name = Debug;
-		};
-		OBJ_301 /* Release */ = {
+		OBJ_300 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -2517,7 +2508,7 @@
 			};
 			name = Release;
 		};
-		OBJ_305 /* Debug */ = {
+		OBJ_304 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* BookishModelMac.xcconfig */;
 			buildSettings = {
@@ -2542,7 +2533,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_306 /* Release */ = {
+		OBJ_305 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* BookishModelMac.xcconfig */;
 			buildSettings = {
@@ -2567,7 +2558,7 @@
 			};
 			name = Release;
 		};
-		OBJ_326 /* Debug */ = {
+		OBJ_325 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -2576,7 +2567,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_327 /* Release */ = {
+		OBJ_326 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -2585,7 +2576,7 @@
 			};
 			name = Release;
 		};
-		OBJ_331 /* Debug */ = {
+		OBJ_330 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* BookishModelMac.xcconfig */;
 			buildSettings = {
@@ -2614,7 +2605,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_332 /* Release */ = {
+		OBJ_331 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* BookishModelMac.xcconfig */;
 			buildSettings = {
@@ -2643,7 +2634,7 @@
 			};
 			name = Release;
 		};
-		OBJ_338 /* Debug */ = {
+		OBJ_337 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -2652,7 +2643,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_339 /* Release */ = {
+		OBJ_338 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -2661,7 +2652,7 @@
 			};
 			name = Release;
 		};
-		OBJ_343 /* Debug */ = {
+		OBJ_342 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* BookishModelMac.xcconfig */;
 			buildSettings = {
@@ -2686,7 +2677,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_344 /* Release */ = {
+		OBJ_343 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* BookishModelMac.xcconfig */;
 			buildSettings = {
@@ -2711,7 +2702,7 @@
 			};
 			name = Release;
 		};
-		OBJ_350 /* Debug */ = {
+		OBJ_349 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -2720,7 +2711,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_351 /* Release */ = {
+		OBJ_350 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -2729,7 +2720,7 @@
 			};
 			name = Release;
 		};
-		OBJ_355 /* Debug */ = {
+		OBJ_354 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* BookishModelMac.xcconfig */;
 			buildSettings = {
@@ -2754,7 +2745,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_356 /* Release */ = {
+		OBJ_355 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* BookishModelMac.xcconfig */;
 			buildSettings = {
@@ -2779,7 +2770,7 @@
 			};
 			name = Release;
 		};
-		OBJ_367 /* Debug */ = {
+		OBJ_366 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* BookishModelMac.xcconfig */;
 			buildSettings = {
@@ -2804,7 +2795,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_368 /* Release */ = {
+		OBJ_367 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* BookishModelMac.xcconfig */;
 			buildSettings = {
@@ -2829,7 +2820,7 @@
 			};
 			name = Release;
 		};
-		OBJ_377 /* Debug */ = {
+		OBJ_376 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -2838,7 +2829,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_378 /* Release */ = {
+		OBJ_377 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -2847,7 +2838,7 @@
 			};
 			name = Release;
 		};
-		OBJ_382 /* Debug */ = {
+		OBJ_381 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* BookishModelMac.xcconfig */;
 			buildSettings = {
@@ -2872,7 +2863,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_383 /* Release */ = {
+		OBJ_382 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* BookishModelMac.xcconfig */;
 			buildSettings = {
@@ -2897,7 +2888,7 @@
 			};
 			name = Release;
 		};
-		OBJ_391 /* Debug */ = {
+		OBJ_390 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* BookishModelMac.xcconfig */;
 			buildSettings = {
@@ -2923,7 +2914,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_392 /* Release */ = {
+		OBJ_391 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = OBJ_8 /* BookishModelMac.xcconfig */;
 			buildSettings = {
@@ -2976,56 +2967,56 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		OBJ_122 /* Build configuration list for PBXNativeTarget "Actions" */ = {
+		OBJ_121 /* Build configuration list for PBXNativeTarget "Actions" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_123 /* Debug */,
-				OBJ_124 /* Release */,
+				OBJ_122 /* Debug */,
+				OBJ_123 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_139 /* Build configuration list for PBXNativeTarget "ActionsKit" */ = {
+		OBJ_138 /* Build configuration list for PBXNativeTarget "ActionsKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_140 /* Debug */,
-				OBJ_141 /* Release */,
+				OBJ_139 /* Debug */,
+				OBJ_140 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_151 /* Build configuration list for PBXNativeTarget "ActionsPackageDescription" */ = {
+		OBJ_150 /* Build configuration list for PBXNativeTarget "ActionsPackageDescription" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_152 /* Debug */,
-				OBJ_153 /* Release */,
+				OBJ_151 /* Debug */,
+				OBJ_152 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_157 /* Build configuration list for PBXNativeTarget "Arguments" */ = {
+		OBJ_156 /* Build configuration list for PBXNativeTarget "Arguments" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_158 /* Debug */,
-				OBJ_159 /* Release */,
+				OBJ_157 /* Debug */,
+				OBJ_158 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_169 /* Build configuration list for PBXNativeTarget "ArgumentsPackageDescription" */ = {
+		OBJ_168 /* Build configuration list for PBXNativeTarget "ArgumentsPackageDescription" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_170 /* Debug */,
-				OBJ_171 /* Release */,
+				OBJ_169 /* Debug */,
+				OBJ_170 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_175 /* Build configuration list for PBXNativeTarget "BookishCore" */ = {
+		OBJ_174 /* Build configuration list for PBXNativeTarget "BookishCore" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_176 /* Debug */,
-				OBJ_177 /* Release */,
+				OBJ_175 /* Debug */,
+				OBJ_176 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3039,164 +3030,164 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_202 /* Build configuration list for PBXNativeTarget "BookishCoreMac" */ = {
+		OBJ_201 /* Build configuration list for PBXNativeTarget "BookishCoreMac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_203 /* Debug */,
-				OBJ_204 /* Release */,
+				OBJ_202 /* Debug */,
+				OBJ_203 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_223 /* Build configuration list for PBXNativeTarget "BookishCoreMacPackageDescription" */ = {
+		OBJ_222 /* Build configuration list for PBXNativeTarget "BookishCoreMacPackageDescription" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_224 /* Debug */,
-				OBJ_225 /* Release */,
+				OBJ_223 /* Debug */,
+				OBJ_224 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_229 /* Build configuration list for PBXAggregateTarget "BookishCoreMacPackageTests" */ = {
+		OBJ_228 /* Build configuration list for PBXAggregateTarget "BookishCoreMacPackageTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_230 /* Debug */,
-				OBJ_231 /* Release */,
+				OBJ_229 /* Debug */,
+				OBJ_230 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_235 /* Build configuration list for PBXNativeTarget "BookishCoreMobile" */ = {
+		OBJ_234 /* Build configuration list for PBXNativeTarget "BookishCoreMobile" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_236 /* Debug */,
-				OBJ_237 /* Release */,
+				OBJ_235 /* Debug */,
+				OBJ_236 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_255 /* Build configuration list for PBXNativeTarget "BookishCoreTests" */ = {
+		OBJ_254 /* Build configuration list for PBXNativeTarget "BookishCoreTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_256 /* Debug */,
-				OBJ_257 /* Release */,
+				OBJ_255 /* Debug */,
+				OBJ_256 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_283 /* Build configuration list for PBXNativeTarget "CommandShell" */ = {
+		OBJ_282 /* Build configuration list for PBXNativeTarget "CommandShell" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_284 /* Debug */,
-				OBJ_285 /* Release */,
+				OBJ_283 /* Debug */,
+				OBJ_284 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_299 /* Build configuration list for PBXNativeTarget "CommandShellPackageDescription" */ = {
+		OBJ_298 /* Build configuration list for PBXNativeTarget "CommandShellPackageDescription" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_300 /* Debug */,
-				OBJ_301 /* Release */,
+				OBJ_299 /* Debug */,
+				OBJ_300 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_304 /* Build configuration list for PBXNativeTarget "Docopt" */ = {
+		OBJ_303 /* Build configuration list for PBXNativeTarget "Docopt" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_305 /* Debug */,
-				OBJ_306 /* Release */,
+				OBJ_304 /* Debug */,
+				OBJ_305 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_325 /* Build configuration list for PBXNativeTarget "DocoptPackageDescription" */ = {
+		OBJ_324 /* Build configuration list for PBXNativeTarget "DocoptPackageDescription" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_326 /* Debug */,
-				OBJ_327 /* Release */,
+				OBJ_325 /* Debug */,
+				OBJ_326 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_330 /* Build configuration list for PBXNativeTarget "Expressions" */ = {
+		OBJ_329 /* Build configuration list for PBXNativeTarget "Expressions" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_331 /* Debug */,
-				OBJ_332 /* Release */,
+				OBJ_330 /* Debug */,
+				OBJ_331 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_337 /* Build configuration list for PBXNativeTarget "ExpressionsPackageDescription" */ = {
+		OBJ_336 /* Build configuration list for PBXNativeTarget "ExpressionsPackageDescription" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_338 /* Debug */,
-				OBJ_339 /* Release */,
+				OBJ_337 /* Debug */,
+				OBJ_338 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_342 /* Build configuration list for PBXNativeTarget "JSONDump" */ = {
+		OBJ_341 /* Build configuration list for PBXNativeTarget "JSONDump" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_343 /* Debug */,
-				OBJ_344 /* Release */,
+				OBJ_342 /* Debug */,
+				OBJ_343 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_349 /* Build configuration list for PBXNativeTarget "JSONDumpPackageDescription" */ = {
+		OBJ_348 /* Build configuration list for PBXNativeTarget "JSONDumpPackageDescription" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_350 /* Debug */,
-				OBJ_351 /* Release */,
+				OBJ_349 /* Debug */,
+				OBJ_350 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_354 /* Build configuration list for PBXNativeTarget "Logger" */ = {
+		OBJ_353 /* Build configuration list for PBXNativeTarget "Logger" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_355 /* Debug */,
-				OBJ_356 /* Release */,
+				OBJ_354 /* Debug */,
+				OBJ_355 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_366 /* Build configuration list for PBXNativeTarget "LoggerKit" */ = {
+		OBJ_365 /* Build configuration list for PBXNativeTarget "LoggerKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_367 /* Debug */,
-				OBJ_368 /* Release */,
+				OBJ_366 /* Debug */,
+				OBJ_367 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_376 /* Build configuration list for PBXNativeTarget "LoggerPackageDescription" */ = {
+		OBJ_375 /* Build configuration list for PBXNativeTarget "LoggerPackageDescription" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_377 /* Debug */,
-				OBJ_378 /* Release */,
+				OBJ_376 /* Debug */,
+				OBJ_377 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_381 /* Build configuration list for PBXNativeTarget "LoggerTestSupport" */ = {
+		OBJ_380 /* Build configuration list for PBXNativeTarget "LoggerTestSupport" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_382 /* Debug */,
-				OBJ_383 /* Release */,
+				OBJ_381 /* Debug */,
+				OBJ_382 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_390 /* Build configuration list for PBXNativeTarget "bktCore" */ = {
+		OBJ_389 /* Build configuration list for PBXNativeTarget "bktCore" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_391 /* Debug */,
-				OBJ_392 /* Release */,
+				OBJ_390 /* Debug */,
+				OBJ_391 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
