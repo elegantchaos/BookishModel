@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "BookishCoreX",
+    name: "BookishCoreMobile",
     platforms: [
        .macOS(.v10_13), .iOS(.v12),
     ],
@@ -21,6 +21,7 @@ let package = Package(
         .package(url: "https://github.com/elegantchaos/JSONDump", from: "1.0.4"),
         .package(url: "https://github.com/elegantchaos/Coverage", from: "1.0.4"),
         .package(url: "https://github.com/elegantchaos/CommandShell", from: "1.0.3"),
+        .package(url: "https://github.com/elegantchaos/ReleaseTools", .branch("bookish")),
     ],
     targets: [
         .target(
