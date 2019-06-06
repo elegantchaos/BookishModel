@@ -1,0 +1,88 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Actions",
+        "repositoryURL": "https://github.com/elegantchaos/Actions",
+        "state": {
+          "branch": null,
+          "revision": "88f7abee5b7af2c2bc8d3d1b2c3d524b02e2ce05",
+          "version": "1.3.1"
+        }
+      },
+      {
+        "package": "BookishCore",
+        "repositoryURL": "git@github.com:elegantchaos/BookishCore.git",
+        "state": {
+          "branch": null,
+          "revision": "91fddb1c14ba1dc3526f660f4931b726e2647e05",
+          "version": "1.0.1"
+        }
+      },
+      {
+        "package": "CommandShell",
+        "repositoryURL": "https://github.com/elegantchaos/CommandShell",
+        "state": {
+          "branch": null,
+          "revision": "212543ca193879978d2184115ba47f6ee4506b1b",
+          "version": "1.0.3"
+        }
+      },
+      {
+        "package": "Coverage",
+        "repositoryURL": "https://github.com/elegantchaos/Coverage",
+        "state": {
+          "branch": null,
+          "revision": "fea0b8640a30b22cdf87ae9a722c6bbbf4e608a6",
+          "version": "1.0.4"
+        }
+      },
+      {
+        "package": "Docopt",
+        "repositoryURL": "https://github.com/elegantchaos/docopt.swift",
+        "state": {
+          "branch": null,
+          "revision": "a236953ec13b4c2c54a4450110973d9ff9db7711",
+          "version": "0.6.10"
+        }
+      },
+      {
+        "package": "Expressions",
+        "repositoryURL": "https://github.com/elegantchaos/Expressions",
+        "state": {
+          "branch": null,
+          "revision": "d821e7c75e31fddb8158d8dac578a6ba200c9f36",
+          "version": "1.0.0"
+        }
+      },
+      {
+        "package": "JSONDump",
+        "repositoryURL": "https://github.com/elegantchaos/JSONDump",
+        "state": {
+          "branch": null,
+          "revision": "0743e45cc8c57550136df4cc0e1d1d332a9da494",
+          "version": "1.0.4"
+        }
+      },
+      {
+        "package": "Logger",
+        "repositoryURL": "https://github.com/elegantchaos/Logger",
+        "state": {
+          "branch": null,
+          "revision": "32a977f56b93e2fdd73d431f4ce95b4a1023ca9b",
+          "version": "1.3.5"
+        }
+      },
+      {
+        "package": "Runner",
+        "repositoryURL": "https://github.com/elegantchaos/Runner.git",
+        "state": {
+          "branch": null,
+          "revision": "bc4495a7f3ad7a2d34ef90acf8a4514ca89db2e5",
+          "version": "1.0.2"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
