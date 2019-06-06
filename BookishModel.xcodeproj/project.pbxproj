@@ -213,6 +213,15 @@
 		22A498CE220F475C006A2137 /* ImporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A498CC220F475C006A2137 /* ImporterTests.swift */; };
 		22A498D0220F480A006A2137 /* Simple.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22A498CF220F480A006A2137 /* Simple.plist */; };
 		22A498D1220F480A006A2137 /* Simple.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22A498CF220F480A006A2137 /* Simple.plist */; };
+		22A8DF9422A943A300994280 /* Expressions in Frameworks */ = {isa = PBXBuildFile; productRef = 22A8DF9322A943A300994280 /* Expressions */; };
+		22A8DF9622A943CE00994280 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A8DF9522A943CE00994280 /* ImageCache.swift */; };
+		22A8DF9722A943CE00994280 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A8DF9522A943CE00994280 /* ImageCache.swift */; };
+		22A8DF9B22A9440000994280 /* NSManagedObjectExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A8DF9822A9440000994280 /* NSManagedObjectExtensions.swift */; };
+		22A8DF9C22A9440000994280 /* NSManagedObjectExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A8DF9822A9440000994280 /* NSManagedObjectExtensions.swift */; };
+		22A8DF9D22A9440000994280 /* NSEntityDescriptionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A8DF9922A9440000994280 /* NSEntityDescriptionExtensions.swift */; };
+		22A8DF9E22A9440000994280 /* NSEntityDescriptionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A8DF9922A9440000994280 /* NSEntityDescriptionExtensions.swift */; };
+		22A8DF9F22A9440000994280 /* NSManagedObjectContextExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A8DF9A22A9440000994280 /* NSManagedObjectContextExtensions.swift */; };
+		22A8DFA022A9440000994280 /* NSManagedObjectContextExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A8DF9A22A9440000994280 /* NSManagedObjectContextExtensions.swift */; };
 		22ADAC5E223146BE00967943 /* SequenceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ADAC5D223146BE00967943 /* SequenceExtensions.swift */; };
 		22ADAC7922314BE000967943 /* SequenceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ADAC5D223146BE00967943 /* SequenceExtensions.swift */; };
 		22ADAC7B22314C0700967943 /* SequenceExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ADAC7A22314C0700967943 /* SequenceExtensionTests.swift */; };
@@ -431,6 +440,10 @@
 		22A498B7220F3554006A2137 /* ImportSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportSession.swift; sourceTree = "<group>"; };
 		22A498CC220F475C006A2137 /* ImporterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImporterTests.swift; sourceTree = "<group>"; };
 		22A498CF220F480A006A2137 /* Simple.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Simple.plist; sourceTree = "<group>"; };
+		22A8DF9522A943CE00994280 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		22A8DF9822A9440000994280 /* NSManagedObjectExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSManagedObjectExtensions.swift; sourceTree = "<group>"; };
+		22A8DF9922A9440000994280 /* NSEntityDescriptionExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSEntityDescriptionExtensions.swift; sourceTree = "<group>"; };
+		22A8DF9A22A9440000994280 /* NSManagedObjectContextExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSManagedObjectContextExtensions.swift; sourceTree = "<group>"; };
 		22ADAC5D223146BE00967943 /* SequenceExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceExtensions.swift; sourceTree = "<group>"; };
 		22ADAC7A22314C0700967943 /* SequenceExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceExtensionTests.swift; sourceTree = "<group>"; };
 		22B07AA6229550D100068680 /* TagAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagAction.swift; sourceTree = "<group>"; };
@@ -475,6 +488,7 @@
 				8BDB54A922A921B200467ACD /* (null) in Frameworks */,
 				8BF236B822A93EB600FDD256 /* JSONDump in Frameworks */,
 				8BDB54AB22A921B200467ACD /* (null) in Frameworks */,
+				22A8DF9422A943A300994280 /* Expressions in Frameworks */,
 				8BF236BD22A93F9800FDD256 /* ActionsKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -643,6 +657,7 @@
 		2250C74921B94D5F00E899E2 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				22A8DF9522A943CE00994280 /* ImageCache.swift */,
 				2211A9542215A7B0004B7589 /* StringExtensions.swift */,
 				22E96F6A228D837800DE95A8 /* DataFetcher.swift */,
 				22ADAC5D223146BE00967943 /* SequenceExtensions.swift */,
@@ -650,6 +665,9 @@
 				22115B1B222FDF0A00C3F170 /* DecodingError+DetailedDescription.swift */,
 				22F180C321CA662D00220D20 /* FileManagerExtensions.swift */,
 				22318E952256452400EE3EBC /* MarkupUtilities.swift */,
+				22A8DF9922A9440000994280 /* NSEntityDescriptionExtensions.swift */,
+				22A8DF9A22A9440000994280 /* NSManagedObjectContextExtensions.swift */,
+				22A8DF9822A9440000994280 /* NSManagedObjectExtensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -834,6 +852,7 @@
 				8BF236B722A93EB600FDD256 /* JSONDump */,
 				8BF236BA22A93F9800FDD256 /* Actions */,
 				8BF236BC22A93F9800FDD256 /* ActionsKit */,
+				22A8DF9322A943A300994280 /* Expressions */,
 			);
 			productName = BookishModelMac;
 			productReference = 22429391212AE0F300E70510 /* BookishModel.framework */;
@@ -944,7 +963,7 @@
 				};
 			};
 			buildConfigurationList = 22DD423F2126D6DA0070C85A /* Build configuration list for PBXProject "BookishModel" */;
-			compatibilityVersion = "Xcode 10.0";
+			compatibilityVersion = "Xcode 11.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -955,6 +974,7 @@
 			packageReferences = (
 				8BF236B622A93EB600FDD256 /* XCRemoteSwiftPackageReference "JSONDump" */,
 				8BF236B922A93F9800FDD256 /* XCRemoteSwiftPackageReference "Actions" */,
+				22A8DF9222A943A300994280 /* XCRemoteSwiftPackageReference "Expressions" */,
 			);
 			productRefGroup = 22DD42452126D6DA0070C85A /* Products */;
 			projectDirPath = "";
@@ -1031,9 +1051,11 @@
 			files = (
 				22E96F6B228D837800DE95A8 /* DataFetcher.swift in Sources */,
 				221B8554225E2CDD00BC4D32 /* PersonDetailItem.swift in Sources */,
+				22A8DF9622A943CE00994280 /* ImageCache.swift in Sources */,
 				22A498BE220F3555006A2137 /* ImportManager.swift in Sources */,
 				22F180C421CA662D00220D20 /* FileManagerExtensions.swift in Sources */,
 				22B07AA7229550D100068680 /* TagAction.swift in Sources */,
+				22A8DF9F22A9440000994280 /* NSManagedObjectContextExtensions.swift in Sources */,
 				22A3E2EB21FB80B900BA4F17 /* MultipleValues.swift in Sources */,
 				221ED50C216B79F100594714 /* DetailSpec.swift in Sources */,
 				22D5A5EE228C5F3F00E9FDDC /* TestDataImporter.swift in Sources */,
@@ -1082,9 +1104,11 @@
 				22E47CC6216E31B700E43DBF /* BookAction.swift in Sources */,
 				229FB9F12226CBCD00A564D4 /* LookupSession.swift in Sources */,
 				22115B1C222FDF0A00C3F170 /* DecodingError+DetailedDescription.swift in Sources */,
+				22A8DF9B22A9440000994280 /* NSManagedObjectExtensions.swift in Sources */,
 				224293E3212AF09D00E70510 /* Person.swift in Sources */,
 				2231C571222971B600D730FB /* String+ISBN.swift in Sources */,
 				2211A96F2215A7B0004B7589 /* StringExtensions.swift in Sources */,
+				22A8DF9D22A9440000994280 /* NSEntityDescriptionExtensions.swift in Sources */,
 				229FB9E22226B2C300A564D4 /* LookupService.swift in Sources */,
 				2250C71F21B94CD800E899E2 /* SeriesScanner.swift in Sources */,
 				229FB9E82226B2D900A564D4 /* GoogleLookupService.swift in Sources */,
@@ -1167,6 +1191,7 @@
 				2250C70621B557A400E899E2 /* SeriesAction.swift in Sources */,
 				2267450B222ABAEC002549CE /* RoleDetailItem.swift in Sources */,
 				2250C70321B556FC00E899E2 /* SeriesEntry.swift in Sources */,
+				22A8DF9E22A9440000994280 /* NSEntityDescriptionExtensions.swift in Sources */,
 				22674508222ABAD3002549CE /* RoleDetailProvider.swift in Sources */,
 				223879B7220B1F550019F9EA /* DetailItem.swift in Sources */,
 				223879B4220B1D9A0019F9EA /* DetailProvider.swift in Sources */,
@@ -1183,6 +1208,7 @@
 				229FB9EC2226B2E300A564D4 /* ExistingCollectionLookupService.swift in Sources */,
 				22DA6A1D21E61BC600ECF09A /* ModelObject.swift in Sources */,
 				22571150221866500099FFDE /* SectionDetailItem.swift in Sources */,
+				22A8DFA022A9440000994280 /* NSManagedObjectContextExtensions.swift in Sources */,
 				221C4B2E216BA8220086D56F /* PersonAction.swift in Sources */,
 				22318E9B2256639600EE3EBC /* KindleImporter.swift in Sources */,
 				2251B7EA228EE88F006C1529 /* TagsDetailItem.swift in Sources */,
@@ -1190,6 +1216,7 @@
 				221F272021306C1300DC2DC7 /* Book.swift in Sources */,
 				226E8E7421AC50A6001F191F /* ChangeValueAction.swift in Sources */,
 				221B855E225F37CB00BC4D32 /* RoleAction.swift in Sources */,
+				22A8DF9C22A9440000994280 /* NSManagedObjectExtensions.swift in Sources */,
 				22ADAC7922314BE000967943 /* SequenceExtensions.swift in Sources */,
 				229FB9E62226B2CA00A564D4 /* LookupCandidate.swift in Sources */,
 				226E8DB221A84031001F191F /* ModelAction.swift in Sources */,
@@ -1210,6 +1237,7 @@
 				2211A9702215A7B0004B7589 /* StringExtensions.swift in Sources */,
 				229FB9E32226B2C300A564D4 /* LookupService.swift in Sources */,
 				2250C72021B94CD800E899E2 /* SeriesScanner.swift in Sources */,
+				22A8DF9722A943CE00994280 /* ImageCache.swift in Sources */,
 				22F0CFDC22845D8A00B8B506 /* NavigationStack.swift in Sources */,
 				22D5A5EF228C5F3F00E9FDDC /* TestDataImporter.swift in Sources */,
 				229FB9E92226B2D900A564D4 /* GoogleLookupService.swift in Sources */,
@@ -1726,6 +1754,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		22A8DF9222A943A300994280 /* XCRemoteSwiftPackageReference "Expressions" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:elegantchaos/Expressions.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		8BF236B622A93EB600FDD256 /* XCRemoteSwiftPackageReference "JSONDump" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:elegantchaos/JSONDump.git";
@@ -1745,6 +1781,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		22A8DF9322A943A300994280 /* Expressions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 22A8DF9222A943A300994280 /* XCRemoteSwiftPackageReference "Expressions" */;
+			productName = Expressions;
+		};
 		8BF236B722A93EB600FDD256 /* JSONDump */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8BF236B622A93EB600FDD256 /* XCRemoteSwiftPackageReference "JSONDump" */;

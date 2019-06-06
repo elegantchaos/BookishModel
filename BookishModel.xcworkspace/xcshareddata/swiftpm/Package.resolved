@@ -38,6 +38,15 @@
         }
       },
       {
+        "package": "Expressions",
+        "repositoryURL": "git@github.com:elegantchaos/Expressions.git",
+        "state": {
+          "branch": null,
+          "revision": "d821e7c75e31fddb8158d8dac578a6ba200c9f36",
+          "version": "1.0.0"
+        }
+      },
+      {
         "package": "JSONDump",
         "repositoryURL": "git@github.com:elegantchaos/JSONDump.git",
         "state": {
