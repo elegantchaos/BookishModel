@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -263,6 +263,8 @@
 		22F180C521CA662D00220D20 /* FileManagerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F180C321CA662D00220D20 /* FileManagerExtensions.swift */; };
 		22F180E321CA8FD600220D20 /* Indexing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F180E221CA8FD600220D20 /* Indexing.swift */; };
 		22F180E421CA8FD600220D20 /* Indexing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F180E221CA8FD600220D20 /* Indexing.swift */; };
+		8BDB54A922A921B200467ACD /* Actions in Frameworks */ = {isa = PBXBuildFile; productRef = 8BDB54A822A921B200467ACD /* Actions */; };
+		8BDB54AB22A921B200467ACD /* ActionsKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8BDB54AA22A921B200467ACD /* ActionsKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -286,251 +288,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 22429390212AE0F300E70510;
 			remoteInfo = BookishModelMac;
-		};
-		22B07ABE229550D200068680 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishCoreMac.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "Expressions::Expressions::Product";
-			remoteInfo = Expressions;
-		};
-		22B07AD6229550D200068680 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishCoreMobile.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "Expressions::Expressions::Product";
-			remoteInfo = Expressions;
-		};
-		22B6ECA4228C8B38000AAB2A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishCoreMac.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = "CommandShell::CommandShell";
-			remoteInfo = CommandShell;
-		};
-		22B6ECBA228C8B38000AAB2A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishCoreMac.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "BookishCoreMac::bktCore::Product";
-			remoteInfo = bktCore;
-		};
-		22B6ECD0228C8B38000AAB2A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishCoreMobile.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "BookishCoreMobile::bktCore::Product";
-			remoteInfo = bktCore;
-		};
-		22D5A4E1228C456B00E9FDDC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishCoreMac.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "Arguments::Arguments::Product";
-			remoteInfo = Arguments;
-		};
-		22D5A4E3228C456B00E9FDDC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishCoreMac.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "CommandShell::CommandShell::Product";
-			remoteInfo = CommandShell;
-		};
-		22D5A4E5228C456B00E9FDDC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishCoreMac.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "Docopt::Docopt::Product";
-			remoteInfo = Docopt;
-		};
-		22D5A4ED228C456B00E9FDDC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishCoreMobile.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "Arguments::Arguments::Product";
-			remoteInfo = Arguments;
-		};
-		22D5A4EF228C456B00E9FDDC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishCoreMobile.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "CommandShell::CommandShell::Product";
-			remoteInfo = CommandShell;
-		};
-		22D5A4F1228C456B00E9FDDC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishCoreMobile.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "Docopt::Docopt::Product";
-			remoteInfo = Docopt;
-		};
-		22F1827121CABCAC00220D20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishCoreMac.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "Actions::Actions::Product";
-			remoteInfo = Actions;
-		};
-		22F1827321CABCAC00220D20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishCoreMac.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "Actions::ActionsKit::Product";
-			remoteInfo = ActionsKit;
-		};
-		22F1827521CABCAC00220D20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishCoreMac.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "BookishCoreMac::BookishCore::Product";
-			remoteInfo = BookishCore;
-		};
-		22F1827721CABCAC00220D20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishCoreMac.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "BookishCoreMac::BookishCoreMac::Product";
-			remoteInfo = BookishCoreMac;
-		};
-		22F1827921CABCAC00220D20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishCoreMac.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "BookishCoreMac::BookishCoreMobile::Product";
-			remoteInfo = BookishCoreMobile;
-		};
-		22F1827B21CABCAC00220D20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishCoreMac.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "BookishCoreMac::BookishCoreTests::Product";
-			remoteInfo = BookishCoreTests;
-		};
-		22F1827D21CABCAC00220D20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishCoreMac.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "JSONDump::JSONDump::Product";
-			remoteInfo = JSONDump;
-		};
-		22F1827F21CABCAC00220D20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishCoreMac.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "Logger::Logger::Product";
-			remoteInfo = Logger;
-		};
-		22F1828121CABCAC00220D20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishCoreMac.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "Logger::LoggerKit::Product";
-			remoteInfo = LoggerKit;
-		};
-		22F1828321CABCAC00220D20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishCoreMac.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "Logger::LoggerTestSupport::Product";
-			remoteInfo = LoggerTestSupport;
-		};
-		22F1829421CABCAC00220D20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishCoreMobile.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "Actions::Actions::Product";
-			remoteInfo = Actions;
-		};
-		22F1829621CABCAC00220D20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishCoreMobile.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "Actions::ActionsKit::Product";
-			remoteInfo = ActionsKit;
-		};
-		22F1829821CABCAC00220D20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishCoreMobile.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "BookishCoreMobile::BookishCore::Product";
-			remoteInfo = BookishCore;
-		};
-		22F1829A21CABCAC00220D20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishCoreMobile.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "BookishCoreMobile::BookishCoreMac::Product";
-			remoteInfo = BookishCoreMac;
-		};
-		22F1829C21CABCAC00220D20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishCoreMobile.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "BookishCoreMobile::BookishCoreMobile::Product";
-			remoteInfo = BookishCoreMobile;
-		};
-		22F1829E21CABCAC00220D20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishCoreMobile.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "BookishCoreMobile::BookishCoreTests::Product";
-			remoteInfo = BookishCoreTests;
-		};
-		22F182A021CABCAC00220D20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishCoreMobile.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "JSONDump::JSONDump::Product";
-			remoteInfo = JSONDump;
-		};
-		22F182A221CABCAC00220D20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishCoreMobile.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "Logger::Logger::Product";
-			remoteInfo = Logger;
-		};
-		22F182A421CABCAC00220D20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishCoreMobile.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "Logger::LoggerKit::Product";
-			remoteInfo = LoggerKit;
-		};
-		22F182A621CABCAC00220D20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishCoreMobile.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = "Logger::LoggerTestSupport::Product";
-			remoteInfo = LoggerTestSupport;
-		};
-		22F182E821CABD2000220D20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishCoreMobile.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = "BookishCoreMobile::BookishCore";
-			remoteInfo = BookishCore;
-		};
-		22F182EA21CABD3000220D20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishCoreMac.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = "BookishCoreMac::BookishCore";
-			remoteInfo = BookishCore;
-		};
-		22F182EC21CABD5600220D20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1180D21A5C13700AE3FBB /* BookishCoreMobile.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = "BookishCoreMobile::BookishCoreTests";
-			remoteInfo = BookishCoreTests;
-		};
-		22F182EE21CABD8A00220D20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22F1182221A5C15D00AE3FBB /* BookishCoreMac.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = "BookishCoreMac::BookishCoreTests";
-			remoteInfo = BookishCoreTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -701,10 +458,6 @@
 		22EEF6BD21A6B761007FAD10 /* ModelTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTestCase.swift; sourceTree = "<group>"; };
 		22F0CFDA22845D8A00B8B506 /* NavigationStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationStack.swift; sourceTree = "<group>"; };
 		22F0CFF722845DA300B8B506 /* NavigationStackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationStackTests.swift; sourceTree = "<group>"; };
-		22F1179A21A5A4C900AE3FBB /* Package.resolved */ = {isa = PBXFileReference; lastKnownFileType = text; path = Package.resolved; sourceTree = SOURCE_ROOT; };
-		22F1179E21A5A4C900AE3FBB /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = SOURCE_ROOT; };
-		22F1180D21A5C13700AE3FBB /* BookishCoreMobile.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BookishCoreMobile.xcodeproj; path = Dependencies/BookishCoreMobile.xcodeproj; sourceTree = SOURCE_ROOT; };
-		22F1182221A5C15D00AE3FBB /* BookishCoreMac.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BookishCoreMac.xcodeproj; path = Dependencies/BookishCoreMac.xcodeproj; sourceTree = SOURCE_ROOT; };
 		22F180C321CA662D00220D20 /* FileManagerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerExtensions.swift; sourceTree = "<group>"; };
 		22F180E221CA8FD600220D20 /* Indexing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indexing.swift; sourceTree = "<group>"; };
 		22FA65BB2274998100F697F9 /* Version 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Version 8.xcdatamodel"; sourceTree = "<group>"; };
@@ -715,6 +468,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BDB54A922A921B200467ACD /* Actions in Frameworks */,
+				8BDB54AB22A921B200467ACD /* ActionsKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -996,9 +751,6 @@
 				22A1A8D621A5C4E300F2332B /* .travis.yml */,
 				22D4A51221C1215900427E35 /* .bin */,
 				22A1A8BF21A5C24800F2332B /* README.md */,
-				22F1179A21A5A4C900AE3FBB /* Package.resolved */,
-				22F1179E21A5A4C900AE3FBB /* Package.swift */,
-				22F1179521A5A4B000AE3FBB /* Dependencies */,
 				221ED4EE21678BF200594714 /* Configs */,
 				22DD42462126D6DA0070C85A /* Sources */,
 				22DD42782126DD3A0070C85A /* Tests */,
@@ -1036,59 +788,6 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
-		22F1179521A5A4B000AE3FBB /* Dependencies */ = {
-			isa = PBXGroup;
-			children = (
-				22F1182221A5C15D00AE3FBB /* BookishCoreMac.xcodeproj */,
-				22F1180D21A5C13700AE3FBB /* BookishCoreMobile.xcodeproj */,
-			);
-			path = Dependencies;
-			sourceTree = "<group>";
-		};
-		22F1825E21CABCAC00220D20 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				22F1829521CABCAC00220D20 /* Actions.framework */,
-				22F1829721CABCAC00220D20 /* ActionsKit.framework */,
-				22D5A4EE228C456B00E9FDDC /* Arguments.framework */,
-				22F1829921CABCAC00220D20 /* BookishCore.framework */,
-				22F1829B21CABCAC00220D20 /* BookishCoreMac */,
-				22F1829D21CABCAC00220D20 /* BookishCoreMobile */,
-				22F1829F21CABCAC00220D20 /* BookishCoreTests.xctest */,
-				22D5A4F0228C456B00E9FDDC /* CommandShell.framework */,
-				22D5A4F2228C456B00E9FDDC /* Docopt.framework */,
-				22B07AD7229550D200068680 /* Expressions.framework */,
-				22F182A121CABCAC00220D20 /* JSONDump.framework */,
-				22F182A321CABCAC00220D20 /* Logger.framework */,
-				22F182A521CABCAC00220D20 /* LoggerKit.framework */,
-				22F182A721CABCAC00220D20 /* LoggerTestSupport.framework */,
-				22B6ECD1228C8B38000AAB2A /* bktCore */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		22F1826021CABCAC00220D20 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				22F1827221CABCAC00220D20 /* Actions.framework */,
-				22F1827421CABCAC00220D20 /* ActionsKit.framework */,
-				22D5A4E2228C456B00E9FDDC /* Arguments.framework */,
-				22F1827621CABCAC00220D20 /* BookishCore.framework */,
-				22F1827821CABCAC00220D20 /* BookishCoreMac */,
-				22F1827A21CABCAC00220D20 /* BookishCoreMobile */,
-				22F1827C21CABCAC00220D20 /* BookishCoreTests.xctest */,
-				22D5A4E4228C456B00E9FDDC /* CommandShell.framework */,
-				22D5A4E6228C456B00E9FDDC /* Docopt.framework */,
-				22B07ABF229550D200068680 /* Expressions.framework */,
-				22F1827E21CABCAC00220D20 /* JSONDump.framework */,
-				22F1828021CABCAC00220D20 /* Logger.framework */,
-				22F1828221CABCAC00220D20 /* LoggerKit.framework */,
-				22F1828421CABCAC00220D20 /* LoggerTestSupport.framework */,
-				22B6ECBB228C8B38000AAB2A /* bktCore */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1123,9 +822,12 @@
 			buildRules = (
 			);
 			dependencies = (
-				22F182EB21CABD3000220D20 /* PBXTargetDependency */,
 			);
 			name = BookishModelMac;
+			packageProductDependencies = (
+				8BDB54A822A921B200467ACD /* Actions */,
+				8BDB54AA22A921B200467ACD /* ActionsKit */,
+			);
 			productName = BookishModelMac;
 			productReference = 22429391212AE0F300E70510 /* BookishModel.framework */;
 			productType = "com.apple.product-type.framework";
@@ -1141,7 +843,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				22F182EF21CABD8A00220D20 /* PBXTargetDependency */,
 				2242939C212AE0F400E70510 /* PBXTargetDependency */,
 			);
 			name = BookishModelTestsMac;
@@ -1161,7 +862,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				22F182E921CABD2000220D20 /* PBXTargetDependency */,
 			);
 			name = BookishModelMobile;
 			productName = BookishModelMobile;
@@ -1179,7 +879,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				22F182ED21CABD5600220D20 /* PBXTargetDependency */,
 				224293BE212AE16300E70510 /* PBXTargetDependency */,
 			);
 			name = BookishModelTestsMobile;
@@ -1198,7 +897,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				22B6ECA5228C8B38000AAB2A /* PBXTargetDependency */,
 				225F8954221AFBC700196110 /* PBXTargetDependency */,
 			);
 			name = bkt;
@@ -1247,18 +945,11 @@
 				Base,
 			);
 			mainGroup = 22DD423B2126D6DA0070C85A;
+			packageReferences = (
+				8BDB54A722A921B200467ACD /* XCRemoteSwiftPackageReference "Actions" */,
+			);
 			productRefGroup = 22DD42452126D6DA0070C85A /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 22F1826021CABCAC00220D20 /* Products */;
-					ProjectRef = 22F1182221A5C15D00AE3FBB /* BookishCoreMac.xcodeproj */;
-				},
-				{
-					ProductGroup = 22F1825E21CABCAC00220D20 /* Products */;
-					ProjectRef = 22F1180D21A5C13700AE3FBB /* BookishCoreMobile.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				22429390212AE0F300E70510 /* BookishModelMac */,
@@ -1269,219 +960,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		22B07ABF229550D200068680 /* Expressions.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Expressions.framework;
-			remoteRef = 22B07ABE229550D200068680 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		22B07AD7229550D200068680 /* Expressions.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Expressions.framework;
-			remoteRef = 22B07AD6229550D200068680 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		22B6ECBB228C8B38000AAB2A /* bktCore */ = {
-			isa = PBXReferenceProxy;
-			fileType = text;
-			path = bktCore;
-			remoteRef = 22B6ECBA228C8B38000AAB2A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		22B6ECD1228C8B38000AAB2A /* bktCore */ = {
-			isa = PBXReferenceProxy;
-			fileType = text;
-			path = bktCore;
-			remoteRef = 22B6ECD0228C8B38000AAB2A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		22D5A4E2228C456B00E9FDDC /* Arguments.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Arguments.framework;
-			remoteRef = 22D5A4E1228C456B00E9FDDC /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		22D5A4E4228C456B00E9FDDC /* CommandShell.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = CommandShell.framework;
-			remoteRef = 22D5A4E3228C456B00E9FDDC /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		22D5A4E6228C456B00E9FDDC /* Docopt.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Docopt.framework;
-			remoteRef = 22D5A4E5228C456B00E9FDDC /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		22D5A4EE228C456B00E9FDDC /* Arguments.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Arguments.framework;
-			remoteRef = 22D5A4ED228C456B00E9FDDC /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		22D5A4F0228C456B00E9FDDC /* CommandShell.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = CommandShell.framework;
-			remoteRef = 22D5A4EF228C456B00E9FDDC /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		22D5A4F2228C456B00E9FDDC /* Docopt.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Docopt.framework;
-			remoteRef = 22D5A4F1228C456B00E9FDDC /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		22F1827221CABCAC00220D20 /* Actions.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Actions.framework;
-			remoteRef = 22F1827121CABCAC00220D20 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		22F1827421CABCAC00220D20 /* ActionsKit.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ActionsKit.framework;
-			remoteRef = 22F1827321CABCAC00220D20 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		22F1827621CABCAC00220D20 /* BookishCore.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = BookishCore.framework;
-			remoteRef = 22F1827521CABCAC00220D20 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		22F1827821CABCAC00220D20 /* BookishCoreMac */ = {
-			isa = PBXReferenceProxy;
-			fileType = text;
-			path = BookishCoreMac;
-			remoteRef = 22F1827721CABCAC00220D20 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		22F1827A21CABCAC00220D20 /* BookishCoreMobile */ = {
-			isa = PBXReferenceProxy;
-			fileType = text;
-			path = BookishCoreMobile;
-			remoteRef = 22F1827921CABCAC00220D20 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		22F1827C21CABCAC00220D20 /* BookishCoreTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = file;
-			path = BookishCoreTests.xctest;
-			remoteRef = 22F1827B21CABCAC00220D20 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		22F1827E21CABCAC00220D20 /* JSONDump.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = JSONDump.framework;
-			remoteRef = 22F1827D21CABCAC00220D20 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		22F1828021CABCAC00220D20 /* Logger.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Logger.framework;
-			remoteRef = 22F1827F21CABCAC00220D20 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		22F1828221CABCAC00220D20 /* LoggerKit.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = LoggerKit.framework;
-			remoteRef = 22F1828121CABCAC00220D20 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		22F1828421CABCAC00220D20 /* LoggerTestSupport.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = LoggerTestSupport.framework;
-			remoteRef = 22F1828321CABCAC00220D20 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		22F1829521CABCAC00220D20 /* Actions.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Actions.framework;
-			remoteRef = 22F1829421CABCAC00220D20 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		22F1829721CABCAC00220D20 /* ActionsKit.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ActionsKit.framework;
-			remoteRef = 22F1829621CABCAC00220D20 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		22F1829921CABCAC00220D20 /* BookishCore.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = BookishCore.framework;
-			remoteRef = 22F1829821CABCAC00220D20 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		22F1829B21CABCAC00220D20 /* BookishCoreMac */ = {
-			isa = PBXReferenceProxy;
-			fileType = text;
-			path = BookishCoreMac;
-			remoteRef = 22F1829A21CABCAC00220D20 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		22F1829D21CABCAC00220D20 /* BookishCoreMobile */ = {
-			isa = PBXReferenceProxy;
-			fileType = text;
-			path = BookishCoreMobile;
-			remoteRef = 22F1829C21CABCAC00220D20 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		22F1829F21CABCAC00220D20 /* BookishCoreTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = file;
-			path = BookishCoreTests.xctest;
-			remoteRef = 22F1829E21CABCAC00220D20 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		22F182A121CABCAC00220D20 /* JSONDump.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = JSONDump.framework;
-			remoteRef = 22F182A021CABCAC00220D20 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		22F182A321CABCAC00220D20 /* Logger.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Logger.framework;
-			remoteRef = 22F182A221CABCAC00220D20 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		22F182A521CABCAC00220D20 /* LoggerKit.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = LoggerKit.framework;
-			remoteRef = 22F182A421CABCAC00220D20 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		22F182A721CABCAC00220D20 /* LoggerTestSupport.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = LoggerTestSupport.framework;
-			remoteRef = 22F182A621CABCAC00220D20 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		2242938F212AE0F300E70510 /* Resources */ = {
@@ -1818,31 +1296,6 @@
 			isa = PBXTargetDependency;
 			target = 22429390212AE0F300E70510 /* BookishModelMac */;
 			targetProxy = 225F8953221AFBC700196110 /* PBXContainerItemProxy */;
-		};
-		22B6ECA5228C8B38000AAB2A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = CommandShell;
-			targetProxy = 22B6ECA4228C8B38000AAB2A /* PBXContainerItemProxy */;
-		};
-		22F182E921CABD2000220D20 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BookishCore;
-			targetProxy = 22F182E821CABD2000220D20 /* PBXContainerItemProxy */;
-		};
-		22F182EB21CABD3000220D20 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BookishCore;
-			targetProxy = 22F182EA21CABD3000220D20 /* PBXContainerItemProxy */;
-		};
-		22F182ED21CABD5600220D20 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BookishCoreTests;
-			targetProxy = 22F182EC21CABD5600220D20 /* PBXContainerItemProxy */;
-		};
-		22F182EF21CABD8A00220D20 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BookishCoreTests;
-			targetProxy = 22F182EE21CABD8A00220D20 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2263,6 +1716,39 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8BDB54A722A921B200467ACD /* XCRemoteSwiftPackageReference "Actions" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:elegantchaos/Actions.git";
+			requirement = {
+				branch = bookish;
+				kind = branch;
+			};
+		};
+		8BDB54A722A921B200467ACX /* XCRemoteSwiftPackageReference "Actions" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:elegantchaos/JSONDump.git";
+			requirement = {
+				branch = bookish;
+				kind = branch;
+			};
+		};
+
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8BDB54A822A921B200467ACD /* Actions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8BDB54A722A921B200467ACD /* XCRemoteSwiftPackageReference "Actions" */;
+			productName = Actions;
+		};
+		8BDB54AA22A921B200467ACD /* ActionsKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8BDB54A722A921B200467ACD /* XCRemoteSwiftPackageReference "Actions" */;
+			productName = ActionsKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		22DD424D2126D6DA0070C85A /* Collection.xcdatamodeld */ = {
