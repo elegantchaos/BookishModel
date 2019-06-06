@@ -7,7 +7,6 @@ import Foundation
 import Actions
 import BookishModel
 import CoreData
-import BookishCore
 import Expressions
 
 struct ActionSpec: Decodable {
