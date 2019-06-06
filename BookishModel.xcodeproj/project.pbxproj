@@ -1758,8 +1758,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:elegantchaos/Expressions.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				branch = bookish;
+				kind = branch;
 			};
 		};
 		8BF236B622A93EB600FDD256 /* XCRemoteSwiftPackageReference "JSONDump" */ = {
