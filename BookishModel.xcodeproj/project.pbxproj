@@ -266,6 +266,8 @@
 		8BDB54A922A921B200467ACD /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		8BDB54AB22A921B200467ACD /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		8BF236B822A93EB600FDD256 /* JSONDump in Frameworks */ = {isa = PBXBuildFile; productRef = 8BF236B722A93EB600FDD256 /* JSONDump */; };
+		8BF236BB22A93F9800FDD256 /* Actions in Frameworks */ = {isa = PBXBuildFile; productRef = 8BF236BA22A93F9800FDD256 /* Actions */; };
+		8BF236BD22A93F9800FDD256 /* ActionsKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8BF236BC22A93F9800FDD256 /* ActionsKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -469,9 +471,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BF236BB22A93F9800FDD256 /* Actions in Frameworks */,
 				8BDB54A922A921B200467ACD /* (null) in Frameworks */,
 				8BF236B822A93EB600FDD256 /* JSONDump in Frameworks */,
 				8BDB54AB22A921B200467ACD /* (null) in Frameworks */,
+				8BF236BD22A93F9800FDD256 /* ActionsKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -828,6 +832,8 @@
 			name = BookishModelMac;
 			packageProductDependencies = (
 				8BF236B722A93EB600FDD256 /* JSONDump */,
+				8BF236BA22A93F9800FDD256 /* Actions */,
+				8BF236BC22A93F9800FDD256 /* ActionsKit */,
 			);
 			productName = BookishModelMac;
 			productReference = 22429391212AE0F300E70510 /* BookishModel.framework */;
@@ -948,6 +954,7 @@
 			mainGroup = 22DD423B2126D6DA0070C85A;
 			packageReferences = (
 				8BF236B622A93EB600FDD256 /* XCRemoteSwiftPackageReference "JSONDump" */,
+				8BF236B922A93F9800FDD256 /* XCRemoteSwiftPackageReference "Actions" */,
 			);
 			productRefGroup = 22DD42452126D6DA0070C85A /* Products */;
 			projectDirPath = "";
@@ -1727,6 +1734,14 @@
 				minimumVersion = 1.0.4;
 			};
 		};
+		8BF236B922A93F9800FDD256 /* XCRemoteSwiftPackageReference "Actions" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:elegantchaos/Actions.git";
+			requirement = {
+				branch = bookish;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1734,6 +1749,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8BF236B622A93EB600FDD256 /* XCRemoteSwiftPackageReference "JSONDump" */;
 			productName = JSONDump;
+		};
+		8BF236BA22A93F9800FDD256 /* Actions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8BF236B922A93F9800FDD256 /* XCRemoteSwiftPackageReference "Actions" */;
+			productName = Actions;
+		};
+		8BF236BC22A93F9800FDD256 /* ActionsKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8BF236B922A93F9800FDD256 /* XCRemoteSwiftPackageReference "Actions" */;
+			productName = ActionsKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 

@@ -2,12 +2,66 @@
   "object": {
     "pins": [
       {
+        "package": "Actions",
+        "repositoryURL": "git@github.com:elegantchaos/Actions.git",
+        "state": {
+          "branch": "bookish",
+          "revision": "0badb5ad7d0acd408f5b5d6e55e19b1407a477a6",
+          "version": null
+        }
+      },
+      {
+        "package": "Arguments",
+        "repositoryURL": "https://github.com/elegantchaos/Arguments.git",
+        "state": {
+          "branch": null,
+          "revision": "781c924c16e9e4cbad65db8a5ed510fb711de3da",
+          "version": "1.0.7"
+        }
+      },
+      {
+        "package": "Coverage",
+        "repositoryURL": "https://github.com/elegantchaos/Coverage",
+        "state": {
+          "branch": null,
+          "revision": "fea0b8640a30b22cdf87ae9a722c6bbbf4e608a6",
+          "version": "1.0.4"
+        }
+      },
+      {
+        "package": "Docopt",
+        "repositoryURL": "https://github.com/elegantchaos/docopt.swift",
+        "state": {
+          "branch": null,
+          "revision": "a236953ec13b4c2c54a4450110973d9ff9db7711",
+          "version": "0.6.10"
+        }
+      },
+      {
         "package": "JSONDump",
         "repositoryURL": "git@github.com:elegantchaos/JSONDump.git",
         "state": {
           "branch": null,
           "revision": "0743e45cc8c57550136df4cc0e1d1d332a9da494",
           "version": "1.0.4"
+        }
+      },
+      {
+        "package": "Logger",
+        "repositoryURL": "https://github.com/elegantchaos/Logger",
+        "state": {
+          "branch": null,
+          "revision": "a171ea58414a3a0c5d34be909879a7ff8a2d5ae5",
+          "version": "1.3.4"
+        }
+      },
+      {
+        "package": "Runner",
+        "repositoryURL": "https://github.com/elegantchaos/Runner.git",
+        "state": {
+          "branch": null,
+          "revision": "bc4495a7f3ad7a2d34ef90acf8a4514ca89db2e5",
+          "version": "1.0.2"
         }
       }
     ]
