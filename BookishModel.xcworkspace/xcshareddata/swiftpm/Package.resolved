@@ -11,15 +11,6 @@
         }
       },
       {
-        "package": "BookishCore",
-        "repositoryURL": "git@github.com:elegantchaos/BookishCore.git",
-        "state": {
-          "branch": null,
-          "revision": "91fddb1c14ba1dc3526f660f4931b726e2647e05",
-          "version": "1.0.1"
-        }
-      },
-      {
         "package": "CommandShell",
         "repositoryURL": "https://github.com/elegantchaos/CommandShell",
         "state": {
