@@ -275,6 +275,7 @@
 		8BB70F3E22AA8BDE000A0346 /* BookishCoreTestSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 8BB70F3D22AA8BDE000A0346 /* BookishCoreTestSupport */; };
 		8BB70F4222AA8EAD000A0346 /* BookishCoreTestSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 8BB70F4122AA8EAD000A0346 /* BookishCoreTestSupport */; };
 		8BB70F4422AA8EF4000A0346 /* BookishCore in Frameworks */ = {isa = PBXBuildFile; productRef = 8BB70F4322AA8EF4000A0346 /* BookishCore */; };
+		8BB70F4822AA951A000A0346 /* bktCore in Frameworks */ = {isa = PBXBuildFile; productRef = 8BB70F4722AA951A000A0346 /* bktCore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -518,6 +519,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				225F896A221B0A9000196110 /* BookishModel.framework in Frameworks */,
+				8BB70F4822AA951A000A0346 /* bktCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -931,11 +933,12 @@
 			buildRules = (
 			);
 			dependencies = (
-				2219BE0322AA5FDB00D7ADB7 /* PBXTargetDependency */,
+				8BB70F4622AA9515000A0346 /* PBXTargetDependency */,
 				225F8954221AFBC700196110 /* PBXTargetDependency */,
 			);
 			name = bkt;
 			packageProductDependencies = (
+				8BB70F4722AA951A000A0346 /* bktCore */,
 			);
 			productName = bkt;
 			productReference = 225F894C221AFB3F00196110 /* bkt */;
@@ -1330,10 +1333,6 @@
 			isa = PBXTargetDependency;
 			productRef = 2219BE0022AA5FD500D7ADB7 /* BookishCore */;
 		};
-		2219BE0322AA5FDB00D7ADB7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 2219BE0222AA5FDB00D7ADB7 /* bktCore */;
-		};
 		2219BE0522AA5FF200D7ADB7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = 2219BE0422AA5FF200D7ADB7 /* BookishCore */;
@@ -1360,6 +1359,10 @@
 		8BB70F4022AA8EA5000A0346 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = 8BB70F3F22AA8EA5000A0346 /* BookishCoreTestSupport */;
+		};
+		8BB70F4622AA9515000A0346 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 8BB70F4522AA9515000A0346 /* bktCore */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1790,10 +1793,6 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = BookishCore;
 		};
-		2219BE0222AA5FDB00D7ADB7 /* bktCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = bktCore;
-		};
 		2219BE0422AA5FF200D7ADB7 /* BookishCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = BookishCore;
@@ -1817,6 +1816,14 @@
 		8BB70F4322AA8EF4000A0346 /* BookishCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = BookishCore;
+		};
+		8BB70F4522AA9515000A0346 /* bktCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = bktCore;
+		};
+		8BB70F4722AA951A000A0346 /* bktCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = bktCore;
 		};
 /* End XCSwiftPackageProductDependency section */
 
