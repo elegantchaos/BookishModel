@@ -273,6 +273,8 @@
 		22F180E321CA8FD600220D20 /* Indexing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F180E221CA8FD600220D20 /* Indexing.swift */; };
 		22F180E421CA8FD600220D20 /* Indexing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F180E221CA8FD600220D20 /* Indexing.swift */; };
 		8BB70F3E22AA8BDE000A0346 /* BookishCoreTestSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 8BB70F3D22AA8BDE000A0346 /* BookishCoreTestSupport */; };
+		8BB70F4222AA8EAD000A0346 /* BookishCoreTestSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 8BB70F4122AA8EAD000A0346 /* BookishCoreTestSupport */; };
+		8BB70F4422AA8EF4000A0346 /* BookishCore in Frameworks */ = {isa = PBXBuildFile; productRef = 8BB70F4322AA8EF4000A0346 /* BookishCore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -498,6 +500,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BB70F4422AA8EF4000A0346 /* BookishCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,6 +509,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				224293BC212AE16300E70510 /* BookishModel.framework in Frameworks */,
+				8BB70F4222AA8EAD000A0346 /* BookishCoreTestSupport in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -888,6 +892,7 @@
 			);
 			name = BookishModelMobile;
 			packageProductDependencies = (
+				8BB70F4322AA8EF4000A0346 /* BookishCore */,
 			);
 			productName = BookishModelMobile;
 			productReference = 224293B3212AE16200E70510 /* BookishModel.framework */;
@@ -904,9 +909,13 @@
 			buildRules = (
 			);
 			dependencies = (
+				8BB70F4022AA8EA5000A0346 /* PBXTargetDependency */,
 				224293BE212AE16300E70510 /* PBXTargetDependency */,
 			);
 			name = BookishModelTestsMobile;
+			packageProductDependencies = (
+				8BB70F4122AA8EAD000A0346 /* BookishCoreTestSupport */,
+			);
 			productName = BookishModelMobileTests;
 			productReference = 224293BB212AE16300E70510 /* BookishModelTestsMobile.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -1347,6 +1356,10 @@
 		8BB70F3C22AA8BC9000A0346 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = 8BB70F3B22AA8BC9000A0346 /* BookishCoreTestSupport */;
+		};
+		8BB70F4022AA8EA5000A0346 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 8BB70F3F22AA8EA5000A0346 /* BookishCoreTestSupport */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1792,6 +1805,18 @@
 		8BB70F3D22AA8BDE000A0346 /* BookishCoreTestSupport */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = BookishCoreTestSupport;
+		};
+		8BB70F3F22AA8EA5000A0346 /* BookishCoreTestSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BookishCoreTestSupport;
+		};
+		8BB70F4122AA8EAD000A0346 /* BookishCoreTestSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BookishCoreTestSupport;
+		};
+		8BB70F4322AA8EF4000A0346 /* BookishCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BookishCore;
 		};
 /* End XCSwiftPackageProductDependency section */
 

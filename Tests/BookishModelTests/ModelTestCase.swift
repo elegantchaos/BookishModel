@@ -4,12 +4,18 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import XCTest
+import BookishCoreTestSupport
+
 @testable import BookishModel
 
 class ModelTestCase: XCTestCase {
     override func setUp() {
         super.setUp()
         modelChannel.enabled = true
+    }
+    
+    func testLinkageWithBookishCoreTestSupport() {
+        bookishCoreTestSupport()
     }
     
     func makeTestContainer() -> CollectionContainer {

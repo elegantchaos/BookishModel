@@ -6,7 +6,10 @@
 import XCTest
 import CoreData
 import Logger
+
+#if testFatalErrors
 import LoggerTestSupport
+#endif
 
 @testable import BookishModel
 
