@@ -3,7 +3,7 @@
     "pins": [
       {
         "package": "Actions",
-        "repositoryURL": "https://github.com/elegantchaos/Actions",
+        "repositoryURL": "https://github.com/elegantchaos/Actions.git",
         "state": {
           "branch": null,
           "revision": "9d58568947115fefc646208da9dd626141bcc48d",
@@ -21,7 +21,7 @@
       },
       {
         "package": "CommandShell",
-        "repositoryURL": "https://github.com/elegantchaos/CommandShell",
+        "repositoryURL": "https://github.com/elegantchaos/CommandShell.git",
         "state": {
           "branch": null,
           "revision": "54ba728b53d35c6e02fd04457e15bb19c45249a5",
@@ -48,7 +48,7 @@
       },
       {
         "package": "Expressions",
-        "repositoryURL": "https://github.com/elegantchaos/Expressions",
+        "repositoryURL": "https://github.com/elegantchaos/Expressions.git",
         "state": {
           "branch": null,
           "revision": "d821e7c75e31fddb8158d8dac578a6ba200c9f36",
@@ -57,7 +57,7 @@
       },
       {
         "package": "JSONDump",
-        "repositoryURL": "https://github.com/elegantchaos/JSONDump",
+        "repositoryURL": "https://github.com/elegantchaos/JSONDump.git",
         "state": {
           "branch": null,
           "revision": "0743e45cc8c57550136df4cc0e1d1d332a9da494",
@@ -66,11 +66,20 @@
       },
       {
         "package": "Logger",
-        "repositoryURL": "https://github.com/elegantchaos/Logger",
+        "repositoryURL": "https://github.com/elegantchaos/Logger.git",
         "state": {
           "branch": null,
           "revision": "32a977f56b93e2fdd73d431f4ce95b4a1023ca9b",
           "version": "1.3.5"
+        }
+      },
+      {
+        "package": "ReleaseTools",
+        "repositoryURL": "https://github.com/elegantchaos/ReleaseTools.git",
+        "state": {
+          "branch": null,
+          "revision": "5cbd682e0a2f52fed312aface32dc4ba9b94cd4c",
+          "version": "1.0.0"
         }
       },
       {
@@ -84,7 +93,7 @@
       },
       {
         "package": "SketchX",
-        "repositoryURL": "https://github.com/elegantchaos/SketchX",
+        "repositoryURL": "https://github.com/elegantchaos/SketchX.git",
         "state": {
           "branch": null,
           "revision": "c3d781ce9cd2f0b36f6235c2867f57a36f8b2fe2",
