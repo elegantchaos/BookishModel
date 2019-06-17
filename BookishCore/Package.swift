@@ -22,12 +22,13 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(url: "https://github.com/elegantchaos/Logger", from: "1.3.5"),
-        .package(url: "https://github.com/elegantchaos/Actions", from: "1.3.4"),
-        .package(url: "https://github.com/elegantchaos/CommandShell", from: "1.0.5"),
-        .package(url: "https://github.com/elegantchaos/Expressions", from: "1.0.0"),
-        .package(url: "https://github.com/elegantchaos/JSONDump", from: "1.0.4"),
-        .package(url: "https://github.com/elegantchaos/SketchX", from: "1.0.6"),
+        .package(url: "https://github.com/elegantchaos/Logger.git", from: "1.3.5"),
+        .package(url: "https://github.com/elegantchaos/Actions.git", from: "1.3.4"),
+        .package(url: "https://github.com/elegantchaos/CommandShell.git", from: "1.0.5"),
+        .package(url: "https://github.com/elegantchaos/Expressions.git", from: "1.0.0"),
+        .package(url: "https://github.com/elegantchaos/JSONDump.git", from: "1.0.4"),
+        .package(url: "https://github.com/elegantchaos/SketchX.git", from: "1.0.6"),
+        .package(url: "https://github.com/elegantchaos/ReleaseTools.git", from: "1.0.0"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
