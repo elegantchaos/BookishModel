@@ -5,6 +5,9 @@ import PackageDescription
 
 let package = Package(
     name: "BookishCore",
+    platforms: [
+        .macOS(.v10_13), .iOS(.v12),
+    ],
     products: [
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
         .library(
@@ -24,6 +27,7 @@ let package = Package(
         .package(url: "https://github.com/elegantchaos/CommandShell", from: "1.0.5"),
         .package(url: "https://github.com/elegantchaos/Expressions", from: "1.0.0"),
         .package(url: "https://github.com/elegantchaos/JSONDump", from: "1.0.4"),
+        .package(url: "https://github.com/elegantchaos/SketchX", from: "1.0.6"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
