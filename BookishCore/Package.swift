@@ -20,7 +20,7 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         .package(url: "https://github.com/elegantchaos/Logger", from: "1.3.5"),
-        .package(url: "https://github.com/elegantchaos/Actions", from: "1.3.3"),
+        .package(url: "https://github.com/elegantchaos/Actions", from: "1.3.4"),
         .package(url: "https://github.com/elegantchaos/CommandShell", from: "1.0.5"),
         .package(url: "https://github.com/elegantchaos/Expressions", from: "1.0.0"),
         .package(url: "https://github.com/elegantchaos/JSONDump", from: "1.0.4"),
@@ -30,7 +30,7 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
             name: "BookishCore",
-            dependencies: ["Logger", "LoggerKit", "Actions", "Expressions", "JSONDump"]),
+            dependencies: ["Logger", "LoggerKit", "Actions", "ActionsKit", "Expressions", "JSONDump"]),
         .target(
             name: "bktCore",
             dependencies: ["CommandShell"]),

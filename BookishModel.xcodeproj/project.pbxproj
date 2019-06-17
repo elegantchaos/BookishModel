@@ -272,6 +272,8 @@
 		22F180C521CA662D00220D20 /* FileManagerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F180C321CA662D00220D20 /* FileManagerExtensions.swift */; };
 		22F180E321CA8FD600220D20 /* Indexing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F180E221CA8FD600220D20 /* Indexing.swift */; };
 		22F180E421CA8FD600220D20 /* Indexing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F180E221CA8FD600220D20 /* Indexing.swift */; };
+		8B935FEA22B7BE9200435863 /* CloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B935FE922B7BE9200435863 /* CloudManager.swift */; };
+		8B935FEB22B7BE9200435863 /* CloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B935FE922B7BE9200435863 /* CloudManager.swift */; };
 		8BB70F3E22AA8BDE000A0346 /* BookishCoreTestSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 8BB70F3D22AA8BDE000A0346 /* BookishCoreTestSupport */; };
 		8BB70F4222AA8EAD000A0346 /* BookishCoreTestSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 8BB70F4122AA8EAD000A0346 /* BookishCoreTestSupport */; };
 		8BB70F4422AA8EF4000A0346 /* BookishCore in Frameworks */ = {isa = PBXBuildFile; productRef = 8BB70F4322AA8EF4000A0346 /* BookishCore */; };
@@ -477,6 +479,7 @@
 		22F180C321CA662D00220D20 /* FileManagerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerExtensions.swift; sourceTree = "<group>"; };
 		22F180E221CA8FD600220D20 /* Indexing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indexing.swift; sourceTree = "<group>"; };
 		22FA65BB2274998100F697F9 /* Version 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Version 8.xcdatamodel"; sourceTree = "<group>"; };
+		8B935FE922B7BE9200435863 /* CloudManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -562,6 +565,7 @@
 				224293D1212AE1E700E70510 /* BookishModel.swift */,
 				22DA6A1821E6158D00ECF09A /* BookishModelBridge.h */,
 				221ED50E216B87D900594714 /* CollectionContainer.swift */,
+				8B935FE922B7BE9200435863 /* CloudManager.swift */,
 				22F180E221CA8FD600220D20 /* Indexing.swift */,
 				22F0CFDA22845D8A00B8B506 /* NavigationStack.swift */,
 				22A3E2EA21FB80B900BA4F17 /* MultipleValues.swift */,
@@ -1123,6 +1127,7 @@
 				229FB9E22226B2C300A564D4 /* LookupService.swift in Sources */,
 				2250C71F21B94CD800E899E2 /* SeriesScanner.swift in Sources */,
 				229FB9E82226B2D900A564D4 /* GoogleLookupService.swift in Sources */,
+				8B935FEA22B7BE9200435863 /* CloudManager.swift in Sources */,
 				22387993220B1D860019F9EA /* BookDetailProvider.swift in Sources */,
 				229FB9EE2226C2F800A564D4 /* LookupManager.swift in Sources */,
 				223879B9220B3FF10019F9EA /* SeriesDetailProvider.swift in Sources */,
@@ -1242,6 +1247,7 @@
 				22E47CC7216E31BA00E43DBF /* BookAction.swift in Sources */,
 				229FB9F22226CBCD00A564D4 /* LookupSession.swift in Sources */,
 				22115B1D222FDF0A00C3F170 /* DecodingError+DetailedDescription.swift in Sources */,
+				8B935FEB22B7BE9200435863 /* CloudManager.swift in Sources */,
 				224293E4212AF09E00E70510 /* Person.swift in Sources */,
 				2231C572222971B600D730FB /* String+ISBN.swift in Sources */,
 				221B8555225E2CDD00BC4D32 /* PersonDetailItem.swift in Sources */,
