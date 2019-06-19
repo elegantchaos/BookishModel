@@ -33,7 +33,7 @@ let package = Package(
         .package(url: "https://github.com/elegantchaos/JSONDump.git", from: "1.0.4"),
         
         // tool dependencies
-        .package(url: "https://github.com/elegantchaos/SketchX.git", from: "1.0.8"),
+        .package(url: "https://github.com/elegantchaos/SketchX.git", from: "1.0.9"),
         .package(url: "https://github.com/elegantchaos/ReleaseTools.git", from: "1.0.2"),
         .package(url: "https://github.com/elegantchaos/Coverage.git", from: "1.0.6"),
     ],
