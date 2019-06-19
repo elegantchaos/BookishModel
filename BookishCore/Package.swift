@@ -22,13 +22,14 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(url: "https://github.com/elegantchaos/Logger.git", from: "1.3.5"),
-        .package(url: "https://github.com/elegantchaos/Actions.git", from: "1.3.4"),
-        .package(url: "https://github.com/elegantchaos/CommandShell.git", from: "1.0.5"),
+        .package(url: "https://github.com/elegantchaos/Logger.git", from: "1.3.6"),
+        .package(url: "https://github.com/elegantchaos/Actions.git", from: "1.3.5"),
+        .package(url: "https://github.com/elegantchaos/CommandShell.git", from: "1.1.0"),
         .package(url: "https://github.com/elegantchaos/Expressions.git", from: "1.0.0"),
         .package(url: "https://github.com/elegantchaos/JSONDump.git", from: "1.0.4"),
-        .package(url: "https://github.com/elegantchaos/SketchX.git", from: "1.0.6"),
-        .package(url: "https://github.com/elegantchaos/ReleaseTools.git", from: "1.0.0"),
+        .package(url: "https://github.com/elegantchaos/SketchX.git", from: "1.0.8"),
+        .package(url: "https://github.com/elegantchaos/ReleaseTools.git", from: "1.0.1"),
+        .package(url: "https://github.com/elegantchaos/Coverage.git", from: "1.0.6"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -36,6 +37,9 @@ let package = Package(
         .target(
             name: "BookishCore",
             dependencies: ["Logger", "LoggerKit", "Actions", "ActionsKit", "Expressions", "JSONDump"]),
+        .target(
+            name: "Tools",
+            dependencies: ["sketchx", "rt", "coverage"]),
         .target(
             name: "bktCore",
             dependencies: ["CommandShell"]),
