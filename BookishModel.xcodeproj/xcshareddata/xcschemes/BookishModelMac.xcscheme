@@ -10,7 +10,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Update Build Bumber"
-               scriptText = "&quot;$SOURCE_ROOT/.bin/updatebuild&quot;&#10;">
+               scriptText = "cd &quot;$SOURCE_ROOT&quot;&#10;.bin/maketools&#10;&#10;&quot;$RT_PATH&quot; update-build&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"

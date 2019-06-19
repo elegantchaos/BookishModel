@@ -34,7 +34,7 @@ let package = Package(
         
         // tool dependencies
         .package(url: "https://github.com/elegantchaos/SketchX.git", from: "1.0.8"),
-        .package(url: "https://github.com/elegantchaos/ReleaseTools.git", from: "1.0.1"),
+        .package(url: "https://github.com/elegantchaos/ReleaseTools.git", from: "1.0.2"),
         .package(url: "https://github.com/elegantchaos/Coverage.git", from: "1.0.6"),
     ],
     
