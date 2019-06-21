@@ -13,6 +13,9 @@ public class PersonDetailProvider: DetailProvider {
             DetailSpec(binding: "biography"),
             DetailSpec(binding: "born", viewAs: DetailSpec.dateKind, editAs: DetailSpec.editableDateKind),
             DetailSpec(binding: "died", viewAs: DetailSpec.dateKind, editAs: DetailSpec.editableDateKind),
+            DetailSpec(binding: "added", viewAs: DetailSpec.timeKind),
+            DetailSpec(binding: "modified", viewAs: DetailSpec.timeKind),
+            DetailSpec(binding: "importDate", viewAs: DetailSpec.timeKind, editAs: DetailSpec.hiddenKind),
         ]
         
         if showDebug {
