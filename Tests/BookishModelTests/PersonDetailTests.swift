@@ -34,18 +34,18 @@ class PersonDetailProviderTests: ModelTestCase {
     
     func testRowCount() {
         let provider = makeTestProvider()
-        provider.filter(for: [], editing: false, combining: false, context: TestContext())
+        provider.filter(for: ModelSelection([]), editing: false, combining: false, context: TestContext())
         XCTAssertEqual(provider.itemCount(for: 0), 0)
         XCTAssertEqual(provider.sectionCount, 1)
         
         person.name = "Test"
         person.notes = "Some notes"
         
-        provider.filter(for: [person], editing: false, combining: false, context: TestContext())
+        provider.filter(for: ModelSelection([person]), editing: false, combining: false, context: TestContext())
         XCTAssertEqual(provider.itemCount(for: 0), 1)
         XCTAssertEqual(provider.sectionCount, 1)
 
-        provider.filter(for: [person], editing: false, combining: false, context: TestContext(showDebug: true))
+        provider.filter(for: ModelSelection([person]), editing: false, combining: false, context: TestContext(showDebug: true))
         XCTAssertEqual(provider.itemCount(for: 0), 2)
         XCTAssertEqual(provider.sectionCount, 1)
 
@@ -53,7 +53,7 @@ class PersonDetailProviderTests: ModelTestCase {
         let relationship = person.relationship(as: "author")
         relationship.addToBooks(book)
         
-        provider.filter(for: [person], editing: false, combining: false, context: TestContext())
+        provider.filter(for: ModelSelection([person]), editing: false, combining: false, context: TestContext())
         XCTAssertEqual(provider.sectionCount, 2)
         XCTAssertEqual(provider.itemCount(for: 1), 1)
     }
@@ -65,8 +65,7 @@ class PersonDetailProviderTests: ModelTestCase {
         let relationship = person.relationship(as: "author")
         relationship.addToBooks(book)
         
-        provider.filter(for: [person], editing: false, combining: false, context: TestContext())
-        XCTAssertEqual(provider.titleProperty, "name")
+        provider.filter(for: ModelSelection([person]), editing: false, combining: false, context: TestContext())
         XCTAssertEqual(provider.sectionTitle(for: 0), "")
         XCTAssertEqual(provider.sectionTitle(for: 1), "Role.section")
     }
@@ -80,7 +79,7 @@ class PersonDetailProviderTests: ModelTestCase {
         
         person.notes = "Test"
         
-        provider.filter(for: [person], editing: false, combining: false, context: TestContext())
+        provider.filter(for: ModelSelection([person]), editing: false, combining: false, context: TestContext())
         let info1 = provider.info(section: 0, row: 0)
         XCTAssertTrue(info1 is SimpleDetailItem)
 
@@ -97,7 +96,7 @@ class PersonDetailProviderTests: ModelTestCase {
         
         person.notes = "Test"
         
-        provider.filter(for: [person], editing: false, combining: true, context: TestContext())
+        provider.filter(for: ModelSelection([person]), editing: false, combining: true, context: TestContext())
         XCTAssertEqual(provider.combinedCount, 3)
 
         let info1 = provider.combinedInfo(row: 0)

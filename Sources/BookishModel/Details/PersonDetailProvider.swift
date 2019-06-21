@@ -66,9 +66,9 @@ public class PersonDetailProvider: DetailProvider {
         }
     }
     
-    public override func filter(for selection: [ModelObject], editing: Bool, combining: Bool, context: DetailContext) {
+    public override func filter(for selection: Selection<ModelObject>, editing: Bool, combining: Bool, context: DetailContext) {
         let template = PersonDetailProvider.standardDetails(showDebug: context.showDebug)
-        if let people = selection as? [Person] {
+        if let people = selection.objects as? [Person] {
             let collectedTags = MultipleValues.extract(from: people) { person -> Set<Tag>? in
                 return person.tags as? Set<Tag>
             }
@@ -78,7 +78,7 @@ public class PersonDetailProvider: DetailProvider {
         super.filter(for: selection, template: template, editing: editing, combining: false, context: context)
 
         sortedRoles.removeAll()
-        if let person = selection.first as? Person, let sort = context.entitySorting["Relationship"], let relationships = person.relationships?.sortedArray(using: sort) as? [Relationship] {
+        if let person = selection.objects.first as? Person, let sort = context.entitySorting["Relationship"], let relationships = person.relationships?.sortedArray(using: sort) as? [Relationship] {
             for relationship in relationships {
                 if let role = relationship.role,
                     let sort = context.entitySorting["Book"],

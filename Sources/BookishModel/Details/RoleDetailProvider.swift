@@ -41,8 +41,9 @@ class RoleDetailProvider: DetailProvider {
         }
     }
     
-    override func filter(for selection: [ModelObject], editing: Bool, combining: Bool, context: DetailContext) {
-        if let role = selection.first as? Role, let sort = context.entitySorting["Relationship"], let relationships = role.relationships?.sortedArray(using: sort) as? [Relationship] {
+    override func filter(for selection: Selection<ModelObject>, editing: Bool, combining: Bool, context: DetailContext) {
+        // TODO: handle multiple selection properly
+        if let role = selection.objects.first as? Role, let sort = context.entitySorting["Relationship"], let relationships = role.relationships?.sortedArray(using: sort) as? [Relationship] {
             let people = relationships.compactMap { $0.person }
             sortedPeople.removeAll()
             sortedPeople.append(contentsOf: people)

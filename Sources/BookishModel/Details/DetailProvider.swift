@@ -40,10 +40,6 @@ public class DetailProvider {
     public init() {
     }
     
-    public var titleProperty: String? {
-        return "name"
-    }
-    
     public var sectionCount: Int {
         return 1
     }
@@ -72,11 +68,11 @@ public class DetailProvider {
         return isEditing ? DetailProvider.EditingColumns : DetailProvider.LabelledColumns
     }
 
-    public func filter(for selection: [ModelObject], editing: Bool, combining: Bool, context: DetailContext) {
+    public func filter(for selection: Selection<ModelObject>, editing: Bool, combining: Bool, context: DetailContext) {
         self.filter(for: selection, template: [], editing: editing, combining: combining, context: context)
     }
     
-    internal func filter(for selection: [ModelObject], template: [DetailSpec], editing: Bool, combining: Bool = false, context: DetailContext) {
+    internal func filter(for selection: Selection<ModelObject>, template: [DetailSpec], editing: Bool, combining: Bool = false, context: DetailContext) {
         shouldCombine = combining
         var filteredDetails = [DetailSpec]()
         for detail in template {
@@ -86,7 +82,7 @@ public class DetailProvider {
                 if editing {
                     includeDetail = true
                 } else {
-                    for item in selection {
+                    for item in selection.objects {
                         let value = item.value(forKey: detail.binding)
                         if let string = value as? String {
                             includeDetail = !string.isEmpty

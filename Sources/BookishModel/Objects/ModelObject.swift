@@ -129,6 +129,10 @@ public class ModelObject: NSManagedObject, DetailOwner {
 
 }
 
+// MARK: Selection Support
+
+public typealias ModelSelection = Selection<ModelObject>
+
 // MARK: Action Serialization Support
 
 extension ModelObject: ActionSerialization {

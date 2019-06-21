@@ -272,6 +272,10 @@
 		22F180C521CA662D00220D20 /* FileManagerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F180C321CA662D00220D20 /* FileManagerExtensions.swift */; };
 		22F180E321CA8FD600220D20 /* Indexing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F180E221CA8FD600220D20 /* Indexing.swift */; };
 		22F180E421CA8FD600220D20 /* Indexing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F180E221CA8FD600220D20 /* Indexing.swift */; };
+		8B10C78B22BD094200E05F33 /* Binder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B10C78922BD094200E05F33 /* Binder.swift */; };
+		8B10C78C22BD094200E05F33 /* Binder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B10C78922BD094200E05F33 /* Binder.swift */; };
+		8B10C78D22BD094200E05F33 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B10C78A22BD094200E05F33 /* Selection.swift */; };
+		8B10C78E22BD094200E05F33 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B10C78A22BD094200E05F33 /* Selection.swift */; };
 		8B935FEA22B7BE9200435863 /* CloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B935FE922B7BE9200435863 /* CloudManager.swift */; };
 		8B935FEB22B7BE9200435863 /* CloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B935FE922B7BE9200435863 /* CloudManager.swift */; };
 		8BB70F3E22AA8BDE000A0346 /* BookishCoreTestSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 8BB70F3D22AA8BDE000A0346 /* BookishCoreTestSupport */; };
@@ -479,6 +483,8 @@
 		22F180C321CA662D00220D20 /* FileManagerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerExtensions.swift; sourceTree = "<group>"; };
 		22F180E221CA8FD600220D20 /* Indexing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indexing.swift; sourceTree = "<group>"; };
 		22FA65BB2274998100F697F9 /* Version 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Version 8.xcdatamodel"; sourceTree = "<group>"; };
+		8B10C78922BD094200E05F33 /* Binder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Binder.swift; path = ../Binder.swift; sourceTree = "<group>"; };
+		8B10C78A22BD094200E05F33 /* Selection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Selection.swift; path = ../Selection.swift; sourceTree = "<group>"; };
 		8B935FE922B7BE9200435863 /* CloudManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -660,6 +666,8 @@
 		2250C74921B94D5F00E899E2 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				8B10C78922BD094200E05F33 /* Binder.swift */,
+				8B10C78A22BD094200E05F33 /* Selection.swift */,
 				22A8DF9522A943CE00994280 /* ImageCache.swift */,
 				2211A9542215A7B0004B7589 /* StringExtensions.swift */,
 				22E96F6A228D837800DE95A8 /* DataFetcher.swift */,
@@ -1093,6 +1101,7 @@
 				223879C9220B4A2F0019F9EA /* SimpleDetailItem.swift in Sources */,
 				2250C6E321B1B14200E899E2 /* PublisherAction.swift in Sources */,
 				22DA6A1C21E61BC600ECF09A /* ModelObject.swift in Sources */,
+				8B10C78B22BD094200E05F33 /* Binder.swift in Sources */,
 				2291071522A02DC2002DB502 /* ModelEntity.swift in Sources */,
 				2295A9152232C4820085CD86 /* SeriesEntryItem.swift in Sources */,
 				229FB9EB2226B2E300A564D4 /* ExistingCollectionLookupService.swift in Sources */,
@@ -1129,6 +1138,7 @@
 				229FB9E82226B2D900A564D4 /* GoogleLookupService.swift in Sources */,
 				8B935FEA22B7BE9200435863 /* CloudManager.swift in Sources */,
 				22387993220B1D860019F9EA /* BookDetailProvider.swift in Sources */,
+				8B10C78D22BD094200E05F33 /* Selection.swift in Sources */,
 				229FB9EE2226C2F800A564D4 /* LookupManager.swift in Sources */,
 				223879B9220B3FF10019F9EA /* SeriesDetailProvider.swift in Sources */,
 				22F180E321CA8FD600220D20 /* Indexing.swift in Sources */,
@@ -1214,6 +1224,7 @@
 				22A498BD220F3555006A2137 /* Importer.swift in Sources */,
 				221ED510216B87D900594714 /* CollectionContainer.swift in Sources */,
 				22318E9A225652AA00EE3EBC /* MarkupUtilities.swift in Sources */,
+				8B10C78C22BD094200E05F33 /* Binder.swift in Sources */,
 				224293DD212AF00500E70510 /* Collection.xcdatamodeld in Sources */,
 				224293ED212AF0E300E70510 /* Series.swift in Sources */,
 				221F272321359DA200DC2DC7 /* Publisher.swift in Sources */,
@@ -1235,6 +1246,7 @@
 				22A8DF9C22A9440000994280 /* NSManagedObjectExtensions.swift in Sources */,
 				22ADAC7922314BE000967943 /* SequenceExtensions.swift in Sources */,
 				229FB9E62226B2CA00A564D4 /* LookupCandidate.swift in Sources */,
+				8B10C78E22BD094200E05F33 /* Selection.swift in Sources */,
 				226E8DB221A84031001F191F /* ModelAction.swift in Sources */,
 				223879C7220B49230019F9EA /* PublisherDetailItem.swift in Sources */,
 				224293D3212AE1E700E70510 /* BookishModel.swift in Sources */,
