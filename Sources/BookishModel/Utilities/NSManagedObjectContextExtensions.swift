@@ -9,17 +9,35 @@ extension NSManagedObjectContext {
     
     
     /**
-     Return an NSFetchRequest for a given model object class.
+     Return an NSFetchRequest for a static managed object type.
      
      Xcode generates a `fetchRequest` method which does pretty much the same thing,
      but it uses +entity to find the entity description.
      
-     This version takes in the context and uses that to look up the description in the model.
+     This version uses the context to look up the description in the model.
      */
     
     public func fetcher<T>() -> NSFetchRequest<T> where T: NSManagedObject {
         let request = NSFetchRequest<T>()
         request.entity = entityDescription(for: T.self)
+        return request
+    }
+
+    /**
+     Return an NSFetchRequest for a dynamic managed object type.
+     
+     Xcode generates a `fetchRequest` method which does pretty much the same thing,
+     but it uses +entity to find the entity description.
+     
+     This version uses the context to look up the description in the model.
+     Although we bind the return type statically, we take in a dynamic type to use for the description lookup.
+     This allows us to declare a return type for some class MyModelBase, but actually get a fetcher back
+     for a subclass of it.
+     */
+
+    public func fetcher<T: NSManagedObject>(for dynamicType: T.Type) -> NSFetchRequest<T> {
+        let request = NSFetchRequest<T>()
+        request.entity = entityDescription(for: dynamicType)
         return request
     }
     
@@ -43,8 +61,8 @@ extension NSManagedObjectContext {
      Return the entity description for a given model class.
      */
     
-    public func entityDescription(for type: NSManagedObject.Type) -> NSEntityDescription {
-        let name = String(describing: type)
+    public func entityDescription(for dynamicType: NSManagedObject.Type) -> NSEntityDescription {
+        let name = String(describing: dynamicType)
         return entityDescription(for: name)
     }
 
@@ -52,9 +70,9 @@ extension NSManagedObjectContext {
      Return count of instances of a given entity type.
      */
     
-    public func countEntities(type: NSManagedObject.Type) -> Int {
+    public func countEntities(type dynamicType: NSManagedObject.Type) -> Int {
         let request: NSFetchRequest<NSManagedObject> = NSFetchRequest()
-        request.entity = entityDescription(for: type)
+        request.entity = entityDescription(for: dynamicType)
         return countAssertNoThrow(request)
     }
 
@@ -63,9 +81,9 @@ extension NSManagedObjectContext {
      Return every instance of a given entity type.
     */
     
-    public func everyEntity<Entity: NSManagedObject>(type: NSManagedObject.Type, sorting: [NSSortDescriptor]? = nil) -> [Entity] {
+    public func everyEntity<Entity: NSManagedObject>(type dynamicType: NSManagedObject.Type, sorting: [NSSortDescriptor]? = nil) -> [Entity] {
         let request: NSFetchRequest<NSManagedObject> = NSFetchRequest()
-        request.entity = entityDescription(for: type)
+        request.entity = entityDescription(for: dynamicType)
         request.sortDescriptors = sorting
         return fetchAssertNoThrow(request) as! [Entity]
     }
