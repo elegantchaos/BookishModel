@@ -13,7 +13,7 @@ public class BookDetailProvider: DetailProvider {
     public class func standardDetails(showDebug: Bool) -> [DetailSpec] {
         var details = [
             DetailSpec(binding: "subtitle", viewAs: DetailSpec.hiddenKind, editAs: DetailSpec.textKind),
-            DetailSpec(binding: "notes"),
+            DetailSpec(binding: "notes", viewAs: DetailSpec.paragraphKind),
             DetailSpec(binding: "format"),
             DetailSpec(binding: "identifier", viewAs: DetailSpec.textKind, editAs: DetailSpec.hiddenKind),
             DetailSpec(binding: "asin", viewAs: DetailSpec.hiddenKind, editAs: DetailSpec.textKind),

@@ -13,6 +13,7 @@ public final class DetailSpec {
     public let isDebug: Bool
     
     public static let textKind = "text"
+    public static let paragraphKind = "paragraph"
     public static let numberKind = "number"
     public static let tagsKind = "tags"
     public static let dateKind = "date"
