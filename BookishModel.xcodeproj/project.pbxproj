@@ -1410,7 +1410,6 @@
 				SWIFT_INCLUDE_PATHS = "$(CONFIGURATION_BUILD_DIR)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(BOOKISH_MODEL_BRIDGING_PATH)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1440,7 +1439,6 @@
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "$(CONFIGURATION_BUILD_DIR)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(BOOKISH_MODEL_BRIDGING_PATH)";
-				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1460,7 +1458,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.elegantchaos.BookishModelMacTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1478,7 +1475,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.elegantchaos.BookishModelMacTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1506,7 +1502,6 @@
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(BOOKISH_MODEL_BRIDGING_PATH)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1536,7 +1531,6 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(BOOKISH_MODEL_BRIDGING_PATH)";
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1559,7 +1553,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.elegantchaos.BookishModelMobileTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1579,7 +1572,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.elegantchaos.BookishModelMobileTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};

@@ -42,11 +42,11 @@ class PersonDetailProviderTests: ModelTestCase {
         person.notes = "Some notes"
         
         provider.filter(for: ModelSelection([person]), editing: false, combining: false, context: TestContext())
-        XCTAssertEqual(provider.itemCount(for: 0), 1)
+        XCTAssertEqual(provider.itemCount(for: 0), 3)
         XCTAssertEqual(provider.sectionCount, 1)
 
         provider.filter(for: ModelSelection([person]), editing: false, combining: false, context: TestContext(showDebug: true))
-        XCTAssertEqual(provider.itemCount(for: 0), 2)
+        XCTAssertEqual(provider.itemCount(for: 0), 4)
         XCTAssertEqual(provider.sectionCount, 1)
 
         let book = Book(context: context)
@@ -97,12 +97,12 @@ class PersonDetailProviderTests: ModelTestCase {
         person.notes = "Test"
         
         provider.filter(for: ModelSelection([person]), editing: false, combining: true, context: TestContext())
-        XCTAssertEqual(provider.combinedCount, 3)
+        XCTAssertEqual(provider.combinedCount, 5)
 
         let info1 = provider.combinedInfo(row: 0)
         XCTAssertTrue(info1 is SimpleDetailItem)
         
-        let info2 = provider.combinedInfo(row: 2)
+        let info2 = provider.combinedInfo(row: 4)
         XCTAssertTrue(info2 is BookDetailItem)
     }
 
