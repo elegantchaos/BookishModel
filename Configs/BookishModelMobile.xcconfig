@@ -6,5 +6,7 @@ ARCHS = $(ARCHS_STANDARD)
 SDKROOT = iphoneos
 IPHONEOS_DEPLOYMENT_TARGET = 13.0
 SUPPORTED_PLATFORMS = iphonesimulator iphoneos
+TARGETED_DEVICE_FAMILY = 1,2
+
 
 #include "BookishModel.xcconfig"
