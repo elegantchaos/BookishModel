@@ -1,3 +1,5 @@
+#!/bin/sh
+
 xcrun swift build --product coverage
 coverage=.build/debug/coverage
 

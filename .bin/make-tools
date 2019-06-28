@@ -1,1 +1,3 @@
+#!/bin/sh
+
 xcrun swift build --target Tools --package-root BookishCore

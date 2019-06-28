@@ -1,4 +1,5 @@
-.bin/update
+#!/bin/sh
+
 
 echo
 echo "Testing Mac"
@@ -10,7 +11,7 @@ echo
 echo "Testing Mobile"
 
 rm -rf .build/Mobile.xcresult .build/Mobile.log
-set -o pipefail && xcodebuild clean test -workspace BookishModel.xcworkspace -scheme BookishModelMobile -destination "name=iPhone 6" -enableCodeCoverage YES -resultBundlePath .build/Mobile.xcresult | tee .build/Mobile.log | xcpretty -f `xcpretty-travis-formatter`
+set -o pipefail && xcodebuild clean test -workspace BookishModel.xcworkspace -scheme BookishModelMobile -destination "name=iPad Pro (11-inch)" -enableCodeCoverage YES -resultBundlePath .build/Mobile.xcresult | tee .build/Mobile.log | xcpretty -f `xcpretty-travis-formatter`
 MOBILE_RESULT=$?
 
 echo
