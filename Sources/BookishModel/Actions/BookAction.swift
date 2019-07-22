@@ -227,13 +227,13 @@ class AddPublisherAction: BookAction {
 
 class RemovePublisherAction: BookAction {
     public override func validate(context: ActionContext) -> Bool {
-        return (context[PublisherAction.newPublisherKey] as? Publisher != nil) && super.validate(context: context)
+        return (context[PublisherAction.publisherKey] as? Publisher != nil) && super.validate(context: context)
     }
     
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
         if
             let selection = context[ActionContext.selectionKey] as? [Book],
-            let publisher = context[PublisherAction.newPublisherKey] as? Publisher {
+            let publisher = context[PublisherAction.publisherKey] as? Publisher {
             for book in selection {
                 publisher.removeFromBooks(book)
             }
