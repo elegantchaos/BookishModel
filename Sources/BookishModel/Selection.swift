@@ -63,6 +63,10 @@ public class Selection<T: NSObject> {
         return nil
     }
     
+    public func clear() {
+        self.objects = []
+    }
+    
     public func set(to objects: [T]) {
         self.objects = objects
     }
