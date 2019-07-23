@@ -23,7 +23,6 @@
 		2213FD2722312FD900D8B4D8 /* DecodingErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2213FD2522312FD900D8B4D8 /* DecodingErrorTests.swift */; };
 		2213FD292231355700D8B4D8 /* JSON Errors.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2213FD282231355700D8B4D8 /* JSON Errors.plist */; };
 		2213FD2A2231355700D8B4D8 /* JSON Errors.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2213FD282231355700D8B4D8 /* JSON Errors.plist */; };
-		2219BDFF22AA5FC900D7ADB7 /* BookishCore in Frameworks */ = {isa = PBXBuildFile; productRef = 2219BDFE22AA5FC900D7ADB7 /* BookishCore */; };
 		221B8514225B567300BC4D32 /* LookupAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221B8513225B567300BC4D32 /* LookupAction.swift */; };
 		221B8532225B717800BC4D32 /* AmazonLookupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221B8531225B717800BC4D32 /* AmazonLookupService.swift */; };
 		221B8554225E2CDD00BC4D32 /* PersonDetailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221B8553225E2CDD00BC4D32 /* PersonDetailItem.swift */; };
@@ -276,12 +275,19 @@
 		8B10C78C22BD094200E05F33 /* Binder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B10C78922BD094200E05F33 /* Binder.swift */; };
 		8B10C78D22BD094200E05F33 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B10C78A22BD094200E05F33 /* Selection.swift */; };
 		8B10C78E22BD094200E05F33 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B10C78A22BD094200E05F33 /* Selection.swift */; };
+		8B46F3A322E715B200F08F2D /* Logger in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3A222E715B200F08F2D /* Logger */; };
+		8B46F3A522E715B200F08F2D /* LoggerKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3A422E715B200F08F2D /* LoggerKit */; };
+		8B46F3A822E715EA00F08F2D /* Actions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3A722E715EA00F08F2D /* Actions */; };
+		8B46F3AA22E715EA00F08F2D /* ActionsKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3A922E715EA00F08F2D /* ActionsKit */; };
+		8B46F3AD22E7161C00F08F2D /* CommandShell in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3AC22E7161C00F08F2D /* CommandShell */; };
+		8B46F3B022E7165200F08F2D /* Expressions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3AF22E7165200F08F2D /* Expressions */; };
+		8B46F3B322E7168500F08F2D /* JSONDump in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3B222E7168500F08F2D /* JSONDump */; };
+		8B46F3B922E71A4C00F08F2D /* Actions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3B822E71A4C00F08F2D /* Actions */; };
+		8B46F3BB22E71A4C00F08F2D /* ActionsKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3BA22E71A4C00F08F2D /* ActionsKit */; };
+		8B46F3BD22E71A5900F08F2D /* JSONDump in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3BC22E71A5900F08F2D /* JSONDump */; };
+		8B46F3BF22E71A6600F08F2D /* Expressions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3BE22E71A6600F08F2D /* Expressions */; };
 		8B935FEA22B7BE9200435863 /* CloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B935FE922B7BE9200435863 /* CloudManager.swift */; };
 		8B935FEB22B7BE9200435863 /* CloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B935FE922B7BE9200435863 /* CloudManager.swift */; };
-		8BB70F3E22AA8BDE000A0346 /* BookishCoreTestSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 8BB70F3D22AA8BDE000A0346 /* BookishCoreTestSupport */; };
-		8BB70F4222AA8EAD000A0346 /* BookishCoreTestSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 8BB70F4122AA8EAD000A0346 /* BookishCoreTestSupport */; };
-		8BB70F4422AA8EF4000A0346 /* BookishCore in Frameworks */ = {isa = PBXBuildFile; productRef = 8BB70F4322AA8EF4000A0346 /* BookishCore */; };
-		8BB70F4822AA951A000A0346 /* bktCore in Frameworks */ = {isa = PBXBuildFile; productRef = 8BB70F4722AA951A000A0346 /* bktCore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -329,7 +335,6 @@
 		2212376C220CA401006D4AA5 /* SeriesDetailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesDetailTests.swift; sourceTree = "<group>"; };
 		2213FD2522312FD900D8B4D8 /* DecodingErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodingErrorTests.swift; sourceTree = "<group>"; };
 		2213FD282231355700D8B4D8 /* JSON Errors.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JSON Errors.plist"; sourceTree = "<group>"; };
-		2219BDFD22AA5D2100D7ADB7 /* BookishCore */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BookishCore; sourceTree = "<group>"; };
 		221B8513225B567300BC4D32 /* LookupAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookupAction.swift; sourceTree = "<group>"; };
 		221B8531225B717800BC4D32 /* AmazonLookupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmazonLookupService.swift; sourceTree = "<group>"; };
 		221B8553225E2CDD00BC4D32 /* PersonDetailItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailItem.swift; sourceTree = "<group>"; };
@@ -493,7 +498,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2219BDFF22AA5FC900D7ADB7 /* BookishCore in Frameworks */,
+				8B46F3B922E71A4C00F08F2D /* Actions in Frameworks */,
+				8B46F3BD22E71A5900F08F2D /* JSONDump in Frameworks */,
+				8B46F3BF22E71A6600F08F2D /* Expressions in Frameworks */,
+				8B46F3BB22E71A4C00F08F2D /* ActionsKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,7 +509,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BB70F3E22AA8BDE000A0346 /* BookishCoreTestSupport in Frameworks */,
 				2242939A212AE0F400E70510 /* BookishModel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -510,7 +517,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BB70F4422AA8EF4000A0346 /* BookishCore in Frameworks */,
+				8B46F3A822E715EA00F08F2D /* Actions in Frameworks */,
+				8B46F3A322E715B200F08F2D /* Logger in Frameworks */,
+				8B46F3B322E7168500F08F2D /* JSONDump in Frameworks */,
+				8B46F3A522E715B200F08F2D /* LoggerKit in Frameworks */,
+				8B46F3B022E7165200F08F2D /* Expressions in Frameworks */,
+				8B46F3AA22E715EA00F08F2D /* ActionsKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,7 +531,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				224293BC212AE16300E70510 /* BookishModel.framework in Frameworks */,
-				8BB70F4222AA8EAD000A0346 /* BookishCoreTestSupport in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,7 +539,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				225F896A221B0A9000196110 /* BookishModel.framework in Frameworks */,
-				8BB70F4822AA951A000A0346 /* bktCore in Frameworks */,
+				8B46F3AD22E7161C00F08F2D /* CommandShell in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -783,7 +794,6 @@
 		22DD423B2126D6DA0070C85A = {
 			isa = PBXGroup;
 			children = (
-				2219BDFD22AA5D2100D7ADB7 /* BookishCore */,
 				22A1A8D621A5C4E300F2332B /* .travis.yml */,
 				22D4A51221C1215900427E35 /* .bin */,
 				22A1A8BF21A5C24800F2332B /* README.md */,
@@ -858,11 +868,13 @@
 			buildRules = (
 			);
 			dependencies = (
-				2219BE0522AA5FF200D7ADB7 /* PBXTargetDependency */,
 			);
 			name = BookishModelMac;
 			packageProductDependencies = (
-				2219BDFE22AA5FC900D7ADB7 /* BookishCore */,
+				8B46F3B822E71A4C00F08F2D /* Actions */,
+				8B46F3BA22E71A4C00F08F2D /* ActionsKit */,
+				8B46F3BC22E71A5900F08F2D /* JSONDump */,
+				8B46F3BE22E71A6600F08F2D /* Expressions */,
 			);
 			productName = BookishModelMac;
 			productReference = 22429391212AE0F300E70510 /* BookishModel.framework */;
@@ -879,12 +891,10 @@
 			buildRules = (
 			);
 			dependencies = (
-				8BB70F3C22AA8BC9000A0346 /* PBXTargetDependency */,
 				2242939C212AE0F400E70510 /* PBXTargetDependency */,
 			);
 			name = BookishModelTestsMac;
 			packageProductDependencies = (
-				8BB70F3D22AA8BDE000A0346 /* BookishCoreTestSupport */,
 			);
 			productName = BookishModelMacTests;
 			productReference = 22429399212AE0F400E70510 /* BookishModelTestsMac.xctest */;
@@ -902,11 +912,15 @@
 			buildRules = (
 			);
 			dependencies = (
-				2219BE0122AA5FD500D7ADB7 /* PBXTargetDependency */,
 			);
 			name = BookishModelMobile;
 			packageProductDependencies = (
-				8BB70F4322AA8EF4000A0346 /* BookishCore */,
+				8B46F3A222E715B200F08F2D /* Logger */,
+				8B46F3A422E715B200F08F2D /* LoggerKit */,
+				8B46F3A722E715EA00F08F2D /* Actions */,
+				8B46F3A922E715EA00F08F2D /* ActionsKit */,
+				8B46F3AF22E7165200F08F2D /* Expressions */,
+				8B46F3B222E7168500F08F2D /* JSONDump */,
 			);
 			productName = BookishModelMobile;
 			productReference = 224293B3212AE16200E70510 /* BookishModel.framework */;
@@ -923,12 +937,10 @@
 			buildRules = (
 			);
 			dependencies = (
-				8BB70F4022AA8EA5000A0346 /* PBXTargetDependency */,
 				224293BE212AE16300E70510 /* PBXTargetDependency */,
 			);
 			name = BookishModelTestsMobile;
 			packageProductDependencies = (
-				8BB70F4122AA8EAD000A0346 /* BookishCoreTestSupport */,
 			);
 			productName = BookishModelMobileTests;
 			productReference = 224293BB212AE16300E70510 /* BookishModelTestsMobile.xctest */;
@@ -945,12 +957,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				8BB70F4622AA9515000A0346 /* PBXTargetDependency */,
 				225F8954221AFBC700196110 /* PBXTargetDependency */,
 			);
 			name = bkt;
 			packageProductDependencies = (
-				8BB70F4722AA951A000A0346 /* bktCore */,
+				8B46F3AC22E7161C00F08F2D /* CommandShell */,
 			);
 			productName = bkt;
 			productReference = 225F894C221AFB3F00196110 /* bkt */;
@@ -998,6 +1009,13 @@
 			);
 			mainGroup = 22DD423B2126D6DA0070C85A;
 			packageReferences = (
+				8B46F3A122E715B200F08F2D /* XCRemoteSwiftPackageReference "Logger" */,
+				8B46F3A622E715EA00F08F2D /* XCRemoteSwiftPackageReference "Actions" */,
+				8B46F3AB22E7161C00F08F2D /* XCRemoteSwiftPackageReference "CommandShell" */,
+				8B46F3AE22E7165200F08F2D /* XCRemoteSwiftPackageReference "Expressions" */,
+				8B46F3B122E7168500F08F2D /* XCRemoteSwiftPackageReference "JSONDump" */,
+				8B46F3B522E716FD00F08F2D /* XCRemoteSwiftPackageReference "ReleaseTools" */,
+				8B46F3B622E7172800F08F2D /* XCRemoteSwiftPackageReference "Coverage" */,
 			);
 			productRefGroup = 22DD42452126D6DA0070C85A /* Products */;
 			projectDirPath = "";
@@ -1347,14 +1365,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2219BE0122AA5FD500D7ADB7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 2219BE0022AA5FD500D7ADB7 /* BookishCore */;
-		};
-		2219BE0522AA5FF200D7ADB7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 2219BE0422AA5FF200D7ADB7 /* BookishCore */;
-		};
 		2242939C212AE0F400E70510 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 22429390212AE0F300E70510 /* BookishModelMac */;
@@ -1369,18 +1379,6 @@
 			isa = PBXTargetDependency;
 			target = 22429390212AE0F300E70510 /* BookishModelMac */;
 			targetProxy = 225F8953221AFBC700196110 /* PBXContainerItemProxy */;
-		};
-		8BB70F3C22AA8BC9000A0346 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 8BB70F3B22AA8BC9000A0346 /* BookishCoreTestSupport */;
-		};
-		8BB70F4022AA8EA5000A0346 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 8BB70F3F22AA8EA5000A0346 /* BookishCoreTestSupport */;
-		};
-		8BB70F4622AA9515000A0346 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 8BB70F4522AA9515000A0346 /* bktCore */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1780,46 +1778,120 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		8B46F3A122E715B200F08F2D /* XCRemoteSwiftPackageReference "Logger" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:elegantchaos/Logger.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.7;
+			};
+		};
+		8B46F3A622E715EA00F08F2D /* XCRemoteSwiftPackageReference "Actions" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:elegantchaos/Actions.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.5;
+			};
+		};
+		8B46F3AB22E7161C00F08F2D /* XCRemoteSwiftPackageReference "CommandShell" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:elegantchaos/CommandShell.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
+		8B46F3AE22E7165200F08F2D /* XCRemoteSwiftPackageReference "Expressions" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:elegantchaos/Expressions.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		8B46F3B122E7168500F08F2D /* XCRemoteSwiftPackageReference "JSONDump" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:elegantchaos/JSONDump.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.4;
+			};
+		};
+		8B46F3B522E716FD00F08F2D /* XCRemoteSwiftPackageReference "ReleaseTools" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:elegantchaos/ReleaseTools.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.2;
+			};
+		};
+		8B46F3B622E7172800F08F2D /* XCRemoteSwiftPackageReference "Coverage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:elegantchaos/Coverage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.6;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
-		2219BDFE22AA5FC900D7ADB7 /* BookishCore */ = {
+		8B46F3A222E715B200F08F2D /* Logger */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = BookishCore;
+			package = 8B46F3A122E715B200F08F2D /* XCRemoteSwiftPackageReference "Logger" */;
+			productName = Logger;
 		};
-		2219BE0022AA5FD500D7ADB7 /* BookishCore */ = {
+		8B46F3A422E715B200F08F2D /* LoggerKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = BookishCore;
+			package = 8B46F3A122E715B200F08F2D /* XCRemoteSwiftPackageReference "Logger" */;
+			productName = LoggerKit;
 		};
-		2219BE0422AA5FF200D7ADB7 /* BookishCore */ = {
+		8B46F3A722E715EA00F08F2D /* Actions */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = BookishCore;
+			package = 8B46F3A622E715EA00F08F2D /* XCRemoteSwiftPackageReference "Actions" */;
+			productName = Actions;
 		};
-		8BB70F3B22AA8BC9000A0346 /* BookishCoreTestSupport */ = {
+		8B46F3A922E715EA00F08F2D /* ActionsKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = BookishCoreTestSupport;
+			package = 8B46F3A622E715EA00F08F2D /* XCRemoteSwiftPackageReference "Actions" */;
+			productName = ActionsKit;
 		};
-		8BB70F3D22AA8BDE000A0346 /* BookishCoreTestSupport */ = {
+		8B46F3AC22E7161C00F08F2D /* CommandShell */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = BookishCoreTestSupport;
+			package = 8B46F3AB22E7161C00F08F2D /* XCRemoteSwiftPackageReference "CommandShell" */;
+			productName = CommandShell;
 		};
-		8BB70F3F22AA8EA5000A0346 /* BookishCoreTestSupport */ = {
+		8B46F3AF22E7165200F08F2D /* Expressions */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = BookishCoreTestSupport;
+			package = 8B46F3AE22E7165200F08F2D /* XCRemoteSwiftPackageReference "Expressions" */;
+			productName = Expressions;
 		};
-		8BB70F4122AA8EAD000A0346 /* BookishCoreTestSupport */ = {
+		8B46F3B222E7168500F08F2D /* JSONDump */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = BookishCoreTestSupport;
+			package = 8B46F3B122E7168500F08F2D /* XCRemoteSwiftPackageReference "JSONDump" */;
+			productName = JSONDump;
 		};
-		8BB70F4322AA8EF4000A0346 /* BookishCore */ = {
+		8B46F3B822E71A4C00F08F2D /* Actions */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = BookishCore;
+			package = 8B46F3A622E715EA00F08F2D /* XCRemoteSwiftPackageReference "Actions" */;
+			productName = Actions;
 		};
-		8BB70F4522AA9515000A0346 /* bktCore */ = {
+		8B46F3BA22E71A4C00F08F2D /* ActionsKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = bktCore;
+			package = 8B46F3A622E715EA00F08F2D /* XCRemoteSwiftPackageReference "Actions" */;
+			productName = ActionsKit;
 		};
-		8BB70F4722AA951A000A0346 /* bktCore */ = {
+		8B46F3BC22E71A5900F08F2D /* JSONDump */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = bktCore;
+			package = 8B46F3B122E7168500F08F2D /* XCRemoteSwiftPackageReference "JSONDump" */;
+			productName = JSONDump;
+		};
+		8B46F3BE22E71A6600F08F2D /* Expressions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B46F3AE22E7165200F08F2D /* XCRemoteSwiftPackageReference "Expressions" */;
+			productName = Expressions;
 		};
 /* End XCSwiftPackageProductDependency section */
 
