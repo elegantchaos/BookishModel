@@ -10,7 +10,7 @@ class SeriesDetailProvider: DetailProvider {
     
     public class func standardDetails(showDebug: Bool) -> [DetailSpec] {
         var details = [
-            DetailSpec(binding: "notes"),
+            DetailSpec(binding: "notes", viewAs: DetailSpec.paragraphKind),
             DetailSpec(binding: "items"),
             DetailSpec(binding: "added", viewAs: DetailSpec.timeKind),
             DetailSpec(binding: "modified", viewAs: DetailSpec.timeKind),

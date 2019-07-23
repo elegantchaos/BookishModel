@@ -10,7 +10,7 @@ class RoleDetailProvider: DetailProvider {
     
     public class func standardDetails(showDebug: Bool) -> [DetailSpec] {
         var details = [
-            DetailSpec(binding: "notes", viewAs: DetailSpec.hiddenKind, editAs: DetailSpec.textKind),
+            DetailSpec(binding: "notes", viewAs: DetailSpec.hiddenKind, editAs: DetailSpec.paragraphKind),
             DetailSpec(binding: "modified", viewAs: DetailSpec.timeKind),
         ]
         

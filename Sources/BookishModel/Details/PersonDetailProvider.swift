@@ -9,8 +9,8 @@ public class PersonDetailProvider: DetailProvider {
     
     public class func standardDetails(showDebug: Bool) -> [DetailSpec] {
         var details = [
-            DetailSpec(binding: "notes"),
-            DetailSpec(binding: "biography"),
+            DetailSpec(binding: "notes", viewAs: DetailSpec.paragraphKind),
+            DetailSpec(binding: "biography", viewAs: DetailSpec.paragraphKind),
             DetailSpec(binding: "born", viewAs: DetailSpec.dateKind, editAs: DetailSpec.editableDateKind),
             DetailSpec(binding: "died", viewAs: DetailSpec.dateKind, editAs: DetailSpec.editableDateKind),
             DetailSpec(binding: "added", viewAs: DetailSpec.timeKind),
