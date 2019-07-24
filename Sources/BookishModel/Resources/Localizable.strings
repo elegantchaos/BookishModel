@@ -126,7 +126,7 @@ detail.importRaw.label = "🛠 import";
 detail.isbn.label = "isbn";
 detail.isbn.placeholder = "isbn or ean number";
 
-detail.items.label = "volumes";
+detail.items.label = "# in series";
 
 detail.log.label = "🛠 log";
 detail.log.placeholder = "action log";
