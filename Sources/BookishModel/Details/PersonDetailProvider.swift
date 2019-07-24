@@ -69,7 +69,7 @@ public class PersonDetailProvider: DetailProvider {
         }
     }
     
-    public override func filter(for selection: Selection<ModelObject>, editing: Bool, combining: Bool, context: DetailContext) {
+    public override func filter(for selection: ModelSelection, editing: Bool, combining: Bool, context: DetailContext) {
         let template = PersonDetailProvider.standardDetails(showDebug: context.showDebug)
         if let people = selection.objects as? [Person] {
             let collectedTags = MultipleValues.extract(from: people) { person -> Set<Tag>? in

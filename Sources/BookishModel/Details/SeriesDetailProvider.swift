@@ -59,7 +59,7 @@ class SeriesDetailProvider: DetailProvider {
         }
     }
     
-    override func filter(for selection: Selection<ModelObject>, editing: Bool, combining: Bool, context: DetailContext) {
+    override func filter(for selection: ModelSelection, editing: Bool, combining: Bool, context: DetailContext) {
         if let series = selection.objects as? [Series] {
             let collectedTags = MultipleValues.extract(from: series) { series -> Set<Tag>? in
                 return series.tags as? Set<Tag>

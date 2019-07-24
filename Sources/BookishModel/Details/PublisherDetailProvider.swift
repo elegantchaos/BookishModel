@@ -57,7 +57,7 @@ class PublisherDetailProvider: DetailProvider {
         }
     }
     
-    override func filter(for selection: Selection<ModelObject>, editing: Bool, combining: Bool, context: DetailContext) {
+    override func filter(for selection: ModelSelection, editing: Bool, combining: Bool, context: DetailContext) {
         if let publishers = selection.objects as? [Publisher] {
             let collectedTags = MultipleValues.extract(from: publishers) { publisher -> Set<Tag>? in
                 return publisher.tags as? Set<Tag>

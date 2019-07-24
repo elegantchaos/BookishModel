@@ -47,7 +47,7 @@ public class BookDetailProvider: DetailProvider {
         return isEditing ? DetailProvider.EditingColumns : DetailProvider.LabelledColumns
     }
 
-    override public func filter(for selection: Selection<ModelObject>, editing: Bool, combining: Bool, context: DetailContext) {
+    override public func filter(for selection: ModelSelection, editing: Bool, combining: Bool, context: DetailContext) {
         let template = BookDetailProvider.standardDetails(showDebug: context.showDebug)
         if let books = selection.objects as? [Book] {
             let collectedRelationships = MultipleValues.extract(from: books) { book -> Set<Relationship>? in
