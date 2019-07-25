@@ -182,3 +182,24 @@ importer.message = "Select file to import:";
 
 com.elegantchaos.bookish.importer.kindle.message = "Select a Kindle cache file to import:";
 com.elegantchaos.bookish.importer.delicious-library.message = "Select a Delicious Library export file to import:";
+
+action.NewBook.title = "New Book";
+action.DeleteBook.title = "Delete Book";
+action.DeleteBook.title.plural = "Delete Books";
+
+action.NewPerson.title = "New Person";
+action.DeletePerson.title = "Delete Person";
+action.DeletePerson.title.plural = "Delete People";
+
+action.NewSeries.title = "New Series";
+action.DeleteSeries.title = "Delete Series";
+action.DeleteSeries.title.plural = "Delete Series";
+
+action.NewPublisher.title = "New Publisher";
+action.DeletePublisher.title = "Delete Publisher";
+action.DeletePublisher.title.plural = "Delete Publishers";
+
+action.SplitPerson.title = "Split Person";
+action.MergePerson.title = "Merge People";
+
+action.ScanSeries.title = "Scan Books";

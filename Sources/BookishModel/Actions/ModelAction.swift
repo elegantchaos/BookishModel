@@ -26,12 +26,18 @@ open class ModelAction: Action {
         return actions
     }
     
+    func nameKeys(context: ActionContext) -> (String, String) {
+        let id = context.identifier
+        return ("action.\(id).title", "action.\(id).short")
+    }
+
     public func modelValidate(context: ActionContext) -> Bool {
         return (context[ActionContext.modelKey] as? NSManagedObjectContext) != nil
     }
 
-    open override func validate(context: ActionContext) -> Bool {
-        return modelValidate(context:context)
+    open override func validate(context: ActionContext) -> Action.Validation {
+        let (nameKey, shortKey) = nameKeys(context: context)
+        return Action.Validation(enabled: modelValidate(context: context), visible: true, name: nameKey.localized, shortName: shortKey.localized)
     }
     
     open override func perform(context: ActionContext, completed: @escaping Completion) {
@@ -60,6 +66,29 @@ open class ModelAction: Action {
 }
 
 open class SyncModelAction: ModelAction {
+    open func validateSelection<EntityType>(type: EntityType.Type, context: ActionContext, minimumToEnable: Int = 1, usingPluralTitle: Bool) -> Action.Validation {
+        let valid: Action.Validation = super.validate(context: context)
+        guard valid.enabled && valid.visible else {
+            return valid
+        }
+
+        var enabled = valid.enabled
+        var name = valid.name
+        var shortName = valid.shortName
+        
+        if let selection = context[ActionContext.selectionKey] as? [EntityType] {
+            let count = selection.count
+            enabled = count >= minimumToEnable
+            if (count > 1) && usingPluralTitle {
+                let (nameKey, shortKey) = nameKeys(context: context)
+                name = "\(nameKey).plural".localized
+                shortName = "\(shortKey).plural".localized
+            }
+        }
+        
+        return Action.Validation(enabled: enabled, visible: valid.visible, name: name, shortName: shortName)
+    }
+
     override func perform(context: ActionContext, model: NSManagedObjectContext, completion: @escaping ModelAction.Completion) {
         perform(context: context, model: model)
         completion()

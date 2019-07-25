@@ -42,18 +42,6 @@ open class PersonAction: SyncModelAction {
     public static let splitNameKey = "splitName"
     public static let splitUUIDKey = "splitUUID"
     
-    open override func validate(context: ActionContext) -> Bool {
-        guard super.validate(context: context) else {
-            return false
-        }
-        
-        guard let selection = context[ActionContext.selectionKey] as? [Person] else {
-            return false
-        }
-        
-        return selection.count > 0
-    }
-    
     open class override func standardActions() -> [Action] {
         return [
             NewPersonAction(),
@@ -70,10 +58,6 @@ open class PersonAction: SyncModelAction {
  */
 
 class NewPersonAction: PersonAction {
-    public override func validate(context: ActionContext) -> Bool {
-        return modelValidate(context:context) // we don't need a selection, so we skip to ModelAction's validation
-    }
-
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
         let person = Person(context: model)
         context.info.forObservers { (observer: PersonLifecycleObserver) in
@@ -87,6 +71,10 @@ class NewPersonAction: PersonAction {
  */
 
 class DeletePersonAction: PersonAction {
+    open override func validate(context: ActionContext) -> Action.Validation {
+        return validateSelection(type: Person.self, context: context, usingPluralTitle: true)
+    }
+
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
         if let selection = context[ActionContext.selectionKey] as? [Person] {
             for person in selection {
@@ -146,12 +134,8 @@ class MergePersonAction: PersonAction {
         }
     }
     
-    override func validate(context: ActionContext) -> Bool {
-        guard let selection = context[ActionContext.selectionKey] as? [Person], super.validate(context: context) else {
-            return false
-        }
-
-        return selection.count > 1
+    open override func validate(context: ActionContext) -> Action.Validation {
+        return validateSelection(type: Person.self, context: context, minimumToEnable: 2, usingPluralTitle: true)
     }
     
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
