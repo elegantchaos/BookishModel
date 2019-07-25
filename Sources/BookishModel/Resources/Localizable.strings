@@ -204,4 +204,4 @@ action.SplitPerson.title.plural = "Split People";
 
 action.MergePerson.title = "Merge People"; // no plural, always has more than one item selected
 
-action.ScanSeries.title = "Scan Books";
+action.ShowScanner.title = "Scan Books";
