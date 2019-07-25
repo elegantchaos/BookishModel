@@ -9,7 +9,6 @@
 import Foundation
 import CommandShell
 import BookishModel
-import bktCore
 
 BookishModel.registerLocalizations()
 
