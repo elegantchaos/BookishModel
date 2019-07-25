@@ -1800,7 +1800,7 @@
 			repositoryURL = "git@github.com:elegantchaos/CommandShell.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.0;
+				minimumVersion = 1.1.1;
 			};
 		};
 		8B46F3AE22E7165200F08F2D /* XCRemoteSwiftPackageReference "Expressions" */ = {
