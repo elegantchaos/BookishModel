@@ -134,8 +134,8 @@ class MergePersonAction: PersonAction {
         }
     }
     
-    open override func validate(context: ActionContext) -> Action.Validation {
-        return validateSelection(type: Person.self, context: context, minimumToEnable: 2, usingPluralTitle: true)
+    override func validate(context: ActionContext) -> Action.Validation {
+        return validateSelection(type: Person.self, context: context, minimumToEnable: 2, usingPluralTitle: false)
     }
     
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
@@ -182,6 +182,10 @@ class SplitPersonAction: PersonAction {
                 }
             }
         }
+    }
+    
+    override func validate(context: ActionContext) -> Action.Validation {
+        return validateSelection(type: Person.self, context: context, minimumToEnable: 2, usingPluralTitle: true)
     }
     
     override func perform(context: ActionContext, model: NSManagedObjectContext) {

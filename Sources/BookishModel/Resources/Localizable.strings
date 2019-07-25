@@ -200,6 +200,8 @@ action.DeletePublisher.title = "Delete Publisher";
 action.DeletePublisher.title.plural = "Delete Publishers";
 
 action.SplitPerson.title = "Split Person";
-action.MergePerson.title = "Merge People";
+action.SplitPerson.title.plural = "Split People";
+
+action.MergePerson.title = "Merge People"; // no plural, always has more than one item selected
 
 action.ScanSeries.title = "Scan Books";
