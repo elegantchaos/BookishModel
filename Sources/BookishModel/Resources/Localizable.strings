@@ -159,11 +159,6 @@ detail.uuid.label = "🛠 id";
 detail.weight.label = "weight";
 detail.weight.placeholder = "weight of book";
 
-editing.start.long = "Start Editing {entity}";
-editing.stop.long = "Finish Editing {entity}";
-editing.start.short = "Edit";
-editing.stop.short = "Done";
-
 scanner.startup = "Scan a barcode or enter an ISBN/EAN/title.";
 
 candidate.lookup.initial = "";
@@ -217,3 +212,13 @@ action.MergePerson.short = "Merge";
 
 action.ShowScanner.title = "Scan Books";
 action.ShowScanner.short = "Scan";
+
+action.ToggleEditing.title = "Start Editing {entity}";
+action.ToggleEditing.stop.title = "Finish Editing {entity}";
+action.ToggleEditing.short = "Edit";
+action.ToggleEditing.stop.short = "Done";
+
+action.ToggleSelectable.title = "Start Selecting {entity}";
+action.ToggleSelectable.stop.title = "Finish Selecting {entity}";
+action.ToggleSelectable.short = "Select";
+action.ToggleSelectable.stop.short = "Done";
