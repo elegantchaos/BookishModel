@@ -180,35 +180,48 @@ com.elegantchaos.bookish.importer.delicious-library.message = "Select a Deliciou
 
 action.NewBook.title = "New Book";
 action.NewBook.short = "New";
+action.NewBook.icon = "plus.square";
 
 action.DeleteBook.title = "Delete Book";
 action.DeleteBook.title.plural = "Delete Books";
 action.DeleteBook.short = "Delete";
+action.DeleteBook.icon = "minus.square";
 
 action.NewPerson.title = "New Person";
 action.NewPerson.short = "New";
+action.NewPerson.icon = "plus.square";
+
 action.DeletePerson.title = "Delete Person";
 action.DeletePerson.title.plural = "Delete People";
 action.DeletePerson.short = "Delete";
+action.DeletePerson.icon = "minus.square";
 
 action.NewSeries.title = "New Series";
 action.NewSeries.short = "New";
+action.NewSeries.icon = "plus.square";
+
 action.DeleteSeries.title = "Delete Series";
 action.DeleteSeries.title.plural = "Delete Series";
 action.DeleteSeries.short = "Delete";
+action.DeleteSeries.icon = "minus.square";
 
 action.NewPublisher.title = "New Publisher";
 action.NewPublisher.short = "New";
+action.NewPublisher.icon = "plus.square";
+
 action.DeletePublisher.title = "Delete Publisher";
 action.DeletePublisher.title.plural = "Delete Publishers";
 action.DeletePublisher.short = "Delete";
+action.DeletePublisher.icon = "minus.square";
 
 action.SplitPerson.title = "Split Person";
 action.SplitPerson.title.plural = "Split People";
 action.SplitPerson.short = "Split";
+action.SplitPerson.icon = "arrow.left.and.right.square";
 
 action.MergePerson.title = "Merge People"; // no plural, always has more than one item selected
 action.MergePerson.short = "Merge";
+action.MergePerson.icon = "arrow.merge";
 
 action.ShowScanner.title = "Scan Books";
 action.ShowScanner.short = "Scan";

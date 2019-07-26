@@ -5,6 +5,7 @@
 
 import Foundation
 import CoreData
+import Localization
 
 public class StandardRolesImporter: Importer {
     override class public var identifier: String { return "com.elegantchaos.bookish.importer.standard-roles" }

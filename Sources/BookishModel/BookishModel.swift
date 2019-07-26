@@ -5,6 +5,7 @@
 
 import CoreData
 import Logger
+import Localization
 
 let modelChannel = Logger("Model")
 
@@ -31,7 +32,7 @@ public class BookishModel {
     ]
 
     public class func registerLocalizations() {
-        StringLocalization.registerLocalizationBundle(Bundle(for: BookishModel.self))
+        Localization.registerLocalizationBundle(Bundle(for: BookishModel.self))
     }
     
     public class func modelURL(bundle: Bundle = Bundle(for: BookishModel.self)) -> URL {

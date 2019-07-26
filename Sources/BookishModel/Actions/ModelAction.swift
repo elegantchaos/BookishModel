@@ -67,13 +67,18 @@ open class SyncModelAction: ModelAction {
     open func validateSelection<EntityType>(type: EntityType.Type, context: ActionContext, minimumToEnable: Int = 1, usingPluralTitle: Bool) -> Action.Validation {
         var info = super.validate(context: context)
 
-        if info.enabled, let selection = context[ActionContext.selectionKey] as? [EntityType] {
+        if info.enabled,
+            let indexType = context[ModelAction.entityTypeKey] as? EntityType.Type,
+            let selection = context[ActionContext.selectionKey] as? [EntityType],
+            indexType == type {
             let count = selection.count
             info.enabled = count >= minimumToEnable
             if (count > 1) && usingPluralTitle {
                 info.fullName = "\(info.fullName).plural"
                 info.shortName = "\(info.shortName).plural"
             }
+        } else {
+            info.state = .ineligable
         }
         
         return info

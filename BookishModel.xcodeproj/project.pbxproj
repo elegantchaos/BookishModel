@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		22115B1C222FDF0A00C3F170 /* DecodingError+DetailedDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22115B1B222FDF0A00C3F170 /* DecodingError+DetailedDescription.swift */; };
 		22115B1D222FDF0A00C3F170 /* DecodingError+DetailedDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22115B1B222FDF0A00C3F170 /* DecodingError+DetailedDescription.swift */; };
-		2211A96F2215A7B0004B7589 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2211A9542215A7B0004B7589 /* StringExtensions.swift */; };
-		2211A9702215A7B0004B7589 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2211A9542215A7B0004B7589 /* StringExtensions.swift */; };
 		2211A9722215C072004B7589 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2211A9712215C072004B7589 /* Localizable.strings */; };
 		2211A9732215C072004B7589 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2211A9712215C072004B7589 /* Localizable.strings */; };
 		2212376E220CA405006D4AA5 /* PersonDetailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22123768220CA3EA006D4AA5 /* PersonDetailTests.swift */; };
@@ -278,7 +276,6 @@
 		8B46F3A322E715B200F08F2D /* Logger in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3A222E715B200F08F2D /* Logger */; };
 		8B46F3A522E715B200F08F2D /* LoggerKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3A422E715B200F08F2D /* LoggerKit */; };
 		8B46F3A822E715EA00F08F2D /* Actions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3A722E715EA00F08F2D /* Actions */; };
-		8B46F3AA22E715EA00F08F2D /* ActionsKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3A922E715EA00F08F2D /* ActionsKit */; };
 		8B46F3AD22E7161C00F08F2D /* CommandShell in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3AC22E7161C00F08F2D /* CommandShell */; };
 		8B46F3B022E7165200F08F2D /* Expressions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3AF22E7165200F08F2D /* Expressions */; };
 		8B46F3B322E7168500F08F2D /* JSONDump in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3B222E7168500F08F2D /* JSONDump */; };
@@ -286,6 +283,7 @@
 		8B46F3BB22E71A4C00F08F2D /* ActionsKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3BA22E71A4C00F08F2D /* ActionsKit */; };
 		8B46F3BD22E71A5900F08F2D /* JSONDump in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3BC22E71A5900F08F2D /* JSONDump */; };
 		8B46F3BF22E71A6600F08F2D /* Expressions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3BE22E71A6600F08F2D /* Expressions */; };
+		8B7BF86522EB3BF30061087A /* Localization in Frameworks */ = {isa = PBXBuildFile; productRef = 8B7BF86422EB3BF30061087A /* Localization */; };
 		8B935FEA22B7BE9200435863 /* CloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B935FE922B7BE9200435863 /* CloudManager.swift */; };
 		8B935FEB22B7BE9200435863 /* CloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B935FE922B7BE9200435863 /* CloudManager.swift */; };
 /* End PBXBuildFile section */
@@ -328,7 +326,6 @@
 
 /* Begin PBXFileReference section */
 		22115B1B222FDF0A00C3F170 /* DecodingError+DetailedDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DecodingError+DetailedDescription.swift"; sourceTree = "<group>"; };
-		2211A9542215A7B0004B7589 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		2211A9712215C072004B7589 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		22123768220CA3EA006D4AA5 /* PersonDetailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailTests.swift; sourceTree = "<group>"; };
 		2212376A220CA3F4006D4AA5 /* PublisherDetailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherDetailTests.swift; sourceTree = "<group>"; };
@@ -518,11 +515,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B46F3A822E715EA00F08F2D /* Actions in Frameworks */,
+				8B7BF86522EB3BF30061087A /* Localization in Frameworks */,
 				8B46F3A322E715B200F08F2D /* Logger in Frameworks */,
 				8B46F3B322E7168500F08F2D /* JSONDump in Frameworks */,
 				8B46F3A522E715B200F08F2D /* LoggerKit in Frameworks */,
 				8B46F3B022E7165200F08F2D /* Expressions in Frameworks */,
-				8B46F3AA22E715EA00F08F2D /* ActionsKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -680,7 +677,6 @@
 				8B10C78922BD094200E05F33 /* Binder.swift */,
 				8B10C78A22BD094200E05F33 /* Selection.swift */,
 				22A8DF9522A943CE00994280 /* ImageCache.swift */,
-				2211A9542215A7B0004B7589 /* StringExtensions.swift */,
 				22E96F6A228D837800DE95A8 /* DataFetcher.swift */,
 				22ADAC5D223146BE00967943 /* SequenceExtensions.swift */,
 				2231C570222971B600D730FB /* String+ISBN.swift */,
@@ -918,9 +914,9 @@
 				8B46F3A222E715B200F08F2D /* Logger */,
 				8B46F3A422E715B200F08F2D /* LoggerKit */,
 				8B46F3A722E715EA00F08F2D /* Actions */,
-				8B46F3A922E715EA00F08F2D /* ActionsKit */,
 				8B46F3AF22E7165200F08F2D /* Expressions */,
 				8B46F3B222E7168500F08F2D /* JSONDump */,
+				8B7BF86422EB3BF30061087A /* Localization */,
 			);
 			productName = BookishModelMobile;
 			productReference = 224293B3212AE16200E70510 /* BookishModel.framework */;
@@ -1016,6 +1012,7 @@
 				8B46F3B122E7168500F08F2D /* XCRemoteSwiftPackageReference "JSONDump" */,
 				8B46F3B522E716FD00F08F2D /* XCRemoteSwiftPackageReference "ReleaseTools" */,
 				8B46F3B622E7172800F08F2D /* XCRemoteSwiftPackageReference "Coverage" */,
+				8B7BF86322EB3BF30061087A /* XCRemoteSwiftPackageReference "Localization" */,
 			);
 			productRefGroup = 22DD42452126D6DA0070C85A /* Products */;
 			projectDirPath = "";
@@ -1149,7 +1146,6 @@
 				22A8DF9B22A9440000994280 /* NSManagedObjectExtensions.swift in Sources */,
 				224293E3212AF09D00E70510 /* Person.swift in Sources */,
 				2231C571222971B600D730FB /* String+ISBN.swift in Sources */,
-				2211A96F2215A7B0004B7589 /* StringExtensions.swift in Sources */,
 				22A8DF9D22A9440000994280 /* NSEntityDescriptionExtensions.swift in Sources */,
 				229FB9E22226B2C300A564D4 /* LookupService.swift in Sources */,
 				2250C71F21B94CD800E899E2 /* SeriesScanner.swift in Sources */,
@@ -1281,7 +1277,6 @@
 				224293E4212AF09E00E70510 /* Person.swift in Sources */,
 				2231C572222971B600D730FB /* String+ISBN.swift in Sources */,
 				221B8555225E2CDD00BC4D32 /* PersonDetailItem.swift in Sources */,
-				2211A9702215A7B0004B7589 /* StringExtensions.swift in Sources */,
 				229FB9E32226B2C300A564D4 /* LookupService.swift in Sources */,
 				2250C72021B94CD800E899E2 /* SeriesScanner.swift in Sources */,
 				22A8DF9722A943CE00994280 /* ImageCache.swift in Sources */,
@@ -1792,7 +1787,7 @@
 			repositoryURL = "git@github.com:elegantchaos/Actions.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.3.5;
+				minimumVersion = 1.4.0;
 			};
 		};
 		8B46F3AB22E7161C00F08F2D /* XCRemoteSwiftPackageReference "CommandShell" */ = {
@@ -1835,6 +1830,14 @@
 				minimumVersion = 1.0.6;
 			};
 		};
+		8B7BF86322EB3BF30061087A /* XCRemoteSwiftPackageReference "Localization" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:elegantchaos/Localization.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1852,11 +1855,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8B46F3A622E715EA00F08F2D /* XCRemoteSwiftPackageReference "Actions" */;
 			productName = Actions;
-		};
-		8B46F3A922E715EA00F08F2D /* ActionsKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8B46F3A622E715EA00F08F2D /* XCRemoteSwiftPackageReference "Actions" */;
-			productName = ActionsKit;
 		};
 		8B46F3AC22E7161C00F08F2D /* CommandShell */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1892,6 +1890,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8B46F3AE22E7165200F08F2D /* XCRemoteSwiftPackageReference "Expressions" */;
 			productName = Expressions;
+		};
+		8B7BF86422EB3BF30061087A /* Localization */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B7BF86322EB3BF30061087A /* XCRemoteSwiftPackageReference "Localization" */;
+			productName = Localization;
 		};
 /* End XCSwiftPackageProductDependency section */
 
