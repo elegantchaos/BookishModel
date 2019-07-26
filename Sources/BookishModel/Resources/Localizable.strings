@@ -222,3 +222,5 @@ action.ToggleSelectable.title = "Start Selecting {entity}";
 action.ToggleSelectable.stop.title = "Finish Selecting {entity}";
 action.ToggleSelectable.short = "Select";
 action.ToggleSelectable.stop.short = "Done";
+action.ToggleSelectable.icon = "checkmark.circle";
+action.ToggleSelectable.stop.icon = "checkmark.circle.fill";

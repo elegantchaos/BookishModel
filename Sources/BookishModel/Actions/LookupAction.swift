@@ -21,9 +21,13 @@ public class LookupAction: SyncModelAction {
 public class LookupCoverAction: LookupAction {
     public static let managerKey = "lookupManager"
     
-    public override func validate(context: ActionContext) -> Bool {
-        let books = context[ActionContext.selectionKey] as? [Book]
-        return (books != nil) && (context[LookupCoverAction.managerKey] != nil) && super.validate(context: context)
+    public override func validate(context: ActionContext) -> Validation {
+        var info = super.validate(context: context)
+        if info.enabled {
+            let books = context[ActionContext.selectionKey] as? [Book]
+            info.enabled = (books != nil) && (context[LookupCoverAction.managerKey] != nil)
+        }
+        return info
     }
     
     public override func perform(context: ActionContext, model: NSManagedObjectContext) {
@@ -92,10 +96,6 @@ public class LookupCoverAction: LookupAction {
 }
 
 public class AddCandidateAction: LookupAction {
-    public override func validate(context: ActionContext) -> Action.Validation {
-        return .init(enabled: true, visible: true, name: "Add")
-    }
-
     public override func perform(context: ActionContext, model: NSManagedObjectContext) {
         if let candidate = context[LookupAction.candidateKey] as? LookupCandidate, let viewer = context[ActionContext.rootKey] as? BookViewer {
             let book = candidate.makeBook(in: model)
@@ -105,10 +105,6 @@ public class AddCandidateAction: LookupAction {
 }
 
 public class ViewCandidateAction: LookupAction {
-    public override func validate(context: ActionContext) -> Action.Validation {
-        return .init(enabled: true, visible: true, name: "View")
-    }
-    
     public override func perform(context: ActionContext, model: NSManagedObjectContext) {
         if
             let candidate = context[LookupAction.candidateKey] as? LookupCandidate,

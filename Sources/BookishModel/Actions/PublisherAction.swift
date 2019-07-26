@@ -35,16 +35,16 @@ open class PublisherAction: SyncModelAction {
     public static let publisherKey = "publisher"
     public static let newPublisherKey = "newPublisher"
     
-    open override func validate(context: ActionContext) -> Bool {
-        guard super.validate(context: context) else {
-            return false
+    open override func validate(context: ActionContext) -> Validation {
+        var info = super.validate(context: context)
+        
+        if info.enabled, let selection = context[ActionContext.selectionKey] as? [Publisher] {
+            info.enabled = selection.count > 0
+        } else {
+            info.enabled = false
         }
         
-        guard let selection = context[ActionContext.selectionKey] as? [Publisher] else {
-            return false
-        }
-        
-        return selection.count > 0
+        return info
     }
     
     open class override func standardActions() -> [Action] {
@@ -63,8 +63,8 @@ open class PublisherAction: SyncModelAction {
  */
 
 class NewPublisherAction: PublisherAction {
-    override func validate(context: ActionContext) -> Bool {
-        return modelValidate(context:context)
+    override func validate(context: ActionContext) -> Validation {
+        return modelValidate(context: context)
     }
     
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
@@ -98,8 +98,12 @@ class DeletePublisherAction: PublisherAction {
  */
 
 class RevealPublisherAction: PublisherAction {
-    override func validate(context: ActionContext) -> Bool {
-        return (context[PublisherAction.publisherKey] as? Publisher != nil) && modelValidate(context: context)
+    override func validate(context: ActionContext) -> Validation {
+        var info = modelValidate(context: context)
+        if info.enabled {
+            info.enabled = (context[PublisherAction.publisherKey] as? Publisher != nil)
+        }
+        return info
     }
     
     public override func perform(context: ActionContext, model: NSManagedObjectContext) {

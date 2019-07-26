@@ -94,11 +94,12 @@ class DeletePersonAction: PersonAction {
  */
 
 class RevealPersonAction: PersonAction {
-    override func validate(context: ActionContext) -> Bool {
-        var ok = (context[PersonAction.relationshipKey] as? Relationship != nil)
-        ok = ok || (context[PersonAction.personKey] as? Person != nil)
-        ok = ok && (context[ActionContext.rootKey] as? PersonViewer != nil) && super.modelValidate(context: context)
-        return ok
+    override func validate(context: ActionContext) -> Validation {
+        var info = super.validate(context: context)
+        info.enabled = info.enabled &&
+            ((context[PersonAction.relationshipKey] as? Relationship != nil) || (context[PersonAction.personKey] as? Person != nil)) &&
+            (context[ActionContext.rootKey] as? PersonViewer != nil)
+        return info
     }
     
     public override func perform(context: ActionContext, model: NSManagedObjectContext) {

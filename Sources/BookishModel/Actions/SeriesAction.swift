@@ -35,16 +35,16 @@ open class SeriesAction: SyncModelAction {
     public static let seriesKey = "series"
     public static let positionKey = "position"
 
-    open override func validate(context: ActionContext) -> Bool {
-        guard super.validate(context: context) else {
-            return false
+    open override func validate(context: ActionContext) -> Validation {
+        var info = super.validate(context: context)
+        
+        if let selection = context[ActionContext.selectionKey] as? [Series] {
+            info.enabled = info.enabled && selection.count > 0
+        } else {
+            info.enabled = false
         }
         
-        guard let selection = context[ActionContext.selectionKey] as? [Series] else {
-            return false
-        }
-        
-        return selection.count > 0
+        return info
     }
     
     open class override func standardActions() -> [Action] {
@@ -62,8 +62,8 @@ open class SeriesAction: SyncModelAction {
  */
 
 class NewSeriesAction: SeriesAction {
-    override func validate(context: ActionContext) -> Bool {
-        return modelValidate(context:context)
+    override func validate(context: ActionContext) -> Validation {
+        return modelValidate(context: context)
     }
     
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
@@ -97,8 +97,10 @@ class DeleteSeriesAction: SeriesAction {
  */
 
 class RevealSeriesAction: SeriesAction {
-    override func validate(context: ActionContext) -> Bool {
-        return (context[SeriesAction.seriesKey] as? Series != nil) && modelValidate(context: context)
+    override func validate(context: ActionContext) -> Validation {
+        var info = modelValidate(context: context)
+        info.enabled = info.enabled && (context[SeriesAction.seriesKey] as? Series != nil)
+        return info
     }
     
     public override func perform(context: ActionContext, model: NSManagedObjectContext) {

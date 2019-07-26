@@ -98,12 +98,15 @@ open class BookAction: SyncModelAction {
         ]
     }
     
-    open override func validate(context: ActionContext) -> Bool {
-        guard let selection = context[ActionContext.selectionKey] as? [Book] else {
-            return false
-        }
+    open override func validate(context: ActionContext) -> Validation {
+        var info = super.validate(context: context)
         
-        return (selection.count > 0) && super.validate(context: context)
+        if info.enabled, let selection = context[ActionContext.selectionKey] as? [Book] {
+            info.enabled = selection.count > 0
+        } else {
+            info.enabled = false
+        }
+        return info
     }
 }
 
@@ -112,8 +115,9 @@ open class BookAction: SyncModelAction {
  */
 
 public class NewBookAction: BookAction {
-    public override func validate(context: ActionContext) -> Bool {
-        return modelValidate(context:context) // we don't need a selection, so we skip to ModelAction's validation
+    public override func validate(context: ActionContext) -> Validation {
+        // we don't need a selection, so we skip to ModelAction's validation
+        return modelValidate(context: context)
     }
     
     override public func perform(context: ActionContext, model: NSManagedObjectContext) {
@@ -149,12 +153,10 @@ public class DeleteBookAction: BookAction {
  */
 
 class AddRelationshipAction: BookAction {
-    public override func validate(context: ActionContext) -> Bool {
-        guard let _ = context[PersonAction.roleKey] as? String else {
-            return false
-        }
-        
-        return super.validate(context: context)
+    public override func validate(context: ActionContext) -> Validation {
+        var info = super.validate(context: context)
+        info.enabled = info.enabled && ((context[PersonAction.roleKey] as? String) != nil)
+        return info
     }
     
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
@@ -177,8 +179,10 @@ class AddRelationshipAction: BookAction {
  */
 
 class RemoveRelationshipAction: BookAction {
-    public override func validate(context: ActionContext) -> Bool {
-        return (context[PersonAction.relationshipKey] as? Relationship != nil) && super.validate(context: context)
+    public override func validate(context: ActionContext) -> Validation {
+        var info = super.validate(context: context)
+        info.enabled = info.enabled && (context[PersonAction.relationshipKey] as? Relationship != nil)
+        return info
     }
     
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
@@ -226,8 +230,10 @@ class AddPublisherAction: BookAction {
  */
 
 class RemovePublisherAction: BookAction {
-    public override func validate(context: ActionContext) -> Bool {
-        return (context[PublisherAction.publisherKey] as? Publisher != nil) && super.validate(context: context)
+    public override func validate(context: ActionContext) -> Validation {
+        var info = super.validate(context: context)
+        info.enabled = info.enabled && (context[PublisherAction.publisherKey] as? Publisher != nil)
+        return info
     }
     
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
@@ -254,14 +260,16 @@ class RemovePublisherAction: BookAction {
  */
 
 class ChangeRelationshipAction: BookAction {
-    override func validate(context: ActionContext) -> Bool {
+    override func validate(context: ActionContext) -> Validation {
+        var info = super.validate(context: context)
         let gotRelationship = context[PersonAction.relationshipKey] as? Relationship != nil
         let gotPerson = (context[PersonAction.personKey] as? String) != nil || (context[PersonAction.personKey] as? Person) != nil
         let gotRole = (context[PersonAction.roleKey] as? Role) != nil
-        return super.validate(context: context) &&
+        info.enabled = info.enabled &&
             ((gotRelationship && gotPerson) ||
                 (gotRelationship && gotRole) ||
                 (!gotRelationship && gotPerson && gotRole))
+        return info
     }
     
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
@@ -327,9 +335,10 @@ class ChangeRelationshipAction: BookAction {
  */
 
 class ChangePublisherAction: BookAction {
-    override func validate(context: ActionContext) -> Bool {
-        let gotPublisher = (context[PublisherAction.newPublisherKey] as? Publisher != nil) || (context[PublisherAction.newPublisherKey] as? String != nil)
-        return gotPublisher && super.validate(context: context)
+    override func validate(context: ActionContext) -> Validation {
+        var info = super.validate(context: context)
+        info.enabled = info.enabled && (context[PublisherAction.newPublisherKey] as? Publisher != nil) || (context[PublisherAction.newPublisherKey] as? String != nil)
+        return info
     }
     
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
@@ -402,8 +411,10 @@ class AddSeriesAction: BookAction {
  */
 
 class RemoveSeriesAction: BookAction {
-    public override func validate(context: ActionContext) -> Bool {
-        return (context[SeriesAction.seriesKey] as? Series != nil) && super.validate(context: context)
+    public override func validate(context: ActionContext) -> Validation {
+        var info = super.validate(context: context)
+        info.enabled = info.enabled && (context[SeriesAction.seriesKey] as? Series != nil)
+        return info
     }
     
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
@@ -428,12 +439,14 @@ class RemoveSeriesAction: BookAction {
  */
 
 class ChangeSeriesAction: BookAction {
-    override func validate(context: ActionContext) -> Bool {
+    override func validate(context: ActionContext) -> Validation {
+        var info = super.validate(context: context)
         let gotSeries =
             (context[SeriesAction.seriesKey] as? Series != nil) ||
                 (context[SeriesAction.newSeriesKey] as? Series != nil) ||
                 (context[SeriesAction.newSeriesKey] as? String != nil)
-        return gotSeries && super.validate(context: context)
+        info.enabled = info.enabled && gotSeries
+        return info
     }
     
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
@@ -492,9 +505,10 @@ class ChangeSeriesAction: BookAction {
  */
 
 class RevealBookAction: BookAction {
-    override func validate(context: ActionContext) -> Bool {
-        let book = context[BookAction.bookKey] as? Book
-        return (book != nil) && super.modelValidate(context: context)
+    override func validate(context: ActionContext) -> Validation {
+        var info = super.validate(context: context)
+        info.enabled = info.enabled && ((context[BookAction.bookKey] as? Book) != nil)
+        return info
     }
     
     public override func perform(context: ActionContext, model: NSManagedObjectContext) {
