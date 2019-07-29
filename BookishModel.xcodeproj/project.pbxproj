@@ -274,7 +274,6 @@
 		8B10C78D22BD094200E05F33 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B10C78A22BD094200E05F33 /* Selection.swift */; };
 		8B10C78E22BD094200E05F33 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B10C78A22BD094200E05F33 /* Selection.swift */; };
 		8B46F3A322E715B200F08F2D /* Logger in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3A222E715B200F08F2D /* Logger */; };
-		8B46F3A522E715B200F08F2D /* LoggerKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3A422E715B200F08F2D /* LoggerKit */; };
 		8B46F3A822E715EA00F08F2D /* Actions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3A722E715EA00F08F2D /* Actions */; };
 		8B46F3AD22E7161C00F08F2D /* CommandShell in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3AC22E7161C00F08F2D /* CommandShell */; };
 		8B46F3B022E7165200F08F2D /* Expressions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3AF22E7165200F08F2D /* Expressions */; };
@@ -518,7 +517,6 @@
 				8B7BF86522EB3BF30061087A /* Localization in Frameworks */,
 				8B46F3A322E715B200F08F2D /* Logger in Frameworks */,
 				8B46F3B322E7168500F08F2D /* JSONDump in Frameworks */,
-				8B46F3A522E715B200F08F2D /* LoggerKit in Frameworks */,
 				8B46F3B022E7165200F08F2D /* Expressions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -912,7 +910,6 @@
 			name = BookishModelMobile;
 			packageProductDependencies = (
 				8B46F3A222E715B200F08F2D /* Logger */,
-				8B46F3A422E715B200F08F2D /* LoggerKit */,
 				8B46F3A722E715EA00F08F2D /* Actions */,
 				8B46F3AF22E7165200F08F2D /* Expressions */,
 				8B46F3B222E7168500F08F2D /* JSONDump */,
@@ -1845,11 +1842,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8B46F3A122E715B200F08F2D /* XCRemoteSwiftPackageReference "Logger" */;
 			productName = Logger;
-		};
-		8B46F3A422E715B200F08F2D /* LoggerKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8B46F3A122E715B200F08F2D /* XCRemoteSwiftPackageReference "Logger" */;
-			productName = LoggerKit;
 		};
 		8B46F3A722E715EA00F08F2D /* Actions */ = {
 			isa = XCSwiftPackageProductDependency;
