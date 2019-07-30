@@ -265,7 +265,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
         XCTAssertFalse(actionManager.validate(identifier: "RemovePublisher", info: info).enabled)
         
         info.addObserver(self)
-        info[PublisherAction.newPublisherKey] = publisher
+        info[PublisherAction.publisherKey] = publisher
         info[ActionContext.selectionKey] = [book]
         
         XCTAssertTrue(actionManager.validate(identifier: "RemovePublisher", info: info).enabled)

@@ -504,7 +504,7 @@ class ChangeSeriesAction: BookAction {
  Action that shows a book in the user interface.
  */
 
-class RevealBookAction: BookAction {
+class RevealBookAction: SyncModelAction {
     override func validate(context: ActionContext) -> Validation {
         var info = super.validate(context: context)
         info.enabled = info.enabled && ((context[BookAction.bookKey] as? Book) != nil)

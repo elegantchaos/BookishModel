@@ -186,7 +186,7 @@ class SplitPersonAction: PersonAction {
     }
     
     override func validate(context: ActionContext) -> Action.Validation {
-        return validateSelection(type: Person.self, context: context, minimumToEnable: 2, usingPluralTitle: true)
+        return validateSelection(type: Person.self, context: context, usingPluralTitle: true)
     }
     
     override func perform(context: ActionContext, model: NSManagedObjectContext) {

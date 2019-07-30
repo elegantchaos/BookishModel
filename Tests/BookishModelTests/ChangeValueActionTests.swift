@@ -29,10 +29,14 @@ class ChangeValueActionTests: ModelActionTestCase {
         
         // for the purposes of the test, the sender needs to be something capable of injecting the model
         // (this would typically come from the context)
-        struct Sender: ActionResponder, ActionContextProvider {
+        class Sender: ActionResponder, ActionContextProvider {
             let context: NSManagedObjectContext
             func next() -> ActionResponder? { return nil }
             func provide(context actionContext: ActionContext) { actionContext[ActionContext.modelKey] = self.context }
+            
+            init(context: NSManagedObjectContext) {
+                self.context = context
+            }
         }
         
         let book = Book(context: context)

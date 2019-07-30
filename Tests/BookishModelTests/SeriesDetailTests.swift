@@ -52,8 +52,8 @@ class SeriesDetailProviderTests: ModelTestCase {
         source.filter(for: ModelSelection([series]), editing: false, combining: false, context: TestContext())
         XCTAssertEqual(source.itemCount(for: 0), 4)
         XCTAssertEqual(source.itemCount(for: 1), 1)
-        XCTAssertEqual(source.info(section: 0, row: 0).kind, DetailSpec.textKind)
-        XCTAssertEqual(source.info(section: 0, row: 1).kind, DetailSpec.textKind)
+        XCTAssertEqual(source.info(section: 0, row: 0).kind, DetailSpec.paragraphKind)
+        XCTAssertEqual(source.info(section: 0, row: 1).kind, DetailSpec.numberKind)
         XCTAssertEqual(source.info(section: 0, row: 2).kind, DetailSpec.timeKind)
         XCTAssertEqual(source.sectionCount, 2)
     }

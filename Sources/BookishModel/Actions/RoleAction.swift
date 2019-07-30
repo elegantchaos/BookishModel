@@ -113,7 +113,7 @@ class DeleteRoleAction: RoleAction {
  The role to reveal can either be set as the roleKey, or extracted from a relationship set as the relationshipKey
  */
 
-class RevealRoleAction: RoleAction {
+class RevealRoleAction: SyncModelAction {
     override func validate(context: ActionContext) -> Validation {
         var info = super.validate(context: context)
         info.enabled = info.enabled && (context[RoleAction.roleKey] as? Role != nil) && (context[ActionContext.rootKey] as? RoleViewer != nil)
