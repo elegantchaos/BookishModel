@@ -131,7 +131,7 @@ public class ModelObject: NSManagedObject, DetailOwner {
 
 // MARK: Selection Support
 
-public typealias ModelSelection = Selection<ModelObject>
+public typealias ModelSelection = Selection<ModelEntity>
 
 // MARK: Action Serialization Support
 
