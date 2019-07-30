@@ -52,6 +52,23 @@ public class Person: ModelEntity, ModelEntityCommon {
         
         return entry
     }
+    
+    public func summaryItems() -> [String] {
+        var details: [String] = []
+
+        if let relationships = relationships as? Set<Relationship> {
+            var allBooks: Set<Book> = []
+            for relationship in relationships {
+                if let books = relationship.books as? Set<Book> {
+                    allBooks.formUnion(books)
+                }
+            }
+            let names = allBooks.compactMap({ $0.name })
+            details.append(contentsOf: names)
+        }
+
+        return details
+    }
 
     override public func updateSortName() {
         sortName = Indexing.nameSort(for: name)
