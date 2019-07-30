@@ -8,6 +8,7 @@ import Actions
 import BookishModel
 import CoreData
 import CommandShell
+import Localization
 
 struct Session {
     let container: CollectionContainer
@@ -16,6 +17,10 @@ struct Session {
 
 class MakeCommand: Command {
     var sessions: [Session] = []
+    
+    deinit {
+        print("blah")
+    }
     
     override var description: Command.Description {
         return Description(
@@ -56,7 +61,7 @@ class MakeCommand: Command {
         let rootURL = URL(fileURLWithPath: #file).deletingLastPathComponent()
         let jsonURL = rootURL.appendingPathComponent("Build \(name).json")
         
-        StringLocalization.registerLocalizationBundle(Bundle.main)
+        Localization.registerLocalizationBundle(Bundle.main)
         
         let resourceURL = rootURL.appendingPathComponent("../../Tests/BookishModelTests/Resources/")
         let outputDirectory = rootURL.appendingPathComponent("../BookishModel/Resources/").appendingPathComponent(name)
