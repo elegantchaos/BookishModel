@@ -192,6 +192,33 @@ public class Book: ModelEntity, ModelEntityCommon {
         return nil
     }
     
+    public enum SummaryMode {
+        case publisher
+        case series
+        case person
+    }
+    
+    public func summaryItems(mode: SummaryMode) -> [String] {
+        var details: [String] = []
+
+        if mode != .person, let relationships = relationships as? Set<Relationship> {
+            let names = relationships.compactMap({ $0.person?.name })
+            details.append(contentsOf: names)
+        }
+
+        if let date = published {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "Y"
+            details.append(formatter.string(from: date))
+        }
+
+        if mode != .publisher, let publisher = publisher?.name {
+            details.append(publisher)
+        }
+        
+        return details
+    }
+    
     override public func updateSortName() {
         sortName = Indexing.titleSort(for: name)
     }

@@ -54,7 +54,7 @@ class SeriesDetailProvider: DetailProvider {
             return super.info(section: section, row: row)
         } else {
             let entry = sortedEntries[row]
-            let info = SeriesEntryDetailItem(entry: entry, absolute: row, index: row, source: self)
+            let info = BookDetailItem(book: entry.book, mode: .series, position: entry.position, absolute: row, index: row, source: self)
             return info
         }
     }
