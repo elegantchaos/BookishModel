@@ -52,7 +52,7 @@ class PublisherDetailProvider: DetailProvider {
         if section == 0 {
             return super.info(section: section, row: row)
         } else {
-            let info = BookDetailItem(book: sortedBooks[row], absolute: row, index: row, source: self)
+            let info = BookDetailItem(book: sortedBooks[row], mode: .publisher, absolute: row, index: row, source: self)
             return info
         }
     }

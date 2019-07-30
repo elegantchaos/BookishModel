@@ -64,7 +64,7 @@ public class PersonDetailProvider: DetailProvider {
             return super.info(section: section, row: row)
         } else {
             let books = sortedRoles[section - 1].books
-            let info = BookDetailItem(book: books[row], absolute: row, index: row, source: self)
+            let info = BookDetailItem(book: books[row], mode: .person, absolute: row, index: row, source: self)
             return info
         }
     }
