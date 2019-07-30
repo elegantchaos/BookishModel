@@ -77,7 +77,7 @@ let collectionChannel = Channel("com.elegantchaos.bookish.model.collection")
                 }
                 
                 let content = try? fm.contentsOfDirectory(at: directory, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
-                print(content ?? "no database files")
+                collectionChannel.log(content ?? "no database files")
             }
         }
         
@@ -105,7 +105,7 @@ let collectionChannel = Channel("com.elegantchaos.bookish.model.collection")
     func load(callback: LoadedCallback? = nil) {
         loadPersistentStores { (description, error) in
             if let error = error {
-                print(error)
+                collectionChannel.log(error)
             } else {
                 let context = self.viewContext
                 context.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
