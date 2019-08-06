@@ -128,16 +128,3 @@ public class ModelObject: NSManagedObject, DetailOwner {
     }
 
 }
-
-// MARK: Selection Support
-
-public typealias ModelSelection = Selection<ModelEntity>
-
-// MARK: Action Serialization Support
-
-extension ModelObject: ActionSerialization {
-    public var serialized: Any {
-        return self.uniqueIdentifier as! String
-    }
-}
-

@@ -4,6 +4,7 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Foundation
+import Actions
 
 public class ModelEntity: ModelObject {
 
@@ -53,6 +54,20 @@ public class ModelEntity: ModelObject {
         return "<\(type(of:self).entityName): \((self as! ModelEntityCommon).nameAndId)>"
     }
 }
+
+
+// MARK: Selection Support
+
+public typealias ModelSelection = Selection<ModelEntity>
+
+// MARK: Action Serialization Support
+
+extension ModelEntity: ActionSerialization {
+    public var serialized: Any {
+        return self.uniqueIdentifier as! String
+    }
+}
+
 
 /**
  All ModelEntity subclasses should conform to this protocol.
