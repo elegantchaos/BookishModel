@@ -20,7 +20,7 @@ public final class DetailSpec {
     public static let timeKind = "time"
     public static let hiddenKind = "hidden"
     public static let editableDateKind = "editableDate"
-    public static let editableDimensionsKind = "editableDimensions"
+    public static let dimensionsKind = "dimensions"
     
     public init(binding: String, viewAs: String = "text", editAs: String? = nil, isDebug: Bool = false) {
         self.binding = binding

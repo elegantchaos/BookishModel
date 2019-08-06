@@ -25,7 +25,7 @@ public class BookDetailProvider: DetailProvider {
             DetailSpec(binding: "added", viewAs: DetailSpec.timeKind),
             DetailSpec(binding: "modified", viewAs: DetailSpec.timeKind),
             DetailSpec(binding: "importDate", viewAs: DetailSpec.timeKind, editAs: DetailSpec.hiddenKind),
-            DetailSpec(binding: "dimensions", viewAs: DetailSpec.textKind, editAs: DetailSpec.editableDimensionsKind),
+            DetailSpec(binding: "dimensions", viewAs: DetailSpec.dimensionsKind),
             DetailSpec(binding: "pages", viewAs: DetailSpec.numberKind),
             DetailSpec(binding: "weight", viewAs: DetailSpec.numberKind),
         ]

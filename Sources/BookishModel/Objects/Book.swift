@@ -42,12 +42,12 @@ public class Book: ModelEntity, ModelEntityCommon {
         return result
     }
 
-    @objc public var dimensions: String? {
+    @objc public var dimensions: Array<Double>? {
         guard width > 0 || height > 0 || length > 0 else {
             return nil
         }
         
-        return "\(width) x \(height) x \(length)"
+        return [width, height, length]
     }
     
     /**
