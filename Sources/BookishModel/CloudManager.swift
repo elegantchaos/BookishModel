@@ -53,7 +53,8 @@ public class CloudManager {
         }
     }
     
-    public func allJournalEntries() -> [[String:Any]] {
+    public func forAllJournalEntries(perform block: @escaping ([(String,String)]) -> Void) {
+        var results: [(String, String)] = []
         let query = CKQuery(recordType: "JournalEntry", predicate: NSPredicate(value: true))
         query.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         journalContainer.privateCloudDatabase.perform(query, inZoneWith: nil) { (records, error) in
@@ -65,11 +66,11 @@ public class CloudManager {
                 let recordName_fromProperty = record.recordID.recordName
                 print("Journal entry, recordName: \(recordName_fromProperty)")
                 let json = record.value(forKey: "value") as? String ?? ""
-                print(json)
+                results.append((recordName_fromProperty, json))
             })
+
+            block(results)
         }
-        
-        return []
     }
     
 //    private func setupShareList(name: String) {
