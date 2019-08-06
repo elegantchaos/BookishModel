@@ -64,7 +64,6 @@ public class CloudManager {
 
             records?.forEach({ (record) in
                 let recordName_fromProperty = record.recordID.recordName
-                print("Journal entry, recordName: \(recordName_fromProperty)")
                 let json = record.value(forKey: "value") as? String ?? ""
                 results.append((recordName_fromProperty, json))
             })
