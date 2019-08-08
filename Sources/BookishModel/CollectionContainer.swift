@@ -19,7 +19,7 @@ let collectionChannel = Channel("com.elegantchaos.bookish.model.collection")
     
     public typealias LoadedCallback = (CollectionContainer, Error?) -> Void
     
-    public init(name: String, url: URL? = nil, mode: PopulateMode = .empty, callback: LoadedCallback? = nil) {
+    public init(name: String, url: URL? = nil, mode: PopulateMode = .empty, indexed: Bool = true, callback: LoadedCallback? = nil) {
         let fm = FileManager.default
         let model = BookishModel.model()
         let bundle = Bundle.init(for: CollectionContainer.self)
@@ -81,9 +81,11 @@ let collectionChannel = Channel("com.elegantchaos.bookish.model.collection")
             }
         }
         
-        let spotlight = NSCoreDataCoreSpotlightDelegate(forStoreWith: description, model: model)
-        description.setOption(spotlight, forKey:NSCoreDataCoreSpotlightExporter)
-        self.spotlightIndexer = spotlight
+        if indexed {
+            let spotlight = NSCoreDataCoreSpotlightDelegate(forStoreWith: description, model: model)
+            description.setOption(spotlight, forKey:NSCoreDataCoreSpotlightExporter)
+            self.spotlightIndexer = spotlight
+        }
         
         load(callback: callback)
     }
