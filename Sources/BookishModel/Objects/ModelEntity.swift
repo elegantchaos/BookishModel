@@ -58,7 +58,11 @@ public class ModelEntity: ModelObject {
 
 // MARK: Selection Support
 
-public typealias ModelSelection = Selection<ModelEntity>
+public class ModelSelection : Selection<ModelEntity> {
+    public var uuids: [String] {
+        return objects.compactMap { ($0 as! ModelEntityCommon).uuid }
+    }
+}
 
 // MARK: Action Serialization Support
 
