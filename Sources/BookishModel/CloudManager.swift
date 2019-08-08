@@ -6,7 +6,8 @@
 import CloudKit
 import Logger
 
-let cloudChannel = Logger("CloudManager")
+let cloudChannel = Logger("com.elegantchaos.bookish.model.CloudManager")
+let journalChannel = Channel("com.elegantchaos.bookish.model.Journal")
 
 public class CloudManager {
     public let collectionIdentifier = "iCloud.com.elegantchaos.Bookish"
@@ -49,6 +50,14 @@ public class CloudManager {
         let record = CKRecord(recordType: "JournalEntry", recordID: CKRecord.ID(recordName: id))
         if let data = try? JSONSerialization.data(withJSONObject: entry, options: []), let json = String(data: data, encoding: .utf8) {
             record.setValue(json, forKey: "value")
+            journalChannel.log("""
+
+               {
+                    "time" : \(id)
+                    "action" : \(json)
+               },
+            """
+            )
             save(container: journalContainer, record: record, action: "Added journal entry")
         }
     }
