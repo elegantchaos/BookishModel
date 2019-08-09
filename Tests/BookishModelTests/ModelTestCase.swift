@@ -15,7 +15,7 @@ class ModelTestCase: XCTestCase {
     
     func makeTestContainer() -> CollectionContainer {
         let url = URL(fileURLWithPath: "/dev/null")
-        let collection = CollectionContainer(name: "Test", url: url, mode: .empty)
+        let collection = CollectionContainer(name: "Test", url: url, mode: .empty, indexed: false)
 //        collection.configure(for: url)
         return collection
     }
