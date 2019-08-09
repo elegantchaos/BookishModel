@@ -9,7 +9,15 @@
     }
   ],
   "defaultOptions" : {
-    "codeCoverage" : false,
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:Dependencies\/BookishModel\/BookishModel.xcodeproj",
+          "identifier" : "224293B2212AE16200E70510",
+          "name" : "BookishModelMobile"
+        }
+      ]
+    },
     "commandLineArgumentEntries" : [
       {
         "argument" : "-logs Model,Application,Scene,DetailView,BookishCloud"
