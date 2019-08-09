@@ -47,7 +47,10 @@ foobar
 <key>expected</key>
 <string>
 The given data was not valid JSON.
-</string>
+Something looked like a 'false' but wasn't around character 1.
+
+
+0: foobar</string>
 </dict>
 
 <dict>
