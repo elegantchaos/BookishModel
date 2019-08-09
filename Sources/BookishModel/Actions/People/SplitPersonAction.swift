@@ -16,12 +16,10 @@ import CoreData
 
 class SplitPersonAction: PersonAction {
     func copyRelationships(from: Person, to: Person, context: NSManagedObjectContext) {
-        if let relationships = from.relationships as? Set<Relationship> {
-            for fromRelationship in relationships {
-                if let role = fromRelationship.role {
-                    let toRelationship = to.relationship(as: role)
-                    toRelationship.add(fromRelationship.books)
-                }
+        for fromRelationship in from.relationships {
+            if let role = fromRelationship.role {
+                let toRelationship = to.relationship(as: role)
+                toRelationship.add(fromRelationship.books)
             }
         }
     }

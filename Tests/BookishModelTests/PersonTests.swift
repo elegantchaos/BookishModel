@@ -65,7 +65,7 @@ class PersonTests:ModelTestCase {
         let person = Person(context: context)
         let book = Book(context: context)
         book.name = "Blah"
-        book.addRelationship(with: person, as: Role.named(.author, in: context))
+        let _ = book.addRelationship(with: person, as: Role.named(.author, in: context))
         XCTAssertEqual(person.summaryItems(), ["Blah"])
     }
 

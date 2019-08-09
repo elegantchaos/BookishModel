@@ -14,18 +14,16 @@ import CoreData
 
 class MergePersonAction: PersonAction {
     func moveRelationships(from: Person, to: Person, context: NSManagedObjectContext) {
-        if let relationships = from.relationships as? Set<Relationship> {
-            for fromRelationship in relationships {
-                if let role = fromRelationship.role {
-                    let books = fromRelationship.books
-                    let toRelationship = to.relationship(as: role)
-                    toRelationship.add(books)
-                    fromRelationship.remove(books)
-                    personActionChannel.log("Updated \(toRelationship)")
-                }
-                from.remove(fromRelationship)
-                context.delete(fromRelationship)
+        for fromRelationship in from.relationships {
+            if let role = fromRelationship.role {
+                let books = fromRelationship.books
+                let toRelationship = to.relationship(as: role)
+                toRelationship.add(books)
+                fromRelationship.remove(books)
+                personActionChannel.log("Updated \(toRelationship)")
             }
+            from.remove(fromRelationship)
+            context.delete(fromRelationship)
         }
     }
     

@@ -21,11 +21,7 @@ class ModelTestCase: XCTestCase {
     }
 
     func check(book: Book, series: Series, position: Int, ignore: SeriesEntry? = nil) -> Bool {
-        guard let entries = book.entries as? Set<SeriesEntry> else {
-            return false
-        }
-
-        for entry in entries {
+        for entry in book.entries {
             if entry == ignore {
                 continue
             }
@@ -39,11 +35,7 @@ class ModelTestCase: XCTestCase {
     }
     
     func check(book: Book, seriesName: String, position: Int, ignore: SeriesEntry? = nil) -> Bool {
-        guard let entries = book.entries as? Set<SeriesEntry> else {
-            return false
-        }
-        
-        for entry in entries {
+        for entry in book.entries {
             if entry == ignore {
                 continue
             }

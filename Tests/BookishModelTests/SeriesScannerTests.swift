@@ -35,7 +35,7 @@ class SeriesScannerTests: ModelTestCase {
         let book = scanBook(title: "Nothing To Match Here (Oh No)")
         XCTAssertEqual(book.name, "Nothing To Match Here (Oh No)")
         XCTAssertNil(book.subtitle)
-        XCTAssertEqual(book.entries.count ?? 0, 0)
+        XCTAssertEqual(book.entries.count, 0)
     }
 
     func testExistingSeries() {

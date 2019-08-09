@@ -71,8 +71,7 @@ class TagActionTests: ModelActionTestCase, TagObserver {
         XCTAssertTrue(actionManager.validate(identifier: "ChangeTags", info: info).enabled)
         actionManager.perform(identifier: "ChangeTags", info: info)
         wait(for: [expectation], timeout: 1.0)
-        let tags = book.tags as? Set<Tag>
-        XCTAssertEqual(tags?.first?.name, "bar")
+        XCTAssertEqual(book.tags.first?.name, "bar")
         XCTAssertNotNil(tagsObserved)
         XCTAssertNotNil(otherTagsObserved)
     }

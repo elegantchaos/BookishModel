@@ -105,7 +105,7 @@ public class Book: ModelEntity, ModelEntityCommon {
     /// - Parameter role: existing role
     public func existingRelationship(with person: Person, as role: Role) -> Relationship? {
         for relationship in person.relationships {
-            if relationship.role == role, let books = relationship.books as? Set<Book>, books.contains(self) {
+            if relationship.role == role, relationship.books.contains(self) {
                 return relationship
             }
         }
@@ -250,5 +250,9 @@ public class Book: ModelEntity, ModelEntityCommon {
         return Indexing.sectionName(for: sortName)
     }
 
+    public var tags: Set<Tag> {
+        get { return tagsR as! Set<Tag> }
+        set { tagsR = newValue as NSSet }
+    }
     
 }

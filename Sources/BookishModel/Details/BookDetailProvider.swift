@@ -58,13 +58,8 @@ public class BookDetailProvider: DetailProvider {
                 return book.publisher == nil ? nil : Set<Publisher>([book.publisher!])
             }
             
-            let collectedSeries = MultipleValues.extract(from: books) { book -> Set<SeriesEntry>? in
-                return book.entries as? Set<SeriesEntry>
-            }
-            
-            let collectedTags = MultipleValues.extract(from: books) { book -> Set<Tag>? in
-                return book.tags as? Set<Tag>
-            }
+            let collectedSeries = MultipleValues.extract(from: books) { book -> Set<SeriesEntry> in return book.entries }
+            let collectedTags = MultipleValues.extract(from: books) { book -> Set<Tag> in return book.tags }
             
             relationships = collectedRelationships.common.sorted(by: { ($0.person?.name ?? "") < ($1.person?.name ?? "") })
             publishers = collectedPublishers.common.sorted(by: { ($0.name ?? "") < ($1.name ?? "") })

@@ -29,7 +29,7 @@
         <relationship name="entriesR" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SeriesEntry" inverseName="book" inverseEntity="SeriesEntry" spotlightIndexingEnabled="YES"/>
         <relationship name="publisher" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Publisher" inverseName="booksR" inverseEntity="Publisher" spotlightIndexingEnabled="YES"/>
         <relationship name="relationships" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Relationship" inverseName="booksR" inverseEntity="Relationship" spotlightIndexingEnabled="YES"/>
-        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="books" inverseEntity="Tag" spotlightIndexingEnabled="YES"/>
+        <relationship name="tagsR" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="books" inverseEntity="Tag" spotlightIndexingEnabled="YES"/>
     </entity>
     <entity name="Person" representedClassName=".Person" syncable="YES" codeGenerationType="category" coreSpotlightDisplayNameExpression="name">
         <attribute name="added" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES"/>
@@ -110,7 +110,7 @@
         <attribute name="modified" optional="YES" attributeType="Date" usesScalarValueType="NO" spotlightIndexingEnabled="YES"/>
         <attribute name="name" optional="YES" attributeType="String" spotlightIndexingEnabled="YES"/>
         <attribute name="uuid" optional="YES" attributeType="String" spotlightIndexingEnabled="YES"/>
-        <relationship name="books" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Book" inverseName="tags" inverseEntity="Book" spotlightIndexingEnabled="YES"/>
+        <relationship name="books" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Book" inverseName="tagsR" inverseEntity="Book" spotlightIndexingEnabled="YES"/>
         <relationship name="people" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Person" inverseName="tagsR" inverseEntity="Person" spotlightIndexingEnabled="YES"/>
         <relationship name="publishers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Publisher" inverseName="tagsR" inverseEntity="Publisher" spotlightIndexingEnabled="YES"/>
         <relationship name="series" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Series" inverseName="tags" inverseEntity="Series" spotlightIndexingEnabled="YES"/>

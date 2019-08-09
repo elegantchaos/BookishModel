@@ -62,7 +62,7 @@
   "testTargets" : [
     {
       "target" : {
-        "containerPath" : "container:BookishModel.xcodeproj",
+        "containerPath" : "container:Dependencies\/BookishModel\/BookishModel.xcodeproj",
         "identifier" : "224293BA212AE16300E70510",
         "name" : "BookishModelTestsMobile"
       }
