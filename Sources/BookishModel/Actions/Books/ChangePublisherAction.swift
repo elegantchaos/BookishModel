@@ -30,7 +30,7 @@ class ChangePublisherAction: BookAction {
                 for book in selection {
                     if let existingPublisher = book.publisher {
                         if existingPublisher != newPublisher {
-                            newPublisher.addToBooks(book)
+                            newPublisher.add(book)
                             bookActionChannel.log("changed publisher from \(existingPublisher.name!) to \(newPublisher.name!)")
                             context.info.forObservers { (observer: BookChangeObserver) in
                                 observer.changed(publisher: existingPublisher, to: newPublisher)
@@ -39,7 +39,7 @@ class ChangePublisherAction: BookAction {
                             bookActionChannel.log("publisher unchanged \(existingPublisher.name!)")
                         }
                     } else {
-                            newPublisher.addToBooks(book)
+                            newPublisher.add(book)
                             bookActionChannel.log("set publisher to \(newPublisher.name!)")
                             context.info.forObservers { (observer: BookChangeObserver) in
                                 observer.added(publisher: newPublisher)
@@ -49,7 +49,7 @@ class ChangePublisherAction: BookAction {
             } else if let existingPublisher = context[PublisherAction.publisherKey] as? Publisher {
                 bookActionChannel.log("cleared publisher \(existingPublisher.name!)")
                 for book in selection {
-                    existingPublisher.removeFromBooks(book)
+                    existingPublisher.remove(book)
                 }
                 context.info.forObservers { (observer: BookChangeObserver) in
                     observer.removed(publisher: existingPublisher)

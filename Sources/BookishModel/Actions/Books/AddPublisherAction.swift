@@ -16,7 +16,7 @@ class AddPublisherAction: BookAction {
             let selection = context[ActionContext.selectionKey] as? [Book] {
             let publisher = Publisher(context: model)
             for book in selection {
-                publisher.addToBooks(book)
+                publisher.add(book)
             }
             
             context.info.forObservers { (observer: BookChangeObserver) in

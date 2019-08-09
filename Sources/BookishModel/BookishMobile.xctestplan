@@ -12,7 +12,7 @@
     "codeCoverage" : {
       "targets" : [
         {
-          "containerPath" : "container:Dependencies\/BookishModel\/BookishModel.xcodeproj",
+          "containerPath" : "container:BookishModel.xcodeproj",
           "identifier" : "224293B2212AE16200E70510",
           "name" : "BookishModelMobile"
         }
@@ -62,7 +62,7 @@
   "testTargets" : [
     {
       "target" : {
-        "containerPath" : "container:Dependencies\/BookishModel\/BookishModel.xcodeproj",
+        "containerPath" : "container:BookishModel.xcodeproj",
         "identifier" : "224293BA212AE16300E70510",
         "name" : "BookishModelTestsMobile"
       }

@@ -70,6 +70,12 @@
             ReferencedContainer = "container:BookishModel.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>
+      <TestPlans>
+         <TestPlanReference
+            reference = "container:Sources/BookishModel/BookishMobile.xctestplan"
+            default = "YES">
+         </TestPlanReference>
+      </TestPlans>
       <Testables>
          <TestableReference
             skipped = "NO">

@@ -46,7 +46,7 @@ class TestDataImportSession: StandardRolesImportSession {
         let publisher = Publisher(context: context)
         publisher.notes = "Some notes about the publisher"
         publisher.uuid = "publisher-1"
-        publisher.addToBooks(book)
+        publisher.add(book)
         
         sharedEditor.relationship(as: Role.StandardName.author).add(book)
         sharedEditor.relationship(as: Role.StandardName.illustrator).add(book)
@@ -76,7 +76,7 @@ class TestDataImportSession: StandardRolesImportSession {
             let entry2 = illustrator.relationship(as: Role.StandardName.illustrator)
             entry2.add(book)
             
-            sharedPublisher.addToBooks(book)
+            sharedPublisher.add(book)
             
             let entry = SeriesEntry(context: context)
             entry.book = book

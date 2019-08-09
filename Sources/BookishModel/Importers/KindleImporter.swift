@@ -234,7 +234,7 @@ class KindleImportSession: URLImportSession {
                     }
                     cachedPublishers[trimmed] = publisher
                 }
-                publisher.addToBooks(book)
+                publisher.add(book)
             }
         }
     }

@@ -175,7 +175,7 @@ class DeliciousLibraryImportSession: URLImportSession {
                     }
                     cachedPublishers[trimmed] = publisher
                 }
-                publisher.addToBooks(book)
+                publisher.add(book)
             }
         }
     }

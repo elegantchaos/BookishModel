@@ -22,7 +22,7 @@ class RemovePublisherAction: BookAction {
             let selection = context[ActionContext.selectionKey] as? [Book],
             let publisher = context[PublisherAction.publisherKey] as? Publisher {
             for book in selection {
-                publisher.removeFromBooks(book)
+                publisher.remove(book)
             }
             
             context.info.forObservers { (observer: BookChangeObserver) in

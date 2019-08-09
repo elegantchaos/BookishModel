@@ -48,7 +48,7 @@ class PublisherDetailTests: ModelTestCase {
         XCTAssertEqual(source.sectionCount, 2)
 
         let book = Book(context: context)
-        publisher.addToBooks(book)
+        publisher.add(book)
         
         source.filter(for: ModelSelection([publisher]), editing: false, combining: false, context: TestContext())
         XCTAssertEqual(source.itemCount(for: 0), 3)

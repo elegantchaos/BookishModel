@@ -653,7 +653,6 @@
 		224293B4212AE16200E70510 /* BookishModel */ = {
 			isa = PBXGroup;
 			children = (
-				8B66551122FDA9DC005ABF39 /* BookishMobile.xctestplan */,
 				224293D1212AE1E700E70510 /* BookishModel.swift */,
 				22DA6A1821E6158D00ECF09A /* BookishModelBridge.h */,
 				8B935FE922B7BE9200435863 /* CloudManager.swift */,
@@ -676,6 +675,7 @@
 		224293C1212AE16300E70510 /* BookishModelTests */ = {
 			isa = PBXGroup;
 			children = (
+				8B66551122FDA9DC005ABF39 /* BookishMobile.xctestplan */,
 				2250C7ED21BAF6B000E899E2 /* BookActionTests.swift */,
 				225F8942221AF41800196110 /* BookDetailItemTests.swift */,
 				2250C80A21BE891D00E899E2 /* BookDetailTests.swift */,

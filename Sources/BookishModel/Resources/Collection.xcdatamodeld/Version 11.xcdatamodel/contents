@@ -27,7 +27,7 @@
         <attribute name="weight" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
         <attribute name="width" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
         <relationship name="entriesR" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SeriesEntry" inverseName="book" inverseEntity="SeriesEntry" spotlightIndexingEnabled="YES"/>
-        <relationship name="publisher" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Publisher" inverseName="books" inverseEntity="Publisher" spotlightIndexingEnabled="YES"/>
+        <relationship name="publisher" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Publisher" inverseName="booksR" inverseEntity="Publisher" spotlightIndexingEnabled="YES"/>
         <relationship name="relationships" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Relationship" inverseName="booksR" inverseEntity="Relationship" spotlightIndexingEnabled="YES"/>
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="books" inverseEntity="Tag" spotlightIndexingEnabled="YES"/>
     </entity>
@@ -62,8 +62,8 @@
         <attribute name="sortName" optional="YES" attributeType="String" spotlightIndexingEnabled="YES"/>
         <attribute name="source" optional="YES" attributeType="String" spotlightIndexingEnabled="YES"/>
         <attribute name="uuid" attributeType="String" spotlightIndexingEnabled="YES"/>
-        <relationship name="books" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Book" inverseName="publisher" inverseEntity="Book" spotlightIndexingEnabled="YES"/>
-        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="publishers" inverseEntity="Tag" spotlightIndexingEnabled="YES"/>
+        <relationship name="booksR" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Book" inverseName="publisher" inverseEntity="Book" spotlightIndexingEnabled="YES"/>
+        <relationship name="tagsR" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="publishers" inverseEntity="Tag" spotlightIndexingEnabled="YES"/>
     </entity>
     <entity name="Relationship" representedClassName=".Relationship" syncable="YES" codeGenerationType="category">
         <relationship name="booksR" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="relationships" inverseEntity="Book" spotlightIndexingEnabled="YES"/>
@@ -112,13 +112,13 @@
         <attribute name="uuid" optional="YES" attributeType="String" spotlightIndexingEnabled="YES"/>
         <relationship name="books" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Book" inverseName="tags" inverseEntity="Book" spotlightIndexingEnabled="YES"/>
         <relationship name="people" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Person" inverseName="tagsR" inverseEntity="Person" spotlightIndexingEnabled="YES"/>
-        <relationship name="publishers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Publisher" inverseName="tags" inverseEntity="Publisher" spotlightIndexingEnabled="YES"/>
+        <relationship name="publishers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Publisher" inverseName="tagsR" inverseEntity="Publisher" spotlightIndexingEnabled="YES"/>
         <relationship name="series" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Series" inverseName="tags" inverseEntity="Series" spotlightIndexingEnabled="YES"/>
     </entity>
     <elements>
         <element name="Book" positionX="-563.734375" positionY="66.40625" width="128" height="478"/>
         <element name="Person" positionX="-236.18359375" positionY="669.03125" width="128" height="298"/>
-        <element name="Publisher" positionX="-824.32421875" positionY="467.9453125" width="128" height="240"/>
+        <element name="Publisher" positionX="-824.32421875" positionY="467.9453125" width="128" height="238"/>
         <element name="Relationship" positionX="-332.08203125" positionY="481.375" width="128" height="88"/>
         <element name="Role" positionX="-390.59765625" positionY="671.35546875" width="128" height="195"/>
         <element name="Series" positionX="-616.43359375" positionY="822.40625" width="128" height="255"/>
