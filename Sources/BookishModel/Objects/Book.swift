@@ -102,6 +102,38 @@ public class Book: ModelEntity, ModelEntityCommon {
         }
     }
     
+    
+    /// If a relationship record for the given person and role exists, return it
+    /// - Parameter person: existing person
+    /// - Parameter role: existing role
+    public func existingRelationship(with person: Person, role: Role) -> Relationship? {
+        if let relationships = person.relationships as? Set<Relationship> {
+            for relationship in relationships {
+                if relationship.role == role, let books = relationship.books as? Set<Book>, books.contains(self) {
+                    return relationship
+                }
+            }
+        }
+        return nil
+    }
+    
+    /// Add a relationship between this book and a person/role
+    /// We ensure that we don't create a duplicate relationship object if it already exists for the person/role pair.
+    /// - Parameter person: the person
+    /// - Parameter role: the role
+    public func addRelationship(with person: Person, role: Role) -> Relationship {
+        if let existing = person.existingRelationship(as: role) {
+            existing.addToBooks(self)
+            return existing
+        }
+        
+        let relationship = Relationship(context: managedObjectContext!)
+        relationship.role = role
+        relationship.person = person
+        relationship.books = [self]
+        return relationship
+    }
+    
     /**
      Add an entry for this book to a series.
      A book shouldn't be listed more than once in the same series, so we check first

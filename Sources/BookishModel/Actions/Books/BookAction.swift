@@ -94,7 +94,8 @@ open class BookAction: SyncModelAction {
             ChangeRelationshipAction(),
             AddSeriesAction(),
             RemoveSeriesAction(),
-            RevealBookAction()
+            RevealBookAction(),
+            MergeBookAction()
         ]
     }
     

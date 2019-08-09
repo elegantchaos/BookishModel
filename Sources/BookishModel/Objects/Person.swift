@@ -30,6 +30,19 @@ public class Person: ModelEntity, ModelEntityCommon {
         let role: Role = Role.named(roleName, in: context)
         return relationship(as: role)
     }
+    
+    /// Return the relationship for this person, for the given role, if it exists.
+    /// - Parameter role: role we're looking for
+    public func existingRelationship(as role: Role) -> Relationship? {
+        if let relationships = self.relationships as? Set<Relationship> {
+            for relationship in relationships {
+                if relationship.role == role {
+                    return relationship
+                }
+            }
+        }
+        return nil
+    }
 
     /**
      If there's already an entry for a given role for this person, return it.

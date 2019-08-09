@@ -17,9 +17,9 @@ class RoleDetailProvider: DetailProvider {
         if showDebug {
             details.append(contentsOf: [
                 DetailSpec(binding: "uuid", viewAs: DetailSpec.textKind),
-                DetailSpec(binding: "log", viewAs: DetailSpec.textKind, isDebug: true),
                 DetailSpec(binding: "imageURL", viewAs: DetailSpec.textKind, isDebug: true),
-                ])
+                DetailSpec(binding: "log", viewAs: DetailSpec.paragraphKind, isDebug: true),
+])
         }
         
         return details

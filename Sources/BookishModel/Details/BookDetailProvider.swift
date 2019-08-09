@@ -33,9 +33,9 @@ public class BookDetailProvider: DetailProvider {
         if showDebug {
             details.append(contentsOf: [
                 DetailSpec(binding: "uuid", viewAs: DetailSpec.textKind, isDebug: true),
-                DetailSpec(binding: "log", viewAs: DetailSpec.textKind, isDebug: true),
                 DetailSpec(binding: "imageURL", viewAs: DetailSpec.textKind, isDebug: true),
                 DetailSpec(binding: "source", viewAs: DetailSpec.textKind, isDebug: true),
+                DetailSpec(binding: "log", viewAs: DetailSpec.paragraphKind, isDebug: true),
                 DetailSpec(binding: "importRaw", viewAs: DetailSpec.hiddenKind, editAs: DetailSpec.textKind, isDebug: true),
                 ])
         }
