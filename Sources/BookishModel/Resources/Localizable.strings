@@ -207,12 +207,12 @@ action.DeleteSeries.icon = "minus.square";
 
 action.NewPublisher.title = "New Publisher";
 action.NewPublisher.short = "New";
-action.NewPublisher.icon = "plus.square";
+action.NewPublisher.icon = "plus";
 
 action.DeletePublisher.title = "Delete Publisher";
 action.DeletePublisher.title.plural = "Delete Publishers";
 action.DeletePublisher.short = "Delete";
-action.DeletePublisher.icon = "minus.square";
+action.DeletePublisher.icon = "minus";
 
 action.SplitPerson.title = "Split Person";
 action.SplitPerson.title.plural = "Split People";
@@ -225,6 +225,7 @@ action.MergePerson.icon = "arrow.merge";
 
 action.ShowScanner.title = "Scan Books";
 action.ShowScanner.short = "Scan";
+action.ShowScanner.icon = "barcode.viewfinder";
 
 action.ToggleEditing.title = "Start Editing {entity}";
 action.ToggleEditing.stop.title = "Finish Editing {entity}";
@@ -237,3 +238,7 @@ action.ToggleSelectable.short = "Select";
 action.ToggleSelectable.stop.short = "Done";
 action.ToggleSelectable.icon = "checkmark.circle";
 action.ToggleSelectable.stop.icon = "checkmark.circle.fill";
+
+action.MergeBook.title = "Merge Books";
+action.MergeBook.short = "Merge";
+action.MergeBook.icon = "arrow.merge";
