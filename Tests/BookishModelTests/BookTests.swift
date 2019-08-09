@@ -27,7 +27,7 @@ class BookTests: ModelTestCase {
         book.width = 1.0
         book.height = 2.0
         book.length = 3.0
-        XCTAssertEqual(book.dimensions, "1.0 x 2.0 x 3.0")
+        XCTAssertEqual(book.dimensions, [1.0, 2.0, 3.0])
     }
     
     func testAddToSeries() {

@@ -3,11 +3,11 @@
     "pins": [
       {
         "package": "Actions",
-        "repositoryURL": "https://github.com/elegantchaos/Actions.git",
+        "repositoryURL": "git@github.com:elegantchaos/Actions.git",
         "state": {
           "branch": null,
-          "revision": "3ee3f4037fbf364a786499c44302825a05abfd59",
-          "version": "1.3.5"
+          "revision": "29f8e79efb980c74d32f9ee6e153c14d515eef6d",
+          "version": "1.4.0"
         }
       },
       {
@@ -21,16 +21,16 @@
       },
       {
         "package": "CommandShell",
-        "repositoryURL": "https://github.com/elegantchaos/CommandShell.git",
+        "repositoryURL": "git@github.com:elegantchaos/CommandShell.git",
         "state": {
           "branch": null,
-          "revision": "bf8e8789b5021ed8b683081fb748f29444d50cf4",
-          "version": "1.1.0"
+          "revision": "0fa92c1f4d5caa2177aa6bf9ed12a4d7363d0e48",
+          "version": "1.1.1"
         }
       },
       {
         "package": "Coverage",
-        "repositoryURL": "https://github.com/elegantchaos/Coverage.git",
+        "repositoryURL": "git@github.com:elegantchaos/Coverage.git",
         "state": {
           "branch": null,
           "revision": "fa0d05817cb910923ace380a9a17fb2862d92ec9",
@@ -48,7 +48,7 @@
       },
       {
         "package": "Expressions",
-        "repositoryURL": "https://github.com/elegantchaos/Expressions.git",
+        "repositoryURL": "git@github.com:elegantchaos/Expressions.git",
         "state": {
           "branch": null,
           "revision": "d821e7c75e31fddb8158d8dac578a6ba200c9f36",
@@ -57,11 +57,20 @@
       },
       {
         "package": "JSONDump",
-        "repositoryURL": "https://github.com/elegantchaos/JSONDump.git",
+        "repositoryURL": "git@github.com:elegantchaos/JSONDump.git",
         "state": {
           "branch": null,
           "revision": "0743e45cc8c57550136df4cc0e1d1d332a9da494",
           "version": "1.0.4"
+        }
+      },
+      {
+        "package": "Localization",
+        "repositoryURL": "git@github.com:elegantchaos/Localization.git",
+        "state": {
+          "branch": null,
+          "revision": "74d7471c99389e432970eb9d7cc307d8b20d95c0",
+          "version": "1.0.1"
         }
       },
       {
@@ -75,7 +84,7 @@
       },
       {
         "package": "ReleaseTools",
-        "repositoryURL": "https://github.com/elegantchaos/ReleaseTools.git",
+        "repositoryURL": "git@github.com:elegantchaos/ReleaseTools.git",
         "state": {
           "branch": null,
           "revision": "d655e47aa4af4a9267767370b0a84bc15c8969ff",
@@ -87,17 +96,8 @@
         "repositoryURL": "https://github.com/elegantchaos/Runner.git",
         "state": {
           "branch": null,
-          "revision": "292c94f8613ddd72d45f3bb1f503dceec3b83e44",
-          "version": "1.0.3"
-        }
-      },
-      {
-        "package": "SketchX",
-        "repositoryURL": "https://github.com/elegantchaos/SketchX.git",
-        "state": {
-          "branch": null,
-          "revision": "8446d91994b541cfad9d37c3bd318f4e50f5ff37",
-          "version": "1.0.9"
+          "revision": "54889ffb68a12f3bb166ddc501cae5a83fd89bf4",
+          "version": "1.0.4"
         }
       }
     ]

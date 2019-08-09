@@ -280,9 +280,10 @@
 		8B46F3B022E7165200F08F2D /* Expressions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3AF22E7165200F08F2D /* Expressions */; };
 		8B46F3B322E7168500F08F2D /* JSONDump in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3B222E7168500F08F2D /* JSONDump */; };
 		8B46F3B922E71A4C00F08F2D /* Actions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3B822E71A4C00F08F2D /* Actions */; };
-		8B46F3BB22E71A4C00F08F2D /* ActionsKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3BA22E71A4C00F08F2D /* ActionsKit */; };
 		8B46F3BD22E71A5900F08F2D /* JSONDump in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3BC22E71A5900F08F2D /* JSONDump */; };
 		8B46F3BF22E71A6600F08F2D /* Expressions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3BE22E71A6600F08F2D /* Expressions */; };
+		8B6A99D122FD89A900517869 /* Localization in Frameworks */ = {isa = PBXBuildFile; productRef = 8B6A99D022FD89A900517869 /* Localization */; };
+		8B6A99D222FD89A900517869 /* Localization in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 8B6A99D022FD89A900517869 /* Localization */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		8B7BF86522EB3BF30061087A /* Localization in Frameworks */ = {isa = PBXBuildFile; productRef = 8B7BF86422EB3BF30061087A /* Localization */; };
 		8B935FEA22B7BE9200435863 /* CloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B935FE922B7BE9200435863 /* CloudManager.swift */; };
 		8B935FEB22B7BE9200435863 /* CloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B935FE922B7BE9200435863 /* CloudManager.swift */; };
@@ -374,6 +375,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				8B6A99D222FD89A900517869 /* Localization in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -581,9 +583,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B46F3B922E71A4C00F08F2D /* Actions in Frameworks */,
+				8B6A99D122FD89A900517869 /* Localization in Frameworks */,
 				8B46F3BD22E71A5900F08F2D /* JSONDump in Frameworks */,
 				8B46F3BF22E71A6600F08F2D /* Expressions in Frameworks */,
-				8B46F3BB22E71A4C00F08F2D /* ActionsKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -987,9 +989,9 @@
 			name = BookishModelMac;
 			packageProductDependencies = (
 				8B46F3B822E71A4C00F08F2D /* Actions */,
-				8B46F3BA22E71A4C00F08F2D /* ActionsKit */,
 				8B46F3BC22E71A5900F08F2D /* JSONDump */,
 				8B46F3BE22E71A6600F08F2D /* Expressions */,
+				8B6A99D022FD89A900517869 /* Localization */,
 			);
 			productName = BookishModelMac;
 			productReference = 22429391212AE0F300E70510 /* BookishModel.framework */;
@@ -2020,11 +2022,6 @@
 			package = 8B46F3A622E715EA00F08F2D /* XCRemoteSwiftPackageReference "Actions" */;
 			productName = Actions;
 		};
-		8B46F3BA22E71A4C00F08F2D /* ActionsKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8B46F3A622E715EA00F08F2D /* XCRemoteSwiftPackageReference "Actions" */;
-			productName = ActionsKit;
-		};
 		8B46F3BC22E71A5900F08F2D /* JSONDump */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8B46F3B122E7168500F08F2D /* XCRemoteSwiftPackageReference "JSONDump" */;
@@ -2034,6 +2031,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8B46F3AE22E7165200F08F2D /* XCRemoteSwiftPackageReference "Expressions" */;
 			productName = Expressions;
+		};
+		8B6A99D022FD89A900517869 /* Localization */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B7BF86322EB3BF30061087A /* XCRemoteSwiftPackageReference "Localization" */;
+			productName = Localization;
 		};
 		8B7BF86422EB3BF30061087A /* Localization */ = {
 			isa = XCSwiftPackageProductDependency;
