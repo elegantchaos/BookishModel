@@ -34,40 +34,37 @@ class BookTests: ModelTestCase {
         let container = makeTestContainer()
         let context = container.managedObjectContext
         let book = Book(context: context)
-        XCTAssertEqual(book.entries?.count, 0)
+        XCTAssertEqual(book.entries.count, 0)
         let series = Series(context: context)
         book.addToSeries(series, position: 1)
-        let entries = (book.entries as? Set<SeriesEntry>)!
-        XCTAssertEqual(entries.count, 1)
-        XCTAssertEqual(Array(entries).first?.position, 1)
+        XCTAssertEqual(book.entries.count, 1)
+        XCTAssertEqual(book.entries.first?.position, 1)
         
         // adding the same series again should just update the position
         book.addToSeries(series, position: 2)
-        let entries2 = (book.entries as? Set<SeriesEntry>)!
-        XCTAssertEqual(entries2.count, 1)
-        XCTAssertEqual(Array(entries2).first?.position, 2)
+        XCTAssertEqual(book.entries.count, 1)
+        XCTAssertEqual(book.entries.first?.position, 2)
     }
     
     func testSetPosition() {
         let container = makeTestContainer()
         let context = container.managedObjectContext
         let book = Book(context: context)
-        XCTAssertEqual(book.entries?.count, 0)
+        XCTAssertEqual(book.entries.count, 0)
         let series = Series(context: context)
         book.addToSeries(series, position: 1)
-        let entries = (book.entries as? Set<SeriesEntry>)!
-        XCTAssertEqual(entries.count, 1)
-        XCTAssertEqual(Array(entries).first?.position, 1)
+        XCTAssertEqual(book.entries.count, 1)
+        XCTAssertEqual(book.entries.first?.position, 1)
         
         book.setPosition(in: series, to: 2)
-        XCTAssertEqual(Array(entries).first?.position, 2)
+        XCTAssertEqual(book.entries.first?.position, 2)
     }
 
     func testSetPositionMissing() {
         let container = makeTestContainer()
         let context = container.managedObjectContext
         let book = Book(context: context)
-        XCTAssertEqual(book.entries?.count, 0)
+        XCTAssertEqual(book.entries.count, 0)
         let series = Series(context: context)
         
         #if testFatalErrors && (!os(iOS) || targetEnvironment(simulator))
@@ -81,7 +78,7 @@ class BookTests: ModelTestCase {
         let container = makeTestContainer()
         let context = container.managedObjectContext
         let book = Book(context: context)
-        XCTAssertEqual(book.entries?.count, 0)
+        XCTAssertEqual(book.entries.count, 0)
         let series = Series(context: context)
         XCTAssertEqual(book.position(in: series), Book.notFound)
 

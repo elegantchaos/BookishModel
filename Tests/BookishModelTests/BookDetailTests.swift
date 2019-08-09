@@ -92,10 +92,7 @@ class BookDetailTests: ModelTestCase {
         XCTAssertEqual(source.itemCount(for: 0), 6)
         
         let series = Series(context: context)
-        let entry = SeriesEntry(context: context)
-        entry.series = series
-        entry.position = 1
-        book.addToEntries(entry)
+        book.addToSeries(series, position: 1)
 
         source.filter(for: ModelSelection([book]), editing: false, combining: false, context: TestContext())
         XCTAssertEqual(source.itemCount(for: 0), 7)
@@ -113,10 +110,7 @@ class BookDetailTests: ModelTestCase {
         relationship.add(book)
         book.publisher = Publisher(context: context)
         let series = Series(context: context)
-        let entry = SeriesEntry(context: context)
-        entry.series = series
-        entry.position = 1
-        book.addToEntries(entry)
+        book.addToSeries(series, position: 1)
         
         source.filter(for: ModelSelection([book]), editing: false, combining: false, context: TestContext())
         let personRow = source.info(section: 0, row: 0)

@@ -56,7 +56,8 @@
         "key" : "SQLITE_AUTO_TRACE",
         "value" : "1"
       }
-    ]
+    ],
+    "testExecutionOrdering" : "random"
   },
   "testTargets" : [
     {

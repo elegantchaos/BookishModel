@@ -84,7 +84,14 @@ public class Person: ModelEntity, ModelEntityCommon {
         return nil
     }
 
-
+    /// Set of tags
+    /// (wraps the underlying core data NSSet as a swift Set)
+    public var tags: Set<Tag> {
+        get { return tagsR as! Set<Tag> }
+        set { tagsR = newValue as NSSet }
+    }
+    
+    /// Returns list of strings to include as summary information in index entries for the person.
     public func summaryItems() -> [String] {
         var details: [String] = []
         var allBooks: Set<Book> = []

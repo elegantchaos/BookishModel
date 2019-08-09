@@ -546,6 +546,7 @@
 		22FA65BB2274998100F697F9 /* Version 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Version 8.xcdatamodel"; sourceTree = "<group>"; };
 		8B10C78922BD094200E05F33 /* Binder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Binder.swift; path = ../Binder.swift; sourceTree = "<group>"; };
 		8B10C78A22BD094200E05F33 /* Selection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Selection.swift; path = ../Selection.swift; sourceTree = "<group>"; };
+		8B66551122FDA9DC005ABF39 /* BookishMobile.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = BookishMobile.xctestplan; path = /Users/developer/Projects/Bookish/Dependencies/BookishModel/Sources/BookishModel/BookishMobile.xctestplan; sourceTree = "<absolute>"; };
 		8B935FE922B7BE9200435863 /* CloudManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudManager.swift; sourceTree = "<group>"; };
 		8BE2910A22FD6CE200EF249F /* MergeBookAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeBookAction.swift; sourceTree = "<group>"; };
 		8BE2910D22FD6CFB00EF249F /* RemoveRelationshipAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveRelationshipAction.swift; sourceTree = "<group>"; };
@@ -652,15 +653,16 @@
 		224293B4212AE16200E70510 /* BookishModel */ = {
 			isa = PBXGroup;
 			children = (
-				221C4B36216BABE40086D56F /* Actions */,
+				8B66551122FDA9DC005ABF39 /* BookishMobile.xctestplan */,
 				224293D1212AE1E700E70510 /* BookishModel.swift */,
 				22DA6A1821E6158D00ECF09A /* BookishModelBridge.h */,
-				221ED50E216B87D900594714 /* CollectionContainer.swift */,
 				8B935FE922B7BE9200435863 /* CloudManager.swift */,
+				221ED50E216B87D900594714 /* CollectionContainer.swift */,
 				22F180E221CA8FD600220D20 /* Indexing.swift */,
-				22F0CFDA22845D8A00B8B506 /* NavigationStack.swift */,
 				22A3E2EA21FB80B900BA4F17 /* MultipleValues.swift */,
+				22F0CFDA22845D8A00B8B506 /* NavigationStack.swift */,
 				2250C71E21B94CD800E899E2 /* SeriesScanner.swift */,
+				221C4B36216BABE40086D56F /* Actions */,
 				22571151221866720099FFDE /* Details */,
 				22A498B2220F3554006A2137 /* Importers */,
 				229FB9C62226B2B000A564D4 /* Lookup */,

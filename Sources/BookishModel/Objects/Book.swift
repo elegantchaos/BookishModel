@@ -50,17 +50,20 @@ public class Book: ModelEntity, ModelEntityCommon {
         return [width, height, length]
     }
     
+    public var entries: Set<SeriesEntry> {
+        get { return entriesR as! Set<SeriesEntry> }
+        set { entriesR = newValue as NSSet }
+    }
+    
     /**
       Remove this book from a series.
     */
     
     public func removeFromSeries(_ series: Series) {
-        if let entries = entries as? Set<SeriesEntry> {
-            for entry in entries {
-                if entry.series == series {
-                    managedObjectContext?.delete(entry)
-                    assert(entry.isDeleted)
-                }
+        for entry in entries {
+            if entry.series == series {
+                managedObjectContext?.delete(entry)
+                assert(entry.isDeleted)
             }
         }
     }
@@ -72,19 +75,17 @@ public class Book: ModelEntity, ModelEntityCommon {
     */
     
     @discardableResult public func addToSeries(_ series: Series, position: Int) -> SeriesEntry {
-        if let entries = entries as? Set<SeriesEntry> {
-            for entry in entries {
-                if entry.series == series {
-                    entry.position = Int16(position)
-                    return entry
-                }
+        for entry in entries {
+            if entry.series == series {
+                entry.position = Int16(position)
+                return entry
             }
         }
         
         let entry = SeriesEntry(context: self.managedObjectContext!)
         entry.series = series
         entry.position = Int16(position)
-        addToEntries(entry)
+        addToEntriesR(entry)
         return entry
     }
  
@@ -103,11 +104,9 @@ public class Book: ModelEntity, ModelEntityCommon {
     /// - Parameter person: existing person
     /// - Parameter role: existing role
     public func existingRelationship(with person: Person, as role: Role) -> Relationship? {
-        if let relationships = person.relationships as? Set<Relationship> {
-            for relationship in relationships {
-                if relationship.role == role, let books = relationship.books as? Set<Book>, books.contains(self) {
-                    return relationship
-                }
+        for relationship in person.relationships {
+            if relationship.role == role, let books = relationship.books as? Set<Book>, books.contains(self) {
+                return relationship
             }
         }
         return nil
@@ -137,12 +136,10 @@ public class Book: ModelEntity, ModelEntityCommon {
      */
     
     public func setPosition(in series: Series, to position: Int) {
-        if let entries = entries as? Set<SeriesEntry> {
-            for entry in entries {
-                if entry.series == series {
-                    entry.position = Int16(position)
-                    return
-                }
+        for entry in entries {
+            if entry.series == series {
+                entry.position = Int16(position)
+                return
             }
         }
 
@@ -155,11 +152,9 @@ public class Book: ModelEntity, ModelEntityCommon {
     */
     
     public func position(in series: Series) -> Int {
-        if let entries = entries as? Set<SeriesEntry> {
-            for entry in entries {
-                if entry.series == series {
-                    return Int(entry.position)
-                }
+        for entry in entries {
+            if entry.series == series {
+                return Int(entry.position)
             }
         }
         
@@ -200,8 +195,8 @@ public class Book: ModelEntity, ModelEntityCommon {
             return subtitle
         }
         
-        if let series = entries as? Set<SeriesEntry>, series.count > 0 {
-            let names = series.compactMap({ (entry) -> String? in
+        if entries.count > 0 {
+            let names = entries.compactMap({ (entry) -> String? in
                 if let name = entry.series?.name {
                     if entry.position > 0 {
                         return "\(name), Book \(entry.position)"
