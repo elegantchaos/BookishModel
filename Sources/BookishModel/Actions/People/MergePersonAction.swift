@@ -16,10 +16,11 @@ class MergePersonAction: PersonAction {
     func moveRelationships(from: Person, to: Person, context: NSManagedObjectContext) {
         if let relationships = from.relationships as? Set<Relationship> {
             for fromRelationship in relationships {
-                if let role = fromRelationship.role, let books = fromRelationship.books {
+                if let role = fromRelationship.role {
+                    let books = fromRelationship.books
                     let toRelationship = to.relationship(as: role)
-                    toRelationship.addToBooks(books)
-                    fromRelationship.removeFromBooks(books)
+                    toRelationship.add(books)
+                    fromRelationship.remove(books)
                     personActionChannel.log("Updated \(toRelationship)")
                 }
                 from.removeFromRelationships(fromRelationship)

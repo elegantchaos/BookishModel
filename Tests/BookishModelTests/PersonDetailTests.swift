@@ -51,7 +51,7 @@ class PersonDetailProviderTests: ModelTestCase {
 
         let book = Book(context: context)
         let relationship = person.relationship(as: "author")
-        relationship.addToBooks(book)
+        relationship.add(book)
         
         provider.filter(for: ModelSelection([person]), editing: false, combining: false, context: TestContext())
         XCTAssertEqual(provider.sectionCount, 2)
@@ -63,7 +63,7 @@ class PersonDetailProviderTests: ModelTestCase {
         
         let book = Book(context: context)
         let relationship = person.relationship(as: "author")
-        relationship.addToBooks(book)
+        relationship.add(book)
         
         provider.filter(for: ModelSelection([person]), editing: false, combining: false, context: TestContext())
         XCTAssertEqual(provider.sectionTitle(for: 0), "")
@@ -75,7 +75,7 @@ class PersonDetailProviderTests: ModelTestCase {
         
         let book = Book(context: context)
         let relationship = person.relationship(as: "author")
-        relationship.addToBooks(book)
+        relationship.add(book)
         
         person.notes = "Test"
         
@@ -92,7 +92,7 @@ class PersonDetailProviderTests: ModelTestCase {
         
         let book = Book(context: context)
         let relationship = person.relationship(as: "author")
-        relationship.addToBooks(book)
+        relationship.add(book)
         
         person.notes = "Test"
         

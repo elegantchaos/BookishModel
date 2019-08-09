@@ -215,7 +215,7 @@ class KindleImportSession: URLImportSession {
                     cachedPeople[trimmed] = author
                 }
                 let relationship = author.relationship(as: Role.StandardName.author)
-                relationship.addToBooks(book)
+                relationship.add(book)
             }
         }
     }

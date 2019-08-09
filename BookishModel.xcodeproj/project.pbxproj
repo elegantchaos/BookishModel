@@ -277,14 +277,14 @@
 		8B3DD9D222F09C1A00EB7CD2 /* LoggerShared in Frameworks */ = {isa = PBXBuildFile; productRef = 8B3DD9D122F09C1A00EB7CD2 /* LoggerShared */; };
 		8B3DD9D322F09C1A00EB7CD2 /* LoggerShared in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 8B3DD9D122F09C1A00EB7CD2 /* LoggerShared */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		8B46F3AD22E7161C00F08F2D /* CommandShell in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3AC22E7161C00F08F2D /* CommandShell */; };
-		8B46F3B022E7165200F08F2D /* Expressions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3AF22E7165200F08F2D /* Expressions */; };
+		8B46F3B022E7165200F08F2D /* Expressions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3AF22E7165200F08F2D /* Expressions */; settings = {ATTRIBUTES = (Required, ); }; };
 		8B46F3B322E7168500F08F2D /* JSONDump in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3B222E7168500F08F2D /* JSONDump */; };
 		8B46F3B922E71A4C00F08F2D /* Actions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3B822E71A4C00F08F2D /* Actions */; };
 		8B46F3BD22E71A5900F08F2D /* JSONDump in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3BC22E71A5900F08F2D /* JSONDump */; };
 		8B46F3BF22E71A6600F08F2D /* Expressions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3BE22E71A6600F08F2D /* Expressions */; };
+		8B66550F22FD9B42005ABF39 /* Localization in Frameworks */ = {isa = PBXBuildFile; productRef = 8B66550E22FD9B42005ABF39 /* Localization */; };
 		8B6A99D122FD89A900517869 /* Localization in Frameworks */ = {isa = PBXBuildFile; productRef = 8B6A99D022FD89A900517869 /* Localization */; };
 		8B6A99D222FD89A900517869 /* Localization in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 8B6A99D022FD89A900517869 /* Localization */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		8B7BF86522EB3BF30061087A /* Localization in Frameworks */ = {isa = PBXBuildFile; productRef = 8B7BF86422EB3BF30061087A /* Localization */; };
 		8B935FEA22B7BE9200435863 /* CloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B935FE922B7BE9200435863 /* CloudManager.swift */; };
 		8B935FEB22B7BE9200435863 /* CloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B935FE922B7BE9200435863 /* CloudManager.swift */; };
 		8BE2910B22FD6CE200EF249F /* MergeBookAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE2910A22FD6CE200EF249F /* MergeBookAction.swift */; };
@@ -358,16 +358,6 @@
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 1;
-		};
-		8B3DD9B522F079E500EB7CD2 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8B3DD9C522F09A7B00EB7CD2 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -601,8 +591,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B7BF86522EB3BF30061087A /* Localization in Frameworks */,
 				8B46F3B322E7168500F08F2D /* JSONDump in Frameworks */,
+				8B66550F22FD9B42005ABF39 /* Localization in Frameworks */,
 				8B3DD9B822F079FE00EB7CD2 /* Actions in Frameworks */,
 				8B46F3B022E7165200F08F2D /* Expressions in Frameworks */,
 			);
@@ -1025,7 +1015,6 @@
 				224293AF212AE16200E70510 /* Sources */,
 				224293B0212AE16200E70510 /* Frameworks */,
 				224293B1212AE16200E70510 /* Resources */,
-				8B3DD9B522F079E500EB7CD2 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1035,8 +1024,8 @@
 			packageProductDependencies = (
 				8B46F3AF22E7165200F08F2D /* Expressions */,
 				8B46F3B222E7168500F08F2D /* JSONDump */,
-				8B7BF86422EB3BF30061087A /* Localization */,
 				8B3DD9B722F079FE00EB7CD2 /* Actions */,
+				8B66550E22FD9B42005ABF39 /* Localization */,
 			);
 			productName = BookishModelMobile;
 			productReference = 224293B3212AE16200E70510 /* BookishModel.framework */;
@@ -2032,12 +2021,12 @@
 			package = 8B46F3AE22E7165200F08F2D /* XCRemoteSwiftPackageReference "Expressions" */;
 			productName = Expressions;
 		};
-		8B6A99D022FD89A900517869 /* Localization */ = {
+		8B66550E22FD9B42005ABF39 /* Localization */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8B7BF86322EB3BF30061087A /* XCRemoteSwiftPackageReference "Localization" */;
 			productName = Localization;
 		};
-		8B7BF86422EB3BF30061087A /* Localization */ = {
+		8B6A99D022FD89A900517869 /* Localization */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8B7BF86322EB3BF30061087A /* XCRemoteSwiftPackageReference "Localization" */;
 			productName = Localization;

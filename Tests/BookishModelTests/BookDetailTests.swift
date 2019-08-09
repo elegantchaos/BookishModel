@@ -76,13 +76,13 @@ class BookDetailTests: ModelTestCase {
 
         let person = Person(context: context)
         let relationship = person.relationship(as: "author")
-        relationship.addToBooks(book)
+        relationship.add(book)
 
         source.filter(for: ModelSelection([book]), editing: false, combining: false, context: TestContext())
         XCTAssertEqual(source.itemCount(for: 0), 4)
 
         let relationship2 = person.relationship(as: "editor")
-        relationship2.addToBooks(book)
+        relationship2.add(book)
 
         source.filter(for: ModelSelection([book]), editing: false, combining: false, context: TestContext())
         XCTAssertEqual(source.itemCount(for: 0), 5)
@@ -110,7 +110,7 @@ class BookDetailTests: ModelTestCase {
         book.isbn = "12343"
         let person = Person(context: context)
         let relationship = person.relationship(as: "author")
-        relationship.addToBooks(book)
+        relationship.add(book)
         book.publisher = Publisher(context: context)
         let series = Series(context: context)
         let entry = SeriesEntry(context: context)
@@ -161,8 +161,8 @@ class BookDetailTests: ModelTestCase {
         let person = Person(context: context)
         person.name = "Test"
         let relationship = person.relationship(as: "author")
-        relationship.addToBooks(book1)
-        relationship.addToBooks(book2)
+        relationship.add(book1)
+        relationship.add(book2)
 
         source.filter(for: ModelSelection([book1, book2]), editing: false, combining: false, context: TestContext())
         let personRow = source.info(section: 0, row: 0) as? RelationshipDetailItem
@@ -181,9 +181,9 @@ class BookDetailTests: ModelTestCase {
         let person2 = Person(context: context)
         person2.name = "A"
         let relationship1 = person1.relationship(as: "author")
-        relationship1.addToBooks(book)
+        relationship1.add(book)
         let relationship2 = person2.relationship(as: "author")
-        relationship2.addToBooks(book)
+        relationship2.add(book)
         
         source.filter(for: ModelSelection([book]), editing: false, combining: false, context: TestContext())
         let row1 = source.info(section: 0, row: 0) as? RelationshipDetailItem

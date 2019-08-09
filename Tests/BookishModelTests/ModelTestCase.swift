@@ -58,8 +58,8 @@ class ModelTestCase: XCTestCase {
 
     func check(relationship: Relationship, book: Book, person: Person) {
         XCTAssertEqual(book.roles.count, 1)
-        XCTAssertEqual(relationship.books?.count, 1)
-        XCTAssertEqual(relationship.books?.allObjects.first as? Book, book)
+        XCTAssertEqual(relationship.books.count, 1)
+        XCTAssertEqual(relationship.books.first, book)
         XCTAssertEqual(relationship.person, person)
     }
     

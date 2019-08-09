@@ -95,18 +95,14 @@ public class Book: ModelEntity, ModelEntityCommon {
  
     public func removeRelationship(_ relationshipToRemove: Relationship) {
         assert(relationships?.contains(relationshipToRemove) ?? false)
-        relationshipToRemove.removeFromBooks(self)
-        if relationshipToRemove.books?.count == 0 {
-            managedObjectContext?.delete(relationshipToRemove)
-            assert(relationshipToRemove.isDeleted)
-        }
+        relationshipToRemove.remove(self)
     }
     
     
     /// If a relationship record for the given person and role exists, return it
     /// - Parameter person: existing person
     /// - Parameter role: existing role
-    public func existingRelationship(with person: Person, role: Role) -> Relationship? {
+    public func existingRelationship(with person: Person, as role: Role) -> Relationship? {
         if let relationships = person.relationships as? Set<Relationship> {
             for relationship in relationships {
                 if relationship.role == role, let books = relationship.books as? Set<Book>, books.contains(self) {
@@ -121,9 +117,9 @@ public class Book: ModelEntity, ModelEntityCommon {
     /// We ensure that we don't create a duplicate relationship object if it already exists for the person/role pair.
     /// - Parameter person: the person
     /// - Parameter role: the role
-    public func addRelationship(with person: Person, role: Role) -> Relationship {
+    public func addRelationship(with person: Person, as role: Role) -> Relationship {
         if let existing = person.existingRelationship(as: role) {
-            existing.addToBooks(self)
+            existing.add(self)
             return existing
         }
         

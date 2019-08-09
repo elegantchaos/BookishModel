@@ -142,4 +142,50 @@ class BookTests: ModelTestCase {
         XCTAssertEqual(book.summary, "Test")
 
     }
+    
+    func testAddRelationship() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let book = Book(context: context)
+        let person = Person(context: context)
+        let role = Role.named(Role.StandardName.author, in: context)
+        let relationship = book.addRelationship(with: person, as: role)
+        XCTAssertEqual(book.roles.count, 1)
+        XCTAssertEqual(relationship.person, person)
+        XCTAssertTrue(relationship.contains(book: book))
+        
+        let another = book.addRelationship(with: person, as: role)
+        XCTAssertTrue(relationship === another)
+    }
+    
+    func testRemoveRelationship() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let book = Book(context: context)
+        let person = Person(context: context)
+        let relationship = person.relationship(as: Role.StandardName.author)
+        book.addToRelationships(relationship)
+        XCTAssertEqual(book.roles.count, 1)
+
+        book.removeRelationship(relationship)
+        XCTAssertEqual(book.roles.count, 0)
+        XCTAssertTrue(relationship.isDeleted)
+    }
+    
+    func testExistingRelationship() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let book = Book(context: context)
+        let person = Person(context: context)
+        let role = Role.named(Role.StandardName.author, in: context)
+        let relationship = person.relationship(as: role)
+        book.addToRelationships(relationship)
+        XCTAssertEqual(book.roles.count, 1)
+
+        let existing = book.existingRelationship(with: person, as: role)
+        XCTAssertEqual(existing, relationship)
+        
+        let nonExistant = book.existingRelationship(with: person, as: Role.named(Role.StandardName.editor, in: context))
+        XCTAssertNil(nonExistant)
+    }
 }

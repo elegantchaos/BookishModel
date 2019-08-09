@@ -104,7 +104,7 @@ class PersonActionTests: ModelActionTestCase, PersonViewer, PersonLifecycleObser
         XCTAssertEqual(context.countEntities(type: Person.self), 1)
 
         let authors = person1.relationship(as: "author")
-        XCTAssertEqual(authors.books?.count, 2)
+        XCTAssertEqual(authors.books.count, 2)
     }
     
     func performSplit(name: String, expected: [String], explicit: String? = nil) {

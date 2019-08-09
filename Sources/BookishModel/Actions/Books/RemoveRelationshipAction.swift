@@ -31,7 +31,7 @@ class RemoveRelationshipAction: BookAction {
                 observer.removed(relationship: relationship)
             }
             
-            if (relationship.books?.count ?? 0) == 0 {
+            if relationship.books.count == 0 {
                 relationship.managedObjectContext?.delete(relationship)
             }
         }

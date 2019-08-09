@@ -38,7 +38,7 @@ class TestDataImportSession: StandardRolesImportSession {
         book.name = "A Book"
         book.uuid = "book-1"
         book.notes = "Some\nmulti\nline\nnotes."
-        entry.addToBooks(book)
+        entry.add(book)
         
         let tag = Tag.named("test", in: context)
         tag.addToBooks(book)
@@ -48,8 +48,8 @@ class TestDataImportSession: StandardRolesImportSession {
         publisher.uuid = "publisher-1"
         publisher.addToBooks(book)
         
-        sharedEditor.relationship(as: Role.StandardName.author).addToBooks(book)
-        sharedEditor.relationship(as: Role.StandardName.illustrator).addToBooks(book)
+        sharedEditor.relationship(as: Role.StandardName.author).add(book)
+        sharedEditor.relationship(as: Role.StandardName.illustrator).add(book)
         
         let sharedPublisher = Publisher(context: context)
         sharedPublisher.name = "Publisher 2"
@@ -68,13 +68,13 @@ class TestDataImportSession: StandardRolesImportSession {
             book.subtitle = "Slightly longer subtitle \(n)"
             book.notes = "This is an example book."
             book.published = formatter.date(from: "12/11/69")
-            entry.addToBooks(book)
+            entry.add(book)
             let illustrator = Person(context: context)
             illustrator.name = "Mr Illustrator \(n)"
             illustrator.uuid = "person-\(n)"
             illustrator.notes = "Another example person."
             let entry2 = illustrator.relationship(as: Role.StandardName.illustrator)
-            entry2.addToBooks(book)
+            entry2.add(book)
             
             sharedPublisher.addToBooks(book)
             

@@ -50,4 +50,18 @@ class RelationshipTests: ModelTestCase {
         book.addToRelationships(relationship)
         XCTAssertEqual(relationship.description, "<Relationship: author for test (person-id) with test (book-id)>")
     }
+    
+    func testContains() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let book = Book.named("test", in: context)
+        let relationship = Relationship(in: context)
+        
+        XCTAssertFalse(relationship.contains(book: book))
+
+        let person = Person.named("test", in: context)
+        relationship.person = person
+        relationship.add(book)
+        XCTAssertTrue(relationship.contains(book: book))
+    }
 }

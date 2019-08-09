@@ -41,7 +41,7 @@ class RoleDetailProviderTests: ModelTestCase {
         XCTAssertEqual(source.sectionCount, 1)
         
         let book = Book(context: context)
-        relationship.addToBooks(book)
+        relationship.add(book)
         
         source.filter(for: ModelSelection([role]), editing: false, combining: false, context: TestContext())
         XCTAssertEqual(source.itemCount(for: 0), 2)

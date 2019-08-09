@@ -62,8 +62,8 @@ class MergeBookAction: BookAction {
             }
             
             for relationship in relationshipsToChange {
-                relationship.removeFromBooks(others as NSSet)
-                relationship.addToBooks(primary)
+                relationship.remove(others)
+                relationship.add(primary)
             }
             
             for book in others {

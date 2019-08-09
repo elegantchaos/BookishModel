@@ -83,9 +83,8 @@ public class PersonDetailProvider: DetailProvider {
         sortedRoles.removeAll()
         if let person = selection.objects.first as? Person, let sort = context.entitySorting["Relationship"], let relationships = person.relationships?.sortedArray(using: sort) as? [Relationship] {
             for relationship in relationships {
-                if let role = relationship.role,
-                    let sort = context.entitySorting["Book"],
-                    let books = relationship.books?.sortedArray(using: sort) as? [Book] {
+                if let role = relationship.role, let sort = context.entitySorting["Book"] {
+                    let books = relationship.books(sortedBy: sort)
                     sortedRoles.append(SortedRole(role: role, books: books))
                 }
             }
