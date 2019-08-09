@@ -1,3 +1,4 @@
 #!/bin/sh
 
-xcrun swift build --target Tools --package-root BookishCore
+xcodebuild -workspace BookishModel.xcworkspace -scheme ReleaseTools -destination "platform=macOS"
+xcodebuild  -derivedDataPath ./.build -workspace BookishModel.xcworkspace -scheme coverage -destination "platform=macOS"
