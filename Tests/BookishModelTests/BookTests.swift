@@ -140,6 +140,26 @@ class BookTests: ModelTestCase {
 
     }
     
+    func testSummaryItems() {
+        let container = makeTestContainer()
+        let context = container.managedObjectContext
+        let book = Book(context: context)
+        XCTAssertEqual(book.summaryItems(mode: .person), [])
+        XCTAssertEqual(book.summaryItems(mode: .publisher), [])
+        XCTAssertEqual(book.summaryItems(mode: .series), [])
+
+        let series = Series.named("Test Series", in: context)
+        book.addToSeries(series, position: 2)
+        book.publisher = Publisher.named("Test Publisher", in: context)
+        book.published = Date(timeIntervalSince1970: 0)
+        let person = Person.named("Test Person", in: context)
+        let _ = book.addRelationship(with: person, as: Role.named(.author, in: context))
+        
+        XCTAssertEqual(book.summaryItems(mode: .person), ["1970", "Test Publisher"])
+        XCTAssertEqual(book.summaryItems(mode: .publisher), ["Test Person", "1970"])
+        XCTAssertEqual(book.summaryItems(mode: .series), ["Test Person", "1970", "Test Publisher"])
+    }
+    
     func testAddRelationship() {
         let container = makeTestContainer()
         let context = container.managedObjectContext
