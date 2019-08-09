@@ -81,7 +81,8 @@ public class PersonDetailProvider: DetailProvider {
         super.filter(for: selection, template: template, editing: editing, combining: false, context: context)
 
         sortedRoles.removeAll()
-        if let person = selection.objects.first as? Person, let sort = context.entitySorting["Relationship"], let relationships = person.relationships?.sortedArray(using: sort) as? [Relationship] {
+        if let person = selection.objects.first as? Person, let sort = context.entitySorting["Relationship"] {
+            let relationships = person.relationships(sortedBy: sort)
             for relationship in relationships {
                 if let role = relationship.role, let sort = context.entitySorting["Book"] {
                     let books = relationship.books(sortedBy: sort)

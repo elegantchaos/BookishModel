@@ -47,7 +47,7 @@
         <attribute name="source" optional="YES" attributeType="String" spotlightIndexingEnabled="YES"/>
         <attribute name="uuid" attributeType="String" spotlightIndexingEnabled="YES"/>
         <relationship name="aliases" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="aliases" inverseEntity="Person" spotlightIndexingEnabled="YES"/>
-        <relationship name="relationships" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Relationship" inverseName="person" inverseEntity="Relationship" spotlightIndexingEnabled="YES"/>
+        <relationship name="relationshipsR" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Relationship" inverseName="person" inverseEntity="Relationship" spotlightIndexingEnabled="YES"/>
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="people" inverseEntity="Tag" spotlightIndexingEnabled="YES"/>
     </entity>
     <entity name="Publisher" representedClassName=".Publisher" syncable="YES" codeGenerationType="category">
@@ -67,7 +67,7 @@
     </entity>
     <entity name="Relationship" representedClassName=".Relationship" syncable="YES" codeGenerationType="category">
         <relationship name="booksR" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="relationships" inverseEntity="Book" spotlightIndexingEnabled="YES"/>
-        <relationship name="person" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="relationships" inverseEntity="Person" spotlightIndexingEnabled="YES"/>
+        <relationship name="person" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="relationshipsR" inverseEntity="Person" spotlightIndexingEnabled="YES"/>
         <relationship name="role" maxCount="1" deletionRule="Nullify" destinationEntity="Role" inverseName="relationships" inverseEntity="Role" spotlightIndexingEnabled="YES"/>
     </entity>
     <entity name="Role" representedClassName=".Role" syncable="YES" codeGenerationType="category">
@@ -117,7 +117,7 @@
     </entity>
     <elements>
         <element name="Book" positionX="-563.734375" positionY="66.40625" width="128" height="480"/>
-        <element name="Person" positionX="-236.18359375" positionY="669.03125" width="128" height="300"/>
+        <element name="Person" positionX="-236.18359375" positionY="669.03125" width="128" height="298"/>
         <element name="Publisher" positionX="-824.32421875" positionY="467.9453125" width="128" height="240"/>
         <element name="Relationship" positionX="-332.08203125" positionY="481.375" width="128" height="88"/>
         <element name="Role" positionX="-390.59765625" positionY="671.35546875" width="128" height="195"/>

@@ -97,9 +97,9 @@ class MiscModelTests: ModelTestCase {
             XCTFail("book has no people")
         }
         
-        XCTAssertTrue(person1.relationships!.contains(entry1))
-        XCTAssertTrue(person1.relationships!.contains(entry2))
-        XCTAssertTrue(person2.relationships!.contains(entry3))
+        XCTAssertTrue(person1.relationships.contains(entry1))
+        XCTAssertTrue(person1.relationships.contains(entry2))
+        XCTAssertTrue(person2.relationships.contains(entry3))
         
         let allRoles = book.roles
         let authorRole = Role.named("author", in: context)

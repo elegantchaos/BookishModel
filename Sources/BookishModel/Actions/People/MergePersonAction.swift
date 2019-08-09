@@ -23,7 +23,7 @@ class MergePersonAction: PersonAction {
                     fromRelationship.remove(books)
                     personActionChannel.log("Updated \(toRelationship)")
                 }
-                from.removeFromRelationships(fromRelationship)
+                from.remove(fromRelationship)
                 context.delete(fromRelationship)
             }
         }
