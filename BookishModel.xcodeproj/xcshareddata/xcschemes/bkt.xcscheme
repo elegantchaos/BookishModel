@@ -96,23 +96,35 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-logs &quot;&quot;"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "make"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "convert"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "Roles"
+            argument = "Sample,Roles,Test"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "Sample,Roles,Test"
+            argument = "filter"
             isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "./Merges.json"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "MergeBook"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "Roles"
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-com.apple.CoreData.SQLDebug 1"

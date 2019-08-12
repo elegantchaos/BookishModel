@@ -278,6 +278,7 @@
 		8B3DD9D322F09C1A00EB7CD2 /* LoggerShared in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 8B3DD9D122F09C1A00EB7CD2 /* LoggerShared */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		8B456C3223017EC00056E153 /* ConvertCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B456C3123017EC00056E153 /* ConvertCommand.swift */; };
 		8B456C34230188510056E153 /* AnyCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B456C33230188510056E153 /* AnyCodable.swift */; };
+		8B456C3623019CC30056E153 /* FilterCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B456C3523019CC30056E153 /* FilterCommand.swift */; };
 		8B46F3AD22E7161C00F08F2D /* CommandShell in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3AC22E7161C00F08F2D /* CommandShell */; };
 		8B46F3B022E7165200F08F2D /* Expressions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3AF22E7165200F08F2D /* Expressions */; settings = {ATTRIBUTES = (Required, ); }; };
 		8B46F3B322E7168500F08F2D /* JSONDump in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3B222E7168500F08F2D /* JSONDump */; };
@@ -550,6 +551,7 @@
 		8B10C78A22BD094200E05F33 /* Selection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Selection.swift; path = ../Selection.swift; sourceTree = "<group>"; };
 		8B456C3123017EC00056E153 /* ConvertCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertCommand.swift; sourceTree = "<group>"; };
 		8B456C33230188510056E153 /* AnyCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyCodable.swift; sourceTree = "<group>"; };
+		8B456C3523019CC30056E153 /* FilterCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCommand.swift; sourceTree = "<group>"; };
 		8B66551122FDA9DC005ABF39 /* BookishMobile.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = BookishMobile.xctestplan; path = /Users/developer/Projects/Bookish/Dependencies/BookishModel/Sources/BookishModel/BookishMobile.xctestplan; sourceTree = "<absolute>"; };
 		8B935FE922B7BE9200435863 /* CloudManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudManager.swift; sourceTree = "<group>"; };
 		8BE2910A22FD6CE200EF249F /* MergeBookAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeBookAction.swift; sourceTree = "<group>"; };
@@ -805,6 +807,7 @@
 				22D5A4F3228C462600E9FDDC /* ActionList.swift */,
 				22D5A40B228C3EE100E9FDDC /* MakeCommand.swift */,
 				8B456C3123017EC00056E153 /* ConvertCommand.swift */,
+				8B456C3523019CC30056E153 /* FilterCommand.swift */,
 				8B456C33230188510056E153 /* AnyCodable.swift */,
 				225F895B221AFC6E00196110 /* Info.plist */,
 				2272467F221C1AE000C80CCF /* Build Sample.json */,
@@ -1506,6 +1509,7 @@
 				22D5A40E228C3F3000E9FDDC /* TaskList.swift in Sources */,
 				22D5A4F4228C462600E9FDDC /* ActionList.swift in Sources */,
 				225F894F221AFB3F00196110 /* main.swift in Sources */,
+				8B456C3623019CC30056E153 /* FilterCommand.swift in Sources */,
 				8B456C3223017EC00056E153 /* ConvertCommand.swift in Sources */,
 				22D5A40D228C3F2D00E9FDDC /* MakeCommand.swift in Sources */,
 				8B456C34230188510056E153 /* AnyCodable.swift in Sources */,

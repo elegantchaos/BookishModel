@@ -7,11 +7,11 @@ import Foundation
 
 public struct AnyCodable {
     
-    public init(_ value: Any?) {
+    public init(_ value: Any) {
         self.value = value
     }
     
-    public let value: Any?
+    public let value: Any
 }
 
 extension AnyCodable: Decodable {
@@ -24,12 +24,10 @@ extension AnyCodable: Decodable {
             self.value = value
         } else if let value = try? container.decode(Bool.self) {
             self.value = value
-        } else if container.decodeNil() {
-            self.value = nil
         } else if let value = try? container.decode([String: AnyCodable].self) {
-            self.value = value
+            self.value = value.mapValues { $0.value }
         } else if let value = try? container.decode([AnyCodable].self) {
-            self.value = value
+            self.value = value.map { $0.value }
         } else if let value = try? container.decode(Double.self) {
             self.value = value
         } else {
@@ -42,12 +40,6 @@ extension AnyCodable: Encodable {
     public func encode(to encoder: Encoder) throws {
         
         var container = encoder.singleValueContainer()
-        
-        guard let value = self.value else {
-            try container.encodeNil()
-            return
-        }
-        
         switch value {
         case let value as String:
             try container.encode(value)

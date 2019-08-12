@@ -14,7 +14,8 @@ BookishModel.registerLocalizations()
 
 let shell = Shell(commands: [
     MakeCommand(),
-    ConvertCommand()
+    ConvertCommand(),
+    FilterCommand()
     ]
 )
 
