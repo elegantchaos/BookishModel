@@ -36,8 +36,8 @@ class ConvertCommand: Command {
         let jsonData = try! Data(contentsOf: jsonURL)
         let decoder = JSONDecoder()
         do {
-            var converted: [NuItemSpec] = []
-            let oldActions = try decoder.decode(ActionFile.self, from: jsonData)
+            var converted: [ActionItemSpec] = []
+            let oldActions = try decoder.decode(OldActionFile.self, from: jsonData)
             for oldAction in oldActions.actions {
                 let time = Date().timeIntervalSinceReferenceDate
                 var info: [String:AnyCodable] = [:]
@@ -51,11 +51,11 @@ class ConvertCommand: Command {
                 } else if let selection = oldAction.books {
                     info["selectionIds"] = AnyCodable(selection)
                 }
-                let action = NuActionSpec(action: oldAction.action, info: info)
-                converted.append(NuItemSpec(time: time, action: action))
+                let action = ActionSpec(action: oldAction.action, info: info)
+                converted.append(ActionItemSpec(time: time, action: action))
             }
             
-            let file = NuActionFile(actions: converted)
+            let file = ActionFile(actions: converted)
             let encoder = JSONEncoder()
             encoder.outputFormatting = .prettyPrinted
             let data = try encoder.encode(file)
