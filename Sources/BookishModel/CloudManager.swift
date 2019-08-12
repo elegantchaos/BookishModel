@@ -61,20 +61,15 @@ public class CloudManager {
             save(container: journalContainer, record: record, action: "Added journal entry")
         }
     }
-    
-    public func forAllJournalEntries(perform block: @escaping ([(String,String)]) -> Void) {
-        var results: [(String, String)] = []
+
+    public func forAllJournalEntries(perform block: @escaping (CKRecord) -> Void, completion: @escaping () -> Void) {
         let database = journalContainer.privateCloudDatabase
         let query = CKQuery(recordType: "JournalEntry", predicate: NSPredicate(value: true))
         query.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         
         func makeOperation() -> CKQueryOperation {
             let operation = CKQueryOperation(query: query)
-            operation.recordFetchedBlock = { (record) in
-                let recordName_fromProperty = record.recordID.recordName
-                let json = record.value(forKey: "value") as? String ?? ""
-                results.append((recordName_fromProperty, json))
-            }
+            operation.recordFetchedBlock = block
             
             operation.queryCompletionBlock = { (cursor, error) in
                 if let error = error {
@@ -84,7 +79,7 @@ public class CloudManager {
                     continuation.cursor = cursor
                     database.add(continuation)
                 } else {
-                    block(results)
+                    completion()
                 }
             }
             
@@ -94,39 +89,33 @@ public class CloudManager {
         let operation = makeOperation()
         database.add(operation)
     }
+
+    public func forAllJournalEntries(perform block: @escaping ([(String,String)]) -> Void) {
+        var results: [(String, String)] = []
+        self.forAllJournalEntries(
+            perform: { record in
+            let recordName_fromProperty = record.recordID.recordName
+            let json = record.value(forKey: "value") as? String ?? ""
+            results.append((recordName_fromProperty, json))
+            },
+        completion: {
+            block(results)
+        }
+        )
+    }
     
-//    private func setupShareList(name: String) {
-//        let database = settingsContainer.privateCloudDatabase
-//        database.fetch(withRecordID: CloudManager.sharesID) { (record, error) in
-//            if let error = error {
-//                cloudChannel.log(error)
-//                let record = CKRecord(recordType: "ShareList", recordID: CloudManager.sharesID)
-//                record.setValue([name], forKey: "shares")
-//                self.save(record: record, action: "created")
-//            } else if let record = record, let shares = record.value(forKey: "shares") as? [String] {
-//                cloudChannel.log("loaded \(record)")
-//                if !shares.contains(name) {
-//                    var newShares = [name]
-//                    newShares.append(contentsOf: shares)
-//                    record.setValue(newShares, forKey: "shares")
-//                    self.save(record: record, action: "updated")
-//                }
-//            }
-//        }
-//    }
-//
-//    private func createShareList(name: String) {
-//        let database = settingsContainer.privateCloudDatabase
-//        let record = CKRecord(recordType: "ShareList", recordID: CloudManager.sharesID)
-//        record.setValue([name], forKey: "shares")
-//        database.save(record, completionHandler: { (record, error) in
-//            if let error = error {
-//                cloudChannel.log(error)
-//            } else {
-//                cloudChannel.log("made record \(record!)")
-//            }
-//        })
-//    }
+    public func resetJournal() {
+        let database = journalContainer.privateCloudDatabase
+        var ids: [CKRecord.ID] = []
+        self.forAllJournalEntries(
+            perform: { record in ids.append(record.recordID) },
+            completion: {
+                for recordID in ids {
+                    database.delete(withRecordID: recordID, completionHandler: { (_,_) in })
+                }
+            }
+        )
+    }
 
     private func save(container: CKContainer, record: CKRecord, action: String) {
         let database = container.privateCloudDatabase
