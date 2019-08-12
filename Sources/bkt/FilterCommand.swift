@@ -31,6 +31,15 @@ class FilterCommand: Command {
         shell.log("Filtering '\(name)'.")
 
         let filter = shell.arguments.argument("event")
+        
+        let after: Date?
+        if let afterString = shell.arguments.option("after") {
+            let formatter = ISO8601DateFormatter()
+            after = formatter.date(from:afterString)
+        } else {
+            after = nil
+        }
+        
         Localization.registerLocalizationBundle(Bundle.main)
         let outputURL = url.deletingLastPathComponent().appendingPathComponent("Filtered \(name).json")
 
@@ -40,9 +49,12 @@ class FilterCommand: Command {
             var filtered: [ActionItemSpec] = []
             let actions = try decoder.decode([ActionItemSpec].self, from: jsonData)
             for action in actions {
-                print(action.action.action)
+                let date = Date(timeIntervalSinceReferenceDate: action.time)
+                print(date)
                 if action.action.action == filter {
-                    filtered.append(action)
+                    if after == nil || after! <= date {
+                        filtered.append(action)
+                    }
                 }
             }
             
