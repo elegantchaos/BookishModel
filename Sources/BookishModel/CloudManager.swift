@@ -64,21 +64,35 @@ public class CloudManager {
     
     public func forAllJournalEntries(perform block: @escaping ([(String,String)]) -> Void) {
         var results: [(String, String)] = []
+        let database = journalContainer.privateCloudDatabase
         let query = CKQuery(recordType: "JournalEntry", predicate: NSPredicate(value: true))
         query.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
-        journalContainer.privateCloudDatabase.perform(query, inZoneWith: nil) { (records, error) in
-            if let error = error {
-                print(error)
-            }
-
-            records?.forEach({ (record) in
+        
+        func makeOperation() -> CKQueryOperation {
+            let operation = CKQueryOperation(query: query)
+            operation.recordFetchedBlock = { (record) in
                 let recordName_fromProperty = record.recordID.recordName
                 let json = record.value(forKey: "value") as? String ?? ""
                 results.append((recordName_fromProperty, json))
-            })
-
-            block(results)
+            }
+            
+            operation.queryCompletionBlock = { (cursor, error) in
+                if let error = error {
+                    print(error)
+                } else if let cursor = cursor {
+                    let continuation = makeOperation()
+                    continuation.cursor = cursor
+                    database.add(continuation)
+                } else {
+                    block(results)
+                }
+            }
+            
+            return operation
         }
+        
+        let operation = makeOperation()
+        database.add(operation)
     }
     
 //    private func setupShareList(name: String) {

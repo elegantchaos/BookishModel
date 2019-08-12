@@ -56,7 +56,7 @@ class MakeCommand: Command {
         shell.log("Making collection '\(name)'.")
 
         let rootURL = URL(fileURLWithPath: #file).deletingLastPathComponent()
-        let jsonURL = rootURL.appendingPathComponent("Converted \(name).json")
+        let jsonURL = rootURL.appendingPathComponent("Build \(name).json")
         
         Localization.registerLocalizationBundle(Bundle.main)
         

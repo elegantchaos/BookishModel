@@ -24,14 +24,14 @@ class ConvertCommand: Command {
         shell.log("Converting '\(name)'.")
 
         let rootURL = URL(fileURLWithPath: #file).deletingLastPathComponent()
-        let jsonURL = rootURL.appendingPathComponent("Build \(name).json")
+        let jsonURL = rootURL.appendingPathComponent("Old Build \(name).json")
         
         Localization.registerLocalizationBundle(Bundle.main)
         
         let resourceURL = rootURL.appendingPathComponent("../../Tests/BookishModelTests/Resources/")
         let outputDirectory = rootURL.appendingPathComponent("../BookishModel/Resources/").appendingPathComponent(name)
         try? FileManager.default.createDirectory(at: outputDirectory, withIntermediateDirectories: true)
-        let outputURL = rootURL.appendingPathComponent("Converted \(name).json")
+        let outputURL = rootURL.appendingPathComponent("Build \(name).json")
 
         let jsonData = try! Data(contentsOf: jsonURL)
         let decoder = JSONDecoder()
