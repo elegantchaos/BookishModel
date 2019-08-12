@@ -9,6 +9,8 @@ import BookishModel
 import CoreData
 import Expressions
 
+
+
 struct ActionSpec: Decodable {
     let name: String
     let action: String
@@ -21,6 +23,20 @@ struct ActionFile: Decodable {
     let actions: [ActionSpec]
 }
 
+struct NuItemSpec: Codable {
+    let time: Double
+    let action: NuActionSpec
+}
+
+struct NuActionSpec: Codable {
+    let action: String
+    let info: [String:AnyCodable]
+}
+
+struct NuActionFile: Codable {
+    let actions: [NuItemSpec]
+}
+
 struct Variable: Constructable {
     var name = ""
 }
@@ -31,7 +47,7 @@ class ActionList: TaskList {
     let importManager: ImportManager
     
     let variablePattern = try! NSRegularExpression(pattern: ".*\\$(\\w+).*")
-
+    
     init(container: CollectionContainer, actionManager: ActionManager, importManager: ImportManager) {
         self.container = container
         self.actionManager = actionManager
@@ -73,7 +89,7 @@ class ActionList: TaskList {
             print(error)
         }
     }
-
+    
     fileprivate func perform(action: ActionSpec, with params: [String:Any] = [:]) {
         let info = ActionInfo()
         info.registerNotification { (stage, actionContext) in

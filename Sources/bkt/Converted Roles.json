@@ -1,0 +1,13 @@
+{
+  "actions" : [
+    {
+      "time" : 587305945.42249596,
+      "action" : {
+        "action" : "Import",
+        "info" : {
+          "importer" : "com.elegantchaos.bookish.importer.standard-roles"
+        }
+      }
+    }
+  ]
+}

@@ -95,6 +95,10 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "make"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "convert"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
