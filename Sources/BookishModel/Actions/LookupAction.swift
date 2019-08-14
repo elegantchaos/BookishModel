@@ -97,21 +97,21 @@ public class LookupCoverAction: LookupAction {
 
 public class AddCandidateAction: LookupAction {
     public override func perform(context: ActionContext, model: NSManagedObjectContext) {
-        if let candidate = context[LookupAction.candidateKey] as? LookupCandidate, let viewer = context[ActionContext.rootKey] as? BookViewer {
+        if let candidate = context[LookupAction.candidateKey] as? LookupCandidate {
             let book = candidate.makeBook(in: model)
-            viewer.reveal(book: book)
+            context.info.forObservers { (viewer: BookViewer) in
+                viewer.reveal(book: book, dismissPopovers: false)
+            }
         }
     }
 }
 
 public class ViewCandidateAction: LookupAction {
     public override func perform(context: ActionContext, model: NSManagedObjectContext) {
-        if
-            let candidate = context[LookupAction.candidateKey] as? LookupCandidate,
-            let viewer = context[ActionContext.rootKey] as? BookViewer,
-            let book = candidate.existingBook
-        {
-            viewer.reveal(book: book)
+        if let candidate = context[LookupAction.candidateKey] as? LookupCandidate, let book = candidate.existingBook {
+            context.info.forObservers { (viewer: BookViewer) in
+                viewer.reveal(book: book, dismissPopovers: true)
+            }
         }
     }
 }

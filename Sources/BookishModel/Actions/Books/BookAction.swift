@@ -15,8 +15,8 @@ let bookActionChannel = Logger("BookActions")
  here so that we can implement actions using it.
  */
 
-public protocol BookViewer {
-    func reveal(book: Book)
+public protocol BookViewer: ActionObserver {
+    func reveal(book: Book, dismissPopovers: Bool)
 }
 
 /**

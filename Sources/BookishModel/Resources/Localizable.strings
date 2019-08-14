@@ -242,3 +242,11 @@ action.ToggleSelectable.stop.icon = "checkmark.circle.fill";
 action.MergeBook.title = "Merge Books";
 action.MergeBook.short = "Merge";
 action.MergeBook.icon = "arrow.merge";
+
+action.ViewCandidate.title = "View";
+action.ViewCandidate.short = "View";
+action.ViewCandidate.icon = "eye";
+
+action.AddCandidate.title = "Add";
+action.AddCandidate.short = "Add";
+action.AddCandidate.icon = "plus";
