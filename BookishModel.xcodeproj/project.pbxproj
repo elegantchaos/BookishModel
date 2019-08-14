@@ -271,6 +271,8 @@
 		8B10C78C22BD094200E05F33 /* Binder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B10C78922BD094200E05F33 /* Binder.swift */; };
 		8B10C78D22BD094200E05F33 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B10C78A22BD094200E05F33 /* Selection.swift */; };
 		8B10C78E22BD094200E05F33 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B10C78A22BD094200E05F33 /* Selection.swift */; };
+		8B1B9B2E23042C8300C86B2C /* ActionsKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8B1B9B2D23042C8300C86B2C /* ActionsKit */; };
+		8B1B9B3023042C9A00C86B2C /* LoggerKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8B1B9B2F23042C9A00C86B2C /* LoggerKit */; };
 		8B3DD9B822F079FE00EB7CD2 /* Actions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B3DD9B722F079FE00EB7CD2 /* Actions */; };
 		8B3DD9CF22F09C1300EB7CD2 /* Localization in Frameworks */ = {isa = PBXBuildFile; productRef = 8B3DD9CE22F09C1300EB7CD2 /* Localization */; };
 		8B3DD9D022F09C1300EB7CD2 /* Localization in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 8B3DD9CE22F09C1300EB7CD2 /* Localization */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -602,6 +604,8 @@
 				8B66550F22FD9B42005ABF39 /* Localization in Frameworks */,
 				8B3DD9B822F079FE00EB7CD2 /* Actions in Frameworks */,
 				8B46F3B022E7165200F08F2D /* Expressions in Frameworks */,
+				8B1B9B2E23042C8300C86B2C /* ActionsKit in Frameworks */,
+				8B1B9B3023042C9A00C86B2C /* LoggerKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1037,6 +1041,8 @@
 				8B46F3B222E7168500F08F2D /* JSONDump */,
 				8B3DD9B722F079FE00EB7CD2 /* Actions */,
 				8B66550E22FD9B42005ABF39 /* Localization */,
+				8B1B9B2D23042C8300C86B2C /* ActionsKit */,
+				8B1B9B2F23042C9A00C86B2C /* LoggerKit */,
 			);
 			productName = BookishModelMobile;
 			productReference = 224293B3212AE16200E70510 /* BookishModel.framework */;
@@ -1992,6 +1998,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8B1B9B2D23042C8300C86B2C /* ActionsKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ActionsKit;
+		};
+		8B1B9B2F23042C9A00C86B2C /* LoggerKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LoggerKit;
+		};
 		8B3DD9B722F079FE00EB7CD2 /* Actions */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Actions;
