@@ -19,9 +19,9 @@ class RevealBookAction: SyncModelAction {
     
     public override func perform(context: ActionContext, model: NSManagedObjectContext) {
         if let book = context[BookAction.bookKey] as? Book {
-            context.info.forObservers { (viewer: BookViewer) in
-                viewer.reveal(book: book, dismissPopovers: true)
-            }
+//            context.info.forObservers { (viewer: BookViewer) in
+//                viewer.reveal(book: book, dismissPopovers: true)
+//            }
         }
     }
 }
