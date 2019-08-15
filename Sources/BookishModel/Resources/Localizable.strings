@@ -245,8 +245,8 @@ action.MergeBook.icon = "arrow.merge";
 
 action.ViewCandidate.title = "View";
 action.ViewCandidate.short = "View";
-action.ViewCandidate.icon = "eye";
+//action.ViewCandidate.icon = "eye";
 
 action.AddCandidate.title = "Add";
 action.AddCandidate.short = "Add";
-action.AddCandidate.icon = "plus";
+//action.AddCandidate.icon = "plus";
