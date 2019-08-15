@@ -56,6 +56,7 @@ public class ModelIndex: NSObject {
         
         super.init()
         fetcher.delegate = self
+        fetch(filter: "")
     }
     
     public func add(client: ModelIndexClient) {
