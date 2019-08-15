@@ -61,6 +61,7 @@ public class ModelIndex: NSObject {
     
     public func add(client: ModelIndexClient) {
         clients.append(client)
+        client.loaded()
     }
     
     public func remove(client: ModelIndexClient) {
