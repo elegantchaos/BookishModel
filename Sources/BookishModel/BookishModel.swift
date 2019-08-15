@@ -19,8 +19,6 @@ public class BookishModel {
 
     static var cachedModel: NSManagedObjectModel!
 
-    public static let topLevelEntities = [ Book.self, Person.self, Publisher.self, Series.self, Role.self ]
-    
     public static let defaultSorting: [String:[NSSortDescriptor]] = [
         "Book" : [NSSortDescriptor(key: "sortName", ascending: true)],
         "Person" : [NSSortDescriptor(key: "sortName", ascending: true)],

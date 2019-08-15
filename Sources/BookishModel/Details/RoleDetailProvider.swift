@@ -41,17 +41,17 @@ class RoleDetailProvider: DetailProvider {
         }
     }
     
-    override func filter(for selection: ModelSelection, editing: Bool, combining: Bool, context: DetailContext) {
+    override func filter(for selection: ModelSelection, editing: Bool, combining: Bool, session: ModelSession) {
         // TODO: handle multiple selection properly
-        if let role = selection.objects.first as? Role, let sort = context.entitySorting["Relationship"] {
-            let relationships = role.relationships(sortedBy: sort)
+        if let role = selection.objects.first as? Role {
+            let relationships = role.relationships(sortedBy: session.people.sorting)
             let people = relationships.compactMap { $0.person }
             sortedPeople.removeAll()
             sortedPeople.append(contentsOf: people)
         }
         
-        let template = RoleDetailProvider.standardDetails(showDebug: context.showDebug)
-        super.filter(for: selection, template: template, editing: editing, combining: combining, context: context)
+        let template = RoleDetailProvider.standardDetails(showDebug: session.showDebug)
+        super.filter(for: selection, template: template, editing: editing, combining: combining, session: session)
     }
 }
 

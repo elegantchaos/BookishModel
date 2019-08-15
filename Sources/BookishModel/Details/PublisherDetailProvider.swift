@@ -57,7 +57,7 @@ class PublisherDetailProvider: DetailProvider {
         }
     }
     
-    override func filter(for selection: ModelSelection, editing: Bool, combining: Bool, context: DetailContext) {
+    override func filter(for selection: ModelSelection, editing: Bool, combining: Bool, session: ModelSession) {
         if let publishers = selection.objects as? [Publisher] {
             let collectedTags = MultipleValues.extract(from: publishers) { publisher -> Set<Tag>? in
                 return publisher.tags
@@ -66,14 +66,14 @@ class PublisherDetailProvider: DetailProvider {
         }
 
         // TODO: handle multiple selection properly
-        if let publisher = selection.objects.first as? Publisher, let sort = context.entitySorting["Book"] {
-            let books = publisher.books(sortedBy: sort)
+        if let publisher = selection.objects.first as? Publisher {
+            let books = publisher.books(sortedBy: session.books.sorting)
             sortedBooks.removeAll()
             sortedBooks.append(contentsOf: books)
         }
 
-        let template = PublisherDetailProvider.standardDetails(showDebug: context.showDebug)
-        super.filter(for: selection, template: template, editing: editing, combining: combining, context: context)
+        let template = PublisherDetailProvider.standardDetails(showDebug: session.showDebug)
+        super.filter(for: selection, template: template, editing: editing, combining: combining, session: session)
     }
 }
 

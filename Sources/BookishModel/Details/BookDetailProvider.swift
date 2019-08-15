@@ -47,8 +47,8 @@ public class BookDetailProvider: DetailProvider {
         return isEditing ? DetailProvider.EditingColumns : DetailProvider.LabelledColumns
     }
 
-    override public func filter(for selection: ModelSelection, editing: Bool, combining: Bool, context: DetailContext) {
-        let template = BookDetailProvider.standardDetails(showDebug: context.showDebug)
+    override public func filter(for selection: ModelSelection, editing: Bool, combining: Bool, session: ModelSession) {
+        let template = BookDetailProvider.standardDetails(showDebug: session.showDebug)
         if let books = selection.objects as? [Book] {
             let collectedRelationships = MultipleValues.extract(from: books) { book -> Set<Relationship>? in
                 return book.relationships as? Set<Relationship>
@@ -67,7 +67,7 @@ public class BookDetailProvider: DetailProvider {
             tags = collectedTags.common
         }
         
-        super.filter(for: selection, template: template, editing: editing, combining: combining, context: context)
+        super.filter(for: selection, template: template, editing: editing, combining: combining, session: session)
     }
     
     override func buildItems() {

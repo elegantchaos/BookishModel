@@ -59,7 +59,7 @@ class SeriesDetailProvider: DetailProvider {
         }
     }
     
-    override func filter(for selection: ModelSelection, editing: Bool, combining: Bool, context: DetailContext) {
+    override func filter(for selection: ModelSelection, editing: Bool, combining: Bool, session: ModelSession) {
         if let series = selection.objects as? [Series] {
             let collectedTags = MultipleValues.extract(from: series) { series -> Set<Tag>? in
                 return series.tags as? Set<Tag>
@@ -68,13 +68,13 @@ class SeriesDetailProvider: DetailProvider {
         }
 
         // TODO: handle multiple selection properly?
-        if let series = selection.objects.first as? Series, let sort = context.entitySorting["SeriesEntry"], let entries = series.entries?.sortedArray(using: sort) as? [SeriesEntry] {
+        if let series = selection.objects.first as? Series, let entries = series.entries?.sortedArray(using: session.series.sorting) as? [SeriesEntry] {
             sortedEntries.removeAll()
             sortedEntries.append(contentsOf: entries)
         }
 
-        let template = SeriesDetailProvider.standardDetails(showDebug: context.showDebug)
-        super.filter(for: selection, template: template, editing: editing, combining: combining, context: context)
+        let template = SeriesDetailProvider.standardDetails(showDebug: session.showDebug)
+        super.filter(for: selection, template: template, editing: editing, combining: combining, session: session)
     }
 }
 

@@ -273,6 +273,8 @@
 		8B10C78E22BD094200E05F33 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B10C78A22BD094200E05F33 /* Selection.swift */; };
 		8B1B9B2E23042C8300C86B2C /* ActionsKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8B1B9B2D23042C8300C86B2C /* ActionsKit */; };
 		8B1B9B3023042C9A00C86B2C /* LoggerKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8B1B9B2F23042C9A00C86B2C /* LoggerKit */; };
+		8B37E14F230566AA006784FD /* ModelIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B37E14E230566AA006784FD /* ModelIndex.swift */; };
+		8B37E150230566AA006784FD /* ModelIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B37E14E230566AA006784FD /* ModelIndex.swift */; };
 		8B3DD9B822F079FE00EB7CD2 /* Actions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B3DD9B722F079FE00EB7CD2 /* Actions */; };
 		8B3DD9CF22F09C1300EB7CD2 /* Localization in Frameworks */ = {isa = PBXBuildFile; productRef = 8B3DD9CE22F09C1300EB7CD2 /* Localization */; };
 		8B3DD9D022F09C1300EB7CD2 /* Localization in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 8B3DD9CE22F09C1300EB7CD2 /* Localization */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -551,6 +553,7 @@
 		22FA65BB2274998100F697F9 /* Version 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Version 8.xcdatamodel"; sourceTree = "<group>"; };
 		8B10C78922BD094200E05F33 /* Binder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Binder.swift; path = ../Binder.swift; sourceTree = "<group>"; };
 		8B10C78A22BD094200E05F33 /* Selection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Selection.swift; path = ../Selection.swift; sourceTree = "<group>"; };
+		8B37E14E230566AA006784FD /* ModelIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelIndex.swift; sourceTree = "<group>"; };
 		8B456C3123017EC00056E153 /* ConvertCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertCommand.swift; sourceTree = "<group>"; };
 		8B456C33230188510056E153 /* AnyCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyCodable.swift; sourceTree = "<group>"; };
 		8B456C3523019CC30056E153 /* FilterCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCommand.swift; sourceTree = "<group>"; };
@@ -747,6 +750,7 @@
 			children = (
 				22DA6A1B21E61BC600ECF09A /* ModelObject.swift */,
 				2291071422A02DC2002DB502 /* ModelEntity.swift */,
+				8B37E14E230566AA006784FD /* ModelIndex.swift */,
 				221F271E21306C1300DC2DC7 /* Book.swift */,
 				2251B813228F0336006C1529 /* Tag.swift */,
 				2250C70121B556FC00E899E2 /* SeriesEntry.swift */,
@@ -1287,6 +1291,7 @@
 				22A8DF9B22A9440000994280 /* NSManagedObjectExtensions.swift in Sources */,
 				224293E3212AF09D00E70510 /* Person.swift in Sources */,
 				2231C571222971B600D730FB /* String+ISBN.swift in Sources */,
+				8B37E14F230566AA006784FD /* ModelIndex.swift in Sources */,
 				8BE2910E22FD6CFB00EF249F /* RemoveRelationshipAction.swift in Sources */,
 				22A8DF9D22A9440000994280 /* NSEntityDescriptionExtensions.swift in Sources */,
 				8BE2911E22FD6DD600EF249F /* RemovePublisherAction.swift in Sources */,
@@ -1450,6 +1455,7 @@
 				8BE2913422FD6EC600EF249F /* RevealPersonAction.swift in Sources */,
 				229FB9EF2226C2F800A564D4 /* LookupManager.swift in Sources */,
 				223879BA220B3FF10019F9EA /* SeriesDetailProvider.swift in Sources */,
+				8B37E150230566AA006784FD /* ModelIndex.swift in Sources */,
 				22F180E421CA8FD600220D20 /* Indexing.swift in Sources */,
 				22724643221C003100C80CCF /* ImportAction.swift in Sources */,
 				223879C4220B490B0019F9EA /* SeriesDetailItem.swift in Sources */,
