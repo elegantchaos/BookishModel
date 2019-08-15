@@ -276,10 +276,6 @@
 		8B37E14F230566AA006784FD /* ModelIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B37E14E230566AA006784FD /* ModelIndex.swift */; };
 		8B37E150230566AA006784FD /* ModelIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B37E14E230566AA006784FD /* ModelIndex.swift */; };
 		8B3DD9B822F079FE00EB7CD2 /* Actions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B3DD9B722F079FE00EB7CD2 /* Actions */; };
-		8B3DD9CF22F09C1300EB7CD2 /* Localization in Frameworks */ = {isa = PBXBuildFile; productRef = 8B3DD9CE22F09C1300EB7CD2 /* Localization */; };
-		8B3DD9D022F09C1300EB7CD2 /* Localization in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 8B3DD9CE22F09C1300EB7CD2 /* Localization */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		8B3DD9D222F09C1A00EB7CD2 /* LoggerShared in Frameworks */ = {isa = PBXBuildFile; productRef = 8B3DD9D122F09C1A00EB7CD2 /* LoggerShared */; };
-		8B3DD9D322F09C1A00EB7CD2 /* LoggerShared in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 8B3DD9D122F09C1A00EB7CD2 /* LoggerShared */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		8B456C3223017EC00056E153 /* ConvertCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B456C3123017EC00056E153 /* ConvertCommand.swift */; };
 		8B456C34230188510056E153 /* AnyCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B456C33230188510056E153 /* AnyCodable.swift */; };
 		8B456C3623019CC30056E153 /* FilterCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B456C3523019CC30056E153 /* FilterCommand.swift */; };
@@ -292,6 +288,8 @@
 		8B66550F22FD9B42005ABF39 /* Localization in Frameworks */ = {isa = PBXBuildFile; productRef = 8B66550E22FD9B42005ABF39 /* Localization */; };
 		8B6A99D122FD89A900517869 /* Localization in Frameworks */ = {isa = PBXBuildFile; productRef = 8B6A99D022FD89A900517869 /* Localization */; };
 		8B6A99D222FD89A900517869 /* Localization in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 8B6A99D022FD89A900517869 /* Localization */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		8B8B6C442305992C00EA9430 /* Localization in Frameworks */ = {isa = PBXBuildFile; productRef = 8B8B6C432305992C00EA9430 /* Localization */; };
+		8B8B6C452305992C00EA9430 /* Localization in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 8B8B6C432305992C00EA9430 /* Localization */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		8B935FEA22B7BE9200435863 /* CloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B935FE922B7BE9200435863 /* CloudManager.swift */; };
 		8B935FEB22B7BE9200435863 /* CloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B935FE922B7BE9200435863 /* CloudManager.swift */; };
 		8BE2910B22FD6CE200EF249F /* MergeBookAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE2910A22FD6CE200EF249F /* MergeBookAction.swift */; };
@@ -383,8 +381,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8B3DD9D022F09C1300EB7CD2 /* Localization in Embed Frameworks */,
-				8B3DD9D322F09C1A00EB7CD2 /* LoggerShared in Embed Frameworks */,
+				8B8B6C452305992C00EA9430 /* Localization in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -626,8 +623,7 @@
 			files = (
 				225F896A221B0A9000196110 /* BookishModel.framework in Frameworks */,
 				8B46F3AD22E7161C00F08F2D /* CommandShell in Frameworks */,
-				8B3DD9CF22F09C1300EB7CD2 /* Localization in Frameworks */,
-				8B3DD9D222F09C1A00EB7CD2 /* LoggerShared in Frameworks */,
+				8B8B6C442305992C00EA9430 /* Localization in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1089,8 +1085,7 @@
 			name = bkt;
 			packageProductDependencies = (
 				8B46F3AC22E7161C00F08F2D /* CommandShell */,
-				8B3DD9CE22F09C1300EB7CD2 /* Localization */,
-				8B3DD9D122F09C1A00EB7CD2 /* LoggerShared */,
+				8B8B6C432305992C00EA9430 /* Localization */,
 			);
 			productName = bkt;
 			productReference = 225F894C221AFB3F00196110 /* bkt */;
@@ -2016,15 +2011,6 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = Actions;
 		};
-		8B3DD9CE22F09C1300EB7CD2 /* Localization */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8B7BF86322EB3BF30061087A /* XCRemoteSwiftPackageReference "Localization" */;
-			productName = Localization;
-		};
-		8B3DD9D122F09C1A00EB7CD2 /* LoggerShared */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = LoggerShared;
-		};
 		8B46F3AC22E7161C00F08F2D /* CommandShell */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8B46F3AB22E7161C00F08F2D /* XCRemoteSwiftPackageReference "CommandShell" */;
@@ -2061,6 +2047,11 @@
 			productName = Localization;
 		};
 		8B6A99D022FD89A900517869 /* Localization */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B7BF86322EB3BF30061087A /* XCRemoteSwiftPackageReference "Localization" */;
+			productName = Localization;
+		};
+		8B8B6C432305992C00EA9430 /* Localization */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8B7BF86322EB3BF30061087A /* XCRemoteSwiftPackageReference "Localization" */;
 			productName = Localization;
