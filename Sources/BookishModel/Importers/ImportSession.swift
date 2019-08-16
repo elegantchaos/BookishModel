@@ -10,13 +10,13 @@ public class ImportSession: Equatable {
         return lhs === rhs
     }
     
-    public typealias Completion = () -> Void
+    public typealias Completion = (ImportSession?) -> Void
     
     let importer: Importer
     let context: NSManagedObjectContext
     let completion: Completion
     
-    init(importer: Importer, context: NSManagedObjectContext, completion: @escaping Completion) {
+    init?(importer: Importer, context: NSManagedObjectContext, completion: @escaping Completion) {
         self.importer = importer
         self.context = context
         self.completion = completion
@@ -25,7 +25,7 @@ public class ImportSession: Equatable {
     func performImport() {
         importer.manager.sessionWillBegin(self)
         run()
-        completion()
+        completion(self)
         importer.manager.sessionDidFinish(self)
     }
 
@@ -38,11 +38,13 @@ public class URLImportSession: ImportSession {
         return lhs === rhs
     }
     
-    public typealias Completion = () -> Void
-    
     let url: URL
     
-    init(importer: Importer, context: NSManagedObjectContext, url: URL, completion: @escaping Completion) {
+    init?(importer: Importer, context: NSManagedObjectContext, url: URL, completion: @escaping Completion) {
+        guard FileManager.default.fileExists(at: url) else {
+            return nil
+        }
+        
         self.url = url
         super.init(importer: importer, context: context, completion: completion)
     }

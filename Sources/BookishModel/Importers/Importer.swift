@@ -75,24 +75,30 @@ public class Importer {
         return string
     }
 
-    internal func makeSession(in context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) -> ImportSession {
+    internal func makeSession(in context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) -> ImportSession? {
         let session = ImportSession(importer: self, context: context, completion: completion)
         return session
     }
 
-    internal func makeSession(importing url: URL, in context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) -> URLImportSession {
+    internal func makeSession(importing url: URL, in context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) -> URLImportSession? {
         let session = URLImportSession(importer: self, context: context, url: url, completion: completion)
         return session
     }
     
     public func run(importing url: URL, in context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) {
-        let session = makeSession(importing: url, in: context, completion: completion)
-        session.performImport()
+        if let session = makeSession(importing: url, in: context, completion: completion) {
+            session.performImport()
+        } else {
+            completion(nil)
+        }
     }
 
     public func run(in context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) {
-        let session = makeSession(in: context, completion: completion)
-        session.performImport()
+        if let session = makeSession(in: context, completion: completion) {
+            session.performImport()
+        } else {
+            completion(nil)
+        }
     }
 
 }

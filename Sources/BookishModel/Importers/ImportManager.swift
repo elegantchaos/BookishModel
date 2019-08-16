@@ -33,15 +33,37 @@ public class ImportManager {
         return importers[identifier]
     }
     
-    public func importFrom(_ url: URL, to context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) -> Bool {
-        for importer in importers.values {
-            if importer.canImport(from: url) {
-                importer.run(importing: url, in: context, completion: completion)
-                return true
+    public func importFrom(_ url: URL, to context: NSManagedObjectContext, completion finalCompletion: @escaping ImportSession.Completion) {
+        var importersToTry = sortedImporters
+
+        func runNextImporter() {
+            if let importer = importersToTry.first {
+                importersToTry.remove(at: 0)
+
+                let sessionCompletion: ImportSession.Completion = { session in
+                    if let session = session {
+                        // if the import succeeded, we run the final completion
+                        finalCompletion(session)
+                    } else {
+                        // if the import failed, we try the next importer
+                        runNextImporter()
+                    }
+                }
+
+                if let session = importer.makeSession(importing: url, in: context, completion: sessionCompletion) {
+                    // the importer is potentially valid for the input url, so run it
+                    session.run()
+                } else {
+                    // the importer can't handle the url, so try the next one
+                    runNextImporter()
+                }
+                    
+            } else {
+                finalCompletion(nil)
             }
         }
         
-        return false
+        runNextImporter()
     }
     
     func sessionWillBegin(_ session: ImportSession) {

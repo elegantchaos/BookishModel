@@ -14,7 +14,7 @@ public class StandardRolesImporter: Importer {
         super.init(name: "Standard Roles", source: .knownLocation, manager: manager)
     }
     
-    override func makeSession(in context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) -> ImportSession {
+    override func makeSession(in context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) -> ImportSession? {
         return StandardRolesImportSession(importer: self, context: context, completion: completion)
     }
 }

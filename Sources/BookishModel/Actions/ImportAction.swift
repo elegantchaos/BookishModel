@@ -37,7 +37,7 @@ public class ImportAction: ModelAction {
         
         let count = model.countEntities(type: Book.self)
 
-        let importCompletion =  {
+        let importCompletion: ImportSession.Completion =  { session in
             let added = model.countEntities(type: Book.self) - count
             context["report"] = "Imported \(added) books."
             completion()

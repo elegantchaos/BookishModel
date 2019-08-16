@@ -17,7 +17,7 @@ public class DeliciousLibraryImporter: Importer {
         super.init(name: "Delicious Library", source: .userSpecifiedFile, manager: manager)
     }
     
-    override func makeSession(importing url: URL, in context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) -> URLImportSession {
+    override func makeSession(importing url: URL, in context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) -> URLImportSession? {
         return DeliciousLibraryImportSession(importer: self, context: context, url: url, completion: completion)
     }
 
@@ -30,6 +30,7 @@ class DeliciousLibraryImportSession: URLImportSession {
     typealias Record = [String:Any]
     typealias RecordList = [Record]
     
+    var list: RecordList!
     var cachedPeople: [String:Person] = [:]
     var cachedPublishers: [String:Publisher] = [:]
     var cachedSeries: [String:Series] = [:]
@@ -39,20 +40,27 @@ class DeliciousLibraryImportSession: URLImportSession {
     let formatsToSkip = ["Audio CD", "Audio CD Enhanced", "Audio CD Import", "Video Game", "VHS Tape", "VideoGame", "DVD"]
 
     
-    override init(importer: Importer, context: NSManagedObjectContext, url: URL, completion: @escaping Completion) {
+    override init?(importer: Importer, context: NSManagedObjectContext, url: URL, completion: @escaping Completion) {
         deliciousTag = Tag.named("delicious-library", in: context)
         importedTag = Tag.named("imported", in: context)
-        
         super.init(importer: importer, context: context, url: url, completion: completion)
+
+        // check we can parse the xml
+        guard let data = try? Data(contentsOf: url), let list = (try? PropertyListSerialization.propertyList(from: data, options: [], format: nil)) as? RecordList else {
+            return nil
+        }
+
+        // check that the records look to be in the right format
+        guard let record = list.first, let _ = record["actorsCompositeString"] as? String else {
+            return nil
+        }
+        
+        self.list = list
     }
     
     override func run() {
-        if let data = try? Data(contentsOf: url) {
-            if let list = (try? PropertyListSerialization.propertyList(from: data, options: [], format: nil)) as? RecordList {
-                for record in list {
-                    process(record: record)
-                }
-            }
+        for record in list {
+            process(record: record)
         }
     }
     
