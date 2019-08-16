@@ -4,6 +4,7 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Foundation
+import CoreData
 
 public class ImportManager {
     private var importers: [String:Importer] = [:]
@@ -30,6 +31,17 @@ public class ImportManager {
     
     public func importer(identifier: String) -> Importer? {
         return importers[identifier]
+    }
+    
+    public func importFrom(_ url: URL, to context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) -> Bool {
+        for importer in importers.values {
+            if importer.canImport(from: url) {
+                importer.run(importing: url, in: context, completion: completion)
+                return true
+            }
+        }
+        
+        return false
     }
     
     func sessionWillBegin(_ session: ImportSession) {

@@ -37,6 +37,18 @@ public class Importer {
         }
     }
     
+    public func canImport(from url: URL) -> Bool {
+        guard FileManager.default.fileExists(at: url) else {
+            return false
+        }
+
+        guard let allowedTypes = fileTypes, allowedTypes.contains(url.pathExtension) else {
+            return false
+        }
+        
+        return true
+    }
+    
     public var defaultImportLocation: URL? {
         return nil
     }
