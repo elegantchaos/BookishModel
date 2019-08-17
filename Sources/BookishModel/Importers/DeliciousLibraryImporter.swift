@@ -30,7 +30,7 @@ class DeliciousLibraryImportSession: URLImportSession {
     typealias Record = [String:Any]
     typealias RecordList = [Record]
     
-    var list: RecordList!
+    var list: RecordList
     var cachedPeople: [String:Person] = [:]
     var cachedPublishers: [String:Publisher] = [:]
     var cachedSeries: [String:Series] = [:]
@@ -41,10 +41,6 @@ class DeliciousLibraryImportSession: URLImportSession {
 
     
     override init?(importer: Importer, context: NSManagedObjectContext, url: URL, completion: @escaping Completion) {
-        deliciousTag = Tag.named("delicious-library", in: context)
-        importedTag = Tag.named("imported", in: context)
-        super.init(importer: importer, context: context, url: url, completion: completion)
-
         // check we can parse the xml
         guard let data = try? Data(contentsOf: url), let list = (try? PropertyListSerialization.propertyList(from: data, options: [], format: nil)) as? RecordList else {
             return nil
@@ -54,8 +50,11 @@ class DeliciousLibraryImportSession: URLImportSession {
         guard let record = list.first, let _ = record["actorsCompositeString"] as? String else {
             return nil
         }
-        
+
+        self.deliciousTag = Tag.named("delicious-library", in: context)
+        self.importedTag = Tag.named("imported", in: context)
         self.list = list
+        super.init(importer: importer, context: context, url: url, completion: completion)
     }
     
     override func run() {
