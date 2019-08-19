@@ -21,8 +21,8 @@ open class ModelAction: Action {
         actions.append(contentsOf: RoleAction.standardActions())
         actions.append(contentsOf: LookupAction.standardActions())
         actions.append(contentsOf: TagAction.standardActions())
+        actions.append(contentsOf: ImportAction.standardActions())
         actions.append(ChangeValueAction())
-        actions.append(ImportAction())
         actions.append(ScanSeriesAction())
 
         return actions
