@@ -68,7 +68,7 @@ class SeriesDetailProvider: DetailProvider {
         }
 
         // TODO: handle multiple selection properly?
-        if let series = selection.objects.first as? Series, let entries = series.entries?.sortedArray(using: session.series.sorting) as? [SeriesEntry] {
+        if let series = selection.objects.first as? Series, let entries = series.entries?.sortedArray(using: session.entrySorting) as? [SeriesEntry] {
             sortedEntries.removeAll()
             sortedEntries.append(contentsOf: entries)
         }

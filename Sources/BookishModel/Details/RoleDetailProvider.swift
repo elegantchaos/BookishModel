@@ -44,7 +44,7 @@ class RoleDetailProvider: DetailProvider {
     override func filter(for selection: ModelSelection, editing: Bool, combining: Bool, session: ModelSession) {
         // TODO: handle multiple selection properly
         if let role = selection.objects.first as? Role {
-            let relationships = role.relationships(sortedBy: session.people.sorting)
+            let relationships = role.relationships(sortedBy: session.relationshipSorting)
             let people = relationships.compactMap { $0.person }
             sortedPeople.removeAll()
             sortedPeople.append(contentsOf: people)

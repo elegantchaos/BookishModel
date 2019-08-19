@@ -23,7 +23,7 @@ public class BookishModel {
         "Book" : [NSSortDescriptor(key: "sortName", ascending: true)],
         "Person" : [NSSortDescriptor(key: "sortName", ascending: true)],
         "Publisher" : [NSSortDescriptor(key: "sortName", ascending: true)],
-        "Relationship" : [NSSortDescriptor(key: "role.name", ascending: true)],
+        "Relationship" : [NSSortDescriptor(key: "person.name", ascending: true)],
         "Series" : [NSSortDescriptor(key: "sortName", ascending: true)],
         "SeriesEntry" : [NSSortDescriptor(key: "position", ascending: true)],
         "Role" : [NSSortDescriptor(key: "name", ascending: true)]

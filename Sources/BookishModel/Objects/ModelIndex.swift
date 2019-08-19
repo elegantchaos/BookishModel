@@ -168,6 +168,9 @@ public protocol ModelSession {
     var publishers: ModelIndex { get }
     var series: ModelIndex { get }
     var roles: ModelIndex { get }
+    
+    var entrySorting: [NSSortDescriptor] { get }
+    var relationshipSorting: [NSSortDescriptor] { get }
 }
 
 extension ModelSession {
