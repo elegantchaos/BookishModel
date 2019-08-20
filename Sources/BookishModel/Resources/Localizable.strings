@@ -252,6 +252,6 @@ action.AddCandidate.short = "Add";
 //action.AddCandidate.icon = "plus";
 
 importer.progress.title = "Importing from {name}";
-importer.progress.detail = "Importing book {item} of {count}…";
+importer.progress.detail = "Importing book {item} of {count}";
 com.elegantchaos.bookish.importer.delicious-library.name = "Delicious Library";
 com.elegantchaos.bookish.importer.kindle.name = "Kindle";
