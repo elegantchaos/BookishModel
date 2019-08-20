@@ -4,6 +4,7 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import CoreData
+import Localization
 
 public class ImportSession: Equatable {
     public static func == (lhs: ImportSession, rhs: ImportSession) -> Bool {
@@ -14,22 +15,30 @@ public class ImportSession: Equatable {
     
     let importer: Importer
     let context: NSManagedObjectContext
-    let completion: Completion
+    let monitor: ImportMonitor?
     
-    init?(importer: Importer, context: NSManagedObjectContext, completion: @escaping Completion) {
+    init?(importer: Importer, context: NSManagedObjectContext, monitor: ImportMonitor?) {
         self.importer = importer
         self.context = context
-        self.completion = completion
+        self.monitor = monitor
     }
     
     func performImport() {
-        importer.manager.sessionWillBegin(self)
-        run()
-        completion(self)
-        importer.manager.sessionDidFinish(self)
+        let importer = self.importer
+        DispatchQueue.global(qos: .userInitiated).async {
+            importer.manager.sessionWillBegin(self)
+            self.run()
+            importer.manager.sessionDidFinish(self)
+        }
     }
 
     internal func run() {
+    }
+    
+    public var title: String {
+        let id = type(of: importer).identifier
+        let name = "\(id).name".localized
+        return "importer.progress.title".localized(with: ["name": name])
     }
 }
 
@@ -40,12 +49,12 @@ public class URLImportSession: ImportSession {
     
     let url: URL
     
-    init?(importer: Importer, context: NSManagedObjectContext, url: URL, completion: @escaping Completion) {
+    init?(importer: Importer, context: NSManagedObjectContext, url: URL, monitor: ImportMonitor?) {
         guard FileManager.default.fileExists(at: url) else {
             return nil
         }
         
         self.url = url
-        super.init(importer: importer, context: context, completion: completion)
+        super.init(importer: importer, context: context, monitor: monitor)
     }
 }

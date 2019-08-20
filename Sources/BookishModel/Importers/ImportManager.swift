@@ -6,6 +6,15 @@
 import Foundation
 import CoreData
 
+public protocol ImportMonitor {
+    func chooseFile(for importer: Importer, completion: @escaping (URL) -> Void)
+    func session(_ session: ImportSession, willImportItems count: Int)
+    func session(_ session: ImportSession, willImportItem item: Int, of count: Int)
+    func sessionDidFinish(_ session: ImportSession)
+    func sessionDidFail(_ session: ImportSession)
+    func noImporter()
+}
+
 public class ImportManager {
     private var importers: [String:Importer] = [:]
     private var sessions: [ImportSession] = []
@@ -33,24 +42,14 @@ public class ImportManager {
         return importers[identifier]
     }
     
-    public func importFrom(_ url: URL, to context: NSManagedObjectContext, completion finalCompletion: @escaping ImportSession.Completion) {
+    public func importFrom(_ url: URL, to context: NSManagedObjectContext, monitor: ImportMonitor) {
         var importersToTry = sortedImporters
 
         func runNextImporter() {
             if let importer = importersToTry.first {
                 importersToTry.remove(at: 0)
 
-                let sessionCompletion: ImportSession.Completion = { session in
-                    if let session = session {
-                        // if the import succeeded, we run the final completion
-                        finalCompletion(session)
-                    } else {
-                        // if the import failed, we try the next importer
-                        runNextImporter()
-                    }
-                }
-
-                if let session = importer.makeSession(importing: url, in: context, completion: sessionCompletion) {
+                if let session = importer.makeSession(importing: url, in: context, monitor: monitor) {
                     // the importer is potentially valid for the input url, so run it
                     session.run()
                 } else {
@@ -59,7 +58,7 @@ public class ImportManager {
                 }
                     
             } else {
-                finalCompletion(nil)
+                monitor.noImporter()
             }
         }
         

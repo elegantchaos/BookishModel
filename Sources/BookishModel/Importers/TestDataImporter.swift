@@ -13,8 +13,8 @@ public class TestDataImporter: Importer {
         super.init(name: "Test Data", source: .knownLocation, manager: manager)
     }
 
-    override func makeSession(in context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) -> ImportSession? {
-        return TestDataImportSession(importer: self, context: context, completion: completion)
+    override func makeSession(in context: NSManagedObjectContext, monitor: ImportMonitor?) -> ImportSession? {
+        return TestDataImportSession(importer: self, context: context, monitor: monitor)
     }
 
 }

@@ -17,8 +17,8 @@ public class KindleImporter: Importer {
         super.init(name: "Kindle", source: .userSpecifiedFile, manager: manager)
     }
     
-    override func makeSession(importing url: URL, in context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) -> URLImportSession? {
-        return KindleImportSession(importer: self, context: context, url: url, completion: completion)
+    override func makeSession(importing url: URL, in context: NSManagedObjectContext, monitor: ImportMonitor?) -> URLImportSession? {
+        return KindleImportSession(importer: self, context: context, url: url, monitor: monitor)
     }
     
     public override var defaultImportLocation: URL? {
@@ -136,22 +136,31 @@ class KindleImportSession: URLImportSession {
     var cachedSeries: [String:Series] = [:]
     let kindleTag: Tag
     let importedTag: Tag
-
-    override init?(importer: Importer, context: NSManagedObjectContext, url: URL, completion: @escaping Completion) {
+    let books: [KindleBook]
+    
+    override init?(importer: Importer, context: NSManagedObjectContext, url: URL, monitor: ImportMonitor?) {
         kindleTag = Tag.named("kindle", in: context)
         importedTag = Tag.named("imported", in: context)
         
-        super.init(importer: importer, context: context, url: url, completion: completion)
+        guard let data = try? Data(contentsOf: url) else {
+            return nil
+        }
+        let processor = KindleProcessor()
+        processor.parse(data: data) // TODO: check if this fails
+        self.books = processor.state.books
+        
+        super.init(importer: importer, context: context, url: url, monitor: monitor)
     }
     
     override func run() {
-        if let data = try? Data(contentsOf: url) {
-            let processor = KindleProcessor()
-            processor.parse(data: data)
-            for book in processor.state.books {
-                process(book: book)
-            }
+        monitor?.session(self, willImportItems: books.count)
+        var item = 0
+        for book in books {
+            monitor?.session(self, willImportItem: item, of: books.count)
+            process(book: book)
+            item += 1
         }
+        monitor?.sessionDidFinish(self)
     }
     
     private func process(book kindleBook: KindleBook) {
