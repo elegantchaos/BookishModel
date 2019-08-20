@@ -43,26 +43,14 @@ public class ImportManager {
     }
     
     public func importFrom(_ url: URL, to context: NSManagedObjectContext, monitor: ImportMonitor) {
-        var importersToTry = sortedImporters
-
-        func runNextImporter() {
-            if let importer = importersToTry.first {
-                importersToTry.remove(at: 0)
-
-                if let session = importer.makeSession(importing: url, in: context, monitor: monitor) {
-                    // the importer is potentially valid for the input url, so run it
-                    session.run()
-                } else {
-                    // the importer can't handle the url, so try the next one
-                    runNextImporter()
-                }
-                    
-            } else {
-                monitor.noImporter()
+        for importer in sortedImporters {
+            if let session = importer.makeSession(importing: url, in: context, monitor: monitor) {
+                session.performImport()
+                break
             }
         }
         
-        runNextImporter()
+        monitor.noImporter()
     }
     
     func sessionWillBegin(_ session: ImportSession) {
