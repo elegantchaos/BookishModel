@@ -111,6 +111,7 @@ public protocol ImageView: NSObject {
     associatedtype ImageType
     
     var image: ImageType? { get set }
+    var isHidden: Bool { get set }
 }
 
 #if os(iOS)
@@ -133,16 +134,31 @@ extension NSImageView: ImageView {
 
 #endif
 
+public enum ImageMissingMode {
+    case placeholder
+    case empty
+    case hide
+}
 
 extension ModelEntityCommon {
-    public func setImage<View: ImageView, Factory: ImageFactory>(for view: View, cache: ImageCache<Factory>, callback: ((Factory.ImageClass) -> Void)? = nil) where Factory.ImageClass == View.ImageType {
+    public func setImage<View: ImageView, Factory: ImageFactory>(for view: View, cache: ImageCache<Factory>, missingMode: ImageMissingMode = .placeholder, callback: ((Factory.ImageClass) -> Void)? = nil) where Factory.ImageClass == View.ImageType {
         if let data = imageData, let image = Factory.image(from: data) {
             view.image = image
+            view.isHidden = false
         } else {
-            view.image = Factory.image(named: type(of: self).entityPlaceholder)
+            switch missingMode {
+            case .hide:
+                view.isHidden = true
+            case .empty:
+                view.image = nil
+            case .placeholder:
+                view.image = Factory.image(named: type(of: self).entityPlaceholder)
+            }
+            
             if let urlString = imageURL, let url = URL(string: urlString) {
                 cache.image(for: url) { (image) in
                     view.image = image
+                    view.isHidden = false
                     callback?(image)
                 }
             }
