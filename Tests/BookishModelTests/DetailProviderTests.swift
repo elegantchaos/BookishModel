@@ -7,12 +7,6 @@ import XCTest
 @testable import BookishModel
 
 class DetailProviderTests: ModelTestCase {
-
-    func testTitleProperty() {
-        let provider = DetailProvider()
-        XCTAssertEqual(provider.titleProperty, "name")
-    }
-
     func testInserted() {
         let provider = DetailProvider()
         XCTAssertEqual(provider.inserted(details: []).count, 0)
@@ -38,7 +32,7 @@ class DetailProviderTests: ModelTestCase {
         }
         
         let provider = TestProvider()
-        provider.filter(for: [], editing: false, combining: true, context: TestContext())
+        provider.filter(for: ModelSelection(), editing: false, combining: true, context: TestContext())
         
         XCTAssertEqual(provider.combinedCount, 2)
         XCTAssertEqual(provider.combinedInfo(row: 0).kind, "test 0 0")
@@ -47,9 +41,9 @@ class DetailProviderTests: ModelTestCase {
     
     func testVisibleColumns() {
         let provider = DetailProvider()
-        provider.filter(for: [], editing: false, combining: false, context: TestContext())
+        provider.filter(for: ModelSelection(), editing: false, combining: false, context: TestContext())
         XCTAssertEqual(provider.visibleColumns, DetailProvider.LabelledColumns)
-        provider.filter(for: [], editing: true, combining: false, context: TestContext())
+        provider.filter(for: ModelSelection(), editing: true, combining: false, context: TestContext())
         XCTAssertEqual(provider.visibleColumns, DetailProvider.EditingColumns)
     }
 }

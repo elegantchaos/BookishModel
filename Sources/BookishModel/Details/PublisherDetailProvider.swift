@@ -10,7 +10,7 @@ class PublisherDetailProvider: DetailProvider {
 
     public class func standardDetails(showDebug: Bool) -> [DetailSpec] {
         var details = [
-            DetailSpec(binding: "notes"),
+            DetailSpec(binding: "notes", viewAs: DetailSpec.paragraphKind),
             DetailSpec(binding: "added", viewAs: DetailSpec.timeKind),
             DetailSpec(binding: "modified", viewAs: DetailSpec.timeKind),
             DetailSpec(binding: "importDate", viewAs: DetailSpec.timeKind, editAs: DetailSpec.hiddenKind),
@@ -19,9 +19,9 @@ class PublisherDetailProvider: DetailProvider {
         if showDebug {
             details.append(contentsOf: [
                 DetailSpec(binding: "uuid", viewAs: DetailSpec.textKind),
-                DetailSpec(binding: "log", viewAs: DetailSpec.textKind, isDebug: true),
                 DetailSpec(binding: "imageURL", viewAs: DetailSpec.textKind, isDebug: true),
                 DetailSpec(binding: "source", viewAs: DetailSpec.textKind, isDebug: true),
+                DetailSpec(binding: "log", viewAs: DetailSpec.paragraphKind, isDebug: true),
                 ])
         }
         
@@ -52,27 +52,28 @@ class PublisherDetailProvider: DetailProvider {
         if section == 0 {
             return super.info(section: section, row: row)
         } else {
-            let info = BookDetailItem(book: sortedBooks[row], absolute: row, index: row, source: self)
+            let info = BookDetailItem(book: sortedBooks[row], mode: .publisher, absolute: row, index: row, source: self)
             return info
         }
     }
     
-    override func filter(for selection: [ModelObject], editing: Bool, combining: Bool, context: DetailContext) {
-        if let publishers = selection as? [Publisher] {
+    override func filter(for selection: ModelSelection, editing: Bool, combining: Bool, session: ModelSession) {
+        if let publishers = selection.objects as? [Publisher] {
             let collectedTags = MultipleValues.extract(from: publishers) { publisher -> Set<Tag>? in
-                return publisher.tags as? Set<Tag>
+                return publisher.tags
             }
             tags = collectedTags.common
         }
 
         // TODO: handle multiple selection properly
-        if let publisher = selection.first as? Publisher, let sort = context.entitySorting["Book"], let books = publisher.books?.sortedArray(using: sort) as? [Book] {
+        if let publisher = selection.objects.first as? Publisher {
+            let books = publisher.books(sortedBy: session.books.sorting)
             sortedBooks.removeAll()
             sortedBooks.append(contentsOf: books)
         }
 
-        let template = PublisherDetailProvider.standardDetails(showDebug: context.showDebug)
-        super.filter(for: selection, template: template, editing: editing, combining: combining, context: context)
+        let template = PublisherDetailProvider.standardDetails(showDebug: session.showDebug)
+        super.filter(for: selection, template: template, editing: editing, combining: combining, session: session)
     }
 }
 

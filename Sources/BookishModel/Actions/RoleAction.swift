@@ -37,16 +37,16 @@ public protocol RoleLifecycleObserver: ActionObserver {
 open class RoleAction: SyncModelAction {
     public static let roleKey = "role"
     
-    open override func validate(context: ActionContext) -> Bool {
-        guard super.validate(context: context) else {
-            return false
+    open override func validate(context: ActionContext) -> Validation {
+        var info = super.validate(context: context)
+        
+        if let selection = context[ActionContext.selectionKey] as? [Role] {
+            info.enabled = info.enabled && selection.count > 0
+        } else {
+            info.enabled = false
         }
         
-        guard let selection = context[ActionContext.selectionKey] as? [Role] else {
-            return false
-        }
-        
-        return selection.count > 0
+        return info
     }
     
     open class override func standardActions() -> [Action] {
@@ -63,7 +63,7 @@ open class RoleAction: SyncModelAction {
  */
 
 class NewRoleAction: RoleAction {
-    public override func validate(context: ActionContext) -> Bool {
+    public override func validate(context: ActionContext) -> Validation {
         return modelValidate(context:context) // we don't need a selection, so we skip to ModelAction's validation
     }
     
@@ -80,16 +80,17 @@ class NewRoleAction: RoleAction {
  */
 
 class DeleteRoleAction: RoleAction {
-    override func validate(context: ActionContext) -> Bool {
+    override func validate(context: ActionContext) -> Validation {
+        var info = super.validate(context: context)
         
         // only valid if there are some unlocked items in the selection
-        if let selection = context[ActionContext.selectionKey] as? [Role] {
+        if info.state == .active, let selection = context[ActionContext.selectionKey] as? [Role] {
             if selection.allSatisfy({ return $0.locked }) {
-                return false
+                info.state = .inactive
             }
         }
 
-        return super.validate(context: context)
+        return info
     }
     
     override func perform(context: ActionContext, model: NSManagedObjectContext) {
@@ -112,9 +113,11 @@ class DeleteRoleAction: RoleAction {
  The role to reveal can either be set as the roleKey, or extracted from a relationship set as the relationshipKey
  */
 
-class RevealRoleAction: RoleAction {
-    override func validate(context: ActionContext) -> Bool {
-        return (context[RoleAction.roleKey] as? Role != nil) && (context[ActionContext.rootKey] as? RoleViewer != nil) && super.modelValidate(context: context)
+class RevealRoleAction: SyncModelAction {
+    override func validate(context: ActionContext) -> Validation {
+        var info = super.validate(context: context)
+        info.enabled = info.enabled && (context[RoleAction.roleKey] as? Role != nil) && (context[ActionContext.rootKey] as? RoleViewer != nil)
+        return info
     }
     
     public override func perform(context: ActionContext, model: NSManagedObjectContext) {

@@ -10,16 +10,16 @@ class RoleDetailProvider: DetailProvider {
     
     public class func standardDetails(showDebug: Bool) -> [DetailSpec] {
         var details = [
-            DetailSpec(binding: "notes", viewAs: DetailSpec.hiddenKind, editAs: DetailSpec.textKind),
+            DetailSpec(binding: "notes", viewAs: DetailSpec.hiddenKind, editAs: DetailSpec.paragraphKind),
             DetailSpec(binding: "modified", viewAs: DetailSpec.timeKind),
         ]
         
         if showDebug {
             details.append(contentsOf: [
                 DetailSpec(binding: "uuid", viewAs: DetailSpec.textKind),
-                DetailSpec(binding: "log", viewAs: DetailSpec.textKind, isDebug: true),
                 DetailSpec(binding: "imageURL", viewAs: DetailSpec.textKind, isDebug: true),
-                ])
+                DetailSpec(binding: "log", viewAs: DetailSpec.paragraphKind, isDebug: true),
+])
         }
         
         return details
@@ -41,15 +41,17 @@ class RoleDetailProvider: DetailProvider {
         }
     }
     
-    override func filter(for selection: [ModelObject], editing: Bool, combining: Bool, context: DetailContext) {
-        if let role = selection.first as? Role, let sort = context.entitySorting["Relationship"], let relationships = role.relationships?.sortedArray(using: sort) as? [Relationship] {
+    override func filter(for selection: ModelSelection, editing: Bool, combining: Bool, session: ModelSession) {
+        // TODO: handle multiple selection properly
+        if let role = selection.objects.first as? Role {
+            let relationships = role.relationships(sortedBy: session.relationshipSorting)
             let people = relationships.compactMap { $0.person }
             sortedPeople.removeAll()
             sortedPeople.append(contentsOf: people)
         }
         
-        let template = RoleDetailProvider.standardDetails(showDebug: context.showDebug)
-        super.filter(for: selection, template: template, editing: editing, combining: combining, context: context)
+        let template = RoleDetailProvider.standardDetails(showDebug: session.showDebug)
+        super.filter(for: selection, template: template, editing: editing, combining: combining, session: session)
     }
 }
 

@@ -46,7 +46,9 @@ class DecodingErrorTests: ModelTestCase {
         for item in items {
             let json = item["json"]!
             let expected = item["expected"]!
-            XCTAssertTrue(decode(json: json, expecting: expected))
+            if !decode(json: json, expecting: expected) {
+                XCTFail("decoding failed for \(json)")
+            }
         }
     }
  

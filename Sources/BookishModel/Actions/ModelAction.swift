@@ -10,6 +10,8 @@ import Logger
 let modelActionChannel = Logger("ModelAction")
 
 open class ModelAction: Action {
+    public static let entityTypeKey = "entityType"
+    
     open class func standardActions() -> [Action] {
         var actions = [Action]()
         actions.append(contentsOf: BookAction.standardActions())
@@ -19,19 +21,21 @@ open class ModelAction: Action {
         actions.append(contentsOf: RoleAction.standardActions())
         actions.append(contentsOf: LookupAction.standardActions())
         actions.append(contentsOf: TagAction.standardActions())
+        actions.append(contentsOf: ImportAction.standardActions())
         actions.append(ChangeValueAction())
-        actions.append(ImportAction())
         actions.append(ScanSeriesAction())
 
         return actions
     }
-    
-    public func modelValidate(context: ActionContext) -> Bool {
-        return (context[ActionContext.modelKey] as? NSManagedObjectContext) != nil
+ 
+    public func modelValidate(context: ActionContext) -> Validation {
+        var info = super.validate(context: context)
+        info.enabled = info.enabled && ((context[ActionContext.modelKey] as? NSManagedObjectContext) != nil)
+        return info
     }
 
-    open override func validate(context: ActionContext) -> Bool {
-        return modelValidate(context:context)
+    open override func validate(context: ActionContext) -> Validation {
+        return modelValidate(context: context)
     }
     
     open override func perform(context: ActionContext, completed: @escaping Completion) {
@@ -60,6 +64,26 @@ open class ModelAction: Action {
 }
 
 open class SyncModelAction: ModelAction {
+    open func validateSelection<EntityType>(type: EntityType.Type, context: ActionContext, minimumToEnable: Int = 1, usingPluralTitle: Bool) -> Action.Validation {
+        var info = super.validate(context: context)
+
+        if info.enabled,
+            let indexType = context[ModelAction.entityTypeKey] as? EntityType.Type,
+            let selection = context[ActionContext.selectionKey] as? [EntityType],
+            indexType == type {
+            let count = selection.count
+            info.enabled = count >= minimumToEnable
+            if (count > 1) && usingPluralTitle {
+                info.fullName = "\(info.fullName).plural"
+                info.shortName = "\(info.shortName).plural"
+            }
+        } else {
+            info.state = .ineligable
+        }
+        
+        return info
+    }
+
     override func perform(context: ActionContext, model: NSManagedObjectContext, completion: @escaping ModelAction.Completion) {
         perform(context: context, model: model)
         completion()

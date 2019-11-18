@@ -9,18 +9,21 @@ public class PersonDetailProvider: DetailProvider {
     
     public class func standardDetails(showDebug: Bool) -> [DetailSpec] {
         var details = [
-            DetailSpec(binding: "notes"),
-            DetailSpec(binding: "biography"),
+            DetailSpec(binding: "notes", viewAs: DetailSpec.paragraphKind),
+            DetailSpec(binding: "biography", viewAs: DetailSpec.paragraphKind),
             DetailSpec(binding: "born", viewAs: DetailSpec.dateKind, editAs: DetailSpec.editableDateKind),
             DetailSpec(binding: "died", viewAs: DetailSpec.dateKind, editAs: DetailSpec.editableDateKind),
+            DetailSpec(binding: "added", viewAs: DetailSpec.timeKind),
+            DetailSpec(binding: "modified", viewAs: DetailSpec.timeKind),
+            DetailSpec(binding: "importDate", viewAs: DetailSpec.timeKind, editAs: DetailSpec.hiddenKind),
         ]
         
         if showDebug {
             details.append(contentsOf: [
                 DetailSpec(binding: "uuid", viewAs: DetailSpec.textKind, isDebug: true),
-                DetailSpec(binding: "log", viewAs: DetailSpec.textKind, isDebug: true),
                 DetailSpec(binding: "imageURL", viewAs: DetailSpec.textKind, isDebug: true),
                 DetailSpec(binding: "source", viewAs: DetailSpec.textKind, isDebug: true),
+                DetailSpec(binding: "log", viewAs: DetailSpec.paragraphKind, isDebug: true),
                 ])
         }
         
@@ -61,28 +64,26 @@ public class PersonDetailProvider: DetailProvider {
             return super.info(section: section, row: row)
         } else {
             let books = sortedRoles[section - 1].books
-            let info = BookDetailItem(book: books[row], absolute: row, index: row, source: self)
+            let info = BookDetailItem(book: books[row], mode: .person, absolute: row, index: row, source: self)
             return info
         }
     }
     
-    public override func filter(for selection: [ModelObject], editing: Bool, combining: Bool, context: DetailContext) {
-        let template = PersonDetailProvider.standardDetails(showDebug: context.showDebug)
-        if let people = selection as? [Person] {
-            let collectedTags = MultipleValues.extract(from: people) { person -> Set<Tag>? in
-                return person.tags as? Set<Tag>
-            }
+    public override func filter(for selection: ModelSelection, editing: Bool, combining: Bool, session: ModelSession) {
+        let template = PersonDetailProvider.standardDetails(showDebug: session.showDebug)
+        if let people = selection.objects as? [Person] {
+            let collectedTags = MultipleValues.extract(from: people) { person -> Set<Tag> in return person.tags }
             tags = collectedTags.common
         }
 
-        super.filter(for: selection, template: template, editing: editing, combining: false, context: context)
+        super.filter(for: selection, template: template, editing: editing, combining: false, session: session)
 
         sortedRoles.removeAll()
-        if let person = selection.first as? Person, let sort = context.entitySorting["Relationship"], let relationships = person.relationships?.sortedArray(using: sort) as? [Relationship] {
+        if let person = selection.objects.first as? Person {
+            let relationships = person.relationships(sortedBy: session.people.sorting)
             for relationship in relationships {
-                if let role = relationship.role,
-                    let sort = context.entitySorting["Book"],
-                    let books = relationship.books?.sortedArray(using: sort) as? [Book] {
+                if let role = relationship.role {
+                    let books = relationship.books(sortedBy: session.books.sorting)
                     sortedRoles.append(SortedRole(role: role, books: books))
                 }
             }

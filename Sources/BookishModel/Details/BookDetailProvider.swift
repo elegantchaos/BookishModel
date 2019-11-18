@@ -13,7 +13,7 @@ public class BookDetailProvider: DetailProvider {
     public class func standardDetails(showDebug: Bool) -> [DetailSpec] {
         var details = [
             DetailSpec(binding: "subtitle", viewAs: DetailSpec.hiddenKind, editAs: DetailSpec.textKind),
-            DetailSpec(binding: "notes"),
+            DetailSpec(binding: "notes", viewAs: DetailSpec.paragraphKind),
             DetailSpec(binding: "format"),
             DetailSpec(binding: "identifier", viewAs: DetailSpec.textKind, editAs: DetailSpec.hiddenKind),
             DetailSpec(binding: "asin", viewAs: DetailSpec.hiddenKind, editAs: DetailSpec.textKind),
@@ -25,7 +25,7 @@ public class BookDetailProvider: DetailProvider {
             DetailSpec(binding: "added", viewAs: DetailSpec.timeKind),
             DetailSpec(binding: "modified", viewAs: DetailSpec.timeKind),
             DetailSpec(binding: "importDate", viewAs: DetailSpec.timeKind, editAs: DetailSpec.hiddenKind),
-            DetailSpec(binding: "dimensions", viewAs: DetailSpec.textKind, editAs: DetailSpec.editableDimensionsKind),
+            DetailSpec(binding: "dimensions", viewAs: DetailSpec.dimensionsKind),
             DetailSpec(binding: "pages", viewAs: DetailSpec.numberKind),
             DetailSpec(binding: "weight", viewAs: DetailSpec.numberKind),
         ]
@@ -33,9 +33,9 @@ public class BookDetailProvider: DetailProvider {
         if showDebug {
             details.append(contentsOf: [
                 DetailSpec(binding: "uuid", viewAs: DetailSpec.textKind, isDebug: true),
-                DetailSpec(binding: "log", viewAs: DetailSpec.textKind, isDebug: true),
                 DetailSpec(binding: "imageURL", viewAs: DetailSpec.textKind, isDebug: true),
                 DetailSpec(binding: "source", viewAs: DetailSpec.textKind, isDebug: true),
+                DetailSpec(binding: "log", viewAs: DetailSpec.paragraphKind, isDebug: true),
                 DetailSpec(binding: "importRaw", viewAs: DetailSpec.hiddenKind, editAs: DetailSpec.textKind, isDebug: true),
                 ])
         }
@@ -47,9 +47,9 @@ public class BookDetailProvider: DetailProvider {
         return isEditing ? DetailProvider.EditingColumns : DetailProvider.LabelledColumns
     }
 
-    override public func filter(for selection: [ModelObject], editing: Bool, combining: Bool, context: DetailContext) {
-        let template = BookDetailProvider.standardDetails(showDebug: context.showDebug)
-        if let books = selection as? [Book] {
+    override public func filter(for selection: ModelSelection, editing: Bool, combining: Bool, session: ModelSession) {
+        let template = BookDetailProvider.standardDetails(showDebug: session.showDebug)
+        if let books = selection.objects as? [Book] {
             let collectedRelationships = MultipleValues.extract(from: books) { book -> Set<Relationship>? in
                 return book.relationships as? Set<Relationship>
             }
@@ -58,13 +58,8 @@ public class BookDetailProvider: DetailProvider {
                 return book.publisher == nil ? nil : Set<Publisher>([book.publisher!])
             }
             
-            let collectedSeries = MultipleValues.extract(from: books) { book -> Set<SeriesEntry>? in
-                return book.entries as? Set<SeriesEntry>
-            }
-            
-            let collectedTags = MultipleValues.extract(from: books) { book -> Set<Tag>? in
-                return book.tags as? Set<Tag>
-            }
+            let collectedSeries = MultipleValues.extract(from: books) { book -> Set<SeriesEntry> in return book.entries }
+            let collectedTags = MultipleValues.extract(from: books) { book -> Set<Tag> in return book.tags }
             
             relationships = collectedRelationships.common.sorted(by: { ($0.person?.name ?? "") < ($1.person?.name ?? "") })
             publishers = collectedPublishers.common.sorted(by: { ($0.name ?? "") < ($1.name ?? "") })
@@ -72,7 +67,7 @@ public class BookDetailProvider: DetailProvider {
             tags = collectedTags.common
         }
         
-        super.filter(for: selection, template: template, editing: editing, combining: combining, context: context)
+        super.filter(for: selection, template: template, editing: editing, combining: combining, session: session)
     }
     
     override func buildItems() {

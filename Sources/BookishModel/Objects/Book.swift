@@ -42,12 +42,17 @@ public class Book: ModelEntity, ModelEntityCommon {
         return result
     }
 
-    @objc public var dimensions: String? {
+    @objc public var dimensions: Array<Double>? {
         guard width > 0 || height > 0 || length > 0 else {
             return nil
         }
         
-        return "\(width) x \(height) x \(length)"
+        return [width, height, length]
+    }
+    
+    public var entries: Set<SeriesEntry> {
+        get { return entriesR as! Set<SeriesEntry> }
+        set { entriesR = newValue as NSSet }
     }
     
     /**
@@ -55,12 +60,10 @@ public class Book: ModelEntity, ModelEntityCommon {
     */
     
     public func removeFromSeries(_ series: Series) {
-        if let entries = entries as? Set<SeriesEntry> {
-            for entry in entries {
-                if entry.series == series {
-                    managedObjectContext?.delete(entry)
-                    assert(entry.isDeleted)
-                }
+        for entry in entries {
+            if entry.series == series {
+                managedObjectContext?.delete(entry)
+                assert(entry.isDeleted)
             }
         }
     }
@@ -72,19 +75,17 @@ public class Book: ModelEntity, ModelEntityCommon {
     */
     
     @discardableResult public func addToSeries(_ series: Series, position: Int) -> SeriesEntry {
-        if let entries = entries as? Set<SeriesEntry> {
-            for entry in entries {
-                if entry.series == series {
-                    entry.position = Int16(position)
-                    return entry
-                }
+        for entry in entries {
+            if entry.series == series {
+                entry.position = Int16(position)
+                return entry
             }
         }
         
         let entry = SeriesEntry(context: self.managedObjectContext!)
         entry.series = series
         entry.position = Int16(position)
-        addToEntries(entry)
+        addToEntriesR(entry)
         return entry
     }
  
@@ -95,11 +96,37 @@ public class Book: ModelEntity, ModelEntityCommon {
  
     public func removeRelationship(_ relationshipToRemove: Relationship) {
         assert(relationships?.contains(relationshipToRemove) ?? false)
-        relationshipToRemove.removeFromBooks(self)
-        if relationshipToRemove.books?.count == 0 {
-            managedObjectContext?.delete(relationshipToRemove)
-            assert(relationshipToRemove.isDeleted)
+        relationshipToRemove.remove(self)
+    }
+    
+    
+    /// If a relationship record for the given person and role exists, return it
+    /// - Parameter person: existing person
+    /// - Parameter role: existing role
+    public func existingRelationship(with person: Person, as role: Role) -> Relationship? {
+        for relationship in person.relationships {
+            if relationship.role == role, relationship.books.contains(self) {
+                return relationship
+            }
         }
+        return nil
+    }
+    
+    /// Add a relationship between this book and a person/role
+    /// We ensure that we don't create a duplicate relationship object if it already exists for the person/role pair.
+    /// - Parameter person: the person
+    /// - Parameter role: the role
+    public func addRelationship(with person: Person, as role: Role) -> Relationship {
+        if let existing = person.existingRelationship(as: role) {
+            existing.add(self)
+            return existing
+        }
+        
+        let relationship = Relationship(context: managedObjectContext!)
+        relationship.role = role
+        relationship.person = person
+        relationship.books = [self]
+        return relationship
     }
     
     /**
@@ -109,12 +136,10 @@ public class Book: ModelEntity, ModelEntityCommon {
      */
     
     public func setPosition(in series: Series, to position: Int) {
-        if let entries = entries as? Set<SeriesEntry> {
-            for entry in entries {
-                if entry.series == series {
-                    entry.position = Int16(position)
-                    return
-                }
+        for entry in entries {
+            if entry.series == series {
+                entry.position = Int16(position)
+                return
             }
         }
 
@@ -127,11 +152,9 @@ public class Book: ModelEntity, ModelEntityCommon {
     */
     
     public func position(in series: Series) -> Int {
-        if let entries = entries as? Set<SeriesEntry> {
-            for entry in entries {
-                if entry.series == series {
-                    return Int(entry.position)
-                }
+        for entry in entries {
+            if entry.series == series {
+                return Int(entry.position)
             }
         }
         
@@ -172,8 +195,8 @@ public class Book: ModelEntity, ModelEntityCommon {
             return subtitle
         }
         
-        if let series = entries as? Set<SeriesEntry>, series.count > 0 {
-            let names = series.compactMap({ (entry) -> String? in
+        if entries.count > 0 {
+            let names = entries.compactMap({ (entry) -> String? in
                 if let name = entry.series?.name {
                     if entry.position > 0 {
                         return "\(name), Book \(entry.position)"
@@ -192,6 +215,33 @@ public class Book: ModelEntity, ModelEntityCommon {
         return nil
     }
     
+    public enum SummaryMode {
+        case publisher
+        case series
+        case person
+    }
+    
+    public func summaryItems(mode: SummaryMode) -> [String] {
+        var details: [String] = []
+
+        if mode != .person, let relationships = relationships as? Set<Relationship> {
+            let names = relationships.compactMap({ $0.person?.name })
+            details.append(contentsOf: names)
+        }
+
+        if let date = published {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "Y"
+            details.append(formatter.string(from: date))
+        }
+
+        if mode != .publisher, let publisher = publisher?.name {
+            details.append(publisher)
+        }
+        
+        return details
+    }
+    
     override public func updateSortName() {
         sortName = Indexing.titleSort(for: name)
     }
@@ -200,5 +250,9 @@ public class Book: ModelEntity, ModelEntityCommon {
         return Indexing.sectionName(for: sortName)
     }
 
+    public var tags: Set<Tag> {
+        get { return tagsR as! Set<Tag> }
+        set { tagsR = newValue as NSSet }
+    }
     
 }

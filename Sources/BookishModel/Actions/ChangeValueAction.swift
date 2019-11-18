@@ -37,11 +37,12 @@ public class ChangeValueAction: SyncModelAction {
         manager.perform(identifier: identifier, info: info)
     }
 
-    public override func validate(context: ActionContext) -> Bool {
-        return
+    public override func validate(context: ActionContext) -> Validation {
+        var info = super.validate(context: context)
+        info.enabled = info.enabled &&
             (context[ActionContext.selectionKey] as? [NSManagedObject] != nil) &&
-            (context[ChangeValueAction.propertyKey] as? String != nil) &&
-                super.validate(context: context)
+            (context[ChangeValueAction.propertyKey] as? String != nil)
+        return info
     }
     
     public override func perform(context: ActionContext, model: NSManagedObjectContext) {

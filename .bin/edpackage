@@ -1,2 +1,4 @@
+#!/bin/sh
+
 xcrun swift package edit $1
 .bin/update

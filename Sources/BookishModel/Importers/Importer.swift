@@ -37,6 +37,18 @@ public class Importer {
         }
     }
     
+    public func canImport(from url: URL) -> Bool {
+        guard FileManager.default.fileExists(at: url) else {
+            return false
+        }
+
+        guard let allowedTypes = fileTypes, allowedTypes.contains(url.pathExtension) else {
+            return false
+        }
+        
+        return true
+    }
+    
     public var defaultImportLocation: URL? {
         return nil
     }
@@ -63,24 +75,42 @@ public class Importer {
         return string
     }
 
-    internal func makeSession(in context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) -> ImportSession {
-        let session = ImportSession(importer: self, context: context, completion: completion)
+    internal func makeSession(in context: NSManagedObjectContext, monitor: ImportMonitor?) -> ImportSession? {
+        let session = ImportSession(importer: self, context: context, monitor: monitor)
         return session
     }
 
-    internal func makeSession(importing url: URL, in context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) -> URLImportSession {
-        let session = URLImportSession(importer: self, context: context, url: url, completion: completion)
+    internal func makeSession(importing url: URL, in context: NSManagedObjectContext, monitor: ImportMonitor?) -> URLImportSession? {
+        let session = URLImportSession(importer: self, context: context, url: url, monitor: monitor)
         return session
     }
     
-    public func run(importing url: URL, in context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) {
-        let session = makeSession(importing: url, in: context, completion: completion)
-        session.performImport()
+    public func run(importing url: URL, in context: NSManagedObjectContext, monitor: ImportMonitor?) {
+        if let session = makeSession(importing: url, in: context, monitor: monitor) {
+            session.performImport()
+        } else {
+            monitor?.noImporter()
+        }
     }
 
-    public func run(in context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) {
-        let session = makeSession(in: context, completion: completion)
-        session.performImport()
+    public func run(in context: NSManagedObjectContext, monitor: ImportMonitor?) {
+        switch source {
+        case .knownLocation:
+            if let session = makeSession(in: context, monitor: monitor) {
+                session.performImport()
+            } else {
+                monitor?.noImporter()
+            }
+            
+        case .userSpecifiedFile:
+            monitor?.chooseFile(for: self, completion: { url in
+                if let session = self.makeSession(importing: url, in: context, monitor: monitor) {
+                    session.performImport()
+                } else {
+                    monitor?.noImporter()
+                }
+            })
+        }
     }
 
 }

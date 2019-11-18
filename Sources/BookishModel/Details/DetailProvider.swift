@@ -5,14 +5,6 @@
 
 import CoreData
 
-public protocol DetailContext {
-    var entitySorting: [String:[NSSortDescriptor]] { get }
-//    var relationshipSorting: [NSSortDescriptor] { get }
-//    var bookSorting: [NSSortDescriptor] { get }
-//    var entrySorting: [NSSortDescriptor] { get }
-    var showDebug: Bool { get }
-}
-
 public protocol DetailOwner {
     static func getProvider() -> DetailProvider
     func getProvider() -> DetailProvider
@@ -38,10 +30,6 @@ public class DetailProvider {
     internal var tags: Set<Tag>? = nil
 
     public init() {
-    }
-    
-    public var titleProperty: String? {
-        return "name"
     }
     
     public var sectionCount: Int {
@@ -72,11 +60,11 @@ public class DetailProvider {
         return isEditing ? DetailProvider.EditingColumns : DetailProvider.LabelledColumns
     }
 
-    public func filter(for selection: [ModelObject], editing: Bool, combining: Bool, context: DetailContext) {
-        self.filter(for: selection, template: [], editing: editing, combining: combining, context: context)
+    public func filter(for selection: ModelSelection, editing: Bool, combining: Bool, session: ModelSession) {
+        self.filter(for: selection, template: [], editing: editing, combining: combining, session: session)
     }
     
-    internal func filter(for selection: [ModelObject], template: [DetailSpec], editing: Bool, combining: Bool = false, context: DetailContext) {
+    internal func filter(for selection: ModelSelection, template: [DetailSpec], editing: Bool, combining: Bool, session: ModelSession) {
         shouldCombine = combining
         var filteredDetails = [DetailSpec]()
         for detail in template {
@@ -86,7 +74,7 @@ public class DetailProvider {
                 if editing {
                     includeDetail = true
                 } else {
-                    for item in selection {
+                    for item in selection.objects {
                         let value = item.value(forKey: detail.binding)
                         if let string = value as? String {
                             includeDetail = !string.isEmpty

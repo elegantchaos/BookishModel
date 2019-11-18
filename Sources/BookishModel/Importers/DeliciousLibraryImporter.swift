@@ -17,8 +17,8 @@ public class DeliciousLibraryImporter: Importer {
         super.init(name: "Delicious Library", source: .userSpecifiedFile, manager: manager)
     }
     
-    override func makeSession(importing url: URL, in context: NSManagedObjectContext, completion: @escaping ImportSession.Completion) -> URLImportSession {
-        return DeliciousLibraryImportSession(importer: self, context: context, url: url, completion: completion)
+    override func makeSession(importing url: URL, in context: NSManagedObjectContext, monitor: ImportMonitor?) -> URLImportSession? {
+        return DeliciousLibraryImportSession(importer: self, context: context, url: url, monitor: monitor)
     }
 
     public override var fileTypes: [String]? {
@@ -30,6 +30,7 @@ class DeliciousLibraryImportSession: URLImportSession {
     typealias Record = [String:Any]
     typealias RecordList = [Record]
     
+    var list: RecordList
     var cachedPeople: [String:Person] = [:]
     var cachedPublishers: [String:Publisher] = [:]
     var cachedSeries: [String:Series] = [:]
@@ -39,21 +40,34 @@ class DeliciousLibraryImportSession: URLImportSession {
     let formatsToSkip = ["Audio CD", "Audio CD Enhanced", "Audio CD Import", "Video Game", "VHS Tape", "VideoGame", "DVD"]
 
     
-    override init(importer: Importer, context: NSManagedObjectContext, url: URL, completion: @escaping Completion) {
-        deliciousTag = Tag.named("delicious-library", in: context)
-        importedTag = Tag.named("imported", in: context)
-        
-        super.init(importer: importer, context: context, url: url, completion: completion)
+    override init?(importer: Importer, context: NSManagedObjectContext, url: URL, monitor: ImportMonitor?) {
+        // check we can parse the xml
+        guard let data = try? Data(contentsOf: url), let list = (try? PropertyListSerialization.propertyList(from: data, options: [], format: nil)) as? RecordList else {
+            return nil
+        }
+
+        // check that the records look to be in the right format
+        guard let record = list.first, let _ = record["actorsCompositeString"] as? String else {
+            return nil
+        }
+
+        self.deliciousTag = Tag.named("delicious-library", in: context)
+        self.importedTag = Tag.named("imported", in: context)
+        self.list = list
+        super.init(importer: importer, context: context, url: url, monitor: monitor)
     }
     
     override func run() {
-        if let data = try? Data(contentsOf: url) {
-            if let list = (try? PropertyListSerialization.propertyList(from: data, options: [], format: nil)) as? RecordList {
-                for record in list {
-                    process(record: record)
-                }
+        monitor?.session(self, willImportItems: list.count)
+        var item = 0
+        for record in list {
+            monitor?.session(self, willImportItem: item, of: list.count)
+            DispatchQueue.main.sync {
+                self.process(record: record)
             }
+            item += 1
         }
+        monitor?.sessionDidFinish(self)
     }
     
     private func process(record: Record) {
@@ -156,7 +170,7 @@ class DeliciousLibraryImportSession: URLImportSession {
                     cachedPeople[trimmed] = author
                 }
                 let relationship = author.relationship(as: Role.StandardName.author)
-                relationship.addToBooks(book)
+                relationship.add(book)
             }
         }
     }
@@ -175,7 +189,7 @@ class DeliciousLibraryImportSession: URLImportSession {
                     }
                     cachedPublishers[trimmed] = publisher
                 }
-                publisher.addToBooks(book)
+                publisher.add(book)
             }
         }
     }

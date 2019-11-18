@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:BookishModel.xcodeproj">
+      location = "container:BookishModel.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../../../Coverage">
    </FileRef>
 </Workspace>

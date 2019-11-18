@@ -14,7 +14,7 @@ class CollectionContainerTests: ModelTestCase {
     
     func makeTestContainer(name: String, url: URL? = nil, mode: CollectionContainer.PopulateMode) -> CollectionContainer {
         let expectation = self.expectation(description: "made")
-        let container = CollectionContainer(name: name, url: url, mode: mode) { (container, error) in
+        let container = CollectionContainer(name: name, url: url, mode: mode, indexed: false) { (container, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(container)
             expectation.fulfill()

@@ -19,7 +19,7 @@ let collectionChannel = Channel("com.elegantchaos.bookish.model.collection")
     
     public typealias LoadedCallback = (CollectionContainer, Error?) -> Void
     
-    public init(name: String, url: URL? = nil, mode: PopulateMode = .empty, callback: LoadedCallback? = nil) {
+    public init(name: String, url: URL? = nil, mode: PopulateMode = .empty, indexed: Bool = true, callback: LoadedCallback? = nil) {
         let fm = FileManager.default
         let model = BookishModel.model()
         let bundle = Bundle.init(for: CollectionContainer.self)
@@ -77,13 +77,15 @@ let collectionChannel = Channel("com.elegantchaos.bookish.model.collection")
                 }
                 
                 let content = try? fm.contentsOfDirectory(at: directory, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
-                print(content ?? "no database files")
+                collectionChannel.log(content ?? "no database files")
             }
         }
         
-        let spotlight = NSCoreDataCoreSpotlightDelegate(forStoreWith: description, model: model)
-        description.setOption(spotlight, forKey:NSCoreDataCoreSpotlightExporter)
-        self.spotlightIndexer = spotlight
+        if indexed {
+            let spotlight = NSCoreDataCoreSpotlightDelegate(forStoreWith: description, model: model)
+            description.setOption(spotlight, forKey:NSCoreDataCoreSpotlightExporter)
+            self.spotlightIndexer = spotlight
+        }
         
         load(callback: callback)
     }
@@ -105,7 +107,7 @@ let collectionChannel = Channel("com.elegantchaos.bookish.model.collection")
     func load(callback: LoadedCallback? = nil) {
         loadPersistentStores { (description, error) in
             if let error = error {
-                print(error)
+                collectionChannel.log(error)
             } else {
                 let context = self.viewContext
                 context.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy

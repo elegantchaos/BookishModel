@@ -43,6 +43,7 @@ public class GoogleLookupCandidate: LookupCandidate {
         if let images = info["imageLinks"] as? [String:Any] {
             image = (images["thumbnail"] as? String) ?? (images["smallThumbnail"] as? String)
             image = image?.replacingOccurrences(of: "edge=curl&", with: "")
+            image = image?.replacingOccurrences(of: "http://", with: "https://")
 //            image = image?.replacingOccurrences(of: "zoom=1&", with: "")
         }
 

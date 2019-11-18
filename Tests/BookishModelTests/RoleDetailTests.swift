@@ -28,7 +28,7 @@ class RoleDetailProviderTests: ModelTestCase {
         let context = container.managedObjectContext
         let source = RoleDetailProvider()
         
-        source.filter(for: [], editing: false, combining: false, context: TestContext())
+        source.filter(for: ModelSelection(), editing: false, combining: false, context: TestContext())
         XCTAssertEqual(source.itemCount(for: 0), 0)
         XCTAssertEqual(source.sectionCount, 1)
         
@@ -36,14 +36,14 @@ class RoleDetailProviderTests: ModelTestCase {
         let person = Person(context: context)
         let relationship = person.relationship(as: role)
         
-        source.filter(for: [role], editing: false, combining: false, context: TestContext())
+        source.filter(for: ModelSelection([role]), editing: false, combining: false, context: TestContext())
         XCTAssertEqual(source.itemCount(for: 0), 2)
         XCTAssertEqual(source.sectionCount, 1)
         
         let book = Book(context: context)
-        relationship.addToBooks(book)
+        relationship.add(book)
         
-        source.filter(for: [role], editing: false, combining: false, context: TestContext())
+        source.filter(for: ModelSelection([role]), editing: false, combining: false, context: TestContext())
         XCTAssertEqual(source.itemCount(for: 0), 2)
         XCTAssertEqual(source.sectionCount, 1)
     }

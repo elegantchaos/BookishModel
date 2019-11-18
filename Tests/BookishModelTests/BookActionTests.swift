@@ -265,7 +265,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
         XCTAssertFalse(actionManager.validate(identifier: "RemovePublisher", info: info).enabled)
         
         info.addObserver(self)
-        info[PublisherAction.newPublisherKey] = publisher
+        info[PublisherAction.publisherKey] = publisher
         info[ActionContext.selectionKey] = [book]
         
         XCTAssertTrue(actionManager.validate(identifier: "RemovePublisher", info: info).enabled)
@@ -314,7 +314,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
 
     func testAddSeries() {
         let book = Book(context: context)
-        XCTAssertEqual(book.entries?.count ?? 0, 0)
+        XCTAssertEqual(book.entries.count, 0)
         
         XCTAssertFalse(actionManager.validate(identifier: "AddSeries", info: info).enabled)
         
@@ -326,8 +326,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
         
         wait(for: [expectation], timeout: 1.0)
         
-        let entries = book.entries as? Set<SeriesEntry>
-        let entry = entries?.first
+        let entry = book.entries.first
         XCTAssertNotNil(entry)
         XCTAssertNotNil(entry!.series)
         XCTAssertEqual(entry!.position, 1)
@@ -337,10 +336,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
     func testRemoveSeries() {
         let book = Book(context: context)
         let series = Series(context: context)
-        let entry = SeriesEntry(context: context)
-        book.addToEntries(entry)
-        entry.series = series
-        entry.position = 1
+        book.addToSeries(series, position: 1)
         
         XCTAssertFalse(actionManager.validate(identifier: "RemoveSeries", info: info).enabled)
         
@@ -353,17 +349,14 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
         
         wait(for: [expectation], timeout: 1.0)
         XCTAssertNotNil(seriesObserved)
-        XCTAssertEqual(book.entries?.count ?? 0, 0)
+        XCTAssertEqual(book.entries.count, 0)
     }
     
     func testChangeSeriesAction() {
         let book = Book(context: context)
         let series = Series(context: context)
         series.name = "Series"
-        let entry = SeriesEntry(context: context)
-        book.addToEntries(entry)
-        entry.series = series
-        entry.position = 2
+        book.addToSeries(series, position: 2)
 
         let otherSeries = Series(context: context)
         otherSeries.name = "Other Series"
@@ -380,17 +373,14 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
         
         // should have removed the entry for series, and added an entry for otherSeries at position 2
         XCTAssertTrue(check(book: book, series: otherSeries, position: 2))
-        XCTAssertEqual(book.entries?.count, 1)
+        XCTAssertEqual(book.entries.count, 1)
     }
 
     func testChangeSeriesActionChangePosition() {
         let book = Book(context: context)
         let series = Series(context: context)
         series.name = "Series"
-        let entry = SeriesEntry(context: context)
-        book.addToEntries(entry)
-        entry.series = series
-        entry.position = 2
+        book.addToSeries(series, position: 2)
         
         // parameters to change the position of an existing series
         info[SeriesAction.seriesKey] = series
@@ -403,18 +393,15 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
         wait(for: [expectation], timeout: 1.0)
         
         XCTAssertTrue(check(book: book, series: series, position: 1))
-        XCTAssertEqual(book.entries?.count, 1)
+        XCTAssertEqual(book.entries.count, 1)
     }
 
     func testChangeSeriesActionAdding() {
         let book = Book(context: context)
         let series = Series(context: context)
         series.name = "Series"
-        let entry = SeriesEntry(context: context)
-        book.addToEntries(entry)
-        entry.series = series
-        entry.position = 1
-
+        let entry = book.addToSeries(series, position: 1)
+        
         let otherSeries = Series(context: context)
         otherSeries.name = "Other Series"
 
@@ -430,17 +417,14 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
         XCTAssertTrue(check(book: book, series: otherSeries, position: 2, ignore: entry))
         XCTAssertEqual(count(of: "Series"), 2)
         XCTAssertEqual(count(of: "Book"), 1)
-        XCTAssertEqual(book.entries?.count, 2)
+        XCTAssertEqual(book.entries.count, 2)
     }
 
     func testChangeSeriesActionNewSeriesByName() {
         let book = Book(context: context)
         let series = Series(context: context)
         series.name = "Series"
-        let entry = SeriesEntry(context: context)
-        book.addToEntries(entry)
-        entry.series = series
-        entry.position = 1
+        let entry = book.addToSeries(series, position: 1)
 
         info[SeriesAction.newSeriesKey] = "New Series"
         info[ActionContext.selectionKey] = [book]
@@ -454,17 +438,14 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
         XCTAssertTrue(check(book: book, seriesName: "New Series", position: 2, ignore: entry))
         XCTAssertEqual(count(of: "Series"), 2)
         XCTAssertEqual(count(of: "Book"), 1)
-        XCTAssertEqual(book.entries?.count, 2)
+        XCTAssertEqual(book.entries.count, 2)
     }
 
     func testChangeSeriesActionNewSeriesNoPosition() {
         let book = Book(context: context)
         let series = Series(context: context)
         series.name = "Series"
-        let entry = SeriesEntry(context: context)
-        book.addToEntries(entry)
-        entry.series = series
-        entry.position = 1
+        let entry = book.addToSeries(series, position: 1)
         
         info[SeriesAction.newSeriesKey] = "New Series"
         info[ActionContext.selectionKey] = [book]
@@ -477,7 +458,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
         XCTAssertTrue(check(book: book, seriesName: "New Series", position: 0, ignore: entry))
         XCTAssertEqual(count(of: "Series"), 2)
         XCTAssertEqual(count(of: "Book"), 1)
-        XCTAssertEqual(book.entries?.count, 2)
+        XCTAssertEqual(book.entries.count, 2)
     }
 
     func testRevealBook() {

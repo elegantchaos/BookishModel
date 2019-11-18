@@ -28,7 +28,7 @@ class SeriesDetailProviderTests: ModelTestCase {
         let context = container.managedObjectContext
         let source = SeriesDetailProvider()
         
-        source.filter(for: [], editing: false, combining: false, context: TestContext())
+        source.filter(for: ModelSelection([]), editing: false, combining: false, context: TestContext())
         XCTAssertEqual(source.itemCount(for: 0), 0)
         XCTAssertEqual(source.sectionCount, 2)
 
@@ -36,12 +36,12 @@ class SeriesDetailProviderTests: ModelTestCase {
         series.name = "Test"
         series.notes = "Some notes"
         
-        source.filter(for: [series], editing: false, combining: false, context: TestContext(showDebug: true))
+        source.filter(for: ModelSelection([series]), editing: false, combining: false, context: TestContext(showDebug: true))
         XCTAssertEqual(source.itemCount(for: 0), 5)
         XCTAssertEqual(source.itemCount(for: 1), 0)
         XCTAssertEqual(source.sectionCount, 2)
 
-        source.filter(for: [series], editing: false, combining: false, context: TestContext())
+        source.filter(for: ModelSelection([series]), editing: false, combining: false, context: TestContext())
         XCTAssertEqual(source.itemCount(for: 0), 4)
         XCTAssertEqual(source.itemCount(for: 1), 0)
         XCTAssertEqual(source.sectionCount, 2)
@@ -49,11 +49,11 @@ class SeriesDetailProviderTests: ModelTestCase {
         let book = Book(context: context)
         book.addToSeries(series, position: 1)
         
-        source.filter(for: [series], editing: false, combining: false, context: TestContext())
+        source.filter(for: ModelSelection([series]), editing: false, combining: false, context: TestContext())
         XCTAssertEqual(source.itemCount(for: 0), 4)
         XCTAssertEqual(source.itemCount(for: 1), 1)
-        XCTAssertEqual(source.info(section: 0, row: 0).kind, DetailSpec.textKind)
-        XCTAssertEqual(source.info(section: 0, row: 1).kind, DetailSpec.textKind)
+        XCTAssertEqual(source.info(section: 0, row: 0).kind, DetailSpec.paragraphKind)
+        XCTAssertEqual(source.info(section: 0, row: 1).kind, DetailSpec.numberKind)
         XCTAssertEqual(source.info(section: 0, row: 2).kind, DetailSpec.timeKind)
         XCTAssertEqual(source.sectionCount, 2)
     }

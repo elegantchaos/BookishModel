@@ -7,10 +7,11 @@ import Foundation
 import Actions
 import BookishModel
 import CoreData
-import BookishCore
 import Expressions
 
-struct ActionSpec: Decodable {
+
+
+struct OldActionSpec: Decodable {
     let name: String
     let action: String
     let people: [String]?
@@ -18,8 +19,22 @@ struct ActionSpec: Decodable {
     let params: [String:String]?
 }
 
-struct ActionFile: Decodable {
-    let actions: [ActionSpec]
+struct OldActionFile: Decodable {
+    let actions: [OldActionSpec]
+}
+
+struct ActionItemSpec: Codable {
+    let time: Double
+    let action: ActionSpec
+}
+
+struct ActionSpec: Codable {
+    let action: String
+    let info: [String:AnyCodable]
+}
+
+struct ActionFile: Codable {
+    let actions: [ActionItemSpec]
 }
 
 struct Variable: Constructable {
@@ -32,7 +47,7 @@ class ActionList: TaskList {
     let importManager: ImportManager
     
     let variablePattern = try! NSRegularExpression(pattern: ".*\\$(\\w+).*")
-
+    
     init(container: CollectionContainer, actionManager: ActionManager, importManager: ImportManager) {
         self.container = container
         self.actionManager = actionManager
@@ -43,20 +58,23 @@ class ActionList: TaskList {
         
         for action in actions.actions {
             var expandedParams: [String:Any] = [:]
-            if let params = action.params {
-                for (key, value) in params {
-                    let string: String = value
-                    if let match = variablePattern.firstMatch(in: string, capturing: [\Variable.name: 1]), let variable = variables[match.name] as? String {
-                        let expanded = string.replacingOccurrences(of: "$\(match.name)", with: variable)
-                        expandedParams[key] = expanded
-                    } else {
-                        expandedParams[key] = value
-                    }
+            let params = action.action.info
+            for (key, value) in params {
+                if let string = value.value as? String, let match = variablePattern.firstMatch(in: string, capturing: [\Variable.name: 1]), let variable = variables[match.name] as? String {
+                    let expanded = string.replacingOccurrences(of: "$\(match.name)", with: variable)
+                    expandedParams[key] = expanded
+                } else if let array = value.value as? [AnyCodable] {
+                    expandedParams[key] = array.map { $0.value }
+                } else if let dictionary = value.value as? [String:AnyCodable] {
+                    expandedParams[key] = dictionary.mapValues { $0.value }
+                } else {
+                    expandedParams[key] = value.value
                 }
             }
             
-            addTask(Task(name: action.name, callback: {
-                self.perform(action: action, with: expandedParams)
+            let actionID = action.action.action
+            addTask(Task(name: actionID, callback: {
+                self.perform(action: actionID, with: expandedParams)
             }))
         }
     }
@@ -74,8 +92,8 @@ class ActionList: TaskList {
             print(error)
         }
     }
-
-    fileprivate func perform(action: ActionSpec, with params: [String:Any] = [:]) {
+    
+    fileprivate func perform(action: String, with params: [String:Any] = [:]) {
         let info = ActionInfo()
         info.registerNotification { (stage, actionContext) in
             if stage == .didPerform {
@@ -93,9 +111,9 @@ class ActionList: TaskList {
             info[key] = value
         }
         
-        if let people = action.people {
+        if let selectionIDs = params["selectionIds"] as? [String] {
             var selection: [ModelObject] = []
-            for personID in people {
+            for personID in selectionIDs {
                 let request: NSFetchRequest<Person> = Person.fetcher(in: context)
                 request.predicate = NSPredicate(format: "uuid = \"\(personID)\"")
                 request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
@@ -104,10 +122,7 @@ class ActionList: TaskList {
                     selection.append(person)
                 }
             }
-            info[ActionContext.selectionKey] = selection
-        } else if let books = action.books {
-            var selection: [ModelObject] = []
-            for bookID in books {
+            for bookID in selectionIDs {
                 let request: NSFetchRequest<Book> = Book.fetcher(in: context)
                 request.predicate = NSPredicate(format: "uuid = \"\(bookID)\"")
                 request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
@@ -119,6 +134,6 @@ class ActionList: TaskList {
             info[ActionContext.selectionKey] = selection
         }
         
-        actionManager.perform(identifier: action.action, info: info)
+        actionManager.perform(identifier: action, info: info)
     }
 }

@@ -8,6 +8,7 @@ import Actions
 import BookishModel
 import CoreData
 import CommandShell
+import Localization
 
 struct Session {
     let container: CollectionContainer
@@ -16,6 +17,7 @@ struct Session {
 
 class MakeCommand: Command {
     var sessions: [Session] = []
+    var done: Int = 0
     
     override var description: Command.Description {
         return Description(
@@ -27,9 +29,9 @@ class MakeCommand: Command {
     }
 
     fileprivate func cleanup(container: CollectionContainer) {
-        if let index = sessions.firstIndex(where: { $0.container === container }) {
-            sessions.remove(at: index)
-            if sessions.count == 0 {
+        done += 1
+        if sessions.count == done {
+            DispatchQueue.main.async {
                 shell.exit(result: .ok)
             }
         }
@@ -56,7 +58,7 @@ class MakeCommand: Command {
         let rootURL = URL(fileURLWithPath: #file).deletingLastPathComponent()
         let jsonURL = rootURL.appendingPathComponent("Build \(name).json")
         
-        StringLocalization.registerLocalizationBundle(Bundle.main)
+        Localization.registerLocalizationBundle(Bundle.main)
         
         let resourceURL = rootURL.appendingPathComponent("../../Tests/BookishModelTests/Resources/")
         let outputDirectory = rootURL.appendingPathComponent("../BookishModel/Resources/").appendingPathComponent(name)
@@ -71,7 +73,7 @@ class MakeCommand: Command {
             shell.log("Couldn't delete old file: \(error)")
         }
         
-        let container = CollectionContainer(name: name, url: outputURL) { (container, error) in
+        let _ = CollectionContainer(name: name, url: outputURL, indexed: false) { (container, error) in
             var variables: [String:Any] = ProcessInfo.processInfo.environment
             variables["resourceURL"] = resourceURL.path
             for n in 0 ..< CommandLine.arguments.count {
@@ -89,9 +91,11 @@ class MakeCommand: Command {
 
             let actions = ActionList(container: container, actionManager: actionManager, importManager: importManager)
             actions.load(from: jsonURL, variables: variables)
-            actions.addTask(Task(name: "finish", callback: { self.finish(shell: shell, container: container) }))
-            actions.run()
+            actions.addTask(Task(name: "finish \(name)", callback: { self.finish(shell: shell, container: container) }))
             self.sessions.append(Session(container: container, actions: actions))
+            DispatchQueue.global(qos: .userInitiated).async {
+                actions.run()
+            }
         }
     }
     

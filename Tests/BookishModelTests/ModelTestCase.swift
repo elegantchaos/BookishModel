@@ -4,6 +4,7 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import XCTest
+
 @testable import BookishModel
 
 class ModelTestCase: XCTestCase {
@@ -14,17 +15,13 @@ class ModelTestCase: XCTestCase {
     
     func makeTestContainer() -> CollectionContainer {
         let url = URL(fileURLWithPath: "/dev/null")
-        let collection = CollectionContainer(name: "Test", url: url, mode: .empty)
+        let collection = CollectionContainer(name: "Test", url: url, mode: .empty, indexed: false)
 //        collection.configure(for: url)
         return collection
     }
 
     func check(book: Book, series: Series, position: Int, ignore: SeriesEntry? = nil) -> Bool {
-        guard let entries = book.entries as? Set<SeriesEntry> else {
-            return false
-        }
-
-        for entry in entries {
+        for entry in book.entries {
             if entry == ignore {
                 continue
             }
@@ -38,11 +35,7 @@ class ModelTestCase: XCTestCase {
     }
     
     func check(book: Book, seriesName: String, position: Int, ignore: SeriesEntry? = nil) -> Bool {
-        guard let entries = book.entries as? Set<SeriesEntry> else {
-            return false
-        }
-        
-        for entry in entries {
+        for entry in book.entries {
             if entry == ignore {
                 continue
             }
@@ -57,8 +50,8 @@ class ModelTestCase: XCTestCase {
 
     func check(relationship: Relationship, book: Book, person: Person) {
         XCTAssertEqual(book.roles.count, 1)
-        XCTAssertEqual(relationship.books?.count, 1)
-        XCTAssertEqual(relationship.books?.allObjects.first as? Book, book)
+        XCTAssertEqual(relationship.books.count, 1)
+        XCTAssertEqual(relationship.books.first, book)
         XCTAssertEqual(relationship.person, person)
     }
     

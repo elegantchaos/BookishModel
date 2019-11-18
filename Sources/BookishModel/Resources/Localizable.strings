@@ -126,7 +126,7 @@ detail.importRaw.label = "🛠 import";
 detail.isbn.label = "isbn";
 detail.isbn.placeholder = "isbn or ean number";
 
-detail.items.label = "volumes";
+detail.items.label = "# in series";
 
 detail.log.label = "🛠 log";
 detail.log.placeholder = "action log";
@@ -159,11 +159,6 @@ detail.uuid.label = "🛠 id";
 detail.weight.label = "weight";
 detail.weight.placeholder = "weight of book";
 
-editing.start.long = "Start Editing {entity}";
-editing.stop.long = "Finish Editing {entity}";
-editing.start.short = "Edit";
-editing.stop.short = "Done";
-
 scanner.startup = "Scan a barcode or enter an ISBN/EAN/title.";
 
 candidate.lookup.initial = "";
@@ -182,3 +177,81 @@ importer.message = "Select file to import:";
 
 com.elegantchaos.bookish.importer.kindle.message = "Select a Kindle cache file to import:";
 com.elegantchaos.bookish.importer.delicious-library.message = "Select a Delicious Library export file to import:";
+
+action.NewBook.title = "New Book";
+action.NewBook.short = "New";
+action.NewBook.icon = "plus.square";
+
+action.DeleteBook.title = "Delete Book";
+action.DeleteBook.title.plural = "Delete Books";
+action.DeleteBook.short = "Delete";
+action.DeleteBook.icon = "minus.square";
+
+action.NewPerson.title = "New Person";
+action.NewPerson.short = "New";
+action.NewPerson.icon = "plus.square";
+
+action.DeletePerson.title = "Delete Person";
+action.DeletePerson.title.plural = "Delete People";
+action.DeletePerson.short = "Delete";
+action.DeletePerson.icon = "minus.square";
+
+action.NewSeries.title = "New Series";
+action.NewSeries.short = "New";
+action.NewSeries.icon = "plus.square";
+
+action.DeleteSeries.title = "Delete Series";
+action.DeleteSeries.title.plural = "Delete Series";
+action.DeleteSeries.short = "Delete";
+action.DeleteSeries.icon = "minus.square";
+
+action.NewPublisher.title = "New Publisher";
+action.NewPublisher.short = "New";
+action.NewPublisher.icon = "plus";
+
+action.DeletePublisher.title = "Delete Publisher";
+action.DeletePublisher.title.plural = "Delete Publishers";
+action.DeletePublisher.short = "Delete";
+action.DeletePublisher.icon = "minus";
+
+action.SplitPerson.title = "Split Person";
+action.SplitPerson.title.plural = "Split People";
+action.SplitPerson.short = "Split";
+action.SplitPerson.icon = "arrow.left.and.right.square";
+
+action.MergePerson.title = "Merge People"; // no plural, always has more than one item selected
+action.MergePerson.short = "Merge";
+action.MergePerson.icon = "arrow.merge";
+
+action.ShowScanner.title = "Scan Books";
+action.ShowScanner.short = "Scan";
+action.ShowScanner.icon = "barcode.viewfinder";
+
+action.ToggleEditing.title = "Start Editing {entity}";
+action.ToggleEditing.stop.title = "Finish Editing {entity}";
+action.ToggleEditing.short = "Edit";
+action.ToggleEditing.stop.short = "Done";
+
+action.ToggleSelectable.title = "Start Selecting {entity}";
+action.ToggleSelectable.stop.title = "Finish Selecting {entity}";
+action.ToggleSelectable.short = "Select";
+action.ToggleSelectable.stop.short = "Done";
+action.ToggleSelectable.icon = "checkmark.circle";
+action.ToggleSelectable.stop.icon = "checkmark.circle.fill";
+
+action.MergeBook.title = "Merge Books";
+action.MergeBook.short = "Merge";
+action.MergeBook.icon = "arrow.merge";
+
+action.ViewCandidate.title = "View";
+action.ViewCandidate.short = "View";
+//action.ViewCandidate.icon = "eye";
+
+action.AddCandidate.title = "Add";
+action.AddCandidate.short = "Add";
+//action.AddCandidate.icon = "plus";
+
+importer.progress.title = "Importing from {name}";
+importer.progress.detail = "Importing book {item} of {count}";
+com.elegantchaos.bookish.importer.delicious-library.name = "Delicious Library";
+com.elegantchaos.bookish.importer.kindle.name = "Kindle";

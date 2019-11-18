@@ -6,7 +6,6 @@
 import Foundation
 import CoreData
 import Logger
-import BookishCore
 import Expressions
 
 let seriesDetectorChannel = Logger("com.elegantchaos.bookish.model.SeriesDetector")
@@ -236,7 +235,7 @@ class SeriesScanner {
         repeat {
             let seriesCount = context.countEntities(type: Series.self)
             for book in books {
-                if book.entries?.count == 0 { // only apply to books not already in a series
+                if book.entries.count == 0 { // only apply to books not already in a series
                     for detector in detectors {
                         let name = book.name ?? ""
                         let subtitle = book.subtitle ?? ""

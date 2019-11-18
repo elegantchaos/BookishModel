@@ -57,7 +57,7 @@ class ImporterTests: ModelTestCase {
     func testImporter() {
         let url = URL(fileURLWithPath: "/dev/null")
         let expectation = self.expectation(description: "import done")
-        let container = CollectionContainer(name: "test", url: url, mode: .empty) { (container, error) in
+        let container = CollectionContainer(name: "test", url: url, mode: .empty, indexed: false) { (container, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(container)
 
@@ -76,7 +76,7 @@ class ImporterTests: ModelTestCase {
     func testImportAction() {
         let url = URL(fileURLWithPath: "/dev/null")
         let expectation = self.expectation(description: "import done")
-        let container = CollectionContainer(name: "test", url: url, mode: .empty) { (container, error) in
+        let container = CollectionContainer(name: "test", url: url, mode: .empty, indexed: false) { (container, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(container)
 

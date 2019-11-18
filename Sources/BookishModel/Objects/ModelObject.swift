@@ -128,12 +128,3 @@ public class ModelObject: NSManagedObject, DetailOwner {
     }
 
 }
-
-// MARK: Action Serialization Support
-
-extension ModelObject: ActionSerialization {
-    public var serialized: Any {
-        return self.uniqueIdentifier as! String
-    }
-}
-

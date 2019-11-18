@@ -26,6 +26,37 @@ public class Relationship: ModelObject {
     override func assignInitialUUID() {
     }
 
+    public var books: Set<Book> {
+        get { return booksR as! Set<Book> }
+        set { booksR = newValue as NSSet }
+    }
+    
+    public func books(sortedBy sort: [NSSortDescriptor]) -> [Book] {
+        return booksR?.sortedArray(using: sort) as! [Book]
+    }
+    
+    public func add(_ book: Book) {
+        addToBooksR(book)
+    }
+    
+    public func add(_ books: Set<Book>) {
+        addToBooksR(books as NSSet)
+    }
+
+    public func remove(_ book: Book) {
+        removeFromBooksR(book)
+        if booksR?.count == 0 {
+            managedObjectContext?.delete(self)
+        }
+    }
+
+    public func remove(_ books: Set<Book>) {
+        removeFromBooksR(books as NSSet)
+        if booksR?.count == 0 {
+            managedObjectContext?.delete(self)
+        }
+    }
+    
     public override var description: String {
         let roleName = role?.name ?? "<unknown>"
         var personName = person?.name ?? "<unknown>"
@@ -33,7 +64,7 @@ public class Relationship: ModelObject {
            personName += " (\(uuid))"
         }
         let bookList: String
-        if let books = books as? Set<Book>, books.count > 0 {
+        if books.count > 0 {
             bookList = " with " + books.map({ $0.nameAndId }).joined(separator: ",")
         } else {
             bookList = ""
@@ -41,5 +72,10 @@ public class Relationship: ModelObject {
         
         return "<Relationship: \(roleName) for \(personName)\(bookList)>"
     }
-
+    
+    /// Does this relationship include a book?
+    /// - Parameter book: the book to test
+    public func contains(book: Book) -> Bool {
+        return books.contains(book)
+    }
 }

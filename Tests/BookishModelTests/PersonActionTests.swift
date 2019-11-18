@@ -39,7 +39,8 @@ class PersonActionTests: ModelActionTestCase, PersonViewer, PersonLifecycleObser
         
         info.addObserver(self)
         info[ActionContext.selectionKey] = [person]
-
+        info[ModelAction.entityTypeKey] = Person.self
+        
         XCTAssertTrue(actionManager.validate(identifier: "DeletePerson", info: info).enabled)
 
         actionManager.perform(identifier: "DeletePerson", info: info)
@@ -94,6 +95,7 @@ class PersonActionTests: ModelActionTestCase, PersonViewer, PersonLifecycleObser
         XCTAssertFalse(actionManager.validate(identifier: "MergePerson", info: info).enabled)
 
         info[ActionContext.selectionKey] = [person1, person2]
+        info[ModelAction.entityTypeKey] = Person.self
         
         XCTAssertEqual(context.countEntities(type: Person.self), 2)
         XCTAssertTrue(actionManager.validate(identifier: "MergePerson", info: info).enabled)
@@ -102,7 +104,7 @@ class PersonActionTests: ModelActionTestCase, PersonViewer, PersonLifecycleObser
         XCTAssertEqual(context.countEntities(type: Person.self), 1)
 
         let authors = person1.relationship(as: "author")
-        XCTAssertEqual(authors.books?.count, 2)
+        XCTAssertEqual(authors.books.count, 2)
     }
     
     func performSplit(name: String, expected: [String], explicit: String? = nil) {
@@ -120,6 +122,7 @@ class PersonActionTests: ModelActionTestCase, PersonViewer, PersonLifecycleObser
         XCTAssertEqual(context.countEntities(type: Person.self), 1)
         XCTAssertFalse(actionManager.validate(identifier: "SplitPerson", info: info).enabled)
         info[ActionContext.selectionKey] = [person]
+        info[ModelAction.entityTypeKey] = Person.self
 
         XCTAssertTrue(actionManager.validate(identifier: "SplitPerson", info: info).enabled)
 

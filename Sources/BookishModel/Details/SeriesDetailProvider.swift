@@ -10,8 +10,8 @@ class SeriesDetailProvider: DetailProvider {
     
     public class func standardDetails(showDebug: Bool) -> [DetailSpec] {
         var details = [
-            DetailSpec(binding: "notes"),
-            DetailSpec(binding: "items"),
+            DetailSpec(binding: "notes", viewAs: DetailSpec.paragraphKind),
+            DetailSpec(binding: "items", viewAs: DetailSpec.numberKind),
             DetailSpec(binding: "added", viewAs: DetailSpec.timeKind),
             DetailSpec(binding: "modified", viewAs: DetailSpec.timeKind),
             DetailSpec(binding: "importDate", viewAs: DetailSpec.timeKind, editAs: DetailSpec.hiddenKind),
@@ -20,9 +20,9 @@ class SeriesDetailProvider: DetailProvider {
         if showDebug {
             details.append(contentsOf: [
                 DetailSpec(binding: "uuid", viewAs: DetailSpec.textKind),
-                DetailSpec(binding: "log", viewAs: DetailSpec.textKind, isDebug: true),
                 DetailSpec(binding: "imageURL", viewAs: DetailSpec.textKind, isDebug: true),
                 DetailSpec(binding: "source", viewAs: DetailSpec.textKind, isDebug: true),
+                DetailSpec(binding: "log", viewAs: DetailSpec.paragraphKind, isDebug: true),
                 ])
         }
         
@@ -54,13 +54,13 @@ class SeriesDetailProvider: DetailProvider {
             return super.info(section: section, row: row)
         } else {
             let entry = sortedEntries[row]
-            let info = SeriesEntryDetailItem(entry: entry, absolute: row, index: row, source: self)
+            let info = BookDetailItem(book: entry.book, mode: .series, position: entry.position, absolute: row, index: row, source: self)
             return info
         }
     }
     
-    override func filter(for selection: [ModelObject], editing: Bool, combining: Bool, context: DetailContext) {
-        if let series = selection as? [Series] {
+    override func filter(for selection: ModelSelection, editing: Bool, combining: Bool, session: ModelSession) {
+        if let series = selection.objects as? [Series] {
             let collectedTags = MultipleValues.extract(from: series) { series -> Set<Tag>? in
                 return series.tags as? Set<Tag>
             }
@@ -68,13 +68,13 @@ class SeriesDetailProvider: DetailProvider {
         }
 
         // TODO: handle multiple selection properly?
-        if let series = selection.first as? Series, let sort = context.entitySorting["SeriesEntry"], let entries = series.entries?.sortedArray(using: sort) as? [SeriesEntry] {
+        if let series = selection.objects.first as? Series, let entries = series.entries?.sortedArray(using: session.entrySorting) as? [SeriesEntry] {
             sortedEntries.removeAll()
             sortedEntries.append(contentsOf: entries)
         }
 
-        let template = SeriesDetailProvider.standardDetails(showDebug: context.showDebug)
-        super.filter(for: selection, template: template, editing: editing, combining: combining, context: context)
+        let template = SeriesDetailProvider.standardDetails(showDebug: session.showDebug)
+        super.filter(for: selection, template: template, editing: editing, combining: combining, session: session)
     }
 }
 

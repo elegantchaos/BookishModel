@@ -1,0 +1,4 @@
+#!/bin/sh
+
+xcodebuild -workspace BookishModel.xcworkspace -scheme ReleaseTools -destination "platform=macOS"
+xcodebuild  -derivedDataPath ./.build -workspace BookishModel.xcworkspace -scheme coverage -destination "platform=macOS"

@@ -6,7 +6,10 @@
 import XCTest
 import CoreData
 import Logger
+
+#if testFatalErrors
 import LoggerTestSupport
+#endif
 
 @testable import BookishModel
 
@@ -80,11 +83,11 @@ class MiscModelTests: ModelTestCase {
         let person3 = Person(context: context)
         
         let entry1 = person1.relationship(as: "editor")
-        entry1.addToBooks(book)
+        entry1.add(book)
         let entry2 = person1.relationship(as: "author")
-        entry2.addToBooks(book)
+        entry2.add(book)
         let entry3 = person2.relationship(as: "editor")
-        entry3.addToBooks(book)
+        entry3.add(book)
 
         if let people = book.relationships {
             XCTAssertTrue(people.contains(entry1))
@@ -94,9 +97,9 @@ class MiscModelTests: ModelTestCase {
             XCTFail("book has no people")
         }
         
-        XCTAssertTrue(person1.relationships!.contains(entry1))
-        XCTAssertTrue(person1.relationships!.contains(entry2))
-        XCTAssertTrue(person2.relationships!.contains(entry3))
+        XCTAssertTrue(person1.relationships.contains(entry1))
+        XCTAssertTrue(person1.relationships.contains(entry2))
+        XCTAssertTrue(person2.relationships.contains(entry3))
         
         let allRoles = book.roles
         let authorRole = Role.named("author", in: context)

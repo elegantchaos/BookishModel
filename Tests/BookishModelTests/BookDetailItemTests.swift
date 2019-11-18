@@ -11,7 +11,7 @@ class BookDetailItemTests: ModelTestCase {
         let container = makeTestContainer()
         let context = container.managedObjectContext
         let book = Book(context: context)
-        let item = BookDetailItem(book: book, absolute: 0, index: 1, source: DetailProvider())
+        let item = BookDetailItem(book: book, mode: .person, absolute: 0, index: 1, source: DetailProvider())
         XCTAssertEqual(item.heading, "")
     }
 }

@@ -4,6 +4,16 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Foundation
+import CoreData
+
+public protocol ImportMonitor {
+    func chooseFile(for importer: Importer, completion: @escaping (URL) -> Void)
+    func session(_ session: ImportSession, willImportItems count: Int)
+    func session(_ session: ImportSession, willImportItem item: Int, of count: Int)
+    func sessionDidFinish(_ session: ImportSession)
+    func sessionDidFail(_ session: ImportSession)
+    func noImporter()
+}
 
 public class ImportManager {
     private var importers: [String:Importer] = [:]
@@ -30,6 +40,17 @@ public class ImportManager {
     
     public func importer(identifier: String) -> Importer? {
         return importers[identifier]
+    }
+    
+    public func importFrom(_ url: URL, to context: NSManagedObjectContext, monitor: ImportMonitor) {
+        for importer in sortedImporters {
+            if let session = importer.makeSession(importing: url, in: context, monitor: monitor) {
+                session.performImport()
+                break
+            }
+        }
+        
+        monitor.noImporter()
     }
     
     func sessionWillBegin(_ session: ImportSession) {

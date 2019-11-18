@@ -44,4 +44,7 @@ public class Role: ModelEntity, ModelEntityCommon {
         return RoleDetailProvider()
     }
 
+    public func relationships(sortedBy sort: [NSSortDescriptor]) -> [Relationship] {
+        return relationshipsR?.sortedArray(using: sort) as! [Relationship]
+    }
 }
