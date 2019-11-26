@@ -32,7 +32,7 @@ class DetailProviderTests: ModelTestCase {
         }
         
         let provider = TestProvider()
-        provider.filter(for: ModelSelection(), editing: false, combining: true, context: TestContext())
+        provider.filter(for: ModelSelection(), editing: false, combining: true, session: TestContext())
         
         XCTAssertEqual(provider.combinedCount, 2)
         XCTAssertEqual(provider.combinedInfo(row: 0).kind, "test 0 0")
@@ -41,9 +41,9 @@ class DetailProviderTests: ModelTestCase {
     
     func testVisibleColumns() {
         let provider = DetailProvider()
-        provider.filter(for: ModelSelection(), editing: false, combining: false, context: TestContext())
+        provider.filter(for: ModelSelection(), editing: false, combining: false, session: TestContext())
         XCTAssertEqual(provider.visibleColumns, DetailProvider.LabelledColumns)
-        provider.filter(for: ModelSelection(), editing: true, combining: false, context: TestContext())
+        provider.filter(for: ModelSelection(), editing: true, combining: false, session: TestContext())
         XCTAssertEqual(provider.visibleColumns, DetailProvider.EditingColumns)
     }
 }

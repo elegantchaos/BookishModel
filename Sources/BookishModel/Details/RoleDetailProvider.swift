@@ -41,7 +41,7 @@ class RoleDetailProvider: DetailProvider {
         }
     }
     
-    override func filter(for selection: ModelSelection, editing: Bool, combining: Bool, session: ModelSession) {
+    override func filter(for selection: ModelSelection, editing: Bool, combining: Bool, session: ModelSorting) {
         // TODO: handle multiple selection properly
         if let role = selection.objects.first as? Role {
             let relationships = role.relationships(sortedBy: session.relationshipSorting)

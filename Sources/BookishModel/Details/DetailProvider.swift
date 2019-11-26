@@ -60,11 +60,11 @@ public class DetailProvider {
         return isEditing ? DetailProvider.EditingColumns : DetailProvider.LabelledColumns
     }
 
-    public func filter(for selection: ModelSelection, editing: Bool, combining: Bool, session: ModelSession) {
+    public func filter(for selection: ModelSelection, editing: Bool, combining: Bool, session: ModelSorting) {
         self.filter(for: selection, template: [], editing: editing, combining: combining, session: session)
     }
     
-    internal func filter(for selection: ModelSelection, template: [DetailSpec], editing: Bool, combining: Bool, session: ModelSession) {
+    internal func filter(for selection: ModelSelection, template: [DetailSpec], editing: Bool, combining: Bool, session: ModelSorting) {
         shouldCombine = combining
         var filteredDetails = [DetailSpec]()
         for detail in template {

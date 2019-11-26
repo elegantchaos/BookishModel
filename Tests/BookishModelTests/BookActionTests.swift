@@ -39,7 +39,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
         relationshipObserved = relationship
     }
 
-    func reveal(book: Book) {
+    func reveal(book: Book, dismissPopovers: Bool) {
         bookObserved = book
     }
     

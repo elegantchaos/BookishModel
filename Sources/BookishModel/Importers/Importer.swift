@@ -80,12 +80,12 @@ public class Importer {
         return session
     }
 
-    internal func makeSession(importing url: URL, in context: NSManagedObjectContext, monitor: ImportMonitor?) -> URLImportSession? {
+    internal func makeSession(importing url: URL, in context: NSManagedObjectContext, monitor: ImportMonitor? = nil) -> URLImportSession? {
         let session = URLImportSession(importer: self, context: context, url: url, monitor: monitor)
         return session
     }
     
-    public func run(importing url: URL, in context: NSManagedObjectContext, monitor: ImportMonitor?) {
+    public func run(importing url: URL, in context: NSManagedObjectContext, monitor: ImportMonitor? = nil) {
         if let session = makeSession(importing: url, in: context, monitor: monitor) {
             session.performImport()
         } else {

@@ -29,6 +29,15 @@
         }
       },
       {
+        "package": "Datastore",
+        "repositoryURL": "git@github.com:elegantchaos/Datastore.git",
+        "state": {
+          "branch": null,
+          "revision": "fe07a00d18e2717d40ec366bdfa9b9679aabd04d",
+          "version": "1.0.2"
+        }
+      },
+      {
         "package": "Docopt",
         "repositoryURL": "https://github.com/elegantchaos/docopt.swift.git",
         "state": {
@@ -88,6 +97,15 @@
         "state": {
           "branch": null,
           "revision": "54889ffb68a12f3bb166ddc501cae5a83fd89bf4",
+          "version": "1.0.4"
+        }
+      },
+      {
+        "package": "XCTestExtensions",
+        "repositoryURL": "https://github.com/elegantchaos/XCTestExtensions.git",
+        "state": {
+          "branch": null,
+          "revision": "4c4cc474b880fafdc2f481765b14d0a4a79e879a",
           "version": "1.0.4"
         }
       }

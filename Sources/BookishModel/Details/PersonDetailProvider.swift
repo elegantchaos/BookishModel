@@ -69,7 +69,7 @@ public class PersonDetailProvider: DetailProvider {
         }
     }
     
-    public override func filter(for selection: ModelSelection, editing: Bool, combining: Bool, session: ModelSession) {
+    public override func filter(for selection: ModelSelection, editing: Bool, combining: Bool, session: ModelSorting) {
         let template = PersonDetailProvider.standardDetails(showDebug: session.showDebug)
         if let people = selection.objects as? [Person] {
             let collectedTags = MultipleValues.extract(from: people) { person -> Set<Tag> in return person.tags }
@@ -80,10 +80,10 @@ public class PersonDetailProvider: DetailProvider {
 
         sortedRoles.removeAll()
         if let person = selection.objects.first as? Person {
-            let relationships = person.relationships(sortedBy: session.people.sorting)
+            let relationships = person.relationships(sortedBy: session.peopleSorting)
             for relationship in relationships {
                 if let role = relationship.role {
-                    let books = relationship.books(sortedBy: session.books.sorting)
+                    let books = relationship.books(sortedBy: session.bookSorting)
                     sortedRoles.append(SortedRole(role: role, books: books))
                 }
             }

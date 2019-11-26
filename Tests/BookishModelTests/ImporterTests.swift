@@ -41,9 +41,7 @@ class ImporterTests: ModelTestCase {
         
         let expectation = self.expectation(description: "completed")
         let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-        importer.run(importing: URL(fileURLWithPath: "/test"), in: context) {
-            expectation.fulfill()
-        }
+        importer.run(importing: URL(fileURLWithPath: "/test"), in: context, monitor: TestImportMonitor(expectation: expectation))
         wait(for: [expectation], timeout: 1.0)
     }
 
@@ -65,9 +63,7 @@ class ImporterTests: ModelTestCase {
             let importer = manager.importer(identifier: DeliciousLibraryImporter.identifier)!
             let bundle = Bundle(for: type(of: self))
             let xmlURL = bundle.url(forResource: "Simple", withExtension: "plist")!
-            importer.run(importing: xmlURL, in: container.managedObjectContext) {
-                expectation.fulfill()
-            }
+            importer.run(importing: xmlURL, in: container.managedObjectContext, monitor: TestImportMonitor(expectation: expectation))
         }
         wait(for: [expectation], timeout: 10.0)
         XCTAssertEqual(container.managedObjectContext.countEntities(type: Book.self), 2)
@@ -126,9 +122,7 @@ class ImporterTests: ModelTestCase {
         let importer = StandardRolesImporter(manager: manager)
         manager.register([importer])
         let expectation = self.expectation(description: "completed")
-        importer.run(in: container.managedObjectContext) {
-            expectation.fulfill()
-        }
+        importer.run(in: container.managedObjectContext, monitor: TestImportMonitor(expectation: expectation))
         wait(for: [expectation], timeout: 1.0)
         let count = container.managedObjectContext.countEntities(type: Role.self)
         XCTAssertEqual(count, Role.StandardName.allCases.count)
@@ -140,9 +134,7 @@ class ImporterTests: ModelTestCase {
         let importer = TestDataImporter(manager: manager)
         manager.register([importer])
         let expectation = self.expectation(description: "completed")
-        importer.run(in: container.managedObjectContext) {
-            expectation.fulfill()
-        }
+        importer.run(in: container.managedObjectContext, monitor: TestImportMonitor(expectation: expectation))
         wait(for: [expectation], timeout: 1.0)
         let roles = container.managedObjectContext.countEntities(type: Role.self)
         XCTAssertEqual(roles, Role.StandardName.allCases.count)

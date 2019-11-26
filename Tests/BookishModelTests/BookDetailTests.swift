@@ -7,7 +7,12 @@ import XCTest
 import CoreData
 @testable import BookishModel
 
-class TestContext: DetailContext {
+class TestContext: ModelSorting {
+    var seriesEntrySorting: [NSSortDescriptor]
+    var relationshipSorting: [NSSortDescriptor]
+    var bookSorting: [NSSortDescriptor]
+    var peopleSorting: [NSSortDescriptor]
+    
     var entitySorting: [String : [NSSortDescriptor]] = [
         "Book": [],
         "Entry": [],
@@ -19,6 +24,10 @@ class TestContext: DetailContext {
     
     init(showDebug: Bool = false) {
         self.showDebug = showDebug
+        self.bookSorting = BookishModel.defaultSorting["Book"]!
+        self.peopleSorting = BookishModel.defaultSorting["Person"]!
+        self.seriesEntrySorting = BookishModel.defaultSorting["SeriesEntry"]!
+        self.relationshipSorting = BookishModel.defaultSorting["Relationship"]!
     }
 }
 
@@ -62,39 +71,39 @@ class BookDetailTests: ModelTestCase {
         let context = container.managedObjectContext
         let source = BookDetailProvider()
 
-        source.filter(for: ModelSelection(), editing: false, combining: false, context: TestContext())
+        source.filter(for: ModelSelection(), editing: false, combining: false, session: TestContext())
         XCTAssertEqual(source.itemCount(for: 0), 0)
 
         let book = Book(context: context)
         book.isbn = "12343"
         book.asin = "blah"
-        source.filter(for: ModelSelection([book]), editing: false, combining: false, context: TestContext())
+        source.filter(for: ModelSelection([book]), editing: false, combining: false, session: TestContext())
         XCTAssertEqual(source.itemCount(for: 0), 3)
 
-        source.filter(for: ModelSelection([book]), editing: false, combining: false, context: TestContext(showDebug: true))
+        source.filter(for: ModelSelection([book]), editing: false, combining: false, session: TestContext(showDebug: true))
         XCTAssertEqual(source.itemCount(for: 0), 4)
 
         let person = Person(context: context)
         let relationship = person.relationship(as: "author")
         relationship.add(book)
 
-        source.filter(for: ModelSelection([book]), editing: false, combining: false, context: TestContext())
+        source.filter(for: ModelSelection([book]), editing: false, combining: false, session: TestContext())
         XCTAssertEqual(source.itemCount(for: 0), 4)
 
         let relationship2 = person.relationship(as: "editor")
         relationship2.add(book)
 
-        source.filter(for: ModelSelection([book]), editing: false, combining: false, context: TestContext())
+        source.filter(for: ModelSelection([book]), editing: false, combining: false, session: TestContext())
         XCTAssertEqual(source.itemCount(for: 0), 5)
 
         book.publisher = Publisher(context: context)
-        source.filter(for: ModelSelection([book]), editing: false, combining: false, context: TestContext())
+        source.filter(for: ModelSelection([book]), editing: false, combining: false, session: TestContext())
         XCTAssertEqual(source.itemCount(for: 0), 6)
         
         let series = Series(context: context)
         book.addToSeries(series, position: 1)
 
-        source.filter(for: ModelSelection([book]), editing: false, combining: false, context: TestContext())
+        source.filter(for: ModelSelection([book]), editing: false, combining: false, session: TestContext())
         XCTAssertEqual(source.itemCount(for: 0), 7)
 
     }
@@ -112,7 +121,7 @@ class BookDetailTests: ModelTestCase {
         let series = Series(context: context)
         book.addToSeries(series, position: 1)
         
-        source.filter(for: ModelSelection([book]), editing: false, combining: false, context: TestContext())
+        source.filter(for: ModelSelection([book]), editing: false, combining: false, session: TestContext())
         let personRow = source.info(section: 0, row: 0)
         XCTAssertTrue(personRow is RelationshipDetailItem)
         XCTAssertEqual(personRow.absolute, 0)
@@ -133,7 +142,7 @@ class BookDetailTests: ModelTestCase {
         XCTAssertEqual(detailRow.absolute, 3)
         XCTAssertEqual(detailRow.index, 0)
 
-        source.filter(for: ModelSelection([book]), editing: true, combining: false, context: TestContext())
+        source.filter(for: ModelSelection([book]), editing: true, combining: false, session: TestContext())
 
         let editablePersonRow = source.info(section: 0, row: 1)
         XCTAssertTrue(editablePersonRow is RelationshipDetailItem)
@@ -158,7 +167,7 @@ class BookDetailTests: ModelTestCase {
         relationship.add(book1)
         relationship.add(book2)
 
-        source.filter(for: ModelSelection([book1, book2]), editing: false, combining: false, context: TestContext())
+        source.filter(for: ModelSelection([book1, book2]), editing: false, combining: false, session: TestContext())
         let personRow = source.info(section: 0, row: 0) as? RelationshipDetailItem
         XCTAssertNotNil(personRow)
         
@@ -179,7 +188,7 @@ class BookDetailTests: ModelTestCase {
         let relationship2 = person2.relationship(as: "author")
         relationship2.add(book)
         
-        source.filter(for: ModelSelection([book]), editing: false, combining: false, context: TestContext())
+        source.filter(for: ModelSelection([book]), editing: false, combining: false, session: TestContext())
         let row1 = source.info(section: 0, row: 0) as? RelationshipDetailItem
         XCTAssertEqual(row1!.relationship, relationship2)
         let row2 = source.info(section: 0, row: 1) as? RelationshipDetailItem
@@ -200,7 +209,7 @@ class BookDetailTests: ModelTestCase {
         book1.publisher = publisher1
         book2.publisher = publisher1
         
-        source.filter(for: ModelSelection([book1, book2]), editing: false, combining: false, context: TestContext())
+        source.filter(for: ModelSelection([book1, book2]), editing: false, combining: false, session: TestContext())
         let row = source.info(section: 0, row: 0) as? PublisherDetailItem
         XCTAssertEqual(row!.publisher, publisher1)
         XCTAssertEqual(row?.heading, "Publisher.label")
@@ -219,7 +228,7 @@ class BookDetailTests: ModelTestCase {
         book1.publisher = publisher1
         book2.publisher = publisher2
 
-        source.filter(for: ModelSelection([book1, book2]), editing: false, combining: false, context: TestContext())
+        source.filter(for: ModelSelection([book1, book2]), editing: false, combining: false, session: TestContext())
         let row = source.info(section: 0, row: 0)
         XCTAssertTrue(row is SimpleDetailItem)
     }
@@ -234,7 +243,7 @@ class BookDetailTests: ModelTestCase {
         entry.book = book
         entry.series = series
         
-        source.filter(for: ModelSelection([book]), editing: false, combining: false, context: TestContext())
+        source.filter(for: ModelSelection([book]), editing: false, combining: false, session: TestContext())
         let row = source.info(section: 0, row: 0) as? SeriesDetailItem
         XCTAssertEqual(row!.entry!.series!, series)
         
@@ -248,7 +257,7 @@ class BookDetailTests: ModelTestCase {
         let book = Book(context: context)
         book.asin = "blah"
         
-        source.filter(for: ModelSelection([book]), editing: false, combining: false, context: TestContext())
+        source.filter(for: ModelSelection([book]), editing: false, combining: false, session: TestContext())
         let row = source.info(section: 0, row: 0) as? SimpleDetailItem
         XCTAssertEqual(row!.spec.binding, "identifier")
         XCTAssertEqual(row!.heading, "detail.identifier.label")
@@ -260,7 +269,7 @@ class BookDetailTests: ModelTestCase {
         let source = BookDetailProvider()
         let book = Book(context: context)
         
-        source.filter(for: ModelSelection([book]), editing: true, combining: false, context: TestContext())
+        source.filter(for: ModelSelection([book]), editing: true, combining: false, session: TestContext())
         let row = source.info(section: 0, row: 3) as? SimpleDetailItem
         XCTAssertEqual(row?.spec.binding, "subtitle")
         XCTAssertEqual(row?.heading, "detail.subtitle.label")
@@ -272,7 +281,7 @@ class BookDetailTests: ModelTestCase {
         let context = container.managedObjectContext
         let source = BookDetailProvider()
         let book = Book(context: context)
-        source.filter(for: ModelSelection([book]), editing: false, combining: false, context: TestContext())
+        source.filter(for: ModelSelection([book]), editing: false, combining: false, session: TestContext())
         let relationship = Relationship(context: context)
         let relationship2 = Relationship(context: context)
         XCTAssertEqual(source.inserted(details: [relationship]).first, 0)
@@ -287,7 +296,7 @@ class BookDetailTests: ModelTestCase {
         let context = container.managedObjectContext
         let source = BookDetailProvider()
         let book = Book(context: context)
-        source.filter(for: ModelSelection([book]), editing: false, combining: false, context: TestContext())
+        source.filter(for: ModelSelection([book]), editing: false, combining: false, session: TestContext())
         let publisher = Publisher(context: context)
         XCTAssertEqual(source.inserted(details: [publisher]).first, 0)
         XCTAssertEqual(source.removed(details: [publisher]).first, 0)
@@ -300,7 +309,7 @@ class BookDetailTests: ModelTestCase {
         let context = container.managedObjectContext
         let source = BookDetailProvider()
         let book = Book(context: context)
-        source.filter(for: ModelSelection([book]), editing: false, combining: false, context: TestContext())
+        source.filter(for: ModelSelection([book]), editing: false, combining: false, session: TestContext())
         let series = Series(context: context)
         let entry = book.addToSeries(series, position: 1)
         XCTAssertEqual(source.inserted(details: [entry]).first, 0)

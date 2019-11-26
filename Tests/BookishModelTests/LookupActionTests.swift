@@ -34,7 +34,7 @@ class LookupActionTests: ModelActionTestCase, BookViewer {
         }
     }
     
-    func reveal(book: Book) {
+    func reveal(book: Book, dismissPopovers: Bool) {
         viewed = book
         revealed?.fulfill()
     }

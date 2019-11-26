@@ -9,15 +9,7 @@
     }
   ],
   "defaultOptions" : {
-    "codeCoverage" : {
-      "targets" : [
-        {
-          "containerPath" : "container:BookishModel.xcodeproj",
-          "identifier" : "224293B2212AE16200E70510",
-          "name" : "BookishModelMobile"
-        }
-      ]
-    },
+    "codeCoverage" : false,
     "commandLineArgumentEntries" : [
       {
         "argument" : "-logs Model,Application,Scene,DetailView,BookishCloud"
@@ -61,10 +53,18 @@
   },
   "testTargets" : [
     {
+      "enabled" : false,
       "target" : {
-        "containerPath" : "container:Dependencies\/BookishModel\/BookishModel.xcodeproj",
+        "containerPath" : "container:BookishModel.xcodeproj",
         "identifier" : "224293BA212AE16300E70510",
         "name" : "BookishModelTestsMobile"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:BookishModel.xcodeproj",
+        "identifier" : "22429398212AE0F400E70510",
+        "name" : "BookishModelTestsMac"
       }
     }
   ],

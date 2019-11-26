@@ -57,7 +57,7 @@ class PublisherDetailProvider: DetailProvider {
         }
     }
     
-    override func filter(for selection: ModelSelection, editing: Bool, combining: Bool, session: ModelSession) {
+    override func filter(for selection: ModelSelection, editing: Bool, combining: Bool, session: ModelSorting) {
         if let publishers = selection.objects as? [Publisher] {
             let collectedTags = MultipleValues.extract(from: publishers) { publisher -> Set<Tag>? in
                 return publisher.tags
@@ -67,7 +67,7 @@ class PublisherDetailProvider: DetailProvider {
 
         // TODO: handle multiple selection properly
         if let publisher = selection.objects.first as? Publisher {
-            let books = publisher.books(sortedBy: session.books.sorting)
+            let books = publisher.books(sortedBy: session.bookSorting)
             sortedBooks.removeAll()
             sortedBooks.append(contentsOf: books)
         }

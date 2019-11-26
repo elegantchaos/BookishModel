@@ -271,10 +271,12 @@
 		8B10C78C22BD094200E05F33 /* Binder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B10C78922BD094200E05F33 /* Binder.swift */; };
 		8B10C78D22BD094200E05F33 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B10C78A22BD094200E05F33 /* Selection.swift */; };
 		8B10C78E22BD094200E05F33 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B10C78A22BD094200E05F33 /* Selection.swift */; };
-		8B1B9B2E23042C8300C86B2C /* ActionsKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8B1B9B2D23042C8300C86B2C /* ActionsKit */; };
 		8B1B9B3023042C9A00C86B2C /* LoggerKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8B1B9B2F23042C9A00C86B2C /* LoggerKit */; };
 		8B37E14F230566AA006784FD /* ModelIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B37E14E230566AA006784FD /* ModelIndex.swift */; };
 		8B37E150230566AA006784FD /* ModelIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B37E14E230566AA006784FD /* ModelIndex.swift */; };
+		8B397DB2238D667E001596D0 /* Datastore in Frameworks */ = {isa = PBXBuildFile; productRef = 8B397DB1238D667E001596D0 /* Datastore */; };
+		8B397DB4238D695E001596D0 /* Localization in Frameworks */ = {isa = PBXBuildFile; productRef = 8B397DB3238D695E001596D0 /* Localization */; };
+		8B397DB5238D695E001596D0 /* Localization in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 8B397DB3238D695E001596D0 /* Localization */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		8B3DD9B822F079FE00EB7CD2 /* Actions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B3DD9B722F079FE00EB7CD2 /* Actions */; };
 		8B456C3223017EC00056E153 /* ConvertCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B456C3123017EC00056E153 /* ConvertCommand.swift */; };
 		8B456C34230188510056E153 /* AnyCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B456C33230188510056E153 /* AnyCodable.swift */; };
@@ -286,8 +288,6 @@
 		8B46F3BD22E71A5900F08F2D /* JSONDump in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3BC22E71A5900F08F2D /* JSONDump */; };
 		8B46F3BF22E71A6600F08F2D /* Expressions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3BE22E71A6600F08F2D /* Expressions */; };
 		8B66550F22FD9B42005ABF39 /* Localization in Frameworks */ = {isa = PBXBuildFile; productRef = 8B66550E22FD9B42005ABF39 /* Localization */; };
-		8B6A99D122FD89A900517869 /* Localization in Frameworks */ = {isa = PBXBuildFile; productRef = 8B6A99D022FD89A900517869 /* Localization */; };
-		8B6A99D222FD89A900517869 /* Localization in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 8B6A99D022FD89A900517869 /* Localization */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		8B8B6C442305992C00EA9430 /* Localization in Frameworks */ = {isa = PBXBuildFile; productRef = 8B8B6C432305992C00EA9430 /* Localization */; };
 		8B8B6C452305992C00EA9430 /* Localization in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 8B8B6C432305992C00EA9430 /* Localization */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		8B935FEA22B7BE9200435863 /* CloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B935FE922B7BE9200435863 /* CloudManager.swift */; };
@@ -370,7 +370,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8B6A99D222FD89A900517869 /* Localization in Embed Frameworks */,
+				8B397DB5238D695E001596D0 /* Localization in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -581,8 +581,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B397DB2238D667E001596D0 /* Datastore in Frameworks */,
+				8B397DB4238D695E001596D0 /* Localization in Frameworks */,
 				8B46F3B922E71A4C00F08F2D /* Actions in Frameworks */,
-				8B6A99D122FD89A900517869 /* Localization in Frameworks */,
 				8B46F3BD22E71A5900F08F2D /* JSONDump in Frameworks */,
 				8B46F3BF22E71A6600F08F2D /* Expressions in Frameworks */,
 			);
@@ -604,7 +605,6 @@
 				8B66550F22FD9B42005ABF39 /* Localization in Frameworks */,
 				8B3DD9B822F079FE00EB7CD2 /* Actions in Frameworks */,
 				8B46F3B022E7165200F08F2D /* Expressions in Frameworks */,
-				8B1B9B2E23042C8300C86B2C /* ActionsKit in Frameworks */,
 				8B1B9B3023042C9A00C86B2C /* LoggerKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -996,7 +996,8 @@
 				8B46F3B822E71A4C00F08F2D /* Actions */,
 				8B46F3BC22E71A5900F08F2D /* JSONDump */,
 				8B46F3BE22E71A6600F08F2D /* Expressions */,
-				8B6A99D022FD89A900517869 /* Localization */,
+				8B397DB1238D667E001596D0 /* Datastore */,
+				8B397DB3238D695E001596D0 /* Localization */,
 			);
 			productName = BookishModelMac;
 			productReference = 22429391212AE0F300E70510 /* BookishModel.framework */;
@@ -1041,7 +1042,6 @@
 				8B46F3B222E7168500F08F2D /* JSONDump */,
 				8B3DD9B722F079FE00EB7CD2 /* Actions */,
 				8B66550E22FD9B42005ABF39 /* Localization */,
-				8B1B9B2D23042C8300C86B2C /* ActionsKit */,
 				8B1B9B2F23042C9A00C86B2C /* LoggerKit */,
 			);
 			productName = BookishModelMobile;
@@ -1140,6 +1140,7 @@
 				8B46F3B522E716FD00F08F2D /* XCRemoteSwiftPackageReference "ReleaseTools" */,
 				8B46F3B622E7172800F08F2D /* XCRemoteSwiftPackageReference "Coverage" */,
 				8B7BF86322EB3BF30061087A /* XCRemoteSwiftPackageReference "Localization" */,
+				8B397DB0238D667E001596D0 /* XCRemoteSwiftPackageReference "Datastore" */,
 			);
 			productRefGroup = 22DD42452126D6DA0070C85A /* Products */;
 			projectDirPath = "";
@@ -1940,6 +1941,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8B397DB0238D667E001596D0 /* XCRemoteSwiftPackageReference "Datastore" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:elegantchaos/Datastore.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.2;
+			};
+		};
 		8B46F3A622E715EA00F08F2D /* XCRemoteSwiftPackageReference "Actions" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:elegantchaos/Actions.git";
@@ -1999,13 +2008,19 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8B1B9B2D23042C8300C86B2C /* ActionsKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = ActionsKit;
-		};
 		8B1B9B2F23042C9A00C86B2C /* LoggerKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LoggerKit;
+		};
+		8B397DB1238D667E001596D0 /* Datastore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B397DB0238D667E001596D0 /* XCRemoteSwiftPackageReference "Datastore" */;
+			productName = Datastore;
+		};
+		8B397DB3238D695E001596D0 /* Localization */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B7BF86322EB3BF30061087A /* XCRemoteSwiftPackageReference "Localization" */;
+			productName = Localization;
 		};
 		8B3DD9B722F079FE00EB7CD2 /* Actions */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -2042,11 +2057,6 @@
 			productName = Expressions;
 		};
 		8B66550E22FD9B42005ABF39 /* Localization */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8B7BF86322EB3BF30061087A /* XCRemoteSwiftPackageReference "Localization" */;
-			productName = Localization;
-		};
-		8B6A99D022FD89A900517869 /* Localization */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8B7BF86322EB3BF30061087A /* XCRemoteSwiftPackageReference "Localization" */;
 			productName = Localization;

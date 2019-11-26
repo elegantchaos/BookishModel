@@ -161,16 +161,25 @@ extension ModelIndex: NSFetchedResultsControllerDelegate {
     
 }
 
-public protocol ModelSession {
+public protocol ModelSorting {
     var showDebug: Bool { get set }
+    var seriesEntrySorting: [NSSortDescriptor] { get }
+    var relationshipSorting: [NSSortDescriptor] { get }
+    var bookSorting: [NSSortDescriptor] { get }
+    var peopleSorting: [NSSortDescriptor] { get }
+}
+
+public protocol ModelSession: ModelSorting {
     var books: ModelIndex { get }
     var people: ModelIndex { get }
     var publishers: ModelIndex { get }
     var series: ModelIndex { get }
     var roles: ModelIndex { get }
-    
-    var entrySorting: [NSSortDescriptor] { get }
-    var relationshipSorting: [NSSortDescriptor] { get }
+}
+
+extension ModelSession {
+    public var bookSorting: [NSSortDescriptor] { return books.sorting }
+    public var peopleSorting: [NSSortDescriptor] { return people.sorting }
 }
 
 extension ModelSession {
