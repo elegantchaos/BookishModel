@@ -4,7 +4,7 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Actions
-import CoreData
+import Datastore
 
 /**
  Action to inserts a new book.
@@ -16,10 +16,10 @@ public class NewBookAction: BookAction {
         return modelValidate(context: context)
     }
     
-    override public func perform(context: ActionContext, model: NSManagedObjectContext) {
-        let book = Book(context: model)
-        context.info.forObservers { (observer: BookLifecycleObserver) in
-            observer.created(books: [book])
-        }
+    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+//        let book = Book(context: model)
+//        context.info.forObservers { (observer: BookLifecycleObserver) in
+//            observer.created(books: [book])
+//        }
     }
 }

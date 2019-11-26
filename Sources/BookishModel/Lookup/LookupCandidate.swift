@@ -3,7 +3,8 @@
 //  All code (c) 2019 - present day, Elegant Chaos Limited.
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-import CoreData
+import Datastore
+import Foundation
 
 public class LookupCandidate: CustomStringConvertible {
     public let service: LookupService
@@ -34,26 +35,25 @@ public class LookupCandidate: CustomStringConvertible {
         return nil
     }
     
-    public func makeBook(in context: NSManagedObjectContext) -> Book {
-        let book = Book(in: context)
-        
-        book.name = title
-        book.imageURL = image
-        book.source = service.name
-        
-        for author in authors {
-            let person = Person.named(author, in: context)
-            let relationship = person.relationship(as: Role.StandardName.author)
-            book.addToRelationships(relationship)
-        }
-        
-        if !publisher.isEmpty {
-            book.publisher = Publisher.named(publisher, in: context)
-        }
-        
-        book.published = date
-        
-        return book
+    public func makeBook(in store: Datastore, completion: @escaping (Book) -> Void) {
+//        let book = Book(in: context)
+//
+//        book.name = title
+//        book.imageURL = image
+//        book.source = service.name
+//
+//        for author in authors {
+//            let person = Person.named(author, in: context)
+//            let relationship = person.relationship(as: Role.StandardName.author)
+//            book.addToRelationships(relationship)
+//        }
+//
+//        if !publisher.isEmpty {
+//            book.publisher = Publisher.named(publisher, in: context)
+//        }
+//
+//        book.published = date
+//        completion(book)
     }
     
     public var description: String {

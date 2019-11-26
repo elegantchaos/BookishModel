@@ -21,7 +21,7 @@ class ModelActionTestCase: ModelTestCase {
         actionManager = ActionManager()
         actionManager.register(ModelAction.standardActions())
         actionManager.register([ModelAction(identifier: "ModelAction")]) // base class, registered for testing only
-        actionManager.register([SyncModelAction(identifier: "SyncModelAction")]) // base class, registered for testing only
+        actionManager.register([ModelAction(identifier: "ModelAction")]) // base class, registered for testing only
 
         info[ActionContext.modelKey] = context
         info.registerNotification { (stage, context) in
@@ -48,7 +48,7 @@ class ModelActionTestCase: ModelTestCase {
         // not real tests - just here to fill in coverage for some untestable areas
         info[ActionContext.modelKey] = nil
         actionManager.perform(identifier: "ModelAction", info: info)
-        actionManager.perform(identifier: "SyncModelAction", info: info)
+        actionManager.perform(identifier: "ModelAction", info: info)
     }
     
     func testModelActionValidate() {

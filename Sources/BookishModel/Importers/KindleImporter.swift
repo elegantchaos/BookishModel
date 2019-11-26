@@ -3,8 +3,8 @@
 //  All code (c) 2019 - present day, Elegant Chaos Limited.
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
+import Datastore
 import Foundation
-import CoreData
 import JSONDump
 import Logger
 
@@ -17,8 +17,8 @@ public class KindleImporter: Importer {
         super.init(name: "Kindle", source: .userSpecifiedFile, manager: manager)
     }
     
-    override func makeSession(importing url: URL, in context: NSManagedObjectContext, monitor: ImportMonitor?) -> URLImportSession? {
-        return KindleImportSession(importer: self, context: context, url: url, monitor: monitor)
+    override func makeSession(importing url: URL, in store: Datastore, monitor: ImportMonitor?) -> URLImportSession? {
+        return KindleImportSession(importer: self, store: store, url: url, monitor: monitor)
     }
     
     public override var defaultImportLocation: URL? {
@@ -134,14 +134,14 @@ class KindleImportSession: URLImportSession {
     var cachedPeople: [String:Person] = [:]
     var cachedPublishers: [String:Publisher] = [:]
     var cachedSeries: [String:Series] = [:]
-    let kindleTag: Tag
-    let importedTag: Tag
+//    let kindleTag: Tag
+//    let importedTag: Tag
     let books: [KindleBook]
     
-    override init?(importer: Importer, context: NSManagedObjectContext, url: URL, monitor: ImportMonitor?) {
-        kindleTag = Tag.named("kindle", in: context)
-        importedTag = Tag.named("imported", in: context)
-        
+    override init?(importer: Importer, store: Datastore, url: URL, monitor: ImportMonitor?) {
+//        kindleTag = Tag.named("kindle", in: context)
+//        importedTag = Tag.named("imported", in: context)
+//
         guard let data = try? Data(contentsOf: url) else {
             return nil
         }
@@ -149,7 +149,7 @@ class KindleImportSession: URLImportSession {
         processor.parse(data: data) // TODO: check if this fails
         self.books = processor.state.books
         
-        super.init(importer: importer, context: context, url: url, monitor: monitor)
+        super.init(importer: importer, store: store, url: url, monitor: monitor)
     }
     
     override func run() {
@@ -164,88 +164,88 @@ class KindleImportSession: URLImportSession {
     }
     
     private func process(book kindleBook: KindleBook) {
-        
-        let identifier: String
-        let purchased = kindleBook.raw["purchase_date"] as? Date
-        if let purchased = purchased {
-            identifier = "kindle-import-\(kindleBook.asin)-\(purchased)"
-        } else {
-            identifier = "kindle-import-\(kindleBook.asin)"
-        }
-
-        // we try to find a book with the same uuid
-        // this is intended to ensure that if the same import runs multiple times,
-        // we won't keep making new copies of the same books
-        let book: Book
-        if let existing = Book.withIdentifier(identifier, in: context) {
-            book = existing
-        } else {
-            book = Book.named(kindleBook.title, in: context)
-            book.uuid = identifier
-            book.source = KindleImporter.identifier
-        }
-
-        kindleTag.addToBooks(book)
-        importedTag.addToBooks(book)
-        
-        book.importDate = Date()
-        book.asin = kindleBook.asin
-        book.format = "Kindle Edition"
-        
-        if let date = kindleBook.raw["publication_date"] as? Date {
-            book.published = date
-        }
-        
-        if let date = purchased {
-            book.added = date
-        }
-        
-        book.importRaw = kindleBook.raw.jsonDump()
-        process(creators: kindleBook.authors, for: book)
-        process(publishers: kindleBook.publishers, for: book)
+//
+//        let identifier: String
+//        let purchased = kindleBook.raw["purchase_date"] as? Date
+//        if let purchased = purchased {
+//            identifier = "kindle-import-\(kindleBook.asin)-\(purchased)"
+//        } else {
+//            identifier = "kindle-import-\(kindleBook.asin)"
+//        }
+//
+//        // we try to find a book with the same uuid
+//        // this is intended to ensure that if the same import runs multiple times,
+//        // we won't keep making new copies of the same books
+//        let book: Book
+//        if let existing = Book.withIdentifier(identifier, in: context) {
+//            book = existing
+//        } else {
+//            book = Book.named(kindleBook.title, in: context)
+//            book.uuid = identifier
+//            book.source = KindleImporter.identifier
+//        }
+//
+//        kindleTag.addToBooks(book)
+//        importedTag.addToBooks(book)
+//
+//        book.importDate = Date()
+//        book.asin = kindleBook.asin
+//        book.format = "Kindle Edition"
+//
+//        if let date = kindleBook.raw["publication_date"] as? Date {
+//            book.published = date
+//        }
+//
+//        if let date = purchased {
+//            book.added = date
+//        }
+//
+//        book.importRaw = kindleBook.raw.jsonDump()
+//        process(creators: kindleBook.authors, for: book)
+//        process(publishers: kindleBook.publishers, for: book)
     }
     
     private func process(creators: [String], for book: Book) {
-        var index = 1
-        for creator in creators {
-            let unsorted = Indexing.nameUnsort(for: creator) ?? ""
-            let trimmed = unsorted.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-            if trimmed != "" {
-                let author: Person
-                if let cached = cachedPeople[trimmed] {
-                    author = cached
-                } else {
-                    author = Person.named(trimmed, in: context)
-                    if author.source == nil {
-                        author.source = KindleImporter.identifier
-                        author.uuid = "\(book.asin!)-author-\(index)"
-                    }
-                    index += 1
-                    cachedPeople[trimmed] = author
-                }
-                let relationship = author.relationship(as: Role.StandardName.author)
-                relationship.add(book)
-            }
-        }
+//        var index = 1
+//        for creator in creators {
+//            let unsorted = Indexing.nameUnsort(for: creator) ?? ""
+//            let trimmed = unsorted.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+//            if trimmed != "" {
+//                let author: Person
+//                if let cached = cachedPeople[trimmed] {
+//                    author = cached
+//                } else {
+//                    author = Person.named(trimmed, in: context)
+//                    if author.source == nil {
+//                        author.source = KindleImporter.identifier
+//                        author.uuid = "\(book.asin!)-author-\(index)"
+//                    }
+//                    index += 1
+//                    cachedPeople[trimmed] = author
+//                }
+//                let relationship = author.relationship(as: Role.StandardName.author)
+//                relationship.add(book)
+//            }
+//        }
     }
     
     private func process(publishers: [String], for book: Book) {
-        for publisher in publishers {
-            let trimmed = publisher.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-            if trimmed != "" {
-                let publisher: Publisher
-                if let cached = cachedPublishers[trimmed] {
-                    publisher = cached
-                } else {
-                    publisher = Publisher.named(trimmed, in: context)
-                    if publisher.source == nil {
-                        publisher.source = KindleImporter.identifier
-                    }
-                    cachedPublishers[trimmed] = publisher
-                }
-                publisher.add(book)
-            }
-        }
+//        for publisher in publishers {
+//            let trimmed = publisher.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+//            if trimmed != "" {
+//                let publisher: Publisher
+//                if let cached = cachedPublishers[trimmed] {
+//                    publisher = cached
+//                } else {
+//                    publisher = Publisher.named(trimmed, in: context)
+//                    if publisher.source == nil {
+//                        publisher.source = KindleImporter.identifier
+//                    }
+//                    cachedPublishers[trimmed] = publisher
+//                }
+//                publisher.add(book)
+//            }
+//        }
     }
     
 }

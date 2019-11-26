@@ -4,7 +4,7 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Foundation
-import CoreData
+import Datastore
 import Localization
 
 public class StandardRolesImporter: Importer {
@@ -14,8 +14,8 @@ public class StandardRolesImporter: Importer {
         super.init(name: "Standard Roles", source: .knownLocation, manager: manager)
     }
     
-    override func makeSession(in context: NSManagedObjectContext, monitor: ImportMonitor?) -> ImportSession? {
-        return StandardRolesImportSession(importer: self, context: context, monitor: monitor)
+    override func makeSession(in store: Datastore, monitor: ImportMonitor?) -> ImportSession? {
+        return StandardRolesImportSession(importer: self, store: store, monitor: monitor)
     }
 }
 
@@ -23,10 +23,10 @@ class StandardRolesImportSession: ImportSession {
     override func run() {
         // Add a few standard roles to the context
         for name in Role.StandardName.allCases {
-            let role = Role.named(name, in: context)
-            role.notes = "Role.standard.\(name).notes".localized
-            role.uuid = "standard-\(name)"
-            role.locked = true
+//            let role = Role.named(name, in: context)
+//            role.notes = "Role.standard.\(name).notes".localized
+//            role.uuid = "standard-\(name)"
+//            role.locked = true
         }
     }
 }

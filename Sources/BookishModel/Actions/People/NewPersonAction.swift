@@ -4,17 +4,17 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Actions
-import CoreData
+import Datastore
 
 /**
  Action that creates a new person.
  */
 
 class NewPersonAction: PersonAction {
-    override func perform(context: ActionContext, model: NSManagedObjectContext) {
-        let person = Person(context: model)
-        context.info.forObservers { (observer: PersonLifecycleObserver) in
-            observer.created(person: person)
-        }
+    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+//        let person = Person(context: model)
+//        context.info.forObservers { (observer: PersonLifecycleObserver) in
+//            observer.created(person: person)
+//        }
     }
 }

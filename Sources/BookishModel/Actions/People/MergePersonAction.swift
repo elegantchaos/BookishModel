@@ -4,7 +4,7 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Actions
-import CoreData
+import Datastore
 
 /**
  Action that merges together a number of people.
@@ -13,25 +13,25 @@ import CoreData
  */
 
 class MergePersonAction: PersonAction {
-    func moveRelationships(from: Person, to: Person, context: NSManagedObjectContext) {
-        for fromRelationship in from.relationships {
-            if let role = fromRelationship.role {
-                let books = fromRelationship.books
-                let toRelationship = to.relationship(as: role)
-                toRelationship.add(books)
-                fromRelationship.remove(books)
-                personActionChannel.log("Updated \(toRelationship)")
-            }
-            from.remove(fromRelationship)
-            context.delete(fromRelationship)
-        }
-    }
+//    func moveRelationships(from: Person, to: Person, context: NSManagedObjectContext) {
+//        for fromRelationship in from.relationships {
+//            if let role = fromRelationship.role {
+//                let books = fromRelationship.books
+//                let toRelationship = to.relationship(as: role)
+//                toRelationship.add(books)
+//                fromRelationship.remove(books)
+//                personActionChannel.log("Updated \(toRelationship)")
+//            }
+//            from.remove(fromRelationship)
+//            context.delete(fromRelationship)
+//        }
+//    }
     
     override func validate(context: ActionContext) -> Action.Validation {
         return validateSelection(type: Person.self, context: context, minimumToEnable: 2, usingPluralTitle: false)
     }
     
-    override func perform(context: ActionContext, model: NSManagedObjectContext) {
+    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
         if let selection = context[ActionContext.selectionKey] as? [Person], let primary = selection.first {
             
             let uuids = selection.compactMap({$0.uuid}).map({ "\"\($0)\"" }).joined(separator: ", ")
@@ -47,8 +47,8 @@ class MergePersonAction: PersonAction {
             let others = selection.dropFirst()
             personActionChannel.log("Merging \(primary) with \(others)")
             for person in others {
-                moveRelationships(from: person, to: primary, context: model)
-                model.delete(person)
+//                moveRelationships(from: person, to: primary, context: model)
+//                model.delete(person)
                 log += "\nMerged with \(person).\n"
             }
             primary.log = log

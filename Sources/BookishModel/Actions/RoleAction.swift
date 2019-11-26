@@ -3,8 +3,8 @@
 //  All code (c) 2019 - present day, Elegant Chaos Limited.
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-import CoreData
 import Actions
+import Datastore
 import Logger
 
 let roleActionChannel = Channel("com.elegantchaos.bookish.model.RoleAction")
@@ -34,7 +34,7 @@ public protocol RoleLifecycleObserver: ActionObserver {
  Common functionality for all role-related actions.
  */
 
-open class RoleAction: SyncModelAction {
+open class RoleAction: ModelAction {
     public static let roleKey = "role"
     
     open override func validate(context: ActionContext) -> Validation {
@@ -67,11 +67,12 @@ class NewRoleAction: RoleAction {
         return modelValidate(context:context) // we don't need a selection, so we skip to ModelAction's validation
     }
     
-    override func perform(context: ActionContext, model: NSManagedObjectContext) {
-        let role = Role(context: model)
-        context.info.forObservers { (observer: RoleLifecycleObserver) in
-            observer.created(role: role)
-        }
+    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+        completion()
+//        let role = Role(context: model)
+//        context.info.forObservers { (observer: RoleLifecycleObserver) in
+//            observer.created(role: role)
+//        }
     }
 }
 
@@ -93,7 +94,7 @@ class DeleteRoleAction: RoleAction {
         return info
     }
     
-    override func perform(context: ActionContext, model: NSManagedObjectContext) {
+    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
         if let selection = context[ActionContext.selectionKey] as? [Role] {
             for role in selection {
                 if !role.locked { // only delete the unlocked ones
@@ -101,7 +102,7 @@ class DeleteRoleAction: RoleAction {
                         observer.deleted(role: role)
                     }
                     
-                    model.delete(role)
+//                    model.delete(role)
                 }
             }
         }
@@ -113,14 +114,14 @@ class DeleteRoleAction: RoleAction {
  The role to reveal can either be set as the roleKey, or extracted from a relationship set as the relationshipKey
  */
 
-class RevealRoleAction: SyncModelAction {
+class RevealRoleAction: ModelAction {
     override func validate(context: ActionContext) -> Validation {
         var info = super.validate(context: context)
         info.enabled = info.enabled && (context[RoleAction.roleKey] as? Role != nil) && (context[ActionContext.rootKey] as? RoleViewer != nil)
         return info
     }
     
-    public override func perform(context: ActionContext, model: NSManagedObjectContext) {
+    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
         if let viewer = context[ActionContext.rootKey] as? RoleViewer {
             if let role = context[RoleAction.roleKey] as? Role {
                 viewer.reveal(role: role)

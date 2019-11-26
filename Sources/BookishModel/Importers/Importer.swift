@@ -4,7 +4,7 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Foundation
-import CoreData
+import Datastore
 
 public class Importer {
     public enum Source {
@@ -75,28 +75,28 @@ public class Importer {
         return string
     }
 
-    internal func makeSession(in context: NSManagedObjectContext, monitor: ImportMonitor?) -> ImportSession? {
-        let session = ImportSession(importer: self, context: context, monitor: monitor)
+    internal func makeSession(in store: Datastore, monitor: ImportMonitor?) -> ImportSession? {
+        let session = ImportSession(importer: self, store: store, monitor: monitor)
         return session
     }
 
-    internal func makeSession(importing url: URL, in context: NSManagedObjectContext, monitor: ImportMonitor? = nil) -> URLImportSession? {
-        let session = URLImportSession(importer: self, context: context, url: url, monitor: monitor)
+    internal func makeSession(importing url: URL, in store: Datastore, monitor: ImportMonitor?) -> URLImportSession? {
+        let session = URLImportSession(importer: self, store: store, url: url, monitor: monitor)
         return session
     }
     
-    public func run(importing url: URL, in context: NSManagedObjectContext, monitor: ImportMonitor? = nil) {
-        if let session = makeSession(importing: url, in: context, monitor: monitor) {
+    public func run(importing url: URL, in store: Datastore, monitor: ImportMonitor? = nil) {
+        if let session = makeSession(importing: url, in: store, monitor: monitor) {
             session.performImport()
         } else {
             monitor?.noImporter()
         }
     }
 
-    public func run(in context: NSManagedObjectContext, monitor: ImportMonitor?) {
+    public func run(in store: Datastore, monitor: ImportMonitor?) {
         switch source {
         case .knownLocation:
-            if let session = makeSession(in: context, monitor: monitor) {
+            if let session = makeSession(in: store, monitor: monitor) {
                 session.performImport()
             } else {
                 monitor?.noImporter()
@@ -104,7 +104,7 @@ public class Importer {
             
         case .userSpecifiedFile:
             monitor?.chooseFile(for: self, completion: { url in
-                if let session = self.makeSession(importing: url, in: context, monitor: monitor) {
+                if let session = self.makeSession(importing: url, in: store, monitor: monitor) {
                     session.performImport()
                 } else {
                     monitor?.noImporter()

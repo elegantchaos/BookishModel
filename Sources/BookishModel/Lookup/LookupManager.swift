@@ -4,7 +4,7 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Foundation
-import CoreData
+import Datastore
 import Logger
 
 let lookupChannel = Channel("com.elegantchaos.bookish.model.Lookup")
@@ -28,9 +28,9 @@ public class LookupManager {
         services.append(service)
     }
     
-    public func lookup(query: String, context: NSManagedObjectContext, callback: @escaping LookupSession.Callback) -> LookupSession {
+    public func lookup(query: String, in store: Datastore, callback: @escaping LookupSession.Callback) -> LookupSession {
         lookupChannel.log("Looking up \(query)")
-        let session = LookupSession(search: query, manager: self, context: context, callback: callback)
+        let session = LookupSession(search: query, manager: self, in: store, callback: callback)
         session.run()
         return session
     }

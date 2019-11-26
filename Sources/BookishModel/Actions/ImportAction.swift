@@ -4,7 +4,7 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Foundation
-import CoreData
+import Datastore
 import Actions
 
 extension ActionContext { // TODO: move into Actions
@@ -19,7 +19,7 @@ extension ActionContext { // TODO: move into Actions
     }
 }
 
-public class ImportAction: SyncModelAction {
+public class ImportAction: ModelAction {
     public static let importerKey = "importer"
     public static let monitorKey = "importMonitor"
     public static let managerKey = "importManager"
@@ -31,7 +31,7 @@ public class ImportAction: SyncModelAction {
         ]
     }
     
-    public override func perform(context: ActionContext, model: NSManagedObjectContext) {
+    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
         // the importer can be provided explicitly, or as an id (in which case the manager is also needed)
         var importer: Importer? = context[ImportAction.importerKey] as? Importer
         if importer == nil, let manager = context[ImportAction.managerKey] as? ImportManager, let importerID = context[ImportAction.importerKey] as? String {
@@ -42,9 +42,9 @@ public class ImportAction: SyncModelAction {
         if let importer = importer {
             let monitor = context[ImportAction.monitorKey] as? ImportMonitor
             if let url = context.url(withKey: ImportAction.urlKey) {
-                importer.run(importing: url, in: model, monitor: monitor)
+                importer.run(importing: url, in: store, monitor: monitor)
             } else {
-                importer.run(in: model, monitor: monitor)
+                importer.run(in: store, monitor: monitor)
             }
         }
     }

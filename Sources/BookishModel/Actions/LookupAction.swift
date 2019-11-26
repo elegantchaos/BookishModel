@@ -4,9 +4,9 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Actions
-import CoreData
+import Datastore
 
-public class LookupAction: SyncModelAction {
+public class LookupAction: ModelAction {
     public static let candidateKey = "candidate"
 
     override open class func standardActions() -> [Action] {
@@ -30,19 +30,20 @@ public class LookupCoverAction: LookupAction {
         return info
     }
     
-    public override func perform(context: ActionContext, model: NSManagedObjectContext) {
-        if let manager = context[LookupCoverAction.managerKey] as? LookupManager,
-            let books = context[ActionContext.selectionKey] as? [Book] {
-            for book in books {
-                lookupByISBN(book: book, manager: manager, context: model)
-            }
-        }
+    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+        completion()
+//        if let manager = context[LookupCoverAction.managerKey] as? LookupManager,
+//            let books = context[ActionContext.selectionKey] as? [Book] {
+//            for book in books {
+//                lookupByISBN(book: book, manager: manager, context: model)
+//            }
+//        }
     }
     
-    func lookupByISBN(book: Book, manager: LookupManager, context: NSManagedObjectContext) {
+    func lookupByISBN(book: Book, manager: LookupManager, in store: Datastore) {
         if let isbn = book.isbn {
             var replaced = false
-            _ = manager.lookup(query: isbn, context: context) { (session, state) in
+            _ = manager.lookup(query: isbn, in: store) { (session, state) in
                 switch(state) {
                 case let .foundCandidate(candidate):
                     if !replaced && !(candidate is ExistingCollectionLookupCandidate) {
@@ -52,18 +53,18 @@ public class LookupCoverAction: LookupAction {
                 case .done:
                     // if we got no hits with isbn, try a free text search combining the title, author(s) and publisher
                     if !replaced {
-                        self.lookupByMetadata(book: book, manager: manager, context: context)
+                        self.lookupByMetadata(book: book, manager: manager, in: store)
                     }
                 default:
                     break
                 }
             }
         } else {
-            lookupByMetadata(book: book, manager: manager, context: context)
+            lookupByMetadata(book: book, manager: manager, in: store)
         }
     }
     
-    func lookupByMetadata(book: Book, manager: LookupManager, context: NSManagedObjectContext) {
+    func lookupByMetadata(book: Book, manager: LookupManager, in store: Datastore) {
         var items: [String] = []
         if let name = book.name {
             items.append("intitle:\"\(name)\"")
@@ -80,7 +81,7 @@ public class LookupCoverAction: LookupAction {
             var replaced = false
             let query = items.joined(separator: "+")
             print(query)
-            _ = manager.lookup(query: query, context: context) { (session, state) in
+            _ = manager.lookup(query: query, in: store) { (session, state) in
                 switch(state) {
                 case let .foundCandidate(candidate):
                     if !replaced && !(candidate is ExistingCollectionLookupCandidate) {
@@ -96,18 +97,20 @@ public class LookupCoverAction: LookupAction {
 }
 
 public class AddCandidateAction: LookupAction {
-    public override func perform(context: ActionContext, model: NSManagedObjectContext) {
+    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
         if let candidate = context[LookupAction.candidateKey] as? LookupCandidate {
-            let book = candidate.makeBook(in: model)
-            context.info.forObservers { (viewer: BookViewer) in
-                viewer.reveal(book: book, dismissPopovers: false)
+            candidate.makeBook(in: store) { book in
+                context.info.forObservers { (viewer: BookViewer) in
+                    viewer.reveal(book: book, dismissPopovers: false)
+                }
+                completion()
             }
         }
     }
 }
 
 public class ViewCandidateAction: LookupAction {
-    public override func perform(context: ActionContext, model: NSManagedObjectContext) {
+    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
         if let candidate = context[LookupAction.candidateKey] as? LookupCandidate, let book = candidate.existingBook {
             context.info.forObservers { (viewer: BookViewer) in
                 viewer.reveal(book: book, dismissPopovers: true)

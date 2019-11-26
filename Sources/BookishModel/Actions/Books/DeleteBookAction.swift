@@ -4,7 +4,7 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Actions
-import CoreData
+import Datastore
 
 /**
  Action that deletes a book.
@@ -12,15 +12,16 @@ import CoreData
 
 public class DeleteBookAction: BookAction {
     
-    public override func perform(context: ActionContext, model: NSManagedObjectContext) {
-        if let selection = context[ActionContext.selectionKey] as? [Book] {
-            for book in selection {
-                model.delete(book)
-            }
-            context.info.forObservers { (observer: BookLifecycleObserver) in
-                observer.deleted(books: selection)
-            }
-        }
+    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+        completion()
+//        if let selection = context[ActionContext.selectionKey] as? [Book] {
+//            for book in selection {
+//                model.delete(book)
+//            }
+//            context.info.forObservers { (observer: BookLifecycleObserver) in
+//                observer.deleted(books: selection)
+//            }
+//        }
     }
     
 }

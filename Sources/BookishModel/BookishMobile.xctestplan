@@ -53,7 +53,6 @@
   },
   "testTargets" : [
     {
-      "enabled" : false,
       "target" : {
         "containerPath" : "container:BookishModel.xcodeproj",
         "identifier" : "224293BA212AE16300E70510",

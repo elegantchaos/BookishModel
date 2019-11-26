@@ -4,20 +4,20 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Actions
-import CoreData
+import Datastore
 
 /**
  Action that shows a book in the user interface.
  */
 
-class RevealBookAction: SyncModelAction {
+class RevealBookAction: ModelAction {
     override func validate(context: ActionContext) -> Validation {
         var info = super.validate(context: context)
         info.enabled = info.enabled && ((context[BookAction.bookKey] as? Book) != nil)
         return info
     }
     
-    public override func perform(context: ActionContext, model: NSManagedObjectContext) {
+    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
         if let book = context[BookAction.bookKey] as? Book {
 //            context.info.forObservers { (viewer: BookViewer) in
 //                viewer.reveal(book: book, dismissPopovers: true)

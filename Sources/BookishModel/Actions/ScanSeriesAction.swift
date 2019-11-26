@@ -4,11 +4,11 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Actions
-import CoreData
+import Datastore
 
-class ScanSeriesAction: SyncModelAction {
-    override func perform(context: ActionContext, model: NSManagedObjectContext) {
-        let scanner = SeriesScanner(context: model)
-        scanner.run()
+class ScanSeriesAction: ModelAction {
+    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+//        let scanner = SeriesScanner(context: model)
+//        scanner.run()
     }
 }

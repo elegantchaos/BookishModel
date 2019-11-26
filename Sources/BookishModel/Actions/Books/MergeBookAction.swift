@@ -4,7 +4,7 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Actions
-import CoreData
+import Datastore
 
 /**
  Action that merges together a number of books.
@@ -13,42 +13,42 @@ import CoreData
  */
 
 class MergeBookAction: BookAction {
-    func moveProperties(from: Book, to: Book, context: NSManagedObjectContext) -> String {
-        var log = ""
-        
-        let propertiesToReplace = ["added", "asin", "classification", "format", "height", "imageData", "imageURL", "importDate", "isbn", "length", "modified", "name", "owner", "pages", "published", "read", "source", "subtitle", "weight", "width"]
-        for property in propertiesToReplace {
-            if let value = from.value(forKey: property) as? NSObject {
-                if let existing = to.value(forKey: property) as? NSObject  {
-                    if value != existing {
-                        log += "- \(property) was: \(existing)\n"
-                    }
-                }
-                to.setValue(value, forKey: property)
-            }
-        }
-
-        let propertiesToMerge = ["importRaw", "notes"]
-        for property in propertiesToMerge {
-            if let value = from.value(forKey: property) as? NSString {
-                if let existing = to.value(forKey: property) as? NSString  {
-                    if value != existing {
-                        to.setValue("\(existing)\n\n\(value)" , forKey: property)
-                    }
-                } else {
-                    to.setValue(value, forKey: property)
-                }
-            }
-        }
-
-        return log
-    }
+//    func moveProperties(from: Book, to: Book, context: NSManagedObjectContext) -> String {
+//        var log = ""
+//
+//        let propertiesToReplace = ["added", "asin", "classification", "format", "height", "imageData", "imageURL", "importDate", "isbn", "length", "modified", "name", "owner", "pages", "published", "read", "source", "subtitle", "weight", "width"]
+//        for property in propertiesToReplace {
+//            if let value = from.value(forKey: property) as? NSObject {
+//                if let existing = to.value(forKey: property) as? NSObject  {
+//                    if value != existing {
+//                        log += "- \(property) was: \(existing)\n"
+//                    }
+//                }
+//                to.setValue(value, forKey: property)
+//            }
+//        }
+//
+//        let propertiesToMerge = ["importRaw", "notes"]
+//        for property in propertiesToMerge {
+//            if let value = from.value(forKey: property) as? NSString {
+//                if let existing = to.value(forKey: property) as? NSString  {
+//                    if value != existing {
+//                        to.setValue("\(existing)\n\n\(value)" , forKey: property)
+//                    }
+//                } else {
+//                    to.setValue(value, forKey: property)
+//                }
+//            }
+//        }
+//
+//        return log
+//    }
     
     override func validate(context: ActionContext) -> Action.Validation {
         return validateSelection(type: Book.self, context: context, minimumToEnable: 2, usingPluralTitle: false)
     }
     
-    override func perform(context: ActionContext, model: NSManagedObjectContext) {
+    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
         if let selection = context[ActionContext.selectionKey] as? [Book], let primary = selection.first {
             
             var log = primary.log ?? ""
@@ -66,11 +66,11 @@ class MergeBookAction: BookAction {
                 relationship.add(primary)
             }
             
-            for book in others {
-                log += "\nMerged with \(book).\n"
-                log += moveProperties(from: book, to: primary, context: model)
-                model.delete(book)
-            }
+//            for book in others {
+//                log += "\nMerged with \(book).\n"
+//                log += moveProperties(from: book, to: primary, context: model)
+//                model.delete(book)
+//            }
             
             primary.log = log
         }

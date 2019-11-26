@@ -4,7 +4,7 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Actions
-import CoreData
+import Datastore
 
 /**
  Action that reveals a person in the UI.
@@ -20,7 +20,7 @@ class RevealPersonAction: PersonAction {
         return info
     }
     
-    public override func perform(context: ActionContext, model: NSManagedObjectContext) {
+    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
         if let viewer = context[ActionContext.rootKey] as? PersonViewer {
             if let person = context[PersonAction.personKey] as? Person {
                 viewer.reveal(person: person)

@@ -3,8 +3,8 @@
 //  All code (c) 2018 - present day, Elegant Chaos Limited.
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-import CoreData
 import Actions
+import Datastore
 
 /**
  Protocol providing user interface actions.
@@ -31,7 +31,7 @@ public protocol PublisherLifecycleObserver: ActionObserver {
  Common functionality for all Publisher-related actions.
  */
 
-open class PublisherAction: SyncModelAction {
+open class PublisherAction: ModelAction {
     public static let publisherKey = "publisher"
     public static let newPublisherKey = "newPublisher"
     
@@ -67,11 +67,11 @@ class NewPublisherAction: PublisherAction {
         return modelValidate(context: context)
     }
     
-    override func perform(context: ActionContext, model: NSManagedObjectContext) {
-        let publisher = Publisher(context: model)
-        context.info.forObservers { (observer: PublisherLifecycleObserver) in
-            observer.created(publisher: publisher)
-        }
+    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+//        let publisher = Publisher(context: model)
+//        context.info.forObservers { (observer: PublisherLifecycleObserver) in
+//            observer.created(publisher: publisher)
+//        }
     }
 }
 
@@ -80,14 +80,14 @@ class NewPublisherAction: PublisherAction {
  */
 
 class DeletePublisherAction: PublisherAction {
-    override func perform(context: ActionContext, model: NSManagedObjectContext) {
+    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
         if let selection = context[ActionContext.selectionKey] as? [Publisher] {
             for publisher in selection {
                 context.info.forObservers { (observer: PublisherLifecycleObserver) in
                     observer.deleted(publisher: publisher)
                 }
                 
-                model.delete(publisher)
+//                model.delete(publisher)
             }
         }
     }
@@ -106,7 +106,7 @@ class RevealPublisherAction: PublisherAction {
         return info
     }
     
-    public override func perform(context: ActionContext, model: NSManagedObjectContext) {
+    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
         if let viewer = context[ActionContext.rootKey] as? PublisherViewer {
             if let publisher = context[PublisherAction.publisherKey] as? Publisher {
                 viewer.reveal(publisher: publisher)

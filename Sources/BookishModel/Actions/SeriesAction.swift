@@ -3,8 +3,8 @@
 //  All code (c) 2018 - present day, Elegant Chaos Limited.
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-import CoreData
 import Actions
+import Datastore
 
 /**
  Protocol providing user interface actions.
@@ -30,7 +30,7 @@ public protocol SeriesLifecycleObserver: ActionObserver {
  Common functionality for all Series-related actions.
  */
 
-open class SeriesAction: SyncModelAction {
+open class SeriesAction: ModelAction {
     public static let newSeriesKey = "newSeries"
     public static let seriesKey = "series"
     public static let positionKey = "position"
@@ -66,11 +66,12 @@ class NewSeriesAction: SeriesAction {
         return modelValidate(context: context)
     }
     
-    override func perform(context: ActionContext, model: NSManagedObjectContext) {
-        let series = Series(context: model)
-        context.info.forObservers { (observer: SeriesLifecycleObserver) in
-            observer.created(series: series)
-        }
+    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+        completion()
+//        let series = Series(context: model)
+//        context.info.forObservers { (observer: SeriesLifecycleObserver) in
+//            observer.created(series: series)
+//        }
     }
 }
 
@@ -79,14 +80,15 @@ class NewSeriesAction: SeriesAction {
  */
 
 class DeleteSeriesAction: SeriesAction {
-    override func perform(context: ActionContext, model: NSManagedObjectContext) {
+    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
         if let selection = context[ActionContext.selectionKey] as? [Series] {
             for series in selection {
                 context.info.forObservers { (observer: SeriesLifecycleObserver) in
                     observer.deleted(series: series)
                 }
-                
-                model.delete(series)
+
+                completion()
+//                model.delete(series)
             }
         }
     }
@@ -103,7 +105,7 @@ class RevealSeriesAction: SeriesAction {
         return info
     }
     
-    public override func perform(context: ActionContext, model: NSManagedObjectContext) {
+    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
         if let viewer = context[ActionContext.rootKey] as? SeriesViewer {
             if let series = context[SeriesAction.seriesKey] as? Series {
                 viewer.reveal(series: series)

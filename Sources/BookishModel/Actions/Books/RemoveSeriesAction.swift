@@ -4,7 +4,7 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Actions
-import CoreData
+import Datastore
 
 /**
  Action that removes a relationship from a book.
@@ -17,7 +17,7 @@ class RemoveSeriesAction: BookAction {
         return info
     }
     
-    override func perform(context: ActionContext, model: NSManagedObjectContext) {
+    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
         if
             let selection = context[ActionContext.selectionKey] as? [Book],
             let series = context[SeriesAction.seriesKey] as? Series {

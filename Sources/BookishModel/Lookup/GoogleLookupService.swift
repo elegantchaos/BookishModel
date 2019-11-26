@@ -3,7 +3,8 @@
 //  All code (c) 2019 - present day, Elegant Chaos Limited.
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-import CoreData
+import Datastore
+import Foundation
 
 public class GoogleLookupCandidate: LookupCandidate {
     let info: [String:Any]
@@ -61,21 +62,22 @@ public class GoogleLookupCandidate: LookupCandidate {
         return "AddCandidate"
     }
     
-    public override func makeBook(in context: NSManagedObjectContext) -> Book {
-        let book = super.makeBook(in: context)
-        if let pages = info["pageCount"] as? NSNumber {
-            book.pages = pages.int16Value
+    public override func makeBook(in store: Datastore, completion: @escaping (Book) -> Void) {
+        let info = self.info
+        super.makeBook(in: store) { book in
+            if let pages = info["pageCount"] as? NSNumber {
+                book.pages = pages.int16Value
+            }
+            
+            if let isbn = GoogleLookupCandidate.isbn(from: info) {
+                book.isbn = isbn
+            }
+            
+            if let data = try? JSONSerialization.data(withJSONObject: info, options: .prettyPrinted) {
+                book.importRaw = String(data: data, encoding: .utf8)
+            }
+            completion(book)
         }
-        
-        if let isbn = GoogleLookupCandidate.isbn(from: info) {
-            book.isbn = isbn
-        }
-        
-        if let data = try? JSONSerialization.data(withJSONObject: info, options: .prettyPrinted) {
-            book.importRaw = String(data: data, encoding: .utf8)
-        }
-
-        return book
     }
 }
 

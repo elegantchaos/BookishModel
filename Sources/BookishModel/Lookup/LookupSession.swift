@@ -4,7 +4,7 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Foundation
-import CoreData
+import Datastore
 
 public class LookupSession {
     public enum State {
@@ -18,15 +18,15 @@ public class LookupSession {
     
     public let search: String
     let manager: LookupManager
-    let context: NSManagedObjectContext
+    let store: Datastore
     var callback: Callback?
     var running: Set<LookupService>
     
-    init(search: String, manager: LookupManager, context: NSManagedObjectContext, callback: @escaping Callback) {
+    init(search: String, manager: LookupManager, in store: Datastore, callback: @escaping Callback) {
         self.search = search
         self.manager = manager
         self.callback = callback
-        self.context = context
+        self.store = store
         self.running = Set<LookupService>()
     }
     

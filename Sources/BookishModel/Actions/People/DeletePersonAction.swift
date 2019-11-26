@@ -4,7 +4,7 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Actions
-import CoreData
+import Datastore
 
 /**
  Action that deletes a person.
@@ -15,14 +15,14 @@ class DeletePersonAction: PersonAction {
         return validateSelection(type: Person.self, context: context, usingPluralTitle: true)
     }
 
-    override func perform(context: ActionContext, model: NSManagedObjectContext) {
+    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
         if let selection = context[ActionContext.selectionKey] as? [Person] {
             for person in selection {
                 context.info.forObservers { (observer: PersonLifecycleObserver) in
                     observer.deleted(person: person)
                 }
                 
-                model.delete(person)
+//                model.delete(person)
             }
         }
     }

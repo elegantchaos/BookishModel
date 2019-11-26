@@ -277,6 +277,7 @@
 		8B397DB2238D667E001596D0 /* Datastore in Frameworks */ = {isa = PBXBuildFile; productRef = 8B397DB1238D667E001596D0 /* Datastore */; };
 		8B397DB4238D695E001596D0 /* Localization in Frameworks */ = {isa = PBXBuildFile; productRef = 8B397DB3238D695E001596D0 /* Localization */; };
 		8B397DB5238D695E001596D0 /* Localization in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 8B397DB3238D695E001596D0 /* Localization */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		8B397DB7238D7708001596D0 /* Datastore in Frameworks */ = {isa = PBXBuildFile; productRef = 8B397DB6238D7708001596D0 /* Datastore */; };
 		8B3DD9B822F079FE00EB7CD2 /* Actions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B3DD9B722F079FE00EB7CD2 /* Actions */; };
 		8B456C3223017EC00056E153 /* ConvertCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B456C3123017EC00056E153 /* ConvertCommand.swift */; };
 		8B456C34230188510056E153 /* AnyCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B456C33230188510056E153 /* AnyCodable.swift */; };
@@ -603,6 +604,7 @@
 			files = (
 				8B46F3B322E7168500F08F2D /* JSONDump in Frameworks */,
 				8B66550F22FD9B42005ABF39 /* Localization in Frameworks */,
+				8B397DB7238D7708001596D0 /* Datastore in Frameworks */,
 				8B3DD9B822F079FE00EB7CD2 /* Actions in Frameworks */,
 				8B46F3B022E7165200F08F2D /* Expressions in Frameworks */,
 				8B1B9B3023042C9A00C86B2C /* LoggerKit in Frameworks */,
@@ -1043,6 +1045,7 @@
 				8B3DD9B722F079FE00EB7CD2 /* Actions */,
 				8B66550E22FD9B42005ABF39 /* Localization */,
 				8B1B9B2F23042C9A00C86B2C /* LoggerKit */,
+				8B397DB6238D7708001596D0 /* Datastore */,
 			);
 			productName = BookishModelMobile;
 			productReference = 224293B3212AE16200E70510 /* BookishModel.framework */;
@@ -2021,6 +2024,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8B7BF86322EB3BF30061087A /* XCRemoteSwiftPackageReference "Localization" */;
 			productName = Localization;
+		};
+		8B397DB6238D7708001596D0 /* Datastore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B397DB0238D667E001596D0 /* XCRemoteSwiftPackageReference "Datastore" */;
+			productName = Datastore;
 		};
 		8B3DD9B722F079FE00EB7CD2 /* Actions */ = {
 			isa = XCSwiftPackageProductDependency;

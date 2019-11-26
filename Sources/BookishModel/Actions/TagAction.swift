@@ -3,8 +3,8 @@
 //  All code (c) 2019 - present day, Elegant Chaos Limited.
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-import CoreData
 import Actions
+import Datastore
 
 public protocol TagObserver: ActionObserver {
     func deleted(tags: Set<Tag>)
@@ -18,7 +18,7 @@ public extension TagObserver {
     func changed(adding addedTags: Set<Tag>, removing removedTags: Set<Tag>) { }
 }
 
-public class TagAction: SyncModelAction {
+public class TagAction: ModelAction {
     public static let addedTagsKey = "added"
     public static let removedTagsKey = "removed"
     public static let tagKey = "tag"
@@ -35,7 +35,7 @@ public class TagAction: SyncModelAction {
 
 public class ChangeTagsAction: TagAction {
     
-    public override func perform(context: ActionContext, model: NSManagedObjectContext) {
+    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
             if
                 let selection = context[ActionContext.selectionKey] as? [ModelObject],
                 let addedTags = context[TagAction.addedTagsKey] as? Set<Tag>,
@@ -56,9 +56,9 @@ public class ChangeTagsAction: TagAction {
 }
 
 public class DeleteTagAction: TagAction {
-    public override func perform(context: ActionContext, model: NSManagedObjectContext) {
+    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
         if let tag = context[TagAction.tagKey] as? Tag {
-            model.delete(tag)
+//            model.delete(tag)
             
             context.info.forObservers { (observer: TagObserver) in
                 observer.deleted(tags: [tag])
@@ -69,7 +69,7 @@ public class DeleteTagAction: TagAction {
 }
 
 public class RenameTagAction: TagAction {
-    public override func perform(context: ActionContext, model: NSManagedObjectContext) {
+    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
         if let tag = context[TagAction.tagKey] as? Tag, let name = context[TagAction.tagNameKey] as? String {
             tag.name = name
             

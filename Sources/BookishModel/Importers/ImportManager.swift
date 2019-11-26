@@ -4,7 +4,7 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Foundation
-import CoreData
+import Datastore
 
 public protocol ImportMonitor {
     func chooseFile(for importer: Importer, completion: @escaping (URL) -> Void)
@@ -42,9 +42,9 @@ public class ImportManager {
         return importers[identifier]
     }
     
-    public func importFrom(_ url: URL, to context: NSManagedObjectContext, monitor: ImportMonitor) {
+    public func importFrom(_ url: URL, to store: Datastore, monitor: ImportMonitor) {
         for importer in sortedImporters {
-            if let session = importer.makeSession(importing: url, in: context, monitor: monitor) {
+            if let session = importer.makeSession(importing: url, in: store, monitor: monitor) {
                 session.performImport()
                 break
             }

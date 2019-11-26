@@ -3,8 +3,9 @@
 //  All code (c) 2018 - present day, Elegant Chaos Limited.
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-import CoreData
 import Actions
+import Datastore
+import Foundation
 import Logger
 
 let modelActionChannel = Logger("ModelAction")
@@ -30,40 +31,14 @@ open class ModelAction: Action {
  
     public func modelValidate(context: ActionContext) -> Validation {
         var info = super.validate(context: context)
-        info.enabled = info.enabled && ((context[ActionContext.modelKey] as? NSManagedObjectContext) != nil)
+        info.enabled = info.enabled && ((context[ActionContext.modelKey] as? Datastore) != nil)
         return info
     }
 
     open override func validate(context: ActionContext) -> Validation {
         return modelValidate(context: context)
     }
-    
-    open override func perform(context: ActionContext, completed: @escaping Completion) {
-        if let model = context[ActionContext.modelKey] as? NSManagedObjectContext {
-            modelActionChannel.debug("performing \(context.identifier)")
-            model.perform {
-                self.perform(context: context, model: model, completion: {
-                    do {
-                        try model.save()
-                    } catch {
-                        let nserror = error as NSError
-                        modelActionChannel.log("failed to save \(nserror)\n\(nserror.userInfo)")
-                    }
-                    
-                    completed()
-                })
-            }
-        } else {
-            modelActionChannel.debug("missing model for action")
-        }
-    }
-    
-    func perform(context: ActionContext, model: NSManagedObjectContext, completion: @escaping ModelAction.Completion) {
-        completion()
-    }
-}
 
-open class SyncModelAction: ModelAction {
     open func validateSelection<EntityType>(type: EntityType.Type, context: ActionContext, minimumToEnable: Int = 1, usingPluralTitle: Bool) -> Action.Validation {
         var info = super.validate(context: context)
 
@@ -84,12 +59,25 @@ open class SyncModelAction: ModelAction {
         return info
     }
 
-    override func perform(context: ActionContext, model: NSManagedObjectContext, completion: @escaping ModelAction.Completion) {
-        perform(context: context, model: model)
-        completion()
+    open override func perform(context: ActionContext, completed: @escaping Completion) {
+        if let store = context[ActionContext.modelKey] as? Datastore {
+            modelActionChannel.debug("performing \(context.identifier)")
+            perform(context: context, store: store) {
+                store.save() { result in
+                    switch result {
+                    case .failure(let error as NSError):
+                        modelActionChannel.log("failed to save \(error)\n\(error.userInfo)")
+                    default:
+                        break
+                    }
+                    completed()
+                }
+            }
+                            
+        }
     }
-
-    open func perform(context: ActionContext, model: NSManagedObjectContext) {
-        
+    
+    func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+        completion()
     }
 }

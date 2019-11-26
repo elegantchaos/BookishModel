@@ -3,7 +3,8 @@
 //  All code (c) 2018 - present day, Elegant Chaos Limited.
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-import CoreData
+import Datastore
+import Foundation
 import Localization
 
 public class ImportSession: Equatable {
@@ -14,12 +15,12 @@ public class ImportSession: Equatable {
     public typealias Completion = (ImportSession?) -> Void
     
     let importer: Importer
-    let context: NSManagedObjectContext
+    let store: Datastore
     let monitor: ImportMonitor?
     
-    init?(importer: Importer, context: NSManagedObjectContext, monitor: ImportMonitor?) {
+    init?(importer: Importer, store: Datastore, monitor: ImportMonitor?) {
         self.importer = importer
-        self.context = context
+        self.store = store
         self.monitor = monitor
     }
     
@@ -49,12 +50,12 @@ public class URLImportSession: ImportSession {
     
     let url: URL
     
-    init?(importer: Importer, context: NSManagedObjectContext, url: URL, monitor: ImportMonitor?) {
+    init?(importer: Importer, store: Datastore, url: URL, monitor: ImportMonitor?) {
         guard FileManager.default.fileExists(at: url) else {
             return nil
         }
         
         self.url = url
-        super.init(importer: importer, context: context, monitor: monitor)
+        super.init(importer: importer, store: store, monitor: monitor)
     }
 }
