@@ -28,6 +28,7 @@ struct TestImportMonitor: ImportMonitor {
     }
     
     func noImporter() {
+        expectation.fulfill()
     }
     
     let expectation: XCTestExpectation

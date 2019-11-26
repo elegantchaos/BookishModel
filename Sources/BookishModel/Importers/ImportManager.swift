@@ -15,6 +15,15 @@ public protocol ImportMonitor {
     func noImporter()
 }
 
+public extension ImportMonitor {
+    func chooseFile(for importer: Importer, completion: @escaping (URL) -> Void) { }
+    func session(_ session: ImportSession, willImportItems count: Int) { }
+    func session(_ session: ImportSession, willImportItem item: Int, of count: Int) { }
+    func sessionDidFinish(_ session: ImportSession) { }
+    func sessionDidFail(_ session: ImportSession) { }
+    func noImporter() { }
+}
+
 public class ImportManager {
     private var importers: [String:Importer] = [:]
     private var sessions: [ImportSession] = []

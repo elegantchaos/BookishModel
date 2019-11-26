@@ -3,71 +3,121 @@
 //  All code (c) 2019 - present day, Elegant Chaos Limited.
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-import XCTest
-import CoreData
 import Actions
+import Datastore
+import XCTest
 
 @testable import BookishModel
 
 class ImporterTests: ModelTestCase {
-//    
-//    class DummyImporter1: Importer {
-//        override class var identifier: String { return "dummy1" }
-//        override var defaultImportLocation: URL { return URL(fileURLWithPath: "/test") }
-//    }
-//
-//    class DummyImporter2: DummyImporter1 {
-//        override class var identifier: String { return "dummy2" }
-//    }
-//
-//    func testRegistration() {
-//        let manager = ImportManager()
-//        let initialCount = manager.sortedImporters.count
-//        let i1 = DummyImporter1(name: "A test 1", source: .knownLocation, manager: manager)
-//        let i2 = DummyImporter2(name: "Z test 2", source: .userSpecifiedFile, manager: manager)
-//        manager.register([i1, i2])
-//        XCTAssertTrue(manager.importer(identifier: "dummy1") === i1)
-//        XCTAssertTrue(manager.importer(identifier: "dummy2") === i2)
-//        XCTAssertEqual(manager.sortedImporters.count, initialCount + 2)
-//        XCTAssertTrue(manager.sortedImporters[0] === i1)
-//        XCTAssertTrue(manager.sortedImporters[initialCount + 1] === i2)
-//    }
-//    
-//    func testDefaultsKnownLocation() {
-//        let manager = ImportManager()
-//        let importer = DummyImporter1(name: "test", source: .knownLocation, manager: manager)
-//        XCTAssertFalse(importer.canImport)
-//        XCTAssertEqual(importer.defaultImportLocation.path, "/test")
-//        
-//        let expectation = self.expectation(description: "completed")
-//        let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-//        importer.run(importing: URL(fileURLWithPath: "/test"), in: context, monitor: TestImportMonitor(expectation: expectation))
-//        wait(for: [expectation], timeout: 1.0)
-//    }
-//
-//    func testDefaultsUserSpecified() {
-//        let manager = ImportManager()
-//        let importer = Importer(name: "test", source: .userSpecifiedFile, manager: manager)
-//        XCTAssertTrue(importer.canImport)
-//        XCTAssertNil(importer.defaultImportLocation)
-//    }
-//
-//    func testImporter() {
-//        let url = URL(fileURLWithPath: "/dev/null")
-//        let expectation = self.expectation(description: "import done")
-//        let container = CollectionContainer(name: "test", url: url, mode: .empty, indexed: false) { (container, error) in
-//            XCTAssertNil(error)
-//            XCTAssertNotNil(container)
-//
-//            let manager = ImportManager()
-//            let importer = manager.importer(identifier: DeliciousLibraryImporter.identifier)!
-//            let bundle = Bundle(for: type(of: self))
-//            let xmlURL = bundle.url(forResource: "Simple", withExtension: "plist")!
-//            importer.run(importing: xmlURL, in: container.managedObjectContext, monitor: TestImportMonitor(expectation: expectation))
-//        }
-//        wait(for: [expectation], timeout: 10.0)
-//        XCTAssertEqual(container.managedObjectContext.countEntities(type: Book.self), 2)
-//    }
+    
+    class DummyImporter1: Importer {
+        override class var identifier: String { return "dummy1" }
+        override var defaultImportLocation: URL { return URL(fileURLWithPath: "/test") }
+    }
+
+    class DummyImporter2: DummyImporter1 {
+        override class var identifier: String { return "dummy2" }
+    }
+
+    class Monitor: ImportMonitor {
+        typealias Checker = (Datastore, Monitor) -> Void
+        var status = false
+        let expectation: XCTestExpectation
+        let checker: Checker
+        
+        init(expectation: XCTestExpectation, checker: @escaping Checker) {
+            self.expectation = expectation
+            self.checker = checker
+        }
+        
+        func sessionDidFinish(_ session: ImportSession) {
+            checker(session.store, self)
+        }
+        
+        func sessionDidFail(_ session: ImportSession) {
+            XCTFail("import failed")
+            expectation.fulfill()
+        }
+
+        func noImporter() {
+            XCTFail("no importer found")
+            expectation.fulfill()
+        }
+        
+        func checkPassed() {
+            status = true
+            expectation.fulfill()
+        }
+        
+        func checkFailed() {
+            expectation.fulfill()
+        }
+        
+        func check(count: Int, expected: Int) {
+            if count != expected {
+                status = false
+                expectation.fulfill()
+            }
+        }
+    }
+
+    func check(importing url: URL, with importer: Importer, checker: @escaping Monitor.Checker) -> Bool {
+        let expectation = self.expectation(description: "completed")
+        let monitor = Monitor(expectation: expectation, checker: checker)
+        Datastore.load(name: "Test") { result in
+            switch result {
+            case .failure(let error):
+                XCTFail("failed to make store: \(error)")
+                expectation.fulfill()
+            case .success(let store):
+                importer.run(importing: url, in: store, monitor: monitor)
+            }
+        }
+
+        wait(for: [expectation], timeout: 1.0)
+        return monitor.status
+    }
+    
+    func testRegistration() {
+        let manager = ImportManager()
+        let initialCount = manager.sortedImporters.count
+        let i1 = DummyImporter1(name: "A test 1", source: .knownLocation, manager: manager)
+        let i2 = DummyImporter2(name: "Z test 2", source: .userSpecifiedFile, manager: manager)
+        manager.register([i1, i2])
+        XCTAssertTrue(manager.importer(identifier: "dummy1") === i1)
+        XCTAssertTrue(manager.importer(identifier: "dummy2") === i2)
+        XCTAssertEqual(manager.sortedImporters.count, initialCount + 2)
+        XCTAssertTrue(manager.sortedImporters[0] === i1)
+        XCTAssertTrue(manager.sortedImporters[initialCount + 1] === i2)
+    }
+    
+    func testDefaultsKnownLocation() {
+        let manager = ImportManager()
+        let importer = DummyImporter1(name: "test", source: .knownLocation, manager: manager)
+        XCTAssertFalse(importer.canImport)
+        XCTAssertEqual(importer.defaultImportLocation.path, "/test")
+    }
+
+    func testDefaultsUserSpecified() {
+        let manager = ImportManager()
+        let importer = Importer(name: "test", source: .userSpecifiedFile, manager: manager)
+        XCTAssertTrue(importer.canImport)
+        XCTAssertNil(importer.defaultImportLocation)
+    }
+
+    func testImporter() {
+        let manager = ImportManager()
+        let importer = manager.importer(identifier: DeliciousLibraryImporter.identifier)!
+        let bundle = Bundle(for: type(of: self))
+        let xmlURL = bundle.url(forResource: "Simple", withExtension: "plist")!
+        XCTAssertTrue(check(importing: xmlURL, with: importer, checker: { store, monitor in
+            store.get(allEntitiesOfType: "Book") { result in
+                monitor.check(count: result.count, expected: 2)
+                monitor.checkPassed()
+            }
+        }))
+    }
 //
 //    func testImportAction() {
 //        let url = URL(fileURLWithPath: "/dev/null")
@@ -78,7 +128,7 @@ class ImporterTests: ModelTestCase {
 //
 //            let actionManager = ActionManager()
 //            actionManager.register([ImportAction(identifier: "Import")])
-//            
+//
 //            let manager = ImportManager()
 //            let xmlURL = Bundle(for: type(of: self)).url(forResource: "Simple", withExtension: "plist")!
 //            let info = ActionInfo()
@@ -97,7 +147,7 @@ class ImporterTests: ModelTestCase {
 //        wait(for: [expectation], timeout: 10.0)
 //        XCTAssertEqual(container.managedObjectContext.countEntities(type: Book.self), 2)
 //    }
-//    
+//
 //    func testFileTypes() {
 //        let manager = ImportManager()
 //        let importer = Importer(name: "test", source: .userSpecifiedFile, manager: manager)
@@ -127,7 +177,7 @@ class ImporterTests: ModelTestCase {
 //        let count = container.managedObjectContext.countEntities(type: Role.self)
 //        XCTAssertEqual(count, Role.StandardName.allCases.count)
 //    }
-//    
+//
 //    func testTestDataImporter() {
 //        let container = makeTestContainer()
 //        let manager = ImportManager()
