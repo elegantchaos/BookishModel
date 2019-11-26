@@ -21,8 +21,14 @@ class ImporterTests: ModelTestCase {
     }
 
     class Monitor: ImportMonitor {
+        enum Status {
+            case unknown
+            case failed
+            case ok
+        }
+        
         typealias Checker = (Datastore, Monitor) -> Void
-        var status = false
+        var status: Status = .unknown
         let expectation: XCTestExpectation
         let checker: Checker
         
@@ -46,18 +52,26 @@ class ImporterTests: ModelTestCase {
         }
         
         func checkPassed() {
-            status = true
-            expectation.fulfill()
+            if status == .unknown {
+                status = .ok
+                self.expectation.fulfill()
+            }
         }
         
         func checkFailed() {
-            expectation.fulfill()
+            if status == .unknown {
+                status = .failed
+                expectation.fulfill()
+            }
         }
         
         func check(count: Int, expected: Int) {
-            if count != expected {
-                status = false
-                expectation.fulfill()
+            if status == .unknown {
+                if count != expected {
+                    status = .failed
+                    XCTFail("\(count) != \(expected)")
+                    expectation.fulfill()
+                }
             }
         }
     }
@@ -75,8 +89,8 @@ class ImporterTests: ModelTestCase {
             }
         }
 
-        wait(for: [expectation], timeout: 1.0)
-        return monitor.status
+        wait(for: [expectation], timeout: 10.0)
+        return monitor.status == .ok
     }
     
     func testRegistration() {
