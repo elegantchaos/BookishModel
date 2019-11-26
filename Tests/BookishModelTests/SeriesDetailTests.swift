@@ -58,21 +58,21 @@ class SeriesDetailProviderTests: ModelTestCase {
         XCTAssertEqual(source.sectionCount, 2)
     }
 
-    func testRemoveAction() {
-        let container = makeTestContainer()
-        let context = container.managedObjectContext
-        let series = Series(context: context)
-        let book = Book.named("test", in: context)
-        let entry = book.addToSeries(series, position: 1)
-        let item = SeriesDetailItem(entry: entry, absolute: 0, index: 0, source: BookDetailProvider())
-        if let (key, action, object) = item.removeAction {
-            XCTAssertEqual(key, SeriesAction.seriesKey)
-            XCTAssertEqual(action, "button.RemoveSeries")
-            XCTAssertEqual(object as? Series, series)
-        } else {
-            XCTFail()
-        }
-    }
+//    func testRemoveAction() {
+//        let container = makeTestContainer()
+//        let context = container.managedObjectContext
+//        let series = Series(context: context)
+//        let book = Book.named("test", in: context)
+//        let entry = book.addToSeries(series, position: 1)
+//        let item = SeriesDetailItem(entry: entry, absolute: 0, index: 0, source: BookDetailProvider())
+//        if let (key, action, object) = item.removeAction {
+//            XCTAssertEqual(key, SeriesAction.seriesKey)
+//            XCTAssertEqual(action, "button.RemoveSeries")
+//            XCTAssertEqual(object as? Series, series)
+//        } else {
+//            XCTFail()
+//        }
+//    }
     
     func testRemoveActionNil() {
         let item = SeriesDetailItem(entry: nil, absolute: 0, index: 0, source: BookDetailProvider())

@@ -27,41 +27,41 @@ class RelationshipTests: ModelTestCase {
         person.uuid = nil
         XCTAssertEqual(relationship.uniqueIdentifier, ModelObject.missingUUID)
     }
-
-    func testDescription() {
-        let container = makeTestContainer()
-        let context = container.managedObjectContext
-
-        let book = Book.named("test", in: context)
-        book.uuid = "book-id"
-
-        let person = Person.named("test", in: context)
-        person.uuid = "person-id"
-        
-        let relationship = Relationship(in: context)
-        XCTAssertEqual(relationship.description, "<Relationship: <unknown> for <unknown>>")
-        
-        relationship.role = Role.named("author", in: context)
-        XCTAssertEqual(relationship.description, "<Relationship: author for <unknown>>")
-
-        relationship.person = person
-        XCTAssertEqual(relationship.description, "<Relationship: author for test (person-id)>")
-
-        book.addToRelationships(relationship)
-        XCTAssertEqual(relationship.description, "<Relationship: author for test (person-id) with test (book-id)>")
-    }
-    
-    func testContains() {
-        let container = makeTestContainer()
-        let context = container.managedObjectContext
-        let book = Book.named("test", in: context)
-        let relationship = Relationship(in: context)
-        
-        XCTAssertFalse(relationship.contains(book: book))
-
-        let person = Person.named("test", in: context)
-        relationship.person = person
-        relationship.add(book)
-        XCTAssertTrue(relationship.contains(book: book))
-    }
+//
+//    func testDescription() {
+//        let container = makeTestContainer()
+//        let context = container.managedObjectContext
+//
+//        let book = Book.named("test", in: context)
+//        book.uuid = "book-id"
+//
+//        let person = Person.named("test", in: context)
+//        person.uuid = "person-id"
+//        
+//        let relationship = Relationship(in: context)
+//        XCTAssertEqual(relationship.description, "<Relationship: <unknown> for <unknown>>")
+//        
+//        relationship.role = Role.named("author", in: context)
+//        XCTAssertEqual(relationship.description, "<Relationship: author for <unknown>>")
+//
+//        relationship.person = person
+//        XCTAssertEqual(relationship.description, "<Relationship: author for test (person-id)>")
+//
+//        book.addToRelationships(relationship)
+//        XCTAssertEqual(relationship.description, "<Relationship: author for test (person-id) with test (book-id)>")
+//    }
+//    
+//    func testContains() {
+//        let container = makeTestContainer()
+//        let context = container.managedObjectContext
+//        let book = Book.named("test", in: context)
+//        let relationship = Relationship(in: context)
+//        
+//        XCTAssertFalse(relationship.contains(book: book))
+//
+//        let person = Person.named("test", in: context)
+//        relationship.person = person
+//        relationship.add(book)
+//        XCTAssertTrue(relationship.contains(book: book))
+//    }
 }

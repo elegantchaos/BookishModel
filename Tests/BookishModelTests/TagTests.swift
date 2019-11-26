@@ -8,17 +8,17 @@ import CoreData
 @testable import BookishModel
 
 class TagTests: ModelTestCase {
-    func testAllTags() {
-        let container = makeTestContainer()
-        let context = container.managedObjectContext
-        let b1 = Tag(context: context)
-        let b2 = Tag(context: context)
-        let allTags = Tag.everyEntity(in: context)
-        XCTAssertEqual(allTags.count, 2)
-        XCTAssertTrue(allTags.contains(b1))
-        XCTAssertTrue(allTags.contains(b2))
-        
-    }
+//    func testAllTags() {
+//        let container = makeTestContainer()
+//        let context = container.managedObjectContext
+//        let b1 = Tag(context: context)
+//        let b2 = Tag(context: context)
+//        let allTags = Tag.everyEntity(in: context)
+//        XCTAssertEqual(allTags.count, 2)
+//        XCTAssertTrue(allTags.contains(b1))
+//        XCTAssertTrue(allTags.contains(b2))
+//        
+//    }
     
     func testAddToSeries() {
         let container = makeTestContainer()
