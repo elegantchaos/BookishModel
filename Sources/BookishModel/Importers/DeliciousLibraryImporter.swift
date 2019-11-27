@@ -29,6 +29,7 @@ public class DeliciousLibraryImporter: Importer {
 class DeliciousLibraryImportSession: URLImportSession {
     typealias Record = [String:Any]
     typealias RecordList = [Record]
+    typealias Index = [String:Record]
     
     var list: RecordList
     var cachedPeople: [String:Person] = [:]
@@ -58,38 +59,67 @@ class DeliciousLibraryImportSession: URLImportSession {
     }
     
     override func run() {
+        let monitor = self.monitor
         monitor?.session(self, willImportItems: list.count)
         var item = 0
+        var index: Index = [:]
         for record in list {
             monitor?.session(self, willImportItem: item, of: list.count)
-            DispatchQueue.main.sync {
-                self.process(record: record)
+            if let key = identifier(for: record) {
+                index[key] = record
             }
             item += 1
         }
-        monitor?.sessionDidFinish(self)
+        
+        let ids = index.keys.map({ ResolvableEntity(identifier: $0, createIfMissing: true)})
+        store.get(entitiesOfType: "Book", withIDs: ids) { books in
+            var properties: [EntityID: SemanticDictionary] = [:]
+            for book in books {
+                if let data = index[book.identifier] {
+                    var bookProperties = SemanticDictionary()
+                    bookProperties["name"] = data["title"]
+                    bookProperties["subtitle"] = data["subtitle"]
+                    
+                    if let ean = data["ean"] as? String, ean.isISBN13 {
+                        bookProperties["isbn"] = ean
+                    } else if let isbn = data["isbn"] as? String {
+                        let trimmed = isbn.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+                        bookProperties["isbn"] = trimmed.isbn10to13
+                    }
+
+                    properties[book] = bookProperties
+                }
+            }
+            
+            self.store.add(properties: properties) {
+                monitor?.sessionDidFinish(self)
+            }
+        }
     }
     
-    private func process(record: Record) {
-//        let format = record["formatSingularString"] as? String
-//        let formatOK = format == nil || !formatsToSkip.contains(format!)
-//        let type = record["type"] as? String
-//        let typeOK = type == nil || !formatsToSkip.contains(type!)
-//        if formatOK && typeOK {
-//            if let title = record["title"] as? String, let creators = record["creatorsCompositeString"] as? String {
-//                let identifier: String
-//                if let uuid = record["uuidString"] as? String {
-//                    identifier = uuid
-//                } else if let uuid = record["foreignUUIDString"] as? String {
-//                    identifier = uuid
-//                } else {
-//                    identifier = "delicious-import-\(title)"
-//                }
-//
-//                // we try to find a book with the same uuid
-//                // this is intended to ensure that if the same import runs multiple times,
-//                // we won't keep making new copies of the same books
-//                let book: Book
+    func identifier(for record: Record) -> String? {
+        let format = record["formatSingularString"] as? String
+        let formatOK = format == nil || !formatsToSkip.contains(format!)
+        let type = record["type"] as? String
+        let typeOK = type == nil || !formatsToSkip.contains(type!)
+        if formatOK && typeOK {
+            if let title = record["title"] as? String {
+                let identifier: String
+                if let uuid = record["uuidString"] as? String {
+                    identifier = uuid
+                } else if let uuid = record["foreignUUIDString"] as? String {
+                    identifier = uuid
+                } else {
+                    identifier = "delicious-import-\(title)"
+                }
+
+                return identifier
+            }
+        }
+        
+        return nil
+    }
+    
 //                if let existing = Book.withIdentifier(identifier, in: context) {
 //                    book = existing
 //                } else {
@@ -150,7 +180,8 @@ class DeliciousLibraryImportSession: URLImportSession {
 //                }
 //            }
 //        }
-    }
+//    }
+//        }
 
     private func process(creators: String, for book: Book) {
 //        var index = 1

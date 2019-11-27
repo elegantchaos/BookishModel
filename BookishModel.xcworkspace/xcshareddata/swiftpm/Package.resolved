@@ -29,12 +29,12 @@
         }
       },
       {
-        "package": "Datastore",
-        "repositoryURL": "git@github.com:elegantchaos/Datastore.git",
+        "package": "Coverage",
+        "repositoryURL": "git@github.com:elegantchaos/Coverage.git",
         "state": {
           "branch": null,
-          "revision": "fe07a00d18e2717d40ec366bdfa9b9679aabd04d",
-          "version": "1.0.2"
+          "revision": "fa0d05817cb910923ace380a9a17fb2862d92ec9",
+          "version": "1.0.6"
         }
       },
       {
@@ -102,11 +102,11 @@
       },
       {
         "package": "XCTestExtensions",
-        "repositoryURL": "https://github.com/elegantchaos/XCTestExtensions.git",
+        "repositoryURL": "git@github.com:elegantchaos/XCTestExtensions.git",
         "state": {
           "branch": null,
-          "revision": "4c4cc474b880fafdc2f481765b14d0a4a79e879a",
-          "version": "1.0.4"
+          "revision": "0aa019864eba405688affb13d1f19c2d988b7803",
+          "version": "1.0.5"
         }
       }
     ]

@@ -272,6 +272,7 @@
 		8B10C78D22BD094200E05F33 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B10C78A22BD094200E05F33 /* Selection.swift */; };
 		8B10C78E22BD094200E05F33 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B10C78A22BD094200E05F33 /* Selection.swift */; };
 		8B1B9B3023042C9A00C86B2C /* LoggerKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8B1B9B2F23042C9A00C86B2C /* LoggerKit */; };
+		8B335E6E238EA35500EB8463 /* XCTestExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B335E6D238EA35500EB8463 /* XCTestExtensions */; };
 		8B37E14F230566AA006784FD /* ModelIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B37E14E230566AA006784FD /* ModelIndex.swift */; };
 		8B37E150230566AA006784FD /* ModelIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B37E14E230566AA006784FD /* ModelIndex.swift */; };
 		8B397DB2238D667E001596D0 /* Datastore in Frameworks */ = {isa = PBXBuildFile; productRef = 8B397DB1238D667E001596D0 /* Datastore */; };
@@ -595,6 +596,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2242939A212AE0F400E70510 /* BookishModel.framework in Frameworks */,
+				8B335E6E238EA35500EB8463 /* XCTestExtensions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1020,6 +1022,7 @@
 			);
 			name = BookishModelTestsMac;
 			packageProductDependencies = (
+				8B335E6D238EA35500EB8463 /* XCTestExtensions */,
 			);
 			productName = BookishModelMacTests;
 			productReference = 22429399212AE0F400E70510 /* BookishModelTestsMac.xctest */;
@@ -1144,6 +1147,7 @@
 				8B46F3B622E7172800F08F2D /* XCRemoteSwiftPackageReference "Coverage" */,
 				8B7BF86322EB3BF30061087A /* XCRemoteSwiftPackageReference "Localization" */,
 				8B397DB0238D667E001596D0 /* XCRemoteSwiftPackageReference "Datastore" */,
+				8B335E6C238EA35500EB8463 /* XCRemoteSwiftPackageReference "XCTestExtensions" */,
 			);
 			productRefGroup = 22DD42452126D6DA0070C85A /* Products */;
 			projectDirPath = "";
@@ -1944,12 +1948,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8B335E6C238EA35500EB8463 /* XCRemoteSwiftPackageReference "XCTestExtensions" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:elegantchaos/XCTestExtensions.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.5;
+			};
+		};
 		8B397DB0238D667E001596D0 /* XCRemoteSwiftPackageReference "Datastore" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:elegantchaos/Datastore.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.2;
+				minimumVersion = 1.0.4;
 			};
 		};
 		8B46F3A622E715EA00F08F2D /* XCRemoteSwiftPackageReference "Actions" */ = {
@@ -2014,6 +2026,11 @@
 		8B1B9B2F23042C9A00C86B2C /* LoggerKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LoggerKit;
+		};
+		8B335E6D238EA35500EB8463 /* XCTestExtensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B335E6C238EA35500EB8463 /* XCRemoteSwiftPackageReference "XCTestExtensions" */;
+			productName = XCTestExtensions;
 		};
 		8B397DB1238D667E001596D0 /* Datastore */ = {
 			isa = XCSwiftPackageProductDependency;
