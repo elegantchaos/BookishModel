@@ -35,9 +35,10 @@ class DeliciousLibraryImportSession: URLImportSession {
     var cachedPeople: [String:Person] = [:]
     var cachedPublishers: [String:Publisher] = [:]
     var cachedSeries: [String:Series] = [:]
-//    let deliciousTag: Tag
-//    let importedTag: Tag
-
+    let deliciousTag: EntityReference
+    let importedTag: EntityReference
+    let includeRaw = true
+    
     let formatsToSkip = ["Audio CD", "Audio CD Enhanced", "Audio CD Import", "Video Game", "VHS Tape", "VideoGame", "DVD"]
 
     
@@ -52,13 +53,14 @@ class DeliciousLibraryImportSession: URLImportSession {
             return nil
         }
 
-//        self.deliciousTag = Tag.named("delicious-library", in: context)
-//        self.importedTag = Tag.named("imported", in: context)
+        self.deliciousTag = Entity.identifiedBy("tag-delicious-library", initialiser: EntityInitialiser(as: .tag, properties: [.name: "delicious-library"]))
+        self.importedTag = Entity.identifiedBy("tag-imported", initialiser: EntityInitialiser(as: .tag, properties: [.name: "imported"]))
         self.list = list
         super.init(importer: importer, store: store, url: url, monitor: monitor)
     }
     
     override func run() {
+        let store = self.store
         let monitor = self.monitor
         monitor?.session(self, willImportItems: list.count)
         var item = 0
@@ -71,27 +73,16 @@ class DeliciousLibraryImportSession: URLImportSession {
             item += 1
         }
         
-        let ids = index.keys.map({ ResolvableEntity(identifier: $0, createIfMissing: true)})
-        store.get(entitiesOfType: "Book", withIDs: ids) { books in
-            var properties: [EntityID: SemanticDictionary] = [:]
+        let ids = index.keys.map({ Entity.identifiedBy($0, createAs: .book)})
+        store.get(entitiesOfType: .book, withIDs: ids) { books in
+            var properties: [EntityReference: PropertyDictionary] = [:]
             for book in books {
                 if let data = index[book.identifier] {
-                    var bookProperties = SemanticDictionary()
-                    bookProperties["name"] = data["title"]
-                    bookProperties["subtitle"] = data["subtitle"]
-                    
-                    if let ean = data["ean"] as? String, ean.isISBN13 {
-                        bookProperties["isbn"] = ean
-                    } else if let isbn = data["isbn"] as? String {
-                        let trimmed = isbn.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-                        bookProperties["isbn"] = trimmed.isbn10to13
-                    }
-
-                    properties[book] = bookProperties
+                    properties[book] = self.getProperties(for: book.identifier, from: data)
                 }
             }
             
-            self.store.add(properties: properties) {
+            store.add(properties: properties) {
                 monitor?.sessionDidFinish(self)
             }
         }
@@ -120,131 +111,101 @@ class DeliciousLibraryImportSession: URLImportSession {
         return nil
     }
     
-//                if let existing = Book.withIdentifier(identifier, in: context) {
-//                    book = existing
-//                } else {
-//                    book = Book.named(title, in: context)
-//                    book.uuid = identifier
-//                    book.source = DeliciousLibraryImporter.identifier
-//                }
-//
-//                deliciousTag.addToBooks(book)
-//                importedTag.addToBooks(book)
-//
-//                book.name = title
-//                book.subtitle = record["subtitle"] as? String
-//                book.importDate = Date()
-//
-//                if let ean = record["ean"] as? String, ean.isISBN13 {
-//                    book.isbn = ean
-//                } else if let isbn = record["isbn"] as? String {
-//                    let trimmed = isbn.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-//                    book.isbn = trimmed.isbn10to13
-//                }
-//
-//                if let height = record["boxHeightInInches"] as? Double, height > 0 {
-//                    book.height = height
-//                }
-//
-//                if let width = record["boxWidthInInches"] as? Double, width > 0 {
-//                    book.width = width
-//                }
-//
-//                if let length = record["boxLengthInInches"] as? Double, length > 0 {
-//                    book.length = length
-//                }
-//
-//                book.asin = record["asin"] as? String
-//                book.classification = record["deweyDecimal"] as? String
-//
-//                book.added = record["creationDate"] as? Date
-//                book.modified = record["lastModificationDate"] as? Date
-//                book.published = record["publishDate"] as? Date
-//
-//                book.importRaw = record.jsonDump()
-//
-//                book.format = format
-//
-//                if let url = (record["coverImageLargeURLString"] as? String) ?? (record["coverImageMediumURLString"] as? String) ?? (record["coverImageSmallURLString"] as? String) {
-//                    book.imageURL = url
-//                }
-//
-//                process(creators: creators, for: book)
-//
-//                if let publishers = record["publishersCompositeString"] as? String, !publishers.isEmpty {
-//                    process(publishers: publishers, for: book)
-//                }
-//
-//                if let series = record["seriesSingularString"] as? String, !series.isEmpty {
-//                    process(series: series, position: 0, for: book)
-//                }
-//            }
-//        }
-//    }
-//        }
+    func getProperties(for bookID: String, from data: Record) -> PropertyDictionary {
+        var properties = PropertyDictionary()
+        properties.extract(from: data, stringsWithMapping: [
+            "title": .name,
+            "subtitle": .subtitle,
+            "asin": .asin,
+            "deweyDecimal": .classification,
+            "formatSingularString": .format
+        ])
+        
+        properties[.name] = data["title"]
+        properties[.subtitle] = data["subtitle"]
+        properties[.source] = DeliciousLibraryImporter.identifier
+        properties[.importDate] = Date()
+        properties[PropertyKey(array:"tag")] = deliciousTag
+        properties[PropertyKey(array:"tag")] = importedTag
 
-    private func process(creators: String, for book: Book) {
-//        var index = 1
-//        for creator in creators.split(separator: "\n") {
-//            let trimmed = creator.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-//            if trimmed != "" {
-//                let author: Person
-//                if let cached = cachedPeople[trimmed] {
-//                    author = cached
-//                } else {
-//                    author = Person.named(trimmed, in: context)
-//                    if author.source == nil {
-//                        author.source = DeliciousLibraryImporter.identifier
-//                        author.uuid = "\(book.uuid!)-author-\(index)"
-//                    }
-//                    index += 1
-//                    cachedPeople[trimmed] = author
-//                }
-//                let relationship = author.relationship(as: Role.StandardName.author)
-//                relationship.add(book)
-//            }
-//        }
+        if let ean = data["ean"] as? String, ean.isISBN13 {
+            properties[.isbn] = ean
+        } else if let isbn = data["isbn"] as? String {
+            let trimmed = isbn.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            properties[.isbn] = trimmed.isbn10to13
+        }
+        
+        properties.extract(from: data, stringsWithMapping: [
+            "boxHeightInInches": .height,
+            "boxWidthInInches": .width,
+            "boxLengthInInches": .length
+            ]
+        )
+
+        properties.extract(from: data, datesWithMapping: [
+            "creationDate": .added,
+            "lastModificationDate": .importedModificationDate,
+            "publishDate": .published
+        ])
+        
+        if includeRaw {
+            properties[.importRaw] = data.jsonDump()
+        }
+        
+        properties.extract(stringWithKeyIn: ["coverImageLargeURLString", "coverImageMediumURLString", "coverImageSmallURLString"], from: data, intoKey: .imageURL)
+        
+        if let creators = data["creatorsCompositeString"] as? String {
+            addProperties(for: bookID, creators: creators, into: &properties)
+        }
+        
+        if let publishers = data["publishersCompositeString"] as? String, !publishers.isEmpty {
+            addProperties(for: bookID, publishers: publishers, into: &properties)
+        }
+        
+        if let series = data["seriesSingularString"] as? String, !series.isEmpty {
+            addProperties(for: bookID, series: series, position: 0, into: &properties)
+        }
+
+        return properties
+    }
+
+
+    private func addProperties(for bookID: String, creators: String, into properties: inout PropertyDictionary) {
+        var index = 1
+        for creator in creators.split(separator: "\n") {
+            let trimmed = creator.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            if trimmed != "" {
+                let identifier = "\(bookID)-author-\(index)"
+                let initialProperties = EntityInitialiser(
+                    as: .person,
+                    properties: [.source: DeliciousLibraryImporter.identifier],
+                    identifier: identifier
+                )
+                let author = Entity.named(trimmed, initialiser: initialProperties)
+                properties[PropertyKey("author-\(index)")] = (author, PropertyType.author)
+                index += 1
+            }
+        }
     }
     
-    private func process(publishers: String, for book: Book) {
-//        for publisher in publishers.split(separator: "\n") {
-//            let trimmed = publisher.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-//            if trimmed != "" {
-//                let publisher: Publisher
-//                if let cached = cachedPublishers[trimmed] {
-//                    publisher = cached
-//                } else {
-//                    publisher = Publisher.named(trimmed, in: context)
-//                    if publisher.source == nil {
-//                        publisher.source = DeliciousLibraryImporter.identifier
-//                    }
-//                    cachedPublishers[trimmed] = publisher
-//                }
-//                publisher.add(book)
-//            }
-//        }
+    private func addProperties(for bookID: String, publishers: String, into properties: inout PropertyDictionary) {
+        for publisher in publishers.split(separator: "\n") {
+            let trimmed = publisher.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            if trimmed != "" {
+                let initialiser = EntityInitialiser(as: .publisher, properties: [.source: DeliciousLibraryImporter.identifier])
+                let publisher = Entity.named(trimmed, initialiser: initialiser)
+                properties[.publisher] = (publisher, PropertyType.publisher)
+            }
+        }
     }
     
-    private func process(series: String, position: Int, for book: Book) {
-//        let trimmed = series.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-//        if trimmed != "" {
-//            let series: Series
-//            if let cached = cachedSeries[trimmed] {
-//                series = cached
-//            } else {
-//                series = Series.named(trimmed, in: context)
-//                if series.source == nil {
-//                    series.source = DeliciousLibraryImporter.identifier
-//                }
-//                cachedSeries[trimmed] = series
-//            }
-//            let entry = SeriesEntry(context: context)
-//            entry.book = book
-//            entry.series = series
-//            if position != 0 {
-//                entry.position = Int16(position)
-//            }
-//        }
+    private func addProperties(for bookID: String, series: String, position: Int, into properties: inout PropertyDictionary) {
+        let trimmed = series.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        if trimmed != "" {
+            let initialiser = EntityInitialiser(as: .series, properties: [.source: DeliciousLibraryImporter.identifier])
+            let series = Entity.named(trimmed, initialiser: initialiser)
+            properties[PropertyKey("series-\(position)")] = (series, PropertyType.series)
+        }
     }
 
 }

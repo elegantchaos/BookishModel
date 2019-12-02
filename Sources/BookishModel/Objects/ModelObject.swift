@@ -6,6 +6,93 @@
 import CoreData
 import Logger
 import Actions
+import Datastore
+
+extension EntityType {
+    static let book: Self = "book"
+    static let person: Self = "person"
+    static let publisher: Self = "publisher"
+    static let role: Self = "role"
+    static let series: Self = "series"
+    static let tag: Self = "tag"
+}
+
+extension PropertyKey {
+    static let added: Self = "added"
+    static let asin: Self = "asin"
+    static let classification: Self = "classification"
+    static let format: Self = "format"
+    static let height: Self = "height"
+    static let imageURL: Self = "imageURL"
+    static let imageData: Self = "imageData"
+    static let importDate: Self = "importDate"
+    static let importedModificationDate: Self = "importedModificationDate"
+    static let importRaw: Self = "importRaw"
+    static let isbn: Self = "isbn"
+    static let length: Self = "length"
+    static let modified: Self = "modified"
+    static let published: Self = "published"
+    static let publisher: Self = "publisher"
+    static let source: Self = "source"
+    static let subtitle: Self = "subtitle"
+    static let width: Self = "width"
+}
+
+extension PropertyType {
+    static let author: Self = "author"
+    static let editor: Self = "editor"
+    static let publisher: Self = EntityType.publisher.asPropertyType
+    static let series: Self = EntityType.series.asPropertyType
+    static let tag: Self = EntityType.tag.asPropertyType
+}
+
+extension PropertyDictionary {
+    mutating func extract(nonZeroDoubleWithKey fromKey: String, from data: [String:Any], intoKey key: PropertyKey) {
+          if let value = data[fromKey] as? Double, value > 0 {
+               self[key] = value
+           }
+    }
+    
+    mutating func extract(stringWithKey fromKey: String, from data: [String:Any], intoKey key: PropertyKey) {
+        if let string = data[fromKey] as? String {
+            self[key] = string
+        }
+    }
+
+    mutating func extract(stringWithKeyIn fromKeys: [String], from data: [String:Any], intoKey key: PropertyKey) {
+        for fromKey in fromKeys {
+            if let string = data[fromKey] as? String {
+                self[key] = string
+                return
+            }
+        }
+    }
+
+    mutating func extract(dateWithKey fromKey: String, from data: [String:Any], intoKey key: PropertyKey) {
+        if let date = data[fromKey] as? Date {
+            self[key] = date
+        }
+    }
+    
+    mutating func extract(from data: [String:Any], stringsWithMapping mapping: [String:PropertyKey]) {
+        for (fromKey, toKey) in mapping {
+            extract(stringWithKey: fromKey, from: data, intoKey: toKey)
+        }
+    }
+    
+    mutating func extract(from data: [String:Any], nonZeroDoublesWithMapping mapping: [String:PropertyKey]) {
+        for (fromKey, toKey) in mapping {
+            extract(nonZeroDoubleWithKey: fromKey, from: data, intoKey: toKey)
+        }
+    }
+
+    mutating func extract(from data: [String:Any], datesWithMapping mapping: [String:PropertyKey]) {
+        for (fromKey, toKey) in mapping {
+            extract(nonZeroDoubleWithKey: fromKey, from: data, intoKey: toKey)
+        }
+    }
+
+}
 
 let modelObjectChannel = Logger("com.elegantchaos.bookish.model.ModelObject")
 

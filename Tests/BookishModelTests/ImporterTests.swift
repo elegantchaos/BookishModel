@@ -126,13 +126,20 @@ class ImporterTests: ModelTestCase {
         let bundle = Bundle(for: type(of: self))
         let xmlURL = bundle.url(forResource: "Simple", withExtension: "plist")!
         XCTAssertTrue(check(importing: xmlURL, with: importer, checker: { store, monitor in
-            store.get(allEntitiesOfType: "Book") { books in
+            store.get(allEntitiesOfType: .book) { books in
                 monitor.check(count:    books.count, expected: 2)
-                store.get(properties: ["name"], of: books) { result in
+                store.get(properties: [.name], of: books) { result in
                     let names = Set<String>(result.compactMap({ $0["name"] as? String }))
                     XCTAssertTrue(names.contains("The Bridge"))
                     XCTAssertTrue(names.contains("A Dance With Dragons: Part 1 Dreams and Dust"))
-                    monitor.checkPassed()
+
+                    store.getAllEntities() { entities in
+                        for entity in entities {
+                            print("\(entity.type) \(entity.identifier)")
+                        }
+                        monitor.checkPassed()
+                    }
+
                 }
             }
         }))
