@@ -12,30 +12,58 @@ public enum ImportStatus {
     case failed(ImportSession)
 }
 
-public protocol ImportMonitor {
+public protocol ImportDelegate {
     func importerNeedsFile(for importer: Importer, completion: @escaping (URL) -> Void)
-    func importerWillStartSession(_ session: ImportSession, withCount: Int)
+    func importerWillStartSession(_ session: ImportSession, withCount count: Int)
     func importerWillContinueSession(_ session: ImportSession, withItem item: Int, of count: Int)
     func importerDidFinishWithStatus(_ status: ImportStatus)
 }
 
-public extension ImportMonitor {
+public extension ImportDelegate {
     func importerNeedsFile(for importer: Importer, completion: @escaping (URL) -> Void) { }
-    func importerWillStartSession(_ session: ImportSession, withCount: Int) { }
+    func importerWillStartSession(_ session: ImportSession, withCount count: Int) { }
     func importerWillContinueSession(_ session: ImportSession, withItem item: Int, of count: Int) { }
     func importerDidFinishWithStatus(_ status: ImportStatus) { }
 }
 
-public struct BlockImportMonitor {
-    let chooseFileBlock: ((Importer, (URL) -> Void) -> Void)? = nil
-    let willImportBlock: ((ImportSession, Int) -> Void)? = nil
-    let willImportItemBlock: ((ImportSession, Int, Int) -> Void)? = nil
-    let didFinishBlock: ((ImportStatus) -> Void)? = nil
+public class BlockImportDelegate: ImportDelegate {
+    var chooseFileBlock: ((Importer, (URL) -> Void) -> Void)? = nil
+    var willImportBlock: ((ImportSession, Int) -> Void)? = nil
+    var willImportItemBlock: ((ImportSession, Int, Int) -> Void)? = nil
+    var didFinishBlock: ((ImportStatus) -> Void)? = nil
     
-    func importerNeedsFile(for importer: Importer, completion: @escaping (URL) -> Void) { chooseFileBlock?(importer, completion) }
-    func importerWillStartSession(_ session: ImportSession, willImportItems count: Int) { willImportBlock?(session, count) }
-    func importerWillContinueSession(_ session: ImportSession, willImportItem item: Int, of count: Int) { willImportItemBlock?(session, item, count) }
-    func importerFinishedWithStatus(status: ImportStatus) { didFinishBlock?(status) }
+    public func importerNeedsFile(for importer: Importer, completion: @escaping (URL) -> Void) { chooseFileBlock?(importer, completion) }
+    public func importerWillStartSession(_ session: ImportSession, withCount count: Int) { willImportBlock?(session, count) }
+    public func importerWillContinueSession(_ session: ImportSession, withItem item: Int, of count: Int) { willImportItemBlock?(session, item, count) }
+    public func importerDidFinishWithStatus(_ status: ImportStatus) { didFinishBlock?(status) }
+}
+
+public class WrapperImportDelegate: BlockImportDelegate {
+    let wrappedMonitor: ImportDelegate?
+    
+    init(wrapping monitor: ImportDelegate) {
+        self.wrappedMonitor = monitor
+    }
+    
+    public override func importerNeedsFile(for importer: Importer, completion: @escaping (URL) -> Void) {
+        wrappedMonitor?.importerNeedsFile(for: importer, completion: completion)
+        super.importerNeedsFile(for: importer, completion: completion)
+    }
+    
+    public override func importerWillStartSession(_ session: ImportSession, withCount count: Int) {
+        wrappedMonitor?.importerWillStartSession(session, withCount: count)
+        super.importerWillStartSession(session, withCount: count)
+    }
+    
+    public override func importerWillContinueSession(_ session: ImportSession, withItem item: Int, of count: Int) {
+        wrappedMonitor?.importerWillContinueSession(session, withItem: item, of: count)
+        super.importerWillContinueSession(session, withItem: item, of: count)
+    }
+    
+    public override func importerDidFinishWithStatus(_ status: ImportStatus) {
+        wrappedMonitor?.importerDidFinishWithStatus(status)
+        super.importerDidFinishWithStatus(status)
+    }
 }
 
 public class ImportManager {
@@ -65,7 +93,7 @@ public class ImportManager {
         return importers[identifier]
     }
     
-    public func importFrom(_ url: URL, to store: Datastore, monitor: ImportMonitor) {
+    public func importFrom(_ url: URL, to store: Datastore, monitor: ImportDelegate) {
         for importer in sortedImporters {
             if let session = importer.makeSession(importing: url, in: store, monitor: monitor) {
                 session.performImport()

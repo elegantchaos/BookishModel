@@ -9,7 +9,7 @@ import Actions
 
 @testable import BookishModel
 
-struct TestImportMonitor: ImportMonitor {
+struct TestImportMonitor: ImportDelegate {
     func importDone() {
         expectation.fulfill()
     }

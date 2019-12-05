@@ -6,21 +6,10 @@
 import Actions
 import Datastore
 import XCTest
+import XCTestExtensions
 
 @testable import BookishModel
-
-enum TestStatus {
-    case unknown
-    case failed
-    case ok
-}
-
-protocol TestMonitor {
-    var status: TestStatus { get }
-    func allChecksDone()
-    func checkFailed()
-    func check(count: Int, expected: Int)
-}
+@testable import Actions
 
 class ImporterTests: ModelTestCase {
     
@@ -33,83 +22,20 @@ class ImporterTests: ModelTestCase {
         override class var identifier: String { return "dummy2" }
     }
 
-    class Monitor: ImportMonitor {
-        enum Status {
-            case unknown
-            case failed
-            case ok
-        }
-        
-        typealias Checker = (Datastore, Monitor) -> Void
-        var status: Status = .unknown
-        let expectation: XCTestExpectation
-        let checker: Checker
-        
-        init(expectation: XCTestExpectation, checker: @escaping Checker) {
-            self.expectation = expectation
-            self.checker = checker
-        }
-        
-        func sessionDidFinish(_ session: ImportSession) {
-            checker(session.store, self)
-        }
-        
-        func sessionDidFail(_ session: ImportSession) {
-            XCTFail("import failed")
-            expectation.fulfill()
-        }
-
-        func noImporter() {
-            XCTFail("no importer found")
-            expectation.fulfill()
-        }
-        
-        func importDone() {
-        }
-        
-        func checkPassed() {
-            if status == .unknown {
-                status = .ok
-                self.expectation.fulfill()
+ 
+    func check(importing url: URL, with importer: Importer, checker: @escaping StoreMonitor.Checker) -> Bool {
+        let result = checkStore() { monitor in
+            let delegate = BlockImportDelegate()
+            delegate.didFinishBlock = { status in
+                checker(monitor)
             }
+            importer.run(importing: url, in: monitor.store, monitor: delegate)
         }
         
-        func checkFailed() {
-            if status == .unknown {
-                status = .failed
-                expectation.fulfill()
-            }
-        }
-        
-        func check(count: Int, expected: Int) {
-            if status == .unknown {
-                if count != expected {
-                    status = .failed
-                    XCTFail("\(count) != \(expected)")
-                    expectation.fulfill()
-                }
-            }
-        }
-    }
-
-    func check(importing url: URL, with importer: Importer, checker: @escaping Monitor.Checker) -> Bool {
-        let expectation = self.expectation(description: "completed")
-        let monitor = Monitor(expectation: expectation, checker: checker)
-        Datastore.load(name: "Test") { result in
-            switch result {
-            case .failure(let error):
-                XCTFail("failed to make store: \(error)")
-                expectation.fulfill()
-            case .success(let store):
-                importer.run(importing: url, in: store, monitor: monitor)
-            }
-        }
-
-        wait(for: [expectation], timeout: 10.0)
-        return monitor.status == .ok
+        return result
     }
     
-    
+  
 
     func testRegistration() {
         let manager = ImportManager()
@@ -143,7 +69,8 @@ class ImporterTests: ModelTestCase {
         let importer = manager.importer(identifier: DeliciousLibraryImporter.identifier)!
         let bundle = Bundle(for: type(of: self))
         let xmlURL = bundle.url(forResource: "Simple", withExtension: "plist")!
-        XCTAssertTrue(check(importing: xmlURL, with: importer, checker: { store, monitor in
+        XCTAssertTrue(check(importing: xmlURL, with: importer, checker: { monitor in
+            let store = monitor.store
             store.get(allEntitiesOfType: .book) { books in
                 monitor.check(count:    books.count, expected: 2)
                 store.get(properties: [.name], of: books) { result in
@@ -155,106 +82,12 @@ class ImporterTests: ModelTestCase {
                         for entity in entities {
                             print("\(entity.type) \(entity.identifier)")
                         }
-                        monitor.checkPassed()
+                        monitor.allChecksDone()
                     }
 
                 }
             }
         }))
-    }
-
-    class ContainerMonitor: TestMonitor {
-
-        typealias Checker = (ContainerMonitor) -> Void
-        var status: TestStatus = .unknown
-        let expectation: XCTestExpectation
-        let container: CollectionContainer
-        let checker: Checker
-        
-        init(expectation: XCTestExpectation, container: CollectionContainer, checker: @escaping Checker) {
-            self.expectation = expectation
-            self.checker = checker
-            self.container = container
-        }
-        
-        func allChecksDone() {
-            if status == .unknown {
-                status = .ok
-                self.expectation.fulfill()
-            }
-        }
-        
-        func checkFailed() {
-            if status == .unknown {
-                status = .failed
-                expectation.fulfill()
-            }
-        }
-        
-        func check(count: Int, expected: Int) {
-            if status == .unknown {
-                if count != expected {
-                    status = .failed
-                    XCTFail("\(count) != \(expected)")
-                    expectation.fulfill()
-                }
-            }
-        }
-    }
-
-    class WrappedMonitor<Wrapped: TestMonitor>: TestMonitor {
-        let wrappedMonitor: Wrapped
-        
-        init(wrappedMonitor: Wrapped) {
-            self.wrappedMonitor = wrappedMonitor
-        }
-        
-        var status: TestStatus { return wrappedMonitor.status }
-        func allChecksDone() { wrappedMonitor.allChecksDone() }
-        func checkFailed() { wrappedMonitor.checkFailed() }
-        func check(count: Int, expected: Int) { wrappedMonitor.check(count: count, expected: expected) }
-    }
-    
-    func checkContainer(withURL url: URL = URL(fileURLWithPath: "/dev/null"), checker: @escaping ContainerMonitor.Checker) -> Bool {
-        let expectation = self.expectation(description: "completed")
-        var monitor: ContainerMonitor? = nil
-        CollectionContainer.load(name: "test", url: url, mode: .empty, indexed: false) { result in
-            switch result {
-                case .failure(let error):
-                    XCTFail("load failed \(error)")
-                    expectation.fulfill()
-                
-                case .success(let container):
-                    let newMonitor  = ContainerMonitor(expectation: expectation, container: container, checker: checker)
-                    checker(newMonitor)
-                    monitor = newMonitor
-            }
-        }
-
-        wait(for: [expectation], timeout: 1.0)
-        return monitor?.status == .ok
-    }
-
-    class ActionMonitor: WrappedMonitor<ContainerMonitor> {
-        
-    }
-    
-    func checkAction(_ identifier: String, withInfo info: ActionInfo, checker: @escaping (ActionMonitor) -> Void) -> Bool {
-        let actionManager = ActionManager()
-        actionManager.register([ImportAction(identifier: identifier)])
-        let result = checkContainer() { monitor in
-            info[ActionContext.modelKey] = monitor.container
-            info.registerNotification(notification: { (stage, context) in
-                if stage == .didPerform {
-                    let actionMonitor = ActionMonitor(wrappedMonitor: monitor)
-                    checker(actionMonitor)
-                }
-            })
-            
-            actionManager.perform(identifier: identifier, info: info)
-        }
-        
-        return result
     }
     
     func testImportAction() {
@@ -265,7 +98,7 @@ class ImporterTests: ModelTestCase {
         info[ImportAction.urlKey] = xmlURL
         info[ImportAction.importerKey] = DeliciousLibraryImporter.identifier
 
-        XCTAssertTrue(checkAction("Import", withInfo: info) { monitor in
+        XCTAssertTrue(checkAction(ImportAction(), withInfo: info) { monitor in
             let store = monitor.wrappedMonitor.container.store
             store.count(entitiesOfTypes: [.book]) { counts in
                 monitor.check(count: counts[0], expected: 2)
@@ -274,25 +107,25 @@ class ImporterTests: ModelTestCase {
         })
     }
     
-//
-//    func testFileTypes() {
-//        let manager = ImportManager()
-//        let importer = Importer(name: "test", source: .userSpecifiedFile, manager: manager)
-//        XCTAssertNil(importer.fileTypes)
-//    }
-//
-//    func testPanelPrompt() {
-//        let manager = ImportManager()
-//        let importer = Importer(name: "test", source: .userSpecifiedFile, manager: manager)
-//        XCTAssertEqual(importer.panelPrompt, "importer.prompt")
-//    }
-//
-//    func testPanelMessage() {
-//        let manager = ImportManager()
-//        let importer = Importer(name: "test", source: .userSpecifiedFile, manager: manager)
-//        XCTAssertEqual(importer.panelMessage, "importer.message")
-//    }
-//
+
+    func testFileTypes() {
+        let manager = ImportManager()
+        let importer = Importer(name: "test", source: .userSpecifiedFile, manager: manager)
+        XCTAssertNil(importer.fileTypes)
+    }
+
+    func testPanelPrompt() {
+        let manager = ImportManager()
+        let importer = Importer(name: "test", source: .userSpecifiedFile, manager: manager)
+        XCTAssertEqual(importer.panelPrompt, "importer.prompt")
+    }
+
+    func testPanelMessage() {
+        let manager = ImportManager()
+        let importer = Importer(name: "test", source: .userSpecifiedFile, manager: manager)
+        XCTAssertEqual(importer.panelMessage, "importer.message")
+    }
+
 //    func testStandardRolesImporter() {
 //        let container = makeTestContainer()
 //        let manager = ImportManager()

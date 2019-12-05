@@ -8,6 +8,12 @@
       location = "group:../../../Coverage">
    </FileRef>
    <FileRef
+      location = "group:../XCTestExtensions">
+   </FileRef>
+   <FileRef
+      location = "group:../Logger">
+   </FileRef>
+   <FileRef
       location = "group:../../../Datastore">
    </FileRef>
 </Workspace>

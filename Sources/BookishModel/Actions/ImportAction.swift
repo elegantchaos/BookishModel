@@ -21,12 +21,12 @@ extension ActionContext { // TODO: move into Actions
 
 /// Import monitor which intercepts the importerFinished callback in order to run the action completion.
 /// All the monitor callbacks are also passed on to a real monitor (if there is one).
-struct ActionImportMonitor: ImportMonitor {
-    let wrappedMonitor: ImportMonitor?
+struct ActionImportMonitor: ImportDelegate {
+    let wrappedMonitor: ImportDelegate?
     let actionCompletion: ModelAction.Completion
     
     init(context: ActionContext, completion: @escaping ModelAction.Completion) {
-        self.wrappedMonitor = context[ImportAction.monitorKey] as? ImportMonitor
+        self.wrappedMonitor = context[ImportAction.monitorKey] as? ImportDelegate
         self.actionCompletion = completion
     }
     
@@ -61,8 +61,8 @@ public class ImportAction: ModelAction {
         // some importers need a url, some don't, so we handle both alternatives
         if let importer = importer {
             
-            struct WrappedMonitor: ImportMonitor {
-                let wrappedMonitor: ImportMonitor
+            struct WrappedMonitor: ImportDelegate {
+                let wrappedMonitor: ImportDelegate
                 let actionCompletion: ModelAction.Completion
                 
                 func importerNeedsFile(for importer: Importer, completion: @escaping (URL) -> Void) { wrappedMonitor.importerNeedsFile(for: importer, completion: completion) }

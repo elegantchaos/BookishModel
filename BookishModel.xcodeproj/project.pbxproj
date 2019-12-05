@@ -1960,8 +1960,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:elegantchaos/Datastore.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.4;
+				branch = bookish;
+				kind = branch;
 			};
 		};
 		8B46F3A622E715EA00F08F2D /* XCRemoteSwiftPackageReference "Actions" */ = {

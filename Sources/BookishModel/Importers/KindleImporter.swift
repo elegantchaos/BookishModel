@@ -17,7 +17,7 @@ public class KindleImporter: Importer {
         super.init(name: "Kindle", source: .userSpecifiedFile, manager: manager)
     }
     
-    override func makeSession(importing url: URL, in store: Datastore, monitor: ImportMonitor?) -> URLImportSession? {
+    override func makeSession(importing url: URL, in store: Datastore, monitor: ImportDelegate?) -> URLImportSession? {
         return KindleImportSession(importer: self, store: store, url: url, monitor: monitor)
     }
     
@@ -138,7 +138,7 @@ class KindleImportSession: URLImportSession {
 //    let importedTag: Tag
     let books: [KindleBook]
     
-    override init?(importer: Importer, store: Datastore, url: URL, monitor: ImportMonitor?) {
+    override init?(importer: Importer, store: Datastore, url: URL, monitor: ImportDelegate?) {
 //        kindleTag = Tag.named("kindle", in: context)
 //        importedTag = Tag.named("imported", in: context)
 //

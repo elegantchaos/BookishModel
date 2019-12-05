@@ -13,7 +13,7 @@ public class TestDataImporter: Importer {
         super.init(name: "Test Data", source: .knownLocation, manager: manager)
     }
 
-    override func makeSession(in store: Datastore, monitor: ImportMonitor?) -> ImportSession? {
+    override func makeSession(in store: Datastore, monitor: ImportDelegate?) -> ImportSession? {
         return TestDataImportSession(importer: self, store: store, monitor: monitor)
     }
 

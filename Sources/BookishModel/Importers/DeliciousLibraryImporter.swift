@@ -17,7 +17,7 @@ public class DeliciousLibraryImporter: Importer {
         super.init(name: "Delicious Library", source: .userSpecifiedFile, manager: manager)
     }
     
-    override func makeSession(importing url: URL, in store: Datastore, monitor: ImportMonitor?) -> URLImportSession? {
+    override func makeSession(importing url: URL, in store: Datastore, monitor: ImportDelegate?) -> URLImportSession? {
         return DeliciousLibraryImportSession(importer: self, store: store, url: url, monitor: monitor)
     }
 
@@ -42,7 +42,7 @@ class DeliciousLibraryImportSession: URLImportSession {
     let formatsToSkip = ["Audio CD", "Audio CD Enhanced", "Audio CD Import", "Video Game", "VHS Tape", "VideoGame", "DVD"]
 
     
-    override init?(importer: Importer, store: Datastore, url: URL, monitor: ImportMonitor?) {
+    override init?(importer: Importer, store: Datastore, url: URL, monitor: ImportDelegate?) {
         // check we can parse the xml
         guard let data = try? Data(contentsOf: url), let list = (try? PropertyListSerialization.propertyList(from: data, options: [], format: nil)) as? RecordList else {
             return nil

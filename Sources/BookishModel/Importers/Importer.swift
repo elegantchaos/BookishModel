@@ -75,17 +75,17 @@ public class Importer {
         return string
     }
 
-    internal func makeSession(in store: Datastore, monitor: ImportMonitor?) -> ImportSession? {
+    internal func makeSession(in store: Datastore, monitor: ImportDelegate?) -> ImportSession? {
         let session = ImportSession(importer: self, store: store, monitor: monitor)
         return session
     }
 
-    internal func makeSession(importing url: URL, in store: Datastore, monitor: ImportMonitor?) -> URLImportSession? {
+    internal func makeSession(importing url: URL, in store: Datastore, monitor: ImportDelegate?) -> URLImportSession? {
         let session = URLImportSession(importer: self, store: store, url: url, monitor: monitor)
         return session
     }
     
-    public func run(importing url: URL, in store: Datastore, monitor: ImportMonitor? = nil) {
+    public func run(importing url: URL, in store: Datastore, monitor: ImportDelegate? = nil) {
         if let session = makeSession(importing: url, in: store, monitor: monitor) {
             session.performImport()
         } else {
@@ -93,7 +93,7 @@ public class Importer {
         }
     }
 
-    public func run(in store: Datastore, monitor: ImportMonitor?) {
+    public func run(in store: Datastore, monitor: ImportDelegate?) {
         switch source {
         case .knownLocation:
             if let session = makeSession(in: store, monitor: monitor) {

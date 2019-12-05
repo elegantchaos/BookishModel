@@ -16,9 +16,9 @@ public class ImportSession: Equatable {
     
     let importer: Importer
     let store: Datastore
-    let monitor: ImportMonitor?
+    let monitor: ImportDelegate?
     
-    init?(importer: Importer, store: Datastore, monitor: ImportMonitor?) {
+    init?(importer: Importer, store: Datastore, monitor: ImportDelegate?) {
         self.importer = importer
         self.store = store
         self.monitor = monitor
@@ -50,7 +50,7 @@ public class URLImportSession: ImportSession {
     
     let url: URL
     
-    init?(importer: Importer, store: Datastore, url: URL, monitor: ImportMonitor?) {
+    init?(importer: Importer, store: Datastore, url: URL, monitor: ImportDelegate?) {
         guard FileManager.default.fileExists(at: url) else {
             return nil
         }

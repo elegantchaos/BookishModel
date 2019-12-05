@@ -14,7 +14,7 @@ public class StandardRolesImporter: Importer {
         super.init(name: "Standard Roles", source: .knownLocation, manager: manager)
     }
     
-    override func makeSession(in store: Datastore, monitor: ImportMonitor?) -> ImportSession? {
+    override func makeSession(in store: Datastore, monitor: ImportDelegate?) -> ImportSession? {
         return StandardRolesImportSession(importer: self, store: store, monitor: monitor)
     }
 }
