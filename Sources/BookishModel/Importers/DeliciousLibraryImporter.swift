@@ -62,7 +62,7 @@ class DeliciousLibraryImportSession: URLImportSession {
     override func run() {
         let store = self.store
         let monitor = self.monitor
-        monitor?.session(self, willImportItems: list.count)
+        monitor?.importerWillStartSession(self, withCount: list.count)
 //        var index: Index = [:]
 //            if let key = identifier(for: record) {
 //                index[key] = record
@@ -75,14 +75,14 @@ class DeliciousLibraryImportSession: URLImportSession {
         for record in list {
             if let identifier = identifier(for: record) {
                 let book = Entity.identifiedBy(identifier, createAs: .book)
-                monitor?.session(self, willImportItem: item, of: list.count)
+                monitor?.importerWillContinueSession(self, withItem: item, of: list.count)
                 self.addProperties(for: book, identifier: identifier, from: record, into: &properties)
             }
             item += 1
         }
 
         store.add(properties: properties) {
-            monitor?.sessionDidFinish(self)
+            monitor?.importerDidFinishWithStatus(.succeeded(self))
         }
     }
     

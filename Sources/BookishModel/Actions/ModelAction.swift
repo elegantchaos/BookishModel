@@ -60,8 +60,9 @@ open class ModelAction: Action {
     }
 
     open override func perform(context: ActionContext, completed: @escaping Completion) {
-        if let store = context[ActionContext.modelKey] as? Datastore {
+        if let collection = context[ActionContext.modelKey] as? CollectionContainer {
             modelActionChannel.debug("performing \(context.identifier)")
+            let store = collection.store
             perform(context: context, store: store) {
                 store.save() { result in
                     switch result {

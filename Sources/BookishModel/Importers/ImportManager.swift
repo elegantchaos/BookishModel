@@ -6,22 +6,36 @@
 import Foundation
 import Datastore
 
+public enum ImportStatus {
+    case noImporter
+    case succeeded(ImportSession)
+    case failed(ImportSession)
+}
+
 public protocol ImportMonitor {
-    func chooseFile(for importer: Importer, completion: @escaping (URL) -> Void)
-    func session(_ session: ImportSession, willImportItems count: Int)
-    func session(_ session: ImportSession, willImportItem item: Int, of count: Int)
-    func sessionDidFinish(_ session: ImportSession)
-    func sessionDidFail(_ session: ImportSession)
-    func noImporter()
+    func importerNeedsFile(for importer: Importer, completion: @escaping (URL) -> Void)
+    func importerWillStartSession(_ session: ImportSession, withCount: Int)
+    func importerWillContinueSession(_ session: ImportSession, withItem item: Int, of count: Int)
+    func importerDidFinishWithStatus(_ status: ImportStatus)
 }
 
 public extension ImportMonitor {
-    func chooseFile(for importer: Importer, completion: @escaping (URL) -> Void) { }
-    func session(_ session: ImportSession, willImportItems count: Int) { }
-    func session(_ session: ImportSession, willImportItem item: Int, of count: Int) { }
-    func sessionDidFinish(_ session: ImportSession) { }
-    func sessionDidFail(_ session: ImportSession) { }
-    func noImporter() { }
+    func importerNeedsFile(for importer: Importer, completion: @escaping (URL) -> Void) { }
+    func importerWillStartSession(_ session: ImportSession, withCount: Int) { }
+    func importerWillContinueSession(_ session: ImportSession, withItem item: Int, of count: Int) { }
+    func importerDidFinishWithStatus(_ status: ImportStatus) { }
+}
+
+public struct BlockImportMonitor {
+    let chooseFileBlock: ((Importer, (URL) -> Void) -> Void)? = nil
+    let willImportBlock: ((ImportSession, Int) -> Void)? = nil
+    let willImportItemBlock: ((ImportSession, Int, Int) -> Void)? = nil
+    let didFinishBlock: ((ImportStatus) -> Void)? = nil
+    
+    func importerNeedsFile(for importer: Importer, completion: @escaping (URL) -> Void) { chooseFileBlock?(importer, completion) }
+    func importerWillStartSession(_ session: ImportSession, willImportItems count: Int) { willImportBlock?(session, count) }
+    func importerWillContinueSession(_ session: ImportSession, willImportItem item: Int, of count: Int) { willImportItemBlock?(session, item, count) }
+    func importerFinishedWithStatus(status: ImportStatus) { didFinishBlock?(status) }
 }
 
 public class ImportManager {
@@ -59,7 +73,7 @@ public class ImportManager {
             }
         }
         
-        monitor.noImporter()
+        monitor.importerDidFinishWithStatus(.noImporter)
     }
     
     func sessionWillBegin(_ session: ImportSession) {

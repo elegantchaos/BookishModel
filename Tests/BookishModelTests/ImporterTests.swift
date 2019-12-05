@@ -9,6 +9,19 @@ import XCTest
 
 @testable import BookishModel
 
+enum TestStatus {
+    case unknown
+    case failed
+    case ok
+}
+
+protocol TestMonitor {
+    var status: TestStatus { get }
+    func allChecksDone()
+    func checkFailed()
+    func check(count: Int, expected: Int)
+}
+
 class ImporterTests: ModelTestCase {
     
     class DummyImporter1: Importer {
@@ -49,6 +62,9 @@ class ImporterTests: ModelTestCase {
         func noImporter() {
             XCTFail("no importer found")
             expectation.fulfill()
+        }
+        
+        func importDone() {
         }
         
         func checkPassed() {
@@ -93,10 +109,8 @@ class ImporterTests: ModelTestCase {
         return monitor.status == .ok
     }
     
-    func check(action: Action, checker: @escaping Monitor.Checker) -> Bool {
-        
-    }
     
+
     func testRegistration() {
         let manager = ImportManager()
         let initialCount = manager.sortedImporters.count
@@ -149,39 +163,115 @@ class ImporterTests: ModelTestCase {
         }))
     }
 
-    func testImportAction() {
-        let url = URL(fileURLWithPath: "/dev/null")
-        let expectation = self.expectation(description: "import done")
+    class ContainerMonitor: TestMonitor {
+
+        typealias Checker = (ContainerMonitor) -> Void
+        var status: TestStatus = .unknown
+        let expectation: XCTestExpectation
+        let container: CollectionContainer
+        let checker: Checker
+        
+        init(expectation: XCTestExpectation, container: CollectionContainer, checker: @escaping Checker) {
+            self.expectation = expectation
+            self.checker = checker
+            self.container = container
+        }
+        
+        func allChecksDone() {
+            if status == .unknown {
+                status = .ok
+                self.expectation.fulfill()
+            }
+        }
+        
+        func checkFailed() {
+            if status == .unknown {
+                status = .failed
+                expectation.fulfill()
+            }
+        }
+        
+        func check(count: Int, expected: Int) {
+            if status == .unknown {
+                if count != expected {
+                    status = .failed
+                    XCTFail("\(count) != \(expected)")
+                    expectation.fulfill()
+                }
+            }
+        }
+    }
+
+    class WrappedMonitor<Wrapped: TestMonitor>: TestMonitor {
+        let wrappedMonitor: Wrapped
+        
+        init(wrappedMonitor: Wrapped) {
+            self.wrappedMonitor = wrappedMonitor
+        }
+        
+        var status: TestStatus { return wrappedMonitor.status }
+        func allChecksDone() { wrappedMonitor.allChecksDone() }
+        func checkFailed() { wrappedMonitor.checkFailed() }
+        func check(count: Int, expected: Int) { wrappedMonitor.check(count: count, expected: expected) }
+    }
+    
+    func checkContainer(withURL url: URL = URL(fileURLWithPath: "/dev/null"), checker: @escaping ContainerMonitor.Checker) -> Bool {
+        let expectation = self.expectation(description: "completed")
+        var monitor: ContainerMonitor? = nil
         CollectionContainer.load(name: "test", url: url, mode: .empty, indexed: false) { result in
             switch result {
                 case .failure(let error):
-                XCTFail("load failed \(error)")
+                    XCTFail("load failed \(error)")
+                    expectation.fulfill()
                 
                 case .success(let container):
-                    let actionManager = ActionManager()
-                    actionManager.register([ImportAction(identifier: "Import")])
-                    
-                    let manager = ImportManager()
-                    let xmlURL = Bundle(for: type(of: self)).url(forResource: "Simple", withExtension: "plist")!
-                    let info = ActionInfo()
-                    info[ImportAction.managerKey] = manager
-                    info[ImportAction.urlKey] = xmlURL
-                    info[ImportAction.importerKey] = DeliciousLibraryImporter.identifier
-                    info[ActionContext.modelKey] = container
-                    info.registerNotification(notification: { (stage, context) in
-                        if stage == .didPerform {
-                            container.store.count(entitiesOfTypes: [.book]) { counts in
-                                XCTAssertEqual(counts[0], 2)
-                                expectation.fulfill()
-                            }
-                        }
-                    })
-                    
-                    actionManager.perform(identifier: "Import", info: info)
+                    let newMonitor  = ContainerMonitor(expectation: expectation, container: container, checker: checker)
+                    checker(newMonitor)
+                    monitor = newMonitor
             }
         }
 
-        wait(for: [expectation], timeout: 10.0)
+        wait(for: [expectation], timeout: 1.0)
+        return monitor?.status == .ok
+    }
+
+    class ActionMonitor: WrappedMonitor<ContainerMonitor> {
+        
+    }
+    
+    func checkAction(_ identifier: String, withInfo info: ActionInfo, checker: @escaping (ActionMonitor) -> Void) -> Bool {
+        let actionManager = ActionManager()
+        actionManager.register([ImportAction(identifier: identifier)])
+        let result = checkContainer() { monitor in
+            info[ActionContext.modelKey] = monitor.container
+            info.registerNotification(notification: { (stage, context) in
+                if stage == .didPerform {
+                    let actionMonitor = ActionMonitor(wrappedMonitor: monitor)
+                    checker(actionMonitor)
+                }
+            })
+            
+            actionManager.perform(identifier: identifier, info: info)
+        }
+        
+        return result
+    }
+    
+    func testImportAction() {
+        let xmlURL = Bundle(for: type(of: self)).url(forResource: "Simple", withExtension: "plist")!
+        let manager = ImportManager()
+        let info = ActionInfo()
+        info[ImportAction.managerKey] = manager
+        info[ImportAction.urlKey] = xmlURL
+        info[ImportAction.importerKey] = DeliciousLibraryImporter.identifier
+
+        XCTAssertTrue(checkAction("Import", withInfo: info) { monitor in
+            let store = monitor.wrappedMonitor.container.store
+            store.count(entitiesOfTypes: [.book]) { counts in
+                monitor.check(count: counts[0], expected: 2)
+                monitor.allChecksDone()
+            }
+        })
     }
     
 //

@@ -19,6 +19,26 @@ extension ActionContext { // TODO: move into Actions
     }
 }
 
+/// Import monitor which intercepts the importerFinished callback in order to run the action completion.
+/// All the monitor callbacks are also passed on to a real monitor (if there is one).
+struct ActionImportMonitor: ImportMonitor {
+    let wrappedMonitor: ImportMonitor?
+    let actionCompletion: ModelAction.Completion
+    
+    init(context: ActionContext, completion: @escaping ModelAction.Completion) {
+        self.wrappedMonitor = context[ImportAction.monitorKey] as? ImportMonitor
+        self.actionCompletion = completion
+    }
+    
+    func importerNeedsFile(for importer: Importer, completion: @escaping (URL) -> Void) { wrappedMonitor?.importerNeedsFile(for: importer, completion: completion) }
+    func importerWillStartSession(_ session: ImportSession, withCount count: Int) { wrappedMonitor?.importerWillStartSession(session, withCount: count) }
+    func importerWillContinueSession(_ session: ImportSession, withItem item: Int, of count: Int) { wrappedMonitor?.importerWillContinueSession(session, withItem: item, of: count) }
+    func importerDidFinishWithStatus(_ status: ImportStatus) {
+        wrappedMonitor?.importerDidFinishWithStatus(status)
+        actionCompletion()
+    }
+}
+
 public class ImportAction: ModelAction {
     public static let importerKey = "importer"
     public static let monitorKey = "importMonitor"
@@ -40,7 +60,21 @@ public class ImportAction: ModelAction {
 
         // some importers need a url, some don't, so we handle both alternatives
         if let importer = importer {
-            let monitor = context[ImportAction.monitorKey] as? ImportMonitor
+            
+            struct WrappedMonitor: ImportMonitor {
+                let wrappedMonitor: ImportMonitor
+                let actionCompletion: ModelAction.Completion
+                
+                func importerNeedsFile(for importer: Importer, completion: @escaping (URL) -> Void) { wrappedMonitor.importerNeedsFile(for: importer, completion: completion) }
+                func importerWillStartSession(_ session: ImportSession, withCount count: Int) { wrappedMonitor.importerWillStartSession(session, withCount: count) }
+                func importerWillContinueSession(_ session: ImportSession, withItem item: Int, of count: Int) { wrappedMonitor.importerWillContinueSession(session, withItem: item, of: count) }
+                func importerFinishedWithStatus(_ status: ImportStatus) {
+                    wrappedMonitor.importerDidFinishWithStatus(status)
+                    actionCompletion()
+                }
+            }
+            
+            let monitor = ActionImportMonitor(context: context, completion: completion)
             if let url = context.url(withKey: ImportAction.urlKey) {
                 importer.run(importing: url, in: store, monitor: monitor)
             } else {

@@ -153,14 +153,14 @@ class KindleImportSession: URLImportSession {
     }
     
     override func run() {
-        monitor?.session(self, willImportItems: books.count)
+        monitor?.importerWillStartSession(self, withCount: books.count)
         var item = 0
         for book in books {
-            monitor?.session(self, willImportItem: item, of: books.count)
+            monitor?.importerWillContinueSession(self, withItem: item, of: books.count)
             process(book: book)
             item += 1
         }
-        monitor?.sessionDidFinish(self)
+        monitor?.importerDidFinishWithStatus(.succeeded(self))
     }
     
     private func process(book kindleBook: KindleBook) {

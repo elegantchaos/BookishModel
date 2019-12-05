@@ -10,24 +10,7 @@ import Actions
 @testable import BookishModel
 
 struct TestImportMonitor: ImportMonitor {
-    func chooseFile(for importer: Importer, completion: @escaping (URL) -> Void) {
-    }
-    
-    func session(_ session: ImportSession, willImportItems count: Int) {
-    }
-    
-    func session(_ session: ImportSession, willImportItem item: Int, of count: Int) {
-    }
-    
-    func sessionDidFinish(_ session: ImportSession) {
-        expectation.fulfill()
-    }
-    
-    func sessionDidFail(_ session: ImportSession) {
-        expectation.fulfill()
-    }
-    
-    func noImporter() {
+    func importDone() {
         expectation.fulfill()
     }
     

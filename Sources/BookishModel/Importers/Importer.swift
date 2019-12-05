@@ -89,7 +89,7 @@ public class Importer {
         if let session = makeSession(importing: url, in: store, monitor: monitor) {
             session.performImport()
         } else {
-            monitor?.noImporter()
+            monitor?.importerDidFinishWithStatus(.noImporter)
         }
     }
 
@@ -99,15 +99,15 @@ public class Importer {
             if let session = makeSession(in: store, monitor: monitor) {
                 session.performImport()
             } else {
-                monitor?.noImporter()
+                monitor?.importerDidFinishWithStatus(.noImporter)
             }
             
         case .userSpecifiedFile:
-            monitor?.chooseFile(for: self, completion: { url in
+            monitor?.importerNeedsFile(for: self, completion: { url in
                 if let session = self.makeSession(importing: url, in: store, monitor: monitor) {
                     session.performImport()
                 } else {
-                    monitor?.noImporter()
+                    monitor?.importerDidFinishWithStatus(.noImporter)
                 }
             })
         }
