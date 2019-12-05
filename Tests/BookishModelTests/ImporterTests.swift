@@ -93,6 +93,10 @@ class ImporterTests: ModelTestCase {
         return monitor.status == .ok
     }
     
+    func check(action: Action, checker: @escaping Monitor.Checker) -> Bool {
+        
+    }
+    
     func testRegistration() {
         let manager = ImportManager()
         let initialCount = manager.sortedImporters.count
@@ -144,35 +148,42 @@ class ImporterTests: ModelTestCase {
             }
         }))
     }
-//
-//    func testImportAction() {
-//        let url = URL(fileURLWithPath: "/dev/null")
-//        let expectation = self.expectation(description: "import done")
-//        let container = CollectionContainer(name: "test", url: url, mode: .empty, indexed: false) { (container, error) in
-//            XCTAssertNil(error)
-//            XCTAssertNotNil(container)
-//
-//            let actionManager = ActionManager()
-//            actionManager.register([ImportAction(identifier: "Import")])
-//
-//            let manager = ImportManager()
-//            let xmlURL = Bundle(for: type(of: self)).url(forResource: "Simple", withExtension: "plist")!
-//            let info = ActionInfo()
-//            info[ImportAction.managerKey] = manager
-//            info[ImportAction.urlKey] = xmlURL
-//            info[ImportAction.importerKey] = DeliciousLibraryImporter.identifier
-//            info[ActionContext.modelKey] = container.managedObjectContext
-//            info.registerNotification(notification: { (stage, context) in
-//                if stage == .didPerform {
-//                    expectation.fulfill()
-//                }
-//            })
-//
-//            actionManager.perform(identifier: "Import", info: info)
-//        }
-//        wait(for: [expectation], timeout: 10.0)
-//        XCTAssertEqual(container.managedObjectContext.countEntities(type: Book.self), 2)
-//    }
+
+    func testImportAction() {
+        let url = URL(fileURLWithPath: "/dev/null")
+        let expectation = self.expectation(description: "import done")
+        CollectionContainer.load(name: "test", url: url, mode: .empty, indexed: false) { result in
+            switch result {
+                case .failure(let error):
+                XCTFail("load failed \(error)")
+                
+                case .success(let container):
+                    let actionManager = ActionManager()
+                    actionManager.register([ImportAction(identifier: "Import")])
+                    
+                    let manager = ImportManager()
+                    let xmlURL = Bundle(for: type(of: self)).url(forResource: "Simple", withExtension: "plist")!
+                    let info = ActionInfo()
+                    info[ImportAction.managerKey] = manager
+                    info[ImportAction.urlKey] = xmlURL
+                    info[ImportAction.importerKey] = DeliciousLibraryImporter.identifier
+                    info[ActionContext.modelKey] = container
+                    info.registerNotification(notification: { (stage, context) in
+                        if stage == .didPerform {
+                            container.store.count(entitiesOfTypes: [.book]) { counts in
+                                XCTAssertEqual(counts[0], 2)
+                                expectation.fulfill()
+                            }
+                        }
+                    })
+                    
+                    actionManager.perform(identifier: "Import", info: info)
+            }
+        }
+
+        wait(for: [expectation], timeout: 10.0)
+    }
+    
 //
 //    func testFileTypes() {
 //        let manager = ImportManager()

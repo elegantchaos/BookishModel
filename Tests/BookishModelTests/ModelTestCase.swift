@@ -14,12 +14,12 @@ class ModelTestCase: XCTestCase {
         modelChannel.enabled = true
     }
     
-    func makeTestContainer() -> CollectionContainer {
-        let url = URL(fileURLWithPath: "/dev/null")
-        let collection = CollectionContainer(name: "Test", url: url, mode: .empty, indexed: false)
-//        collection.configure(for: url)
-        return collection
-    }
+//    func makeTestContainer() -> CollectionContainer {
+//        let url = URL(fileURLWithPath: "/dev/null")
+//        let collection = CollectionContainer(name: "Test", url: url, mode: .empty, indexed: false)
+////        collection.configure(for: url)
+//        return collection
+//    }
 
     func check(book: Book, series: Series, position: Int, ignore: SeriesEntry? = nil) -> Bool {
         for entry in book.entries {

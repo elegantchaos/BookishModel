@@ -14,23 +14,23 @@ class ModelActionTestCase: ModelTestCase {
     var actionManager: ActionManager!
     var info: ActionInfo = ActionInfo()
     var expectation: XCTestExpectation!
-    
-    override func setUp() {
-        container = makeTestContainer()
-        context = container.managedObjectContext
-        actionManager = ActionManager()
-        actionManager.register(ModelAction.standardActions())
-        actionManager.register([ModelAction(identifier: "ModelAction")]) // base class, registered for testing only
-        actionManager.register([ModelAction(identifier: "ModelAction")]) // base class, registered for testing only
-
-        info[ActionContext.modelKey] = context
-        info.registerNotification { (stage, context) in
-            if stage == .didPerform {
-                self.expectation.fulfill()
-            }
-        }
-        expectation = XCTestExpectation(description: "action done")
-    }
+//    
+//    override func setUp() {
+//        container = makeTestContainer()
+//        context = container.managedObjectContext
+//        actionManager = ActionManager()
+//        actionManager.register(ModelAction.standardActions())
+//        actionManager.register([ModelAction(identifier: "ModelAction")]) // base class, registered for testing only
+//        actionManager.register([ModelAction(identifier: "ModelAction")]) // base class, registered for testing only
+//
+//        info[ActionContext.modelKey] = context
+//        info.registerNotification { (stage, context) in
+//            if stage == .didPerform {
+//                self.expectation.fulfill()
+//            }
+//        }
+//        expectation = XCTestExpectation(description: "action done")
+//    }
     
     func count(of type: String, in context: NSManagedObjectContext? = nil) -> Int {
         let requestContext = context != nil ? context! : (self.context as NSManagedObjectContext)

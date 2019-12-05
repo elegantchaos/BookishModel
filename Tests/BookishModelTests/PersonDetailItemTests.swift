@@ -18,16 +18,16 @@ class PersonDetailItemTests: ModelTestCase {
         let item = RelationshipDetailItem(absolute: 0, index: 1, source: DetailProvider())
         XCTAssertEqual(item.viewID(for: "custom column"), item.kind)
     }
-
-    func testHeading() {
-        let container = makeTestContainer()
-        let context = container.managedObjectContext
-        let person = Person(context: context)
-        let relationship = person.relationship(as: "test role")
-
-        let item = RelationshipDetailItem(relationship: relationship, absolute: 0, index: 1, source: DetailProvider())
-        XCTAssertEqual(item.heading, "test role")
-    }
+//
+//    func testHeading() {
+//        let container = makeTestContainer()
+//        let context = container.managedObjectContext
+//        let person = Person(context: context)
+//        let relationship = person.relationship(as: "test role")
+//
+//        let item = RelationshipDetailItem(relationship: relationship, absolute: 0, index: 1, source: DetailProvider())
+//        XCTAssertEqual(item.heading, "test role")
+//    }
     
     func testPlaceholderHeading() {
         let item = RelationshipDetailItem(absolute: 0, index: 1, source: DetailProvider())

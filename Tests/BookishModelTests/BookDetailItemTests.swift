@@ -7,11 +7,11 @@ import XCTest
 @testable import BookishModel
 
 class BookDetailItemTests: ModelTestCase {
-    func testHeading() {
-        let container = makeTestContainer()
-        let context = container.managedObjectContext
-        let book = Book(context: context)
-        let item = BookDetailItem(book: book, mode: .person, absolute: 0, index: 1, source: DetailProvider())
-        XCTAssertEqual(item.heading, "")
-    }
+//    func testHeading() {
+//        let container = makeTestContainer()
+//        let context = container.managedObjectContext
+//        let book = Book(context: context)
+//        let item = BookDetailItem(book: book, mode: .person, absolute: 0, index: 1, source: DetailProvider())
+//        XCTAssertEqual(item.heading, "")
+//    }
 }

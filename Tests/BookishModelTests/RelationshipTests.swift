@@ -8,25 +8,25 @@ import XCTest
 
 class RelationshipTests: ModelTestCase {
 
-    func testRelationshipIdentifier() {
-        let container = makeTestContainer()
-        let context = container.managedObjectContext
-        let person = Person(context: context)
-        let relationship = person.relationship(as: "author")
-        relationship.role?.uuid = "author"
-        person.uuid = "person"
-        XCTAssertEqual(relationship.uniqueIdentifier, "person-author" as NSString)
-    }
-    
-    func testRelationshipMissingIdentifier() {
-        let container = makeTestContainer()
-        let context = container.managedObjectContext
-        let person = Person(context: context)
-        let relationship = person.relationship(as: "author")
-        relationship.role?.uuid = nil
-        person.uuid = nil
-        XCTAssertEqual(relationship.uniqueIdentifier, ModelObject.missingUUID)
-    }
+//    func testRelationshipIdentifier() {
+//        let container = makeTestContainer()
+//        let context = container.managedObjectContext
+//        let person = Person(context: context)
+//        let relationship = person.relationship(as: "author")
+//        relationship.role?.uuid = "author"
+//        person.uuid = "person"
+//        XCTAssertEqual(relationship.uniqueIdentifier, "person-author" as NSString)
+//    }
+//    
+//    func testRelationshipMissingIdentifier() {
+//        let container = makeTestContainer()
+//        let context = container.managedObjectContext
+//        let person = Person(context: context)
+//        let relationship = person.relationship(as: "author")
+//        relationship.role?.uuid = nil
+//        person.uuid = nil
+//        XCTAssertEqual(relationship.uniqueIdentifier, ModelObject.missingUUID)
+//    }
 //
 //    func testDescription() {
 //        let container = makeTestContainer()

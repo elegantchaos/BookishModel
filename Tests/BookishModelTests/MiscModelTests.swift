@@ -45,35 +45,35 @@ class MiscModelTests: ModelTestCase {
         #endif
     }
     
-    func testContainer() {
-        let container = makeTestContainer()
-        let context = container.managedObjectContext
-        let book = Book(context: context)
-        book.name = "Test"
-        book.notes = "Test"
-        context.insert(book)
-        
-        do {
-            try context.save()
-        } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            let nserror = error as NSError
-            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-        }
-    }
- 
-    func testUniqueRelationships() {
-        let container = makeTestContainer()
-        let context = container.managedObjectContext
-        let person = Person(context: context)
-        let entry1 = person.relationship(as: "editor")
-        XCTAssertEqual(entry1.person, person)
-        XCTAssertEqual(entry1.role?.name, "editor")
-        let entry2 = person.relationship(as: "editor")
-        XCTAssertTrue(entry1 === entry2)
-    }
-    
+//    func testContainer() {
+//        let container = makeTestContainer()
+//        let context = container.managedObjectContext
+//        let book = Book(context: context)
+//        book.name = "Test"
+//        book.notes = "Test"
+//        context.insert(book)
+//        
+//        do {
+//            try context.save()
+//        } catch {
+//            // Replace this implementation with code to handle the error appropriately.
+//            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+//            let nserror = error as NSError
+//            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+//        }
+//    }
+// 
+//    func testUniqueRelationships() {
+//        let container = makeTestContainer()
+//        let context = container.managedObjectContext
+//        let person = Person(context: context)
+//        let entry1 = person.relationship(as: "editor")
+//        XCTAssertEqual(entry1.person, person)
+//        XCTAssertEqual(entry1.role?.name, "editor")
+//        let entry2 = person.relationship(as: "editor")
+//        XCTAssertTrue(entry1 === entry2)
+//    }
+//    
 //    func testBookPersonLinkages() {
 //        let container = makeTestContainer()
 //        let context = container.managedObjectContext

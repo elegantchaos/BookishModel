@@ -8,43 +8,43 @@ import CoreData
 @testable import BookishModel
 
 class RoleDetailProviderTests: ModelTestCase {
-    func testProvider() {
-        let container = makeTestContainer()
-        let context = container.managedObjectContext
-        let role = Role(context: context)
-        let provider = role.getProvider()
-        XCTAssertTrue(provider is RoleDetailProvider)
-    }
+//    func testProvider() {
+//        let container = makeTestContainer()
+//        let context = container.managedObjectContext
+//        let role = Role(context: context)
+//        let provider = role.getProvider()
+//        XCTAssertTrue(provider is RoleDetailProvider)
+//    }
+//    
+//    func testStandardDetails() {
+//        let details = RoleDetailProvider.standardDetails(showDebug: false)
+//        let debugDetails = RoleDetailProvider.standardDetails(showDebug: true)
+//        XCTAssertTrue(details.count > 0)
+//        XCTAssertTrue(debugDetails.count > details.count)
+//    }
     
-    func testStandardDetails() {
-        let details = RoleDetailProvider.standardDetails(showDebug: false)
-        let debugDetails = RoleDetailProvider.standardDetails(showDebug: true)
-        XCTAssertTrue(details.count > 0)
-        XCTAssertTrue(debugDetails.count > details.count)
-    }
-    
-    func testRowCount() {
-        let container = makeTestContainer()
-        let context = container.managedObjectContext
-        let source = RoleDetailProvider()
-        
-        source.filter(for: ModelSelection(), editing: false, combining: false, session: TestContext())
-        XCTAssertEqual(source.itemCount(for: 0), 0)
-        XCTAssertEqual(source.sectionCount, 1)
-        
-        let role = Role.named(Role.StandardName.author, in: context)
-        let person = Person(context: context)
-        let relationship = person.relationship(as: role)
-        
-        source.filter(for: ModelSelection([role]), editing: false, combining: false, session: TestContext())
-        XCTAssertEqual(source.itemCount(for: 0), 2)
-        XCTAssertEqual(source.sectionCount, 1)
-        
-        let book = Book(context: context)
-        relationship.add(book)
-        
-        source.filter(for: ModelSelection([role]), editing: false, combining: false, session: TestContext())
-        XCTAssertEqual(source.itemCount(for: 0), 2)
-        XCTAssertEqual(source.sectionCount, 1)
-    }
+//    func testRowCount() {
+//        let container = makeTestContainer()
+//        let context = container.managedObjectContext
+//        let source = RoleDetailProvider()
+//        
+//        source.filter(for: ModelSelection(), editing: false, combining: false, session: TestContext())
+//        XCTAssertEqual(source.itemCount(for: 0), 0)
+//        XCTAssertEqual(source.sectionCount, 1)
+//        
+//        let role = Role.named(Role.StandardName.author, in: context)
+//        let person = Person(context: context)
+//        let relationship = person.relationship(as: role)
+//        
+//        source.filter(for: ModelSelection([role]), editing: false, combining: false, session: TestContext())
+//        XCTAssertEqual(source.itemCount(for: 0), 2)
+//        XCTAssertEqual(source.sectionCount, 1)
+//        
+//        let book = Book(context: context)
+//        relationship.add(book)
+//        
+//        source.filter(for: ModelSelection([role]), editing: false, combining: false, session: TestContext())
+//        XCTAssertEqual(source.itemCount(for: 0), 2)
+//        XCTAssertEqual(source.sectionCount, 1)
+//    }
 }
