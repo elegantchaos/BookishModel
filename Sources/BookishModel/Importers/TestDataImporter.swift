@@ -28,18 +28,30 @@ class TestDataImportSession: StandardRolesImportSession {
         let formatter = DateFormatter()
         formatter.setLocalizedDateFormatFromTemplate("dd/MM/yy")
         
-//        let sharedEditor = Person(context: context)
-//        sharedEditor.name = "Ms Editor"
-//        sharedEditor.uuid = "person-1"
-//        sharedEditor.notes = "This person is the editor of a number of books."
-//        let entry = sharedEditor.relationship(as: Role.StandardName.editor)
-//        
-//        let book = Book(context: context)
-//        book.name = "A Book"
-//        book.uuid = "book-1"
-//        book.notes = "Some\nmulti\nline\nnotes."
-//        entry.add(book)
-//        
+        let monitor = self.monitor
+        let count = 4
+        monitor?.importerWillStartSession(self, withCount: count)
+
+        var entities: [EntityReference] = []
+        var item = 0
+
+        let tag = Entity.named("test", createAs: .tag)
+
+        let editorRole = Entity.identifiedBy(Role.StandardName.editor.identifier)
+        let sharedEditor = Entity.identifiedBy("person-1", createAs: .person, with: [
+            .name: "Ms Editor",
+            .notes: "This person is the editor of a number of books."
+        ])
+        
+
+        let book = Entity.identifiedBy("book-1", createAs: .book, with: [
+            .name: "A Book",
+            .notes: "Some\nmulti\nline\nnotes.",
+            PropertyKey("editor-1"): (sharedEditor, PropertyType.editor),
+            PropertyKey("tag-1"): tag
+        ])
+        
+//
 //        let tag = Tag.named("test", in: context)
 //        tag.addToBooks(book)
 //        

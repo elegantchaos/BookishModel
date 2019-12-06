@@ -95,30 +95,25 @@ class ImporterTests: ModelTestCase {
     }
     
 
-        func testStandardRolesImporter() {
-            XCTAssertTrue(check(with: StandardRolesImporter.identifier, checker: { monitor in
-                let store = monitor.store
-                store.count(entitiesOfTypes: [.role]) { counts in
-                    monitor.check(count: counts[0], expected: Role.StandardName.allCases.count)
-                    monitor.allChecksDone()
-                }
-            }))
-        }
+    func testStandardRolesImporter() {
+        XCTAssertTrue(check(with: StandardRolesImporter.identifier, checker: { monitor in
+            monitor.store.count(entitiesOfTypes: [.role]) { counts in
+                monitor.check(count: counts[0], expected: Role.StandardName.allCases.count)
+                monitor.allChecksDone()
+            }
+        }))
+    }
     
-    //
-    //    func testTestDataImporter() {
-    //        let container = makeTestContainer()
-    //        let manager = ImportManager()
-    //        let importer = TestDataImporter(manager: manager)
-    //        manager.register([importer])
-    //        let expectation = self.expectation(description: "completed")
-    //        importer.run(in: container.managedObjectContext, monitor: TestImportMonitor(expectation: expectation))
-    //        wait(for: [expectation], timeout: 1.0)
-    //        let roles = container.managedObjectContext.countEntities(type: Role.self)
-    //        XCTAssertEqual(roles, Role.StandardName.allCases.count)
-    //        let books = container.managedObjectContext.countEntities(type: Book.self)
-    //        XCTAssertEqual(books, 4)
-    //    }
+    
+    func testTestDataImporter() {
+        XCTAssertTrue(check(with: TestDataImporter.identifier, checker: { monitor in
+            monitor.store.count(entitiesOfTypes: [.role, .book]) { counts in
+                monitor.check(count: counts[0], expected: Role.StandardName.allCases.count)
+                monitor.check(count: counts[1], expected: 4)
+                monitor.allChecksDone()
+            }
+        }))
+    }
 
     func testImportAction() {
         let xmlURL = Bundle(for: type(of: self)).url(forResource: "Simple", withExtension: "plist")!

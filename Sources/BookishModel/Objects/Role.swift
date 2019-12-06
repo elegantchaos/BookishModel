@@ -15,6 +15,8 @@ public class Role: ModelEntity, ModelEntityCommon {
         case translator = "Translator"
         
         public static var allNames: [String] { get { return allCases.map { $0.rawValue } } }
+        
+        public var identifier: String { return "standard-\(rawValue)" }
     }
 
     public class func named(_ name: StandardName, in context: NSManagedObjectContext) -> Role {
