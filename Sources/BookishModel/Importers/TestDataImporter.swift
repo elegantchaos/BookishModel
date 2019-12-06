@@ -32,8 +32,7 @@ class TestDataImportSession: StandardRolesImportSession {
         let count = 4
         monitor?.importerWillStartSession(self, withCount: count)
 
-        var entities: [EntityReference] = []
-        var item = 0
+        monitor?.importerWillContinueSession(self, withItem: 0, of: count)
 
         let tag = Entity.named("test", createAs: .tag)
 
@@ -43,58 +42,67 @@ class TestDataImportSession: StandardRolesImportSession {
             .notes: "This person is the editor of a number of books."
         ])
         
+        let publisher = Entity.identifiedBy("publisher-1", createAs: .publisher, with: [
+            .name: "Example Publisher",
+            .notes: "Some notes about the publisher"
+            ])
 
         let book = Entity.identifiedBy("book-1", createAs: .book, with: [
             .name: "A Book",
             .notes: "Some\nmulti\nline\nnotes.",
-            PropertyKey("editor-1"): (sharedEditor, PropertyType.editor),
+            .publisher: publisher,
+            PropertyKey("editor-1"): (sharedEditor, PropertyType.role),
+            PropertyKey("author-1"): (sharedEditor, PropertyType.role),
+            PropertyKey("illustrator-1"): (sharedEditor, PropertyType.role),
             PropertyKey("tag-1"): tag
         ])
+
+        let sharedPublisher = Entity.identifiedBy("publisher-2", createAs: .publisher, with: [
+            .name: "Another Publisher",
+            .notes: "This publisher has multiple books"
+            ])
+
+        var seriesProperties: [PropertyKey:Any] = [
+            .name: "Example Series",
+            .notes: "Some notes about the series",
+            "entry-1": book
+        ]
+
+        var books: [EntityReference] = [book]
+        for n in 2...count {
+            monitor?.importerWillContinueSession(self, withItem: n - 1, of: count)
+            let illustrator = Entity.identifiedBy("person-\(n)", createAs: .person, with:[
+                .name: "Mr Illustrator \(n)",
+                .notes: "Another example person."
+            ])
+
+            let book = Entity.identifiedBy("book-\(n)", createAs: .book, with: [
+                .name: "Book \(n)",
+                .subtitle: "Slightly longer subtitle \(n)",
+                .notes: "This is an example book.",
+                .published: formatter.date(from: "12/11/69")!,
+                .publisher: publisher,
+                "editor-1": (sharedEditor, PropertyType.role),
+                "illustrator-1": (illustrator, PropertyType.role)
+            ])
+            books.append(book)
+            seriesProperties[PropertyKey("entry-\(n)")] = book
+        }
         
-//
-//        let tag = Tag.named("test", in: context)
-//        tag.addToBooks(book)
-//        
-//        let publisher = Publisher(context: context)
-//        publisher.notes = "Some notes about the publisher"
-//        publisher.uuid = "publisher-1"
-//        publisher.add(book)
-//        
-//        sharedEditor.relationship(as: Role.StandardName.author).add(book)
-//        sharedEditor.relationship(as: Role.StandardName.illustrator).add(book)
-//        
-//        let sharedPublisher = Publisher(context: context)
-//        sharedPublisher.name = "Publisher 2"
-//        sharedPublisher.notes = "Some notes about the publisher"
-//        
-//        let series = Series(context: context)
-//        series.name = "Example Series"
-//        series.uuid = "series-1"
-//        series.notes = "Some notes about the series"
-//        
-//        for n in 2...4 {
-//            let book = Book(context: context)
-//            tag.addToBooks(book)
-//            book.name = "Book \(n)"
-//            book.uuid = "book-\(n)"
-//            book.subtitle = "Slightly longer subtitle \(n)"
-//            book.notes = "This is an example book."
-//            book.published = formatter.date(from: "12/11/69")
-//            entry.add(book)
-//            let illustrator = Person(context: context)
-//            illustrator.name = "Mr Illustrator \(n)"
-//            illustrator.uuid = "person-\(n)"
-//            illustrator.notes = "Another example person."
-//            let entry2 = illustrator.relationship(as: Role.StandardName.illustrator)
-//            entry2.add(book)
-//            
-//            sharedPublisher.add(book)
-//            
-//            let entry = SeriesEntry(context: context)
-//            entry.book = book
-//            entry.position = Int16(n)
-//            series.addToEntries(entry)
-//        }
+        let series = Entity.identifiedBy("series-1", createAs: .series, with: seriesProperties)
+
+        var entities = [
+            publisher,
+            series,
+            sharedEditor,
+            sharedPublisher,
+        ]
+        
+        entities.append(contentsOf: books)
+        store.get(entitiesWithIDs: entities) { result in
+            print(result)
+            monitor?.importerDidFinishWithStatus(.succeeded(self))
+        }
     }
     
     

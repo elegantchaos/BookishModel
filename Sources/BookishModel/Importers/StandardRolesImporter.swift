@@ -32,17 +32,18 @@ class StandardRolesImportSession: ImportSession {
             let initialiser = EntityInitialiser(
                 as: .role,
                 properties: [
-                    .name: name,
+                    .name: name.rawValue,
                     .notes: "Role.standard.\(name).notes".localized,
                     .locked: true
                 ]
             )
             let role = Entity.identifiedBy("standard-\(name)", initialiser: initialiser)
             roles.append(role)
-            store.get(entitiesOfType: .role, withIDs: roles) { _ in
-                monitor?.importerDidFinishWithStatus(.succeeded(self))
-            }
             item += 1
+        }
+
+        store.get(entitiesOfType: .role, withIDs: roles) { _ in
+            monitor?.importerDidFinishWithStatus(.succeeded(self))
         }
     }
 }

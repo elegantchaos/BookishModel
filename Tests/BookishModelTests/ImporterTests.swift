@@ -76,7 +76,7 @@ class ImporterTests: ModelTestCase {
         XCTAssertTrue(check(importing: xmlURL, with: DeliciousLibraryImporter.identifier, checker: { monitor in
             let store = monitor.store
             store.get(allEntitiesOfType: .book) { books in
-                monitor.check(count:    books.count, expected: 2)
+                monitor.check(count: books.count, expected: 2)
                 store.get(properties: [.name], of: books) { result in
                     let names = Set<String>(result.compactMap({ $0["name"] as? String }))
                     XCTAssertTrue(names.contains("The Bridge"))

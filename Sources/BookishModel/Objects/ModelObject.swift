@@ -46,6 +46,7 @@ extension PropertyType {
     static let publisher: Self = EntityType.publisher.asPropertyType
     static let series: Self = EntityType.series.asPropertyType
     static let tag: Self = EntityType.tag.asPropertyType
+    static let role: Self = "role"
 }
 
 extension PropertyDictionary {
