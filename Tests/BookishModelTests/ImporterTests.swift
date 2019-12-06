@@ -23,13 +23,19 @@ class ImporterTests: ModelTestCase {
     }
 
  
-    func check(importing url: URL, with importer: Importer, checker: @escaping StoreMonitor.Checker) -> Bool {
+    func check(importing url: URL? = nil, with importerID: String, checker: @escaping StoreMonitor.Checker) -> Bool {
+        let manager = ImportManager()
+        let importer = manager.importer(identifier: importerID)!
         let result = checkStore() { monitor in
             let delegate = BlockImportDelegate()
             delegate.didFinishBlock = { status in
                 checker(monitor)
             }
-            importer.run(importing: url, in: monitor.store, monitor: delegate)
+            if let url = url {
+                importer.run(importing: url, in: monitor.store, monitor: delegate)
+            } else {
+                importer.run(in: monitor.store, monitor: delegate)
+            }
         }
         
         return result
@@ -64,12 +70,10 @@ class ImporterTests: ModelTestCase {
         XCTAssertNil(importer.defaultImportLocation)
     }
 
-    func testImporter() {
-        let manager = ImportManager()
-        let importer = manager.importer(identifier: DeliciousLibraryImporter.identifier)!
+    func testDeliciousImporter() {
         let bundle = Bundle(for: type(of: self))
         let xmlURL = bundle.url(forResource: "Simple", withExtension: "plist")!
-        XCTAssertTrue(check(importing: xmlURL, with: importer, checker: { monitor in
+        XCTAssertTrue(check(importing: xmlURL, with: DeliciousLibraryImporter.identifier, checker: { monitor in
             let store = monitor.store
             store.get(allEntitiesOfType: .book) { books in
                 monitor.check(count:    books.count, expected: 2)
@@ -90,6 +94,32 @@ class ImporterTests: ModelTestCase {
         }))
     }
     
+
+        func testStandardRolesImporter() {
+            XCTAssertTrue(check(with: StandardRolesImporter.identifier, checker: { monitor in
+                let store = monitor.store
+                store.count(entitiesOfTypes: [.role]) { counts in
+                    monitor.check(count: counts[0], expected: Role.StandardName.allCases.count)
+                    monitor.allChecksDone()
+                }
+            }))
+        }
+    
+    //
+    //    func testTestDataImporter() {
+    //        let container = makeTestContainer()
+    //        let manager = ImportManager()
+    //        let importer = TestDataImporter(manager: manager)
+    //        manager.register([importer])
+    //        let expectation = self.expectation(description: "completed")
+    //        importer.run(in: container.managedObjectContext, monitor: TestImportMonitor(expectation: expectation))
+    //        wait(for: [expectation], timeout: 1.0)
+    //        let roles = container.managedObjectContext.countEntities(type: Role.self)
+    //        XCTAssertEqual(roles, Role.StandardName.allCases.count)
+    //        let books = container.managedObjectContext.countEntities(type: Book.self)
+    //        XCTAssertEqual(books, 4)
+    //    }
+
     func testImportAction() {
         let xmlURL = Bundle(for: type(of: self)).url(forResource: "Simple", withExtension: "plist")!
         let manager = ImportManager()
@@ -125,30 +155,4 @@ class ImporterTests: ModelTestCase {
         let importer = Importer(name: "test", source: .userSpecifiedFile, manager: manager)
         XCTAssertEqual(importer.panelMessage, "importer.message")
     }
-
-//    func testStandardRolesImporter() {
-//        let container = makeTestContainer()
-//        let manager = ImportManager()
-//        let importer = StandardRolesImporter(manager: manager)
-//        manager.register([importer])
-//        let expectation = self.expectation(description: "completed")
-//        importer.run(in: container.managedObjectContext, monitor: TestImportMonitor(expectation: expectation))
-//        wait(for: [expectation], timeout: 1.0)
-//        let count = container.managedObjectContext.countEntities(type: Role.self)
-//        XCTAssertEqual(count, Role.StandardName.allCases.count)
-//    }
-//
-//    func testTestDataImporter() {
-//        let container = makeTestContainer()
-//        let manager = ImportManager()
-//        let importer = TestDataImporter(manager: manager)
-//        manager.register([importer])
-//        let expectation = self.expectation(description: "completed")
-//        importer.run(in: container.managedObjectContext, monitor: TestImportMonitor(expectation: expectation))
-//        wait(for: [expectation], timeout: 1.0)
-//        let roles = container.managedObjectContext.countEntities(type: Role.self)
-//        XCTAssertEqual(roles, Role.StandardName.allCases.count)
-//        let books = container.managedObjectContext.countEntities(type: Book.self)
-//        XCTAssertEqual(books, 4)
-//    }
 }

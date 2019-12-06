@@ -22,11 +22,27 @@ public class StandardRolesImporter: Importer {
 class StandardRolesImportSession: ImportSession {
     override func run() {
         // Add a few standard roles to the context
+        let monitor = self.monitor
+        let count = Role.StandardName.allCases.count
+        monitor?.importerWillStartSession(self, withCount: count)
+        var roles: [EntityReference] = []
+        var item = 0
         for name in Role.StandardName.allCases {
-//            let role = Role.named(name, in: context)
-//            role.notes = "Role.standard.\(name).notes".localized
-//            role.uuid = "standard-\(name)"
-//            role.locked = true
+            monitor?.importerWillContinueSession(self, withItem: item, of: count)
+            let initialiser = EntityInitialiser(
+                as: .role,
+                properties: [
+                    .name: name,
+                    .notes: "Role.standard.\(name).notes".localized,
+                    .locked: true
+                ]
+            )
+            let role = Entity.identifiedBy("standard-\(name)", initialiser: initialiser)
+            roles.append(role)
+            store.get(entitiesOfType: .role, withIDs: roles) { _ in
+                monitor?.importerDidFinishWithStatus(.succeeded(self))
+            }
+            item += 1
         }
     }
 }

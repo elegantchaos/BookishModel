@@ -80,6 +80,8 @@ public class ImportManager {
         register([
             DeliciousLibraryImporter(manager: self),
             KindleImporter(manager: self),
+            StandardRolesImporter(manager: self),
+            TestDataImporter(manager: self)
         ])
     }
     
