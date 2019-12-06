@@ -91,7 +91,7 @@ extension PropertyDictionary {
 
     mutating func extract(from data: [String:Any], datesWithMapping mapping: [String:PropertyKey]) {
         for (fromKey, toKey) in mapping {
-            extract(nonZeroDoubleWithKey: fromKey, from: data, intoKey: toKey)
+            extract(dateWithKey: fromKey, from: data, intoKey: toKey)
         }
     }
 

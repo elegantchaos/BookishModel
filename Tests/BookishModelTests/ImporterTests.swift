@@ -81,14 +81,21 @@ class ImporterTests: ModelTestCase {
                     let names = Set<String>(result.compactMap({ $0["name"] as? String }))
                     XCTAssertTrue(names.contains("The Bridge"))
                     XCTAssertTrue(names.contains("A Dance With Dragons: Part 1 Dreams and Dust"))
-
-                    store.getAllEntities() { entities in
-                        for entity in entities {
-                            print("\(entity.type) \(entity.identifier)")
+                    let book = Entity.identifiedBy("FAB4A0CF-9DEE-41B3-BA64-2FE5335F389E")
+                    store.get(allPropertiesOf: [book]) { result in
+                        monitor.check(count: result.count, expected: 1)
+                        let bookProperties = result[0]
+                        print(bookProperties)
+                        XCTAssertEqual((bookProperties[.published] as? Date)?.timeIntervalSinceReferenceDate, 353462400.0)
+                        
+                        let publisher = bookProperties[.publisher] as! EntityReference
+                        store.get(allPropertiesOf: [publisher]) { results in
+                            monitor.check(count: results.count, expected: 1)
+                            let publisherProperties = results[0]
+                            XCTAssertEqual(publisherProperties[.name] as? String, "Harper Voyager")
+                            monitor.allChecksDone()
                         }
-                        monitor.allChecksDone()
                     }
-
                 }
             }
         }))

@@ -42,7 +42,7 @@ class StandardRolesImportSession: ImportSession {
             item += 1
         }
 
-        store.get(entitiesOfType: .role, withIDs: roles) { _ in
+        store.get(entitiesWithIDs: roles) { _ in
             monitor?.importerDidFinishWithStatus(.succeeded(self))
         }
     }
