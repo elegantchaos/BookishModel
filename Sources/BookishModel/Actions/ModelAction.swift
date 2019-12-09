@@ -31,7 +31,7 @@ open class ModelAction: Action {
  
     public func modelValidate(context: ActionContext) -> Validation {
         var info = super.validate(context: context)
-        info.enabled = info.enabled && ((context[ActionContext.modelKey] as? Datastore) != nil)
+        info.enabled = info.enabled && ((context[ActionContext.modelKey] as? CollectionContainer) != nil)
         return info
     }
 

@@ -58,7 +58,7 @@ class ModelTestCase: XCTestCase {
         XCTAssertEqual(relationship.person, person)
     }
 
-    class StoreMonitor: SimpleTestMonitor<StoreMonitor> {
+    public class StoreMonitor: SimpleTestMonitor<StoreMonitor> {
         let store: Datastore
         init(expectation: XCTestExpectation, store: Datastore, checker: @escaping Checker) {
             self.store = store
@@ -66,10 +66,10 @@ class ModelTestCase: XCTestCase {
         }
     }
 
-    func checkStore(checker: @escaping StoreMonitor.Checker) -> Bool {
+    public func checkStore(checker: @escaping StoreMonitor.Checker) -> Bool {
         let expectation = self.expectation(description: "completed")
         var monitor: StoreMonitor?
-        Datastore.load(name: "Test") { result in
+        Datastore.load(name: "Test", indexed: false) { result in
             switch result {
             case .failure(let error):
                 XCTFail("failed to make store: \(error)")
@@ -86,7 +86,7 @@ class ModelTestCase: XCTestCase {
     }
 
     
-      class ContainerMonitor: SimpleTestMonitor<ContainerMonitor> {
+      public class ContainerMonitor: SimpleTestMonitor<ContainerMonitor> {
           let container: CollectionContainer
           init(expectation: XCTestExpectation, container: CollectionContainer, checker: @escaping Checker) {
               self.container = container
@@ -94,7 +94,7 @@ class ModelTestCase: XCTestCase {
           }
       }
       
-      func checkContainer(withURL url: URL = URL(fileURLWithPath: "/dev/null"), checker: @escaping ContainerMonitor.Checker) -> Bool {
+      public func checkContainer(withURL url: URL = URL(fileURLWithPath: "/dev/null"), checker: @escaping ContainerMonitor.Checker) -> Bool {
           let expectation = self.expectation(description: "completed")
           var monitor: ContainerMonitor? = nil
           CollectionContainer.load(name: "test", url: url, mode: .empty, indexed: false) { result in
@@ -112,26 +112,6 @@ class ModelTestCase: XCTestCase {
 
           wait(for: [expectation], timeout: 10.0)
           return monitor?.status == .ok
-      }
-
-      typealias ActionMonitor = WrappedTestMonitor<ContainerMonitor>
-      
-      func checkAction(_ action: Action, withInfo info: ActionInfo, checker: @escaping (ActionMonitor) -> Void) -> Bool {
-          let actionManager = ActionManager()
-          actionManager.register([action])
-          let result = checkContainer() { monitor in
-              info[ActionContext.modelKey] = monitor.container
-              info.registerNotification(notification: { (stage, context) in
-                  if stage == .didPerform {
-                      let actionMonitor = ActionMonitor(wrappedMonitor: monitor)
-                      checker(actionMonitor)
-                  }
-              })
-              
-              actionManager.perform(identifier: action.identifier, info: info)
-          }
-          
-          return result
       }
 
 }

@@ -121,23 +121,6 @@ class ImporterTests: ModelTestCase {
             }
         }))
     }
-
-    func testImportAction() {
-        let xmlURL = Bundle(for: type(of: self)).url(forResource: "Simple", withExtension: "plist")!
-        let manager = ImportManager()
-        let info = ActionInfo()
-        info[ImportAction.managerKey] = manager
-        info[ImportAction.urlKey] = xmlURL
-        info[ImportAction.importerKey] = DeliciousLibraryImporter.identifier
-
-        XCTAssertTrue(checkAction(ImportAction(), withInfo: info) { monitor in
-            let store = monitor.wrappedMonitor.container.store
-            store.count(entitiesOfTypes: [.book]) { counts in
-                monitor.check(count: counts[0], expected: 2)
-                monitor.allChecksDone()
-            }
-        })
-    }
     
 
     func testFileTypes() {
@@ -157,4 +140,25 @@ class ImporterTests: ModelTestCase {
         let importer = Importer(name: "test", source: .userSpecifiedFile, manager: manager)
         XCTAssertEqual(importer.panelMessage, "importer.message")
     }
+}
+
+class ImporterActionTests: ModelActionTestCase {
+    
+    func testImportAction() {
+        let xmlURL = Bundle(for: type(of: self)).url(forResource: "Simple", withExtension: "plist")!
+        let manager = ImportManager()
+        let info = ActionInfo()
+        info[ImportAction.managerKey] = manager
+        info[ImportAction.urlKey] = xmlURL
+        info[ImportAction.importerKey] = DeliciousLibraryImporter.identifier
+
+        XCTAssertTrue(checkAction(ImportAction(), withInfo: info) { monitor in
+            let store = monitor.wrappedMonitor.container.store
+            store.count(entitiesOfTypes: [.book]) { counts in
+                monitor.check(count: counts[0], expected: 2)
+                monitor.allChecksDone()
+            }
+        })
+    }
+
 }

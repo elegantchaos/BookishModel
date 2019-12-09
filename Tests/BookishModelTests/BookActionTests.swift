@@ -9,56 +9,56 @@ import CoreData
 import Actions
 
 
-//class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, BookChangeObserver {
-//    var bookObserved: Book?
-//    var relationshipObserved: Relationship?
-//    var publisherObserved: Publisher?
-//    var seriesObserved: Series?
-//
-//    func added(series: Series, position: Int) {
-//        seriesObserved = series
-//    }
-//    
-//    func removed(series: Series) {
-//        seriesObserved = series
-//    }
-//    
-//    func added(publisher: Publisher) {
-//        publisherObserved = publisher
-//    }
-//    
-//    func removed(publisher: Publisher) {
-//        publisherObserved = publisher
-//    }
-//    
-//    func removed(relationship: Relationship) {
-//        relationshipObserved = relationship
-//    }
-//    
-//    func added(relationship: Relationship) {
-//        relationshipObserved = relationship
-//    }
-//
-//    func reveal(book: Book, dismissPopovers: Bool) {
-//        bookObserved = book
-//    }
-//    
-//    func created(books: [Book]) {
-//        bookObserved = books.first
-//    }
-//
-//    func deleted(books: [Book]) {
-//        bookObserved = books.first
-//    }
-//    
-//    func testNewBook() {
+class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, BookChangeObserver {
+    var bookObserved: Book?
+    var relationshipObserved: Relationship?
+    var publisherObserved: Publisher?
+    var seriesObserved: Series?
+
+    func added(series: Series, position: Int) {
+        seriesObserved = series
+    }
+    
+    func removed(series: Series) {
+        seriesObserved = series
+    }
+    
+    func added(publisher: Publisher) {
+        publisherObserved = publisher
+    }
+    
+    func removed(publisher: Publisher) {
+        publisherObserved = publisher
+    }
+    
+    func removed(relationship: Relationship) {
+        relationshipObserved = relationship
+    }
+    
+    func added(relationship: Relationship) {
+        relationshipObserved = relationship
+    }
+
+    func reveal(book: Book, dismissPopovers: Bool) {
+        bookObserved = book
+    }
+    
+    func created(books: [Book]) {
+        bookObserved = books.first
+    }
+
+    func deleted(books: [Book]) {
+        bookObserved = books.first
+    }
+    
+    func testNewBook() {
 //        info.addObserver(self)
 //        XCTAssertTrue(actionManager.validate(identifier: "NewBook", info: info).enabled)
 //        actionManager.perform(identifier: "NewBook", info: info)
 //        wait(for: [expectation], timeout: 1.0)
 //        XCTAssertEqual(count(of: "Book"), 1)
 //        XCTAssertNotNil(bookObserved)
-//    }
+    }
 //    
 //    func testDeleteBook() {
 //        let book = Book(context: context)
@@ -471,4 +471,4 @@ import Actions
 //        wait(for: [expectation], timeout: 1.0)
 //        XCTAssertEqual(bookObserved, book)
 //    }
-//}
+}

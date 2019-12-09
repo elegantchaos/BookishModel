@@ -5,54 +5,70 @@
 
 import XCTest
 import CoreData
+import XCTestExtensions
+
 @testable import BookishModel
-import Actions
+@testable import Actions
 
 class ModelActionTestCase: ModelTestCase {
-    var context: NSManagedObjectContext!
-    var container: CollectionContainer!
-    var actionManager: ActionManager!
-    var info: ActionInfo = ActionInfo()
-    var expectation: XCTestExpectation!
-//    
-//    override func setUp() {
-//        container = makeTestContainer()
-//        context = container.managedObjectContext
-//        actionManager = ActionManager()
-//        actionManager.register(ModelAction.standardActions())
-//        actionManager.register([ModelAction(identifier: "ModelAction")]) // base class, registered for testing only
-//        actionManager.register([ModelAction(identifier: "ModelAction")]) // base class, registered for testing only
-//
-//        info[ActionContext.modelKey] = context
-//        info.registerNotification { (stage, context) in
-//            if stage == .didPerform {
-//                self.expectation.fulfill()
+    public class ActionMonitor: WrappedTestMonitor<ContainerMonitor> {
+        let actionManager: ActionManager
+        
+        init(actionManager: ActionManager, wrappedMonitor: ContainerMonitor) {
+            self.actionManager = actionManager
+            super.init(wrappedMonitor: wrappedMonitor)
+        }
+    }
+    
+    func checkAction(_ action: Action, withInfo info: ActionInfo, checker: @escaping (ActionMonitor) -> Void) -> Bool {
+        let actionManager = ActionManager()
+        actionManager.register([action])
+        let result = checkContainer() { monitor in
+            info[ActionContext.modelKey] = monitor.container
+            info.registerNotification(notification: { (stage, context) in
+                if stage == .didPerform {
+                    let actionMonitor = ActionMonitor(actionManager: actionManager, wrappedMonitor: monitor)
+                    checker(actionMonitor)
+                }
+            })
+            
+            actionManager.perform(identifier: action.identifier, info: info)
+        }
+        
+        return result
+    }
+   
+//    func count(of type: String, in context: NSManagedObjectContext? = nil) -> Int {
+//        let requestContext = context != nil ? context! : (self.context as NSManagedObjectContext)
+//        var count = NSNotFound
+//        requestContext.performAndWait {
+//            let request: NSFetchRequest<NSManagedObject> = NSFetchRequest(entityName: type)
+//            if let result = try? requestContext.fetch(request) {
+//                count = result.count
 //            }
 //        }
-//        expectation = XCTestExpectation(description: "action done")
+//        return count
 //    }
     
-    func count(of type: String, in context: NSManagedObjectContext? = nil) -> Int {
-        let requestContext = context != nil ? context! : (self.context as NSManagedObjectContext)
-        var count = NSNotFound
-        requestContext.performAndWait {
-            let request: NSFetchRequest<NSManagedObject> = NSFetchRequest(entityName: type)
-            if let result = try? requestContext.fetch(request) {
-                count = result.count
-            }
-        }
-        return count
-    }
+//    func testCoverage() {
+//        // not real tests - just here to fill in coverage for some untestable areas
+//        info[ActionContext.modelKey] = nil
+//        actionManager.perform(identifier: "ModelAction", info: info)
+//        actionManager.perform(identifier: "ModelAction", info: info)
+//    }
     
-    func testCoverage() {
-        // not real tests - just here to fill in coverage for some untestable areas
-        info[ActionContext.modelKey] = nil
-        actionManager.perform(identifier: "ModelAction", info: info)
-        actionManager.perform(identifier: "ModelAction", info: info)
-    }
-    
+}
+
+class ModelActionTests: ModelActionTestCase {
     func testModelActionValidate() {
-        XCTAssertTrue(actionManager.validate(identifier: "ModelAction", info: info).enabled)
-        XCTAssertFalse(actionManager.validate(identifier: "ModelAction", info: ActionInfo()).enabled)
+        let info = ActionInfo()
+        let action = ModelAction()
+        XCTAssertTrue(checkAction(action, withInfo: info) { monitor in
+            let actionManager = monitor.actionManager
+            XCTAssertTrue(actionManager.validate(identifier: action.identifier, info: info).enabled)
+            XCTAssertFalse(actionManager.validate(identifier: action.identifier, info: ActionInfo()).enabled)
+            monitor.allChecksDone()
+        })
+
     }
 }
