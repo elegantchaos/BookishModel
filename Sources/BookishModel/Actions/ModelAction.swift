@@ -10,6 +10,17 @@ import Logger
 
 let modelActionChannel = Logger("ModelAction")
 
+
+extension ActionContext {
+    var collectionContainer: CollectionContainer? {
+        return info[ActionContext.modelKey] as? CollectionContainer
+    }
+    
+    var collectionStore: Datastore? {
+        return collectionContainer?.store
+    }
+}
+
 open class ModelAction: Action {
     public static let entityTypeKey = "entityType"
     
@@ -31,7 +42,7 @@ open class ModelAction: Action {
  
     public func modelValidate(context: ActionContext) -> Validation {
         var info = super.validate(context: context)
-        info.enabled = info.enabled && ((context[ActionContext.modelKey] as? CollectionContainer) != nil)
+        info.enabled = info.enabled && (context.collectionContainer != nil)
         return info
     }
 
@@ -60,9 +71,8 @@ open class ModelAction: Action {
     }
 
     open override func perform(context: ActionContext, completed: @escaping Completion) {
-        if let collection = context[ActionContext.modelKey] as? CollectionContainer {
+        if let store = context.collectionStore {
             modelActionChannel.debug("performing \(context.identifier)")
-            let store = collection.store
             perform(context: context, store: store) {
                 store.save() { result in
                     switch result {
