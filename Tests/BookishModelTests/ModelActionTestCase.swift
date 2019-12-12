@@ -14,9 +14,11 @@ import XCTestExtensions
 class ModelActionTestCase: ModelTestCase {
     public class ActionMonitor: WrappedTestMonitor<ContainerMonitor> {
         let actionManager: ActionManager
+        let storeChanges: [EntityChanges]
         
-        init(actionManager: ActionManager, wrappedMonitor: ContainerMonitor) {
+        init(actionManager: ActionManager, storeChanges: [EntityChanges], wrappedMonitor: ContainerMonitor) {
             self.actionManager = actionManager
+            self.storeChanges = storeChanges
             super.init(wrappedMonitor: wrappedMonitor)
         }
         
@@ -26,23 +28,48 @@ class ModelActionTestCase: ModelTestCase {
     }
     
     func checkAction(_ action: Action, withInfo info: ActionInfo, checker: @escaping (ActionMonitor) -> Void) -> Bool {
-        let actionManager = ActionManager()
-        actionManager.register([action])
         let result = checkContainer() { monitor in
-            info[.model] = monitor.container
-            info.registerNotification(notification: { (stage, context) in
-                if stage == .didPerform {
-                    let actionMonitor = ActionMonitor(actionManager: actionManager, wrappedMonitor: monitor)
-                    checker(actionMonitor)
-                }
-            })
-            
-            actionManager.perform(identifier: action.identifier, info: info)
+            self.checkAction(action, withInfo: info, monitor: monitor, checker:checker)
         }
         
         return result
     }
-   
+
+    func checkActionValidation(_ action: Action, withInfo info: ActionInfo, checker: @escaping (ActionMonitor) -> Void) -> Bool {
+        let result = checkContainer() { monitor in
+            let manager = ActionManager()
+            info[.model] = monitor.container
+            let action = DeleteBookAction()
+            manager.register([action])
+            let actionMonitor = ActionMonitor(actionManager: manager, storeChanges: [], wrappedMonitor: monitor)
+            checker(actionMonitor)
+        }
+        
+        return result
+    }
+
+    func checkAction(_ action: Action, withInfo info: ActionInfo, monitor: ContainerMonitor, checker: @escaping (ActionMonitor) -> Void) {
+        let actionManager = ActionManager()
+        actionManager.register([action])
+        var storeChanges: [EntityChanges] = []
+        var token: NSObjectProtocol
+        token = NotificationCenter.default.addObserver(forName: .EntityChangedNotification, object: nil, queue: nil) { notification in
+            if let changes = notification.entityChanges {
+                storeChanges.append(changes)
+            }
+        }
+        info[.model] = monitor.container
+        info.registerNotification(notification: { (stage, context) in
+            if stage == .didPerform {
+                let actionMonitor = ActionMonitor(actionManager: actionManager, storeChanges: storeChanges, wrappedMonitor: monitor)
+                checker(actionMonitor)
+                NotificationCenter.default.removeObserver(token)
+            }
+        })
+        
+        actionManager.perform(identifier: action.identifier, info: info)
+    }
+
 //    func count(of type: String, in context: NSManagedObjectContext? = nil) -> Int {
 //        let requestContext = context != nil ? context! : (self.context as NSManagedObjectContext)
 //        var count = NSNotFound

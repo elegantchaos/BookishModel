@@ -148,9 +148,9 @@ class ImporterActionTests: ModelActionTestCase {
         let xmlURL = Bundle(for: type(of: self)).url(forResource: "Simple", withExtension: "plist")!
         let manager = ImportManager()
         let info = ActionInfo()
-        info[ImportAction.managerKey] = manager
-        info[ImportAction.urlKey] = xmlURL
-        info[ImportAction.importerKey] = DeliciousLibraryImporter.identifier
+        info[.managerKey] = manager
+        info[.urlKey] = xmlURL
+        info[.importerKey] = DeliciousLibraryImporter.identifier
 
         XCTAssertTrue(checkAction(ImportAction(), withInfo: info) { monitor in
             let store = monitor.wrappedMonitor.container.store

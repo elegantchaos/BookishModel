@@ -105,7 +105,7 @@ open class EntityAction: ModelAction {
     open override func validate(context: ActionContext) -> Validation {
         var info = super.validate(context: context)
         
-        if info.enabled, let selection = context[.selection] as? [Book] {
+        if info.enabled, let selection = context[.selection] as? [ModelEntityReference] {
             info.enabled = selection.count > 0
         } else {
             info.enabled = false

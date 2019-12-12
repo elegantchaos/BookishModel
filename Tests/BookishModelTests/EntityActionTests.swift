@@ -7,7 +7,7 @@ import XCTest
 import CoreData
 @testable import BookishModel
 import Actions
-
+import Datastore
 
 class EntityActionTests: ModelActionTestCase, BookViewer, BookChangeObserver {
     var bookObserved: Book?
@@ -51,38 +51,67 @@ class EntityActionTests: ModelActionTestCase, BookViewer, BookChangeObserver {
         bookObserved = books.first
     }
     
-    func testNewBook() {
+    func testNewEntity() {
         let info = ActionInfo()
-        info.addObserver(self)
+        info[.entityTypeKey] = EntityType.book
         let action = NewEntityAction()
         XCTAssertTrue(checkAction(action, withInfo: info) { monitor in
+            // check that the change notification fired ok
+            monitor.check(count: monitor.storeChanges[0].added.count, expected: 1)
+
+            // check that we have a new entity
             monitor.store.count(entitiesOfTypes: [.book]) { counts in
+                print(monitor.storeChanges)
                 monitor.check(count: counts[0], expected: 1)
                 monitor.allChecksDone()
             }
         })
-            
-        XCTAssertNotNil(bookObserved)
     }
-//    
+
+    func testDeleteBookValidation() {
+        XCTAssertTrue(checkContainer() { monitor in
+            let book = Entity.named("Test", createAs: .book)
+            let manager = ActionManager()
+            let info = ActionInfo()
+            info[.model] = monitor.container
+            info[.selection] = [book]
+            let action = DeleteBookAction()
+            manager.register([action])
+            XCTAssertTrue(manager.validate(identifier: action.identifier, info: info).enabled)
+            info[.selection] = []
+            XCTAssertFalse(manager.validate(identifier: action.identifier, info: info).enabled)
+            XCTAssertFalse(manager.validate(identifier: action.identifier, info: ActionInfo()).enabled)
+            monitor.allChecksDone()
+        })
+    }
+
 //    func testDeleteBook() {
-//        let book = Book(context: context)
-//        XCTAssertEqual(count(of: "Book"), 1)
-//        
-//        info[.selection] = [book]
-//        info.addObserver(self)
+//        let book = Entity.named("Test", createAs: .book)
+//        XCTAssertTrue(checkContainer() { monitor in
+//            monitor.container.store.get(entity: book) { result in
+//                let info = ActionInfo()
+//                info[.selection] = [book]
+//                let action = DeleteBookAction()
+//                checkAction(action, withInfo: info, monitor: monitor) { actionMonitor in
+//                    // check that the change notification fired ok
+//                    monitor.check(count: monitor.storeChanges[0].added.count, expected: 1)
 //
-//        XCTAssertTrue(actionManager.validate(identifier: "DeleteBook", info: info).enabled)
+//                    // check that we have a new entity
+//                    monitor.store.count(entitiesOfTypes: [.book]) { counts in
+//                        print(monitor.storeChanges)
+//                        monitor.check(count: counts[0], expected: 1)
+//                        monitor.allChecksDone()
+//                    }
 //
-//        actionManager.perform(identifier: "DeleteBook", info: info)
-//        wait(for: [expectation], timeout: 1.0)
-//        XCTAssertEqual(count(of: "Book"), 0)
-//        XCTAssertEqual(bookObserved, book)
 //
-//        info[.selection] = []
-//        XCTAssertFalse(actionManager.validate(identifier: "DeleteBook", info: info).enabled)
-//        
-//        XCTAssertFalse(actionManager.validate(identifier: "DeleteBook", info: ActionInfo()).enabled)
+//                actionManager.perform(identifier: "DeleteBook", info: info)
+//                wait(for: [expectation], timeout: 1.0)
+//                XCTAssertEqual(count(of: "Book"), 0)
+//                XCTAssertEqual(bookObserved, book)
+//
+//            }
+//        })
+//
 //    }
 //    
 //    

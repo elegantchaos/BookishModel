@@ -8,6 +8,8 @@ import Logger
 import Actions
 import Datastore
 
+typealias ModelEntityReference = EntityReference
+
 extension EntityType {
     static let book: Self = "book"
     static let person: Self = "person"
