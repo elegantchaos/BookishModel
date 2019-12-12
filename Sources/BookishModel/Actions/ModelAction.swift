@@ -25,7 +25,17 @@ extension ActionContext {
 }
 
 open class ModelAction: Action {
-    
+    public enum Error: LocalizedError, Swift.Error {
+        case missingSelection
+        
+        public var errorDescription: String? {
+            switch self {
+            case .missingSelection:
+                return "Selection missing"
+            }
+        }
+    }
+
     open class func standardActions() -> [Action] {
         var actions = [Action]()
         actions.append(contentsOf: EntityAction.standardActions())

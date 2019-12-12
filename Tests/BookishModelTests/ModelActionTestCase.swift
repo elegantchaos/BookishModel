@@ -39,7 +39,6 @@ class ModelActionTestCase: ModelTestCase {
         let result = checkContainer() { monitor in
             let manager = ActionManager()
             info[.model] = monitor.container
-            let action = DeleteBookAction()
             manager.register([action])
             let actionMonitor = ActionMonitor(actionManager: manager, storeChanges: [], wrappedMonitor: monitor)
             checker(actionMonitor)
@@ -60,10 +59,13 @@ class ModelActionTestCase: ModelTestCase {
         }
         info[.model] = monitor.container
         info.registerNotification(notification: { (stage, context) in
-            if stage == .didPerform {
-                let actionMonitor = ActionMonitor(actionManager: actionManager, storeChanges: storeChanges, wrappedMonitor: monitor)
-                checker(actionMonitor)
-                NotificationCenter.default.removeObserver(token)
+            switch stage {
+                case .didPerform, .didFail:
+                    let actionMonitor = ActionMonitor(actionManager: actionManager, storeChanges: storeChanges, wrappedMonitor: monitor)
+                    checker(actionMonitor)
+                    NotificationCenter.default.removeObserver(token)
+                case .willPerform:
+                    break
             }
         })
         

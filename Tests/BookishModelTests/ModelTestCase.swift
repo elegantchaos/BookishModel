@@ -81,7 +81,7 @@ class ModelTestCase: XCTestCase {
             }
         }
 
-        wait(for: [expectation], timeout: 10.0)
+        wait(for: [expectation], timeout: 1.0)
         return monitor?.status == .ok
     }
 
