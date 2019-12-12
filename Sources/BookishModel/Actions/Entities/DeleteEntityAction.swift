@@ -7,10 +7,10 @@ import Actions
 import Datastore
 
 /**
- Action that deletes a model entity.
+ Action that deletes some model entities.
  */
 
-public class DeleteBookAction: EntityAction {
+public class DeleteEntityAction: EntityAction {
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
         guard let selection = context[.selection] as? [EntityReference] else {
             completion(.failure(Error.missingSelection))

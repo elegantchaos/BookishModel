@@ -71,7 +71,7 @@ class EntityActionTests: ModelActionTestCase, BookViewer, BookChangeObserver {
     func testDeleteBookValidation() {
         let book = Entity.named("Test", createAs: .book)
         let info = ActionInfo()
-        let action = DeleteBookAction()
+        let action = DeleteEntityAction()
         info[.selection] = [book]
         XCTAssertTrue(checkActionValidation(action, withInfo: info) { monitor in
             let manager = monitor.actionManager
@@ -89,7 +89,7 @@ class EntityActionTests: ModelActionTestCase, BookViewer, BookChangeObserver {
             monitor.container.store.get(entity: book) { result in
                 let info = ActionInfo()
                 info[.selection] = [book]
-                let action = DeleteBookAction()
+                let action = DeleteEntityAction()
                 self.checkAction(action, withInfo: info, monitor: monitor) { monitor in
                     // check that the change notification fired ok
                     monitor.check(count: monitor.storeChanges[0].deleted.count, expected: 1)

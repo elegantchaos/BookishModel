@@ -88,7 +88,7 @@ open class EntityAction: ModelAction {
     open class override func standardActions() -> [Action] {
         return [
             NewEntityAction(),
-            DeleteBookAction(),
+            DeleteEntityAction(),
             AddPublisherAction(),
             RemovePublisherAction(),
             ChangePublisherAction(),
