@@ -27,18 +27,21 @@ public protocol PublisherLifecycleObserver: ActionObserver {
     func deleted(publisher: Publisher)
 }
 
+extension ActionKey {
+    public static let publisherKey: ActionKey = "publisher"
+    public static let newPublisherKey: ActionKey = "newPublisher"
+}
+
 /**
  Common functionality for all Publisher-related actions.
  */
 
 open class PublisherAction: ModelAction {
-    public static let publisherKey = "publisher"
-    public static let newPublisherKey = "newPublisher"
     
     open override func validate(context: ActionContext) -> Validation {
         var info = super.validate(context: context)
         
-        if info.enabled, let selection = context[ActionContext.selectionKey] as? [Publisher] {
+        if info.enabled, let selection = context[.selection] as? [Publisher] {
             info.enabled = selection.count > 0
         } else {
             info.enabled = false
@@ -81,7 +84,7 @@ class NewPublisherAction: PublisherAction {
 
 class DeletePublisherAction: PublisherAction {
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-        if let selection = context[ActionContext.selectionKey] as? [Publisher] {
+        if let selection = context[.selection] as? [Publisher] {
             for publisher in selection {
                 context.info.forObservers { (observer: PublisherLifecycleObserver) in
                     observer.deleted(publisher: publisher)
@@ -101,14 +104,14 @@ class RevealPublisherAction: PublisherAction {
     override func validate(context: ActionContext) -> Validation {
         var info = modelValidate(context: context)
         if info.enabled {
-            info.enabled = (context[PublisherAction.publisherKey] as? Publisher != nil)
+            info.enabled = (context[.publisherKey] as? Publisher != nil)
         }
         return info
     }
     
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-        if let viewer = context[ActionContext.rootKey] as? PublisherViewer {
-            if let publisher = context[PublisherAction.publisherKey] as? Publisher {
+        if let viewer = context[.root] as? PublisherViewer {
+            if let publisher = context[.publisherKey] as? Publisher {
                 viewer.reveal(publisher: publisher)
             }
         }

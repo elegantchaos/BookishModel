@@ -40,7 +40,7 @@ open class RoleAction: ModelAction {
     open override func validate(context: ActionContext) -> Validation {
         var info = super.validate(context: context)
         
-        if let selection = context[ActionContext.selectionKey] as? [Role] {
+        if let selection = context[.selection] as? [Role] {
             info.enabled = info.enabled && selection.count > 0
         } else {
             info.enabled = false
@@ -68,7 +68,7 @@ class NewRoleAction: RoleAction {
     }
     
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-        completion()
+        completion(.ok)
 //        let role = Role(context: model)
 //        context.info.forObservers { (observer: RoleLifecycleObserver) in
 //            observer.created(role: role)
@@ -85,7 +85,7 @@ class DeleteRoleAction: RoleAction {
         var info = super.validate(context: context)
         
         // only valid if there are some unlocked items in the selection
-        if info.state == .active, let selection = context[ActionContext.selectionKey] as? [Role] {
+        if info.state == .active, let selection = context[.selection] as? [Role] {
             if selection.allSatisfy({ return $0.locked }) {
                 info.state = .inactive
             }
@@ -95,7 +95,7 @@ class DeleteRoleAction: RoleAction {
     }
     
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-        if let selection = context[ActionContext.selectionKey] as? [Role] {
+        if let selection = context[.selection] as? [Role] {
             for role in selection {
                 if !role.locked { // only delete the unlocked ones
                     context.info.forObservers { (observer: RoleLifecycleObserver) in
@@ -117,13 +117,13 @@ class DeleteRoleAction: RoleAction {
 class RevealRoleAction: ModelAction {
     override func validate(context: ActionContext) -> Validation {
         var info = super.validate(context: context)
-        info.enabled = info.enabled && (context[RoleAction.roleKey] as? Role != nil) && (context[ActionContext.rootKey] as? RoleViewer != nil)
+        info.enabled = info.enabled && (context[.roleKey] as? Role != nil) && (context[.root] as? RoleViewer != nil)
         return info
     }
     
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-        if let viewer = context[ActionContext.rootKey] as? RoleViewer {
-            if let role = context[RoleAction.roleKey] as? Role {
+        if let viewer = context[.root] as? RoleViewer {
+            if let role = context[.roleKey] as? Role {
                 viewer.reveal(role: role)
             }
         }

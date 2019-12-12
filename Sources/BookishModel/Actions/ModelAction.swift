@@ -10,10 +10,13 @@ import Logger
 
 let modelActionChannel = Logger("ModelAction")
 
+extension ActionKey {
+    public static let entityTypeKey:ActionKey = "entityType"
+}
 
 extension ActionContext {
     var collectionContainer: CollectionContainer? {
-        return info[ActionContext.modelKey] as? CollectionContainer
+        return info[.model] as? CollectionContainer
     }
     
     var collectionStore: Datastore? {
@@ -22,11 +25,10 @@ extension ActionContext {
 }
 
 open class ModelAction: Action {
-    public static let entityTypeKey = "entityType"
     
     open class func standardActions() -> [Action] {
         var actions = [Action]()
-        actions.append(contentsOf: BookAction.standardActions())
+        actions.append(contentsOf: EntityAction.standardActions())
         actions.append(contentsOf: PersonAction.standardActions())
         actions.append(contentsOf: PublisherAction.standardActions())
         actions.append(contentsOf: SeriesAction.standardActions())
@@ -54,8 +56,8 @@ open class ModelAction: Action {
         var info = super.validate(context: context)
 
         if info.enabled,
-            let indexType = context[ModelAction.entityTypeKey] as? EntityType.Type,
-            let selection = context[ActionContext.selectionKey] as? [EntityType],
+            let indexType = context[.entityTypeKey] as? EntityType.Type,
+            let selection = context[.selection] as? [EntityType],
             indexType == type {
             let count = selection.count
             info.enabled = count >= minimumToEnable
@@ -73,7 +75,7 @@ open class ModelAction: Action {
     open override func perform(context: ActionContext, completed: @escaping Completion) {
         if let store = context.collectionStore {
             modelActionChannel.debug("performing \(context.identifier)")
-            perform(context: context, store: store) {
+            perform(context: context, store: store) { result in
                 store.save() { result in
                     switch result {
                     case .failure(let error as NSError):
@@ -81,7 +83,7 @@ open class ModelAction: Action {
                     default:
                         break
                     }
-                    completed()
+                    completed(result)
                 }
             }
                             
@@ -89,6 +91,6 @@ open class ModelAction: Action {
     }
     
     func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-        completion()
+        completion(.ok)
     }
 }

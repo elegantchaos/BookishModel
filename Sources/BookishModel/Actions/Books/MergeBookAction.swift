@@ -12,7 +12,7 @@ import Datastore
  All the other books are removed, after transferring any relationships and properties to the first book.
  */
 
-class MergeBookAction: BookAction {
+class MergeBookAction: EntityAction {
 //    func moveProperties(from: Book, to: Book, context: NSManagedObjectContext) -> String {
 //        var log = ""
 //
@@ -49,7 +49,7 @@ class MergeBookAction: BookAction {
     }
     
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-        if let selection = context[ActionContext.selectionKey] as? [Book], let primary = selection.first {
+        if let selection = context[.selection] as? [Book], let primary = selection.first {
             
             var log = primary.log ?? ""
             let others = Set(selection.dropFirst())

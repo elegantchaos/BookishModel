@@ -30,7 +30,7 @@ class SplitPersonAction: PersonAction {
     }
     
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-        if let selection = context[ActionContext.selectionKey] as? [Person] {
+        if let selection = context[.selection] as? [Person] {
 
 //            let names = selection.compactMap({$0.name}).joined(separator: ", ")
 //            let uuids = selection.compactMap({$0.uuid}).map({ "\"\($0)\"" }).joined(separator: ", ")

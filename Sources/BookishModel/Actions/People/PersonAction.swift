@@ -31,16 +31,19 @@ public protocol PersonLifecycleObserver: ActionObserver {
     func deleted(person: Person)
 }
 
+extension ActionKey {
+    public static let personKey: ActionKey = "person"
+    public static let relationshipKey: ActionKey = "relationship"
+    public static let roleKey: ActionKey = "role"
+    public static let splitNameKey: ActionKey = "splitName"
+    public static let splitUUIDKey: ActionKey = "splitUUID"
+}
+
 /**
  Common functionality for all person-related actions.
  */
 
 open class PersonAction: ModelAction {
-    public static let personKey = "person"
-    public static let relationshipKey = "relationship"
-    public static let roleKey = "role"
-    public static let splitNameKey = "splitName"
-    public static let splitUUIDKey = "splitUUID"
     
     open class override func standardActions() -> [Action] {
         return [

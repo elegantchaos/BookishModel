@@ -16,7 +16,7 @@ class DeletePersonAction: PersonAction {
     }
 
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-        if let selection = context[ActionContext.selectionKey] as? [Person] {
+        if let selection = context[.selection] as? [Person] {
             for person in selection {
                 context.info.forObservers { (observer: PersonLifecycleObserver) in
                     observer.deleted(person: person)

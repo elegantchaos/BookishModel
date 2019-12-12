@@ -4,9 +4,10 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Foundation
+import Actions
 
 public class DetailItem {
-    public typealias ActionSpec = (String, String, Any)
+    public typealias ActionSpec = (ActionKey, String, Any)
 
     static let headingColumnID = "heading"
     static let controlColumnID = "control"

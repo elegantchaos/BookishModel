@@ -18,7 +18,7 @@ public class SeriesDetailItem: DetailItem {
     
     public override var removeAction: DetailItem.ActionSpec? {
         if let entry = entry, let series = entry.series {
-            return ( SeriesAction.seriesKey, "button.RemoveSeries", series )
+            return ( .seriesKey, "button.RemoveSeries", series )
         } else {
             return super.removeAction
         }

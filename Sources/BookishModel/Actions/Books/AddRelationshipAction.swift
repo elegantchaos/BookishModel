@@ -10,15 +10,15 @@ import Datastore
  Action that adds a relationship between a book and a newly created person.
  */
 
-class AddRelationshipAction: BookAction {
+class AddRelationshipAction: EntityAction {
     public override func validate(context: ActionContext) -> Validation {
         var info = super.validate(context: context)
-        info.enabled = info.enabled && ((context[PersonAction.roleKey] as? String) != nil)
+        info.enabled = info.enabled && ((context[.roleKey] as? String) != nil)
         return info
     }
     
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-//        if let role = context[PersonAction.roleKey] as? String, let selection = context[ActionContext.selectionKey] as? [Book], selection.count > 0 {
+//        if let role = context[PersonAction.roleKey] as? String, let selection = context[.selection] as? [Book], selection.count > 0 {
 //            let person = Person(context: model)
 //            let relationship = person.relationship(as: role)
 //            for book in selection {

@@ -18,11 +18,14 @@ public extension TagObserver {
     func changed(adding addedTags: Set<Tag>, removing removedTags: Set<Tag>) { }
 }
 
+extension ActionKey {
+    public static let addedTagsKey: ActionKey = "added"
+    public static let removedTagsKey: ActionKey = "removed"
+    public static let tagKey: ActionKey = "tag"
+    public static let tagNameKey: ActionKey = "tagName"
+
+}
 public class TagAction: ModelAction {
-    public static let addedTagsKey = "added"
-    public static let removedTagsKey = "removed"
-    public static let tagKey = "tag"
-    public static let tagNameKey = "tagName"
     
     open class override func standardActions() -> [Action] {
         return [
@@ -37,9 +40,9 @@ public class ChangeTagsAction: TagAction {
     
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
             if
-                let selection = context[ActionContext.selectionKey] as? [ModelObject],
-                let addedTags = context[TagAction.addedTagsKey] as? Set<Tag>,
-                let removedTags = context[TagAction.removedTagsKey] as? Set<Tag> {
+                let selection = context[.selection] as? [ModelObject],
+                let addedTags = context[.addedTagsKey] as? Set<Tag>,
+                let removedTags = context[.removedTagsKey] as? Set<Tag> {
                 for tag in removedTags {
                     tag.remove(from: selection)
                 }
@@ -57,7 +60,7 @@ public class ChangeTagsAction: TagAction {
 
 public class DeleteTagAction: TagAction {
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-        if let tag = context[TagAction.tagKey] as? Tag {
+        if let tag = context[.tagKey] as? Tag {
 //            model.delete(tag)
             
             context.info.forObservers { (observer: TagObserver) in
@@ -70,7 +73,7 @@ public class DeleteTagAction: TagAction {
 
 public class RenameTagAction: TagAction {
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-        if let tag = context[TagAction.tagKey] as? Tag, let name = context[TagAction.tagNameKey] as? String {
+        if let tag = context[.tagKey] as? Tag, let name = context[.tagNameKey] as? String {
             tag.name = name
             
             context.info.forObservers { (observer: TagObserver) in

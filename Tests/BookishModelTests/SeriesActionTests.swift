@@ -38,7 +38,7 @@ class SeriesActionTests: ModelActionTestCase, SeriesViewer, SeriesLifecycleObser
 //
 //        XCTAssertFalse(actionManager.validate(identifier: "DeleteSeries", info: info).enabled)
 //        info.addObserver(self)
-//        info[ActionContext.selectionKey] = [series]
+//        info[.selection] = [series]
 //
 //        XCTAssertTrue(actionManager.validate(identifier: "DeleteSeries", info: info).enabled)
 //        actionManager.perform(identifier: "DeleteSeries", info: info)
@@ -46,13 +46,13 @@ class SeriesActionTests: ModelActionTestCase, SeriesViewer, SeriesLifecycleObser
 //        XCTAssertEqual(count(of: "Series"), 0)
 //        XCTAssertEqual(seriesObserved, series)
 //
-//        info[ActionContext.selectionKey] = []
+//        info[.selection] = []
 //        XCTAssertFalse(actionManager.validate(identifier: "DeleteSeries", info: info).enabled)
 //
-//        info[ActionContext.selectionKey] = [Book(context: context)]
+//        info[.selection] = [Book(context: context)]
 //        XCTAssertFalse(actionManager.validate(identifier: "DeleteSeries", info: info).enabled)
 //
-//        info[ActionContext.selectionKey] = [Book(context: context)]
+//        info[.selection] = [Book(context: context)]
 //        XCTAssertFalse(actionManager.validate(identifier: "DeleteSeries", info: ActionInfo()).enabled)
 
     }
@@ -60,7 +60,7 @@ class SeriesActionTests: ModelActionTestCase, SeriesViewer, SeriesLifecycleObser
     func testRevealSeries() {
 //        let series = Series(context: context)
 //        XCTAssertFalse(actionManager.validate(identifier: "RevealSeries", info: info).enabled)
-//        info[ActionContext.rootKey] = self
+//        info[ActionContext.root] = self
 //        info[SeriesAction.seriesKey] = series
 //        XCTAssertTrue(actionManager.validate(identifier: "RevealSeries", info: info).enabled)
 //        actionManager.perform(identifier: "RevealSeries", info: info)

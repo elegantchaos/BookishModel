@@ -13,7 +13,7 @@ class ChangeValueActionTests: ModelActionTestCase {
 //        let book = Book(context: context)
 //        XCTAssertNil(book.asin)
 //        XCTAssertFalse(actionManager.validate(identifier: "ChangeValue", info: info).enabled)
-//        info[ActionContext.selectionKey] = [book]
+//        info[.selection] = [book]
 //        info[ChangeValueAction.valueKey] = "blah"
 //        info[ChangeValueAction.propertyKey] = "asin"
 //
@@ -32,7 +32,7 @@ class ChangeValueActionTests: ModelActionTestCase {
 //        class Sender: ActionResponder, ActionContextProvider {
 //            let context: NSManagedObjectContext
 //            func next() -> ActionResponder? { return nil }
-//            func provide(context actionContext: ActionContext) { actionContext[ActionContext.modelKey] = self.context }
+//            func provide(context actionContext: ActionContext) { actionContext[ActionContext.model] = self.context }
 //
 //            init(context: NSManagedObjectContext) {
 //                self.context = context

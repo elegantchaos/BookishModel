@@ -11,20 +11,20 @@ import Datastore
  it applies to.
  */
 
-class ChangeSeriesAction: BookAction {
+class ChangeSeriesAction: EntityAction {
     override func validate(context: ActionContext) -> Validation {
         var info = super.validate(context: context)
         let gotSeries =
-            (context[SeriesAction.seriesKey] as? Series != nil) ||
-                (context[SeriesAction.newSeriesKey] as? Series != nil) ||
-                (context[SeriesAction.newSeriesKey] as? String != nil)
+            (context[.seriesKey] as? Series != nil) ||
+                (context[.newSeriesKey] as? Series != nil) ||
+                (context[.newSeriesKey] as? String != nil)
         info.enabled = info.enabled && gotSeries
         return info
     }
     
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-        completion()
-//        if let selection = context[ActionContext.selectionKey] as? [Book] {
+        completion(.ok)
+//        if let selection = context[.selection] as? [Book] {
 //            let existingSeries = context[SeriesAction.seriesKey] as? Series
 //            let position = context[SeriesAction.positionKey] as? Int
 //            var updatedSeries = context[SeriesAction.newSeriesKey] as? Series

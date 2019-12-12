@@ -105,7 +105,7 @@ class ActionList: TaskList {
         }
         
         let context = container.managedObjectContext
-        info[ActionContext.modelKey] = context
+        info[ActionContext.model] = context
         info[ImportAction.managerKey] = importManager
         for (key, value) in params {
             info[key] = value
@@ -131,7 +131,7 @@ class ActionList: TaskList {
                     selection.append(book)
                 }
             }
-            info[ActionContext.selectionKey] = selection
+            info[.selection] = selection
         }
         
         actionManager.perform(identifier: action, info: info)

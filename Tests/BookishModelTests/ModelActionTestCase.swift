@@ -3,8 +3,9 @@
 //  All code (c) 2018 - present day, Elegant Chaos Limited.
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-import XCTest
 import CoreData
+import Datastore
+import XCTest
 import XCTestExtensions
 
 @testable import BookishModel
@@ -18,13 +19,17 @@ class ModelActionTestCase: ModelTestCase {
             self.actionManager = actionManager
             super.init(wrappedMonitor: wrappedMonitor)
         }
+        
+        var store: Datastore {
+            return wrappedMonitor.container.store
+        }
     }
     
     func checkAction(_ action: Action, withInfo info: ActionInfo, checker: @escaping (ActionMonitor) -> Void) -> Bool {
         let actionManager = ActionManager()
         actionManager.register([action])
         let result = checkContainer() { monitor in
-            info[ActionContext.modelKey] = monitor.container
+            info[.model] = monitor.container
             info.registerNotification(notification: { (stage, context) in
                 if stage == .didPerform {
                     let actionMonitor = ActionMonitor(actionManager: actionManager, wrappedMonitor: monitor)
@@ -52,7 +57,7 @@ class ModelActionTestCase: ModelTestCase {
     
 //    func testCoverage() {
 //        // not real tests - just here to fill in coverage for some untestable areas
-//        info[ActionContext.modelKey] = nil
+//        info[ActionContext.model] = nil
 //        actionManager.perform(identifier: "ModelAction", info: info)
 //        actionManager.perform(identifier: "ModelAction", info: info)
 //    }

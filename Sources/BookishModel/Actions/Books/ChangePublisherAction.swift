@@ -11,16 +11,16 @@ import Datastore
  it applies to.
  */
 
-class ChangePublisherAction: BookAction {
+class ChangePublisherAction: EntityAction {
     override func validate(context: ActionContext) -> Validation {
         var info = super.validate(context: context)
-        info.enabled = info.enabled && (context[PublisherAction.newPublisherKey] as? Publisher != nil) || (context[PublisherAction.newPublisherKey] as? String != nil)
+        info.enabled = info.enabled && (context[.newPublisherKey] as? Publisher != nil) || (context[.newPublisherKey] as? String != nil)
         return info
     }
     
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-        completion()
-//        if let selection = context[ActionContext.selectionKey] as? [Book] {
+        completion(.ok)
+//        if let selection = context[.selection] as? [Book] {
 //            var newPublisher = context[PublisherAction.newPublisherKey] as? Publisher
 //            if newPublisher == nil, let newPublisherName = context[PublisherAction.newPublisherKey] as? String, !newPublisherName.isEmpty {
 //                bookActionChannel.log("using publisher name \(newPublisherName)")

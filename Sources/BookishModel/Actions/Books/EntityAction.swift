@@ -70,21 +70,24 @@ public extension BookChangeObserver {
  implement this protocol.
  */
 
-public protocol BookLifecycleObserver: ActionObserver {
-    func created(books: [Book])
-    func deleted(books: [Book])
+public protocol EntityLifecycleObserver: ActionObserver {
+    func created(entities: [Book])
+    func deleted(entities: [Book])
+}
+
+extension ActionKey {
+    public static let entity: ActionKey = "entity"
 }
 
 /**
  Common functionality for all book-related actions.
  */
 
-open class BookAction: ModelAction {
-    public static let bookKey = "book"
+open class EntityAction: ModelAction {
     
     open class override func standardActions() -> [Action] {
         return [
-            NewBookAction(),
+            NewEntityAction(),
             DeleteBookAction(),
             AddPublisherAction(),
             RemovePublisherAction(),
@@ -102,7 +105,7 @@ open class BookAction: ModelAction {
     open override func validate(context: ActionContext) -> Validation {
         var info = super.validate(context: context)
         
-        if info.enabled, let selection = context[ActionContext.selectionKey] as? [Book] {
+        if info.enabled, let selection = context[.selection] as? [Book] {
             info.enabled = selection.count > 0
         } else {
             info.enabled = false
@@ -110,7 +113,6 @@ open class BookAction: ModelAction {
         return info
     }
 }
-
 
 
 

@@ -39,7 +39,7 @@ class PublisherActionTests: ModelActionTestCase, PublisherViewer, PublisherLifec
 //        XCTAssertFalse(actionManager.validate(identifier: "DeletePublisher", info: info).enabled)
 //
 //        info.addObserver(self)
-//        info[ActionContext.selectionKey] = [publisher]
+//        info[.selection] = [publisher]
 //
 //        XCTAssertTrue(actionManager.validate(identifier: "DeletePublisher", info: info).enabled)
 //        actionManager.perform(identifier: "DeletePublisher", info: info)
@@ -47,20 +47,20 @@ class PublisherActionTests: ModelActionTestCase, PublisherViewer, PublisherLifec
 //
 //        XCTAssertEqual(count(of: "Publisher"), 0)
 //        XCTAssertEqual(publisherObserved, publisher)
-//        info[ActionContext.selectionKey] = []
+//        info[.selection] = []
 //        XCTAssertFalse(actionManager.validate(identifier: "DeletePublisher", info: info).enabled)
 //
-//        info[ActionContext.selectionKey] = [Book(context: context)]
+//        info[.selection] = [Book(context: context)]
 //        XCTAssertFalse(actionManager.validate(identifier: "DeletePublisher", info: info).enabled)
 //
-//        info[ActionContext.selectionKey] = [Book(context: context)]
+//        info[.selection] = [Book(context: context)]
 //        XCTAssertFalse(actionManager.validate(identifier: "DeletePublisher", info: ActionInfo()).enabled)
 //
     }
     
     func testRevealPublisher() {
 //        let publisher = Publisher(context: context)
-//        info[ActionContext.rootKey] = self
+//        info[ActionContext.root] = self
 //        info[PublisherAction.publisherKey] = publisher
 //
 //        XCTAssertTrue(actionManager.validate(identifier: "RevealPublisher", info: info).enabled)

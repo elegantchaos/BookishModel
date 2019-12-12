@@ -60,7 +60,7 @@ class SeriesScannerTests: ModelTestCase {
 //        let container = makeTestContainer()
 //        manager.register([ScanSeriesAction(identifier: "ScanSeries")])
 //        let info = ActionInfo(sender: self)
-//        info[ActionContext.modelKey] = container.managedObjectContext
+//        info[ActionContext.model] = container.managedObjectContext
 //        info.registerNotification { (stage, context) in
 //            if stage == .didPerform {
 //                performed.fulfill()

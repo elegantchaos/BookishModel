@@ -10,9 +10,9 @@ import Datastore
  Action that adds a relationship between a book and a newly created Series.
  */
 
-class AddSeriesAction: BookAction {
+class AddSeriesAction: EntityAction {
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-//        if let selection = context[ActionContext.selectionKey] as? [Book] {
+//        if let selection = context[.selection] as? [Book] {
 //            let series = Series(context: model)
 //            series.name = "New Series"
 //            for book in selection {

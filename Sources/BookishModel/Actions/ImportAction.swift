@@ -7,18 +7,6 @@ import Foundation
 import Datastore
 import Actions
 
-extension ActionContext { // TODO: move into Actions
-    func url(withKey key: String) -> URL? {
-        let value = info[key]
-        if let url = value as? URL {
-            return url
-        } else if let string = value as? String {
-            return URL(fileURLWithPath: string)
-        }
-        return nil
-    }
-}
-
 /// Import monitor which intercepts the importerFinished callback in order to run the action completion.
 /// All the monitor callbacks are also passed on to a real monitor (if there is one).
 struct ActionImportMonitor: ImportDelegate {
@@ -26,7 +14,7 @@ struct ActionImportMonitor: ImportDelegate {
     let actionCompletion: ModelAction.Completion
     
     init(context: ActionContext, completion: @escaping ModelAction.Completion) {
-        self.wrappedMonitor = context[ImportAction.monitorKey] as? ImportDelegate
+        self.wrappedMonitor = context[.monitorKey] as? ImportDelegate
         self.actionCompletion = completion
     }
     
@@ -35,15 +23,18 @@ struct ActionImportMonitor: ImportDelegate {
     func importerWillContinueSession(_ session: ImportSession, withItem item: Int, of count: Int) { wrappedMonitor?.importerWillContinueSession(session, withItem: item, of: count) }
     func importerDidFinishWithStatus(_ status: ImportStatus) {
         wrappedMonitor?.importerDidFinishWithStatus(status)
-        actionCompletion()
+        actionCompletion(.ok)
     }
 }
 
+extension ActionKey {
+    public static let importerKey: ActionKey = "importer"
+    public static let monitorKey: ActionKey = "importMonitor"
+    public static let managerKey: ActionKey = "importManager"
+    public static let urlKey: ActionKey = "url"
+
+}
 public class ImportAction: ModelAction {
-    public static let importerKey = "importer"
-    public static let monitorKey = "importMonitor"
-    public static let managerKey = "importManager"
-    public static let urlKey = "url"
     
     public class override func standardActions() -> [Action] {
         return [
@@ -53,8 +44,8 @@ public class ImportAction: ModelAction {
     
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
         // the importer can be provided explicitly, or as an id (in which case the manager is also needed)
-        var importer: Importer? = context[ImportAction.importerKey] as? Importer
-        if importer == nil, let manager = context[ImportAction.managerKey] as? ImportManager, let importerID = context[ImportAction.importerKey] as? String {
+        var importer: Importer? = context[.importerKey] as? Importer
+        if importer == nil, let manager = context[.managerKey] as? ImportManager, let importerID = context[.importerKey] as? String {
             importer = manager.importer(identifier: importerID)
         }
 
@@ -70,12 +61,12 @@ public class ImportAction: ModelAction {
                 func importerWillContinueSession(_ session: ImportSession, withItem item: Int, of count: Int) { wrappedMonitor.importerWillContinueSession(session, withItem: item, of: count) }
                 func importerFinishedWithStatus(_ status: ImportStatus) {
                     wrappedMonitor.importerDidFinishWithStatus(status)
-                    actionCompletion()
+                    actionCompletion(.ok)
                 }
             }
             
             let monitor = ActionImportMonitor(context: context, completion: completion)
-            if let url = context.url(withKey: ImportAction.urlKey) {
+            if let url = context.url(withKey: .urlKey) {
                 importer.run(importing: url, in: store, monitor: monitor)
             } else {
                 importer.run(in: store, monitor: monitor)

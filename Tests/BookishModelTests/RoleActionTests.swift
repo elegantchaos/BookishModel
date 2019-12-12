@@ -38,7 +38,7 @@ class RoleActionTests: ModelActionTestCase, RoleViewer, RoleLifecycleObserver {
 //
 //        XCTAssertFalse(actionManager.validate(identifier: "DeleteRole", info: info).enabled)
 //        info.addObserver(self)
-//        info[ActionContext.selectionKey] = [role]
+//        info[.selection] = [role]
 //
 //        XCTAssertTrue(actionManager.validate(identifier: "DeleteRole", info: info).enabled)
 //        actionManager.perform(identifier: "DeleteRole", info: info)
@@ -46,13 +46,13 @@ class RoleActionTests: ModelActionTestCase, RoleViewer, RoleLifecycleObserver {
 //        XCTAssertEqual(count(of: "Role"), 0)
 //        XCTAssertEqual(roleObserved, role)
 //
-//        info[ActionContext.selectionKey] = []
+//        info[.selection] = []
 //        XCTAssertFalse(actionManager.validate(identifier: "DeleteRole", info: info).enabled)
 //
-//        info[ActionContext.selectionKey] = [Book(context: context)]
+//        info[.selection] = [Book(context: context)]
 //        XCTAssertFalse(actionManager.validate(identifier: "DeleteRole", info: info).enabled)
 //
-//        info[ActionContext.selectionKey] = [Book(context: context)]
+//        info[.selection] = [Book(context: context)]
 //        XCTAssertFalse(actionManager.validate(identifier: "DeleteRole", info: ActionInfo()).enabled)
         
     }
@@ -60,7 +60,7 @@ class RoleActionTests: ModelActionTestCase, RoleViewer, RoleLifecycleObserver {
     func testRevealRole() {
 //        let role = Role(context: context)
 //        XCTAssertFalse(actionManager.validate(identifier: "RevealRole", info: info).enabled)
-//        info[ActionContext.rootKey] = self
+//        info[ActionContext.root] = self
 //        info[RoleAction.roleKey] = role
 //        XCTAssertTrue(actionManager.validate(identifier: "RevealRole", info: info).enabled)
 //        actionManager.perform(identifier: "RevealRole", info: info)

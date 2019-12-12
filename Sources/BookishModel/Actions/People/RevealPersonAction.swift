@@ -15,16 +15,16 @@ class RevealPersonAction: PersonAction {
     override func validate(context: ActionContext) -> Validation {
         var info = super.validate(context: context)
         info.enabled = info.enabled &&
-            ((context[PersonAction.relationshipKey] as? Relationship != nil) || (context[PersonAction.personKey] as? Person != nil)) &&
-            (context[ActionContext.rootKey] as? PersonViewer != nil)
+            ((context[.relationshipKey] as? Relationship != nil) || (context[.personKey] as? Person != nil)) &&
+            (context[.root] as? PersonViewer != nil)
         return info
     }
     
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-        if let viewer = context[ActionContext.rootKey] as? PersonViewer {
-            if let person = context[PersonAction.personKey] as? Person {
+        if let viewer = context[.root] as? PersonViewer {
+            if let person = context[.personKey] as? Person {
                 viewer.reveal(person: person)
-            } else if let role = context[PersonAction.relationshipKey] as? Relationship, let person = role.person {
+            } else if let role = context[.relationshipKey] as? Relationship, let person = role.person {
                 viewer.reveal(person: person)
             }
         }

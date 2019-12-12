@@ -32,7 +32,7 @@ class MergePersonAction: PersonAction {
     }
     
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-        if let selection = context[ActionContext.selectionKey] as? [Person], let primary = selection.first {
+        if let selection = context[.selection] as? [Person], let primary = selection.first {
             
             let uuids = selection.compactMap({$0.uuid}).map({ "\"\($0)\"" }).joined(separator: ", ")
             bktChannel.log("""

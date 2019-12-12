@@ -38,7 +38,7 @@ import Actions
 //        XCTAssertEqual(count(of: "Person"), 1)
 //        
 //        info.addObserver(self)
-//        info[ActionContext.selectionKey] = [person]
+//        info[.selection] = [person]
 //        info[ModelAction.entityTypeKey] = Person.self
 //        
 //        XCTAssertTrue(actionManager.validate(identifier: "DeletePerson", info: info).enabled)
@@ -49,11 +49,11 @@ import Actions
 //        XCTAssertEqual(personObserved, person)
 //
 //        // empty selection should disable
-//        info[ActionContext.selectionKey] = []
+//        info[.selection] = []
 //        XCTAssertFalse(actionManager.validate(identifier: "DeletePerson", info: info).enabled)
 //
 //        // selection of wrong type should disable
-//        info[ActionContext.selectionKey] = [Book(context: context)]
+//        info[.selection] = [Book(context: context)]
 //        XCTAssertFalse(actionManager.validate(identifier: "DeletePerson", info: info).enabled)
 //
 //        // no context should disable
@@ -62,7 +62,7 @@ import Actions
 //    
 //    func testRevealPerson() {
 //        let person = Person(context: context)
-//        info[ActionContext.rootKey] = self
+//        info[ActionContext.root] = self
 //        info[PersonAction.personKey] = person
 //
 //        XCTAssertTrue(actionManager.validate(identifier: "RevealPerson", info: info).enabled)
@@ -74,7 +74,7 @@ import Actions
 //    func testRevealPersonFromRelationship() {
 //        let person = Person(context: context)
 //        let relationship = person.relationship(as: "Author")
-//        info[ActionContext.rootKey] = self
+//        info[ActionContext.root] = self
 //        info[PersonAction.relationshipKey] = relationship
 //        actionManager.perform(identifier: "RevealPerson", info: info)
 //        wait(for: [expectation], timeout: 1.0)
@@ -94,7 +94,7 @@ import Actions
 //
 //        XCTAssertFalse(actionManager.validate(identifier: "MergePerson", info: info).enabled)
 //
-//        info[ActionContext.selectionKey] = [person1, person2]
+//        info[.selection] = [person1, person2]
 //        info[ModelAction.entityTypeKey] = Person.self
 //        
 //        XCTAssertEqual(context.countEntities(type: Person.self), 2)
@@ -121,7 +121,7 @@ import Actions
 //        
 //        XCTAssertEqual(context.countEntities(type: Person.self), 1)
 //        XCTAssertFalse(actionManager.validate(identifier: "SplitPerson", info: info).enabled)
-//        info[ActionContext.selectionKey] = [person]
+//        info[.selection] = [person]
 //        info[ModelAction.entityTypeKey] = Person.self
 //
 //        XCTAssertTrue(actionManager.validate(identifier: "SplitPerson", info: info).enabled)

@@ -9,7 +9,7 @@ import CoreData
 import Actions
 
 
-class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, BookChangeObserver {
+class EntityActionTests: ModelActionTestCase, BookViewer, BookChangeObserver {
     var bookObserved: Book?
     var relationshipObserved: Relationship?
     var publisherObserved: Publisher?
@@ -52,19 +52,24 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
     }
     
     func testNewBook() {
-//        info.addObserver(self)
-//        XCTAssertTrue(actionManager.validate(identifier: "NewBook", info: info).enabled)
-//        actionManager.perform(identifier: "NewBook", info: info)
-//        wait(for: [expectation], timeout: 1.0)
-//        XCTAssertEqual(count(of: "Book"), 1)
-//        XCTAssertNotNil(bookObserved)
+        let info = ActionInfo()
+        info.addObserver(self)
+        let action = NewEntityAction()
+        XCTAssertTrue(checkAction(action, withInfo: info) { monitor in
+            monitor.store.count(entitiesOfTypes: [.book]) { counts in
+                monitor.check(count: counts[0], expected: 1)
+                monitor.allChecksDone()
+            }
+        })
+            
+        XCTAssertNotNil(bookObserved)
     }
 //    
 //    func testDeleteBook() {
 //        let book = Book(context: context)
 //        XCTAssertEqual(count(of: "Book"), 1)
 //        
-//        info[ActionContext.selectionKey] = [book]
+//        info[.selection] = [book]
 //        info.addObserver(self)
 //
 //        XCTAssertTrue(actionManager.validate(identifier: "DeleteBook", info: info).enabled)
@@ -74,7 +79,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
 //        XCTAssertEqual(count(of: "Book"), 0)
 //        XCTAssertEqual(bookObserved, book)
 //
-//        info[ActionContext.selectionKey] = []
+//        info[.selection] = []
 //        XCTAssertFalse(actionManager.validate(identifier: "DeleteBook", info: info).enabled)
 //        
 //        XCTAssertFalse(actionManager.validate(identifier: "DeleteBook", info: ActionInfo()).enabled)
@@ -88,7 +93,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
 //        XCTAssertFalse(actionManager.validate(identifier: "AddRelationship", info: info).enabled)
 //
 //        info.addObserver(self)
-//        info[ActionContext.selectionKey] = [book]
+//        info[.selection] = [book]
 //        info[PersonAction.roleKey] = "author"
 //
 //        XCTAssertTrue(actionManager.validate(identifier: "AddRelationship", info: info).enabled)
@@ -112,7 +117,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
 //
 //        info.addObserver(self)
 //        info[PersonAction.relationshipKey] = relationship
-//        info[ActionContext.selectionKey] = [book]
+//        info[.selection] = [book]
 //
 //        XCTAssertNotNil(relationship.managedObjectContext)
 //
@@ -135,7 +140,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
 //        let otherPerson = Person(context: context)
 //        info[PersonAction.relationshipKey] = relationship
 //        info[PersonAction.personKey] = otherPerson
-//        info[ActionContext.selectionKey] = [book]
+//        info[.selection] = [book]
 //        
 //        XCTAssertTrue(actionManager.validate(identifier: "ChangeRelationship", info: info).enabled)
 //        actionManager.perform(identifier: "ChangeRelationship", info: info)
@@ -163,7 +168,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
 //        
 //        let otherPerson = Person(context: context)
 //        info[PersonAction.personKey] = otherPerson
-//        info[ActionContext.selectionKey] = [book]
+//        info[.selection] = [book]
 //        let newRole = Role.named(Role.StandardName.editor, in: context)
 //        info[PersonAction.roleKey] = newRole
 //
@@ -190,7 +195,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
 //        let newRole = Role.named(Role.StandardName.editor, in: context)
 //        info[PersonAction.relationshipKey] = relationship
 //        info[PersonAction.roleKey] = newRole
-//        info[ActionContext.selectionKey] = [book]
+//        info[.selection] = [book]
 //        
 //        XCTAssertTrue(actionManager.validate(identifier: "ChangeRelationship", info: info).enabled)
 //        actionManager.perform(identifier: "ChangeRelationship", info: info)
@@ -219,7 +224,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
 //        
 //        info[PersonAction.relationshipKey] = relationship
 //        info[PersonAction.personKey] = "New Person"
-//        info[ActionContext.selectionKey] = [book]
+//        info[.selection] = [book]
 //        
 //        XCTAssertTrue(actionManager.validate(identifier: "ChangeRelationship", info: info).enabled)
 //        actionManager.perform(identifier: "ChangeRelationship", info: info)
@@ -246,7 +251,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
 //        XCTAssertFalse(actionManager.validate(identifier: "AddPublisher", info: info).enabled)
 //        
 //        info.addObserver(self)
-//        info[ActionContext.selectionKey] = [book]
+//        info[.selection] = [book]
 //        
 //        XCTAssertTrue(actionManager.validate(identifier: "AddPublisher", info: info).enabled)
 //        actionManager.perform(identifier: "AddPublisher", info: info)
@@ -266,7 +271,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
 //        
 //        info.addObserver(self)
 //        info[PublisherAction.publisherKey] = publisher
-//        info[ActionContext.selectionKey] = [book]
+//        info[.selection] = [book]
 //        
 //        XCTAssertTrue(actionManager.validate(identifier: "RemovePublisher", info: info).enabled)
 //        actionManager.perform(identifier: "RemovePublisher", info: info)
@@ -284,7 +289,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
 //        
 //        let otherPublisher = Publisher(context: context)
 //        info[PublisherAction.newPublisherKey] = otherPublisher
-//        info[ActionContext.selectionKey] = [book]
+//        info[.selection] = [book]
 //        
 //        XCTAssertTrue(actionManager.validate(identifier: "ChangePublisher", info: info).enabled)
 //        actionManager.perform(identifier: "ChangePublisher", info: info)
@@ -300,7 +305,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
 //        book.publisher = publisher
 //
 //        info[PublisherAction.newPublisherKey] = "New Publisher"
-//        info[ActionContext.selectionKey] = [book]
+//        info[.selection] = [book]
 //        
 //        XCTAssertTrue(actionManager.validate(identifier: "ChangePublisher", info: info).enabled)
 //        actionManager.perform(identifier: "ChangePublisher", info: info)
@@ -319,7 +324,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
 //        XCTAssertFalse(actionManager.validate(identifier: "AddSeries", info: info).enabled)
 //        
 //        info.addObserver(self)
-//        info[ActionContext.selectionKey] = [book]
+//        info[.selection] = [book]
 //        
 //        XCTAssertTrue(actionManager.validate(identifier: "AddSeries", info: info).enabled)
 //        actionManager.perform(identifier: "AddSeries", info: info)
@@ -342,7 +347,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
 //        
 //        info.addObserver(self)
 //        info[SeriesAction.seriesKey] = series
-//        info[ActionContext.selectionKey] = [book]
+//        info[.selection] = [book]
 //        
 //        XCTAssertTrue(actionManager.validate(identifier: "RemoveSeries", info: info).enabled)
 //        actionManager.perform(identifier: "RemoveSeries", info: info)
@@ -364,7 +369,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
 //        // parameters to change from series to otherSeries
 //        info[SeriesAction.seriesKey] = series
 //        info[SeriesAction.newSeriesKey] = otherSeries
-//        info[ActionContext.selectionKey] = [book]
+//        info[.selection] = [book]
 //        
 //        XCTAssertTrue(actionManager.validate(identifier: "ChangeSeries", info: info).enabled)
 //        actionManager.perform(identifier: "ChangeSeries", info: info)
@@ -385,7 +390,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
 //        // parameters to change the position of an existing series
 //        info[SeriesAction.seriesKey] = series
 //        info[SeriesAction.positionKey] = 1
-//        info[ActionContext.selectionKey] = [book]
+//        info[.selection] = [book]
 //        
 //        XCTAssertTrue(actionManager.validate(identifier: "ChangeSeries", info: info).enabled)
 //        actionManager.perform(identifier: "ChangeSeries", info: info)
@@ -406,7 +411,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
 //        otherSeries.name = "Other Series"
 //
 //        info[SeriesAction.newSeriesKey] = otherSeries
-//        info[ActionContext.selectionKey] = [book]
+//        info[.selection] = [book]
 //        info[SeriesAction.positionKey] = 2
 //        
 //        XCTAssertTrue(actionManager.validate(identifier: "ChangeSeries", info: info).enabled)
@@ -427,7 +432,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
 //        let entry = book.addToSeries(series, position: 1)
 //
 //        info[SeriesAction.newSeriesKey] = "New Series"
-//        info[ActionContext.selectionKey] = [book]
+//        info[.selection] = [book]
 //        info[SeriesAction.positionKey] = 2
 //        
 //        XCTAssertTrue(actionManager.validate(identifier: "ChangeSeries", info: info).enabled)
@@ -448,7 +453,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
 //        let entry = book.addToSeries(series, position: 1)
 //        
 //        info[SeriesAction.newSeriesKey] = "New Series"
-//        info[ActionContext.selectionKey] = [book]
+//        info[.selection] = [book]
 //        
 //        XCTAssertTrue(actionManager.validate(identifier: "ChangeSeries", info: info).enabled)
 //        actionManager.perform(identifier: "ChangeSeries", info: info)
@@ -463,7 +468,7 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookLifecycleObserver, B
 //
 //    func testRevealBook() {
 //        let book = Book(context: context)
-//        info[ActionContext.rootKey] = self
+//        info[ActionContext.root] = self
 //        info[BookAction.bookKey] = book
 //        XCTAssertTrue(actionManager.validate(identifier: "RevealBook", info: info).enabled)
 //

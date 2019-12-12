@@ -6,9 +6,12 @@
 import Actions
 import Datastore
 
+extension ActionKey {
+    public static let valueKey: ActionKey = "value"
+    public static let propertyKey: ActionKey = "property"
+}
+
 public class ChangeValueAction: ModelAction {
-    public static let valueKey = "value"
-    public static let propertyKey = "property"
 
     /**
      Helper which sends the action.
@@ -29,10 +32,10 @@ public class ChangeValueAction: ModelAction {
     
     public class func send(_ identifier: String, from sender: Any, manager: ActionManager, property: String, value: Any?, selection: [Any]? = nil) {
         let info = ActionInfo(sender: sender)
-        info[ChangeValueAction.propertyKey] = property
-        info[ChangeValueAction.valueKey] = value
+        info[.propertyKey] = property
+        info[.valueKey] = value
         if let selection = selection {
-            info[ActionContext.selectionKey] = selection
+            info[.selection] = selection
         }
         manager.perform(identifier: identifier, info: info)
     }
@@ -40,14 +43,14 @@ public class ChangeValueAction: ModelAction {
     public override func validate(context: ActionContext) -> Validation {
         var info = super.validate(context: context)
 //        info.enabled = info.enabled &&
-//            (context[ActionContext.selectionKey] as? [NSManagedObject] != nil) &&
+//            (context[.selection] as? [NSManagedObject] != nil) &&
 //            (context[ChangeValueAction.propertyKey] as? String != nil)
         return info
     }
     
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
 //        if
-//            let selection = context[ActionContext.selectionKey] as? [NSManagedObject],
+//            let selection = context[.selection] as? [NSManagedObject],
 //            let key = context[ChangeValueAction.propertyKey] as? String
 //        {
 //            let value = context[ChangeValueAction.valueKey]

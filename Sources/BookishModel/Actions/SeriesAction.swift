@@ -26,19 +26,22 @@ public protocol SeriesLifecycleObserver: ActionObserver {
     func deleted(series: Series)
 }
 
+extension ActionKey {
+    public static let newSeriesKey: ActionKey = "newSeries"
+    public static let seriesKey: ActionKey = "series"
+    public static let positionKey: ActionKey = "position"
+
+}
 /**
  Common functionality for all Series-related actions.
  */
 
 open class SeriesAction: ModelAction {
-    public static let newSeriesKey = "newSeries"
-    public static let seriesKey = "series"
-    public static let positionKey = "position"
 
     open override func validate(context: ActionContext) -> Validation {
         var info = super.validate(context: context)
         
-        if let selection = context[ActionContext.selectionKey] as? [Series] {
+        if let selection = context[.selection] as? [Series] {
             info.enabled = info.enabled && selection.count > 0
         } else {
             info.enabled = false
@@ -67,7 +70,7 @@ class NewSeriesAction: SeriesAction {
     }
     
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-        completion()
+        completion(.ok)
 //        let series = Series(context: model)
 //        context.info.forObservers { (observer: SeriesLifecycleObserver) in
 //            observer.created(series: series)
@@ -81,13 +84,13 @@ class NewSeriesAction: SeriesAction {
 
 class DeleteSeriesAction: SeriesAction {
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-        if let selection = context[ActionContext.selectionKey] as? [Series] {
+        if let selection = context[.selection] as? [Series] {
             for series in selection {
                 context.info.forObservers { (observer: SeriesLifecycleObserver) in
                     observer.deleted(series: series)
                 }
 
-                completion()
+                completion(.ok)
 //                model.delete(series)
             }
         }
@@ -101,13 +104,13 @@ class DeleteSeriesAction: SeriesAction {
 class RevealSeriesAction: SeriesAction {
     override func validate(context: ActionContext) -> Validation {
         var info = modelValidate(context: context)
-        info.enabled = info.enabled && (context[SeriesAction.seriesKey] as? Series != nil)
+        info.enabled = info.enabled && (context[.seriesKey] as? Series != nil)
         return info
     }
     
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-        if let viewer = context[ActionContext.rootKey] as? SeriesViewer {
-            if let series = context[SeriesAction.seriesKey] as? Series {
+        if let viewer = context[.root] as? SeriesViewer {
+            if let series = context[.seriesKey] as? Series {
                 viewer.reveal(series: series)
             }
         }

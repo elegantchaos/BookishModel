@@ -10,11 +10,11 @@ import Datastore
  Action that adds a relationship between a book and a newly created Publisher.
  */
 
-class AddPublisherAction: BookAction {
+class AddPublisherAction: EntityAction {
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-        completion()
+        completion(.success(()))
 //        if
-//            let selection = context[ActionContext.selectionKey] as? [Book] {
+//            let selection = context[.selection] as? [Book] {
 //            let publisher = Publisher(context: model)
 //            for book in selection {
 //                publisher.add(book)

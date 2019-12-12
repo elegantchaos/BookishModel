@@ -68,7 +68,7 @@ import CoreData
 //        manager.register(service: service)
 //        
 //        // perform the lookup
-//        info[ActionContext.selectionKey] = [book]
+//        info[.selection] = [book]
 //        info[LookupCoverAction.managerKey] = manager
 //        XCTAssertTrue(actionManager.validate(identifier: "LookupCover", info: info).enabled)
 //        actionManager.perform(identifier: "LookupCover", info: info)
@@ -88,7 +88,7 @@ import CoreData
 //        revealed = expectation(description: "revealed")
 //
 //        info[LookupAction.candidateKey] = candidate
-//        info[ActionContext.rootKey] = self
+//        info[ActionContext.root] = self
 //        actionManager.perform(identifier: "ViewCandidate", info: info)
 //
 //        wait(for: [revealed!], timeout: 1.0)
@@ -103,7 +103,7 @@ import CoreData
 //        revealed = expectation(description: "revealed")
 //        
 //        info[LookupAction.candidateKey] = candidate
-//        info[ActionContext.rootKey] = self
+//        info[ActionContext.root] = self
 //        actionManager.perform(identifier: "AddCandidate", info: info)
 //        
 //        wait(for: [revealed!], timeout: 1.0)

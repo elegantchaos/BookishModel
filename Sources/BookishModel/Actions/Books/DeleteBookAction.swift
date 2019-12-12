@@ -10,11 +10,11 @@ import Datastore
  Action that deletes a book.
  */
 
-public class DeleteBookAction: BookAction {
+public class DeleteBookAction: EntityAction {
     
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-        completion()
-//        if let selection = context[ActionContext.selectionKey] as? [Book] {
+        completion(.ok)
+//        if let selection = context[.selection] as? [Book] {
 //            for book in selection {
 //                model.delete(book)
 //            }

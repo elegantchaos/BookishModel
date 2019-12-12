@@ -12,17 +12,17 @@ import Datastore
  Action that removes a relationship from a book.
  */
 
-class RemoveRelationshipAction: BookAction {
+class RemoveRelationshipAction: EntityAction {
     public override func validate(context: ActionContext) -> Validation {
         var info = super.validate(context: context)
-        info.enabled = info.enabled && (context[PersonAction.relationshipKey] as? Relationship != nil)
+        info.enabled = info.enabled && (context[.relationshipKey] as? Relationship != nil)
         return info
     }
     
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
         if
-            let selection = context[ActionContext.selectionKey] as? [Book],
-            let relationship = context[PersonAction.relationshipKey] as? Relationship {
+            let selection = context[.selection] as? [Book],
+            let relationship = context[.relationshipKey] as? Relationship {
             for book in selection {
                 book.removeFromRelationships(relationship)
             }

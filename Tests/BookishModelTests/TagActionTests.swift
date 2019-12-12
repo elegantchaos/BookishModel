@@ -67,7 +67,7 @@ class TagActionTests: ModelActionTestCase, TagObserver {
 //        info.addObserver(self)
 //        info[TagAction.addedTagsKey] = Set<Tag>([tag2])
 //        info[TagAction.removedTagsKey] = Set<Tag>([tag1])
-//        info[ActionContext.selectionKey] = [book]
+//        info[.selection] = [book]
 //        XCTAssertTrue(actionManager.validate(identifier: "ChangeTags", info: info).enabled)
 //        actionManager.perform(identifier: "ChangeTags", info: info)
 //        wait(for: [expectation], timeout: 1.0)

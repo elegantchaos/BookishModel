@@ -14,12 +14,12 @@ import Datastore
  
  */
 
-class ChangeRelationshipAction: BookAction {
+class ChangeRelationshipAction: EntityAction {
     override func validate(context: ActionContext) -> Validation {
         var info = super.validate(context: context)
-        let gotRelationship = context[PersonAction.relationshipKey] as? Relationship != nil
-        let gotPerson = (context[PersonAction.personKey] as? String) != nil || (context[PersonAction.personKey] as? Person) != nil
-        let gotRole = (context[PersonAction.roleKey] as? Role) != nil
+        let gotRelationship = context[.relationshipKey] as? Relationship != nil
+        let gotPerson = (context[.personKey] as? String) != nil || (context[.personKey] as? Person) != nil
+        let gotRole = (context[.roleKey] as? Role) != nil
         info.enabled = info.enabled &&
             ((gotRelationship && gotPerson) ||
                 (gotRelationship && gotRole) ||
@@ -28,13 +28,13 @@ class ChangeRelationshipAction: BookAction {
     }
     
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-        let existingRelationship = context[PersonAction.relationshipKey] as? Relationship
-        var role = context[PersonAction.roleKey] as? Role
+        let existingRelationship = context[.relationshipKey] as? Relationship
+        var role = context[.roleKey] as? Role
         if role == nil {
             role = existingRelationship?.role
         }
         
-//        if let selection = context[ActionContext.selectionKey] as? [Book], let role = role {
+//        if let selection = context[.selection] as? [Book], let role = role {
 //            var updatedPerson = context[PersonAction.personKey] as? Person
 //            if updatedPerson == nil, let name = context[PersonAction.personKey] as? String, !name.isEmpty {
 //                bookActionChannel.debug("using person name \(name)")
