@@ -134,118 +134,109 @@ class KindleImportSession: URLImportSession {
     var cachedPeople: [String:Person] = [:]
     var cachedPublishers: [String:Publisher] = [:]
     var cachedSeries: [String:Series] = [:]
-//    let kindleTag: Tag
-//    let importedTag: Tag
+    let kindleTag: EntityReference
+    let includeRaw = true
     let books: [KindleBook]
-    
+
     override init?(importer: Importer, store: Datastore, url: URL, monitor: ImportDelegate?) {
-//        kindleTag = Tag.named("kindle", in: context)
-//        importedTag = Tag.named("imported", in: context)
-//
         guard let data = try? Data(contentsOf: url) else {
             return nil
         }
         let processor = KindleProcessor()
         processor.parse(data: data) // TODO: check if this fails
         self.books = processor.state.books
-        
+        self.kindleTag = Entity.identifiedBy("tag-kindle", initialiser: EntityInitialiser(as: .tag, properties: [.name: "kindle"]))
+
         super.init(importer: importer, store: store, url: url, monitor: monitor)
     }
     
     override func run() {
+        let store = self.store
+        let monitor = self.monitor
         monitor?.importerWillStartSession(self, withCount: books.count)
         var item = 0
-        for book in books {
-            monitor?.importerWillContinueSession(self, withItem: item, of: books.count)
-            process(book: book)
+        var properties: [EntityReference: PropertyDictionary] = [:]
+        for kindleBook in books {
+            if let identifier = identifier(for: kindleBook) {
+                let book = Entity.identifiedBy(identifier, createAs: .book)
+                monitor?.importerWillContinueSession(self, withItem: item, of: books.count)
+                addProperties(for: book, identifier: identifier, from: kindleBook, into: &properties)
+            }
             item += 1
         }
-        monitor?.importerDidFinishWithStatus(.succeeded(self))
+
+        store.add(properties: properties) {
+            monitor?.importerDidFinishWithStatus(.succeeded(self))
+        }
     }
     
-    private func process(book kindleBook: KindleBook) {
-//
-//        let identifier: String
-//        let purchased = kindleBook.raw["purchase_date"] as? Date
-//        if let purchased = purchased {
-//            identifier = "kindle-import-\(kindleBook.asin)-\(purchased)"
-//        } else {
-//            identifier = "kindle-import-\(kindleBook.asin)"
-//        }
-//
-//        // we try to find a book with the same uuid
-//        // this is intended to ensure that if the same import runs multiple times,
-//        // we won't keep making new copies of the same books
-//        let book: Book
-//        if let existing = Book.withIdentifier(identifier, in: context) {
-//            book = existing
-//        } else {
-//            book = Book.named(kindleBook.title, in: context)
-//            book.uuid = identifier
-//            book.source = KindleImporter.identifier
-//        }
-//
-//        kindleTag.addToBooks(book)
-//        importedTag.addToBooks(book)
-//
-//        book.importDate = Date()
-//        book.asin = kindleBook.asin
-//        book.format = "Kindle Edition"
-//
-//        if let date = kindleBook.raw["publication_date"] as? Date {
-//            book.published = date
-//        }
-//
-//        if let date = purchased {
-//            book.added = date
-//        }
-//
-//        book.importRaw = kindleBook.raw.jsonDump()
-//        process(creators: kindleBook.authors, for: book)
-//        process(publishers: kindleBook.publishers, for: book)
+    func identifier(for kindleBook: KindleBook) -> String? {
+        let identifier: String
+        let purchased = kindleBook.raw["purchase_date"] as? Date
+        if let purchased = purchased {
+            identifier = "kindle-import-\(kindleBook.asin)-\(purchased.timeIntervalSinceReferenceDate)"
+        } else {
+            identifier = "kindle-import-\(kindleBook.asin)"
+        }
+        return identifier
+    }
+
+    private func addProperties(for book: EntityReference, identifier bookID: String, from kindleBook: KindleBook, into properties: inout [EntityReference: PropertyDictionary]) {
+        var bookProperties = PropertyDictionary()
+
+        bookProperties[.name] = kindleBook.title
+        bookProperties[.source] = KindleImporter.identifier
+        bookProperties[.importDate] = Date()
+        bookProperties[.asin] = kindleBook.asin
+        bookProperties[.format] = "Kindle Edition"
+
+        bookProperties.addTag(kindleTag)
+        bookProperties.addTag(importedTag)
+        
+        bookProperties.extract(from: kindleBook.raw, datesWithMapping: [
+            "publication_date": .published,
+            "purchase_date": .added
+            ]
+        )
+
+        if includeRaw {
+            bookProperties[.importRaw] = kindleBook.raw.jsonDump()
+        }
+
+        addProperties(for: kindleBook, creators: kindleBook.authors, into: &bookProperties)
+        addProperties(for: kindleBook, publishers: kindleBook.publishers, into: &bookProperties)
+        
+        properties[book] = bookProperties
     }
     
-    private func process(creators: [String], for book: Book) {
-//        var index = 1
-//        for creator in creators {
-//            let unsorted = Indexing.nameUnsort(for: creator) ?? ""
-//            let trimmed = unsorted.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-//            if trimmed != "" {
-//                let author: Person
-//                if let cached = cachedPeople[trimmed] {
-//                    author = cached
-//                } else {
-//                    author = Person.named(trimmed, in: context)
-//                    if author.source == nil {
-//                        author.source = KindleImporter.identifier
-//                        author.uuid = "\(book.asin!)-author-\(index)"
-//                    }
-//                    index += 1
-//                    cachedPeople[trimmed] = author
-//                }
-//                let relationship = author.relationship(as: Role.StandardName.author)
-//                relationship.add(book)
-//            }
-//        }
+    private func addProperties(for book: KindleBook, creators: [String], into properties: inout PropertyDictionary) {
+        var index = 1
+        for creator in creators {
+            let unsorted = Indexing.nameUnsort(for: creator) ?? ""
+            let trimmed = unsorted.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            if trimmed != "" {
+                let identifier = "\(book.asin)-author-\(index)"
+                let initialProperties = EntityInitialiser(
+                    as: .person,
+                    properties: [.source: KindleImporter.identifier],
+                    identifier: identifier
+                )
+                let author = Entity.named(trimmed, initialiser: initialProperties)
+                properties.addRole(PropertyType.author, for: author)
+                index += 1
+            }
+        }
     }
     
-    private func process(publishers: [String], for book: Book) {
-//        for publisher in publishers {
-//            let trimmed = publisher.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-//            if trimmed != "" {
-//                let publisher: Publisher
-//                if let cached = cachedPublishers[trimmed] {
-//                    publisher = cached
-//                } else {
-//                    publisher = Publisher.named(trimmed, in: context)
-//                    if publisher.source == nil {
-//                        publisher.source = KindleImporter.identifier
-//                    }
-//                    cachedPublishers[trimmed] = publisher
-//                }
-//                publisher.add(book)
-//            }
-//        }
+    private func addProperties(for book: KindleBook, publishers: [String], into properties: inout PropertyDictionary) {
+        for publisher in publishers {
+            let trimmed = publisher.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            if trimmed != "" {
+                let initialiser = EntityInitialiser(as: .publisher, properties: [.source: KindleImporter.identifier])
+                let publisher = Entity.named(trimmed, initialiser: initialiser)
+                properties.addPublisher(publisher)
+            }
+        }
     }
     
 }

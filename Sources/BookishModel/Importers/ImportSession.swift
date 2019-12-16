@@ -17,11 +17,13 @@ public class ImportSession: Equatable {
     let importer: Importer
     let store: Datastore
     let monitor: ImportDelegate?
+    let importedTag: EntityReference
     
     init?(importer: Importer, store: Datastore, monitor: ImportDelegate?) {
         self.importer = importer
         self.store = store
         self.monitor = monitor
+        self.importedTag = Entity.identifiedBy("tag-imported", initialiser: EntityInitialiser(as: .tag, properties: [.name: "imported"]))
     }
     
     func performImport() {

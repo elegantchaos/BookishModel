@@ -36,7 +36,6 @@ class DeliciousLibraryImportSession: URLImportSession {
     var cachedPublishers: [String:Publisher] = [:]
     var cachedSeries: [String:Series] = [:]
     let deliciousTag: EntityReference
-    let importedTag: EntityReference
     let includeRaw = true
     
     let formatsToSkip = ["Audio CD", "Audio CD Enhanced", "Audio CD Import", "Video Game", "VHS Tape", "VideoGame", "DVD"]
@@ -54,7 +53,6 @@ class DeliciousLibraryImportSession: URLImportSession {
         }
 
         self.deliciousTag = Entity.identifiedBy("tag-delicious-library", initialiser: EntityInitialiser(as: .tag, properties: [.name: "delicious-library"]))
-        self.importedTag = Entity.identifiedBy("tag-imported", initialiser: EntityInitialiser(as: .tag, properties: [.name: "imported"]))
         self.list = list
         super.init(importer: importer, store: store, url: url, monitor: monitor)
     }
@@ -63,20 +61,14 @@ class DeliciousLibraryImportSession: URLImportSession {
         let store = self.store
         let monitor = self.monitor
         monitor?.importerWillStartSession(self, withCount: list.count)
-//        var index: Index = [:]
-//            if let key = identifier(for: record) {
-//                index[key] = record
-//            }
-//        }
-        
-//        let ids = index.keys.map({ Entity.identifiedBy($0, createAs: .book)})
+
         var item = 0
         var properties: [EntityReference: PropertyDictionary] = [:]
         for record in list {
             if let identifier = identifier(for: record) {
                 let book = Entity.identifiedBy(identifier, createAs: .book)
                 monitor?.importerWillContinueSession(self, withItem: item, of: list.count)
-                self.addProperties(for: book, identifier: identifier, from: record, into: &properties)
+                addProperties(for: book, identifier: identifier, from: record, into: &properties)
             }
             item += 1
         }
@@ -119,12 +111,10 @@ class DeliciousLibraryImportSession: URLImportSession {
             "formatSingularString": .format
         ])
         
-        bookProperties[.name] = data["title"]
-        bookProperties[.subtitle] = data["subtitle"]
         bookProperties[.source] = DeliciousLibraryImporter.identifier
         bookProperties[.importDate] = Date()
-        bookProperties[PropertyKey(array:"tag")] = deliciousTag
-        bookProperties[PropertyKey(array:"tag")] = importedTag
+        bookProperties.addTag(deliciousTag)
+        bookProperties.addTag(importedTag)
 
         if let ean = data["ean"] as? String, ean.isISBN13 {
             bookProperties[.isbn] = ean
@@ -180,7 +170,7 @@ class DeliciousLibraryImportSession: URLImportSession {
                     identifier: identifier
                 )
                 let author = Entity.named(trimmed, initialiser: initialProperties)
-                properties[PropertyKey("author-\(index)")] = (author, PropertyType.author)
+                properties.addRole(PropertyType.author, for: author)
                 index += 1
             }
         }
@@ -192,7 +182,7 @@ class DeliciousLibraryImportSession: URLImportSession {
             if trimmed != "" {
                 let initialiser = EntityInitialiser(as: .publisher, properties: [.source: DeliciousLibraryImporter.identifier])
                 let publisher = Entity.named(trimmed, initialiser: initialiser)
-                properties[.publisher] = (publisher, PropertyType.publisher)
+                properties.addPublisher(publisher)
             }
         }
     }

@@ -117,13 +117,13 @@ class DeleteRoleAction: RoleAction {
 class RevealRoleAction: ModelAction {
     override func validate(context: ActionContext) -> Validation {
         var info = super.validate(context: context)
-        info.enabled = info.enabled && (context[.roleKey] as? Role != nil) && (context[.root] as? RoleViewer != nil)
+        info.enabled = info.enabled && (context[.role] as? Role != nil) && (context[.root] as? RoleViewer != nil)
         return info
     }
     
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
         if let viewer = context[.root] as? RoleViewer {
-            if let role = context[.roleKey] as? Role {
+            if let role = context[.role] as? Role {
                 viewer.reveal(role: role)
             }
         }

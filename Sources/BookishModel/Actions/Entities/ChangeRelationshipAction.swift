@@ -19,7 +19,7 @@ class ChangeRelationshipAction: EntityAction {
         var info = super.validate(context: context)
         let gotRelationship = context[.relationshipKey] as? Relationship != nil
         let gotPerson = (context[.personKey] as? String) != nil || (context[.personKey] as? Person) != nil
-        let gotRole = (context[.roleKey] as? Role) != nil
+        let gotRole = (context[.role] as? Role) != nil
         info.enabled = info.enabled &&
             ((gotRelationship && gotPerson) ||
                 (gotRelationship && gotRole) ||
@@ -29,7 +29,7 @@ class ChangeRelationshipAction: EntityAction {
     
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
         let existingRelationship = context[.relationshipKey] as? Relationship
-        var role = context[.roleKey] as? Role
+        var role = context[.role] as? Role
         if role == nil {
             role = existingRelationship?.role
         }

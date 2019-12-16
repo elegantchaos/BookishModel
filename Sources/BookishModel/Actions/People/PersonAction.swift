@@ -34,7 +34,7 @@ public protocol PersonLifecycleObserver: ActionObserver {
 extension ActionKey {
     public static let personKey: ActionKey = "person"
     public static let relationshipKey: ActionKey = "relationship"
-    public static let roleKey: ActionKey = "role"
+    public static let role: ActionKey = "role"
     public static let splitNameKey: ActionKey = "splitName"
     public static let splitUUIDKey: ActionKey = "splitUUID"
 }

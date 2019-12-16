@@ -13,7 +13,7 @@ import Datastore
 class AddRelationshipAction: EntityAction {
     public override func validate(context: ActionContext) -> Validation {
         var info = super.validate(context: context)
-        info.enabled = info.enabled && ((context[.roleKey] as? String) != nil)
+        info.enabled = info.enabled && ((context[.role] as? String) != nil)
         return info
     }
     

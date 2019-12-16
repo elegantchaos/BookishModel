@@ -101,7 +101,42 @@ class ImporterTests: ModelTestCase {
         }))
     }
     
+    func testKindleImporter() {
+        let bundle = Bundle(for: type(of: self))
+        let xmlURL = bundle.url(forResource: "KindleTest", withExtension: "xml")!
+        XCTAssertTrue(check(importing: xmlURL, with: KindleImporter.identifier, checker: { monitor in
+            let store = monitor.store
+            store.get(allEntitiesOfType: .book) { books in
+                monitor.check(count: books.count, expected: 3)
+                store.get(properties: [.name], of: books) { result in
+                    let names = Set<String>(result.compactMap({ $0["name"] as? String }))
+                    XCTAssertTrue(names.contains("A Big Ship at the Edge of the Universe (The Salvagers Book 1)"))
+                    XCTAssertTrue(names.contains("Places in the Darkness"))
+                    XCTAssertTrue(names.contains("Thin Air: From the author of Netflix's Altered Carbon (GOLLANCZ S.F.)"))
+                    
+                    let book = Entity.identifiedBy("kindle-import-B079RMQJR1-575752767.0")
+                    store.get(allPropertiesOf: [book]) { result in
+                        monitor.check(count: result.count, expected: 1)
+                        let bookProperties = result[0]
+                        print(bookProperties)
+                        XCTAssertEqual((bookProperties[.published] as? Date)?.timeIntervalSinceReferenceDate, 562118400.0)
+                        
+                        if !ModelObject.allowMultiplePublishers {
+                            let publisher = bookProperties[.publisher] as! EntityReference
+                            store.get(allPropertiesOf: [publisher]) { results in
+                                monitor.check(count: results.count, expected: 1)
+                                let publisherProperties = results[0]
+                                XCTAssertEqual(publisherProperties[.name] as? String, "Gollancz")
+                                monitor.allChecksDone()
+                            }
+                        }
+                    }
+                }
+            }
+        }))
+    }
 
+    
     func testStandardRolesImporter() {
         XCTAssertTrue(check(with: StandardRolesImporter.identifier, checker: { monitor in
             monitor.store.count(entitiesOfTypes: [.role]) { counts in

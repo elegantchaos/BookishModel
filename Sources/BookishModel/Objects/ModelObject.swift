@@ -10,6 +10,7 @@ import Datastore
 
 typealias ModelEntityReference = EntityReference
 
+
 extension EntityType {
     static let book: Self = "book"
     static let person: Self = "person"
@@ -99,9 +100,32 @@ extension PropertyDictionary {
 
 }
 
+public extension PropertyDictionary {
+    mutating func addRole(_ role: PropertyType, for entity: EntityReference) {
+        let key = PropertyKey(reference: entity, name: role.name)
+        self[key] = (entity, role)
+    }
+    
+    mutating func addTag(_ tag: EntityReference) {
+        let key = PropertyKey(reference: tag, name: "tag")
+        self[key] = (tag, EntityType.tag.asPropertyType)
+    }
+    
+    mutating func addPublisher(_ publisher: EntityReference) {
+        let key: PropertyKey
+        if ModelObject.allowMultiplePublishers {
+            key = PropertyKey(reference: publisher, name: "publisher")
+        } else {
+            key = .publisher
+        }
+        self[key] = (publisher, type: EntityType.publisher.asPropertyType)
+    }
+}
+
 let modelObjectChannel = Logger("com.elegantchaos.bookish.model.ModelObject")
 
 public class ModelObject: NSManagedObject, DetailOwner {
+    static let allowMultiplePublishers = false
     static let missingUUID = "missing-identifier" as NSString
 
     /**
