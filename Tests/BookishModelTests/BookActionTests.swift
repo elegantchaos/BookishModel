@@ -69,6 +69,34 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookChangeObserver {
 
     }
     
+    func testAddRelationship() {
+        let book = Entity.named("Test", createAs: .book)
+        let info = ActionInfo()
+        let action = AddRelationshipAction()
+        info[.selection] = [book]
+        info[.role] = "author"
+        XCTAssertTrue(checkAction(action, withInfo: info) { monitor in
+            // check that the change notification fired ok
+            monitor.check(count: monitor.storeChanges[0].added.count, expected: 2)
+            
+            monitor.store.get(allEntitiesOfType: .person) { people in
+                let person = people[0]
+                
+                // check that we have the right property
+                monitor.store.get(allPropertiesOf: [book]) { results in
+                    let properties = results[0]
+                    for key in properties.keys {
+                        if key.value.starts(with: "author-") {
+                            let value = properties[key] as? GuaranteedReference
+                            XCTAssertEqual(value!.identifier, person.identifier)
+                        }
+                    }
+                    monitor.allChecksDone()
+                }
+            }
+        })
+    }
+    
 //    func testAddRelationship() {
 //        let book = Entity.named("Test", createAs: .book)
 //
