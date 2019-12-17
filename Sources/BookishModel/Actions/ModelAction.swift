@@ -11,7 +11,11 @@ import Logger
 let modelActionChannel = Logger("ModelAction")
 
 extension ActionKey {
-    public static let entityTypeKey:ActionKey = "entityType"
+    public static let entityType:ActionKey = "entityType"
+    public static let person: ActionKey = "person"
+    public static let role: ActionKey = "role"
+    public static let splitName: ActionKey = "splitName"
+    public static let splitUUID: ActionKey = "splitUUID"
 }
 
 extension ActionContext {
@@ -27,11 +31,14 @@ extension ActionContext {
 open class ModelAction: Action {
     public enum Error: LocalizedError, Swift.Error {
         case missingSelection
+        case missingArguments
         
         public var errorDescription: String? {
             switch self {
             case .missingSelection:
                 return "Selection missing"
+            case .missingArguments:
+                return "Arguments missing"
             }
         }
     }
@@ -66,7 +73,7 @@ open class ModelAction: Action {
         var info = super.validate(context: context)
 
         if info.enabled,
-            let indexType = context[.entityTypeKey] as? EntityType.Type,
+            let indexType = context[.entityType] as? EntityType.Type,
             let selection = context[.selection] as? [EntityType],
             indexType == type {
             let count = selection.count

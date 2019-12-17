@@ -12,21 +12,21 @@ import Datastore
  */
 
 class RevealPersonAction: PersonAction {
-    override func validate(context: ActionContext) -> Validation {
-        var info = super.validate(context: context)
-        info.enabled = info.enabled &&
-            ((context[.relationshipKey] as? Relationship != nil) || (context[.personKey] as? Person != nil)) &&
-            (context[.root] as? PersonViewer != nil)
-        return info
-    }
-    
-    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-        if let viewer = context[.root] as? PersonViewer {
-            if let person = context[.personKey] as? Person {
-                viewer.reveal(person: person)
-            } else if let role = context[.relationshipKey] as? Relationship, let person = role.person {
-                viewer.reveal(person: person)
-            }
-        }
-    }
+//    override func validate(context: ActionContext) -> Validation {
+//        var info = super.validate(context: context)
+//        info.enabled = info.enabled &&
+//            ((context[.relationship] as? Relationship != nil) || (context[.person] as? Person != nil)) &&
+//            (context[.root] as? PersonViewer != nil)
+//        return info
+//    }
+//    
+//    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+//        if let viewer = context[.root] as? PersonViewer {
+//            if let person = context[.person] as? Person {
+//                viewer.reveal(person: person)
+//            } else if let role = context[.relationshipKey] as? Relationship, let person = role.person {
+//                viewer.reveal(person: person)
+//            }
+//        }
+//    }
 }

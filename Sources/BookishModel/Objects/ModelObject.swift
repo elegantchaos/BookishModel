@@ -101,8 +101,18 @@ extension PropertyDictionary {
 }
 
 public extension PropertyDictionary {
+    static func keyForRole(_ role: PropertyType, for entity: EntityReference) -> PropertyKey {
+        return PropertyKey(reference: entity, name: role.name)
+    }
+    
+    static func withRole(_ role: PropertyType, for entity: EntityReference) -> PropertyDictionary {
+        var properties = PropertyDictionary()
+        properties.addRole(role, for: entity)
+        return properties
+    }
+    
     mutating func addRole(_ role: PropertyType, for entity: EntityReference) {
-        let key = PropertyKey(reference: entity, name: role.name)
+        let key = PropertyDictionary.keyForRole(role, for: entity)
         self[key] = (entity, role)
     }
     

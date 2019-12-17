@@ -4,7 +4,7 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Actions
-import CoreData
+import Datastore
 import Logger
 
 let bookActionChannel = Logger("BookActions")
@@ -101,16 +101,17 @@ open class EntityAction: ModelAction {
             MergeBookAction()
         ]
     }
-    
-    open override func validate(context: ActionContext) -> Validation {
-        var info = super.validate(context: context)
+
+    class Arguments {
+        let selection: [EntityReference]
         
-        if info.enabled, let selection = context[.selection] as? [ModelEntityReference] {
-            info.enabled = selection.count > 0
-        } else {
-            info.enabled = false
+        init?(from context: ActionContext) {
+            guard let selection = context[.selection] as? [EntityReference], selection.count > 0 else {
+                return nil
+            }
+            
+            self.selection = selection
         }
-        return info
     }
 }
 

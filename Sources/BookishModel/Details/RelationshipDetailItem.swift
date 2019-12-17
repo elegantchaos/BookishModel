@@ -29,11 +29,11 @@ public class RelationshipDetailItem: DetailItem {
     }
     
     public override var removeAction: DetailItem.ActionSpec? {
-        if let relationship = relationship {
-            return ( .relationshipKey, "button.RemoveRelationship", relationship )
-        } else {
+//        if let relationship = relationship {
+//            return ( .relationshipKey, "button.RemoveRelationship", relationship )
+//        } else {
             return super.removeAction
-        }
+//        }
     }
 
     

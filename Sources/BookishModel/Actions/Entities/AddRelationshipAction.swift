@@ -12,39 +12,37 @@ import Foundation
  */
 
 class AddRelationshipAction: EntityAction {
-    public enum Error: LocalizedError, Swift.Error {
-        case missingRole
+    class AddRelationshipArguments: EntityAction.Arguments {
+        let role: String
         
-        public var errorDescription: String? {
-            switch self {
-            case .missingRole:
-                return "Role not specified"
+        override init?(from context: ActionContext) {
+            guard let role = context[.role] as? String else {
+                return nil
             }
+            
+            self.role = role
+            super.init(from: context)
         }
     }
+
     public override func validate(context: ActionContext) -> Validation {
         var info = super.validate(context: context)
-        info.enabled = info.enabled && ((context[.role] as? String) != nil)
+        info.enabled = info.enabled && (AddRelationshipArguments(from: context) != nil)
         return info
     }
     
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-        guard let selection = context[.selection] as? [EntityReference] else {
-            completion(.failure(Error.missingSelection))
+        guard let arguments = AddRelationshipArguments(from: context) else {
+            completion(.failure(Error.missingArguments))
             return
         }
-        
-        guard let role = context[.role] as? String else {
-            completion(.failure(Error.missingRole))
-            return
-        }
-        
+
         let person = Entity.createAs(.person)
         var roleProperty = PropertyDictionary()
-        roleProperty.addRole(PropertyType(role), for: person)
+        roleProperty.addRole(PropertyType(arguments.role), for: person)
 
         var properties: [EntityReference:PropertyDictionary] = [:]
-        for item in selection {
+        for item in arguments.selection {
             properties[item] = roleProperty
         }
         

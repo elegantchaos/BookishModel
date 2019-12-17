@@ -15,24 +15,24 @@ import Datastore
  */
 
 class ChangeRelationshipAction: EntityAction {
-    override func validate(context: ActionContext) -> Validation {
-        var info = super.validate(context: context)
-        let gotRelationship = context[.relationshipKey] as? Relationship != nil
-        let gotPerson = (context[.personKey] as? String) != nil || (context[.personKey] as? Person) != nil
-        let gotRole = (context[.role] as? Role) != nil
-        info.enabled = info.enabled &&
-            ((gotRelationship && gotPerson) ||
-                (gotRelationship && gotRole) ||
-                (!gotRelationship && gotPerson && gotRole))
-        return info
-    }
-    
-    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-        let existingRelationship = context[.relationshipKey] as? Relationship
-        var role = context[.role] as? Role
-        if role == nil {
-            role = existingRelationship?.role
-        }
+//    override func validate(context: ActionContext) -> Validation {
+//        var info = super.validate(context: context)
+//        let gotRelationship = context[.relationshipKey] as? Relationship != nil
+//        let gotPerson = (context[.person] as? String) != nil || (context[.person] as? Person) != nil
+//        let gotRole = (context[.role] as? Role) != nil
+//        info.enabled = info.enabled &&
+//            ((gotRelationship && gotPerson) ||
+//                (gotRelationship && gotRole) ||
+//                (!gotRelationship && gotPerson && gotRole))
+//        return info
+//    }
+//    
+//    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+//        let existingRelationship = context[.relationshipKey] as? Relationship
+//        var role = context[.role] as? Role
+//        if role == nil {
+//            role = existingRelationship?.role
+//        }
         
 //        if let selection = context[.selection] as? [Book], let role = role {
 //            var updatedPerson = context[PersonAction.personKey] as? Person
@@ -81,5 +81,5 @@ class ChangeRelationshipAction: EntityAction {
 //                bookActionChannel.log("skipped - no changes")
 //            }
 //        }
-    }
+//    }
 }

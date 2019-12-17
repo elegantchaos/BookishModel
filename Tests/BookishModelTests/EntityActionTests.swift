@@ -12,7 +12,7 @@ class EntityActionTests: ModelActionTestCase {
     
     func testNewEntity() {
         let info = ActionInfo()
-        info[.entityTypeKey] = EntityType.book
+        info[.entityType] = EntityType.book
         let action = NewEntityAction()
         XCTAssertTrue(checkAction(action, withInfo: info) { monitor in
             // check that the change notification fired ok

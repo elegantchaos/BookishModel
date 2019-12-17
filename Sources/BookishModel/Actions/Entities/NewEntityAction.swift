@@ -17,7 +17,7 @@ public class NewEntityAction: EntityAction {
     }
     
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-        guard let type = context[.entityTypeKey] as? EntityType else {
+        guard let type = context[.entityType] as? EntityType else {
             completion(.ok)
             return
         }

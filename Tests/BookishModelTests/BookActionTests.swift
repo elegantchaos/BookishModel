@@ -85,36 +85,44 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookChangeObserver {
                 // check that we have the right property
                 monitor.store.get(allPropertiesOf: [book]) { results in
                     let properties = results[0]
-                    for key in properties.keys {
-                        if key.value.starts(with: "author-") {
-                            let value = properties[key] as? GuaranteedReference
-                            XCTAssertEqual(value!.identifier, person.identifier)
-                        }
-                    }
+                    let key = PropertyKey("author-\(person.identifier)")
+                    let value = properties[key] as? GuaranteedReference
+                    XCTAssertNotNil(value)
+                    XCTAssertEqual(value!.identifier, person.identifier)
                     monitor.allChecksDone()
                 }
             }
         })
     }
-    
-//    func testAddRelationship() {
-//        let book = Entity.named("Test", createAs: .book)
-//
-//
-//        info.addObserver(self)
-//        info[.selection] = [book]
-//        info[PersonAction.roleKey] = "author"
-//
-//        XCTAssertTrue(actionManager.validate(identifier: "AddRelationship", info: info).enabled)
-//        actionManager.perform(identifier: "AddRelationship", info: info)
-//
-//        wait(for: [expectation], timeout: 1.0)
-//        XCTAssertEqual(book.roles.count, 1)
-//        XCTAssertEqual(book.roles.first?.name, "author")
-//
-//        XCTAssertNotNil(relationshipObserved)
-//    }
-//
+
+    func testRemoveRelationship() {
+        let person = Entity.named("Test", createAs: .person)
+        let book = Entity.named("Test", initialiser: EntityInitialiser(as: .book, properties: PropertyDictionary.withRole("author", for: person)))
+        
+        XCTAssertTrue(checkContainer() { monitor in
+            monitor.container.store.get(entitiesWithIDs: [person, book]) { entities in
+                let info = ActionInfo()
+                let action = RemoveRelationshipAction()
+                info[.selection] = [book]
+                info[.role] = "author"
+                info[.person] = person
+                self.checkAction(action, withInfo: info, monitor: monitor) { monitor in
+                    // check that the change notification fired ok
+                    monitor.check(count: monitor.storeChanges[0].changed.count, expected: 1)
+
+                    // check that we have the right property
+                    monitor.store.get(allPropertiesOf: [book]) { results in
+                        let properties = results[0]
+                        let key = PropertyDictionary.keyForRole("author", for: person)
+                        let value = properties[key] as? GuaranteedReference
+                        XCTAssertNil(value)
+                        monitor.allChecksDone()
+                    }
+                }
+            }
+        })
+    }
+
 //    func testRemoveRelationship() {
 //        let book = Book(context: context)
 //        let person = Person(context: context)
