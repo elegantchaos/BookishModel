@@ -18,17 +18,17 @@ class RemoveSeriesAction: EntityAction {
     }
     
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-        if
-            let selection = context[.selection] as? [Book],
-            let series = context[.seriesKey] as? Series {
-            for book in selection {
-                book.removeFromSeries(series)
-                context.info.forObservers { (observer: BookChangeObserver) in
-                    observer.removed(series: series)
-                }
-            }
-            
-        }
+//        if
+//            let selection = context[.selection] as? [Book],
+//            let series = context[.seriesKey] as? Series {
+//            for book in selection {
+//                book.removeFromSeries(series)
+//                context.info.forObservers { (observer: BookChangeObserver) in
+//                    observer.removed(series: series)
+//                }
+//            }
+//            
+//        }
         
     }
 }

@@ -11,6 +11,7 @@ import Logger
 let modelActionChannel = Logger("ModelAction")
 
 extension ActionKey {
+    public static let entity: ActionKey = "entity"
     public static let entityType:ActionKey = "entityType"
     public static let person: ActionKey = "person"
     public static let role: ActionKey = "role"

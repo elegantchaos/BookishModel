@@ -4,17 +4,17 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Foundation
-
-public class SimpleDetailItem: DetailItem {
-    public let spec: DetailSpec
-    
-    public init(spec: DetailSpec, absolute: Int, index: Int, source: DetailProvider) {
-        self.spec = spec
-        let kind = source.isEditing ? spec.editableKind : spec.kind
-        super.init(kind: kind, absolute: absolute, index: index, placeholder: false, source: source)
-    }
-
-    override public var heading: String {
-        return "detail.\(spec.binding).label".localized
-    }
-}
+//
+//public class SimpleDetailItem: DetailItem {
+//    public let spec: DetailSpec
+//    
+//    public init(spec: DetailSpec, absolute: Int, index: Int, source: DetailProvider) {
+//        self.spec = spec
+//        let kind = source.isEditing ? spec.editableKind : spec.kind
+//        super.init(kind: kind, absolute: absolute, index: index, placeholder: false, source: source)
+//    }
+//
+//    override public var heading: String {
+//        return "detail.\(spec.binding).label".localized
+//    }
+//}

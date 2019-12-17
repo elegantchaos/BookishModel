@@ -63,21 +63,21 @@ public class GoogleLookupCandidate: LookupCandidate {
     }
     
     public override func makeBook(in store: Datastore, completion: @escaping (Book) -> Void) {
-        let info = self.info
-        super.makeBook(in: store) { book in
-            if let pages = info["pageCount"] as? NSNumber {
-                book.pages = pages.int16Value
-            }
-            
-            if let isbn = GoogleLookupCandidate.isbn(from: info) {
-                book.isbn = isbn
-            }
-            
-            if let data = try? JSONSerialization.data(withJSONObject: info, options: .prettyPrinted) {
-                book.importRaw = String(data: data, encoding: .utf8)
-            }
-            completion(book)
-        }
+//        let info = self.info
+//        super.makeBook(in: store) { book in
+//            if let pages = info["pageCount"] as? NSNumber {
+//                book.pages = pages.int16Value
+//            }
+//            
+//            if let isbn = GoogleLookupCandidate.isbn(from: info) {
+//                book.isbn = isbn
+//            }
+//            
+//            if let data = try? JSONSerialization.data(withJSONObject: info, options: .prettyPrinted) {
+//                book.importRaw = String(data: data, encoding: .utf8)
+//            }
+//            completion(book)
+//        }
     }
 }
 

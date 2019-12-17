@@ -4,18 +4,18 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Foundation
-
-public class SectionDetailItem: DetailItem {
-    override public var heading: String {
-        return ""
-    }
-    
-    public override func viewID(for column: String) -> String {
-        switch column {
-        case DetailItem.detailColumnID:
-            return "section"
-        default:
-            return super.viewID(for: column)
-        }
-    }
-}
+//
+//public class SectionDetailItem: DetailItem {
+//    override public var heading: String {
+//        return ""
+//    }
+//    
+//    public override func viewID(for column: String) -> String {
+//        switch column {
+//        case DetailItem.detailColumnID:
+//            return "section"
+//        default:
+//            return super.viewID(for: column)
+//        }
+//    }
+//}

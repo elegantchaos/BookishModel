@@ -32,22 +32,22 @@ class AddRelationshipAction: EntityAction {
     }
     
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-        guard let arguments = AddRelationshipArguments(from: context) else {
-            completion(.failure(Error.missingArguments))
-            return
-        }
-
-        let person = Entity.createAs(.person)
-        var roleProperty = PropertyDictionary()
-        roleProperty.addRole(PropertyType(arguments.role), for: person)
-
-        var properties: [EntityReference:PropertyDictionary] = [:]
-        for item in arguments.selection {
-            properties[item] = roleProperty
-        }
-        
-        store.add(properties: properties) {
-            completion(.ok)
-        }
+//        guard let arguments = AddRelationshipArguments(from: context) else {
+//            completion(.failure(Error.missingArguments))
+//            return
+//        }
+//
+//        let person = Entity.createAs(.person)
+//        var roleProperty = PropertyDictionary()
+//        roleProperty.addRole(PropertyType(arguments.role), for: person)
+//
+//        var properties: [EntityReference:PropertyDictionary] = [:]
+//        for item in arguments.selection {
+//            properties[item] = roleProperty
+//        }
+//        
+//        store.add(properties: properties) {
+//            completion(.ok)
+//        }
     }
 }

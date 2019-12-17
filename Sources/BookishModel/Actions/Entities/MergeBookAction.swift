@@ -49,30 +49,30 @@ class MergeBookAction: EntityAction {
     }
     
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-        if let selection = context[.selection] as? [Book], let primary = selection.first {
-            
-            var log = primary.log ?? ""
-            let others = Set(selection.dropFirst())
-            bookActionChannel.log("Merging \(primary) with \(others)")
-            var relationshipsToChange: [Relationship] = []
-            for book in others {
-                if let relationships = book.relationships as? Set<Relationship> {
-                    relationshipsToChange.append(contentsOf: relationships)
-                }
-            }
-            
-            for relationship in relationshipsToChange {
-                relationship.remove(others)
-                relationship.add(primary)
-            }
-            
+//        if let selection = context[.selection] as? [Book], let primary = selection.first {
+//            
+//            var log = primary.log ?? ""
+//            let others = Set(selection.dropFirst())
+//            entityActionChannel.log("Merging \(primary) with \(others)")
+//            var relationshipsToChange: [Relationship] = []
 //            for book in others {
-//                log += "\nMerged with \(book).\n"
-//                log += moveProperties(from: book, to: primary, context: model)
-//                model.delete(book)
+//                if let relationships = book.relationships as? Set<Relationship> {
+//                    relationshipsToChange.append(contentsOf: relationships)
+//                }
 //            }
-            
-            primary.log = log
-        }
+//            
+//            for relationship in relationshipsToChange {
+//                relationship.remove(others)
+//                relationship.add(primary)
+//            }
+//            
+////            for book in others {
+////                log += "\nMerged with \(book).\n"
+////                log += moveProperties(from: book, to: primary, context: model)
+////                model.delete(book)
+////            }
+//            
+//            primary.log = log
+//        }
     }
 }

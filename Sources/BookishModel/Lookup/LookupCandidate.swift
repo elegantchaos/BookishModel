@@ -35,7 +35,7 @@ public class LookupCandidate: CustomStringConvertible {
         return nil
     }
     
-    public func makeBook(in store: Datastore, completion: @escaping (Book) -> Void) {
+    public func makeBook(in store: Datastore, completion: @escaping (EntityReference) -> Void) {
 //        let book = Book(in: context)
 //
 //        book.name = title

@@ -3,9 +3,10 @@
 //  All code (c) 2019 - present day, Elegant Chaos Limited.
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
+import Datastore
 import Foundation
 
-public class Selection<T: NSObject> {
+public class Selection<T: ModelEntityReference> {
     public var objects: [T]
     
     public var count: Int {
@@ -26,12 +27,12 @@ public class Selection<T: NSObject> {
             return .noSelection
         case 1:
             let object = objects.first!
-            let value = object.value(forKey: key)
+            let value = object[PropertyKey(key)]
             return .value(value: value, source: object)
         default:
-            let value = objects.first!.value(forKey: key) as? NSObject
+            let value = objects.first![PropertyKey(key)] as? NSObject
             for item in objects {
-                let nextValue = item.value(forKey: key) as? NSObject
+                let nextValue = item[PropertyKey(key)] as? NSObject
                 if nextValue != value {
                     return .multipleValues
                 }

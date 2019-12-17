@@ -18,17 +18,17 @@ class RemovePublisherAction: EntityAction {
     }
     
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-        if
-            let selection = context[.selection] as? [Book],
-            let publisher = context[.publisherKey] as? Publisher {
-            for book in selection {
-                publisher.remove(book)
-            }
-            
-            context.info.forObservers { (observer: BookChangeObserver) in
-                observer.removed(publisher: publisher)
-            }
-        }
+//        if
+//            let selection = context[.selection] as? [Book],
+//            let publisher = context[.publisherKey] as? Publisher {
+//            for book in selection {
+//                publisher.remove(book)
+//            }
+//            
+//            context.info.forObservers { (observer: BookChangeObserver) in
+//                observer.removed(publisher: publisher)
+//            }
+//        }
         
     }
 }

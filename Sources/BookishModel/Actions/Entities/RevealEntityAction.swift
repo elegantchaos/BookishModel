@@ -10,7 +10,7 @@ import Datastore
  Action that shows a book in the user interface.
  */
 
-class RevealBookAction: ModelAction {
+class RevealEntityAction: ModelAction {
     override func validate(context: ActionContext) -> Validation {
         var info = super.validate(context: context)
         info.enabled = info.enabled && ((context[.entity] as? Book) != nil)

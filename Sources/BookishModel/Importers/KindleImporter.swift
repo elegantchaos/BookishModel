@@ -155,7 +155,7 @@ class KindleImportSession: URLImportSession {
         let monitor = self.monitor
         monitor?.importerWillStartSession(self, withCount: books.count)
         var item = 0
-        var properties: [EntityReference: PropertyDictionary] = [:]
+        var properties: [EntityReference] = []
         for kindleBook in books {
             if let identifier = identifier(for: kindleBook) {
                 let book = Entity.identifiedBy(identifier, createAs: .book)
@@ -181,7 +181,7 @@ class KindleImportSession: URLImportSession {
         return identifier
     }
 
-    private func addProperties(for book: EntityReference, identifier bookID: String, from kindleBook: KindleBook, into properties: inout [EntityReference: PropertyDictionary]) {
+    private func addProperties(for book: EntityReference, identifier bookID: String, from kindleBook: KindleBook, into properties: inout [EntityReference]) {
         var bookProperties = PropertyDictionary()
 
         bookProperties[.name] = kindleBook.title
@@ -206,7 +206,8 @@ class KindleImportSession: URLImportSession {
         addProperties(for: kindleBook, creators: kindleBook.authors, into: &bookProperties)
         addProperties(for: kindleBook, publishers: kindleBook.publishers, into: &bookProperties)
         
-        properties[book] = bookProperties
+        book.addUpdates(bookProperties)
+        properties.append(book)
     }
     
     private func addProperties(for book: KindleBook, creators: [String], into properties: inout PropertyDictionary) {

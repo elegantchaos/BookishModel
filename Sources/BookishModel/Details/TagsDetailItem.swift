@@ -4,16 +4,16 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Foundation
-
-public class TagsDetailItem: DetailItem {
-    public var tags: Set<Tag>
-    
-    public init(tags: Set<Tag> = [], absolute: Int, index: Int, source: DetailProvider) {
-        self.tags = tags
-        super.init(kind: "tags", absolute: absolute, index: index, placeholder: false, source: source, object: nil)
-    }
-    
-    public override var heading: String {
-        return "detail.tag.label".localized
-    }
-}
+//
+//public class TagsDetailItem: DetailItem {
+//    public var tags: Set<Tag>
+//    
+//    public init(tags: Set<Tag> = [], absolute: Int, index: Int, source: DetailProvider) {
+//        self.tags = tags
+//        super.init(kind: "tags", absolute: absolute, index: index, placeholder: false, source: source, object: nil)
+//    }
+//    
+//    public override var heading: String {
+//        return "detail.tag.label".localized
+//    }
+//}

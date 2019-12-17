@@ -22,41 +22,41 @@ class ModelTestCase: XCTestCase {
 ////        collection.configure(for: url)
 //        return collection
 //    }
-
-    func check(book: Book, series: Series, position: Int, ignore: SeriesEntry? = nil) -> Bool {
-        for entry in book.entries {
-            if entry == ignore {
-                continue
-            }
-
-            XCTAssertEqual(entry.series, series)
-            XCTAssertEqual(entry.position, Int16(position))
-            return (entry.series == series) && (entry.position == Int16(position))
-        }
-        
-        return false
-    }
-    
-    func check(book: Book, seriesName: String, position: Int, ignore: SeriesEntry? = nil) -> Bool {
-        for entry in book.entries {
-            if entry == ignore {
-                continue
-            }
-            
-            XCTAssertEqual(entry.series?.name, seriesName)
-            XCTAssertEqual(entry.position, Int16(position))
-            return (entry.series!.name == seriesName) && (entry.position == Int16(position))
-        }
-        
-        return false
-    }
-
-    func check(relationship: Relationship, book: Book, person: Person) {
-        XCTAssertEqual(book.roles.count, 1)
-        XCTAssertEqual(relationship.books.count, 1)
-        XCTAssertEqual(relationship.books.first, book)
-        XCTAssertEqual(relationship.person, person)
-    }
+//
+//    func check(book: Book, series: Series, position: Int, ignore: SeriesEntry? = nil) -> Bool {
+//        for entry in book.entries {
+//            if entry == ignore {
+//                continue
+//            }
+//
+//            XCTAssertEqual(entry.series, series)
+//            XCTAssertEqual(entry.position, Int16(position))
+//            return (entry.series == series) && (entry.position == Int16(position))
+//        }
+//        
+//        return false
+//    }
+//    
+//    func check(book: Book, seriesName: String, position: Int, ignore: SeriesEntry? = nil) -> Bool {
+//        for entry in book.entries {
+//            if entry == ignore {
+//                continue
+//            }
+//            
+//            XCTAssertEqual(entry.series?.name, seriesName)
+//            XCTAssertEqual(entry.position, Int16(position))
+//            return (entry.series!.name == seriesName) && (entry.position == Int16(position))
+//        }
+//        
+//        return false
+//    }
+//
+//    func check(relationship: Relationship, book: Book, person: Person) {
+//        XCTAssertEqual(book.roles.count, 1)
+//        XCTAssertEqual(relationship.books.count, 1)
+//        XCTAssertEqual(relationship.books.first, book)
+//        XCTAssertEqual(relationship.person, person)
+//    }
 
     public class StoreMonitor: SimpleTestMonitor<StoreMonitor> {
         let store: Datastore

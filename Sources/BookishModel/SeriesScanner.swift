@@ -190,99 +190,99 @@ class SubtitleBookDetector: SeriesDetector {
         return nil
     }
 }
-
-class SeriesScanner {
-    typealias Record = [String:Any]
-    typealias RecordList = [Record]
-    
-    var cachedSeries: [String:Series] = [:]
-    
-    let context: NSManagedObjectContext
-    
-    let detectors = [ NameSeriesBookBracketsDetector(), TitleInSeriesDetector(), SeriesBracketsBookNumberDetector(), SeriesBracketsBookDetector(), NameBookSeriesBracketsSDetector(), SeriesBracketsSBookDetector(), SubtitleBookDetector(), SeriesNameBookDetector()]
-    
-    let bookIndexPatterns = [
-        try! NSRegularExpression(pattern: "(.*)\\:{0,1} Bk\\.{0,1} *(\\d+)"),
-        try! NSRegularExpression(pattern: "(.*)\\:{0,1} Book\\.{0,1} *(\\d+)"),
-        try! NSRegularExpression(pattern: "(.*)\\:{0,1} No\\.{0,1} *(\\d+)")
-    ]
-    
-    init(context: NSManagedObjectContext) {
-        self.context = context
-        makeCaches()
-    }
-    
-    private func makeCaches() {
-        let everySeries: [Series] = Series.everyEntity(in: context)
-        for series in everySeries {
-            if let name = series.name {
-                cachedSeries[name] = series
-            }
-        }
-    }
-    
-    public func run() {
-        let books: [Book] = Book.everyEntity(in: context)
-        var seriesAdded: Bool
-        
-        let partPattern: NSRegularExpression = try! NSRegularExpression(pattern: "(.*?) *(Part \\d+) *(.*?)")
-        struct Part: Constructable {
-            var before = ""
-            var part = ""
-            var after = ""
-        }
-
-        repeat {
-            let seriesCount = context.countEntities(type: Series.self)
-            for book in books {
-                if book.entries.count == 0 { // only apply to books not already in a series
-                    for detector in detectors {
-                        let name = book.name ?? ""
-                        let subtitle = book.subtitle ?? ""
-                        if let detected = detector.detect(name: name, subtitle: subtitle) {
-                            if subtitle == "" {
-                                seriesDetectorChannel.log("detected with \(detector) from \"\(name)\"")
-                            } else {
-                                seriesDetectorChannel.log("detected with \(detector) from name: \"\(name)\" subtitle: \"\(subtitle)\"")
-                            }
-                            book.name = detected.name
-                            book.subtitle = detected.subtitle
-                            var series = detected.series
-                            if (series != "" && detected.position != 0) {
-                                let mapping = [\Part.before: 1, \Part.part: 2, \Part.after: 3]
-                                if let match = partPattern.firstMatch(in: detected.series, capturing: mapping) {
-                                    book.name = detected.name + match.part
-                                    series = match.before + match.after
-                                }
-                            }
-                            seriesDetectorChannel.log("extracted <\(detected.name)> <\(detected.subtitle)> <\(series) \(detected.position)> from <\(name)> <\(subtitle)>")
-                            process(series: series, position: detected.position, for: book)
-                            break
-                        }
-                    }
-                }
-            }
-            
-            // if we added some more series, loop again
-            seriesAdded = context.countEntities(type: Series.self) > seriesCount
-        } while (seriesAdded)
-        
-    }
-    
-    private func process(series: String, position: Int, for book: Book) {
-        let trimmed = series.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        if trimmed != "" {
-            let series: Series
-            if let cached = cachedSeries[trimmed] {
-                series = cached
-            } else {
-                series = Series(context: context)
-                series.name = trimmed
-                series.source = "com.elegantchaos.bookish.series-detection"
-                cachedSeries[trimmed] = series
-            }
-            book.addToSeries(series, position: position)
-        }
-    }
-}
-
+//
+//class SeriesScanner {
+//    typealias Record = [String:Any]
+//    typealias RecordList = [Record]
+//    
+//    var cachedSeries: [String:Series] = [:]
+//    
+//    let context: NSManagedObjectContext
+//    
+//    let detectors = [ NameSeriesBookBracketsDetector(), TitleInSeriesDetector(), SeriesBracketsBookNumberDetector(), SeriesBracketsBookDetector(), NameBookSeriesBracketsSDetector(), SeriesBracketsSBookDetector(), SubtitleBookDetector(), SeriesNameBookDetector()]
+//    
+//    let bookIndexPatterns = [
+//        try! NSRegularExpression(pattern: "(.*)\\:{0,1} Bk\\.{0,1} *(\\d+)"),
+//        try! NSRegularExpression(pattern: "(.*)\\:{0,1} Book\\.{0,1} *(\\d+)"),
+//        try! NSRegularExpression(pattern: "(.*)\\:{0,1} No\\.{0,1} *(\\d+)")
+//    ]
+//    
+//    init(context: NSManagedObjectContext) {
+//        self.context = context
+//        makeCaches()
+//    }
+//    
+//    private func makeCaches() {
+//        let everySeries: [Series] = Series.everyEntity(in: context)
+//        for series in everySeries {
+//            if let name = series.name {
+//                cachedSeries[name] = series
+//            }
+//        }
+//    }
+//    
+//    public func run() {
+//        let books: [Book] = Book.everyEntity(in: context)
+//        var seriesAdded: Bool
+//        
+//        let partPattern: NSRegularExpression = try! NSRegularExpression(pattern: "(.*?) *(Part \\d+) *(.*?)")
+//        struct Part: Constructable {
+//            var before = ""
+//            var part = ""
+//            var after = ""
+//        }
+//
+//        repeat {
+//            let seriesCount = context.countEntities(type: Series.self)
+//            for book in books {
+//                if book.entries.count == 0 { // only apply to books not already in a series
+//                    for detector in detectors {
+//                        let name = book.name ?? ""
+//                        let subtitle = book.subtitle ?? ""
+//                        if let detected = detector.detect(name: name, subtitle: subtitle) {
+//                            if subtitle == "" {
+//                                seriesDetectorChannel.log("detected with \(detector) from \"\(name)\"")
+//                            } else {
+//                                seriesDetectorChannel.log("detected with \(detector) from name: \"\(name)\" subtitle: \"\(subtitle)\"")
+//                            }
+//                            book.name = detected.name
+//                            book.subtitle = detected.subtitle
+//                            var series = detected.series
+//                            if (series != "" && detected.position != 0) {
+//                                let mapping = [\Part.before: 1, \Part.part: 2, \Part.after: 3]
+//                                if let match = partPattern.firstMatch(in: detected.series, capturing: mapping) {
+//                                    book.name = detected.name + match.part
+//                                    series = match.before + match.after
+//                                }
+//                            }
+//                            seriesDetectorChannel.log("extracted <\(detected.name)> <\(detected.subtitle)> <\(series) \(detected.position)> from <\(name)> <\(subtitle)>")
+//                            process(series: series, position: detected.position, for: book)
+//                            break
+//                        }
+//                    }
+//                }
+//            }
+//            
+//            // if we added some more series, loop again
+//            seriesAdded = context.countEntities(type: Series.self) > seriesCount
+//        } while (seriesAdded)
+//        
+//    }
+//    
+//    private func process(series: String, position: Int, for book: Book) {
+//        let trimmed = series.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+//        if trimmed != "" {
+//            let series: Series
+//            if let cached = cachedSeries[trimmed] {
+//                series = cached
+//            } else {
+//                series = Series(context: context)
+//                series.name = trimmed
+//                series.source = "com.elegantchaos.bookish.series-detection"
+//                cachedSeries[trimmed] = series
+//            }
+//            book.addToSeries(series, position: position)
+//        }
+//    }
+//}
+//

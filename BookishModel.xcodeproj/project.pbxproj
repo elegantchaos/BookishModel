@@ -85,8 +85,6 @@
 		224293D2212AE1E700E70510 /* BookishModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224293D1212AE1E700E70510 /* BookishModel.swift */; };
 		224293D3212AE1E700E70510 /* BookishModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224293D1212AE1E700E70510 /* BookishModel.swift */; };
 		224293D4212AE83C00E70510 /* MiscModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224293C2212AE16300E70510 /* MiscModelTests.swift */; };
-		224293DC212AF00400E70510 /* Collection.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 22DD424D2126D6DA0070C85A /* Collection.xcdatamodeld */; };
-		224293DD212AF00500E70510 /* Collection.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 22DD424D2126D6DA0070C85A /* Collection.xcdatamodeld */; };
 		224293E3212AF09D00E70510 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224293DE212AF05800E70510 /* Person.swift */; };
 		224293E4212AF09E00E70510 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224293DE212AF05800E70510 /* Person.swift */; };
 		224293E6212AF0B700E70510 /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224293E5212AF0B700E70510 /* Relationship.swift */; };
@@ -318,8 +316,8 @@
 		8BE2912B22FD6E4D00EF249F /* RemoveSeriesAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE2912922FD6E4D00EF249F /* RemoveSeriesAction.swift */; };
 		8BE2912D22FD6E5400EF249F /* ChangeSeriesAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE2912C22FD6E5400EF249F /* ChangeSeriesAction.swift */; };
 		8BE2912E22FD6E5400EF249F /* ChangeSeriesAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE2912C22FD6E5400EF249F /* ChangeSeriesAction.swift */; };
-		8BE2913022FD6E8000EF249F /* RevealBookAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE2912F22FD6E8000EF249F /* RevealBookAction.swift */; };
-		8BE2913122FD6E8000EF249F /* RevealBookAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE2912F22FD6E8000EF249F /* RevealBookAction.swift */; };
+		8BE2913022FD6E8000EF249F /* RevealEntityAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE2912F22FD6E8000EF249F /* RevealEntityAction.swift */; };
+		8BE2913122FD6E8000EF249F /* RevealEntityAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE2912F22FD6E8000EF249F /* RevealEntityAction.swift */; };
 		8BE2913322FD6EC600EF249F /* RevealPersonAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE2913222FD6EC600EF249F /* RevealPersonAction.swift */; };
 		8BE2913422FD6EC600EF249F /* RevealPersonAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE2913222FD6EC600EF249F /* RevealPersonAction.swift */; };
 		8BE2913622FD6ECD00EF249F /* MergePersonAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE2913522FD6ECD00EF249F /* MergePersonAction.swift */; };
@@ -570,7 +568,7 @@
 		8BE2912622FD6E2A00EF249F /* AddSeriesAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSeriesAction.swift; sourceTree = "<group>"; };
 		8BE2912922FD6E4D00EF249F /* RemoveSeriesAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveSeriesAction.swift; sourceTree = "<group>"; };
 		8BE2912C22FD6E5400EF249F /* ChangeSeriesAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeSeriesAction.swift; sourceTree = "<group>"; };
-		8BE2912F22FD6E8000EF249F /* RevealBookAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevealBookAction.swift; sourceTree = "<group>"; };
+		8BE2912F22FD6E8000EF249F /* RevealEntityAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevealEntityAction.swift; sourceTree = "<group>"; };
 		8BE2913222FD6EC600EF249F /* RevealPersonAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevealPersonAction.swift; sourceTree = "<group>"; };
 		8BE2913522FD6ECD00EF249F /* MergePersonAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergePersonAction.swift; sourceTree = "<group>"; };
 		8BE2913922FD6F1200EF249F /* SplitPersonAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitPersonAction.swift; sourceTree = "<group>"; };
@@ -941,7 +939,7 @@
 				8BE2911D22FD6DD600EF249F /* RemovePublisherAction.swift */,
 				8BE2910D22FD6CFB00EF249F /* RemoveRelationshipAction.swift */,
 				8BE2912922FD6E4D00EF249F /* RemoveSeriesAction.swift */,
-				8BE2912F22FD6E8000EF249F /* RevealBookAction.swift */,
+				8BE2912F22FD6E8000EF249F /* RevealEntityAction.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1247,10 +1245,9 @@
 				8BE2912422FD6E1000EF249F /* ChangePublisherAction.swift in Sources */,
 				8BE2912D22FD6E5400EF249F /* ChangeSeriesAction.swift in Sources */,
 				221B8532225B717800BC4D32 /* AmazonLookupService.swift in Sources */,
-				8BE2913022FD6E8000EF249F /* RevealBookAction.swift in Sources */,
+				8BE2913022FD6E8000EF249F /* RevealEntityAction.swift in Sources */,
 				221ED50F216B87D900594714 /* CollectionContainer.swift in Sources */,
 				8BE2913D22FD6F2D00EF249F /* NewPersonAction.swift in Sources */,
-				224293DC212AF00400E70510 /* Collection.xcdatamodeld in Sources */,
 				8BE2912122FD6DF000EF249F /* ChangeRelationshipAction.swift in Sources */,
 				8BE2914022FD6F3600EF249F /* DeletePersonAction.swift in Sources */,
 				224293EC212AF0E300E70510 /* Series.swift in Sources */,
@@ -1398,10 +1395,9 @@
 				221ED510216B87D900594714 /* CollectionContainer.swift in Sources */,
 				22318E9A225652AA00EE3EBC /* MarkupUtilities.swift in Sources */,
 				8B10C78C22BD094200E05F33 /* Binder.swift in Sources */,
-				224293DD212AF00500E70510 /* Collection.xcdatamodeld in Sources */,
 				224293ED212AF0E300E70510 /* Series.swift in Sources */,
 				221F272321359DA200DC2DC7 /* Publisher.swift in Sources */,
-				8BE2913122FD6E8000EF249F /* RevealBookAction.swift in Sources */,
+				8BE2913122FD6E8000EF249F /* RevealEntityAction.swift in Sources */,
 				223879C1220B48740019F9EA /* RelationshipDetailItem.swift in Sources */,
 				223879CA220B4A2F0019F9EA /* SimpleDetailItem.swift in Sources */,
 				8BE2911222FD6D5000EF249F /* AddPublisherAction.swift in Sources */,

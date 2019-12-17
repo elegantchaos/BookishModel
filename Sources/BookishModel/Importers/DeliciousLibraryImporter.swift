@@ -63,7 +63,7 @@ class DeliciousLibraryImportSession: URLImportSession {
         monitor?.importerWillStartSession(self, withCount: list.count)
 
         var item = 0
-        var properties: [EntityReference: PropertyDictionary] = [:]
+        var properties: [EntityReference] = []
         for record in list {
             if let identifier = identifier(for: record) {
                 let book = Entity.identifiedBy(identifier, createAs: .book)
@@ -101,7 +101,7 @@ class DeliciousLibraryImportSession: URLImportSession {
         return nil
     }
     
-    func addProperties(for book: EntityReference, identifier bookID: String, from data: Record, into properties: inout [EntityReference: PropertyDictionary]) {
+    func addProperties(for book: EntityReference, identifier bookID: String, from data: Record, into properties: inout [EntityReference]) {
         var bookProperties = PropertyDictionary()
         bookProperties.extract(from: data, stringsWithMapping: [
             "title": .name,
@@ -154,7 +154,8 @@ class DeliciousLibraryImportSession: URLImportSession {
             addProperties(for: book, series: series, position: 0, into: &properties)
         }
 
-        properties[book] = bookProperties
+        book.addUpdates(bookProperties)
+        properties.append(book)
     }
 
 
@@ -187,13 +188,14 @@ class DeliciousLibraryImportSession: URLImportSession {
         }
     }
     
-    private func addProperties(for book: EntityReference, series: String, position: Int, into properties: inout [EntityReference: PropertyDictionary]) {
+    private func addProperties(for book: EntityReference, series: String, position: Int, into properties: inout [EntityReference]) {
         let trimmed = series.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         if trimmed != "" {
             let initialiser = EntityInitialiser(as: .series, properties: [.source: DeliciousLibraryImporter.identifier])
             let series = Entity.named(trimmed, initialiser: initialiser)
             let seriesProperties = PropertyDictionary([PropertyKey("entry-\(position)") : book])
-            properties[series] = seriesProperties
+            series.addUpdates(seriesProperties)
+            properties.append(series)
         }
     }
 

@@ -39,22 +39,22 @@ public class TagAction: ModelAction {
 public class ChangeTagsAction: TagAction {
     
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-            if
-                let selection = context[.selection] as? [ModelObject],
-                let addedTags = context[.addedTagsKey] as? Set<Tag>,
-                let removedTags = context[.removedTagsKey] as? Set<Tag> {
-                for tag in removedTags {
-                    tag.remove(from: selection)
-                }
-                
-                for tag in addedTags {
-                    tag.add(to: selection)
-                }
-                
-                context.info.forObservers { (observer: TagObserver) in
-                    observer.changed(adding: addedTags, removing: removedTags)
-                }
-        }
+//            if
+//                let selection = context[.selection] as? [ModelObject],
+//                let addedTags = context[.addedTagsKey] as? Set<Tag>,
+//                let removedTags = context[.removedTagsKey] as? Set<Tag> {
+//                for tag in removedTags {
+//                    tag.remove(from: selection)
+//                }
+//
+//                for tag in addedTags {
+//                    tag.add(to: selection)
+//                }
+//
+//                context.info.forObservers { (observer: TagObserver) in
+//                    observer.changed(adding: addedTags, removing: removedTags)
+//                }
+//        }
     }
 }
 
@@ -73,12 +73,12 @@ public class DeleteTagAction: TagAction {
 
 public class RenameTagAction: TagAction {
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-        if let tag = context[.tagKey] as? Tag, let name = context[.tagNameKey] as? String {
-            tag.name = name
-            
-            context.info.forObservers { (observer: TagObserver) in
-                observer.renamed(tags: [tag])
-            }
-        }
+//        if let tag = context[.tagKey] as? Tag, let name = context[.tagNameKey] as? String {
+//            tag.name = name
+//            
+//            context.info.forObservers { (observer: TagObserver) in
+//                observer.renamed(tags: [tag])
+//            }
+//        }
     }
 }

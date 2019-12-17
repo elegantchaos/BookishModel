@@ -31,16 +31,16 @@ public class ExistingCollectionLookupService: LookupService {
 }
 
 public class ExistingCollectionLookupCandidate: LookupCandidate {
-    let book: Book
-
-    public init(book: Book, service: LookupService, authors: [String]) {
-        self.book = book
-        super.init(service: service, title: book.name, authors: authors, publisher: book.publisher?.name, date: book.published, image: book.imageURL)
-    }
-
-    public override var action: String { return "ViewCandidate" }
-    
-    public override var existingBook: Book? {
-        return book
-    }
+//    let book: Book
+//
+//    public init(book: Book, service: LookupService, authors: [String]) {
+//        self.book = book
+//        super.init(service: service, title: book.name, authors: authors, publisher: book.publisher?.name, date: book.published, image: book.imageURL)
+//    }
+//
+//    public override var action: String { return "ViewCandidate" }
+//
+//    public override var existingBook: Book? {
+//        return book
+//    }
 }

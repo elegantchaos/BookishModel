@@ -84,28 +84,28 @@ class DeleteRoleAction: RoleAction {
     override func validate(context: ActionContext) -> Validation {
         var info = super.validate(context: context)
         
-        // only valid if there are some unlocked items in the selection
-        if info.state == .active, let selection = context[.selection] as? [Role] {
-            if selection.allSatisfy({ return $0.locked }) {
-                info.state = .inactive
-            }
-        }
+//        // only valid if there are some unlocked items in the selection
+//        if info.state == .active, let selection = context[.selection] as? [Role] {
+//            if selection.allSatisfy({ return $0.locked }) {
+//                info.state = .inactive
+//            }
+//        }
 
         return info
     }
     
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-        if let selection = context[.selection] as? [Role] {
-            for role in selection {
-                if !role.locked { // only delete the unlocked ones
-                    context.info.forObservers { (observer: RoleLifecycleObserver) in
-                        observer.deleted(role: role)
-                    }
-                    
-//                    model.delete(role)
-                }
-            }
-        }
+//        if let selection = context[.selection] as? [Role] {
+//            for role in selection {
+//                if !role.locked { // only delete the unlocked ones
+//                    context.info.forObservers { (observer: RoleLifecycleObserver) in
+//                        observer.deleted(role: role)
+//                    }
+//                    
+////                    model.delete(role)
+//                }
+//            }
+//        }
     }
 }
 

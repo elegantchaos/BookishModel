@@ -9,48 +9,13 @@ import CoreData
 import Actions
 import Datastore
 
-class BookActionTests: ModelActionTestCase, BookViewer, BookChangeObserver {
-    var bookObserved: Book?
-    var relationshipObserved: Relationship?
-    var publisherObserved: Publisher?
-    var seriesObserved: Series?
+class BookActionTests: ModelActionTestCase, EntityViewer {
+    var entityObserved: EntityReference?
 
-    func added(series: Series, position: Int) {
-        seriesObserved = series
+    func reveal(entity: EntityReference, dismissPopovers: Bool) {
+        entityObserved = entity
     }
-    
-    func removed(series: Series) {
-        seriesObserved = series
-    }
-    
-    func added(publisher: Publisher) {
-        publisherObserved = publisher
-    }
-    
-    func removed(publisher: Publisher) {
-        publisherObserved = publisher
-    }
-    
-    func removed(relationship: Relationship) {
-        relationshipObserved = relationship
-    }
-    
-    func added(relationship: Relationship) {
-        relationshipObserved = relationship
-    }
-
-    func reveal(book: Book, dismissPopovers: Bool) {
-        bookObserved = book
-    }
-    
-    func created(books: [Book]) {
-        bookObserved = books.first
-    }
-
-    func deleted(books: [Book]) {
-        bookObserved = books.first
-    }
-    
+        
     func testAddRelationshipValidation() {
         let book = Entity.named("Test", createAs: .book)
         let info = ActionInfo()
@@ -122,30 +87,6 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookChangeObserver {
             }
         })
     }
-
-//    func testRemoveRelationship() {
-//        let book = Book(context: context)
-//        let person = Person(context: context)
-//        let relationship = person.relationship(as: Role.StandardName.author)
-//        book.addToRelationships(relationship)
-//        XCTAssertEqual(book.roles.count, 1)
-//
-//        XCTAssertFalse(actionManager.validate(identifier: "RemoveRelationship", info: info).enabled)
-//
-//        info.addObserver(self)
-//        info[PersonAction.relationshipKey] = relationship
-//        info[.selection] = [book]
-//
-//        XCTAssertNotNil(relationship.managedObjectContext)
-//
-//        XCTAssertTrue(actionManager.validate(identifier: "RemoveRelationship", info: info).enabled)
-//        actionManager.perform(identifier: "RemoveRelationship", info: info)
-//
-//        wait(for: [expectation], timeout: 1.0)
-//        XCTAssertEqual(book.roles.count, 0)
-//
-//        XCTAssertNil(relationship.managedObjectContext)
-//    }
 //
 //    func testChangeRelationshipAction() {
 //        let book = Book(context: context)
@@ -481,16 +422,5 @@ class BookActionTests: ModelActionTestCase, BookViewer, BookChangeObserver {
 //        XCTAssertEqual(count(of: "Series"), 2)
 //        XCTAssertEqual(count(of: "Book"), 1)
 //        XCTAssertEqual(book.entries.count, 2)
-//    }
-//
-//    func testRevealBook() {
-//        let book = Book(context: context)
-//        info[ActionContext.root] = self
-//        info[BookAction.bookKey] = book
-//        XCTAssertTrue(actionManager.validate(identifier: "RevealBook", info: info).enabled)
-//
-//        actionManager.perform(identifier: "RevealBook", info: info)
-//        wait(for: [expectation], timeout: 1.0)
-//        XCTAssertEqual(bookObserved, book)
 //    }
 }

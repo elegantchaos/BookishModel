@@ -64,4 +64,25 @@ class EntityActionTests: ModelActionTestCase {
         })
     }
 
+    
+    func testRevealEntityValidation() {
+        
+    }
+    func testRevealEntity() {
+//        let book = Entity.named("Test", createAs: .book)
+//        let info = ActionInfo()
+//        let action = RevealEntityAction()
+//        info[.selection] = [book]
+//        info[ActionContext.root] = self
+//
+//        XCTAssertTrue(checkActionValidation(action, withInfo: info) { monitor in
+//        let book = Book(context: context)
+//        info[BookAction.bookKey] = book
+//        XCTAssertTrue(actionManager.validate(identifier: "RevealBook", info: info).enabled)
+//        
+//        actionManager.perform(identifier: "RevealBook", info: info)
+//        wait(for: [expectation], timeout: 1.0)
+//        XCTAssertEqual(bookObserved, book)
+    }
+
 }

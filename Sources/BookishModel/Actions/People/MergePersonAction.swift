@@ -32,26 +32,26 @@ class MergePersonAction: PersonAction {
     }
     
     override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
-        if let selection = context[.selection] as? [Person], let primary = selection.first {
-            
-            let uuids = selection.compactMap({$0.uuid}).map({ "\"\($0)\"" }).joined(separator: ", ")
-            bktChannel.log("""
-                {
-                        "name": "merge \(primary.name ?? "")",
-                        "action": "MergePerson",
-                        "people": [ \(uuids) ]
-                },
-            """)
-            
-            var log = primary.log ?? ""
-            let others = selection.dropFirst()
-            personActionChannel.log("Merging \(primary) with \(others)")
-            for person in others {
+//        if let selection = context[.selection] as? [Person], let primary = selection.first {
+//
+//            let uuids = selection.compactMap({$0.uuid}).map({ "\"\($0)\"" }).joined(separator: ", ")
+//            bktChannel.log("""
+//                {
+//                        "name": "merge \(primary.name ?? "")",
+//                        "action": "MergePerson",
+//                        "people": [ \(uuids) ]
+//                },
+//            """)
+//
+//            var log = primary.log ?? ""
+//            let others = selection.dropFirst()
+//            personActionChannel.log("Merging \(primary) with \(others)")
+//            for person in others {
 //                moveRelationships(from: person, to: primary, context: model)
 //                model.delete(person)
-                log += "\nMerged with \(person).\n"
-            }
-            primary.log = log
-        }
+//                log += "\nMerged with \(person).\n"
+//            }
+//            primary.log = log
+//        }
     }
 }

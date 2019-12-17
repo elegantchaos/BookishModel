@@ -6,30 +6,30 @@
 import XCTest
 import CoreData
 @testable import BookishModel
-
-class TestContext: ModelSorting {
-    var seriesEntrySorting: [NSSortDescriptor]
-    var relationshipSorting: [NSSortDescriptor]
-    var bookSorting: [NSSortDescriptor]
-    var peopleSorting: [NSSortDescriptor]
-    
-    var entitySorting: [String : [NSSortDescriptor]] = [
-        "Book": [],
-        "Entry": [],
-        "SeriesEntry": [],
-        "Relationship": []
-    ]
-    
-    var showDebug: Bool
-    
-    init(showDebug: Bool = false) {
-        self.showDebug = showDebug
-        self.bookSorting = BookishModel.defaultSorting["Book"]!
-        self.peopleSorting = BookishModel.defaultSorting["Person"]!
-        self.seriesEntrySorting = BookishModel.defaultSorting["SeriesEntry"]!
-        self.relationshipSorting = BookishModel.defaultSorting["Relationship"]!
-    }
-}
+//
+//class TestContext: ModelSorting {
+//    var seriesEntrySorting: [NSSortDescriptor]
+//    var relationshipSorting: [NSSortDescriptor]
+//    var bookSorting: [NSSortDescriptor]
+//    var peopleSorting: [NSSortDescriptor]
+//    
+//    var entitySorting: [String : [NSSortDescriptor]] = [
+//        "Book": [],
+//        "Entry": [],
+//        "SeriesEntry": [],
+//        "Relationship": []
+//    ]
+//    
+//    var showDebug: Bool
+//    
+//    init(showDebug: Bool = false) {
+//        self.showDebug = showDebug
+//        self.bookSorting = BookishModel.defaultSorting["Book"]!
+//        self.peopleSorting = BookishModel.defaultSorting["Person"]!
+//        self.seriesEntrySorting = BookishModel.defaultSorting["SeriesEntry"]!
+//        self.relationshipSorting = BookishModel.defaultSorting["Relationship"]!
+//    }
+//}
 
 class BookDetailTests: ModelTestCase {
 //    func testProvider() {
