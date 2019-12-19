@@ -22,7 +22,7 @@ class ChangeSeriesAction: EntityAction {
         return info
     }
     
-    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+    override func perform(context: ActionContext, collection: CollectionContainer, completion: @escaping ModelAction.Completion) {
         completion(.ok)
 //        if let selection = context[.selection] as? [Book] {
 //            let existingSeries = context[SeriesAction.seriesKey] as? Series

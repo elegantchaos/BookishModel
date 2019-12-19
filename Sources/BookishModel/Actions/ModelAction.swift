@@ -91,9 +91,9 @@ open class ModelAction: Action {
     }
 
     open override func perform(context: ActionContext, completed: @escaping Completion) {
-        if let store = context.collectionStore {
+        if let collection = context.collectionContainer {
             modelActionChannel.debug("performing \(context.identifier)")
-            perform(context: context, store: store) { result in
+            perform(context: context, collection: collection) { result in
                 switch result {
                     case .failure(let error):
                         modelActionChannel.debug("failed \(context.identifier) with \(error)")
@@ -101,7 +101,7 @@ open class ModelAction: Action {
                     
                     case .success():
                         modelActionChannel.debug("saving after \(context.identifier)")
-                        store.save() { result in
+                        collection.store.save() { result in
                             switch result {
                             case .failure(let error as NSError):
                                 modelActionChannel.log("failed to save \(error)\n\(error.userInfo)")
@@ -116,7 +116,7 @@ open class ModelAction: Action {
         }
     }
     
-    func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+    func perform(context: ActionContext, collection: CollectionContainer, completion: @escaping ModelAction.Completion) {
         completion(.ok)
     }
 }

@@ -17,8 +17,8 @@ public class DeliciousLibraryImporter: Importer {
         super.init(name: "Delicious Library", source: .userSpecifiedFile, manager: manager)
     }
     
-    override func makeSession(importing url: URL, in store: Datastore, monitor: ImportDelegate?) -> URLImportSession? {
-        return DeliciousLibraryImportSession(importer: self, store: store, url: url, monitor: monitor)
+    override func makeSession(importing url: URL, in container: CollectionContainer, monitor: ImportDelegate?) -> URLImportSession? {
+        return DeliciousLibraryImportSession(importer: self, container: container, url: url, monitor: monitor)
     }
 
     public override var fileTypes: [String]? {
@@ -41,7 +41,7 @@ class DeliciousLibraryImportSession: URLImportSession {
     let formatsToSkip = ["Audio CD", "Audio CD Enhanced", "Audio CD Import", "Video Game", "VHS Tape", "VideoGame", "DVD"]
 
     
-    override init?(importer: Importer, store: Datastore, url: URL, monitor: ImportDelegate?) {
+    override init?(importer: Importer, container: CollectionContainer, url: URL, monitor: ImportDelegate?) {
         // check we can parse the xml
         guard let data = try? Data(contentsOf: url), let list = (try? PropertyListSerialization.propertyList(from: data, options: [], format: nil)) as? RecordList else {
             return nil
@@ -54,11 +54,11 @@ class DeliciousLibraryImportSession: URLImportSession {
 
         self.deliciousTag = Tag(identifiedBy: "tag-delicious-library", with: [.name: "delicious-library"])
         self.list = list
-        super.init(importer: importer, store: store, url: url, monitor: monitor)
+        super.init(importer: importer, container: container, url: url, monitor: monitor)
     }
     
     override func run() {
-        let store = self.store
+        let container = self.container
         let monitor = self.monitor
         monitor?.importerWillStartSession(self, withCount: list.count)
 
@@ -66,14 +66,14 @@ class DeliciousLibraryImportSession: URLImportSession {
         var properties: [EntityReference] = []
         for record in list {
             if let identifier = identifier(for: record) {
-                let book = Entity.identifiedBy(identifier, createAs: .book)
+                let book = container.book(identifiedBy: identifier)
                 monitor?.importerWillContinueSession(self, withItem: item, of: list.count)
                 addProperties(for: book, identifier: identifier, from: record, into: &properties)
             }
             item += 1
         }
 
-        store.add(properties: properties) {
+        container.store.add(properties: properties) {
             monitor?.importerDidFinishWithStatus(.succeeded(self))
         }
     }
@@ -165,7 +165,7 @@ class DeliciousLibraryImportSession: URLImportSession {
             let trimmed = creator.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             if trimmed != "" {
                 let identifier = "\(bookID)-author-\(index)"
-                let author = Person(named: trimmed, with: [.identifier: identifier, .source: DeliciousLibraryImporter.identifier])
+                let author = container.person(named: trimmed, with: [.identifier: identifier, .source: DeliciousLibraryImporter.identifier])
                 properties.addRole(PropertyType.author, for: author)
                 index += 1
             }

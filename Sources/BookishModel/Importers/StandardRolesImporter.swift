@@ -14,8 +14,8 @@ public class StandardRolesImporter: Importer {
         super.init(name: "Standard Roles", source: .knownLocation, manager: manager)
     }
     
-    override func makeSession(in store: Datastore, monitor: ImportDelegate?) -> ImportSession? {
-        return StandardRolesImportSession(importer: self, store: store, monitor: monitor)
+    override func makeSession(in collection: CollectionContainer, monitor: ImportDelegate?) -> ImportSession? {
+        return StandardRolesImportSession(importer: self, container: collection, monitor: monitor)
     }
 }
 
@@ -41,7 +41,7 @@ class StandardRolesImportSession: ImportSession {
             item += 1
         }
 
-        store.get(entitiesWithIDs: roles) { _ in
+        container.store.get(entitiesWithIDs: roles) { _ in
             monitor?.importerDidFinishWithStatus(.succeeded(self))
         }
     }

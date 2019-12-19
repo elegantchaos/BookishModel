@@ -17,7 +17,7 @@ class RevealEntityAction: ModelAction {
         return info
     }
     
-    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+    override func perform(context: ActionContext, collection: CollectionContainer, completion: @escaping ModelAction.Completion) {
         if let book = context[.entity] as? Book {
 //            context.info.forObservers { (viewer: BookViewer) in
 //                viewer.reveal(book: book, dismissPopovers: true)

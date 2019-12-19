@@ -13,3 +13,18 @@
 - actions can potentially be invoked by scripts or used by other tools to modify the datastore 
 - actions are always asynchronous; the user interface can invoke them, but if it wants to update in response to the result, it needs to listen for completion of the action
 
+
+## Separation Of Concerns
+
+When switching to using Datastore, I realised that the previous code was heavily entangled with CoreData.
+
+Model objects were created directly, by passing in a core data context. The context was typically obtained from the CollectionContainer, but that step was done outside the container code, exposing the implementation.
+
+With the new design, we want to hide the storage mechanism inside the container as much as possible.
+
+Therefore, all model objects should be vended by the container:
+
+- CollectionContainer is the abstraction for a collection
+- ModelObject is the abstraction for the objects a collection contains
+- Book, Person, etc are subclasses of ModelObject
+- finding/creating model objects should always be done via a collection, using e:g `collection.person(named: "Test")`; this decouples the creation of model objects from the underlying representation as they are never constructed explicitly

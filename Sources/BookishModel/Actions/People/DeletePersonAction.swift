@@ -15,7 +15,7 @@ class DeletePersonAction: PersonAction {
         return validateSelection(type: Person.self, context: context, usingPluralTitle: true)
     }
 
-    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+    override func perform(context: ActionContext, collection: CollectionContainer, completion: @escaping ModelAction.Completion) {
         if let selection = context[.selection] as? [Person] {
             for person in selection {
                 context.info.forObservers { (observer: PersonLifecycleObserver) in

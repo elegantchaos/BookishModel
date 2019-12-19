@@ -67,7 +67,7 @@ class NewRoleAction: RoleAction {
         return modelValidate(context:context) // we don't need a selection, so we skip to ModelAction's validation
     }
     
-    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+    override func perform(context: ActionContext, collection: CollectionContainer, completion: @escaping ModelAction.Completion) {
         completion(.ok)
 //        let role = Role(context: model)
 //        context.info.forObservers { (observer: RoleLifecycleObserver) in
@@ -94,7 +94,7 @@ class DeleteRoleAction: RoleAction {
         return info
     }
     
-    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+    override func perform(context: ActionContext, collection: CollectionContainer, completion: @escaping ModelAction.Completion) {
 //        if let selection = context[.selection] as? [Role] {
 //            for role in selection {
 //                if !role.locked { // only delete the unlocked ones
@@ -121,7 +121,7 @@ class RevealRoleAction: ModelAction {
         return info
     }
     
-    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+    override func perform(context: ActionContext, collection: CollectionContainer, completion: @escaping ModelAction.Completion) {
         if let viewer = context[.root] as? RoleViewer {
             if let role = context[.role] as? Role {
                 viewer.reveal(role: role)

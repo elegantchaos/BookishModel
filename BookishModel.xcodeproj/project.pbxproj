@@ -490,7 +490,7 @@
 		229FB9ED2226C2F800A564D4 /* LookupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookupManager.swift; sourceTree = "<group>"; };
 		229FB9F02226CBCD00A564D4 /* LookupSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookupSession.swift; sourceTree = "<group>"; };
 		229FC0682231605400940013 /* RoleDetailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleDetailTests.swift; sourceTree = "<group>"; };
-		22A1A8BF21A5C24800F2332B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		22A1A8BF21A5C24800F2332B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; wrapsLines = 1; };
 		22A1A8D621A5C4E300F2332B /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = SOURCE_ROOT; };
 		22A3E2EA21FB80B900BA4F17 /* MultipleValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleValues.swift; sourceTree = "<group>"; };
 		22A49895220DF035006A2137 /* DetailItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailItemTests.swift; sourceTree = "<group>"; };

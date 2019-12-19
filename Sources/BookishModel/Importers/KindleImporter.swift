@@ -17,8 +17,8 @@ public class KindleImporter: Importer {
         super.init(name: "Kindle", source: .userSpecifiedFile, manager: manager)
     }
     
-    override func makeSession(importing url: URL, in store: Datastore, monitor: ImportDelegate?) -> URLImportSession? {
-        return KindleImportSession(importer: self, store: store, url: url, monitor: monitor)
+    override func makeSession(importing url: URL, in collection: CollectionContainer, monitor: ImportDelegate?) -> URLImportSession? {
+        return KindleImportSession(importer: self, container: collection, url: url, monitor: monitor)
     }
     
     public override var defaultImportLocation: URL? {
@@ -138,7 +138,7 @@ class KindleImportSession: URLImportSession {
     let includeRaw = true
     let books: [KindleBook]
 
-    override init?(importer: Importer, store: Datastore, url: URL, monitor: ImportDelegate?) {
+    override init?(importer: Importer, container: CollectionContainer, url: URL, monitor: ImportDelegate?) {
         guard let data = try? Data(contentsOf: url) else {
             return nil
         }
@@ -147,25 +147,25 @@ class KindleImportSession: URLImportSession {
         self.books = processor.state.books
         self.kindleTag = Tag(identifiedBy: "tag-kindle", with: [.name: "kindle"])
 
-        super.init(importer: importer, store: store, url: url, monitor: monitor)
+        super.init(importer: importer, container: container, url: url, monitor: monitor)
     }
     
     override func run() {
-        let store = self.store
+        let collection = self.container
         let monitor = self.monitor
         monitor?.importerWillStartSession(self, withCount: books.count)
         var item = 0
         var properties: [EntityReference] = []
         for kindleBook in books {
             if let identifier = identifier(for: kindleBook) {
-                let book = Entity.identifiedBy(identifier, createAs: .book)
+                let book = collection.book(identifiedBy: identifier)
                 monitor?.importerWillContinueSession(self, withItem: item, of: books.count)
                 addProperties(for: book, identifier: identifier, from: kindleBook, into: &properties)
             }
             item += 1
         }
 
-        store.add(properties: properties) {
+        collection.store.add(properties: properties) {
             monitor?.importerDidFinishWithStatus(.succeeded(self))
         }
     }

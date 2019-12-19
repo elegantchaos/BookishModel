@@ -75,28 +75,28 @@ public class Importer {
         return string
     }
 
-    internal func makeSession(in store: Datastore, monitor: ImportDelegate?) -> ImportSession? {
-        let session = ImportSession(importer: self, store: store, monitor: monitor)
+    internal func makeSession(in collection: CollectionContainer, monitor: ImportDelegate?) -> ImportSession? {
+        let session = ImportSession(importer: self, container: collection, monitor: monitor)
         return session
     }
 
-    internal func makeSession(importing url: URL, in store: Datastore, monitor: ImportDelegate?) -> URLImportSession? {
-        let session = URLImportSession(importer: self, store: store, url: url, monitor: monitor)
+    internal func makeSession(importing url: URL, in collection: CollectionContainer, monitor: ImportDelegate?) -> URLImportSession? {
+        let session = URLImportSession(importer: self, container: collection, url: url, monitor: monitor)
         return session
     }
     
-    public func run(importing url: URL, in store: Datastore, monitor: ImportDelegate? = nil) {
-        if let session = makeSession(importing: url, in: store, monitor: monitor) {
+    public func run(importing url: URL, in collection: CollectionContainer, monitor: ImportDelegate? = nil) {
+        if let session = makeSession(importing: url, in: collection, monitor: monitor) {
             session.performImport()
         } else {
             monitor?.importerDidFinishWithStatus(.noImporter)
         }
     }
 
-    public func run(in store: Datastore, monitor: ImportDelegate?) {
+    public func run(in collection: CollectionContainer, monitor: ImportDelegate?) {
         switch source {
         case .knownLocation:
-            if let session = makeSession(in: store, monitor: monitor) {
+            if let session = makeSession(in: collection, monitor: monitor) {
                 session.performImport()
             } else {
                 monitor?.importerDidFinishWithStatus(.noImporter)
@@ -104,7 +104,7 @@ public class Importer {
             
         case .userSpecifiedFile:
             monitor?.importerNeedsFile(for: self, completion: { url in
-                if let session = self.makeSession(importing: url, in: store, monitor: monitor) {
+                if let session = self.makeSession(importing: url, in: collection, monitor: monitor) {
                     session.performImport()
                 } else {
                     monitor?.importerDidFinishWithStatus(.noImporter)

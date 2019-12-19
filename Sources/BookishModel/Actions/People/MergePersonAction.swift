@@ -31,7 +31,7 @@ class MergePersonAction: PersonAction {
         return validateSelection(type: Person.self, context: context, minimumToEnable: 2, usingPluralTitle: false)
     }
     
-    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+    override func perform(context: ActionContext, collection: CollectionContainer, completion: @escaping ModelAction.Completion) {
 //        if let selection = context[.selection] as? [Person], let primary = selection.first {
 //
 //            let uuids = selection.compactMap({$0.uuid}).map({ "\"\($0)\"" }).joined(separator: ", ")

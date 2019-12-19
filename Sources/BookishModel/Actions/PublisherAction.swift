@@ -70,7 +70,7 @@ class NewPublisherAction: PublisherAction {
         return modelValidate(context: context)
     }
     
-    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+    override func perform(context: ActionContext, collection: CollectionContainer, completion: @escaping ModelAction.Completion) {
 //        let publisher = Publisher(context: model)
 //        context.info.forObservers { (observer: PublisherLifecycleObserver) in
 //            observer.created(publisher: publisher)
@@ -83,7 +83,7 @@ class NewPublisherAction: PublisherAction {
  */
 
 class DeletePublisherAction: PublisherAction {
-    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+    override func perform(context: ActionContext, collection: CollectionContainer, completion: @escaping ModelAction.Completion) {
         if let selection = context[.selection] as? [Publisher] {
             for publisher in selection {
                 context.info.forObservers { (observer: PublisherLifecycleObserver) in
@@ -109,7 +109,7 @@ class RevealPublisherAction: PublisherAction {
         return info
     }
     
-    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+    override func perform(context: ActionContext, collection: CollectionContainer, completion: @escaping ModelAction.Completion) {
         if let viewer = context[.root] as? PublisherViewer {
             if let publisher = context[.publisherKey] as? Publisher {
                 viewer.reveal(publisher: publisher)

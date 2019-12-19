@@ -11,7 +11,7 @@ import Datastore
  */
 
 class AddPublisherAction: EntityAction {
-    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+    override func perform(context: ActionContext, collection: CollectionContainer, completion: @escaping ModelAction.Completion) {
         completion(.success(()))
 //        if
 //            let selection = context[.selection] as? [Book] {

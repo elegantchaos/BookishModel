@@ -69,7 +69,7 @@ class NewSeriesAction: SeriesAction {
         return modelValidate(context: context)
     }
     
-    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+    override func perform(context: ActionContext, collection: CollectionContainer, completion: @escaping ModelAction.Completion) {
         completion(.ok)
 //        let series = Series(context: model)
 //        context.info.forObservers { (observer: SeriesLifecycleObserver) in
@@ -83,7 +83,7 @@ class NewSeriesAction: SeriesAction {
  */
 
 class DeleteSeriesAction: SeriesAction {
-    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+    override func perform(context: ActionContext, collection: CollectionContainer, completion: @escaping ModelAction.Completion) {
         if let selection = context[.selection] as? [Series] {
             for series in selection {
                 context.info.forObservers { (observer: SeriesLifecycleObserver) in
@@ -108,7 +108,7 @@ class RevealSeriesAction: SeriesAction {
         return info
     }
     
-    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+    override func perform(context: ActionContext, collection: CollectionContainer, completion: @escaping ModelAction.Completion) {
         if let viewer = context[.root] as? SeriesViewer {
             if let series = context[.seriesKey] as? Series {
                 viewer.reveal(series: series)

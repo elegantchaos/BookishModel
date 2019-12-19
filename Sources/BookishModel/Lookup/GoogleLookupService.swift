@@ -62,7 +62,7 @@ public class GoogleLookupCandidate: LookupCandidate {
         return "AddCandidate"
     }
     
-    public override func makeBook(in store: Datastore, completion: @escaping (Book) -> Void) {
+    public override func makeBook(in collection: CollectionContainer, completion: @escaping (Book) -> Void) {
 //        let info = self.info
 //        super.makeBook(in: store) { book in
 //            if let pages = info["pageCount"] as? NSNumber {

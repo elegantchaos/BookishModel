@@ -38,7 +38,7 @@ public class TagAction: ModelAction {
 
 public class ChangeTagsAction: TagAction {
     
-    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+    override func perform(context: ActionContext, collection: CollectionContainer, completion: @escaping ModelAction.Completion) {
 //            if
 //                let selection = context[.selection] as? [ModelObject],
 //                let addedTags = context[.addedTagsKey] as? Set<Tag>,
@@ -59,7 +59,7 @@ public class ChangeTagsAction: TagAction {
 }
 
 public class DeleteTagAction: TagAction {
-    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+    override func perform(context: ActionContext, collection: CollectionContainer, completion: @escaping ModelAction.Completion) {
         if let tag = context[.tagKey] as? Tag {
 //            model.delete(tag)
             
@@ -72,7 +72,7 @@ public class DeleteTagAction: TagAction {
 }
 
 public class RenameTagAction: TagAction {
-    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+    override func perform(context: ActionContext, collection: CollectionContainer, completion: @escaping ModelAction.Completion) {
 //        if let tag = context[.tagKey] as? Tag, let name = context[.tagNameKey] as? String {
 //            tag.name = name
 //            

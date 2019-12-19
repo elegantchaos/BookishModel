@@ -95,9 +95,9 @@ public class ImportManager {
         return importers[identifier]
     }
     
-    public func importFrom(_ url: URL, to store: Datastore, monitor: ImportDelegate) {
+    public func importFrom(_ url: URL, to collection: CollectionContainer, monitor: ImportDelegate) {
         for importer in sortedImporters {
-            if let session = importer.makeSession(importing: url, in: store, monitor: monitor) {
+            if let session = importer.makeSession(importing: url, in: collection, monitor: monitor) {
                 session.performImport()
                 break
             }

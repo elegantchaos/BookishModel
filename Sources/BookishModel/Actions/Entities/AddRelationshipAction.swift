@@ -31,7 +31,7 @@ class AddRelationshipAction: EntityAction {
         return info
     }
     
-    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+    override func perform(context: ActionContext, collection: CollectionContainer, completion: @escaping ModelAction.Completion) {
         guard let arguments = AddRelationshipArguments(from: context) else {
             completion(.failure(Error.missingArguments))
             return
@@ -47,7 +47,7 @@ class AddRelationshipAction: EntityAction {
             }
         }
         
-        store.add(properties: updates) {
+        collection.store.add(properties: updates) {
             completion(.ok)
         }
     }

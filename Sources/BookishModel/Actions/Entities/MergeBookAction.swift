@@ -48,7 +48,7 @@ class MergeBookAction: EntityAction {
         return validateSelection(type: Book.self, context: context, minimumToEnable: 2, usingPluralTitle: false)
     }
     
-    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+    override func perform(context: ActionContext, collection: CollectionContainer, completion: @escaping ModelAction.Completion) {
 //        if let selection = context[.selection] as? [Book], let primary = selection.first {
 //            
 //            var log = primary.log ?? ""

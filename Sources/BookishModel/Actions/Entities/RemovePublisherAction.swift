@@ -17,7 +17,7 @@ class RemovePublisherAction: EntityAction {
         return info
     }
     
-    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+    override func perform(context: ActionContext, collection: CollectionContainer, completion: @escaping ModelAction.Completion) {
 //        if
 //            let selection = context[.selection] as? [Book],
 //            let publisher = context[.publisherKey] as? Publisher {

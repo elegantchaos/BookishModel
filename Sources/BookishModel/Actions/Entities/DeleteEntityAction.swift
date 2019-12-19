@@ -11,13 +11,13 @@ import Datastore
  */
 
 public class DeleteEntityAction: EntityAction {
-    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+    override func perform(context: ActionContext, collection: CollectionContainer, completion: @escaping ModelAction.Completion) {
         guard let selection = context[.selection] as? [EntityReference] else {
             completion(.failure(Error.missingSelection))
             return
         }
         
-        store.delete(entities: selection) {
+        collection.store.delete(entities: selection) {
             completion(.ok)
         }
     }

@@ -61,10 +61,13 @@ class BookActionTests: ModelActionTestCase, EntityViewer {
     }
 
     func testRemoveRelationship() {
-        let person = Person(named: "Test")
-        let book = Book(named: "Test", with: PropertyDictionary.withRole("author", for: person))
         
         XCTAssertTrue(checkContainer() { monitor in
+            let container = monitor.container
+            
+            let person = container.person(named: "Test")
+            let book = container.book(named: "Test", with: PropertyDictionary.withRole("author", for: person))
+            
             monitor.container.store.get(entitiesWithIDs: [person, book]) { entities in
                 let info = ActionInfo()
                 let action = RemoveRelationshipAction()

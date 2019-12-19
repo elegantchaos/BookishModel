@@ -36,14 +36,14 @@ class RemoveRelationshipAction: EntityAction {
         return info
     }
     
-    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+    override func perform(context: ActionContext, collection: CollectionContainer, completion: @escaping ModelAction.Completion) {
         guard let arguments = RemoveRelationshipArguments(from: context) else {
             completion(.failure(Error.missingArguments))
             return
         }
         
         let key = PropertyDictionary.keyForRole(PropertyType(arguments.role), for: arguments.person)
-        store.remove(properties: [key], of: arguments.selection) {
+        collection.store.remove(properties: [key], of: arguments.selection) {
             completion(.ok)
         }
     }

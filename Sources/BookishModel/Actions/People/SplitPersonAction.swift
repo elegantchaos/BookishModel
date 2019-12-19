@@ -29,7 +29,7 @@ class SplitPersonAction: PersonAction {
         return validateSelection(type: Person.self, context: context, usingPluralTitle: true)
     }
     
-    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+    override func perform(context: ActionContext, collection: CollectionContainer, completion: @escaping ModelAction.Completion) {
         if let selection = context[.selection] as? [Person] {
 
 //            let names = selection.compactMap({$0.name}).joined(separator: ", ")

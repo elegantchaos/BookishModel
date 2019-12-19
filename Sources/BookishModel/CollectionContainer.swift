@@ -94,4 +94,32 @@ open class CollectionContainer {
         }
     }
     
+    func entity(named name: String, createAs: EntityType, with properties: PropertyDictionary? = nil) -> ModelObject {
+        return Entity.named(name, createAs: createAs, with: properties) as! ModelObject
+    }
+    
+    func person(named name: String, with properties: PropertyDictionary? = nil) -> Person {
+        return Person(named: name, with: properties)
+    }
+
+    func person(identifiedBy identifier: String, with properties: PropertyDictionary? = nil) -> Person {
+        return Person(identifiedBy: identifier, with: properties)
+    }
+
+    func book(named name: String, with properties: PropertyDictionary? = nil) -> Book {
+        return Book(named: name, with: properties)
+    }
+
+    func book(identifiedBy identifier: String, with properties: PropertyDictionary? = nil) -> Book {
+        return Book(identifiedBy: identifier, with: properties)
+    }
+
+    func publisher(identifiedBy identifier: String, with properties: PropertyDictionary? = nil) -> Publisher {
+        return Publisher(identifiedBy: identifier, with: properties)
+    }
+
+    func series(identifiedBy identifier: String, with properties: PropertyDictionary? = nil) -> Series {
+        return Series(identifiedBy: identifier, with: properties)
+    }
+
 }

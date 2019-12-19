@@ -42,7 +42,7 @@ public class ImportAction: ModelAction {
         ]
     }
     
-    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+    override func perform(context: ActionContext, collection: CollectionContainer, completion: @escaping ModelAction.Completion) {
         // the importer can be provided explicitly, or as an id (in which case the manager is also needed)
         var importer: Importer? = context[.importerKey] as? Importer
         if importer == nil, let manager = context[.managerKey] as? ImportManager, let importerID = context[.importerKey] as? String {
@@ -67,9 +67,9 @@ public class ImportAction: ModelAction {
             
             let monitor = ActionImportMonitor(context: context, completion: completion)
             if let url = context.url(withKey: .urlKey) {
-                importer.run(importing: url, in: store, monitor: monitor)
+                importer.run(importing: url, in: collection, monitor: monitor)
             } else {
-                importer.run(in: store, monitor: monitor)
+                importer.run(in: collection, monitor: monitor)
             }
         }
     }

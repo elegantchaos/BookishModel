@@ -7,7 +7,7 @@ import Actions
 import Datastore
 
 class ScanSeriesAction: ModelAction {
-    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+    override func perform(context: ActionContext, collection: CollectionContainer, completion: @escaping ModelAction.Completion) {
 //        let scanner = SeriesScanner(context: model)
 //        scanner.run()
     }

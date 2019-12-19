@@ -36,7 +36,7 @@ public class LookupCoverAction: LookupAction {
         return info
     }
     
-    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+    override func perform(context: ActionContext, collection: CollectionContainer, completion: @escaping ModelAction.Completion) {
         completion(.ok)
 //        if let manager = context[LookupCoverAction.managerKey] as? LookupManager,
 //            let books = context[.selection] as? [Book] {
@@ -46,7 +46,7 @@ public class LookupCoverAction: LookupAction {
 //        }
     }
     
-    func lookupByISBN(book: Book, manager: LookupManager, in store: Datastore) {
+    func lookupByISBN(book: Book, manager: LookupManager, in collection: CollectionContainer) {
 //        if let isbn = book.isbn {
 //            var replaced = false
 //            _ = manager.lookup(query: isbn, in: store) { (session, state) in
@@ -70,7 +70,7 @@ public class LookupCoverAction: LookupAction {
 //        }
     }
     
-    func lookupByMetadata(book: Book, manager: LookupManager, in store: Datastore) {
+    func lookupByMetadata(book: Book, manager: LookupManager, in collection: CollectionContainer) {
 //        var items: [String] = []
 //        if let name = book.name {
 //            items.append("intitle:\"\(name)\"")
@@ -103,9 +103,9 @@ public class LookupCoverAction: LookupAction {
 }
 
 public class AddCandidateAction: LookupAction {
-    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+    override func perform(context: ActionContext, collection: CollectionContainer, completion: @escaping ModelAction.Completion) {
         if let candidate = context[.candidateKey] as? LookupCandidate {
-            candidate.makeBook(in: store) { book in
+            candidate.makeBook(in: collection) { book in
                 context.info.forObservers { (viewer: EntityViewer) in
                     viewer.reveal(entity: book, dismissPopovers: false)
                 }
@@ -116,7 +116,7 @@ public class AddCandidateAction: LookupAction {
 }
 
 public class ViewCandidateAction: LookupAction {
-    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+    override func perform(context: ActionContext, collection: CollectionContainer, completion: @escaping ModelAction.Completion) {
         if let candidate = context[.candidateKey] as? LookupCandidate, let book = candidate.existingBook {
             context.info.forObservers { (viewer: EntityViewer) in
                 viewer.reveal(entity: book, dismissPopovers: true)

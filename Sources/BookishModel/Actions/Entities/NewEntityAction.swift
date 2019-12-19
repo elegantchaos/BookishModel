@@ -16,14 +16,14 @@ public class NewEntityAction: EntityAction {
         return modelValidate(context: context)
     }
     
-    override func perform(context: ActionContext, store: Datastore, completion: @escaping ModelAction.Completion) {
+    override func perform(context: ActionContext, collection: CollectionContainer, completion: @escaping ModelAction.Completion) {
         guard let type = context[.entityType] as? EntityType else {
             completion(.ok)
             return
         }
         
-        let book = Entity.named("Untitled", createAs: type)
-        store.get(entity: book) { result in
+        let book = collection.entity(named: "Untitled", createAs: type)
+        collection.store.get(entity: book) { result in
             completion(.ok)
         }
     }
