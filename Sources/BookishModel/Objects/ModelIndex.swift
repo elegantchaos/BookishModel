@@ -13,8 +13,8 @@ import Foundation
 //    func deleted(section index: Int)
 //    func inserted(row index: IndexPath)
 //    func deleted(row index: IndexPath)
-//    func updated(object: ModelEntity, row index: IndexPath)
-//    func moved(object: ModelEntity, row fromIndex: IndexPath, to toIndex: IndexPath)
+//    func updated(object: ModelObject, row index: IndexPath)
+//    func moved(object: ModelObject, row fromIndex: IndexPath, to toIndex: IndexPath)
 //    func updated()
 //}
 //
@@ -23,24 +23,24 @@ import Foundation
 //
 //    public let name: String
 //    public let cacheName: String
-//    public let type: ModelEntity.Type
+//    public let type: ModelObject.Type
 //    public let context: NSManagedObjectContext
-//    public let request: NSFetchRequest<ModelEntity>
-//    public let fetcher: NSFetchedResultsController<ModelEntity>
+//    public let request: NSFetchRequest<ModelObject>
+//    public let fetcher: NSFetchedResultsController<ModelObject>
 //    public let sorting: [NSSortDescriptor]
 //
 //    public var selection = ModelSelection()
 //    public var clients: [ModelIndexClient]
 //    
 //
-//    public init(type: ModelEntity.Type, context: NSManagedObjectContext) {
+//    public init(type: ModelObject.Type, context: NSManagedObjectContext) {
 //        self.type = type
 //        self.name = type.entityName
 //        self.cacheName = "\(name)-cache"
 //        self.context = context
 //        self.sorting = BookishModel.defaultSorting[name]!
 //        self.clients = []
-//        self.request = NSFetchRequest<ModelEntity>()
+//        self.request = NSFetchRequest<ModelObject>()
 //        request.entity = context.persistentStoreCoordinator?.managedObjectModel.entitiesByName[name]
 //        request.fetchBatchSize = 20
 //        request.sortDescriptors = sorting
@@ -75,7 +75,7 @@ import Foundation
 //        fetcher.fetchRequest.predicate = predicate
 //        
 //        do {
-//            NSFetchedResultsController<ModelEntity>.deleteCache(withName: cacheName)
+//            NSFetchedResultsController<ModelObject>.deleteCache(withName: cacheName)
 //            try fetcher.performFetch()
 //            clients.forEach({ $0.loaded() })
 //        } catch let err {
@@ -101,7 +101,7 @@ import Foundation
 //        return fetcher.fetchedObjects?.count ?? 0
 //    }
 //    
-//    public var objects: [ModelEntity] {
+//    public var objects: [ModelObject] {
 //        return fetcher.fetchedObjects ?? []
 //    }
 //    
@@ -143,11 +143,11 @@ import Foundation
 //            
 //        case .update:
 //            
-//            if let path = indexPath { clients.forEach({ $0.updated(object: object as! ModelEntity, row: path) }) }
+//            if let path = indexPath { clients.forEach({ $0.updated(object: object as! ModelObject, row: path) }) }
 //            
 //        case .move:
 //            if let path = indexPath, let newPath = newIndexPath {
-//                clients.forEach({ $0.moved(object: object as! ModelEntity, row: path, to: newPath) })
+//                clients.forEach({ $0.moved(object: object as! ModelObject, row: path, to: newPath) })
 //            }
 //            
 //        @unknown default:

@@ -6,7 +6,7 @@
 import Foundation
 import Actions
 //
-//public class DetailItem {
+public class DetailItem {
 //    public typealias ActionSpec = (ActionKey, String, Any)
 //
 //    static let headingColumnID = "heading"
@@ -15,12 +15,12 @@ import Actions
 //    static let unknownHeadingID = "<unknown>"
 //    
 //
-//    public let kind: String
-//    public let absolute: Int
-//    public let index: Int
-//    public let placeholder: Bool
-//    public let source: DetailProvider
-//    public let object: ModelObject?
+    public let kind: String
+    public let absolute: Int
+    public let index: Int
+    public let placeholder: Bool
+    public let source: DetailProvider
+    public let object: ModelObject?
 //    
 //    public var heading: String {
 //        return DetailItem.unknownHeadingID
@@ -30,14 +30,14 @@ import Actions
 //        return nil
 //    }
 //    
-//    public init(kind: String, absolute: Int, index: Int, placeholder: Bool, source: DetailProvider, object: ModelObject? = nil) {
-//        self.kind = kind
-//        self.absolute = absolute
-//        self.index = index
-//        self.placeholder = placeholder
-//        self.source = source
-//        self.object = object
-//    }
+    public init(kind: String, absolute: Int, index: Int, placeholder: Bool, source: DetailProvider, object: ModelObject? = nil) {
+        self.kind = kind
+        self.absolute = absolute
+        self.index = index
+        self.placeholder = placeholder
+        self.source = source
+        self.object = object
+    }
 //    
 //    public func viewID(for column: String) -> String { // TODO: move out of model?
 //        switch column {
@@ -55,15 +55,15 @@ import Actions
 //    public func matches(object: ModelObject) -> Bool {
 //        return self.object == object
 //    }
-//}
-//
-//
-//extension DetailItem: CustomStringConvertible {
-//    public var description: String {
-//        var text = "\(absolute) \(kind) \(index)"
-//        if let object = object {
-//            text += " \(object)"
-//        }
-//        return text
-//    }
-//}
+}
+
+
+extension DetailItem: CustomStringConvertible {
+    public var description: String {
+        var text = "\(absolute) \(kind) \(index)"
+        if let object = object {
+            text += " \(object)"
+        }
+        return text
+    }
+}

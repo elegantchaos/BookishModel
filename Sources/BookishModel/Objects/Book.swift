@@ -8,10 +8,13 @@ import Datastore
 
 let bookChannel = Channel("com.elegantchaos.bookish.model.book")
 
-public typealias Book = EntityReference
-//
-//public class Book: ModelEntity, ModelEntityCommon {
-//
+public class Book: ModelObject {
+    
+    func addRole(_ role: PropertyType, for person: Person) {
+        let key = PropertyDictionary.keyForRole(role, for: person)
+        self[key] = (person, role)
+    }
+
 //    static let notFound = 1
 //
 //    override public class func getProvider() -> DetailProvider {
@@ -244,17 +247,17 @@ public typealias Book = EntityReference
 //        return details
 //    }
 //
-//    override public func updateSortName() {
-//        sortName = Indexing.titleSort(for: name)
-//    }
-//
-//    @objc dynamic var sectionName: String? {
-//        return Indexing.sectionName(for: sortName)
-//    }
+    override public func updateSortName() {
+        sortName = Indexing.titleSort(for: name)
+    }
+
+    var sectionName: String? {
+        return Indexing.sectionName(for: sortName)
+    }
 //
 //    public var tags: Set<Tag> {
 //        get { return tagsR as! Set<Tag> }
 //        set { tagsR = newValue as NSSet }
 //    }
 //
-//}
+}

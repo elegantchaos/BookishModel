@@ -23,7 +23,7 @@ public class ImportSession: Equatable {
         self.importer = importer
         self.store = store
         self.monitor = monitor
-        self.importedTag = Entity.identifiedBy("tag-imported", initialiser: EntityInitialiser(as: .tag, properties: [.name: "imported"]))
+        self.importedTag = Tag(identifiedBy: "tag-imported", with: [.name: "imported"])
     }
     
     func performImport() {

@@ -23,7 +23,7 @@ extension Role {
 
 }
 
-//public class Role: ModelEntity, ModelEntityCommon {
+//public class Role: ModelObject, ModelEntityCommon {
 //    public enum StandardName: String, CaseIterable {
 //        case author = "Author"
 //        case contributor = "Contributor"

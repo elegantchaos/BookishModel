@@ -29,15 +29,14 @@ class StandardRolesImportSession: ImportSession {
         var item = 0
         for name in Role.StandardName.allCases {
             monitor?.importerWillContinueSession(self, withItem: item, of: count)
-            let initialiser = EntityInitialiser(
-                as: .role,
-                properties: [
+            let role = Entity.identifiedBy("standard-\(name)",
+                createAs: .role,
+                with: [
                     .name: name.rawValue,
                     .notes: "Role.standard.\(name).notes".localized,
                     .locked: true
                 ]
             )
-            let role = Entity.identifiedBy("standard-\(name)", initialiser: initialiser)
             roles.append(role)
             item += 1
         }

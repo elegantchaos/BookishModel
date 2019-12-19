@@ -5,18 +5,18 @@
 
 import CoreData
 
-//public protocol DetailOwner {
-//    static func getProvider() -> DetailProvider
-//    func getProvider() -> DetailProvider
-//}
-//
-//extension DetailOwner {
-//    public func getProvider() -> DetailProvider {
-//        return type(of: self).getProvider()
-//    }
-//}
-//
-//public class DetailProvider {
+public protocol DetailOwner {
+    static func getProvider() -> DetailProvider
+    func getProvider() -> DetailProvider
+}
+
+extension DetailOwner {
+    public func getProvider() -> DetailProvider {
+        return type(of: self).getProvider()
+    }
+}
+
+public class DetailProvider {
 //    static let SimpleColumns = [DetailItem.detailColumnID]
 //    static let LabelledColumns = [DetailItem.headingColumnID, DetailItem.detailColumnID]
 //    static let EditingColumns = [DetailItem.controlColumnID, DetailItem.headingColumnID, DetailItem.detailColumnID]
@@ -24,7 +24,7 @@ import CoreData
 //    public internal(set) var isEditing: Bool = false
 //    
 //    internal var details: [DetailSpec] = []
-//    internal var items = [DetailItem]()
+    internal var items = [DetailItem]()
 //    internal var combinedItems = [DetailItem]()
 //    internal var shouldCombine = false
 //    internal var tags: Set<Tag>? = nil
@@ -181,14 +181,14 @@ import CoreData
 //        return IndexSet()
 //    }
 //    
-// }
-//
-//extension DetailProvider: CustomStringConvertible {
-//    public var description: String {
-//        var text = ""
-//        for i in items {
-//            text += "\(i)\n"
-//        }
-//        return text
-//    }
-//}
+ }
+
+extension DetailProvider: CustomStringConvertible {
+    public var description: String {
+        var text = ""
+        for i in items {
+            text += "\(i)\n"
+        }
+        return text
+    }
+}

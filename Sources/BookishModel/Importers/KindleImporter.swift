@@ -145,7 +145,7 @@ class KindleImportSession: URLImportSession {
         let processor = KindleProcessor()
         processor.parse(data: data) // TODO: check if this fails
         self.books = processor.state.books
-        self.kindleTag = Entity.identifiedBy("tag-kindle", initialiser: EntityInitialiser(as: .tag, properties: [.name: "kindle"]))
+        self.kindleTag = Tag(identifiedBy: "tag-kindle", with: [.name: "kindle"])
 
         super.init(importer: importer, store: store, url: url, monitor: monitor)
     }
@@ -217,12 +217,7 @@ class KindleImportSession: URLImportSession {
             let trimmed = unsorted.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             if trimmed != "" {
                 let identifier = "\(book.asin)-author-\(index)"
-                let initialProperties = EntityInitialiser(
-                    as: .person,
-                    properties: [.source: KindleImporter.identifier],
-                    identifier: identifier
-                )
-                let author = Entity.named(trimmed, initialiser: initialProperties)
+                let author = Person(named: trimmed, with: [.source: KindleImporter.identifier, .identifier: identifier])
                 properties.addRole(PropertyType.author, for: author)
                 index += 1
             }
@@ -233,8 +228,7 @@ class KindleImportSession: URLImportSession {
         for publisher in publishers {
             let trimmed = publisher.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             if trimmed != "" {
-                let initialiser = EntityInitialiser(as: .publisher, properties: [.source: KindleImporter.identifier])
-                let publisher = Entity.named(trimmed, initialiser: initialiser)
+                let publisher = Publisher(named: trimmed, with: [.source: KindleImporter.identifier])
                 properties.addPublisher(publisher)
             }
         }

@@ -41,12 +41,13 @@ open class CollectionContainer {
             }
         }
         
-        Datastore.load(name: name, url: url, indexed: true) { result in
+        Datastore.load(name: name, url: url, indexed: indexed) { result in
             switch result {
                 case .failure(let error):
                     completion(.failure(error))
                 
                 case .success(let store):
+                    store.register(classes: [Person.self, Book.self, Publisher.self, Series.self, Tag.self])
                     let container = CollectionContainer(store: store)
                     container.printSummary()
                     completion(.success(container))

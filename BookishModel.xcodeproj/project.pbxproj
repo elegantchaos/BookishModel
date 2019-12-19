@@ -157,8 +157,6 @@
 		22724643221C003100C80CCF /* ImportAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22724641221C003100C80CCF /* ImportAction.swift */; };
 		2272467D221C117F00C80CCF /* ScanSeriesAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22724662221C117E00C80CCF /* ScanSeriesAction.swift */; };
 		2272467E221C117F00C80CCF /* ScanSeriesAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22724662221C117E00C80CCF /* ScanSeriesAction.swift */; };
-		2291071522A02DC2002DB502 /* ModelEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2291071422A02DC2002DB502 /* ModelEntity.swift */; };
-		2291071622A02DC2002DB502 /* ModelEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2291071422A02DC2002DB502 /* ModelEntity.swift */; };
 		2295A9152232C4820085CD86 /* SeriesEntryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2295A9142232C4820085CD86 /* SeriesEntryItem.swift */; };
 		2295A9322232CF1F0085CD86 /* SeriesEntryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2295A9142232C4820085CD86 /* SeriesEntryItem.swift */; };
 		229FB9E22226B2C300A564D4 /* LookupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229FB9E12226B2C300A564D4 /* LookupService.swift */; };
@@ -483,7 +481,6 @@
 		22724662221C117E00C80CCF /* ScanSeriesAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanSeriesAction.swift; sourceTree = "<group>"; };
 		2272467F221C1AE000C80CCF /* Build Sample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Build Sample.json"; sourceTree = "<group>"; };
 		229106E0229EFBAB002DB502 /* Version 10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Version 10.xcdatamodel"; sourceTree = "<group>"; };
-		2291071422A02DC2002DB502 /* ModelEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelEntity.swift; sourceTree = "<group>"; };
 		2291074222A03278002DB502 /* Version 11.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Version 11.xcdatamodel"; sourceTree = "<group>"; };
 		2295A9142232C4820085CD86 /* SeriesEntryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesEntryItem.swift; sourceTree = "<group>"; };
 		229FB9E12226B2C300A564D4 /* LookupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookupService.swift; sourceTree = "<group>"; };
@@ -747,7 +744,6 @@
 			isa = PBXGroup;
 			children = (
 				22DA6A1B21E61BC600ECF09A /* ModelObject.swift */,
-				2291071422A02DC2002DB502 /* ModelEntity.swift */,
 				8B37E14E230566AA006784FD /* ModelIndex.swift */,
 				221F271E21306C1300DC2DC7 /* Book.swift */,
 				2251B813228F0336006C1529 /* Tag.swift */,
@@ -1258,7 +1254,6 @@
 				2250C6E321B1B14200E899E2 /* PublisherAction.swift in Sources */,
 				22DA6A1C21E61BC600ECF09A /* ModelObject.swift in Sources */,
 				8B10C78B22BD094200E05F33 /* Binder.swift in Sources */,
-				2291071522A02DC2002DB502 /* ModelEntity.swift in Sources */,
 				2295A9152232C4820085CD86 /* SeriesEntryItem.swift in Sources */,
 				229FB9EB2226B2E300A564D4 /* ExistingCollectionLookupService.swift in Sources */,
 				2257114E2218663B0099FFDE /* BookDetailItem.swift in Sources */,
@@ -1381,7 +1376,6 @@
 				2251B815228F0336006C1529 /* Tag.swift in Sources */,
 				8BE2913E22FD6F2D00EF249F /* NewPersonAction.swift in Sources */,
 				8BE2912E22FD6E5400EF249F /* ChangeSeriesAction.swift in Sources */,
-				2291071622A02DC2002DB502 /* ModelEntity.swift in Sources */,
 				221ED50D216B79F100594714 /* DetailSpec.swift in Sources */,
 				2250C70621B557A400E899E2 /* SeriesAction.swift in Sources */,
 				2267450B222ABAEC002549CE /* RoleDetailItem.swift in Sources */,

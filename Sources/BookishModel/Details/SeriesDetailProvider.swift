@@ -5,7 +5,7 @@
 
 import Foundation
 
-//class SeriesDetailProvider: DetailProvider {
+class SeriesDetailProvider: DetailProvider {
 //    var sortedEntries = [SeriesEntry]()
 //    
 //    public class func standardDetails(showDebug: Bool) -> [DetailSpec] {
@@ -76,5 +76,5 @@ import Foundation
 //        let template = SeriesDetailProvider.standardDetails(showDebug: session.showDebug)
 //        super.filter(for: selection, template: template, editing: editing, combining: combining, session: session)
 //    }
-//}
+}
 //

@@ -17,7 +17,7 @@ class BookActionTests: ModelActionTestCase, EntityViewer {
     }
         
     func testAddRelationshipValidation() {
-        let book = Entity.named("Test", createAs: .book)
+        let book = Book(named: "Test")
         let info = ActionInfo()
         let action = AddRelationshipAction()
         info[.selection] = [book]
@@ -35,7 +35,7 @@ class BookActionTests: ModelActionTestCase, EntityViewer {
     }
     
     func testAddRelationship() {
-        let book = Entity.named("Test", createAs: .book)
+        let book = Book(named: "Test")
         let info = ActionInfo()
         let action = AddRelationshipAction()
         info[.selection] = [book]
@@ -51,7 +51,7 @@ class BookActionTests: ModelActionTestCase, EntityViewer {
                 monitor.store.get(allPropertiesOf: [book]) { results in
                     let properties = results[0]
                     let key = PropertyKey("author-\(person.identifier)")
-                    let value = properties[key] as? GuaranteedReference
+                    let value = properties[key] as? Person
                     XCTAssertNotNil(value)
                     XCTAssertEqual(value!.identifier, person.identifier)
                     monitor.allChecksDone()
@@ -61,8 +61,8 @@ class BookActionTests: ModelActionTestCase, EntityViewer {
     }
 
     func testRemoveRelationship() {
-        let person = Entity.named("Test", createAs: .person)
-        let book = Entity.named("Test", initialiser: EntityInitialiser(as: .book, properties: PropertyDictionary.withRole("author", for: person)))
+        let person = Person(named: "Test")
+        let book = Book(named: "Test", with: PropertyDictionary.withRole("author", for: person))
         
         XCTAssertTrue(checkContainer() { monitor in
             monitor.container.store.get(entitiesWithIDs: [person, book]) { entities in
@@ -79,7 +79,7 @@ class BookActionTests: ModelActionTestCase, EntityViewer {
                     monitor.store.get(allPropertiesOf: [book]) { results in
                         let properties = results[0]
                         let key = PropertyDictionary.keyForRole("author", for: person)
-                        let value = properties[key] as? GuaranteedReference
+                        let value = properties[key] as? Person
                         XCTAssertNil(value)
                         monitor.allChecksDone()
                     }

@@ -3,11 +3,16 @@
 //  All code (c) 2019 - present day, Elegant Chaos Limited.
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-import Foundation
+import Datastore
 
-public typealias Tag = ModelEntityReference
+public class Tag: ModelObject {
+    public override class func staticType() -> EntityType {
+        return .tag
+    }
+}
+
 //
-//public class Tag: ModelEntity, ModelEntityCommon {
+//public class Tag: ModelObject, ModelEntityCommon {
 //    public func remove(from objects: [ModelObject]) {
 //        if let books = objects as? [Book] {
 //            removeFromBooks(NSSet(array: books))

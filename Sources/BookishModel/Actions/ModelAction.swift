@@ -94,14 +94,22 @@ open class ModelAction: Action {
         if let store = context.collectionStore {
             modelActionChannel.debug("performing \(context.identifier)")
             perform(context: context, store: store) { result in
-                store.save() { result in
-                    switch result {
-                    case .failure(let error as NSError):
-                        modelActionChannel.log("failed to save \(error)\n\(error.userInfo)")
-                    default:
-                        break
-                    }
-                    completed(result)
+                switch result {
+                    case .failure(let error):
+                        modelActionChannel.debug("failed \(context.identifier) with \(error)")
+                        completed(result)
+                    
+                    case .success():
+                        modelActionChannel.debug("saving after \(context.identifier)")
+                        store.save() { result in
+                            switch result {
+                            case .failure(let error as NSError):
+                                modelActionChannel.log("failed to save \(error)\n\(error.userInfo)")
+                            default:
+                                break
+                            }
+                            completed(result)
+                        }
                 }
             }
                             

@@ -5,7 +5,7 @@
 //
 //import Foundation
 //
-//class PublisherDetailProvider: DetailProvider {
+class PublisherDetailProvider: DetailProvider {
 //    var sortedBooks = [Book]()
 //
 //    public class func standardDetails(showDebug: Bool) -> [DetailSpec] {
@@ -75,5 +75,5 @@
 //        let template = PublisherDetailProvider.standardDetails(showDebug: session.showDebug)
 //        super.filter(for: selection, template: template, editing: editing, combining: combining, session: session)
 //    }
-//}
-//
+}
+

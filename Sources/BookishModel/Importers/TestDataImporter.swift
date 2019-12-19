@@ -62,7 +62,7 @@ class TestDataImportSession: StandardRolesImportSession {
             .notes: "This publisher has multiple books"
             ])
 
-        var seriesProperties: [PropertyKey:Any] = [
+        var seriesProperties: PropertyDictionary = [
             .name: "Example Series",
             .notes: "Some notes about the series",
             "entry-1": book

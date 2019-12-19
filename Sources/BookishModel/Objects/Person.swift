@@ -5,9 +5,14 @@
 
 import Datastore
 
-public typealias Person = EntityReference
+public class Person: ModelObject {
+    public override class func staticType() -> EntityType {
+        return .person
+    }
+}
+
 //
-//public class Person: ModelEntity, ModelEntityCommon {
+//public class Person: ModelObject, ModelEntityCommon {
 //
 //    override public class func getProvider() -> DetailProvider {
 //        return PersonDetailProvider()

@@ -5,20 +5,20 @@
 
 import Datastore
 
-public typealias Series = EntityReference
-//
-//public class Series: ModelEntity, ModelEntityCommon {
-//    
-//    override public class func getProvider() -> DetailProvider {
-//        return SeriesDetailProvider()
-//    }
-//    
-//    override public func updateSortName() {
-//        sortName = Indexing.titleSort(for: name)
-//    }
-//
-//    @objc dynamic var sectionName: String? {
-//        return Indexing.sectionName(for: sortName)
-//    }
-//
-//}
+public class Series: ModelObject {
+    public override class func staticType() -> EntityType {
+        return .series
+    }
+
+    override public class func getProvider() -> DetailProvider {
+        return SeriesDetailProvider()
+    }
+    
+    override public func updateSortName() {
+        sortName = Indexing.titleSort(for: name)
+    }
+    
+    var sectionName: String? {
+        return Indexing.sectionName(for: sortName)
+    }
+}

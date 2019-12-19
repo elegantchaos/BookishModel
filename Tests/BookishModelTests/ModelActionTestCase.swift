@@ -12,6 +12,12 @@ import XCTestExtensions
 @testable import Actions
 
 class ModelActionTestCase: ModelTestCase {
+    override class func setUp() {
+        actionChannel.enabled = true
+        modelActionChannel.enabled = true
+        
+        super.setUp()
+    }
     public class ActionMonitor: WrappedTestMonitor<ContainerMonitor> {
         let actionManager: ActionManager
         let storeChanges: [EntityChanges]

@@ -5,20 +5,25 @@
 
 import Datastore
 
-public typealias Publisher = EntityReference
+public class Publisher: ModelObject {
+    public override class func staticType() -> EntityType {
+        return .publisher
+    }
+        override public class func getProvider() -> DetailProvider {
+            return PublisherDetailProvider()
+        }
+    
+        override public func updateSortName() {
+            sortName = Indexing.titleSort(for: name)
+        }
+
+        var sectionName: String? {
+            return Indexing.sectionName(for: sortName)
+        }
+}
 //
-//public class Publisher: ModelEntity, ModelEntityCommon {
-//    override public class func getProvider() -> DetailProvider {
-//        return PublisherDetailProvider()
-//    }
+//public class Publisher: ModelObject, ModelEntityCommon {
 //
-//    override public func updateSortName() {
-//        sortName = Indexing.titleSort(for: name)
-//    }
-//    
-//    @objc dynamic var sectionName: String? {
-//        return Indexing.sectionName(for: sortName)
-//    }
 //
 //    public var books: Set<Book> {
 //        get { return booksR as! Set<Book> }

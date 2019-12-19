@@ -52,7 +52,7 @@ class DeliciousLibraryImportSession: URLImportSession {
             return nil
         }
 
-        self.deliciousTag = Entity.identifiedBy("tag-delicious-library", initialiser: EntityInitialiser(as: .tag, properties: [.name: "delicious-library"]))
+        self.deliciousTag = Tag(identifiedBy: "tag-delicious-library", with: [.name: "delicious-library"])
         self.list = list
         super.init(importer: importer, store: store, url: url, monitor: monitor)
     }
@@ -165,12 +165,7 @@ class DeliciousLibraryImportSession: URLImportSession {
             let trimmed = creator.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             if trimmed != "" {
                 let identifier = "\(bookID)-author-\(index)"
-                let initialProperties = EntityInitialiser(
-                    as: .person,
-                    properties: [.source: DeliciousLibraryImporter.identifier],
-                    identifier: identifier
-                )
-                let author = Entity.named(trimmed, initialiser: initialProperties)
+                let author = Person(named: trimmed, with: [.identifier: identifier, .source: DeliciousLibraryImporter.identifier])
                 properties.addRole(PropertyType.author, for: author)
                 index += 1
             }
@@ -181,8 +176,7 @@ class DeliciousLibraryImportSession: URLImportSession {
         for publisher in publishers.split(separator: "\n") {
             let trimmed = publisher.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             if trimmed != "" {
-                let initialiser = EntityInitialiser(as: .publisher, properties: [.source: DeliciousLibraryImporter.identifier])
-                let publisher = Entity.named(trimmed, initialiser: initialiser)
+                let publisher = Publisher(named: trimmed, with: [.source: DeliciousLibraryImporter.identifier])
                 properties.addPublisher(publisher)
             }
         }
@@ -191,8 +185,7 @@ class DeliciousLibraryImportSession: URLImportSession {
     private func addProperties(for book: EntityReference, series: String, position: Int, into properties: inout [EntityReference]) {
         let trimmed = series.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         if trimmed != "" {
-            let initialiser = EntityInitialiser(as: .series, properties: [.source: DeliciousLibraryImporter.identifier])
-            let series = Entity.named(trimmed, initialiser: initialiser)
+            let series = Series(named: trimmed, with: [.source: DeliciousLibraryImporter.identifier])
             let seriesProperties = PropertyDictionary([PropertyKey("entry-\(position)") : book])
             series.addUpdates(seriesProperties)
             properties.append(series)
