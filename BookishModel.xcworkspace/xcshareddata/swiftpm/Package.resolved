@@ -2,15 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "Actions",
-        "repositoryURL": "git@github.com:elegantchaos/Actions.git",
-        "state": {
-          "branch": null,
-          "revision": "29f8e79efb980c74d32f9ee6e153c14d515eef6d",
-          "version": "1.4.0"
-        }
-      },
-      {
         "package": "Arguments",
         "repositoryURL": "https://github.com/elegantchaos/Arguments.git",
         "state": {
