@@ -4,7 +4,7 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Foundation
-
+//
 //public class SeriesDetailItem: DetailItem {
 //    public var entry: SeriesEntry? { return object as? SeriesEntry }
 //    

@@ -43,8 +43,8 @@ class EntityActionTests: ModelActionTestCase {
     }
 
     func testDeleteEntity() {
-        let book = Entity.named("Test", createAs: .book)
         XCTAssertTrue(checkContainer() { monitor in
+            let book = monitor.container.book(named: "Test")
             monitor.container.store.get(entity: book) { result in
                 let info = ActionInfo()
                 info[.selection] = [book]

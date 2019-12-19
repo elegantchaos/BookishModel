@@ -9,6 +9,9 @@ import Datastore
 let bookChannel = Channel("com.elegantchaos.bookish.model.book")
 
 public class Book: ModelObject {
+    public override class func staticType() -> EntityType {
+        return .book
+    }
     
     func addRole(_ role: PropertyType, for person: Person) {
         let key = PropertyDictionary.keyForRole(role, for: person)

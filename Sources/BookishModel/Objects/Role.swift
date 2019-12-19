@@ -5,9 +5,11 @@
 
 import Datastore
 
-public typealias Role = EntityType
-
-extension Role {
+public class Role: ModelObject {
+    public override class func staticType() -> EntityType {
+        return .role
+    }
+    
     public enum StandardName: String, CaseIterable {
         case author = "Author"
         case contributor = "Contributor"

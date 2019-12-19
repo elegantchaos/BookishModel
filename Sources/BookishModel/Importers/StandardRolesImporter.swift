@@ -29,8 +29,7 @@ class StandardRolesImportSession: ImportSession {
         var item = 0
         for name in Role.StandardName.allCases {
             monitor?.importerWillContinueSession(self, withItem: item, of: count)
-            let role = Entity.identifiedBy("standard-\(name)",
-                createAs: .role,
+            let role = Role(identifiedBy: "standard-\(name)",
                 with: [
                     .name: name.rawValue,
                     .notes: "Role.standard.\(name).notes".localized,

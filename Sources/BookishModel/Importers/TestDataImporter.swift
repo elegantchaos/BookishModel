@@ -34,9 +34,9 @@ class TestDataImportSession: StandardRolesImportSession {
 
         monitor?.importerWillContinueSession(self, withItem: 0, of: count)
 
-        let tag = Entity.named("test", createAs: .tag)
+        let tag = collection.tag(named: "test")
 
-        let editorRole = Entity.identifiedBy(Role.StandardName.editor.identifier)
+        let editorRole = collection.tag(identifiedBy: Role.StandardName.editor.identifier)
         let sharedEditor = collection.person(identifiedBy: "person-1", with: [
             .name: "Ms Editor",
             .notes: "This person is the editor of a number of books."

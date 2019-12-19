@@ -23,18 +23,18 @@ class ImporterTests: ModelTestCase {
     }
 
  
-    func check(importing url: URL? = nil, with importerID: String, checker: @escaping StoreMonitor.Checker) -> Bool {
+    func check(importing url: URL? = nil, with importerID: String, checker: @escaping ContainerMonitor.Checker) -> Bool {
         let manager = ImportManager()
         let importer = manager.importer(identifier: importerID)!
-        let result = checkStore() { monitor in
+        let result = checkContainer() { monitor in
             let delegate = BlockImportDelegate()
             delegate.didFinishBlock = { status in
                 checker(monitor)
             }
             if let url = url {
-                importer.run(importing: url, in: monitor.store, monitor: delegate)
+                importer.run(importing: url, in: monitor.container, monitor: delegate)
             } else {
-                importer.run(in: monitor.store, monitor: delegate)
+                importer.run(in: monitor.container, monitor: delegate)
             }
         }
         
@@ -74,7 +74,8 @@ class ImporterTests: ModelTestCase {
         let bundle = Bundle(for: type(of: self))
         let xmlURL = bundle.url(forResource: "Simple", withExtension: "plist")!
         XCTAssertTrue(check(importing: xmlURL, with: DeliciousLibraryImporter.identifier, checker: { monitor in
-            let store = monitor.store
+            let container = monitor.container
+            let store = container.store
             store.get(allEntitiesOfType: .book) { books in
                 monitor.check(count: books.count, expected: 2)
                 store.get(properties: [.name], of: books) { result in
@@ -105,7 +106,7 @@ class ImporterTests: ModelTestCase {
         let bundle = Bundle(for: type(of: self))
         let xmlURL = bundle.url(forResource: "KindleTest", withExtension: "xml")!
         XCTAssertTrue(check(importing: xmlURL, with: KindleImporter.identifier, checker: { monitor in
-            let store = monitor.store
+            let store = monitor.container.store
             store.get(allEntitiesOfType: .book) { books in
                 monitor.check(count: books.count, expected: 3)
                 store.get(properties: [.name], of: books) { result in
@@ -139,7 +140,7 @@ class ImporterTests: ModelTestCase {
     
     func testStandardRolesImporter() {
         XCTAssertTrue(check(with: StandardRolesImporter.identifier, checker: { monitor in
-            monitor.store.count(entitiesOfTypes: [.role]) { counts in
+            monitor.container.store.count(entitiesOfTypes: [.role]) { counts in
                 monitor.check(count: counts[0], expected: Role.StandardName.allCases.count)
                 monitor.allChecksDone()
             }
@@ -149,7 +150,7 @@ class ImporterTests: ModelTestCase {
     
     func testTestDataImporter() {
         XCTAssertTrue(check(with: TestDataImporter.identifier, checker: { monitor in
-            monitor.store.count(entitiesOfTypes: [.role, .book]) { counts in
+            monitor.container.store.count(entitiesOfTypes: [.role, .book]) { counts in
                 monitor.check(count: counts[0], expected: Role.StandardName.allCases.count)
                 monitor.check(count: counts[1], expected: 4)
                 monitor.allChecksDone()

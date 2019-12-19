@@ -110,8 +110,14 @@ class ModelTestCase: XCTestCase {
               }
           }
 
-          wait(for: [expectation], timeout: 1.0)
-          return monitor?.status == .ok
+        var result = false
+        waitForExpectations(timeout: 1.0) { error in
+            if error == nil {
+                result = monitor?.status == .ok
+            }
+        }
+          
+        return result
       }
 
 }

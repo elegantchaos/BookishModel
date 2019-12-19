@@ -122,4 +122,20 @@ open class CollectionContainer {
         return Series(identifiedBy: identifier, with: properties)
     }
 
+    func role(named name: String, with properties: PropertyDictionary? = nil) -> Role {
+        return Role(named: name, with: properties)
+    }
+
+    func role(identifiedBy identifier: String, with properties: PropertyDictionary? = nil) -> Role {
+        return Role(identifiedBy: identifier, with: properties)
+    }
+
+    func tag(named name: String, with properties: PropertyDictionary? = nil) -> Tag {
+        return Tag(named: name, with: properties)
+    }
+
+    func tag(identifiedBy identifier: String, with properties: PropertyDictionary? = nil) -> Tag {
+        return Tag(identifiedBy: identifier, with: properties)
+    }
+
 }
