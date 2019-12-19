@@ -18,7 +18,7 @@ public class KindleImporter: Importer {
     }
     
     override func makeSession(importing url: URL, in collection: CollectionContainer, monitor: ImportDelegate?) -> URLImportSession? {
-        return KindleImportSession(importer: self, container: collection, url: url, monitor: monitor)
+        return KindleImportSession(importer: self, collection: collection, url: url, monitor: monitor)
     }
     
     public override var defaultImportLocation: URL? {
@@ -138,7 +138,7 @@ class KindleImportSession: URLImportSession {
     let includeRaw = true
     let books: [KindleBook]
 
-    override init?(importer: Importer, container: CollectionContainer, url: URL, monitor: ImportDelegate?) {
+    override init?(importer: Importer, collection: CollectionContainer, url: URL, monitor: ImportDelegate?) {
         guard let data = try? Data(contentsOf: url) else {
             return nil
         }
@@ -147,11 +147,11 @@ class KindleImportSession: URLImportSession {
         self.books = processor.state.books
         self.kindleTag = Tag(identifiedBy: "tag-kindle", with: [.name: "kindle"])
 
-        super.init(importer: importer, container: container, url: url, monitor: monitor)
+        super.init(importer: importer, collection: collection, url: url, monitor: monitor)
     }
     
     override func run() {
-        let collection = self.container
+        let collection = self.collection
         let monitor = self.monitor
         monitor?.importerWillStartSession(self, withCount: books.count)
         var item = 0

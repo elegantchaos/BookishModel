@@ -76,12 +76,12 @@ public class Importer {
     }
 
     internal func makeSession(in collection: CollectionContainer, monitor: ImportDelegate?) -> ImportSession? {
-        let session = ImportSession(importer: self, container: collection, monitor: monitor)
+        let session = ImportSession(importer: self, collection: collection, monitor: monitor)
         return session
     }
 
     internal func makeSession(importing url: URL, in collection: CollectionContainer, monitor: ImportDelegate?) -> URLImportSession? {
-        let session = URLImportSession(importer: self, container: collection, url: url, monitor: monitor)
+        let session = URLImportSession(importer: self, collection: collection, url: url, monitor: monitor)
         return session
     }
     

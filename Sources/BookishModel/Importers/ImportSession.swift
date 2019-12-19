@@ -15,13 +15,13 @@ public class ImportSession: Equatable {
     public typealias Completion = (ImportSession?) -> Void
     
     let importer: Importer
-    let container: CollectionContainer
+    let collection: CollectionContainer
     let monitor: ImportDelegate?
     let importedTag: EntityReference
     
-    init?(importer: Importer, container: CollectionContainer, monitor: ImportDelegate?) {
+    init?(importer: Importer, collection: CollectionContainer, monitor: ImportDelegate?) {
         self.importer = importer
-        self.container = container
+        self.collection = collection
         self.monitor = monitor
         self.importedTag = Tag(identifiedBy: "tag-imported", with: [.name: "imported"])
     }
@@ -52,12 +52,12 @@ public class URLImportSession: ImportSession {
     
     let url: URL
     
-    init?(importer: Importer, container: CollectionContainer, url: URL, monitor: ImportDelegate?) {
+    init?(importer: Importer, collection: CollectionContainer, url: URL, monitor: ImportDelegate?) {
         guard FileManager.default.fileExists(at: url) else {
             return nil
         }
         
         self.url = url
-        super.init(importer: importer, container: container, monitor: monitor)
+        super.init(importer: importer, collection: collection, monitor: monitor)
     }
 }

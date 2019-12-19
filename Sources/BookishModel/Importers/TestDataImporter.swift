@@ -13,8 +13,8 @@ public class TestDataImporter: Importer {
         super.init(name: "Test Data", source: .knownLocation, manager: manager)
     }
 
-    override func makeSession(in container: CollectionContainer, monitor: ImportDelegate?) -> ImportSession? {
-        return TestDataImportSession(importer: self, container: container, monitor: monitor)
+    override func makeSession(in collection: CollectionContainer, monitor: ImportDelegate?) -> ImportSession? {
+        return TestDataImportSession(importer: self, collection: collection, monitor: monitor)
     }
 
 }
@@ -37,17 +37,17 @@ class TestDataImportSession: StandardRolesImportSession {
         let tag = Entity.named("test", createAs: .tag)
 
         let editorRole = Entity.identifiedBy(Role.StandardName.editor.identifier)
-        let sharedEditor = container.person(identifiedBy: "person-1", with: [
+        let sharedEditor = collection.person(identifiedBy: "person-1", with: [
             .name: "Ms Editor",
             .notes: "This person is the editor of a number of books."
         ])
         
-        let publisher = container.publisher(identifiedBy: "publisher-1", with: [
+        let publisher = collection.publisher(identifiedBy: "publisher-1", with: [
             .name: "Example Publisher",
             .notes: "Some notes about the publisher"
             ])
 
-        let book = container.book(identifiedBy: "book-1", with: [
+        let book = collection.book(identifiedBy: "book-1", with: [
             .name: "A Book",
             .notes: "Some\nmulti\nline\nnotes.",
             .publisher: publisher,
@@ -57,7 +57,7 @@ class TestDataImportSession: StandardRolesImportSession {
             PropertyKey("tag-1"): tag
         ])
 
-        let sharedPublisher = container.publisher(identifiedBy: "publisher-2", with: [
+        let sharedPublisher = collection.publisher(identifiedBy: "publisher-2", with: [
             .name: "Another Publisher",
             .notes: "This publisher has multiple books"
             ])
@@ -71,12 +71,12 @@ class TestDataImportSession: StandardRolesImportSession {
         var books: [Book] = [book]
         for n in 2...count {
             monitor?.importerWillContinueSession(self, withItem: n - 1, of: count)
-            let illustrator = container.person(identifiedBy: "person-\(n)", with:[
+            let illustrator = collection.person(identifiedBy: "person-\(n)", with:[
                 .name: "Mr Illustrator \(n)",
                 .notes: "Another example person."
             ])
 
-            let book = container.book(identifiedBy: "book-\(n)", with: [
+            let book = collection.book(identifiedBy: "book-\(n)", with: [
                 .name: "Book \(n)",
                 .subtitle: "Slightly longer subtitle \(n)",
                 .notes: "This is an example book.",
@@ -89,7 +89,7 @@ class TestDataImportSession: StandardRolesImportSession {
             seriesProperties[PropertyKey("entry-\(n)")] = book
         }
         
-        let series = container.series(identifiedBy: "series-1", with: seriesProperties)
+        let series = collection.series(identifiedBy: "series-1", with: seriesProperties)
 
         var entities: [ModelObject] = [
             publisher,
@@ -99,7 +99,7 @@ class TestDataImportSession: StandardRolesImportSession {
         ]
         
         entities.append(contentsOf: books)
-        container.store.get(entitiesWithIDs: entities) { result in
+        collection.store.get(entitiesWithIDs: entities) { result in
             print(result)
             monitor?.importerDidFinishWithStatus(.succeeded(self))
         }
