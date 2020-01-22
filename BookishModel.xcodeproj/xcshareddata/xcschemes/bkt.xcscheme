@@ -103,7 +103,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "Sample"
+            argument = "Raw"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

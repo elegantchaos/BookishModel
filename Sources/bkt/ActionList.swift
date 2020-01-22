@@ -8,7 +8,7 @@ import Actions
 import BookishModel
 import CoreData
 import Expressions
-
+import Datastore
 
 
 struct OldActionSpec: Decodable {
@@ -104,36 +104,21 @@ class ActionList: TaskList {
             }
         }
         
-        let context = container.managedObjectContext
-        info[ActionContext.model] = context
-        info[ImportAction.managerKey] = importManager
+//        let context = container.managedObjectContext
+        info[.model] = container
+        info[.managerKey] = importManager
         for (key, value) in params {
-            info[key] = value
+            info[ActionKey(key)] = value
         }
         
         if let selectionIDs = params["selectionIds"] as? [String] {
-            var selection: [ModelObject] = []
-            for personID in selectionIDs {
-                let request: NSFetchRequest<Person> = Person.fetcher(in: context)
-                request.predicate = NSPredicate(format: "uuid = \"\(personID)\"")
-                request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-                let results = try? context.fetch(request)
-                if let found = results, let person = found.first {
-                    selection.append(person)
-                }
+            let references = selectionIDs.map({ Entity.identifiedBy($0) })
+            container.store.get(entitiesWithIDs: references) { results in
+                info[.selection] = results
+                self.actionManager.perform(identifier: action, info: info)
             }
-            for bookID in selectionIDs {
-                let request: NSFetchRequest<Book> = Book.fetcher(in: context)
-                request.predicate = NSPredicate(format: "uuid = \"\(bookID)\"")
-                request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-                let results = try? context.fetch(request)
-                if let found = results, let book = found.first {
-                    selection.append(book)
-                }
-            }
-            info[.selection] = selection
+        } else {
+            actionManager.perform(identifier: action, info: info)
         }
-        
-        actionManager.perform(identifier: action, info: info)
     }
 }

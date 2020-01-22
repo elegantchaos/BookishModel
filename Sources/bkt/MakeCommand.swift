@@ -9,6 +9,7 @@ import BookishModel
 import CoreData
 import CommandShell
 import Localization
+import Datastore
 
 struct Session {
     let container: CollectionContainer
@@ -27,7 +28,7 @@ class MakeCommand: Command {
             arguments: ["names": "Comma-separated list of names of the databases to make"]
         )
     }
-
+    
     fileprivate func cleanup(container: CollectionContainer) {
         done += 1
         if sessions.count == done {
@@ -38,23 +39,32 @@ class MakeCommand: Command {
     }
     
     fileprivate func finish(shell: Shell, container: CollectionContainer) {
-        let context = container.managedObjectContext
-        let bookCount = context.countEntities(type: Book.self)
-        let seriesCount = context.countEntities(type: Series.self)
-        let personCount = context.countEntities(type: Person.self)
-        let publisherCount = context.countEntities(type: Publisher.self)
-        let roleCount = context.countEntities(type: Role.self)
-        let tagCount = context.countEntities(type: Tag.self)
-        print("\(bookCount) books, \(personCount) people, \(publisherCount) publishers, \(seriesCount) series, \(roleCount) roles, \(tagCount) tags.")
+        let types: [EntityType] = [.book, .series, .person, .publisher, .role, .tag]
         
-        DispatchQueue.main.async {
-            self.cleanup(container: container)
+        container.store.count(entitiesOfTypes: types) { counts in
+            let bookCount = counts[0]
+            let seriesCount = counts[1]
+            let personCount = counts[2]
+            let publisherCount = counts[3]
+            let roleCount = counts[4]
+            let tagCount = counts[5]
+            print("\(bookCount) books, \(personCount) people, \(publisherCount) publishers, \(seriesCount) series, \(roleCount) roles, \(tagCount) tags.")
+            
+            container.store.save() { _ in
+                container.store.encodeJSON() { json in
+                    let jsonURL = container.store.url.deletingPathExtension().appendingPathExtension("json")
+                    try? json.write(to: jsonURL, atomically: true, encoding: .utf8)
+                    DispatchQueue.main.async {
+                        self.cleanup(container: container)
+                    }
+                }
+            }
         }
     }
-
+    
     fileprivate func make(name: String, shell: Shell) {
         shell.log("Making collection '\(name)'.")
-
+        
         let rootURL = URL(fileURLWithPath: #file).deletingLastPathComponent()
         let jsonURL = rootURL.appendingPathComponent("Build \(name).json")
         
@@ -64,37 +74,38 @@ class MakeCommand: Command {
         let outputDirectory = rootURL.appendingPathComponent("../BookishModel/Resources/").appendingPathComponent(name)
         try? FileManager.default.createDirectory(at: outputDirectory, withIntermediateDirectories: true)
         let outputURL = outputDirectory.appendingPathComponent("\(name).sqlite")
-        
-        let model = BookishModel.model()
-        let coordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
-        do {
-            try coordinator.destroyPersistentStore(at: outputURL, ofType: NSSQLiteStoreType)
-        } catch {
-            shell.log("Couldn't delete old file: \(error)")
-        }
-        
-        let _ = CollectionContainer(name: name, url: outputURL, indexed: false) { (container, error) in
-            var variables: [String:Any] = ProcessInfo.processInfo.environment
-            variables["resourceURL"] = resourceURL.path
-            for n in 0 ..< CommandLine.arguments.count {
-                variables["\(n)"] = CommandLine.arguments[n]
-            }
-            
-            let actionManager = ActionManager()
-            actionManager.register(ModelAction.standardActions())
-            
-            let importManager = ImportManager()
-            importManager.register([
-                StandardRolesImporter(manager: importManager),
-                TestDataImporter(manager: importManager)
-            ])
 
-            let actions = ActionList(container: container, actionManager: actionManager, importManager: importManager)
-            actions.load(from: jsonURL, variables: variables)
-            actions.addTask(Task(name: "finish \(name)", callback: { self.finish(shell: shell, container: container) }))
-            self.sessions.append(Session(container: container, actions: actions))
-            DispatchQueue.global(qos: .userInitiated).async {
-                actions.run()
+        Datastore.destroy(storeAt: outputURL, removeFiles: true)
+        
+        CollectionContainer.load(name: name, url: outputURL, indexed: false) { result in
+            switch result {
+                case .failure(let error):
+                    shell.log("Couldn't make collection \(name) at \(outputURL): \(error)")
+                
+                case .success(let container):
+                    var variables: [String:Any] = ProcessInfo.processInfo.environment
+                    variables["resourceURL"] = resourceURL.path
+                    for n in 0 ..< CommandLine.arguments.count {
+                        variables["\(n)"] = CommandLine.arguments[n]
+                    }
+                    
+                    let actionManager = ActionManager()
+                    actionManager.register(ModelAction.standardActions())
+                    
+                    let importManager = ImportManager()
+                    importManager.register([
+                        StandardRolesImporter(manager: importManager),
+                        TestDataImporter(manager: importManager)
+                    ])
+                    
+                    let actions = ActionList(container: container, actionManager: actionManager, importManager: importManager)
+                    actions.load(from: jsonURL, variables: variables)
+                    actions.addTask(Task(name: "finish \(name)", callback: { self.finish(shell: shell, container: container) }))
+                    self.sessions.append(Session(container: container, actions: actions))
+                    DispatchQueue.global(qos: .userInitiated).async {
+                        actions.run()
+                    }
+
             }
         }
     }

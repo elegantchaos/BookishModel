@@ -1,0 +1,33 @@
+{
+  "actions" : [
+    {
+      "time" : 587305945.41854596,
+      "action" : {
+        "action" : "Import",
+        "info" : {
+          "importer" : "com.elegantchaos.bookish.importer.standard-roles"
+        }
+      }
+    },
+    {
+      "time" : 587305945.41862798,
+      "action" : {
+        "action" : "Import",
+        "info" : {
+          "url" : "$resourceURL\/Sample.xml",
+          "importer" : "com.elegantchaos.bookish.importer.delicious-library"
+        }
+      }
+    },
+    {
+      "time" : 587305945.41863298,
+      "action" : {
+        "action" : "Import",
+        "info" : {
+          "url" : "$resourceURL\/Kindle.xml",
+          "importer" : "com.elegantchaos.bookish.importer.kindle"
+        }
+      }
+    }
+  ]
+}

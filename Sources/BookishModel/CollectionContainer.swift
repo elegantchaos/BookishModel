@@ -10,7 +10,7 @@ import Logger
 let collectionChannel = Channel("com.elegantchaos.bookish.model.collection")
 
 open class CollectionContainer {
-    let store: Datastore
+    public let store: Datastore
     
     public enum PopulateMode {
         case empty                              /// don't populate with anything

@@ -78,5 +78,6 @@ class SplitPersonAction: PersonAction {
 //                personActionChannel.log("Split \(oldName) as \(person) and \(newPerson)")
 //            }
         }
+        completion(.ok)
     }
 }
