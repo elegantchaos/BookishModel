@@ -6,7 +6,7 @@
 import Datastore
 
 public class Publisher: ModelObject {
-    public override class func staticType() -> EntityType {
+    public override class func staticType() -> DatastoreType {
         return .publisher
     }
         override public class func getProvider() -> DetailProvider {

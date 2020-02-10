@@ -38,7 +38,7 @@ class AddRelationshipAction: EntityAction {
         }
 
         let person = Person()
-        let role = PropertyType(arguments.role)
+        let role = DatastoreType(arguments.role)
         var updates: [Book] = []
         for item in arguments.selection {
             if let book = item as? Book {

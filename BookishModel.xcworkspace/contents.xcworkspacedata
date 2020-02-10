@@ -8,6 +8,9 @@
       location = "group:../../../Coverage">
    </FileRef>
    <FileRef
+      location = "group:../../../Performance">
+   </FileRef>
+   <FileRef
       location = "group:../Actions">
    </FileRef>
    <FileRef

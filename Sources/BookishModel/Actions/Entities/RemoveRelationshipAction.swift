@@ -42,7 +42,7 @@ class RemoveRelationshipAction: EntityAction {
             return
         }
         
-        let key = PropertyDictionary.keyForRole(PropertyType(arguments.role), for: arguments.person)
+        let key = PropertyDictionary.keyForRole(DatastoreType(arguments.role), for: arguments.person)
         collection.store.remove(properties: [key], of: arguments.selection) {
             completion(.ok)
         }

@@ -166,7 +166,7 @@ class DeliciousLibraryImportSession: URLImportSession {
             if trimmed != "" {
                 let identifier = "\(bookID)-author-\(index)"
                 let author = collection.person(named: trimmed, with: [.identifier: identifier, .source: DeliciousLibraryImporter.identifier])
-                properties.addRole(PropertyType.author, for: author)
+                properties.addRole(DatastoreType.author, for: author)
                 index += 1
             }
         }

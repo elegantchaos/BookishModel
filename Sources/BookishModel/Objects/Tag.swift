@@ -6,7 +6,7 @@
 import Datastore
 
 public class Tag: ModelObject {
-    public override class func staticType() -> EntityType {
+    public override class func staticType() -> DatastoreType {
         return .tag
     }
 }

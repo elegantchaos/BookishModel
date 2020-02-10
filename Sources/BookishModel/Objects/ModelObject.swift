@@ -10,13 +10,15 @@ import Datastore
 
 public typealias ModelEntityReference = EntityReference
 
-public extension EntityType {
+public extension DatastoreType {
     static let book: Self = "book"
     static let person: Self = "person"
     static let publisher: Self = "publisher"
     static let role: Self = "role"
     static let series: Self = "series"
     static let tag: Self = "tag"
+    static let author: Self = "author"
+    static let editor: Self = "editor"
 }
 
 public extension PropertyKey {
@@ -41,15 +43,6 @@ public extension PropertyKey {
     static let source: Self = "source"
     static let subtitle: Self = "subtitle"
     static let width: Self = "width"
-}
-
-public extension PropertyType {
-    static let author: Self = "author"
-    static let editor: Self = "editor"
-    static let publisher: Self = EntityType.publisher.asPropertyType
-    static let series: Self = EntityType.series.asPropertyType
-    static let tag: Self = EntityType.tag.asPropertyType
-    static let role: Self = "role"
 }
 
 public extension PropertyDictionary {
@@ -101,24 +94,24 @@ public extension PropertyDictionary {
 }
 
 public extension PropertyDictionary {
-    static func keyForRole(_ role: PropertyType, for entity: EntityReference) -> PropertyKey {
+    static func keyForRole(_ role: DatastoreType, for entity: EntityReference) -> PropertyKey {
         return PropertyKey(reference: entity, name: role.name)
     }
     
-    static func withRole(_ role: PropertyType, for entity: EntityReference) -> PropertyDictionary {
+    static func withRole(_ role: DatastoreType, for entity: EntityReference) -> PropertyDictionary {
         var properties = PropertyDictionary()
         properties.addRole(role, for: entity)
         return properties
     }
     
-    mutating func addRole(_ role: PropertyType, for entity: EntityReference) {
+    mutating func addRole(_ role: DatastoreType, for entity: EntityReference) {
         let key = PropertyDictionary.keyForRole(role, for: entity)
         self[key] = (entity, role)
     }
     
     mutating func addTag(_ tag: EntityReference) {
         let key = PropertyKey(reference: tag, name: "tag")
-        self[key] = (tag, EntityType.tag.asPropertyType)
+        self[key] = (tag, DatastoreType.tag)
     }
     
     mutating func addPublisher(_ publisher: EntityReference) {
@@ -128,7 +121,7 @@ public extension PropertyDictionary {
         } else {
             key = .publisher
         }
-        self[key] = (publisher, type: EntityType.publisher.asPropertyType)
+        self[key] = (publisher, type: DatastoreType.publisher)
     }
 }
 

@@ -51,9 +51,9 @@ class TestDataImportSession: StandardRolesImportSession {
             .name: "A Book",
             .notes: "Some\nmulti\nline\nnotes.",
             .publisher: publisher,
-            PropertyKey("editor-1"): (sharedEditor, PropertyType.role),
-            PropertyKey("author-1"): (sharedEditor, PropertyType.role),
-            PropertyKey("illustrator-1"): (sharedEditor, PropertyType.role),
+            PropertyKey("editor-1"): (sharedEditor, DatastoreType.role),
+            PropertyKey("author-1"): (sharedEditor, DatastoreType.role),
+            PropertyKey("illustrator-1"): (sharedEditor, DatastoreType.role),
             PropertyKey("tag-1"): tag
         ])
 
@@ -82,8 +82,8 @@ class TestDataImportSession: StandardRolesImportSession {
                 .notes: "This is an example book.",
                 .published: formatter.date(from: "12/11/69")!,
                 .publisher: publisher,
-                "editor-1": (sharedEditor, PropertyType.role),
-                "illustrator-1": (illustrator, PropertyType.role)
+                "editor-1": (sharedEditor, DatastoreType.role),
+                "illustrator-1": (illustrator, DatastoreType.role)
             ])
             books.append(book)
             seriesProperties[PropertyKey("entry-\(n)")] = book

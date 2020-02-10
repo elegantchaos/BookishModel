@@ -9,8 +9,7 @@ import Logger
 
 let collectionChannel = Channel("com.elegantchaos.bookish.model.collection")
 
-open class CollectionContainer {
-    public let store: Datastore
+open class CollectionContainer: DatastoreContainer {
     
     public enum PopulateMode {
         case empty                              /// don't populate with anything
@@ -18,8 +17,8 @@ open class CollectionContainer {
         case replaceWith(sample: String)        /// wipe existing data and replace with some sample data
     }
     
-    public typealias LoadResult = Result<CollectionContainer, Error>
-    public typealias LoadCompletion = (LoadResult) -> Void
+//    public typealias LoadResult = Result<CollectionContainer, Error>
+//    public typealias LoadCompletion = (LoadResult) -> Void
     
     public class func load(name: String, url: URL? = nil, mode: PopulateMode = .empty, indexed: Bool = true, completion: @escaping LoadCompletion) {
         let fm = FileManager.default
@@ -28,12 +27,12 @@ open class CollectionContainer {
             switch mode {
                 case let .replaceWith(sampleName):
                     if let sampleURL = bundle.url(forResource: sampleName, withExtension: "sqlite", subdirectory: sampleName) {
-                        Datastore.replace(storeAt: url, withStoreAt: sampleURL)
+                        DatastoreContainer.replace(storeAt: url, withStoreAt: sampleURL)
                 }
                 
                 case let .populateWith(sample: sampleName):
                     if !fm.fileExists(atPath: url.path), let sampleURL = bundle.url(forResource: sampleName, withExtension: "sqlite", subdirectory: sampleName) {
-                        Datastore.replace(storeAt: url, withStoreAt: sampleURL)
+                        DatastoreContainer.replace(storeAt: url, withStoreAt: sampleURL)
                 }
                 
                 default:
@@ -41,22 +40,18 @@ open class CollectionContainer {
             }
         }
         
-        Datastore.load(name: name, url: url, indexed: indexed) { result in
+        DatastoreContainer.load(name: name, url: url, container: CollectionContainer.self, indexed: indexed) { result in
             switch result {
                 case .failure(let error):
                     completion(.failure(error))
                 
-                case .success(let store):
-                    store.register(classes: [Person.self, Book.self, Publisher.self, Series.self, Tag.self])
-                    let container = CollectionContainer(store: store)
+                case .success(let loaded):
+                    let container = loaded as! CollectionContainer
+                    container.store.register(classes: [Person.self, Book.self, Publisher.self, Series.self, Tag.self])
                     container.printSummary()
                     completion(.success(container))
             }
         }
-    }
-
-    init(store: Datastore) {
-        self.store = store
     }
     
 //    open func reset(callback: LoadedCallback? = nil) {
@@ -94,7 +89,7 @@ open class CollectionContainer {
         }
     }
     
-    func entity(named name: String, createAs: EntityType, with properties: PropertyDictionary? = nil) -> ModelObject {
+    func entity(named name: String, createAs: DatastoreType, with properties: PropertyDictionary? = nil) -> ModelObject {
         return Entity.named(name, createAs: createAs, with: properties) as! ModelObject
     }
     

@@ -218,7 +218,7 @@ class KindleImportSession: URLImportSession {
             if trimmed != "" {
                 let identifier = "\(book.asin)-author-\(index)"
                 let author = Person(named: trimmed, with: [.source: KindleImporter.identifier, .identifier: identifier])
-                properties.addRole(PropertyType.author, for: author)
+                properties.addRole(DatastoreType.author, for: author)
                 index += 1
             }
         }

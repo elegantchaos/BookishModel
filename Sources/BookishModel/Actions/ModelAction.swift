@@ -70,12 +70,12 @@ open class ModelAction: Action {
         return modelValidate(context: context)
     }
 
-    open func validateSelection<EntityType>(type: EntityType.Type, context: ActionContext, minimumToEnable: Int = 1, usingPluralTitle: Bool) -> Action.Validation {
+    open func validateSelection<DatastoreType>(type: DatastoreType.Type, context: ActionContext, minimumToEnable: Int = 1, usingPluralTitle: Bool) -> Action.Validation {
         var info = super.validate(context: context)
 
         if info.enabled,
-            let indexType = context[.entityType] as? EntityType.Type,
-            let selection = context[.selection] as? [EntityType],
+            let indexType = context[.entityType] as? DatastoreType.Type,
+            let selection = context[.selection] as? [DatastoreType],
             indexType == type {
             let count = selection.count
             info.enabled = count >= minimumToEnable

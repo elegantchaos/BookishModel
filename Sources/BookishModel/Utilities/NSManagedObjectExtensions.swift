@@ -9,16 +9,16 @@ import CoreData
  Generic which gets an existing entity of a given name and type, or creates one if necessary.
  */
 
-internal func getNamed<EntityType: NSManagedObject>(_ named: String, type: EntityType.Type, in context: NSManagedObjectContext, createIfMissing: Bool) -> EntityType? {
-    let request: NSFetchRequest<EntityType> = EntityType.fetcher(in: context)
+internal func getNamed<DatastoreType: NSManagedObject>(_ named: String, type: DatastoreType.Type, in context: NSManagedObjectContext, createIfMissing: Bool) -> DatastoreType? {
+    let request: NSFetchRequest<DatastoreType> = DatastoreType.fetcher(in: context)
     request.predicate = NSPredicate(format: "name = %@", named)
     if let results = try? context.fetch(request), let object = results.first {
         return object
     }
     
     if createIfMissing {
-        let description = EntityType.self.entityDescription(in: context)
-        if let object = NSManagedObject(entity: description, insertInto: context) as? EntityType {
+        let description = DatastoreType.self.entityDescription(in: context)
+        if let object = NSManagedObject(entity: description, insertInto: context) as? DatastoreType {
             object.setValue(named, forKey: "name")
             return object
         }
@@ -31,8 +31,8 @@ internal func getNamed<EntityType: NSManagedObject>(_ named: String, type: Entit
  Generic which gets an existing entity of a given identifier and type.
  */
 
-internal func getWithIdentifier<EntityType: NSManagedObject>(_ identifier: String, type: EntityType.Type, in context: NSManagedObjectContext) -> EntityType? {
-    let request: NSFetchRequest<EntityType> = EntityType.fetcher(in: context)
+internal func getWithIdentifier<DatastoreType: NSManagedObject>(_ identifier: String, type: DatastoreType.Type, in context: NSManagedObjectContext) -> DatastoreType? {
+    let request: NSFetchRequest<DatastoreType> = DatastoreType.fetcher(in: context)
     request.predicate = NSPredicate(format: "uuid = %@", identifier)
     if let results = try? context.fetch(request), let object = results.first {
         return object

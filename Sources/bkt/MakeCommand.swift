@@ -39,7 +39,7 @@ class MakeCommand: Command {
     }
     
     fileprivate func finish(shell: Shell, container: CollectionContainer) {
-        let types: [EntityType] = [.book, .series, .person, .publisher, .role, .tag]
+        let types: [DatastoreType] = [.book, .series, .person, .publisher, .role, .tag]
         
         container.store.count(entitiesOfTypes: types) { counts in
             let bookCount = counts[0]
@@ -75,14 +75,15 @@ class MakeCommand: Command {
         try? FileManager.default.createDirectory(at: outputDirectory, withIntermediateDirectories: true)
         let outputURL = outputDirectory.appendingPathComponent("\(name).sqlite")
 
-        Datastore.destroy(storeAt: outputURL, removeFiles: true)
+        DatastoreContainer.destroy(storeAt: outputURL, removeFiles: true)
         
-        CollectionContainer.load(name: name, url: outputURL, indexed: false) { result in
+        CollectionContainer.load(name: name, url: outputURL, container: CollectionContainer.self, indexed: false) { result in
             switch result {
                 case .failure(let error):
                     shell.log("Couldn't make collection \(name) at \(outputURL): \(error)")
                 
-                case .success(let container):
+                case .success(let loaded):
+                    let container = loaded as! CollectionContainer
                     var variables: [String:Any] = ProcessInfo.processInfo.environment
                     variables["resourceURL"] = resourceURL.path
                     for n in 0 ..< CommandLine.arguments.count {

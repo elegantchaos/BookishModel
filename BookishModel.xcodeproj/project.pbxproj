@@ -269,7 +269,6 @@
 		8B335E6E238EA35500EB8463 /* XCTestExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B335E6D238EA35500EB8463 /* XCTestExtensions */; };
 		8B37E14F230566AA006784FD /* ModelIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B37E14E230566AA006784FD /* ModelIndex.swift */; };
 		8B37E150230566AA006784FD /* ModelIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B37E14E230566AA006784FD /* ModelIndex.swift */; };
-		8B397DB2238D667E001596D0 /* Datastore in Frameworks */ = {isa = PBXBuildFile; productRef = 8B397DB1238D667E001596D0 /* Datastore */; };
 		8B397DB7238D7708001596D0 /* Datastore in Frameworks */ = {isa = PBXBuildFile; productRef = 8B397DB6238D7708001596D0 /* Datastore */; };
 		8B3DD9B822F079FE00EB7CD2 /* Actions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B3DD9B722F079FE00EB7CD2 /* Actions */; };
 		8B456C3223017EC00056E153 /* ConvertCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B456C3123017EC00056E153 /* ConvertCommand.swift */; };
@@ -278,14 +277,23 @@
 		8B46F3AD22E7161C00F08F2D /* CommandShell in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3AC22E7161C00F08F2D /* CommandShell */; };
 		8B46F3B022E7165200F08F2D /* Expressions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3AF22E7165200F08F2D /* Expressions */; settings = {ATTRIBUTES = (Required, ); }; };
 		8B46F3B322E7168500F08F2D /* JSONDump in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3B222E7168500F08F2D /* JSONDump */; };
-		8B46F3B922E71A4C00F08F2D /* Actions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3B822E71A4C00F08F2D /* Actions */; };
-		8B46F3BD22E71A5900F08F2D /* JSONDump in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3BC22E71A5900F08F2D /* JSONDump */; };
-		8B46F3BF22E71A6600F08F2D /* Expressions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B46F3BE22E71A6600F08F2D /* Expressions */; };
 		8B59657023A79227000FB895 /* BookActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B59656F23A79227000FB895 /* BookActionTests.swift */; };
 		8B59657123A79227000FB895 /* BookActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B59656F23A79227000FB895 /* BookActionTests.swift */; };
 		8B66550F22FD9B42005ABF39 /* Localization in Frameworks */ = {isa = PBXBuildFile; productRef = 8B66550E22FD9B42005ABF39 /* Localization */; };
 		8B935FEA22B7BE9200435863 /* CloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B935FE922B7BE9200435863 /* CloudManager.swift */; };
 		8B935FEB22B7BE9200435863 /* CloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B935FE922B7BE9200435863 /* CloudManager.swift */; };
+		8BB8474323F17FBE00F2692D /* JSONDump in Frameworks */ = {isa = PBXBuildFile; productRef = 8BB8474223F17FBE00F2692D /* JSONDump */; };
+		8BB8474723F17FD500F2692D /* Expressions in Frameworks */ = {isa = PBXBuildFile; productRef = 8BB8474623F17FD500F2692D /* Expressions */; };
+		8BB8474F23F1825200F2692D /* LocalizationShared in Frameworks */ = {isa = PBXBuildFile; productRef = 8BB8474E23F1825200F2692D /* LocalizationShared */; };
+		8BB8475023F1825200F2692D /* LocalizationShared in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 8BB8474E23F1825200F2692D /* LocalizationShared */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		8BB8475223F1825200F2692D /* LoggerShared in Frameworks */ = {isa = PBXBuildFile; productRef = 8BB8475123F1825200F2692D /* LoggerShared */; };
+		8BB8475323F1825200F2692D /* LoggerShared in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 8BB8475123F1825200F2692D /* LoggerShared */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		8BB8475523F1829500F2692D /* LocalizationShared in Frameworks */ = {isa = PBXBuildFile; productRef = 8BB8475423F1829500F2692D /* LocalizationShared */; };
+		8BB8475623F1829500F2692D /* LocalizationShared in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 8BB8475423F1829500F2692D /* LocalizationShared */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		8BB8475823F1829C00F2692D /* LoggerShared in Frameworks */ = {isa = PBXBuildFile; productRef = 8BB8475723F1829C00F2692D /* LoggerShared */; };
+		8BB8475923F1829C00F2692D /* LoggerShared in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 8BB8475723F1829C00F2692D /* LoggerShared */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		8BB8476123F183BD00F2692D /* Actions in Frameworks */ = {isa = PBXBuildFile; productRef = 8BB8476023F183BD00F2692D /* Actions */; };
+		8BB8476323F183C300F2692D /* Datastore in Frameworks */ = {isa = PBXBuildFile; productRef = 8BB8476223F183C300F2692D /* Datastore */; };
 		8BE2910B22FD6CE200EF249F /* MergeBookAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE2910A22FD6CE200EF249F /* MergeBookAction.swift */; };
 		8BE2910C22FD6CE200EF249F /* MergeBookAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE2910A22FD6CE200EF249F /* MergeBookAction.swift */; };
 		8BE2910E22FD6CFB00EF249F /* RemoveRelationshipAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE2910D22FD6CFB00EF249F /* RemoveRelationshipAction.swift */; };
@@ -322,7 +330,8 @@
 		8BE2913E22FD6F2D00EF249F /* NewPersonAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE2913C22FD6F2D00EF249F /* NewPersonAction.swift */; };
 		8BE2914022FD6F3600EF249F /* DeletePersonAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE2913F22FD6F3600EF249F /* DeletePersonAction.swift */; };
 		8BE2914122FD6F3600EF249F /* DeletePersonAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE2913F22FD6F3600EF249F /* DeletePersonAction.swift */; };
-		8BFED56F23D882E300A0BE37 /* Localization in Frameworks */ = {isa = PBXBuildFile; productRef = 8BFED56E23D882E300A0BE37 /* Localization */; };
+		8BFB99B323F16E3600FCF5D1 /* sharedLogger in Frameworks */ = {isa = PBXBuildFile; productRef = 8BFB99B223F16E3600FCF5D1 /* sharedLogger */; };
+		8BFB99B523F16E3600FCF5D1 /* sharedLogger in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 8BFB99B223F16E3600FCF5D1 /* sharedLogger */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -365,6 +374,31 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				8BB8475023F1825200F2692D /* LocalizationShared in Embed Frameworks */,
+				8BB8475323F1825200F2692D /* LoggerShared in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8B4D34B823D8960300512B8C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8BB8475623F1829500F2692D /* LocalizationShared in Embed Frameworks */,
+				8BB8475923F1829C00F2692D /* LoggerShared in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8BFB99B423F16E3600FCF5D1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8BFB99B523F16E3600FCF5D1 /* sharedLogger in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -538,6 +572,7 @@
 		8B59656F23A79227000FB895 /* BookActionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookActionTests.swift; sourceTree = "<group>"; };
 		8B66551122FDA9DC005ABF39 /* BookishMobile.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = BookishMobile.xctestplan; path = /Users/developer/Projects/Bookish/Dependencies/BookishModel/Sources/BookishModel/BookishMobile.xctestplan; sourceTree = "<absolute>"; };
 		8B935FE922B7BE9200435863 /* CloudManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudManager.swift; sourceTree = "<group>"; };
+		8BB8473B23F17F7D00F2692D /* sharedLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = sharedLogger.framework; path = "../../../../Library/Developer/Xcode/DerivedData/BookishModel-cihkgafvjxvjecgudehfcuzufplp/Build/Products/Debug/PackageFrameworks/sharedLogger.framework"; sourceTree = "<group>"; };
 		8BE2910A22FD6CE200EF249F /* MergeBookAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeBookAction.swift; sourceTree = "<group>"; };
 		8BE2910D22FD6CFB00EF249F /* RemoveRelationshipAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveRelationshipAction.swift; sourceTree = "<group>"; };
 		8BE2911022FD6D5000EF249F /* AddPublisherAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPublisherAction.swift; sourceTree = "<group>"; };
@@ -564,11 +599,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B397DB2238D667E001596D0 /* Datastore in Frameworks */,
-				8BFED56F23D882E300A0BE37 /* Localization in Frameworks */,
-				8B46F3B922E71A4C00F08F2D /* Actions in Frameworks */,
-				8B46F3BD22E71A5900F08F2D /* JSONDump in Frameworks */,
-				8B46F3BF22E71A6600F08F2D /* Expressions in Frameworks */,
+				8BB8474F23F1825200F2692D /* LocalizationShared in Frameworks */,
+				8BB8474323F17FBE00F2692D /* JSONDump in Frameworks */,
+				8BB8476323F183C300F2692D /* Datastore in Frameworks */,
+				8BB8476123F183BD00F2692D /* Actions in Frameworks */,
+				8BB8475223F1825200F2692D /* LoggerShared in Frameworks */,
+				8BB8474723F17FD500F2692D /* Expressions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,6 +621,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BFB99B323F16E3600FCF5D1 /* sharedLogger in Frameworks */,
 				8B46F3B322E7168500F08F2D /* JSONDump in Frameworks */,
 				8B66550F22FD9B42005ABF39 /* Localization in Frameworks */,
 				8B397DB7238D7708001596D0 /* Datastore in Frameworks */,
@@ -606,8 +643,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BB8475523F1829500F2692D /* LocalizationShared in Frameworks */,
 				225F896A221B0A9000196110 /* BookishModel.framework in Frameworks */,
 				8B46F3AD22E7161C00F08F2D /* CommandShell in Frameworks */,
+				8BB8475823F1829C00F2692D /* LoggerShared in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -721,6 +760,7 @@
 		224293F6212B12CA00E70510 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8BB8473B23F17F7D00F2692D /* sharedLogger.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -977,11 +1017,12 @@
 			);
 			name = BookishModelMac;
 			packageProductDependencies = (
-				8B46F3B822E71A4C00F08F2D /* Actions */,
-				8B46F3BC22E71A5900F08F2D /* JSONDump */,
-				8B46F3BE22E71A6600F08F2D /* Expressions */,
-				8B397DB1238D667E001596D0 /* Datastore */,
-				8BFED56E23D882E300A0BE37 /* Localization */,
+				8BB8474223F17FBE00F2692D /* JSONDump */,
+				8BB8474623F17FD500F2692D /* Expressions */,
+				8BB8474E23F1825200F2692D /* LocalizationShared */,
+				8BB8475123F1825200F2692D /* LoggerShared */,
+				8BB8476023F183BD00F2692D /* Actions */,
+				8BB8476223F183C300F2692D /* Datastore */,
 			);
 			productName = BookishModelMac;
 			productReference = 22429391212AE0F300E70510 /* BookishModel.framework */;
@@ -1016,6 +1057,7 @@
 				224293AF212AE16200E70510 /* Sources */,
 				224293B0212AE16200E70510 /* Frameworks */,
 				224293B1212AE16200E70510 /* Resources */,
+				8BFB99B423F16E3600FCF5D1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1029,6 +1071,7 @@
 				8B66550E22FD9B42005ABF39 /* Localization */,
 				8B1B9B2F23042C9A00C86B2C /* LoggerKit */,
 				8B397DB6238D7708001596D0 /* Datastore */,
+				8BFB99B223F16E3600FCF5D1 /* sharedLogger */,
 			);
 			productName = BookishModelMobile;
 			productReference = 224293B3212AE16200E70510 /* BookishModel.framework */;
@@ -1061,6 +1104,7 @@
 				225F8948221AFB3F00196110 /* Sources */,
 				225F8949221AFB3F00196110 /* Frameworks */,
 				225F894A221AFB3F00196110 /* CopyFiles */,
+				8B4D34B823D8960300512B8C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1070,6 +1114,8 @@
 			name = bkt;
 			packageProductDependencies = (
 				8B46F3AC22E7161C00F08F2D /* CommandShell */,
+				8BB8475423F1829500F2692D /* LocalizationShared */,
+				8BB8475723F1829C00F2692D /* LoggerShared */,
 			);
 			productName = bkt;
 			productReference = 225F894C221AFB3F00196110 /* bkt */;
@@ -1537,6 +1583,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/PackageFrameworks";
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = "$(BOOKISH_MODEL_INFO_PATH)";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1567,6 +1614,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/PackageFrameworks";
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = "$(BOOKISH_MODEL_INFO_PATH)";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1714,9 +1762,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2H48644JM2;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(BUILD_PRODUCTS_DIR)/BookishModel.framework/Versions/A/Frameworks",
+					"$(BUILT_PRODUCTS_DIR)/PackageFrameworks",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/bkt/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
+					"@executable_path/BookishModel.framework/Versions/A/Frameworks/",
+					"@executable_path/PackageFrameworks/",
 					"@executable_path/",
 					"@loader_path/",
 					/Applications/Xcode10.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx,
@@ -1737,9 +1791,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2H48644JM2;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(BUILD_PRODUCTS_DIR)/BookishModel.framework/Versions/A/Frameworks",
+					"$(BUILT_PRODUCTS_DIR)/PackageFrameworks",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/bkt/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
+					"@executable_path/BookishModel.framework/Versions/A/Frameworks/",
+					"@executable_path/PackageFrameworks/",
 					"@executable_path/",
 					"@loader_path/",
 					/Applications/Xcode10.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx,
@@ -2006,11 +2066,6 @@
 			package = 8B335E6C238EA35500EB8463 /* XCRemoteSwiftPackageReference "XCTestExtensions" */;
 			productName = XCTestExtensions;
 		};
-		8B397DB1238D667E001596D0 /* Datastore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8B397DB0238D667E001596D0 /* XCRemoteSwiftPackageReference "Datastore" */;
-			productName = Datastore;
-		};
 		8B397DB6238D7708001596D0 /* Datastore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8B397DB0238D667E001596D0 /* XCRemoteSwiftPackageReference "Datastore" */;
@@ -2035,29 +2090,48 @@
 			package = 8B46F3B122E7168500F08F2D /* XCRemoteSwiftPackageReference "JSONDump" */;
 			productName = JSONDump;
 		};
-		8B46F3B822E71A4C00F08F2D /* Actions */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8B46F3A622E715EA00F08F2D /* XCRemoteSwiftPackageReference "Actions" */;
-			productName = Actions;
-		};
-		8B46F3BC22E71A5900F08F2D /* JSONDump */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8B46F3B122E7168500F08F2D /* XCRemoteSwiftPackageReference "JSONDump" */;
-			productName = JSONDump;
-		};
-		8B46F3BE22E71A6600F08F2D /* Expressions */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8B46F3AE22E7165200F08F2D /* XCRemoteSwiftPackageReference "Expressions" */;
-			productName = Expressions;
-		};
 		8B66550E22FD9B42005ABF39 /* Localization */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8B7BF86322EB3BF30061087A /* XCRemoteSwiftPackageReference "Localization" */;
 			productName = Localization;
 		};
-		8BFED56E23D882E300A0BE37 /* Localization */ = {
+		8BB8474223F17FBE00F2692D /* JSONDump */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Localization;
+			package = 8B46F3B122E7168500F08F2D /* XCRemoteSwiftPackageReference "JSONDump" */;
+			productName = JSONDump;
+		};
+		8BB8474623F17FD500F2692D /* Expressions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B46F3AE22E7165200F08F2D /* XCRemoteSwiftPackageReference "Expressions" */;
+			productName = Expressions;
+		};
+		8BB8474E23F1825200F2692D /* LocalizationShared */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LocalizationShared;
+		};
+		8BB8475123F1825200F2692D /* LoggerShared */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LoggerShared;
+		};
+		8BB8475423F1829500F2692D /* LocalizationShared */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LocalizationShared;
+		};
+		8BB8475723F1829C00F2692D /* LoggerShared */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LoggerShared;
+		};
+		8BB8476023F183BD00F2692D /* Actions */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Actions;
+		};
+		8BB8476223F183C300F2692D /* Datastore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Datastore;
+		};
+		8BFB99B223F16E3600FCF5D1 /* sharedLogger */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = sharedLogger;
 		};
 /* End XCSwiftPackageProductDependency section */
 
