@@ -573,6 +573,7 @@
 		8B66551122FDA9DC005ABF39 /* BookishMobile.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = BookishMobile.xctestplan; path = /Users/developer/Projects/Bookish/Dependencies/BookishModel/Sources/BookishModel/BookishMobile.xctestplan; sourceTree = "<absolute>"; };
 		8B935FE922B7BE9200435863 /* CloudManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudManager.swift; sourceTree = "<group>"; };
 		8BB8473B23F17F7D00F2692D /* sharedLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = sharedLogger.framework; path = "../../../../Library/Developer/Xcode/DerivedData/BookishModel-cihkgafvjxvjecgudehfcuzufplp/Build/Products/Debug/PackageFrameworks/sharedLogger.framework"; sourceTree = "<group>"; };
+		8BE16E0923F190B600233BB9 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		8BE2910A22FD6CE200EF249F /* MergeBookAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeBookAction.swift; sourceTree = "<group>"; };
 		8BE2910D22FD6CFB00EF249F /* RemoveRelationshipAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveRelationshipAction.swift; sourceTree = "<group>"; };
 		8BE2911022FD6D5000EF249F /* AddPublisherAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPublisherAction.swift; sourceTree = "<group>"; };
@@ -905,6 +906,7 @@
 		22DD423B2126D6DA0070C85A = {
 			isa = PBXGroup;
 			children = (
+				8BE16E0923F190B600233BB9 /* Package.swift */,
 				22A1A8D621A5C4E300F2332B /* .travis.yml */,
 				22D4A51221C1215900427E35 /* .bin */,
 				22A1A8BF21A5C24800F2332B /* README.md */,
