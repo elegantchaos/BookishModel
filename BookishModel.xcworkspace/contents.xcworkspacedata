@@ -4,4 +4,7 @@
    <FileRef
       location = "container:">
    </FileRef>
+   <FileRef
+      location = "group:../Datastore">
+   </FileRef>
 </Workspace>

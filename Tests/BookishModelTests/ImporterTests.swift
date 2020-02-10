@@ -71,8 +71,7 @@ class ImporterTests: ModelTestCase {
     }
 
     func testDeliciousImporter() {
-        let bundle = Bundle(for: type(of: self))
-        let xmlURL = bundle.url(forResource: "Simple", withExtension: "plist")!
+        let xmlURL = testURL(named: "Simple", withExtension: "plist")
         XCTAssertTrue(check(importing: xmlURL, with: DeliciousLibraryImporter.identifier, checker: { monitor in
             let container = monitor.container
             let store = container.store
@@ -103,14 +102,17 @@ class ImporterTests: ModelTestCase {
     }
     
     func testKindleImporter() {
-        let bundle = Bundle(for: type(of: self))
-        let xmlURL = bundle.url(forResource: "KindleTest", withExtension: "xml")!
+        let xmlURL = testURL(named: "KindleTest", withExtension: "xml")
+        print(xmlURL)
         XCTAssertTrue(check(importing: xmlURL, with: KindleImporter.identifier, checker: { monitor in
             let store = monitor.container.store
             store.get(allEntitiesOfType: .book) { books in
                 monitor.check(count: books.count, expected: 3)
                 store.get(properties: [.name], of: books) { result in
+                    let identifiers = result.map({$0.identifier})
+                    print(identifiers)
                     let names = Set<String>(result.compactMap({ $0["name"] as? String }))
+                    print(names)
                     XCTAssertTrue(names.contains("A Big Ship at the Edge of the Universe (The Salvagers Book 1)"))
                     XCTAssertTrue(names.contains("Places in the Darkness"))
                     XCTAssertTrue(names.contains("Thin Air: From the author of Netflix's Altered Carbon (GOLLANCZ S.F.)"))
@@ -181,7 +183,7 @@ class ImporterTests: ModelTestCase {
 class ImporterActionTests: ModelActionTestCase {
     
     func testImportAction() {
-        let xmlURL = Bundle(for: type(of: self)).url(forResource: "Simple", withExtension: "plist")!
+        let xmlURL = testURL(named: "Simple", withExtension: "plist")
         let manager = ImportManager()
         let info = ActionInfo()
         info[.managerKey] = manager
