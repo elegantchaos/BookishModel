@@ -141,8 +141,8 @@
         "repositoryURL": "https://github.com/elegantchaos/XCTestExtensions.git",
         "state": {
           "branch": null,
-          "revision": "ee60f51053db8a0f513e7f593668a65867d79311",
-          "version": "1.0.7"
+          "revision": "504bf1d5cfe059e5a9db9c328097b4982a90a97e",
+          "version": "1.0.8"
         }
       }
     ]

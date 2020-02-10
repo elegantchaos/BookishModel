@@ -5,9 +5,15 @@
       location = "container:">
    </FileRef>
    <FileRef
+      location = "group:../Actions">
+   </FileRef>
+   <FileRef
+      location = "group:../../../CommandShell">
+   </FileRef>
+   <FileRef
       location = "group:../../../Datastore">
    </FileRef>
    <FileRef
-      location = "group:../Actions">
+      location = "group:../../../XCTestExtensions">
    </FileRef>
 </Workspace>

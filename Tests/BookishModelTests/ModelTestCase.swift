@@ -69,13 +69,13 @@ class ModelTestCase: XCTestCase {
     public func checkStore(checker: @escaping StoreMonitor.Checker) -> Bool {
         let expectation = self.expectation(description: "completed")
         var monitor: StoreMonitor?
-        Datastore.load(name: "Test", indexed: false) { result in
+        DatastoreContainer.load(name: "Test", indexed: false) { result in
             switch result {
             case .failure(let error):
                 XCTFail("failed to make store: \(error)")
                 expectation.fulfill()
-            case .success(let store):
-                let newMonitor = StoreMonitor(expectation: expectation, store: store, checker: checker)
+            case .success(let container):
+                let newMonitor = StoreMonitor(expectation: expectation, store: container.store, checker: checker)
                 monitor = newMonitor
                 checker(newMonitor)
             }
@@ -103,7 +103,8 @@ class ModelTestCase: XCTestCase {
                       XCTFail("load failed \(error)")
                       expectation.fulfill()
                   
-                  case .success(let container):
+                  case .success(let loaded):
+                    let container = loaded as! CollectionContainer
                       let newMonitor  = ContainerMonitor(expectation: expectation, container: container, checker: checker)
                       checker(newMonitor)
                       monitor = newMonitor

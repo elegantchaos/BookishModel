@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/elegantchaos/Arguments.git",
         "state": {
           "branch": null,
-          "revision": "e17c144eb00b6d9e500c34eb09de265add523de2",
-          "version": "1.1.0"
+          "revision": "580f0f7886f1ac2c94358dbf042c5e00a93d69c8",
+          "version": "1.1.1"
         }
       },
       {
@@ -17,15 +17,6 @@
           "branch": null,
           "revision": "ad0cd0c0782fe49ea9041fa1265378f03d1327cc",
           "version": "1.0.0"
-        }
-      },
-      {
-        "package": "CommandShell",
-        "repositoryURL": "https://github.com/elegantchaos/CommandShell.git",
-        "state": {
-          "branch": null,
-          "revision": "0fa92c1f4d5caa2177aa6bf9ed12a4d7363d0e48",
-          "version": "1.1.1"
         }
       },
       {
@@ -42,8 +33,8 @@
         "repositoryURL": "https://github.com/elegantchaos/docopt.swift.git",
         "state": {
           "branch": null,
-          "revision": "fa71fca4b4e7411c70a21ef89256cd04a64c6dda",
-          "version": "0.6.11"
+          "revision": "fe5bebd9829d1cf56bf062bca70809a09b7144b6",
+          "version": "0.6.12"
         }
       },
       {
@@ -116,15 +107,6 @@
           "branch": null,
           "revision": "8cce15c52b8e2248fb62b68bdbdb4c7d56868ddb",
           "version": "1.0.3"
-        }
-      },
-      {
-        "package": "XCTestExtensions",
-        "repositoryURL": "https://github.com/elegantchaos/XCTestExtensions.git",
-        "state": {
-          "branch": null,
-          "revision": "ee60f51053db8a0f513e7f593668a65867d79311",
-          "version": "1.0.7"
         }
       }
     ]
