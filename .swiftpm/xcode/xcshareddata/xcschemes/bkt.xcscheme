@@ -66,6 +66,10 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "Roles"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "Raw"
             isEnabled = "YES">
          </CommandLineArgument>

@@ -1,0 +1,94 @@
+{
+  "entities" : [
+    {
+      "name" : {
+        "string" : "Author",
+        "datestamp" : "2020-02-10T15:33:13Z",
+        "type" : "value"
+      },
+      "datestamp" : "2020-02-10T15:33:13Z",
+      "notes" : {
+        "string" : "Role.standard.author.notes",
+        "type" : "value",
+        "datestamp" : "2020-02-10T15:33:13Z"
+      },
+      "identifier" : "standard-author",
+      "type" : "role"
+    },
+    {
+      "datestamp" : "2020-02-10T15:33:13Z",
+      "name" : {
+        "string" : "Contributor",
+        "type" : "value",
+        "datestamp" : "2020-02-10T15:33:13Z"
+      },
+      "notes" : {
+        "datestamp" : "2020-02-10T15:33:13Z",
+        "string" : "Role.standard.contributor.notes",
+        "type" : "value"
+      },
+      "identifier" : "standard-contributor",
+      "type" : "role"
+    },
+    {
+      "name" : {
+        "string" : "Translator",
+        "type" : "value",
+        "datestamp" : "2020-02-10T15:33:13Z"
+      },
+      "identifier" : "standard-translator",
+      "type" : "role",
+      "notes" : {
+        "string" : "Role.standard.translator.notes",
+        "datestamp" : "2020-02-10T15:33:13Z",
+        "type" : "value"
+      },
+      "datestamp" : "2020-02-10T15:33:13Z"
+    },
+    {
+      "name" : {
+        "datestamp" : "2020-02-10T15:33:13Z",
+        "type" : "value",
+        "string" : "Illustrator"
+      },
+      "datestamp" : "2020-02-10T15:33:13Z",
+      "type" : "role",
+      "identifier" : "standard-illustrator",
+      "notes" : {
+        "string" : "Role.standard.illustrator.notes",
+        "datestamp" : "2020-02-10T15:33:13Z",
+        "type" : "value"
+      }
+    },
+    {
+      "datestamp" : "2020-02-10T15:33:13Z",
+      "name" : {
+        "string" : "Editor",
+        "type" : "value",
+        "datestamp" : "2020-02-10T15:33:13Z"
+      },
+      "type" : "role",
+      "notes" : {
+        "type" : "value",
+        "string" : "Role.standard.editor.notes",
+        "datestamp" : "2020-02-10T15:33:13Z"
+      },
+      "identifier" : "standard-editor"
+    },
+    {
+      "identifier" : "standard-foreword",
+      "datestamp" : "2020-02-10T15:33:13Z",
+      "notes" : {
+        "datestamp" : "2020-02-10T15:33:13Z",
+        "type" : "value",
+        "string" : "Role.standard.foreword.notes"
+      },
+      "type" : "role",
+      "name" : {
+        "type" : "value",
+        "datestamp" : "2020-02-10T15:33:13Z",
+        "string" : "Foreword"
+      }
+    }
+  ]
+}

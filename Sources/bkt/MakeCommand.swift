@@ -51,7 +51,9 @@ class MakeCommand: Command {
             print("\(bookCount) books, \(personCount) people, \(publisherCount) publishers, \(seriesCount) series, \(roleCount) roles, \(tagCount) tags.")
             
             container.store.save() { _ in
+                
                 container.store.encodeJSON() { json in
+                    self.copyToDocument(from: container.store.url)
                     let jsonURL = container.store.url.deletingPathExtension().appendingPathExtension("json")
                     try? json.write(to: jsonURL, atomically: true, encoding: .utf8)
                     DispatchQueue.main.async {
@@ -59,6 +61,22 @@ class MakeCommand: Command {
                     }
                 }
             }
+        }
+    }
+    
+    fileprivate func copyToDocument(from url: URL) {
+        let fm = FileManager.default
+        
+        let documentURL = url.deletingPathExtension().appendingPathExtension("store")
+        let contentURL = documentURL.appendingPathComponent("StoreContent")
+        try? fm.createDirectory(at: contentURL, withIntermediateDirectories: true, attributes: nil)
+        let suffixes = ["", "-shm", "-wal"]
+        let source = url.lastPathComponent
+        let root = url.deletingLastPathComponent()
+        for suffix in suffixes {
+            let from = root.appendingPathComponent("\(source)\(suffix)")
+            let to = contentURL.appendingPathComponent("persistentStore\(suffix)")
+            try? fm.copyItem(at: from, to: to)
         }
     }
     

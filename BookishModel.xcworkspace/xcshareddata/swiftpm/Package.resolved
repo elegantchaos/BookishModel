@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "Actions",
+        "repositoryURL": "https://github.com/elegantchaos/Actions.git",
+        "state": {
+          "branch": null,
+          "revision": "1ee12a4629fd385bde3af0fc30d57874f79efec3",
+          "version": "1.5.0"
+        }
+      },
+      {
         "package": "Arguments",
         "repositoryURL": "https://github.com/elegantchaos/Arguments.git",
         "state": {
@@ -20,12 +29,30 @@
         }
       },
       {
+        "package": "CommandShell",
+        "repositoryURL": "https://github.com/elegantchaos/CommandShell.git",
+        "state": {
+          "branch": null,
+          "revision": "2a1fcf850ce445548887318a83723ce2b9f982cd",
+          "version": "1.1.2"
+        }
+      },
+      {
         "package": "Coverage",
         "repositoryURL": "https://github.com/elegantchaos/Coverage.git",
         "state": {
           "branch": null,
           "revision": "fa0d05817cb910923ace380a9a17fb2862d92ec9",
           "version": "1.0.6"
+        }
+      },
+      {
+        "package": "Datastore",
+        "repositoryURL": "https://github.com/elegantchaos/Datastore.git",
+        "state": {
+          "branch": null,
+          "revision": "b44502d72bec60ec7f46dcd69b5c4abb839044e1",
+          "version": "1.2.3"
         }
       },
       {
@@ -107,6 +134,15 @@
           "branch": null,
           "revision": "8cce15c52b8e2248fb62b68bdbdb4c7d56868ddb",
           "version": "1.0.3"
+        }
+      },
+      {
+        "package": "XCTestExtensions",
+        "repositoryURL": "https://github.com/elegantchaos/XCTestExtensions.git",
+        "state": {
+          "branch": null,
+          "revision": "504bf1d5cfe059e5a9db9c328097b4982a90a97e",
+          "version": "1.0.8"
         }
       }
     ]
