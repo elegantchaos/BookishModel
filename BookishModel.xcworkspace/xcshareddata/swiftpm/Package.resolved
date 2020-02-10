@@ -21,11 +21,20 @@
       },
       {
         "package": "CommandShell",
-        "repositoryURL": "git@github.com:elegantchaos/CommandShell.git",
+        "repositoryURL": "https://github.com/elegantchaos/CommandShell.git",
         "state": {
           "branch": null,
           "revision": "0fa92c1f4d5caa2177aa6bf9ed12a4d7363d0e48",
           "version": "1.1.1"
+        }
+      },
+      {
+        "package": "Coverage",
+        "repositoryURL": "https://github.com/elegantchaos/Coverage.git",
+        "state": {
+          "branch": null,
+          "revision": "fa0d05817cb910923ace380a9a17fb2862d92ec9",
+          "version": "1.0.6"
         }
       },
       {
@@ -39,7 +48,7 @@
       },
       {
         "package": "Expressions",
-        "repositoryURL": "git@github.com:elegantchaos/Expressions.git",
+        "repositoryURL": "https://github.com/elegantchaos/Expressions.git",
         "state": {
           "branch": null,
           "revision": "d821e7c75e31fddb8158d8dac578a6ba200c9f36",
@@ -48,7 +57,7 @@
       },
       {
         "package": "JSONDump",
-        "repositoryURL": "git@github.com:elegantchaos/JSONDump.git",
+        "repositoryURL": "https://github.com/elegantchaos/JSONDump.git",
         "state": {
           "branch": null,
           "revision": "0743e45cc8c57550136df4cc0e1d1d332a9da494",
@@ -65,11 +74,29 @@
         }
       },
       {
-        "package": "ReleaseTools",
-        "repositoryURL": "git@github.com:elegantchaos/ReleaseTools.git",
+        "package": "Localization",
+        "repositoryURL": "https://github.com/elegantchaos/Localization.git",
         "state": {
           "branch": null,
-          "revision": "d655e47aa4af4a9267767370b0a84bc15c8969ff",
+          "revision": "74d7471c99389e432970eb9d7cc307d8b20d95c0",
+          "version": "1.0.1"
+        }
+      },
+      {
+        "package": "Logger",
+        "repositoryURL": "https://github.com/elegantchaos/Logger.git",
+        "state": {
+          "branch": null,
+          "revision": "be1cf7bd88380025755329e3ab1bcfebef7f9a46",
+          "version": "1.4.1"
+        }
+      },
+      {
+        "package": "Performance",
+        "repositoryURL": "https://github.com/elegantchaos/Performance.git",
+        "state": {
+          "branch": null,
+          "revision": "ee895c9b5cfbc12ed2ab6fd73e927f48c75e3994",
           "version": "1.0.2"
         }
       },
@@ -78,8 +105,8 @@
         "repositoryURL": "https://github.com/elegantchaos/Runner.git",
         "state": {
           "branch": null,
-          "revision": "54889ffb68a12f3bb166ddc501cae5a83fd89bf4",
-          "version": "1.0.4"
+          "revision": "394f2a5a92ac6b81215a3eeaec5ee4c8227a4a47",
+          "version": "1.0.5"
         }
       },
       {
@@ -89,6 +116,15 @@
           "branch": null,
           "revision": "8cce15c52b8e2248fb62b68bdbdb4c7d56868ddb",
           "version": "1.0.3"
+        }
+      },
+      {
+        "package": "XCTestExtensions",
+        "repositoryURL": "https://github.com/elegantchaos/XCTestExtensions.git",
+        "state": {
+          "branch": null,
+          "revision": "ee60f51053db8a0f513e7f593668a65867d79311",
+          "version": "1.0.7"
         }
       }
     ]
